@@ -1,0 +1,30 @@
+WEBVTT
+
+1
+00:00:06.060 --> 00:00:17.050
+Dragos Ruiu: Yeah, thank you. I'm Brooks, I do work at Dropbox as an infrastructure cloud security engineer. This presentation is more about the agents I've been building.
+
+2
+00:00:17.340 --> 00:00:26.809
+Dragos Ruiu: on my own, the ones I run every day, kind of the things I've been building and breaking, and the issues I've run into, and lessons learned, and fun things like that.
+
+3
+00:00:27.310 --> 00:00:40.879
+Dragos Ruiu: So everything I'm going to reference here is, open source on my GitHub. It's not really the open source that you can just download and run. It's open source, like, you can look at the code and try to figure out how to do it, but it does all run for me, so good luck if you want to go try.
+
+4
+00:00:41.990 --> 00:01:00.500
+Dragos Ruiu: So this is, I did update all these numbers last night, and I think it's already out of date again, but I have, like, 19 different agents. Agent is kind of a catch-all here. There's, I think, 13-ish interactive ones, a few other that are more like service agents, and have cron jobs that call either Cloud Code or a different agent.
+
+5
+00:01:00.710 --> 00:01:05.950
+Dragos Ruiu: 73 different MCP tools, just on a local SDPIO,
+
+6
+00:01:06.490 --> 00:01:13.300
+Dragos Ruiu: MCP server, so that that has things like, email that I've been playing around with a little bit, and
+
+7
+00:01:13.640 --> 00:01:15.510
+Dragos Ruiu: Creating files, reading from the files.
+

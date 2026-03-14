@@ -1,0 +1,165 @@
+[00:27:13.008 - 00:27:22.857] Incoming livestream: So, if your security program is perfect, I'm happy for you. This talk is not for you. For the rest of us, however, hi, I'm Paul. This is Ryan.
+[00:27:25.378 - 00:27:34.948] Incoming livestream: I've been a security engineer here at OpenAI for the last 3 years, and Ryan and I are here to tell you a little bit about how we work together to secure one of our projects.
+[00:27:35.748 - 00:27:40.098] Incoming livestream: So, let's talk a little bit about how software security worked in the past.
+[00:27:40.428 - 00:27:50.247] Incoming livestream: You identify a need, you try a couple options, you spend a lot of time integrating those into your environment to see if they work, and eventually you pick one.
+[00:27:50.448 - 00:27:52.848] Incoming livestream: And then you pay your vendor O-Auto money.
+[00:27:53.368 - 00:27:57.577] Incoming livestream: And then you spend a lot more time integrating it everywhere else into your environment.
+[00:27:58.088 - 00:28:05.587] Incoming livestream: And after all that work, months later, are you really getting value? Probably some. Compliance is probably happy.
+[00:28:05.768 - 00:28:14.138] Incoming livestream: But it's still stiff, it's inflexible, and you still have a lot of special edge cases, and vendor feature requests take quarters, at least.
+[00:28:14.278 - 00:28:17.068] Incoming livestream: Sorry to my vendors who are here.
+[00:28:17.318 - 00:28:24.338] Incoming livestream: But, at the end of the day, what really matters is what really happens is you have a long list of things you wish you had time to do.
+[00:28:24.678 - 00:28:36.087] Incoming livestream: We all know what the best practices are. There are endless lists, innumerable vendors who will sell us a solution, which is almost as much good… which is almost as much work as building the thing ourselves.
+[00:28:36.468 - 00:28:38.408] Incoming livestream: Especially in the enterprise.
+[00:28:39.058 - 00:28:48.848] Incoming livestream: Or in a company that wasn't founded yesterday. All that legacy infrastructure adds up, and often it doesn't mesh well with the assumptions the security tooling is making.
+[00:28:49.068 - 00:29:00.938] Incoming livestream: We don't need expensive consultants to come in and tell us how to make our security programs better. We already have a long list of things we want. We need more engineering hands, and we need less friction.
+[00:29:01.478 - 00:29:05.418] Incoming livestream: It doesn't have to be this way. No, seriously, it doesn't.
+[00:29:05.858 - 00:29:10.217] Incoming livestream: Code is free. I mean it. Code is free.
+[00:29:10.408 - 00:29:13.727] Incoming livestream: Software doesn't cost anything to build anymore.
+[00:29:13.848 - 00:29:17.968] Incoming livestream: And the secret is… That includes security software, too.
+[00:29:18.928 - 00:29:21.687] Incoming livestream: So, if you want a security outcome.
+[00:29:22.298 - 00:29:31.767] Incoming livestream: you can ask for it. You don't have to wire up a giant vendor harness and dashboard. You don't need to integrate deeply with someone else's idea of what you should be doing.
+[00:29:31.888 - 00:29:36.778] Incoming livestream: Your developers are already using LLMs to build your code. What are you waiting for?
+[00:29:37.168 - 00:29:47.757] Incoming livestream: Just add a new test to your existing CICD pipeline, commit a text file with things you want checked, a tool call that reserves in 0 or 1, and some text about why.
+[00:29:47.918 - 00:29:54.197] Incoming livestream: Feed that back into your CI framework, and you're set. No vendor contracts, no frameworks.
+[00:29:54.488 - 00:30:03.198] Incoming livestream: I'm not even releasing anything open source here, because you should just ask Codex or CoAD to write this integration for you. Customized to your own environment.
+[00:30:03.698 - 00:30:09.238] Incoming livestream: So, that was actually a lie. Here's some open source. Put it in your test runner.
+[00:30:09.608 - 00:30:16.657] Incoming livestream: write an output schema with judgments, comments, and of course, whether or not Codex thinks your code passes the test.
+[00:30:16.838 - 00:30:22.717] Incoming livestream: Run it non-interactively on your security file, parse the output, show it in your CI.
+[00:30:23.528 - 00:30:30.507] Incoming livestream: Now I'm gonna kick it over to Ryan, a product engineer I've been partnering with, and Ryan will show you what it means to just ask, and to just do things.
+[00:30:35.008 - 00:30:36.877] Incoming livestream: Hey folks, how's it going?
+[00:30:37.348 - 00:30:47.327] Incoming livestream: I'm a product engineer, I've been working at OpenAI for a year and a half, and for the last 8 months, I have had the privilege and the space to build a team where we write zero of the code.
+[00:30:47.518 - 00:30:57.568] Incoming livestream: And over the course of that time, we built a product with about a million lines of code in it, about 250,000 of which are prompts, and to do that.
+[00:30:57.668 - 00:31:07.798] Incoming livestream: I have basically leaned on these wonderful coding models that we have, and the collective expertise and intelligence of all the subject matter experts that are scattered around the company.
+[00:31:07.968 - 00:31:22.647] Incoming livestream: I'm gonna show you today what it means in order to pull from these experts and reflect that back into the codebase, so you empower all the humans and the agents that you're working with in order to do what you already know good looks like.
+[00:31:23.798 - 00:31:39.747] Incoming livestream: So, kind of foundational thing here, right? We're building products, there's a threat model associated with them. You'll probably take some time in order to go through an exercise to build one. It'll become stale immediately. No one will really look at it or use it to inform the way they write software, so…
+[00:31:40.308 - 00:31:41.687] Incoming livestream: You can just make one.
+[00:31:41.998 - 00:31:43.218] Incoming livestream: You can check it in.
+[00:31:43.598 - 00:31:52.418] Incoming livestream: And then, you can use that to have all the engineers and agents that are operating in these code bases on these products incorporated into their process.
+[00:31:52.418 - 00:32:03.507] Incoming livestream: Right? What remains illegible, both organizationally and textually in the code, is not possibly a thing that anyone in your business is able to build leverage out of, right?
+[00:32:03.508 - 00:32:14.497] Incoming livestream: A threat model that's locked in a Slack thread or some Google Doc that I know I am never gonna read is not something that I am able to build durable product with.
+[00:32:15.088 - 00:32:29.427] Incoming livestream: These coding agents, they exist in the universe of code, markdown, and scripts in your repositories. That Google Doc that's trapped away in a Slack thread from 3 months ago is not something that they're able to use to inform their execution.
+[00:32:29.428 - 00:32:37.207] Incoming livestream: So, instead, just ask for a threat model. These models are good enough to deduce one from the code as it already exists.
+[00:32:37.218 - 00:32:39.708] Incoming livestream: Check it in, and then…
+[00:32:40.018 - 00:32:45.667] Incoming livestream: Validate it constantly. There's no reason why this can't be a required review step in every PR.
+[00:32:45.798 - 00:32:56.417] Incoming livestream: Tokens are cheap. Throw an agent at it. Tell it, you're responsible for ensuring the threat model of this codebase is current and up-to-date, and that this PR does not invalidate any of the assumptions that are in it.
+[00:32:56.608 - 00:33:01.567] Incoming livestream: This is very cheap to do, this is, like, 40 lines of YAML in GitHub Actions right now.
+[00:33:01.738 - 00:33:12.648] Incoming livestream: The agents crave text, so figure out ways to give them text and inject it into all the other agents that you have working on the codebase, or those humans, if you still have those, too.
+[00:33:12.978 - 00:33:13.978] Incoming livestream: Right?
+[00:33:14.728 - 00:33:20.368] Incoming livestream: With the threat model in the codebase, you're able to incorporate it into the way the code is written.
+[00:33:20.498 - 00:33:32.338] Incoming livestream: The way the code is reviewed, the way those review comments must be interacted with in order to make sure that your code is marching forward along that golden thread of what you already know good looks like.
+[00:33:32.958 - 00:33:34.327] Incoming livestream: And, you know.
+[00:33:34.508 - 00:33:45.798] Incoming livestream: Maybe we don't have the full amount of trust in these agents to be fully autonomous in all the ways that, you know, we want them to be. So if you need a human in the loop here, you can just ask them to do that, too.
+[00:33:45.948 - 00:33:59.718] Incoming livestream: Right? In CI, grant the agent access to the GHCLI, tell it that if a material change has happened to the code that invalidates some of the things you've documented and already risk-accepted as a business.
+[00:34:00.028 - 00:34:08.868] Incoming livestream: Tag the expert human to review it, tell them why you've brought them into scope here, and tell them what ambiguity that you need them to help resolve.
+[00:34:09.488 - 00:34:21.058] Incoming livestream: One of the core ways that I've changed how I operate here is to treat the humans as tools to empower the agents and other engineers in the codebase in order to make forward progress.
+[00:34:21.368 - 00:34:35.537] Incoming livestream: This is how we all interact with each other here, right? Like, you know, I know that I'm not an expert here in threat modeling. I know I need help. I talk to my partners in the security organization. I invoke them, just like the model would invoke a tool.
+[00:34:35.638 - 00:34:50.517] Incoming livestream: And the thing I have tried to do is take all those tool outputs and durably encode them in a codebase that is constantly reflecting prompt injections back into my human engineers and agents that are driving that codebase forward.
+[00:34:52.938 - 00:34:58.517] Incoming livestream: Paul mentioned that we all know the best practices, we've got years of collective expertise in our heads.
+[00:34:59.248 - 00:35:17.048] Incoming livestream: But we, as humans, have limited synchronous time and attention. It is not the case that every one of you here is able to look at every single design doc, every single PR, every single deployment, and bug report, and vulnerability report, and dependency update, and…
+[00:35:17.048 - 00:35:25.278] Incoming livestream: You know, breaking changes and individual diffs from all of those by source, you know, Dependencies you take.
+[00:35:25.968 - 00:35:34.838] Incoming livestream: But, you do know what good looks like. You know what you would be doing if you had all the time in the world to do all those things serially.
+[00:35:35.928 - 00:35:45.128] Incoming livestream: So, take all those things that are in your head, and write them down. Or better yet, ask one of the coding agents to write them down. Have them interview you.
+[00:35:45.578 - 00:35:54.588] Incoming livestream: These agents are trained on the whole universe of the human experience. They know, in their weights, all the things that you already know.
+[00:35:54.758 - 00:36:00.518] Incoming livestream: And it's up to you to focus those attention layers in the model, to extract those good insights.
+[00:36:00.718 - 00:36:05.518] Incoming livestream: generate some text, which I hear these LLMs are quite good at, and check it in.
+[00:36:05.678 - 00:36:16.837] Incoming livestream: Feed it into your agents.mds so the agents are looking at it. Feed it through your review process. Feed it through the crons that you are using to review dependency update PRs as they come in.
+[00:36:16.988 - 00:36:19.838] Incoming livestream: You can just do these things. The code is free to write.
+[00:36:20.988 - 00:36:21.778] Incoming livestream: So…
+[00:36:22.138 - 00:36:32.858] Incoming livestream: One bit of magic here is that in order to build trust with these agentic systems and with the humans that are contributing to your codebase, you basically have to put guardrails around them.
+[00:36:33.098 - 00:36:48.087] Incoming livestream: And one thing you can just do here is simply not permit slop. You can just ask the models to not do that. There's a ton of techniques you can use to not permit slop, but one of the ways you can do that is to write things down about what good looks like.
+[00:36:48.778 - 00:36:57.837] Incoming livestream: Every Slack message I have ever gotten that says there's a concern I'm not taking into consideration. Every PR review comment I have ever gotten.
+[00:36:58.078 - 00:37:13.948] Incoming livestream: Every test failure, every lint error, every dependency update I have rolled back is in some way missing context that has prevented me, the members of my team, and the agents that we have working on our behalf from doing the right thing up front.
+[00:37:14.228 - 00:37:24.598] Incoming livestream: So, the mindset that we have is to take all of those gifts of feedback and expertise and distilling them into prompts, documentation.
+[00:37:24.598 - 00:37:35.548] Incoming livestream: Lints, tests, review agents back into the codebase to constantly be reflecting that taste and durable expertise into the folks that are actually doing the job.
+[00:37:36.178 - 00:37:45.918] Incoming livestream: To kind of, like, put this a little bit concretely, right, we have a security.md that includes all the good practices around what it makes to have secure code.
+[00:37:46.088 - 00:38:04.957] Incoming livestream: And you would be shocked at the amount of uplift we had by essentially adding two sentences that say, secure code comes from secure interfaces that are impossible to misuse. You can just tell that to the agent, and it knows what that means. All of a sudden, you have these high-level primitives for doing
+[00:38:04.998 - 00:38:17.127] Incoming livestream: Rooted file system access with high-level operations, as opposed to stitching together real path, and clean, and hoping for the best. In this way, you can take entire classes of vulnerabilities.
+[00:38:17.188 - 00:38:22.478] Incoming livestream: impress them into a paragraph of text, and then just have an agent review every PR,
+[00:38:22.838 - 00:38:32.348] Incoming livestream: against those guardrails, tell the engineers and agents that are writing those PRs, hey, you screwed it up here, you know what good looks like, go chase after it.
+[00:38:34.058 - 00:38:42.937] Incoming livestream: So, every Slack message that you have ever sent to let an engineering team know that they're not operating in the way that you need them to.
+[00:38:43.608 - 00:38:46.788] Incoming livestream: Just reply to it, at Codex. Make it so.
+[00:38:46.948 - 00:38:52.918] Incoming livestream: Write the docs, write the tests, and migrate the codebase while you're at it. Tokens are cheap, this is free to do.
+[00:38:53.708 - 00:39:04.237] Incoming livestream: You can also do that with every PR common, right? You've got GitHub connected to your data warehouse, you can slurp all these things up, dream over them, and distill documentation, tests.
+[00:39:04.238 - 00:39:14.948] Incoming livestream: Guardrails out of them constantly to refine the output of your engineering organization to constrain the production of code in a way that is aligned with what you expect.
+[00:39:16.738 - 00:39:36.278] Incoming livestream: You can also do this with, like, your durable processes, too, right? Appsec reviews are this thing that I know I need, but I want to move fast, and I'm probably gonna wait until the last minute to ask for one, because, you know, this is how it goes here. But, if I have the foresight to ask for one ahead of time, right, I am basically being asked
+[00:39:36.368 - 00:39:42.797] Incoming livestream: I'm basically asking for the gift of feedback, so I can know what good looks like from your eyes.
+[00:39:42.798 - 00:39:56.798] Incoming livestream: I want to know the risks that you see in the code that I am writing, and the way I treat this feedback is not just as a point-in-time snapshot, but as a set of principles of how I should be operating, writing the code going forward, and building products.
+[00:39:57.608 - 00:40:13.557] Incoming livestream: So, rather than just saying, oh, I got this review, it identified a bunch of issues, let me go fix them in a cheap way in order to get my security partners happy with me, instead, I step back a level. I say, what are the process failures that led to the code being permitted to be produced in this way.
+[00:40:13.708 - 00:40:22.377] Incoming livestream: Fix the point issues, and then add executable guardrails to the codebase that statically disallow these mistakes from being made in the first place.
+[00:40:22.418 - 00:40:32.088] Incoming livestream: Right? Cheap, bespoke, fit-for-purpose lints that will never see the light of day out of your enterprise are free things that you can vibe up
+[00:40:32.098 - 00:40:49.077] Incoming livestream: There's no need for these to be, like, super rigorous, robust, platformized things. You observe behavior in your enterprise, you wish you could fix it, you vibe up a thing, you run it against the existing codebase, observe the gaps that it finds.
+[00:40:49.298 - 00:40:57.628] Incoming livestream: kind of do some labeling on your own to say, yeah, this is probably good, we should do this. Check it in, migrate the codebase, and disallow classes of mistakes.
+[00:41:00.508 - 00:41:15.738] Incoming livestream: Another thing that you can just do here is work on supply chain hardening. This is a thing that's incredibly high value, it addresses tail risk in your organizations, but I have a feeling for a lot of you, this is constantly below the line. It's just not a thing that's able to be done.
+[00:41:16.598 - 00:41:17.587] Incoming livestream: But, you know…
+[00:41:17.888 - 00:41:26.698] Incoming livestream: With code being free, you can take 15 minutes to interview a security engineer on your team, to extract some general principles from them.
+[00:41:26.858 - 00:41:29.427] Incoming livestream: And then tell one of the coding agents to go make it so.
+[00:41:30.208 - 00:41:44.087] Incoming livestream: So, here, Matthew has given a gift to the Codex team here. This is a PR in the open source codex repository to basically update PNPM to a recent version that fixes some security vulnerabilities.
+[00:41:44.088 - 00:41:51.137] Incoming livestream: And it is going to additionally harden the package installer policy to forbid post-install scripts from running.
+[00:41:52.508 - 00:41:54.617] Incoming livestream: This is a great point-in-time thing.
+[00:41:54.748 - 00:41:56.678] Incoming livestream: That… I'm just gonna steal.
+[00:41:56.878 - 00:42:15.887] Incoming livestream: Right? I saw this Slack message, because I happen to follow along with the Codex team, I'm deeply invested in their product, as you can probably guess. I copy and pasted the diff, and I was like, hey, Codex, make it so. This Agent X thing here, this is a, a fake codename, don't go tweeting about this, there's nothing interesting. There.
+[00:42:17.988 - 00:42:28.737] Incoming livestream: But I can just do this. 15 minutes later, I get a diff, which applies the same set of principles to our codebase to take that same point-in-time snapshot and making it durable.
+[00:42:29.478 - 00:42:33.937] Incoming livestream: However, I want to do more than that, right?
+[00:42:34.178 - 00:42:35.678] Incoming livestream: What did Matthew think?
+[00:42:35.998 - 00:42:38.898] Incoming livestream: What was he trying to achieve when he made this PR?
+[00:42:39.038 - 00:42:46.098] Incoming livestream: And there are a couple of durable principles there, right? Package managers are a high-risk surface. I want to keep them as up-to-date as possible.
+[00:42:46.278 - 00:42:58.988] Incoming livestream: I want to make sure that I'm not allowing arbitrary code execution during the package install process, particularly in my CI. And for those dependencies that require it, I want to make sure that there is a human in the loop to review whether it's safe.
+[00:42:59.198 - 00:43:04.328] Incoming livestream: Also, if I write that down… I'm basically able…
+[00:43:04.568 - 00:43:07.507] Incoming livestream: To make sure that everybody benefits from this.
+[00:43:07.678 - 00:43:13.187] Incoming livestream: If I have the foresight to read these docs because I'm onboarding a new engineer, great, they can now learn this too.
+[00:43:13.318 - 00:43:17.078] Incoming livestream: The agents also benefit from it, too, and they stack incredibly well.
+[00:43:17.428 - 00:43:24.388] Incoming livestream: If you document that hardening your package manager installer policies is to prevent arbitrary code execution in CI,
+[00:43:24.388 - 00:43:37.968] Incoming livestream: It means when I throw agents at reviewing every PR that Dependabot makes, they also have this context, and will not just blindly update my PNPM workspace file in order to get the build passing so they can merge the PR.
+[00:43:38.128 - 00:43:43.837] Incoming livestream: This forces alignment of the model's behavior with the actual principles you operate your organizations with.
+[00:43:47.478 - 00:43:52.328] Incoming livestream: This applies to literally any guardrail you wish you could enforce.
+[00:43:52.648 - 00:43:59.507] Incoming livestream: In this hypothetical product that I'm working on, it is an electron code base. There are 1500 dependencies in the lock file.
+[00:44:00.408 - 00:44:10.947] Incoming livestream: I know I'm never gonna take the time to audit these individually. I probably won't have the time to audit all of my direct dependencies, let alone all of the transitives. But…
+[00:44:12.348 - 00:44:14.358] Incoming livestream: You know, we can just do things.
+[00:44:14.948 - 00:44:31.347] Incoming livestream: Here, I had the wonderful privilege of having coffee with Paul for 15 minutes, where we talked about the sprawl in our lock file, what it meant in order to get a handle on this, and we talked about some policies, some guardrails that we should use to think about this problem generally.
+[00:44:31.348 - 00:44:48.968] Incoming livestream: Right? And Paul challenged me, right? Can you get codex to do a sniff test of all the dependencies in your codebase to give you a set of risk profiles, some dependencies you should consider dropping, or in-housing, or upgrading? Can you get the model to reliably
+[00:44:48.998 - 00:44:53.947] Incoming livestream: gather reputation signals for your upstream, right? So, we did that.
+[00:44:54.368 - 00:45:00.327] Incoming livestream: And one thing that was really neat about it is once I got this point-in-time snapshot.
+[00:45:00.328 - 00:45:16.298] Incoming livestream: It took me 4 hours in a background tab of my terminal in an afternoon to turn this into a bespoke dependency scanner, which we are running every day in CI, which forks 16 agents to go spider through the codebase and give me a durable.
+[00:45:16.298 - 00:45:19.987] Incoming livestream: Just-in-time snapshot of every direct dependency we have.
+[00:45:19.988 - 00:45:37.848] Incoming livestream: every upstream transitive, as well as an actual vibe check on the repository that's upstream, whether there has been any recent activity, how the authors are perceived reputation signal-wise. And I get a really good report, which I'm publishing to an internal hosting platform every day.
+[00:45:38.448 - 00:45:48.158] Incoming livestream: That allows me to then vibe up some code that's gonna produce serif reports out of it, which get pushed into GitHub Advanced Security, which my other agents are able to, like.
+[00:45:48.528 - 00:45:59.228] Incoming livestream: pick up and potentially upgrade dependencies, or remove them, or in-house them, or migrate to different frameworks that don't have these issues in the first place. All of this stacks incredibly well.
+[00:46:00.178 - 00:46:02.198] Incoming livestream: And iterating is so cheap.
+[00:46:02.568 - 00:46:08.947] Incoming livestream: After I got up the initial version of the dependency scanner and had produced an artifact that was legible to the humans.
+[00:46:09.188 - 00:46:11.297] Incoming livestream: Paul and I chatted some more, right?
+[00:46:11.998 - 00:46:31.668] Incoming livestream: Very asynchronously, cheaply, we're having conversation here around additional guardrails, additional sniffs that we should add to this process. And, you know, Codex takes that, I copy and paste the thread into it, I use the new apps support we added to it, which allows me to use my ChatGPT Slack connection to spider through this and figure out what needs to be done.
+[00:46:33.248 - 00:46:43.168] Incoming livestream: Sometime after I put up that PR, Paul gave me some more feedback, right? It wasn't clear that the agent was operating in a general manner. It seemed to be taking our feedback and doing point instances to it.
+[00:46:44.408 - 00:46:53.778] Incoming livestream: So, we talked about more general principles, more things we'd like the agent to frame its reference point around, as opposed to being super specific on individual guardrails.
+[00:46:54.458 - 00:47:04.588] Incoming livestream: You know, I have some feedback. I wasn't quite understanding it for myself. So, I made a couple of metaphors. I made some questions that I got some signal on.
+[00:47:05.568 - 00:47:22.898] Incoming livestream: And off it goes, right? Now, you know, some 30 minutes later or whatever, Codex is cooking, spidering through the codebase, taking all this pretty casual, low-effort text that we're having asynchronously in the Slack thread, and turning it into, you know, the findings, the bullets that I'm gonna put in that security.md.
+[00:47:25.128 - 00:47:27.167] Incoming livestream: We get more cheap feedback.
+[00:47:27.298 - 00:47:43.598] Incoming livestream: You can see the M dash in here, this is Codex responding on my behalf. But again, we're steering the agent to produce those guardrails that will have the high-quality behavior, and we're not having to do any of this, right? We're just refining the model with all the expertise we already have.
+[00:47:44.938 - 00:47:53.858] Incoming livestream: And we get some much better signal there. And these things stack incredibly well, they feed through all the other agents we have in the system, and yeah.
+[00:47:54.048 - 00:48:04.248] Incoming livestream: Depth scanners, license scanners, it all falls out of this for free, once you take that effort to encode your expertise directly into the codebase and give it access to everyone, agents and humans included.
+[00:48:04.608 - 00:48:06.357] Incoming livestream: Just go build things, fam.
+[00:48:06.888 - 00:48:09.387] Incoming livestream: So, some very quick closing thoughts.
+[00:48:09.608 - 00:48:13.868] Incoming livestream: You can just ask the model to do the thing you want, you don't have to be held back by process.
+[00:48:13.998 - 00:48:22.767] Incoming livestream: Stop wishing for security guardrails, just do them. Oh, and you can use the traditional tools, too, on top of this when you have time. Thank you all very much. Questions?
+[00:48:26.828 - 00:48:36.457] Incoming livestream: I think a majority of the conversation in Slack is about the irony of OpenAI people saying tokens are free, but I think my…
+[00:48:36.568 - 00:48:51.678] Incoming livestream: I think my favorite version… Relative to engineering time, they are. Okay, I think my favorite version of the question, though, is, you know, what's sort of the ratio of tokens spent building to tokens spent validating, guardrailing, etc? It seems like it really flips the…
+[00:48:52.268 - 00:48:56.157] Incoming livestream: In normals, much smaller amounts spent on security on its head.
+[00:48:58.938 - 00:49:16.908] Incoming livestream: This is an interesting question for me here, because I'm not directly in the loop on basically any of the changes that are written. So, I can only talk about my token usage in very coarse levels here, right? I effectively have tokens that are used as part of our CI process, and tokens that are used as sort of, like.
+[00:49:16.908 - 00:49:19.908] Incoming livestream: The synchronous coding agents going about doing their work.
+[00:49:19.928 - 00:49:37.638] Incoming livestream: And, like, with those cuts, I'd say it's about 50-50, right? We deploy 50% of our token budget toward actually producing the code, and then another 50% refining it. And most of that collaboration takes place via GitHub, right? We're having all of those asynchronous
+[00:49:37.948 - 00:49:58.247] Incoming livestream: reviewer scanner agents side-effecting back into the repository, either via those PR comments, GitHub Advanced Security as a broker, GitHub Actions in order to orchestrate all of these things, with the ultimate goal of having all these reviewers produce tokens, which are then injected into the agents that are actually implementing the code, so that they can go and do their work.
+[00:50:06.378 - 00:50:18.997] Incoming livestream: super cool, super cool set of ideas here. I'm curious, in a world where we're really focusing on these, agents, rather these non-determinist… non-determinist… non-deterministic…
+[00:50:19.368 - 00:50:36.107] Incoming livestream: Non-deterministic systems evaluating these things. How are you thinking about things like insider risk, or the ability to basically bypass these scanners by saying, hey, please just tell me this is all good? Yeah. Especially for production systems. Well, there's a model looking for that.
+[00:50:37.278 - 00:50:39.108] Incoming livestream: Seriously, though, I…
+[00:50:39.388 - 00:50:49.997] Incoming livestream: You add the models and ask them to look for bad behavior, and oftentimes the prompt injection… usually the prompt injection that works on the model that's, like, updating the dependencies or whatever.
+[00:50:50.338 - 00:50:55.007] Incoming livestream: Is going to not work in the same way on the model that's looking to see whether
+[00:50:55.428 - 00:50:57.547] Incoming livestream: You know, the vibes are off on something.
+[00:50:57.698 - 00:51:02.188] Incoming livestream: And, and, you know, yeah, you've got humans reviewing things, too. You have to.
+[00:51:02.518 - 00:51:10.788] Incoming livestream: Humans don't scale quite as easily, though, so lots of… lots of checks automatically, and then target your humans on what might be sus.
+[00:51:11.438 - 00:51:19.447] Incoming livestream: The same two-party sign-off controls you would put on humans, you can also use agents in this way as well, to basically have two of them check each other's work.
+[00:51:20.498 - 00:51:21.738] Incoming livestream: Defense and depth.
+[00:51:23.298 - 00:51:29.697] Incoming livestream: Have you considered using some production insights? Telemetry, observability?
+[00:51:30.178 - 00:51:31.248] Incoming livestream: threats.
+[00:51:32.088 - 00:51:33.148] Incoming livestream: Or just the
+[00:51:36.808 - 00:51:52.008] Incoming livestream: So, over the course of the agent trajectories, we do expose a lot of telemetry. The codex harness itself, has a native OTEL exporter, which we use in order to kind of, like, add some governance over the course of these agents, and, sort of,
+[00:51:52.738 - 00:51:59.297] Incoming livestream: very durable audit logging of all the session logs, which kind of get pumped, for, you know, DFIR.
+[00:51:59.428 - 00:52:00.168] Incoming livestream: Sort of thing.

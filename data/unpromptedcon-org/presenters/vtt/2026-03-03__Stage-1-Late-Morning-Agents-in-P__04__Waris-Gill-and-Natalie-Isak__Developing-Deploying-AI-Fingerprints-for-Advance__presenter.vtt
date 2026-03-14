@@ -1,0 +1,361 @@
+WEBVTT
+
+1
+01:12:16.308 --> 01:12:26.218
+Incoming livestream: A little bit about ourselves. I am Vari Skill, and today I will, we will be presenting, Bindishield, and my colleague is Nati Sark. She is a software engineering at Microsoft.
+
+2
+01:12:26.858 --> 01:12:29.868
+Incoming livestream: So, let's, jump to the problem.
+
+3
+01:12:29.928 --> 01:12:49.978
+Incoming livestream: So, many organizations have multiple services, such as, for instance, in case of Microsoft, we have Azure AI Foundry, GitHub Copilot, and M360 Copilot, and these services operate in a siloed way. For instance, there is no information signal from one service to another service.
+
+4
+01:12:50.208 --> 01:13:07.007
+Incoming livestream: So, and this makes the threat intelligence between one service to another service a very complicated problem. And the problem is that the data between these services cannot be shared. So, this is the key problem.
+
+5
+01:13:09.088 --> 01:13:30.817
+Incoming livestream: And we need a cross-service boundary threat correlation that respects user privacy, because we cannot just share the raw prompt from one service to another service. And the system, at the same time, also need to be robust against minor perturbations against such attacks, like prompt injection attacks.
+
+6
+01:13:31.668 --> 01:13:41.737
+Incoming livestream: And, you know, if an adversary finds one effective prompt injection attack, it can spray across all of the services of an organization.
+
+7
+01:13:42.338 --> 01:13:59.558
+Incoming livestream: So, let's discuss how we can solve, this, this problem. So here is the, let's say, the high-level architecture of Binder Shield. So let's say we have an attacker, and attacker is sending the prompt rejection to, a similar prompted action to multiple services.
+
+8
+01:13:59.788 --> 01:14:24.537
+Incoming livestream: So, for instance, in this case, we have, service 1, service 2, service 3, and attacker is, is sending, prompt P1, P2, P3 across all these services, and let's suppose, the service, 3 is able to detect this prompt, that this is a prompt injection attack, and, and each prompt has two parts, basically, in terms of threat correlation.
+
+9
+01:14:24.538 --> 01:14:48.197
+Incoming livestream: One is private, which are the protected logs. For instance, the user privacy, user, user queries, and the prompts. Those are the… that part of the user query is private, and the other part is the metadata. For instance, a region of the query, what tools are called, during, execution of this query.
+
+10
+01:14:48.738 --> 01:15:09.527
+Incoming livestream: So, in the next step, what Bindishield does, in the first step, we remove the PIA, personal identifiers. For instance, in the query, let's say if we have social security numbers, or any, any, any, anything which is, personally, which can identify a person, so we remove it.
+
+11
+01:15:09.788 --> 01:15:16.308
+Incoming livestream: And, in the second step, we generate the embeddings from this PI redacted text.
+
+12
+01:15:16.958 --> 01:15:36.237
+Incoming livestream: In the third step, we do the quantization, which is basically we are project… we are taking the embeddings, and we are converting into just, 0-1 bindy quantization. And in the final step, we add the differential privacy. By the differential privacy means we randomly flip
+
+13
+01:15:36.238 --> 01:15:41.338
+Incoming livestream: bits, from this, from the quantizer beddings.
+
+14
+01:15:41.598 --> 01:15:54.077
+Incoming livestream: to add noise. And, in the final… and then we have… we attach the system metadata, such as the, how long this story, takes to execute.
+
+15
+01:15:54.078 --> 01:16:17.958
+Incoming livestream: the region of the query, so those, those are the parts in the, in this fingerprint which are related to system metadata, and finally, we announce it to the service 1 and Service 2. Remember that the attack was detected in, P3. So in this way, the binary shield is able to, correlate threat from one service to another service in a privacy-preserving way.
+
+16
+01:16:20.378 --> 01:16:33.627
+Incoming livestream: Next, a quick evaluation of the results. So, on the x-axis, we have the binder shield privacy budget, and on the y-axis, we have the accuracy, which is the threat correlation accuracy.
+
+17
+01:16:33.708 --> 01:16:57.917
+Incoming livestream: And as we can… and the idea over here is that the, as we decrease the privacy budget, we add more noise, and the detection accuracy goes to zero. For instance, at roughly around, 0.5, we have 0% accuracy, which is due to… because we add, we flipped almost all the bits.
+
+18
+01:16:57.918 --> 01:16:59.778
+Incoming livestream: In the quantized embeddings.
+
+19
+01:16:59.778 --> 01:17:17.657
+Incoming livestream: And as we increase the privacy budget, we are adding less noise, and we can see that the, binder shield, fingerprints are achieving the accuracy closer to the denser bindings. And, so… and here is another benefit of, using, the binder shield.
+
+20
+01:17:17.658 --> 01:17:42.528
+Incoming livestream: that it's significant faster as compared to, just using the floating-point embeddings. And on the x-axis, over here, we have the, co-op size, the dataset size, and the y-axis, we have the search time. And as we can see, the dataset size is increasing. The search, the dense embedding has a significant overhead.
+
+21
+01:17:42.528 --> 01:17:52.448
+Incoming livestream: for threat correlation, and at the same time, the binding shield is 36x, faster in terms of threat correlation.
+
+22
+01:17:52.448 --> 01:18:07.038
+Incoming livestream: And, so the key takeaway is that Bindley Shield provides semantics, speed, privacy, and, now I will hand over to, my colleague Nati. She will walk through all the steps in detail, in her demo. Thank you.
+
+23
+01:18:07.528 --> 01:18:20.657
+Incoming livestream: Awesome. Thanks, Waris. So before I dive straight into the code, just to kind of summarize what Waris went through, we really need the ability to correlate related prompt injections.
+
+24
+01:18:20.718 --> 01:18:36.537
+Incoming livestream: through unrelated products or services without revealing any customer content. So that's kind of the goal. We're just kind of walked through, like, the what, so what it is. And in this next part, when it loads…
+
+25
+01:18:38.588 --> 01:18:54.178
+Incoming livestream: I'll give it a second. I'm going to walk through a demo of how you actually implement these, some of the trade-offs and choices you make when implementing this, and then also, using these fingerprints, how you might apply that to your product suite.
+
+26
+01:18:58.968 --> 01:19:00.308
+Incoming livestream: One second…
+
+27
+01:19:08.118 --> 01:19:09.317
+Incoming livestream: why this is…
+
+28
+01:19:12.018 --> 01:19:22.737
+Incoming livestream: Okay, great. So, like I mentioned, in Act 1, we're going to actually build the fingerprint, so the four-step sequence, that Worst described, and we're going to go step-by-step what this means.
+
+29
+01:19:25.378 --> 01:19:39.338
+Incoming livestream: So, the first step is to remove all personally identifiable information from the prompt. So, in this example here, we have, my name is John Smith. We strip that name away, and we replace it with kind of a holder.
+
+30
+01:19:39.338 --> 01:19:47.158
+Incoming livestream: We do that for all things like social security numbers, emails, etc, and we just redact all of that information. So that's the first step of the pipeline.
+
+31
+01:19:48.498 --> 01:19:58.287
+Incoming livestream: We, just to kind of call this out, in our implementation, we use an open source library called Procido, but there are many different ways, to do this.
+
+32
+01:19:59.358 --> 01:20:10.427
+Incoming livestream: The next step is we translate, these strings, these words, into embeddings, so vectors that capture the semantic meaning, in long lists of numbers.
+
+33
+01:20:10.438 --> 01:20:23.068
+Incoming livestream: So, we take this redacted prompt, we feed it into an embedding model, we used, text embedding 3 large from OpenAI, but to reduce costs, there are many different implementations of this.
+
+34
+01:20:23.338 --> 01:20:28.518
+Incoming livestream: And in the output, we get long lists of floating point numbers.
+
+35
+01:20:30.568 --> 01:20:47.007
+Incoming livestream: The next step, the third step, is to quantize it. So what we're doing here is we're compressing this long list of, long floating point numbers into just zeros and ones. So we're reducing the amount of memory it takes up, which leads to efficiency gains.
+
+36
+01:20:47.008 --> 01:20:55.127
+Incoming livestream: And it also, makes the pipeline more one-way. So we're intentionally losing information.
+
+37
+01:20:55.418 --> 01:21:08.108
+Incoming livestream: That's kind of encapsulated by these long floating-point numbers to make it more difficult for an adversary to reverse engineer this pipeline and ultimately gain any private information from the users.
+
+38
+01:21:11.328 --> 01:21:25.128
+Incoming livestream: And then the last step is, adding differential privacy and essentially injecting noise into this list of integers. So what this means, it's controlled by this value called epsilon.
+
+39
+01:21:25.178 --> 01:21:32.127
+Incoming livestream: And when epsilon is large, the bits don't change, so that means that there's very little privacy, but high utility.
+
+40
+01:21:32.338 --> 01:21:39.888
+Incoming livestream: And then the inverse is also true. When epsilon is small, the bits are more random, so there's a lot of privacy, but very little utility.
+
+41
+01:21:40.518 --> 01:21:54.747
+Incoming livestream: And just to double-click here, epsilon should be kind of a function of your organization. We don't particularly make a recommendation of what epsilon should be, but rather it should be kind of contingent on your own use case, how
+
+42
+01:21:54.748 --> 01:22:02.998
+Incoming livestream: Compliant, the data is that you're working with, and kind of a close collaboration with your legal teams to understand, what's…
+
+43
+01:22:03.028 --> 01:22:09.518
+Incoming livestream: What level of privacy you need to attain before you can look at these fingerprints and share them in a safe manner.
+
+44
+01:22:11.918 --> 01:22:21.357
+Incoming livestream: And then all I'm doing here, is stringing together those four steps, so we're creating the fingerprint. I'm just gonna go a little faster.
+
+45
+01:22:21.478 --> 01:22:40.968
+Incoming livestream: And then, just to make it super concrete, I've created a list of 4 prompts. So we have 3 kind of variations of the canonical ignore all system instruction prompt, which we call, like, a prompt injection. It could potentially override, the intended behavior of your system.
+
+46
+01:22:41.528 --> 01:22:50.687
+Incoming livestream: And then one benign prompt. So, what is the weather in Seattle? It's not something that we would assume to be, malicious, and is very different from those three prompts.
+
+47
+01:22:52.458 --> 01:23:03.457
+Incoming livestream: So I'm going to kind of show a matrix here. And what I'm trying to demonstrate here is that prompts that are similar
+
+48
+01:23:04.018 --> 01:23:07.678
+Incoming livestream: Are ultimately more similar fingerprints.
+
+49
+01:23:07.788 --> 01:23:24.517
+Incoming livestream: So, if this system is to work, we want to be able to correlate related prompts that are very, very similar, i.e, capture maybe, like, a spray attack of related prompt injections, and we don't want to catch, like, benign prompts or things that are very dissimilar.
+
+50
+01:23:24.848 --> 01:23:33.807
+Incoming livestream: So to walk through this diagram, the original, Variant 1 and Variant 2 were all of those related prompts of ignore all system instructions.
+
+51
+01:23:34.188 --> 01:23:40.258
+Incoming livestream: And you can see that the… we call it Hamming distance, like the distance between these fingerprints.
+
+52
+01:23:40.708 --> 01:23:44.148
+Incoming livestream: Is much lower, so it's like a lighter color.
+
+53
+01:23:44.768 --> 01:24:03.257
+Incoming livestream: Whereas the difference between the benign prompts and the original variant 1, Variant 2, this lower row in this, the row… the column to the right-hand side, they have much higher distances. So the fingerprints are farther away, so it's easier to understand that they're different.
+
+54
+01:24:06.678 --> 01:24:21.987
+Incoming livestream: So that's the how, like, that's how you might create a fingerprint. And the last kind of step that I want to walk through is what it actually means to integrate this into your product suite. So, to just give, like, a brief overview first,
+
+55
+01:24:22.078 --> 01:24:27.018
+Incoming livestream: For any sort of company or organization that has more than one product.
+
+56
+01:24:27.158 --> 01:24:42.647
+Incoming livestream: It's very likely that your safety stack is going to start to diverge. So, ultimately, it would be great if, as security and safety practitioners, all of the products had all of the best practices and all looked the same, but unfortunately, given, like.
+
+57
+01:24:42.818 --> 01:24:59.558
+Incoming livestream: dev velocity, and different customer requirements, different regulatory requirements, different regions you're deploying in. It's very likely that as an organization, you're going to end up with a very messy situation very quickly, where you have many products with different safety stacks.
+
+58
+01:24:59.808 --> 01:25:08.087
+Incoming livestream: And if an attack is caught by one product, it might not be caught by all products. So, this is kind of what we're trying to solve here.
+
+59
+01:25:09.138 --> 01:25:21.657
+Incoming livestream: We implement a couple things. One is a registry, which Woris kind of talked about, and the key thing here is that we publish fingerprints. So if we identify an attack.
+
+60
+01:25:22.168 --> 01:25:30.468
+Incoming livestream: We're going to fingerprint it, and we're going to broadcast it to all of the services, so all services will now be able to catch that same attack.
+
+61
+01:25:30.558 --> 01:25:45.367
+Incoming livestream: So if an adversary has one prompt injection that's very effective, or small perturbations that are very effective at that one prompt injection, and it sprays it against your entire suite, with this registry, you should be able to effectively publish.
+
+62
+01:25:47.158 --> 01:25:57.648
+Incoming livestream: And then to kind of demonstrate this point, I've created 3 different services. So here, to demonstrate that idea of, like, we have different safety stacks.
+
+63
+01:25:58.068 --> 01:26:02.647
+Incoming livestream: Each service, service alpha, beta, and gamma, they have different block lists.
+
+64
+01:26:02.858 --> 01:26:16.357
+Incoming livestream: Hopefully, in your production systems, you have more sophisticated, ways of catching malicious activity. But to kind of, like, make it very succinct, we have 3 different block lists for 3 different services.
+
+65
+01:26:16.358 --> 01:26:26.798
+Incoming livestream: And they catch different things. So, the first service, alpha, is able to catch the pattern, ignore all previous instructions, but service gamma is not able to.
+
+66
+01:26:28.178 --> 01:26:34.318
+Incoming livestream: And to tie this all together, I'm just going to open up just, like, some print statements.
+
+67
+01:26:34.588 --> 01:26:44.787
+Incoming livestream: So what I did here is I fed all four prompts, remember those, original, the two variants, and then the benign, through all three services.
+
+68
+01:26:44.898 --> 01:26:51.408
+Incoming livestream: And only in service alpha was I actually able to catch that ignore all system instructions.
+
+69
+01:26:51.568 --> 01:27:02.097
+Incoming livestream: So, what's supposed to happen here is then Service Alpha fingerprints that prompt, and it broadcasts to Service Beta and Gamma. And now, all services
+
+70
+01:27:02.198 --> 01:27:17.817
+Incoming livestream: are able to catch that same variant of prompt injections. So the next time that the adversary kind of sprays that attack, now all of the services have that same capability of catching the attack without having to recall their entire safety stacks.
+
+71
+01:27:18.848 --> 01:27:23.367
+Incoming livestream: I think that is time, and that's all I have. We're happy to answer any questions now.
+
+72
+01:27:29.978 --> 01:27:34.818
+Incoming livestream: I have a Slack question about whether the components of this are gonna be open sourced, so I'll start there.
+
+73
+01:27:35.598 --> 01:27:47.568
+Incoming livestream: So, right now the paper is available. It didn't take me too long to make the notebook with Cloud Code, so I would, start there, but we are, we can definitely look into open sourcing this.
+
+74
+01:27:48.208 --> 01:27:50.988
+Incoming livestream: Mike on… Mike on its way.
+
+75
+01:27:52.798 --> 01:28:08.578
+Incoming livestream: When you are quantizing your embeddings, you are converting them to zeros and ones. It seems you are losing a lot of semantics there. How do you address that? And on your privacy budget side, every time you create a fingerprint, you are consuming some of your privacy budget. How do you refresh that?
+
+76
+01:28:10.678 --> 01:28:12.538
+Incoming livestream: Great question.
+
+77
+01:28:12.538 --> 01:28:23.278
+Incoming livestream: So, first, to answer your question, so this is, definitely we are losing semantics, but for instance, if you say, if you see that the embeddings are usually, like, they have a high
+
+78
+01:28:23.278 --> 01:28:38.957
+Incoming livestream: dimensions, for instance, 768 dimension, or let's say, 30s, 84, or something like that for a text OpenA embedding model. So there is a lot of information which is encoded into 01 information, even still if we, let's say, convert it into 0 and 1.
+
+79
+01:28:39.068 --> 01:29:00.768
+Incoming livestream: So there is still a lot of semantic information, which is very useful for detecting attacks, and that's what we, observed in our evaluations. So we have, and the, to your point, to, the privacy budget, that is, we also vary it, and then we see, for instance, the utility, for instance. If we…
+
+80
+01:29:00.768 --> 01:29:09.807
+Incoming livestream: flip so many bits, the utility will go down to zero. So definitely, like, there is a trade-off. If we consume
+
+81
+01:29:09.808 --> 01:29:15.847
+Incoming livestream: less budget. Let's say if we have a lower privacy budget, we will be adding more noise.
+
+82
+01:29:15.848 --> 01:29:25.167
+Incoming livestream: And, this is a trade-off, which we have observed. And that's what, Natalie mentioned, that we do not, specify any particular budget for this threat correlation.
+
+83
+01:29:25.168 --> 01:29:36.958
+Incoming livestream: And it depends, on the organization. They can work with their privacy teams to, basically, come up with that particular epsilon number, for the noise.
+
+84
+01:29:38.778 --> 01:29:45.977
+Incoming livestream: Great talk, and I have a question, so I feel like right now you're just, like, catching the prompt, like,
+
+85
+01:29:46.398 --> 01:30:06.287
+Incoming livestream: one by one, like, whack-a-mole. I was wondering if there's… if it's possible once we find… you find, like, a prompt that's, like, evil, and you can, like, generate variants using large length models, and then… so you can, like, put them in the registry. So instead of, like, having to catch them one by one, you can, like, generate variants and, like, prevent them, ahead of time.
+
+86
+01:30:08.598 --> 01:30:19.667
+Incoming livestream: Yeah, I have a couple thoughts there. So, the point of, the fingerprint being fuzzy, also, like, remember in the demo, I created two variants of the same prompt?
+
+87
+01:30:20.098 --> 01:30:36.797
+Incoming livestream: yes, you can and should definitely generate your own synthetic data, but ultimately, this technique, captures, like, a ring around the original prompts. It would catch small perturbations that you would end up getting from that, like, whack-a-mole situation, if that makes sense.
+
+88
+01:30:36.798 --> 01:30:50.858
+Incoming livestream: So we're not catching, verbatim prompts one by one, we're capturing the prompt you want to catch, and then small perturbations as well. And you can kind of adjust your threshold as needed if you want to kind of catch a wider range.
+
+89
+01:30:53.428 --> 01:30:55.047
+Incoming livestream: Thanks very much. Awesome.
+
+90
+01:30:58.708 --> 01:31:01.427
+Incoming livestream: Alright, it is now lunchtime.

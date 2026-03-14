@@ -1,0 +1,15 @@
+{
+  "downloaded": 45,
+  "dry_run": false,
+  "endpoint_used": "/accounts/me/recordings",
+  "failed": 0,
+  "paths": {
+    "matched_csv": "C:\\Users\\dr\\Documents\\unprompted\\data\\unpromptedcon-org\\metadata\\matched_transcripts.csv",
+    "recordings_json": "C:\\Users\\dr\\Documents\\unprompted\\data\\unpromptedcon-org\\metadata\\recordings.json",
+    "vtt_root": "C:\\Users\\dr\\Documents\\unprompted\\data\\unpromptedcon-org\\vtt"
+  },
+  "recordings_seen": 65,
+  "recordings_with_transcripts_matched": 26,
+  "skipped_existing": 0,
+  "transcript_files_matched": 45
+}

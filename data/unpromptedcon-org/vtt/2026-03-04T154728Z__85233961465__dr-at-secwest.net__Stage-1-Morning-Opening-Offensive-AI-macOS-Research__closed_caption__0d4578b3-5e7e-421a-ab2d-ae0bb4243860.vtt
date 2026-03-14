@@ -1,0 +1,2707 @@
+WEBVTT
+
+1
+00:00:06.404 --> 00:00:33.404
+Good morning! Unprompted day two beginning now. Let's bring the conversation down. We've got… Amazing stuff going on. Uh, this morning is very attack-focused. We started yesterday with defenders. We're gonna do a lot of AI attacks this morning. Uh, then we move into agent mode, all kinds of good stuff in the afternoon. Downstairs, we continue to have research, lots of other agentic stuff.
+
+
+2
+00:00:33.404 --> 00:00:49.404
+sock stuff, but we're actually gonna kick off the morning with a little bit of, uh, a slight schedule change, but whatever, we ran late yesterday, we'll do it again today. We've got some exciting special guests, uh, we've got some quick vibe-coded demos, and we've got a talk that.
+
+
+3
+00:00:49.404 --> 00:01:19.404
+Uh, we were hoping to accept, and unfortunately the people who were gonna speak, uh, gave it overseas. So we're gonna do, uh, we're gonna kinda do it live in the morning. Uh, so, thanks for coming, uh, excited to get started. Let's get sit down and, uh, welcome Daddy back up to the stage.
+
+
+4
+00:01:20.404 --> 00:01:34.404
+Hey everybody, I'm Kyle Rosenthal, one of the co-organizers of Unprompted. Thank you for coming to the great city of San Francisco. I want you all to know here, I came here in 1998, and I came here because it's where the action was.
+
+
+5
+00:01:34.404 --> 00:01:42.404
+It's dot-com time. Now we're in 2026. This is where the AI action is.
+
+
+6
+00:01:42.404 --> 00:01:58.404
+And it's this community in San Francisco full of innovators who pay it forward, that make it possible, and we're going to keep that going in this city. I want to tell you it's a great city and we've got a great mayor. Uh, I don't even call him a politician.
+
+
+7
+00:01:58.404 --> 00:02:10.404
+He's got one of the highest approval ratings of all time and we're making the city awesome. So let's have a big round of applause for Mayor Daniel Lurie.
+
+
+8
+00:02:10.404 --> 00:02:17.404
+Thank you for joining us.
+
+
+9
+00:02:17.404 --> 00:02:36.404
+Good morning, everyone. How's everybody doing? I told my son, who is now 12, where I was coming, and the last time I was in this beautiful space, it was a Super Bowl event where he got to go around and get autographs from a lot of famous NFL players.
+
+
+10
+00:02:36.404 --> 00:03:06.404
+We had an incredible Super Bowl week here just last month. We had 1.3 million people come through SFO in the 9-day period, uh, and we had 12,000 credentialed media here, and it was… Uh, it was like a light bulb went off for a lot of people around the country and around the world that our city is on the rise. It's great to have you all here. This is the right moment to be here in San Francisco. The conversations you're gonna have today will need to happen.
+
+
+11
+00:03:08.404 --> 00:03:23.404
+And where this is where technology is being built. This is the tech AI innovative ecosystem of the world. There's no other place that it's happening. And we're moving in the right direction. We had a good first year. I just took office last January.
+
+
+12
+00:03:23.404 --> 00:03:39.404
+We had a good first year, a lot of momentum, but one good year is not enough. We have to put our foot on the accelerator now, and that's what we're gonna do. I ran for mayor having no background in politics, and I ran on three things. Public safety.
+
+
+13
+00:03:39.404 --> 00:03:47.404
+clean streets and our economic recovery. Oh, I like that.
+
+
+14
+00:03:47.404 --> 00:04:04.404
+Follow that person's lead. That's why I promised to focus on, and that's what we've been delivering today in San Francisco, 64% of San Franciscans think we're heading in the right direction. 24 months ago, that number was 22%.
+
+
+15
+00:04:04.404 --> 00:04:20.404
+When… yeah, that sentiment reflects real change. Just keep clapping. That's good. Um, the sentiment reflects real progress. Uh, we said we need to enforce the law. We said we need more police officers, and we need to create the conditions.
+
+
+16
+00:04:20.404 --> 00:04:35.404
+for businesses like the ones that you're starting up to want to be here. From our small business owners to global leaders creating thousands of jobs, and now we are seeing the results. Crime last year in 2025 was down 30%.
+
+
+17
+00:04:35.404 --> 00:04:51.404
+Down here in our business core, it was down 40%. Car break-ins were at 22-year lows. Encampments, we just announced yesterday, the third time we hit record lows in the number of encampments on our streets.
+
+
+18
+00:04:51.404 --> 00:05:09.404
+On the business side, nearly 1 million square feet of office space was leased last year. We are leading the country now in office sales. Convention bookings are up, with associated hotel bookings up 61%. We're expecting about 35 or 36%.
+
+
+19
+00:05:09.404 --> 00:05:27.404
+Major conferences this year in San Francisco. Transit ridership is climbing, and we are now reimagining downtown because it's not going to just be, you know, a 9 to 5 job anymore. I know you all use the lingo 996.
+
+
+20
+00:05:27.404 --> 00:05:42.404
+Well, we're also looking not just at work, but we're looking at building more housing down here, we're looking at building more ability to have fun. And also, we announced last year that Van… or actually, just a couple months ago, that Vanderbilt University is opening up a downtown.
+
+
+21
+00:05:42.404 --> 00:05:50.404
+or San Francisco, uh, undergraduate university with a thousand undergrads starting in September of 2020.
+
+
+22
+00:05:50.404 --> 00:06:10.404
+7. Now, listen. If you came to this part of our city, you know that we still have work to do, but we are gonna stay relentless across city departments, we are working differently. We are coordinating, we are focused on outcomes, whether that's shot clocks for permitting, whether we're combining debarkments.
+
+
+23
+00:06:10.404 --> 00:06:26.404
+or implementing the city's first performance-based contract for public health or homeless services. We're gonna only pay if we see results. And that also is being reflected in our continued partnership with the private sector.
+
+
+24
+00:06:26.404 --> 00:06:37.404
+Now, San Francisco has long been a place where breakthroughs happen, where bold ideas meet action, and I expect that to happen today with this conference.
+
+
+25
+00:06:37.404 --> 00:06:54.404
+And this conference is sending a clear signal once again that San Francisco is the place where the future is being shaped. We are the global capital of artificial intelligence. We have the world's leading innovation ecosystem.
+
+
+26
+00:06:54.404 --> 00:07:13.404
+Last year, we captured 56% of U.S. Venture capital AI funding at $82 billion. That's pretty good. And we have all that, and we have more. So, I want to just close by telling you that San Francisco is a city on the rise. If you're not from here, I want you to.
+
+
+27
+00:07:13.404 --> 00:07:29.404
+Uh, go back home, tell everybody that they need to be in San Francisco, because we're not just coming back, uh, we're gonna be greater than we've ever been, and if you don't know me, I close everything with Alil saying that we say here now in San Francisco.
+
+
+28
+00:07:29.404 --> 00:07:59.404
+Uh, I hope you have a great day, and let's go San Francisco. Thank you all very much.
+
+
+29
+00:08:06.404 --> 00:08:11.404
+Not that?
+
+
+30
+00:08:11.404 --> 00:08:22.404
+Let's see if this works. Are you getting my feet? Are you getting my feet?
+
+
+31
+00:08:22.404 --> 00:08:28.404
+That's not my feed.
+
+
+32
+00:08:28.404 --> 00:08:34.404
+All right. Morning all.
+
+
+33
+00:08:34.404 --> 00:08:42.404
+Thank you all for coming again. Today two, we try to keep day two as the most interesting day because I know it for a fact.
+
+
+34
+00:08:42.404 --> 00:08:47.404
+That people tend to skip most or half of the last day.
+
+
+35
+00:08:47.404 --> 00:08:52.404
+So for me, there are only two parts of the conference where I truly.
+
+
+36
+00:08:52.404 --> 00:09:05.404
+Enjoy it. The evening before, when you get to make friends and have better time and easier time socializing in the event itself and the last day where people are now relaxed.
+
+
+37
+00:09:05.404 --> 00:09:22.404
+Kind of. And we can just mingle, have fun, and truly learn, and the best presentations are here. Not that I'm putting down all the people from yesterday, right? Aaron chose a few really good ones, because everybody else sucked, right? I'm digging my own hole, are you noticing that? Like, I'm trying really hard, and you guys are not pointing at laughing.
+
+
+38
+00:09:22.404 --> 00:09:29.404
+Anyway, let's get started. So, statistics again.
+
+
+39
+00:09:29.404 --> 00:09:34.404
+IF FOMO about the online conference. What these people have done.
+
+
+40
+00:09:34.404 --> 00:09:47.404
+is crazy. It's not just live streaming. There are hosted sessions with a lot of speakers who just come in. People just chat for a while without all the noise in the background.
+
+
+41
+00:09:47.404 --> 00:09:50.404
+It's just insane what's going on over there. 850 people or so.
+
+
+42
+00:09:50.404 --> 00:10:14.404
+are active, then there is a drop-off when Europe goes to bed, but they already have videos, because Excite2Watt will upload to YouTube, Dragos has been very good about saving everything in the background, putting it on… Vimeo, it's just crazy what's going on over there. So major FOMO. 700 people in the venue. Naturally, not all the time. I believe we're averaging about 550 this today, probably around 450.
+
+
+43
+00:10:14.404 --> 00:10:32.404
+And again, I would just like to stop. Thank you, committee. Thank the staff, all the volunteers. Literally, some of the volunteers here are professors, some are researchers, some are CISOs, a couple of billionaires, a couple of students, somebody's significant other, just people are enjoying being a part of this.
+
+
+44
+00:10:32.404 --> 00:10:39.404
+I truly appreciate that. And lastly, to Ida, again, who can't be here today and is pulling… her hair would look like mine.
+
+
+45
+00:10:39.404 --> 00:10:54.404
+After today's over because she's pulling it, not being here, but managing all of this. Not sure what Andrea stepped in to help with all that, but… Who, to her and two speakers who couldn't be here because they're stuck in Israel with the airspace closed. I want to extend some thanks.
+
+
+46
+00:10:54.404 --> 00:11:11.404
+So, repeating yesterday's kind of model. My thoughts in quick order. Number one, security. Yesterday, I talked about… the non-deterministic configuration becoming non-deterministic and thinking what that means.
+
+
+47
+00:11:11.404 --> 00:11:20.404
+I was speaking with my vendor hat on to a customer a few weeks ago, and he suggested that the Citizen coders buzzword.
+
+
+48
+00:11:20.404 --> 00:11:28.404
+Meaning, not developers, but finance and HR and everybody else using Claude Code and Cursor, or moving to lovable Weplit-based 44.
+
+
+49
+00:11:28.404 --> 00:11:35.404
+He's now a concern that's truly rising from him. Right now, it's all the coding agents, but it's changing.
+
+
+50
+00:11:35.404 --> 00:11:45.404
+Because, and this is big, not because of incident response no longer having auditability or traceability, not because of the incident they already had, which was pretty interesting.
+
+
+51
+00:11:45.404 --> 00:11:55.404
+Um, where somebody decided to bypass SSO and just put in their authentication. Who hasn't seen developers do that before, um, wanting to get to production, but from finance.
+
+
+52
+00:11:55.404 --> 00:12:02.404
+And not even the dependencies and vulnerabilities where who knows these applications even exist, not to mention updating them.
+
+
+53
+00:12:02.404 --> 00:12:10.404
+But because, literally, it looks at this and says, in a world where everybody is running their own infrastructure, IT is broken, it's fragmented. How do we deal with that?
+
+
+54
+00:12:10.404 --> 00:12:20.404
+So that's my thought of the day in security. The rest will be quicker. On startups, under a startup era, I truly believe this is going to be the reddest blue ocean I've seen in my life.
+
+
+55
+00:12:20.404 --> 00:12:25.404
+And think twice before you enter this space, and then enter it anyway, because it's so exciting.
+
+
+56
+00:12:25.404 --> 00:12:31.404
+So fucking exciting. Then on the team's side.
+
+
+57
+00:12:31.404 --> 00:12:45.404
+It's been a day since yesterday, and when I shared, I think we should all be on Cloud Code and Cursor and all these tools right this second, or we will all be irrelevant. Ceos, finance, devs, doesn't really matter. So it's been a day. Are all these people now the CEO, the CISO, your people?
+
+
+58
+00:12:45.404 --> 00:12:52.404
+on Claude code already. If not, you're already behind. You had a day to change your lives and you didn't do it. What's wrong with you people?
+
+
+59
+00:12:52.404 --> 00:12:58.404
+You work for an enterprise? Really? There's DPRM processes? I don't know. I'm funny, laugh.
+
+
+60
+00:12:58.404 --> 00:13:03.404
+Thank you, thank you. And then the power of the power user.
+
+
+61
+00:13:03.404 --> 00:13:13.404
+Um, once you have your infrastructure, your scaffolding in place, did you throw it away yet? Are you looking at the cloud code change log every week?
+
+
+62
+00:13:13.404 --> 00:13:18.404
+Because if you didn't, you're already behind once again, and it's really not that hard. It's exciting.
+
+
+63
+00:13:18.404 --> 00:13:29.404
+Embrace it. I will do this again today, because I really feel it matters. This is a major failure of every conference I've ever been to.
+
+
+64
+00:13:29.404 --> 00:13:42.404
+Questions are not comments. While I appreciate contributions to everybody's talks, that's not what it's about. So I'm going to read this out loud as people say not to do in a presentation. This is from Giovanni Cobb.
+
+
+65
+00:13:42.404 --> 00:13:49.404
+A question is an interpretive sentence generally denoted by an inflection at the end. Like this!
+
+
+66
+00:13:49.404 --> 00:14:01.404
+The question differs from a statement in that the question requests information, and a statement provides it. We prefer questions to statements, and if you frame your question as succinctly as possible within 30 seconds, we can get to as many people as possible.
+
+
+67
+00:14:01.404 --> 00:14:04.404
+And we have the Slack, so please get on the Slack.
+
+
+68
+00:14:04.404 --> 00:14:16.404
+And workshop your question, so it's actually good, with everybody else, you get the engagement from your friends, and then the speakers will get on and answer it anyway, even if we didn't get to it.
+
+
+69
+00:14:16.404 --> 00:14:20.404
+Now, moving on to the last part of this.
+
+
+70
+00:14:20.404 --> 00:14:35.404
+Quite a few people vibe coded this con and are still creating things on the fly and have announcements. So I would like to start with Rob Lee, who has done some pretty cool work for us, making us more of an online, AI-powered AI native conference or whatever.
+
+
+71
+00:14:35.404 --> 00:14:40.404
+So, let's start with that. And then we'll go to Dan Hubbard, and then to Glenn Thorpe.
+
+
+72
+00:14:40.404 --> 00:14:46.404
+All right. Thank you, Gadi. Love the questions.
+
+
+73
+00:14:46.404 --> 00:14:51.404
+Alright, let me get plugged in here. My name is Rob Lee.
+
+
+74
+00:14:51.404 --> 00:15:07.404
+I'm with the Sands Institute. And I'm gonna get the video kicked off, and I'll start.
+
+
+75
+00:15:07.404 --> 00:15:21.404
+So starting off with the question, going back to what Gotti just said, I developed the SIFT Workstation 18 years ago, and in working with AI as little as possible and trying to learn as much as possible over the past.
+
+
+76
+00:15:21.404 --> 00:15:36.404
+two to three years. It occurred to me about three months ago, why haven't I not installed Claude code on top of the SIFT workstation did about 45 minutes to an hour worth of work configuring the Claude MD file on Skills.
+
+
+77
+00:15:36.404 --> 00:15:42.404
+And I essentially went into Claude Code and I said, here's a hard drive, find evil.
+
+
+78
+00:15:42.404 --> 00:15:53.404
+This is the command, essentially, you type into Claude code. Once this is configured on top of the Answer Response Toolkit that we developed. And it, of course, kicks off.
+
+
+79
+00:15:53.404 --> 00:16:01.404
+starts cranking through. Now, this is, like, 16x speed, because what you're about to see is a 14-minute processing time.
+
+
+80
+00:16:01.404 --> 00:16:08.404
+That basically, at the end of this, which typically takes an instant responder, and I asked yesterday as a poll.
+
+
+81
+00:16:08.404 --> 00:16:23.404
+About 3 days to get from initial C drive of an intrusion into a full report. And I'm going to put all these resources online in the general chat, so everyone could download them, get access to the report, get access to the SIFT workstation.
+
+
+82
+00:16:23.404 --> 00:16:28.404
+Even the NotebookLM I have set up so you could ask basic questions. How do I start?
+
+
+83
+00:16:28.404 --> 00:16:37.404
+So 14 minutes later, I'm going to go ahead and skip to the end of this, just so everyone could see that it definitely took 14 minutes. 14 minutes, 27 seconds.
+
+
+84
+00:16:37.404 --> 00:16:48.404
+Think about this for one second, and I'm going to go in two X on the report. This is the report. It automatically generated with no other input and comments.
+
+
+85
+00:16:48.404 --> 00:16:57.404
+Go ahead and click go. Nailing the full intrusion analysis of a single system in a compromise.
+
+
+86
+00:16:57.404 --> 00:17:04.404
+Now, the reason we need to accelerate to the speed, it does not mean we remove the human investigator from.
+
+
+87
+00:17:04.404 --> 00:17:10.404
+The intrusion analysis, all the artifacts that are in here require that baseline knowledge.
+
+
+88
+00:17:10.404 --> 00:17:16.404
+But with offensive teams out there able to accelerate from things that took months.
+
+
+89
+00:17:16.404 --> 00:17:32.404
+down to days or minutes, it is now essential that we're able to meet that speed with intrusion analysis. Thank you.
+
+
+90
+00:17:32.404 --> 00:17:37.404
+Uh, sure.
+
+
+91
+00:17:37.404 --> 00:17:48.404
+Sorry, no poem today.
+
+
+92
+00:17:48.404 --> 00:18:00.404
+Where are we here?
+
+
+93
+00:18:00.404 --> 00:18:13.404
+Layer one.
+
+
+94
+00:18:13.404 --> 00:18:18.404
+Free try.
+
+
+95
+00:18:18.404 --> 00:18:25.404
+All right, that's the demo.
+
+
+96
+00:18:25.404 --> 00:18:30.404
+No?
+
+
+97
+00:18:30.404 --> 00:18:37.404
+Want to try your laptop?
+
+
+98
+00:18:37.404 --> 00:18:47.404
+Glenn, do you want to try your laptop? Last minute, last minute?
+
+
+99
+00:18:47.404 --> 00:19:02.404
+I don't have HDMI.
+
+
+100
+00:19:02.404 --> 00:19:16.404
+All right. I'll just say, folks, that these people had a note for me. It's 4 a.m. In the morning to prepare this, so please bear with us as they are preparing their demos.
+
+
+101
+00:19:16.404 --> 00:19:23.404
+Or you can point and laugh again in good and prompted style, as we are starting to develop our own kind of culture.
+
+
+102
+00:19:23.404 --> 00:19:28.404
+Are we there yet?
+
+
+103
+00:19:28.404 --> 00:19:36.404
+There we are.
+
+
+104
+00:19:36.404 --> 00:19:41.404
+So yeah, as mentioned, was not prepared for this at all.
+
+
+105
+00:19:41.404 --> 00:19:47.404
+But it's fun to wake up to a surprise message for… Oh, I'm Glenn Thorpe, uh, with Gray Noise.
+
+
+106
+00:19:47.404 --> 00:20:13.404
+Um, yeah, so woke up, opened Slack, saw a message from Gotti saying, hey, you wanna just jump on stage for a few minutes and show a thing that you made? So that's cool. Um, it's not really a great story, except for the side quest that it created. Uh, Sunday night, I was… Getting ready for the conference, and kind of like, uh, they shared a G-sheet, I'm OCD, I wanted, like, a personalized agenda. So, went to Claude Code, as we all do.
+
+
+107
+00:20:13.404 --> 00:20:19.404
+And vibe coded, what's a pretty cool interface, like your talks.
+
+
+108
+00:20:19.404 --> 00:20:24.404
+Right? You can take some notes. It gives you a customized agenda.
+
+
+109
+00:20:24.404 --> 00:20:31.404
+You can export it, share it, whatever. So that's not really the fun part, though, because I think we can all do that here by now.
+
+
+110
+00:20:31.404 --> 00:20:37.404
+What was funny is I made it, I was really excited about it, I shared it with my boss.
+
+
+111
+00:20:37.404 --> 00:20:43.404
+And I was all proud. And then I started looking at it after I had posted it online.
+
+
+112
+00:20:43.404 --> 00:21:02.404
+And the LLM had confused some of the talks, and so it caught my surprise when I saw that there was a talk with another, uh, speaker here, and the very end of the talk said, and we will display, or show how we integrated this into Gray Noise Intelligence.
+
+
+113
+00:21:02.404 --> 00:21:10.404
+That was news. And I was actually pretty interested with it, but I was like, I don't think that's right. So I went back to the actual Google Sheet. Obviously, it was wrong.
+
+
+114
+00:21:10.404 --> 00:21:26.404
+I was like, oh man. So I went through, got the, you know, just basically re-verified it and shared it and gave it more explicit instructions, as we've learned this week, to verify, validate, whatever, share. So then it corrected it.
+
+
+115
+00:21:26.404 --> 00:21:43.404
+If you look in the PR for this, it's pretty funny. Also, Wi-Fi is not… Uh, being super… BD… anyway. So, in the end, 25% of the talk descriptions were correct. 75% were wrong.
+
+
+116
+00:21:43.404 --> 00:22:13.404
+So it's kind of a funny story for a Vibecoded AI thing, but it worked out in the end, and uh… You'll see in our talk later the irony will come when we talk about what we're presenting and how my focus of that project was on the validation skill. So, you know, a little humbling, but it's pretty cool.
+
+
+117
+00:22:32.404 --> 00:22:48.404
+Sorry, Wi-Fi is not that fast today. All right, so yesterday, um… I was trying to find kind of all the comments on social media from the conference.
+
+
+118
+00:22:48.404 --> 00:22:53.404
+And, uh, which is not super easy to do across all the platforms.
+
+
+119
+00:22:53.404 --> 00:22:59.404
+Is this coming up yet? There we go.
+
+
+120
+00:22:59.404 --> 00:23:06.404
+And, uh… We'll make this a little simpler.
+
+
+121
+00:23:06.404 --> 00:23:24.404
+And, uh, so… Because it was hard to find… why can't I scroll down? I just vibe coded up a little thing that scrolls all the comments from all the major social media networks. And you can actually go and give kudos to the presenters and add comments.
+
+
+122
+00:23:24.404 --> 00:23:39.404
+Um, but the, the real, kind of, I guess, more fascinating thing from a security perspective is I looked up the actual amount of code that it created. This took, like, 8 minutes, and it was 6,800 lines of code that was created in 8 minutes to do this.
+
+
+123
+00:23:39.404 --> 00:23:58.404
+Um, and, uh, I think there was, uh, something like 17 different dependencies, um, that were part of it. Um, but because this is a security conference, I also thought, well, wow, what if… oh, by the way, this crawled the website and mimicked the exact website as unprompted, as you can see, it looks a lot like it.
+
+
+124
+00:23:58.404 --> 00:24:05.404
+Um, but I thought, well, wouldn't it be fun to actually see how many people actually registered for next year's event?
+
+
+125
+00:24:05.404 --> 00:24:25.404
+Um, so you actually can go on, um, and, uh, add your password, your credit card, and your details for next year's, which is $7.99. Um, not, not, uh, $179 if you're interested. Um, so you can think about how easy it is to do this across your favorite other site on the internet and make this happen.
+
+
+126
+00:24:25.404 --> 00:24:55.404
+Um, so that's the demo. It was made with lovable, I'll put the prompt in the, uh, in the chat notes, and the good thing about Lovable is at the very bottom right, you can actually, um, edit somebody else's lovable fork and create your own really easily if you want to do that. So, thank you.
+
+
+127
+00:25:13.404 --> 00:25:32.404
+There we go, um… My name is Sagap Swistik. So I wanted to say, first of all, thank you to Gadi, and thank you to all of you for being such an incredible community. And, you know, I think we have to realize that we are all, you are all very special, because you have some insights which most of the people out there don't have.
+
+
+128
+00:25:32.404 --> 00:25:38.404
+half yet. And the question is just how do we communicate this in a proper way? Because that's the only thing.
+
+
+129
+00:25:38.404 --> 00:26:02.404
+On how we can make… make, uh, you know, bring a positive world into the world out there. And the same, you know, as some of you tried out already playing with a lot of offensive tools. I did the same a couple of weeks ago, just built a small all day lab, and literally, I've not touched the father any tools for the last eight, ten years.
+
+
+130
+00:26:02.404 --> 00:26:15.404
+I wasn't able to find a lot of very interesting stuff, and some of this is already validated. So my question was, how do we really build this as a communication platform? How can we transfer this, um.
+
+
+131
+00:26:15.404 --> 00:26:35.404
+There's, uh, this message on what's happening out there. And the first thing I did is just to go back and look back on what kind of research was happening in the past around vulnerability disclosure, around vulnerability exploitation, and so on. And just looking back, obviously, at the foundational problem, cybersecurity being an economics problem.
+
+
+132
+00:26:35.404 --> 00:26:48.404
+Looking back at some of the research around PatchDiff, for instance, right? So what's going to happen if machines are going to be able to reconstruct patches and build exploits automatically within a couple of minutes and not hours or days?
+
+
+133
+00:26:48.404 --> 00:27:03.404
+My question was, how do we visualize this? And how do we transport as well the call to action on how we can, you know, do something against that going forward? So this is a small project which was vibe coded pretty much over the weekend as well.
+
+
+134
+00:27:03.404 --> 00:27:13.404
+Including some selection of call to actions on what we can do, and… you know, visualization of one single metric.
+
+
+135
+00:27:13.404 --> 00:27:17.404
+And the metric is… to exploitation.
+
+
+136
+00:27:17.404 --> 00:27:29.404
+You wanna see it? All right. So… There we go.
+
+
+137
+00:27:29.404 --> 00:27:38.404
+What's happening with Wi-Fi?
+
+
+138
+00:27:38.404 --> 00:27:41.404
+We're all talking about AI, but Wi-Fi doesn't work.
+
+
+139
+00:27:41.404 --> 00:28:01.404
+All right, I can talk through that. So… What I did is I just have agents to go out and research all the different trusted data sources, like CISA, like some commercial data sources, vulnerability check, NVD, collect all the information together, and try to understand how.
+
+
+140
+00:28:01.404 --> 00:28:11.404
+How we can measure time to exploitation, and… Safari was faster. Oh my God. Look at that.
+
+
+141
+00:28:11.404 --> 00:28:23.404
+And this is the result, what we've got from that. So just looking back at the data, in 2020, the time to exploitation was… More than a year.
+
+
+142
+00:28:23.404 --> 00:28:29.404
+Just last year, we've crossed months. And now it's just about a day.
+
+
+143
+00:28:29.404 --> 00:28:36.404
+So… How did it change our patching processes? How quickly are we patching today?
+
+
+144
+00:28:36.404 --> 00:28:52.404
+That's still not changed, like, everybody who is working in a big company. There's still a lot of challenges around how you can patch. We're not going to change this in a foundational way. And I was just looking at the number of, um… looking at the number of zero days from this.
+
+
+145
+00:28:52.404 --> 00:28:58.404
+weaponized exploits. You see that more, more than half of them started to be.
+
+
+146
+00:28:58.404 --> 00:29:14.404
+Already zero days, so they are either exploited before patches being released, um, or the same day. Now, what can happen without creating too much food, but looking at all the CVEs out there, we see that the rate of the weaponized exploits.
+
+
+147
+00:29:14.404 --> 00:29:36.404
+It's pretty constant, around 2%. So, if findings explore… building exploits, finding CVEs is going to be as cheap as we believe, this is going to be dramatically dangerous for the world and for all of us. So, what, um… yeah, what I'd like to all of you to do is, if you're looking for one single slide.
+
+
+148
+00:29:36.404 --> 00:29:59.404
+to communicate this to your board, to your CISOs, this is what you can use. I'm very glad that a lot of people here are supporting this. We've got Phil, we've got Bruce Schneier, we've got Heather. If you want to leave a comment, please go on the website and leave a comment around this. Thank you very much.
+
+
+149
+00:29:59.404 --> 00:30:08.404
+All right. So as everybody now, I hope knows, because of.
+
+
+150
+00:30:08.404 --> 00:30:15.404
+Does anybody understand computers?
+
+
+151
+00:30:15.404 --> 00:30:23.404
+I would turn it on and off again. Okay. I think we're connected. Do you have my feed? I do not. It's not there.
+
+
+152
+00:30:23.404 --> 00:30:31.404
+It's not that one? Somebody understands computers.
+
+
+153
+00:30:31.404 --> 00:30:37.404
+So, as a quick update, we're gonna be about 30 to 40 minutes late and catch up after lunch.
+
+
+154
+00:30:37.404 --> 00:30:41.404
+So, the reason for that, once the slides come up.
+
+
+155
+00:30:41.404 --> 00:30:53.404
+is the committee accepted a presentation from Zanidi. And certainly, due to the situation of the airspace in Israel being closed, could not be here.
+
+
+156
+00:30:53.404 --> 00:30:59.404
+And… I decided that is not cool.
+
+
+157
+00:30:59.404 --> 00:31:05.404
+And also, I kind of felt that they made a major release today.
+
+
+158
+00:31:05.404 --> 00:31:11.404
+And I want this conference to not be buried behind in history of what happened two weeks ago or a month ago.
+
+
+159
+00:31:11.404 --> 00:31:29.404
+So I talked to the CTO of Zanity. Michael Bulguri said, would you trust me, a competitor? We're not directly competing, but he's my competitor in the AI security space. Would you trust me to go up with some of your slides and just presented PowerPoint karaoke without ever seeing them before?
+
+
+160
+00:31:29.404 --> 00:31:40.404
+And I have never seen these slides before, and I'm gonna try to rush this so we're not way, way behind and Aaron won't kill me too badly.
+
+
+161
+00:31:40.404 --> 00:31:56.404
+But I hope you guys will forgive me for whatever I do wrong here and what I don't understand. And also, please, Aaron has a microphone, and when I don't understand a slide, or you understand it differently, just walk… I understand this differently. Let's present this together.
+
+
+162
+00:31:56.404 --> 00:32:01.404
+Now, think about this for a minute, because I know you're all very shy people, and Americans, therefore, polite.
+
+
+163
+00:32:01.404 --> 00:32:05.404
+So if somebody would just raise their hand, where's Don Guido?
+
+
+164
+00:32:05.404 --> 00:32:18.404
+Okay, so you're the first one to raise your hand when I get something wrong on the third slide, so everybody else feels comfortable stepping in. Let's run through this. Please fix from Zanity Labs my competition and awesome people.
+
+
+165
+00:32:18.404 --> 00:32:30.404
+Agentix browsers… Agentic browsers are everywhere. No, but seriously, agentic browsers are coming in, they are the next agent to perhaps explode after coding agents, and now everybody's using.
+
+
+166
+00:32:30.404 --> 00:32:35.404
+And they bring with them also quite significant risks.
+
+
+167
+00:32:35.404 --> 00:32:39.404
+And Comet is the one that's only in this particular case, looked at.
+
+
+168
+00:32:39.404 --> 00:32:54.404
+And they are essentially saying, look, we're not saying this is majorly innovative, but prompt injections are evolving all the time, and it's something a little bit different in the way they're trying to look at this here. From my understanding of looking at this slide right now, they're saying there is the user intent, and the attacker's intent.
+
+
+169
+00:32:54.404 --> 00:33:01.404
+Right? And if we can create intent collision, where we say something that looks like it's the user's.
+
+
+170
+00:33:01.404 --> 00:33:15.404
+I'm guessing that's kind of like data and control plane running thingy, but I'm not sure exactly what they meant here. That means we can make the agent do things we did not intend it to do. Dan, you ready?
+
+
+171
+00:33:15.404 --> 00:33:30.404
+And what they did, essentially, is create a payload that I'm going to read this off the slide, but I'm going to act as if I'm not looking at you once in a while. It hides in the calendar invite, it rewrites the accept button with their instructions.
+
+
+172
+00:33:30.404 --> 00:33:37.404
+And abuses comment internals with system reminders. I'm waiting for you to step in and tell me I'm wrong at any point.
+
+
+173
+00:33:37.404 --> 00:33:45.404
+Okay. So the first attack they are doing, I guess, is a system, a file system exfil, right? Yes? Everybody with me?
+
+
+174
+00:33:45.404 --> 00:33:48.404
+Awesome, I'm not doing a very good job, so help me out by cheering me on. Okay.
+
+
+175
+00:33:48.404 --> 00:34:03.404
+Appreciate it. Okay, thank you. Thank you. I am stressed out a little bit. So the attacker sends a calendar invite, right? And we can see Google Calendar on the screen and you can see there is an interview with Tamir. What else can I see on this slide?
+
+
+176
+00:34:03.404 --> 00:34:10.404
+with, uh, some information there and some invitations going to the team, and to, okay, moving from this slide.
+
+
+177
+00:34:10.404 --> 00:34:22.404
+And there is essentially comet in the background. We say, accept the meeting and help me prepare for it. And I'm imagining the identity team now saying, you know what? I'm gonna go make coffee.
+
+
+178
+00:34:22.404 --> 00:34:28.404
+What's the worst thing that could happen? I just asked them to help me accept this meeting, right? I don't need to stay here and monitor.
+
+
+179
+00:34:28.404 --> 00:34:35.404
+And well, Comet navigates to attacker-controlled site. With more malicious instructions.
+
+
+180
+00:34:35.404 --> 00:34:49.404
+I love you, Comet. Isn't it wonderful? Right? And it says, accept the meeting. Here to confirm the meeting, you need to click these on blah blah blah, and there is some Hebrew stuff, so probably Unicode.
+
+
+181
+00:34:49.404 --> 00:34:57.404
+based attack. Probably wrong, but that's my read on this. And then you can actually reach the file system. I think this is what it is.
+
+
+182
+00:34:57.404 --> 00:35:05.404
+and access files. Woo! Way to go, Zanit. Amazing work.
+
+
+183
+00:35:05.404 --> 00:35:14.404
+And autonomously, Comet will just go and search for really cool files that you might want to exfiltrate all on its own.
+
+
+184
+00:35:14.404 --> 00:35:28.404
+Isn't that wonderful? And then, it would actually exfiltrate it to the attacker, because no demo is ever complete unless you show that Xfield happened, or CMD popped up, depending on what you're demoing, right?
+
+
+185
+00:35:28.404 --> 00:35:37.404
+The second attack is actually with 1Password. Where, once again, we start with the calendar invite. Everybody clear on that, right? That happens in every single stage here.
+
+
+186
+00:35:37.404 --> 00:35:48.404
+And what do we write here? Accept the meeting and prepare for it. Same thing, but something else happens in the background as the attacker intent and the user intent collide.
+
+
+187
+00:35:48.404 --> 00:36:00.404
+And they apparently log into 1Password, and 1Password usually does not let me do that, it requires the master password, I feel a little bit cheated that you can just log in. I mean, what's wrong here? Is there preferential treatment?
+
+
+188
+00:36:00.404 --> 00:36:08.404
+And they are catching the request. And boom, they're managing the account and doing things to it.
+
+
+189
+00:36:08.404 --> 00:36:18.404
+Oh, this is pretty cool. So, I don't think it's necessarily an attack, but the 1Password autocomplete is apparently turned on, and once that happens, they are just in and they can do whatever they want.
+
+
+190
+00:36:18.404 --> 00:36:25.404
+And they have the emergency kit here, and a lot of other things they probably would have said, really technical, smart things about it, I'm just blah blahing on.
+
+
+191
+00:36:25.404 --> 00:36:32.404
+And the conclusions. Agentic browsers are untrusted entities. I think we can agree to that.
+
+
+192
+00:36:32.404 --> 00:36:43.404
+Awesome. Then I'm preparing you, you're coming up here to say two words on this in a second before we call you up. So step up already because we don't have a lot of time. Just come here. Stop changing your presentation last minute.
+
+
+193
+00:36:43.404 --> 00:36:48.404
+Okay, logged in, the browser is acting under your identity.
+
+
+194
+00:36:48.404 --> 00:36:56.404
+Right? Okay. And third is the browser security model. Think again. We need to do better as an industry.
+
+
+195
+00:36:56.404 --> 00:37:09.404
+And with that, this is Zanity Labs. This is their link. You can look at what they do. These mother somethings compete with me, although not exactly the same things. So don't like them too much.
+
+
+196
+00:37:09.404 --> 00:37:20.404
+Well, they're truly awesome people, they constantly release good research, and they were the first ones to actually do a zero-click attack in this space. And it was a real one, not one that marketing claimed was zero click.
+
+
+197
+00:37:20.404 --> 00:37:35.404
+So, everybody, I apologize to them for my PowerPoint karaoke of this presentation, but let's give Danity a hand.
+
+
+198
+00:37:35.404 --> 00:37:44.404
+And then decided to not actually comment on this presentation, but just do his, which I think is fine.
+
+
+199
+00:37:44.404 --> 00:37:49.404
+But I'll actually take the opportunity, if you don't mind, come up here, come up here. I want to embarrass you.
+
+
+200
+00:37:49.404 --> 00:38:05.404
+I hounded Dan for quite some time. How many times did hound you? Like 10. Yeah, about 10. 10 times on signal and on email and in public groups. Dan, are you coming to do a presentation and unprompted.
+
+
+201
+00:38:05.404 --> 00:38:16.404
+And he was like, ah, I don't know, I'm not sure I have enough to say. But the thing is, I actually prompted him, well, we are very sensitive to this, to come and do a vendor pitch.
+
+
+202
+00:38:16.404 --> 00:38:21.404
+What? I know you're not doing the vendor pitch, it's fine. But I hounded in, come and talk about your company.
+
+
+203
+00:38:21.404 --> 00:38:29.404
+And everybody was, what are you doing, Gadi? And I went to the committee, and I said, I want to do this because what Don is done.
+
+
+204
+00:38:29.404 --> 00:38:31.404
+I did not mean that pun, but it works.
+
+
+205
+00:38:31.404 --> 00:38:49.404
+What Don has done is essentially create. a company in this space that is not just so-called AI native, but is so ahead of its time, they literally emptied the Apple shops, Apple stores down, because they bought laptops that will be strong enough for the people stealing your content.
+
+
+206
+00:38:49.404 --> 00:39:08.404
+And yet, everybody started using, I think, Claude Code, right, and skills, and they keep releasing their stuff in open source, and they invested millions in getting to the DARPA AICC competition, and they have just made themselves the leaders in many cases, of AI security, just because he took a bet that the world is going to change.
+
+
+207
+00:39:08.404 --> 00:39:26.404
+It did not want to be left behind. He wanted to actually help make themselves relevant in the future, because many of us will not be. And that transformation was so critical for me. I asked him, please come to a vendor pitch. Tell us your journey, your transformation of how you see the world working right now, because there is nobody else out there right now that I know.
+
+
+208
+00:39:26.404 --> 00:39:35.404
+that can do this both technically. With the right ethos, and also be careful about not pitching us too hard. So with that, Dan, please.
+
+
+209
+00:39:35.404 --> 00:39:40.404
+Thank you. Thank you, Gotti.
+
+
+210
+00:39:40.404 --> 00:39:48.404
+over here. I can see that. All right, great.
+
+
+211
+00:39:48.404 --> 00:40:02.404
+So… Again, thank you for the introduction. I am Dan Guido. I'm the CEO and co-founder of Chillabits, and I am here to talk about how we made TrailerBits AI native so far. It's a journey. We're not there yet.
+
+
+212
+00:40:02.404 --> 00:40:13.404
+So just to start out, this article came out about two weeks ago. There were thousands of CEOs surveyed, and the result was that AI had no measurable impact on employment or productivity for them.
+
+
+213
+00:40:13.404 --> 00:40:30.404
+Economists are starting to call this the solo paradox, which is a phrase that was coined in the 80s, saying, oh, this economist called Robert Solow that said, you can see the computer age everywhere, but in the productivity statistics. Uh, so the same thing is happening with AI right now, that a lot of people think they're using it.
+
+
+214
+00:40:30.404 --> 00:40:46.404
+And they find out that it doesn't work, and the projects get dropped. So obviously, I don't think AI doesn't work. I just think most companies are doing it wrong. They give people tools without changing the system. So everyone gets a ChatGPT license, and then leadership waits for the productivity numbers to move.
+
+
+215
+00:40:46.404 --> 00:41:00.404
+And they don't. So that's the gap between AI-assisted and AI native. One is a tool, the other is an operating system. And the rest of this talk is about how I'm building the operating system at TrailerBits.
+
+
+216
+00:41:00.404 --> 00:41:13.404
+Uh, so before I go on, um… I want to define what we're even aiming for. So AI native gets thrown around a lot. It means a lot of different things to different people, and the way I think about it is that there are basically three levels. Most companies are at level 1.
+
+
+217
+00:41:13.404 --> 00:41:24.404
+AI-assisted is where everyone starts. You give people ChatGPT, they draft emails, generate boilerplate, you know, the organization doesn't change, the workflows don't change, you just do the same things a little faster.
+
+
+218
+00:41:24.404 --> 00:41:36.404
+AI augmented is where things start to get interesting. That's where you start slowly, incrementally redesigning workflows. You're not just using AI as a tool, but you're putting agents in the loop. You're changing how work actually flows.
+
+
+219
+00:41:36.404 --> 00:41:52.404
+And maybe the AI does the first pass on your code review, and then the human does the second. Uh, so the process is slightly different. And then finally, AI native is where you get to a structural shift. This is where you've designed the organization from the ground up, assuming AI is a co-participant in the work.
+
+
+220
+00:41:52.404 --> 00:42:03.404
+It's not a tool, it's a teammate. And that's your knowledge management, your delivery model, your expertise, all of them have to be designed to be consumed and amplified by agents.
+
+
+221
+00:42:03.404 --> 00:42:08.404
+So at Trail of Bits, what this means is that our security expertise should compound.
+
+
+222
+00:42:08.404 --> 00:42:21.404
+with code. Every engagement we do, all the skills, all the workflows we build make the next engagement faster. Every engineer operates with an arsenal of specialized agents built from our 14 years of audit knowledge.
+
+
+223
+00:42:21.404 --> 00:42:27.404
+That's not we use AI, that's AI is on the team.
+
+
+224
+00:42:27.404 --> 00:42:41.404
+Uh, so, candidly, I had a lot of trouble getting here. Uh, when I first launched this initiative inside Trail of Bits, there was an incredible amount of pushback. Uh, like you would not believe. I think that I had about 5% of the company with me, about 95 against.
+
+
+225
+00:42:41.404 --> 00:42:52.404
+Um, at least 50% were passively resisting. There were probably a good quarter that were actively resisting. Um, I'm sure people thought about quitting. Just totally like cards on the table here.
+
+
+226
+00:42:52.404 --> 00:43:12.404
+And this isn't really an uncommon issue. Whenever new technology comes around, people resist adopting it, and it can be the most senior, most expert people that resist the most. So I had to work through a couple of common psychological barriers that are well documented in research and build systems that worked within those psychological conditions to get to success.
+
+
+227
+00:43:12.404 --> 00:43:17.404
+The core insight here is the problem's not the technology. It's the people.
+
+
+228
+00:43:17.404 --> 00:43:39.404
+So, um, these are four psychological barriers. That, um, that are, I think, key among all the other ones in getting people to adopt new technology inside of a company like TrailerBits. First was self-enhancing bias. This is the tendency to perceive oneself in an overly favorable manner. Uh, so you obviously want to maintain your own self-esteem.
+
+
+229
+00:43:39.404 --> 00:43:55.404
+And this bias means that you take credit for your success, and you blame external factors on failures. Now, there are some funny interactions with this, like in some research by Paul Meele and Robin Dawes, you can take the variables an expert says they use and build a crude linear model.
+
+
+230
+00:43:55.404 --> 00:44:09.404
+And the model outperforms the expert. Almost always. And it's not because the model is smarter, it's because it's consistent. Humans don't operate the same every day. Some of you are very hungover right now, and I'm sure you could agree with me on this.
+
+
+231
+00:44:09.404 --> 00:44:17.404
+Um, and this gets worse with seniority. The more that you are an expert, the more that you believe that your intuition is what got you there.
+
+
+232
+00:44:17.404 --> 00:44:44.404
+There's also an identity threat. This really attacks the core of who we are, that, like, I spent 20 years doing this, a machine can't do 20 years of experience and, like, it to be me. Um… And this shows up in things like Stanford ran a cooking study. They used this device, some cooking system, and they advertised it two different ways. One way is it does the cooking for you. The other way is it helps you cook better. And it's the same device.
+
+
+233
+00:44:44.404 --> 00:45:04.404
+But for people who identify as cooks, they reject the device if it's advertised the first way. There's another dimension to this as well, based on the symbolism of what the activity represents. So, for instance, if you had a tattoo robot, people do not want robots to give them tattoos, because it's symbolic.
+
+
+234
+00:45:04.404 --> 00:45:16.404
+There's a human craft to it. But they're fine with a tattoo removing one, because that's an instrumental process. There's no symbolism there. So for us, security auditing is deeply symbolic work.
+
+
+235
+00:45:16.404 --> 00:45:23.404
+And it's important to frame the AI as making you a more dangerous auditor, not something that does the audit.
+
+
+236
+00:45:23.404 --> 00:45:41.404
+Uh, there's also challenges in opacity. Uh, so in this case, the subjective understanding of human judgment is high, and AI judgment is low, but objectively, you actually understand neither. Um, like when a doctor tries to communicate to you that you might have some medical condition or cancer or something.
+
+
+237
+00:45:41.404 --> 00:46:02.404
+You might think you understand the words that are coming out of their mouth, but you absolutely do not. Um… But the level of trust you have with the doctor is way higher than if a machine just prints out a receipt and says, here's what you got. So the way you typically fix this is, uh, you could modify the same AI to show you, well, why is this not a benign.
+
+
+238
+00:46:02.404 --> 00:46:27.404
+skin condition. Uh, and if you give a visual comparison to a benign mole, then trust starts to equalize. So we had to think about how to build this into our process as well. And then finally, humans have an intolerance for imperfection. Uh, so again, well-known academic study, participants watch an algorithm outperform a human forecaster, the algorithm is better. But the second that the algorithm makes a single error, humans switch back to.
+
+
+239
+00:46:27.404 --> 00:46:38.404
+preferring the human. The fix in this case is generally to let people modify the algorithm. If they have the perception of control, then they start to trust the process again.
+
+
+240
+00:46:38.404 --> 00:46:59.404
+So what did we do? Uh, so for the self-enhancing bias, uh, we built a maturity matrix. Uh, this was controversial internally. Nobody likes being told they're at level 1, but that's the point. You can't argue with something that you're… you can't argue that you're good enough when there's a visible ladder. And it also makes the conversation concrete instead of, I don't think AI is useful.
+
+
+241
+00:46:59.404 --> 00:47:08.404
+Uh, it also creates social proof. When you see your peers escalating up the ladder, the passive 50% of the company starts to move with them.
+
+
+242
+00:47:08.404 --> 00:47:27.404
+Uh, the identity threat was extremely difficult. You had to get people to accept skill-allowing automations and reject skill-replacing automation. Same tool, different framing. So we never really asked anyone… well, we… not never really, we didn't ever ask anyone to stop being a security expert, but we gave them a different way to express that identity.
+
+
+243
+00:47:27.404 --> 00:47:43.404
+So the skills repos that I hope you all are familiar with are the clearest example of that. When we have a senior consultant on the team write a constant time analysis skill, they're not being replaced, they're becoming permanent inside the company.
+
+
+244
+00:47:43.404 --> 00:47:51.404
+And that means their expertise is encoded and reusable by the whole team. That's an identity upgrade, not a threat.
+
+
+245
+00:47:51.404 --> 00:48:05.404
+So, the maturity matrix reinforces this. Level 3 isn't who uses AI the most, it's who invents new ways and builds new tools. So the identity shifts from, I don't need AI, to, I'm the one who makes AI dangerous.
+
+
+246
+00:48:05.404 --> 00:48:14.404
+Uh, we also did hackathons instead of mandates. I never forced anyone to adopt these tools, but we created a space where people could experiment on their own terms.
+
+
+247
+00:48:14.404 --> 00:48:40.404
+I'm not doing that. There we go. Um, for the intolerance for imperfection, uh, everyone… if somebody's first experience with AI is bad, you've lost them for months. So one error, and people just abandon the system. So we invested a lot in ways to reduce the ways that AI can fail embarrassingly. We curated a marketplace so that people weren't getting random plugins. We created sandboxing tools, so Claude Code didn't accidentally delete your work.
+
+
+248
+00:48:40.404 --> 00:48:51.404
+Uh, we put guardrails and foot gun reduction systems in place so that there were a lot less of, like, you know, AI did something stupid stories circulating in Slack.
+
+
+249
+00:48:51.404 --> 00:49:04.404
+Uh, for opacity, we clearly articulated what tools were allowed and which ones were not, and under what conditions. We described those conditions and why we decided to, uh, adopt those risk levels.
+
+
+250
+00:49:04.404 --> 00:49:15.404
+And then we made adoption fast and visible. So this really underpins everything else. If the setup takes an hour, and the first result is mediocre, then you've confirmed everyone's priors.
+
+
+251
+00:49:15.404 --> 00:49:25.404
+So we have copy-pasteable configurations, one-command setup. We have a standardized toolchain, and the first experience is fast and good. And then I think, finally.
+
+
+252
+00:49:25.404 --> 00:49:40.404
+I matter to this more than most people think. The passive 50% of the company is going to watch what leadership actually does, not what it says. So, if I'm using these tools visibly every single day, it signals that it's not a fad.
+
+
+253
+00:49:40.404 --> 00:49:58.404
+We're actually all in. So that's the problem and the approach. Uh, here's the actual system we built. So, five parts, each one addresses barriers we just talked about. I'm gonna walk through each of these in detail with screenshots and examples, uh, but this is the overview. You could think of it like a checklist, but you need all five for it to compound.
+
+
+254
+00:49:58.404 --> 00:50:17.404
+And, um, importantly, this isn't like some strategy deck that, like, I'm presenting here. This is everything that we built ourselves, and most of it has been open sourced so that all of you can use it right now. Uh, this is what I use for a 140-person company doing real client work.
+
+
+255
+00:50:17.404 --> 00:50:35.404
+So let's go through each one. Uh, first one, super boring. We had to standardize. Uh, we got everybody on Claude Code, and we treated it like any other enterprise tool. We have supported configs, no good defaults, and a clear path to, this is how we do it here. If you skip this step, you can't build anything else, because you end up with 40 different workflows and zero leverage on it.
+
+
+256
+00:50:35.404 --> 00:50:39.404
+So, for better or for worse, we settled on Claude Code.
+
+
+257
+00:50:39.404 --> 00:50:54.404
+I think it was for better. Uh, next thing, we wrote an AI handbook, and this wasn't to teach people how to prompt, but it was to remove ambiguity. What tools are approved and what isn't, especially for sensitive data, where we have a lot of that.
+
+
+258
+00:50:54.404 --> 00:51:24.404
+So we explicitly call things out, like where a tool can't be used on client code, where meeting recorders are disallowed depending on engagement type, where we want people to use a specific alternative. And that stops the endless Slack debates. It gives project managers and engineers a shared answer, and it makes client conversations consistent. When we have… Highly sensitive clients ask us questions about, hey, what are you using on the code that I've given you? I can give them a clear answer that everybody knows. So once you have a policy, you can push harder on adoption.
+
+
+259
+00:51:27.404 --> 00:51:43.404
+Then, I will post this on Twitter, because no one can read it. But we built an AI maturity matrix. This makes AI a first-class professional capability. It's just the same as you can use Git or you can write tests, or you can audit C.
+
+
+260
+00:51:43.404 --> 00:52:00.404
+It's not a vibe, it's a ladder. So there are clear levels, there are expectations for escalating. And there are consequences for staying stuck. It starts at level 0, and if you're stuck at level 0, and you're not engaged in this process.
+
+
+261
+00:52:00.404 --> 00:52:04.404
+then there may be a transition out of the company.
+
+
+262
+00:52:04.404 --> 00:52:21.404
+Um, and this is how you avoid two different failure modes. You don't want leadership to, like, wish adoption into existence, and you don't want the organization splitting into AI people versus everybody else. This is a whole company need. Everybody needs to be on board. So this turns it into a normal part of performance, growth.
+
+
+263
+00:52:21.404 --> 00:52:33.404
+resource allocation, uh, and bonuses. Um, now the fun part. So, hackathons. Hackathons became a management system for us.
+
+
+264
+00:52:33.404 --> 00:52:46.404
+We run short, focused sprints, two to three days, with a specific objective, one objective. And that's how we keep pace when the ecosystem changes every single week. So here's one of the kickoffs for one of them.
+
+
+265
+00:52:46.404 --> 00:52:54.404
+We did this one, or actually, well, these are both, these are the last two, I think, which one? I think the one on the right.
+
+
+266
+00:52:54.404 --> 00:53:06.404
+is, um, our autonomy-focused one. The most important thing is that we put a constraint on the hackathon. You had to run Claude code and bypass permissions mode.
+
+
+267
+00:53:06.404 --> 00:53:23.404
+This was to break the barrier on people's hesitance to giving full control over the tools and build systems that allow it to work under those constraints. So that was intentional. It forces everyone to learn how to use sandboxing, guardrails, and how to structure their work so that the agents can succeed on their own.
+
+
+268
+00:53:23.404 --> 00:53:31.404
+Um, other design choices that we made, we focus on public repositories so that we can move fast and show real outcomes.
+
+
+269
+00:53:31.404 --> 00:53:42.404
+We measured success on activity. I wanted people to put in the reps, so we're talking about issues fixed and filed, PRs reviewed and merged, branches created and deleted.
+
+
+270
+00:53:42.404 --> 00:53:48.404
+Uh, we're not so worried about, like, the meaning behind all that code. I just want activities that they put in the reps.
+
+
+271
+00:53:48.404 --> 00:53:53.404
+And then we had people work in pairs. Every change gets reviewed by a buddy.
+
+
+272
+00:53:53.404 --> 00:54:05.404
+Uh, so even with the move fast sort of sprint-style work, we had some quality control built in. So the hackathons create motion, but the motion doesn't compound unless you capture it.
+
+
+273
+00:54:05.404 --> 00:54:10.404
+And that's where we started collecting these artifacts as skills.
+
+
+274
+00:54:10.404 --> 00:54:27.404
+Uh, so a skill, most of you know, is a reusable structured workflow, uh, usually with examples, constraints, and a way to verify the output. So we maintain three separate skills repos, uh, two of which you all have access to. Uh, we have an internal one that has a lot of company-specific workflows.
+
+
+275
+00:54:27.404 --> 00:54:39.404
+And a lot of our most sensitive vulnerability research-related skills. But we also have an external one, so that the broader community can validate and improve on the work that we're doing.
+
+
+276
+00:54:39.404 --> 00:54:44.404
+The third one is we have a curated marketplace, which I think I'm talking about next. Yeah.
+
+
+277
+00:54:44.404 --> 00:55:00.404
+So for a firm like ours, I appreciate the external validation. It keeps us honest, and it forces us to write things that other people can actually use. That's a core value of Trail of Bids. I don't want to just release a black hat talk that gets me a Wired article or whatever and disappear the next day.
+
+
+278
+00:55:00.404 --> 00:55:10.404
+We measure success based on. uh, downloads of a specific tool, or stars of a specific tool. I want continued usage, um.
+
+
+279
+00:55:10.404 --> 00:55:27.404
+And, uh, and enhancement. So then we have another problem. You know, you tell people to go use skills and plugins, and they go use skills and plugins, and they get a whole bunch of random stuff that's, like, AI slop, filled with emojis, and, uh, you know, steals your cryptocurrency.
+
+
+280
+00:55:27.404 --> 00:55:43.404
+Um, so we created a curated marketplace, and this is just standard, you know, enterprise stuff, right? We made a known good place for third-party skills. You want a third-party skill? There's a command built into the curated marketplace that goes out and grabs it from somewhere else, filters it, and then puts it into ours.
+
+
+281
+00:55:43.404 --> 00:55:48.404
+Uh, so if you want adoption, you need a safe supply chain.
+
+
+282
+00:55:48.404 --> 00:56:07.404
+Basic enterprise thinking. Uh, then we made the defaults dead simple. So after we went through a couple of rounds of this, we started to get to, uh, really, like, known good, um, trail-abits-style Claude code installation. So we published a repository that has our recommended Claude code configuration.
+
+
+283
+00:56:07.404 --> 00:56:24.404
+I want to eliminate tribal knowledge. We want to have specifics around, this is how we do Claude code at Trail of Bits. So we put known good settings, a known good claude.md, and anything else that we want to standardize for how people use it. We also included some usage instructions there.
+
+
+284
+00:56:24.404 --> 00:56:39.404
+Um, now, this is freely available, but there is a whole separate section that describes how to use it for bug hunting that we're keeping internal, so if you're wondering where that part is, uh, that's why it's missing. So it's very developer-focused.
+
+
+285
+00:56:39.404 --> 00:56:45.404
+Then the real constraint, obviously. The more control that you give to these agents.
+
+
+286
+00:56:45.404 --> 00:57:15.404
+You're gonna want a sandbox. So we give people choices. We don't just tell people to do one thing or enforce the clawed built-in sandbox, which is quite good. But we give people choices. We invested in building some of our own. We built a dev container option. We made… Another one that automatically interacts with DigitalOcean to create single-use virtual machines in the cloud, and then we documented the native macOS sandboxing option. So the point wasn't that everybody uses the same sandbox. The point is that everyone has a safe sandbox to use.
+
+
+287
+00:57:17.404 --> 00:57:31.404
+You know, we have a variety of different things going under one roof at Trail of Bits. We have engineering engagements, research engagements, audits. We have non-technical staff, operations staff, and they all need different solutions. I can't mandate one.
+
+
+288
+00:57:31.404 --> 00:57:49.404
+Uh, then, as you give people more autonomy, these agents start to go haywire in different ways. They start to pull in third-party dependencies that have security issues. So, the one step that we took that I think is extraordinarily effective, besides the ignore scripts in NPM.
+
+
+289
+00:57:49.404 --> 00:58:04.404
+was implement a mandatory developer package cooldown policy. So nobody installs packages that are less than seven days old for any package manager across the company, we have it enforced with MDM.
+
+
+290
+00:58:04.404 --> 00:58:18.404
+That's the, I think, the easiest way to reduce risk and make the safe path the default path. There's more that we've done here, but this is something that I'm preparing to release. We're gonna start open sourcing our entire Jamf configuration stack.
+
+
+291
+00:58:18.404 --> 00:58:22.404
+for how we secure some of these agents with MDM.
+
+
+292
+00:58:22.404 --> 00:58:45.404
+Uh, and then finally, once you have the policies, the guardrails, the sandboxes, the skills, you can connect agents to real tools. Uh, so one example that we've already wrapped inside of an MCP server is Slither. Um, and if you don't care about Slither, which is a static analyzer for Ethereum smart contracts, the point is that MCP turns your internal tools into something that agents can use reliably and that your org can govern.
+
+
+293
+00:58:45.404 --> 00:58:51.404
+Uh, so this is another way that we can inject policy into how these tools get used.
+
+
+294
+00:58:51.404 --> 00:59:08.404
+Um, so now the results. So, um, you know, you've seen some of our open source work, but internally, I can share that we have 94 separate plugins accumulating 201 skills with 84 specialized agents and 400 reference files.
+
+
+295
+00:59:08.404 --> 00:59:16.404
+encoding all of our domain expertise. And that's the compounding effect. So every single engagement, every auditor, every experiment adds to that arsenal.
+
+
+296
+00:59:16.404 --> 00:59:27.404
+And what's important is the breadth, right? We're not just talking about an auditing toolkit. I have skills for writing sales proposals, tracking project hours, onboarding new hires, prepping conference blog posts.
+
+
+297
+00:59:27.404 --> 00:59:44.404
+Uh, we have 20-plus plugins targeting specific vulnerability classes, but the important thing is each package — each one packages expertise that used to live in somebody's head, and it turns into something that every auditor on the team can now invoke.
+
+
+298
+00:59:44.404 --> 00:59:56.404
+On the delivery side, we have certain clients where the code base and the scope allow it. We've gone from finding 15 bugs a week to finding 200 bugs per week.
+
+
+299
+00:59:56.404 --> 01:00:07.404
+And that's not a faster human. That's an auditor running a fleet of specialized engagements that do targeted analysis across the codebase in parallel, and then validate the results.
+
+
+300
+01:00:07.404 --> 01:00:18.404
+So, across most of our engagements at Trail of Bits, the number that we're about at is that 20% of all the bugs we report to our clients were initially discovered by AI.
+
+
+301
+01:00:18.404 --> 01:00:31.404
+Um, on the business side, we also have our sales team averaging about $8 million in revenue per representative, which is about double what the industry averages for, uh… for sales, for sales consulting.
+
+
+302
+01:00:31.404 --> 01:00:45.404
+So, yeah, so AI doesn't just help our engineers, it also helps with proposal drafting, competitive positioning, conference prep, lead enrichment, same system, same repositories, same compounding effect.
+
+
+303
+01:00:45.404 --> 01:00:53.404
+Uh, and this is maybe, you know, a year into building the system seriously. Claude Code came out, what was it about a year ago.
+
+
+304
+01:00:53.404 --> 01:01:04.404
+Um, the models get better every month, the skills grow every week, and a year from now, these numbers are gonna look very different.
+
+
+305
+01:01:04.404 --> 01:01:15.404
+So, let me close with some of the essential starter path. This is the minimum viable AI-native org design. This is what we've done so far, and it's changed how fast we can ship and how quickly we adapt.
+
+
+306
+01:01:15.404 --> 01:01:19.404
+If you want to copy this, you have to copy the system, not the tools.
+
+
+307
+01:01:19.404 --> 01:01:24.404
+Uh, we do have some open questions, you know, there's obviously some things we're still working on.
+
+
+308
+01:01:24.404 --> 01:01:37.404
+Obviously, Gotti made an allusion to a conversation I had with him about private inference. You know, we don't want to always send our queries to the cloud. Sometimes we want to do them on a machine that we control.
+
+
+309
+01:01:37.404 --> 01:01:50.404
+But these local models, they're good, but they're not amazing. There's definitely this big model smell where you can tell the difference between Opus 4.6 and a Haiku 4.6, no matter what day it is.
+
+
+310
+01:01:50.404 --> 01:02:07.404
+Um, so right now, we're investigating a couple of paths here, and I'm sort of reticent to spend money on a local server, because a lot of the private inference systems are getting really good. Uh, we've been evaluating tinfoil.sh, but there's a huge variety of other private inference servers that are now available where I can.
+
+
+311
+01:02:07.404 --> 01:02:30.404
+confidentially run my queries in somebody else's cloud. So these are where, um, you know, we're doing some research to figure out the right solution for us. The prompt injection problem, obviously not solved. We have a real blunt instrument for solving it today, which is for certain clients, we just deny access to the web. And for a lot of our internal tools, we don't allow them access to external resources.
+
+
+312
+01:02:30.404 --> 01:02:48.404
+Um, so things we're playing with here are agent native shells. We're looking at things like the no-no shell, agent SH, that are gonna wrap the agent execution in something that can be protected with, uh, kernel-level system calls, instead of, you know, discretionary guidance thrown into a claw.md.
+
+
+313
+01:02:48.404 --> 01:02:56.404
+Uh, and then something else we don't have solved yet is policy enforcement and continuous learning. So we push a lot of settings via MDM.
+
+
+314
+01:02:56.404 --> 01:03:05.404
+But what do we get back? Because there's a huge amount of data that's accumulated on each person's device about how they're actually using AI and how they're doing their job.
+
+
+315
+01:03:05.404 --> 01:03:13.404
+That I would love to be able to collect and synthesize and use to enhance our process, and we don't have a solution there yet either, but it's something we will probably soon.
+
+
+316
+01:03:13.404 --> 01:03:20.404
+Uh, you can take a look at things from trailer bits like our We Audit Visual Studio Code extension that might offer a solution there.
+
+
+317
+01:03:20.404 --> 01:03:40.404
+You know, longer term, we also need some sort of policy architecture. You can see Stripe with their Minions paper, they have one giant MCP server that all their agents call into and that they can use to enforce policy. And that might be a good long-term answer. And then finally, the business is really shifting. I think consulting today may not last that long.
+
+
+318
+01:03:40.404 --> 01:03:50.404
+Uh, we're looking at billing by hours today, but in a future where everybody has an arsenal of agents, and some people can outperform others by 200X.
+
+
+319
+01:03:50.404 --> 01:04:01.404
+I think you have to start billing by expertise and by results. So the nature of how Trail of Bits offers our services to the world is probably going to change in the next 6 to 12 months as well.
+
+
+320
+01:04:01.404 --> 01:04:06.404
+And again, no answers there yet, because we're still on this journey, just like everyone else.
+
+
+321
+01:04:06.404 --> 01:04:24.404
+Uh, so, I wanted to offer a few links to these references. These are all the tools that I talked about during this talk. I also want to mention that yesterday, as a gift to you all, I open sourced 10 additional plugins. Uh, we have one for checking false positives, for bugs that your clog might find, and you want to.
+
+
+322
+01:04:24.404 --> 01:04:31.404
+Give it the ability to check. We have a fun one called Let Fate Decide that teaches your agent how to deal tarot cards.
+
+
+323
+01:04:31.404 --> 01:04:36.404
+Um, as well as a whole bunch of others that are up on my Twitter and that are up in the skills repo right now.
+
+
+324
+01:04:36.404 --> 01:04:51.404
+Uh, and then I would also be remiss to mention, we have a bunch of jobs open, and I would love it for someone to work with me to carry this exact process forward. If you want to help me continue to instrument Trail of Bits and make us, uh, further along in this journey, uh, please contact me.
+
+
+325
+01:04:51.404 --> 01:04:56.404
+Thanks. Thanks, Dan.
+
+
+326
+01:04:56.404 --> 01:05:03.404
+All right, we'll try to get back on track here, so I'll take time for two questions. Do we have two questions in the audience?
+
+
+327
+01:05:03.404 --> 01:05:11.404
+processing, all the things to do with an org. We've got one over here, Andrew, or I'll run it.
+
+
+328
+01:05:11.404 --> 01:05:26.404
+Hey, thanks so much, that was amazing. I'm wondering if an additional hesitance that you've seen with your employees in adopting AI is also around eventually being replaced or like mass joblessness, stuff like that.
+
+
+329
+01:05:26.404 --> 01:05:53.404
+Yeah, so I think Trail of Bits is in a really good spot because we're kind of, um… I think the term is obelisk shaped. You know, consulting agencies, they usually have a really large base of junior employees. And I think as people get more enhanced by AI, a lot of the most senior people that benefit the most. So I'm gonna sidestep that question and just say that everybody at Trail of Bits is perfectly positioned to take advantage of this because we only have senior level help people.
+
+
+330
+01:05:53.404 --> 01:06:07.404
+Yeah, I'll leave it there.
+
+
+331
+01:06:07.404 --> 01:06:37.404
+Sibilance. Okay, thanks, Dan. I have a question in terms of, like, the blessed lists that you're creating for the team, how do you think about, like, rug-pulling attacks, or, you know, we've seen with some folks who are, like, you know, releasing sort of safe and secure, and then… updating it with, like, some type of, you know, something malicious as you think about, you know, these are our blessed lists, are you checking them every day, or how do you think about… Blessed lists of what? Like, your MCPs or skills that you've got, or, you know, any of those. Oh, yeah, I mean, well, we're importing all of them into an allow list.
+
+
+332
+01:06:39.404 --> 01:06:54.404
+The only plugins that you're allowed to use for trailer bits are the verified ones that are in our curated repo. Uh, so we don't want you to install random skills from other places. If it gets updated, it gets updated through us, and we have a bunch of automated systems that help us perform those updates with speed.
+
+
+333
+01:06:54.404 --> 01:07:13.404
+So obviously, like, if something comes out on Twitter, you want to use it that minute. But we've enabled the organization to perform those internal update steps on its own. So our curated skills repo is open source. Everybody at TrailerBits has right access to it, requires pull request reviews, and it includes.
+
+
+334
+01:07:13.404 --> 01:07:27.404
+commands that Claude Code can understand to go out and grab those resources. So you can just give it a tweet and say, hey, I want this, and it goes, pulls it in, tags somebody for a review, and then five minutes later, you've got it on your machine.
+
+
+335
+01:07:27.404 --> 01:07:38.404
+Cool. Yep. Welcome. Thank you so much. All right, we're gonna keep rolling. Uh, 8 minutes to admin up next with Sergey Epp. Let's kick it off.
+
+
+336
+01:07:38.404 --> 01:07:45.404
+Cool. Yeah. Happy to be back. And welcome to Wipe Hacking.
+
+
+337
+01:07:45.404 --> 01:07:54.404
+Now, in the next 20 minutes, I will share some of the threat research we've seen around AI-assisted threats and also share mentor model with you, alright?
+
+
+338
+01:07:54.404 --> 01:08:08.404
+And I think all this because yesterday and today they really showed us how AI is accelerating offense. We've got fast exploits, we've got faster recoil, and we've got faster everything, and they're all right.
+
+
+339
+01:08:08.404 --> 01:08:15.404
+But on the other hand, the same… The same speed which AI is providing.
+
+
+340
+01:08:15.404 --> 01:08:21.404
+offense is also creating the most noisy attacks we've ever seen.
+
+
+341
+01:08:21.404 --> 01:08:28.404
+And… The fastest the goal, the more they confess.
+
+
+342
+01:08:28.404 --> 01:08:33.404
+So let this sing in with you. The faster they go, the more they confess.
+
+
+343
+01:08:33.404 --> 01:08:48.404
+Now, 28th of November last year, we've caught an intrusion into AWS environment. A very classic one, S3 bucket credentials were compromised out of a RAG database, and within eight minutes.
+
+
+344
+01:08:48.404 --> 01:09:01.404
+Those guys got a full admin. And we've caught everything, all the CloudTrail logs, all the SUSCO logs, and they were not just fast, they were pretty, pretty loud. So let me, let me show you.
+
+
+345
+01:09:01.404 --> 01:09:09.404
+First of all, you see this type of comments, like courageous admin access key list as weak S3 bucket.
+
+
+346
+01:09:09.404 --> 01:09:26.404
+Does somebody understand this? It's urban. And this is a Lambda function, which the attackers tried to execute three times, literally within a minute. It was pretty well done. You've seen multiple user accounts, exception handling, and so on, they've succeeded the third time.
+
+
+347
+01:09:26.404 --> 01:09:37.404
+Now, next, they've tried to assume some rows and move lateral. Ascending and descending numbers. Oh, this are not going to work obviously in an environment of, uh.
+
+
+348
+01:09:37.404 --> 01:09:45.404
+of AWS. Do you recognize a pattern there? If you ask your favorite AI.
+
+
+349
+01:09:45.404 --> 01:09:51.404
+Generate example EWS account IDs for me. This is what you get.
+
+
+350
+01:09:51.404 --> 01:09:59.404
+This is what the eye learns through the training process. And you will find much more other information if you just ask for some training or sample data.
+
+
+351
+01:09:59.404 --> 01:10:15.404
+Now, next, guess what kind of AI that we're using? That's a bit obvious from this role session name. They were confessing without even knowing that they were confessing this specific bridge. And now Claude is obviously very powerful for goodsync, but also for bad things.
+
+
+352
+01:10:15.404 --> 01:10:31.404
+As we've seen yesterday and today. So, that was very obvious to us, but next step was even more obvious because what they've tried to do is they've tried to spin up some GPU, um.
+
+
+353
+01:10:31.404 --> 01:10:38.404
+GPUs, um, 8100, you know, 8 of them, um, would pay, what, like, 50 hours, um.
+
+
+354
+01:10:38.404 --> 01:10:50.404
+an hour for them, um, and they had some problems. But first of all, they named the GPUs Steven GPU monster. Steven is a Serbian name, and this name popped up also multiple times.
+
+
+355
+01:10:50.404 --> 01:11:08.404
+In the locks, which is very interesting. So if you're now a Steven out of Serbia, who's doing a lot with Claude, let me know. Perhaps we can help them with OPSEC. Now, they've tried then, the LLM didn't really, the attacker didn't really succeeded, so the LLM tried really to find some training scripts.
+
+
+356
+01:11:08.404 --> 01:11:27.404
+To understand what was really happening. Obviously, this GitHub repo doesn't exist. I don't know if it's… If it's one, I don't know why they were trying to do this, but it was simply not there. So it was as well, again, coming from hallucination. Now, what's exciting is you've seen, within 8 minutes.
+
+
+357
+01:11:27.404 --> 01:11:35.404
+Them going to full admin. And then there was a full stop for about 50 minutes. No activity.
+
+
+358
+01:11:35.404 --> 01:11:41.404
+A burst of activity, no activity, and another burst of activity. And this is, like, typical prompting.
+
+
+359
+01:11:41.404 --> 01:11:51.404
+Behaviors were, right? You prompt the LLM is doing something, uh, very successfully, and then you're waiting for its master. But actually, you had multiple of such attacks running in parallel.
+
+
+360
+01:11:51.404 --> 01:12:02.404
+Now, let me introduce you to another guy. Do you remember this meme? Blockchain enabled AI hacker, which was like viral about five years ago. This guy became real last year.
+
+
+361
+01:12:02.404 --> 01:12:10.404
+And, um, we've literally seen this attack just popping up a couple of days after the first attacker.
+
+
+362
+01:12:10.404 --> 01:12:17.404
+24 hours after React for Shell exploitation. If you remember React for Shell, it was exploited literally after a couple of hours when it went live.
+
+
+363
+01:12:17.404 --> 01:12:35.404
+Uh, we floated, um, we floated this sample, and, uh, it would come with five persistence mechanisms. It would come with a, you know, a local runtime environment, no Jedias. It would be able to patch itself on the fly. It would deliver multiple payloads.
+
+
+364
+01:12:35.404 --> 01:12:52.404
+Literature was in a couple of minutes. So, we have… we don't have the smoking gun to say that they were generated with the eye, but the way how the code is written, the way, um… how the comments were done is definitely suggesting this. So I'm not sure if we have some good, uh…
+
+
+365
+01:12:52.404 --> 01:12:59.404
+Researchers from OpenAI on traffic, and we have some watermarking techniques, if you guys are doing this, you can prove that. Happy to share this farce with you.
+
+
+366
+01:12:59.404 --> 01:13:09.404
+But I think the amount of code as well being produced within this amount of time, just suggesting as well, it was an LLM.
+
+
+367
+01:13:09.404 --> 01:13:16.404
+Now, next, they made this campaign unkillable because they've put the C2 server on a blockchain.
+
+
+368
+01:13:16.404 --> 01:13:28.404
+It was literally from the blockchain, and you can really size it, right? You can really block it, you can take it down, because there's no registrar, you can go to and just try to sync all of that.
+
+
+369
+01:13:28.404 --> 01:13:47.404
+Um, so this point in time, you as a researcher, you might be worried, but don't, because… Looking at all these different ways how the AI is trying to act, first of all, speed. We've seen the speed is creating a lot of different artifacts.
+
+
+370
+01:13:47.404 --> 01:13:52.404
+Which are persisting, which are confessing in your locks. You just need to find them.
+
+
+371
+01:13:52.404 --> 01:14:07.404
+Resilience, most likely they've asked as well for resilient way to have a good C2 infrastructure, create a lot of forensic evidence. It's going to live forever now on the blockchain, and you can literally see all the different C2s, all the different activities as well from this specific campaign.
+
+
+372
+01:14:07.404 --> 01:14:16.404
+but also scale, because the way how quickly all these different payloads were produced and how they were used is also suggesting.
+
+
+373
+01:14:16.404 --> 01:14:35.404
+We can identify this. Now, what are you doing, if you're facing an AI spread, you try to wipe back, right? Let's create a dedicated custom malware syncope assessment environment was practically not a sinkhole and just track the threat actor.
+
+
+374
+01:14:35.404 --> 01:14:50.404
+In real time. And that's what we've done. Unfortunately. Oh, the video's loading, great. So, you know, what it would do, it would just pull out all the different PC calls, all the different C2s, try to understand the content, what is, um.
+
+
+375
+01:14:50.404 --> 01:15:09.404
+What is the leading C2 try then to load the payloads, the obfuscate everything, understand what it's doing, have its versioning system as well, do a trend analysis, how the malware is changing as well. So the days where we do malware analysis is changing, can be very easy as well, if you just.
+
+
+376
+01:15:09.404 --> 01:15:24.404
+Fightback was with white coding. I'll still, I guess, just looking as well, the zero-day clock I've presented before, the speed of the attackers and the shift more towards offense is going to stay around.
+
+
+377
+01:15:24.404 --> 01:15:29.404
+Um… And, you know, the reason for that is.
+
+
+378
+01:15:29.404 --> 01:15:36.404
+explained here on the slide. Offense has very cheap verifiers.
+
+
+379
+01:15:36.404 --> 01:15:40.404
+If you pop a shell, if you run a binary, it's a very deterministic, clear verifier.
+
+
+380
+01:15:40.404 --> 01:15:48.404
+Defense has a SIEM, suspicious Information Every Minute. Are you familiar with this?
+
+
+381
+01:15:48.404 --> 01:15:55.404
+Sing everybody, right? So it's not very, very easy to verify in a deterministic way if something happened.
+
+
+382
+01:15:55.404 --> 01:16:01.404
+Now, what a fence doesn't have, they don't have really this way to understand your environment.
+
+
+383
+01:16:01.404 --> 01:16:11.404
+To call the right GitHub repo, to create the right account, which is following your naming convention, to understand how your environment is being set up.
+
+
+384
+01:16:11.404 --> 01:16:21.404
+And this is what we can as defenders. We have this… This way to verify if data is real or not, because we understand our environment much more better.
+
+
+385
+01:16:21.404 --> 01:16:35.404
+Now, last year, I've presented this mentor model, which was derived from… from Jason Way from OpenAI, who sort of abstractly described the way we AI is becoming really good.
+
+
+386
+01:16:35.404 --> 01:16:41.404
+And, you know, one example to think about this is if you have this spectrum of.
+
+
+387
+01:16:41.404 --> 01:16:55.404
+solutions and a spectrum of verification. You can map Sudoku, for instance, on it. Sudoku is very, very easy to verify, right? But very hard to generate. There's tons of solutions, millions of solutions out there.
+
+
+388
+01:16:55.404 --> 01:17:03.404
+Diet is a counterexample for that, because if I eat today something, I will see the results in a couple of weeks or months. That's where AI is not really good.
+
+
+389
+01:17:03.404 --> 01:17:14.404
+So now what I've tried to do is I've tried to map cybersecurity domains to this space, and… Just looking at most of the offensive capabilities.
+
+
+390
+01:17:14.404 --> 01:17:27.404
+You see that they are very often much more easier to verify than a defense capabilities, because it's very easy, again, if you have an exploit, you can test it out dynamically. If you have a shell you're popping, if you're exfiltrating data.
+
+
+391
+01:17:27.404 --> 01:17:37.404
+So it's much more dynamic, it's much more dynamic and deterministic in this way compared to defense, because for defense, now looking at a binary.
+
+
+392
+01:17:37.404 --> 01:17:44.404
+Looking at your cement formation, looking at your code repo, it's not that easy to verify.
+
+
+393
+01:17:44.404 --> 01:17:50.404
+If it's malicious or not. The perfect example for this is a malware.
+
+
+394
+01:17:50.404 --> 01:18:03.404
+As malware analysts, we've tried always to make verification very cheap by analyzing the specific binary, finding bad patterns, and generating out of those bad patterns a hash.
+
+
+395
+01:18:03.404 --> 01:18:17.404
+Or finding or trying to build a stage in between by having sandboxes in place, right? And you can take this analogy as well to many other domains. We've tried to make this verification being very, very cheap.
+
+
+396
+01:18:17.404 --> 01:18:22.404
+Now, going back to what I was saying before.
+
+
+397
+01:18:22.404 --> 01:18:27.404
+What we see right now is offenses owning the objective verifiers.
+
+
+398
+01:18:27.404 --> 01:18:31.404
+If you want to do something, this is where offense is really, really good.
+
+
+399
+01:18:31.404 --> 01:18:38.404
+But we as defense, we have this unique advantage to own the environment verifiers.
+
+
+400
+01:18:38.404 --> 01:18:45.404
+Because once an attacker is in our environment, they don't understand what to do. They don't understand how Osmamit is being set up.
+
+
+401
+01:18:45.404 --> 01:18:51.404
+Now, let me share with you some practical examples how this might look like.
+
+
+402
+01:18:51.404 --> 01:19:01.404
+Because, um… You know, and perhaps I ask, first of all, a question. How many of you are here not Americans?
+
+
+403
+01:19:01.404 --> 01:19:09.404
+A quick hands of show. Okay, me too, I'm German, so if you, um, if you try to speak very slow as German.
+
+
+404
+01:19:09.404 --> 01:19:20.404
+Some people might not hear that you're not American. I mean, now I'm having a cold and it's pretty obvious. I'm pretty bad at this. But now if you speak very fast, you get an accent.
+
+
+405
+01:19:20.404 --> 01:19:29.404
+You have a very clear way to identify that somebody is a foreigner, right? Because you speak fast, and all these things you've learned from your language are coming up.
+
+
+406
+01:19:29.404 --> 01:19:31.404
+So if you want to have a good mental model.
+
+
+407
+01:19:31.404 --> 01:19:41.404
+The AI, which is being trained, it's having an exam based on the training data it's learned, and it'll always try to follow its extent.
+
+
+408
+01:19:41.404 --> 01:19:53.404
+If it has to go fast. Obviously, we can go back and ask the AI, first of all, to enumerate the environment, to enumerate all these different things before doing some dangerous actions. But then you give up the speed.
+
+
+409
+01:19:53.404 --> 01:19:59.404
+And then, you also have all these different other controls we've built around.
+
+
+410
+01:19:59.404 --> 01:20:17.404
+So for controls, you can think of is, um… you know, I was reflected here. So, first one is weaponize time. In the attack, in the first attack we've seen, literally within 5 minutes, you would see a specific account being created from an unknown source, and then performing admin activities.
+
+
+411
+01:20:17.404 --> 01:20:24.404
+That's a bad one, right? It's pretty clear that if something like that is happening, and you have this timing-based control, something is new, something is fresh.
+
+
+412
+01:20:24.404 --> 01:20:41.404
+Like, we've been doing WizardDNS as well, new domain names being created, you can analyze them all the time. That's pretty bad. Set an alert based on this. Setting traps. Honey tokens, the best, the only best thing in cyber defense you can find on there. If you don't have Honey tokens today in your environment.
+
+
+413
+01:20:41.404 --> 01:20:47.404
+You're potentially not going to attack good attackers, so set up canaries, identities which are following the naming.
+
+
+414
+01:20:47.404 --> 01:20:51.404
+convention of the identities in your environment of your company.
+
+
+415
+01:20:51.404 --> 01:21:05.404
+Third, enforce your extend. And what I mean by this is, make sure that your team understands all the different naming convention, all the different GitHub repos, everything your company has built.
+
+
+416
+01:21:05.404 --> 01:21:15.404
+And learn to operate, and set up certain rules in detections around that. But first of all, train your team so that they understand, that they can distinguish that.
+
+
+417
+01:21:15.404 --> 01:21:29.404
+A certain alert doesn't follow this naming convention. And then the last one is, and that's where it's a very cheap verifier, you can always verify if certain things are real or not real. If somebody is calling an account name.
+
+
+418
+01:21:29.404 --> 01:21:37.404
+Right? If somebody's trying to assume roles, if somebody's trying to call a GitHub repo, you can just build alerts, or at least monitoring observation rules based on that.
+
+
+419
+01:21:37.404 --> 01:21:42.404
+Now, what's important to understand, this is something which.
+
+
+420
+01:21:42.404 --> 01:21:50.404
+Where you almost find a vendor who can help you solve that, because it's your custom-tailored environment. That's something you have to do.
+
+
+421
+01:21:50.404 --> 01:22:00.404
+And you don't need special technology for this. Cloud detection response tools, SIM tools. This is where you can replicate this type of rules.
+
+
+422
+01:22:00.404 --> 01:22:10.404
+Now, with this, um… I think I want to summarize that the attackers don't know all this internal knowledge.
+
+
+423
+01:22:10.404 --> 01:22:13.404
+of our environment, of our company, we've built over time.
+
+
+424
+01:22:13.404 --> 01:22:28.404
+They don't know the repos you have, they don't know how you deploy, they don't know how you… Um, you know, name your UPOS nodes, identities, whatever. This is where we can accumulate knowledge. And the attack SCI has definitely an accent.
+
+
+425
+01:22:28.404 --> 01:22:39.404
+And speed makes it. So, let's start listening. Thank you very much.
+
+
+426
+01:22:39.404 --> 01:22:48.404
+Thank you. All right, we'll start classrooms over here.
+
+
+427
+01:22:48.404 --> 01:23:06.404
+A great chat. I noticed the one thing that was below the line that, you know, favors defense is honey tokens, which feels like it's always the thing that security teams are like, we should be doing more with Honey tokens, and then they don't, and it does feel like, you know, given how noisy and, you know, the accent that AI has, it is a potentially tool that.
+
+
+428
+01:23:06.404 --> 01:23:11.404
+Security teams should be leveraging more often. Curious if you agree, if your team at Sysdig is using them, just how you think about that.
+
+
+429
+01:23:11.404 --> 01:23:29.404
+Sorry, can you repeat the last sentence? Oh, just if your team at Sysdig is using Honey tokens in a big way, if you agree, that becomes a more important tool in the defender's arsenal in this era. Oh yes, I mean, I think it's not a secret that the most successful vendors out there are using Honey tokens, like even EDR solutions. That's the way how you detect as well.
+
+
+430
+01:23:29.404 --> 01:23:44.404
+enumerations and things like that. So, and right now, specifically with AI, I said, speed is becoming very loud. And if somebody wants to be silent, then they would need to start in rating syncs across the environment. So honey tokens across the environment are becoming.
+
+
+431
+01:23:44.404 --> 01:23:49.404
+Pretty key. There are some other techniques as well, but Honey tokens are the most deterministic way.
+
+
+432
+01:23:49.404 --> 01:23:56.404
+for defenders to deal about the problem, with the problem.
+
+
+433
+01:23:56.404 --> 01:24:00.404
+Great, Doug. Thanks for the analogy of the accent.
+
+
+434
+01:24:00.404 --> 01:24:06.404
+My question is around how many accidents have you captured of the attackers?
+
+
+435
+01:24:06.404 --> 01:24:20.404
+So I think that's a great research topic. There are a couple of good research topics you might want to explore. Just building environments where you can have multiple models driving the same type of attack and then trying to understand what these models are going to perform, right?
+
+
+436
+01:24:20.404 --> 01:24:31.404
+That could be one. And then there's tons of questions as well around the cybersecurity verifiers law. So everything I mapped right now on this, uh, you know, on this graph.
+
+
+437
+01:24:31.404 --> 01:24:54.404
+has to be proven mathematically as well, right? In proper studies. So there's a lot of open question, but… The evidence we've seen from last research, everything we've been discussing yesterday and today is suggesting that offense is just accelerating much more faster and has this better way as well to both in training, but also in.
+
+
+438
+01:24:54.404 --> 01:25:02.404
+inference to be more successful. Any other questions, audience?
+
+
+439
+01:25:02.404 --> 01:25:08.404
+All right, thank you so much. Thank you.
+
+
+440
+01:25:08.404 --> 01:25:38.404
+Uh, so next up, we have, uh, macOS vulnerability analysis, uh, aided by AI. So, continuing this thread of, like, AI helping us with all the things. Please welcome Olivia.
+
+
+441
+01:25:44.404 --> 01:25:50.404
+Try the other side.
+
+
+442
+01:25:50.404 --> 01:26:12.404
+It's been a little bit.
+
+
+443
+01:26:12.404 --> 01:26:19.404
+I want to drag something over. There we are.
+
+
+444
+01:26:19.404 --> 01:26:23.404
+You sure do. Okay. Awesome, and I'm just gonna place this in here.
+
+
+445
+01:26:23.404 --> 01:26:31.404
+here if it fits… Okay, cool.
+
+
+446
+01:26:31.404 --> 01:26:46.404
+All right, so hi everyone. Thank you so much for having me. My name is Olivia Galucci, and I work at Datadog. And today I want to show you an AI workflow for macOS vulnerability research. So before we begin, I want to mention a tool I published called OSS Sensor.
+
+
+447
+01:26:46.404 --> 01:26:59.404
+OSS Sensor generates a prioritized, evidence-backed research queue derived from Apple OSS diffs, basic binary features, and log templates. It applies custom rule-based scoring and supports rule-based triage.
+
+
+448
+01:26:59.404 --> 01:27:24.404
+And the binary and log analysis components are intentionally lightweight, and there is no integrated LLM vulnerability verification. It's designed as a hypothesis generation aid, not as an automated vulnerability discovery tool. And there's two versions of this project, one without built-in AI and then one with AI capabilities. The non-AI version is more streamlined and significantly easier to adapt if you plan to.
+
+
+449
+01:27:24.404 --> 01:27:39.404
+integrate your own AI workflow. I strongly recommend this approach because it's what I do, particularly if you intend to iterate quickly or vibe code your enhancements. And this way it will be personalized to your setup and won't be dependent on how I set it up.
+
+
+450
+01:27:39.404 --> 01:27:58.404
+That said, the PR for plug and play with AI API keys is still under review, and that is because parts of my workflow, which this talk and tool is inspired by, includes intentional manual intervention steps. While I was developing this process, I quickly learned that certain configurations become extremely costly depending on usage.
+
+
+451
+01:27:58.404 --> 01:28:15.404
+Thus, I'm unsure who might really want a plug-and-play version, especially if you're a beginner in the VR space on Apple operating systems. And if you'd like to explore this tool, there's several built-in demos available. When connected to an AI coding agent, the tool will outline the required execution steps and demonstrate scoring and weighing out of the box.
+
+
+452
+01:28:15.404 --> 01:28:37.404
+And from there, you can incorporate your own AI workflow. Given the tool's simplicity and its modular design, this should be achievable within a few simple prompts. And this talk will cover where AI has helped me in my research process and how I've influenced AI to better suit my needs, given that around a year ago, many AI chatbots could not tell you how to access logs on macOS.
+
+
+453
+01:28:37.404 --> 01:28:56.404
+So, in this talk, the AI Vulnerability research components we will focus on are reverse engineering and fuzzing. Reverse engineering is inferring how a compiled system works from binaries and runtime behavior while fuzzing is automatically generating and mutating inputs to exercise system and surface bugs via crashes or violated invariants.
+
+
+454
+01:28:56.404 --> 01:29:14.404
+My workload tries to automate steps in these areas that I've found to be most reliable. First, the AI workflow treats AI treats Apple's open source code as a sensor, and a sensor is any data source that produces signals about a system or state change without doing interpretation for you.
+
+
+455
+01:29:14.404 --> 01:29:29.404
+Second, the workflow then uses AI agents to turn that sensor into our prioritized queue. So what changed, what looks security relevant, what to reverse, and what to fuzz. And for context, an agent is a system that can take goals, select tools, run steps, and produce structured outputs.
+
+
+456
+01:29:29.404 --> 01:29:45.404
+The problem is that Apple ships a huge security surface area, but only some of it is open source. Like, Apple has over 400 public repos, but these releases are incomplete and very hard to keep up with manually. So my time is limited by bandwidth.
+
+
+457
+01:29:45.404 --> 01:29:55.404
+Thus, the story I'm going to tell is diff to hypothesis to harness, and the trick is that we will augment open source diffs with two other signals, binaries and OS logs.
+
+
+458
+01:29:55.404 --> 01:30:00.404
+Now, before we really get into things, I want to address the elephant in the room, which is Apple's secrecy.
+
+
+459
+01:30:00.404 --> 01:30:09.404
+Apple actually open sources a lot more than people expect, so the XNU kernel, core libraries like libsystem, libc, libdispatch.
+
+
+460
+01:30:09.404 --> 01:30:24.404
+And some historically like Damon's like LaunchD. But they don't publish everything. Some components are missing or only partially available, including things like core foundation and CF Network, iOS-specific drivers, and Core Crypto, which comes with additional redistribution constraints.
+
+
+461
+01:30:24.404 --> 01:30:44.404
+These source drops can be incomplete or outdated. You'll see headers referencing files that don't exist, which can be very confusing for an AI agent, or instructions that are missing. And for context on these constraints and why this workflow matters operationally, I recommend watching my B-sides 312 talk, which covers the history and manual version of the process I'm about to discuss.
+
+
+462
+01:30:44.404 --> 01:30:53.404
+So, what does this have to do with AI? Well, the information overload with Apple's 400-plus open source repos is exactly why AI agents help in this context.
+
+
+463
+01:30:53.404 --> 01:31:10.404
+If I rely on a human, aka myself, to do manual repo exploration and one-off dips, I end up with a narrow view of risk. If I automate that bookkeeping, I can spend more time on the parts that AI isn't working well for me yet, which is reasoning about privilege boundaries and exploitability.
+
+
+464
+01:31:10.404 --> 01:31:20.404
+I've even found this helpful for threat detection engineering. This matters because the faster I can understand what changed, the faster I can build detections and prioritize around new attack mechanics.
+
+
+465
+01:31:20.404 --> 01:31:27.404
+So even though the code is incomplete, it can still guide my research. The key is for both me and AI to treat it like a map.
+
+
+466
+01:31:27.404 --> 01:31:43.404
+You might not have the full territory, but these landmarks are real. And what I do and what many researchers do is to use Apple's open source as a reference while working with the proprietary binaries. You'll take a binary like launchd, syslogd, or a driver, and you'll use whatever logs or sources exist to match.
+
+
+467
+01:31:43.404 --> 01:31:47.404
+Known functions, annotate call patterns, and reverse unknown logic.
+
+
+468
+01:31:47.404 --> 01:31:53.404
+The agent angle is simple. This hybrid method is effective, but doesn't scale.
+
+
+469
+01:31:53.404 --> 01:32:01.404
+Agents can do the repetitive steps, so correlate symbols, chase string anchors, retrieve relevant source contexts, and produce structured summaries that make a human reviewer faster.
+
+
+470
+01:32:01.404 --> 01:32:21.404
+and more consistent. Even when symbols are stripped, structure plus string constants plus syscall usage lets you map back to open source code. And four common tools show up constantly. So, like, strings gives you debug messages, format strings, and file paths. What can extract version and project info.
+
+
+471
+01:32:21.404 --> 01:32:33.404
+Uh, then there's NM, which will list symbol names if they exist, especially in unscript binaries or frameworks, and then class dump is great for interface information, especially, like, private frameworks and Objective-C method surfaces.
+
+
+472
+01:32:33.404 --> 01:32:48.404
+And when I'm trying to map binaries back to source projects, I also use Apple's distribution manifests to cross-reference components per release. I look at the release metadata when it exists, and I look for version strings or source file names via strings or what.
+
+
+473
+01:32:48.404 --> 01:32:56.404
+All of these repetitive but context-dependent steps are the exact operations I hand to agents as tools.
+
+
+474
+01:32:56.404 --> 01:33:07.404
+I don't want the model inventing facts, I want to call it calling strings, parsing the output, retrieving the corresponding source chunks, and then producing a bounded conclusion with citations to what it observed.
+
+
+475
+01:33:07.404 --> 01:33:25.404
+After this, I usually want to go deeper with binary diffing, which is comparing binaries before and after a patch to identify changes. Here is my all-time favorite example. So in 2016, OS X Reverser used Diaphora to diff syslogd from version 10.11.2 to 10.11.3.
+
+
+476
+01:33:25.404 --> 01:33:41.404
+He found that only one function had changed, and that change was an allocation math fix. Value plus 4 became value times 4 plus 4. And from an exploitation mindset, that's suspicious because it looks like a heap overflow mitigation. And there was a string nearby that.
+
+
+477
+01:33:41.404 --> 01:33:46.404
+stated, add lockdown session, Rialak failed, and that was a hint back to the source.
+
+
+478
+01:33:46.404 --> 01:33:51.404
+This kind of surgical dipping is how vulnerabilities get reversed after a patch.
+
+
+479
+01:33:51.404 --> 01:34:09.404
+And it matters because these fixes often need to be applied in multiple locations. If identical code is patched in some files, but not in others, the unpatched ones can remain vulnerable. And the larger and more bureaucratic an organization is, you better bet that there's going to be repeat mistakes in the neighboring files of their products.
+
+
+480
+01:34:09.404 --> 01:34:25.404
+Now, imagine that exact workflow, only with AI, running continuously on every Apple release. It would ingest new OSS tags and target walls and distribution manifests and compute diffs at function and semantic level.
+
+
+481
+01:34:25.404 --> 01:34:43.404
+then it would score changes for security relevance based on patterns like allocation math, bounds checks, entitlement gating, XPC parsing, and IOKit external method table changes. It would correlate the binaries and string anchors, then emit a ranked queue with why this looks risky, plus pointers for a human to validate.
+
+
+482
+01:34:43.404 --> 01:34:58.404
+For my solo offensive research, this was a throughput multiplier. I've only tested this on small individual components, never the full OS, because again, cost constraints, but it would be awesome if I could expand it to something like that. And for an organization, it would compress the loop from.
+
+
+483
+01:34:58.404 --> 01:35:06.404
+shipped something to, we've identified the shifted behaviors and surfaces so we can adjust our focus, monitoring, and our triage faster.
+
+
+484
+01:35:06.404 --> 01:35:18.404
+I'd imagine if this was scaled, it would be the kind of workflow you'd expect from a dedicated vulnerability research team that tracks platform changes as a routine operation, rather than a random lady building nonsense with her computer.
+
+
+485
+01:35:18.404 --> 01:35:28.404
+And that's precisely why I think this is worth discussing openly. It helps keep vulnerability discoverability accessible to the junior engineer, which is me.
+
+
+486
+01:35:28.404 --> 01:35:31.404
+Now, here's the architecture I've had the best results with.
+
+
+487
+01:35:31.404 --> 01:35:49.404
+First, I use an agent pipeline approach. Uh, this means that I am utilizing a coordinated set of tool-using agents that turns raw inputs, in this case, diffs, binaries, and logs, into evidence-backed outputs like, uh, ranked triage cues, hypotheses, and buzz slash telemetry plans.
+
+
+488
+01:35:49.404 --> 01:36:03.404
+I start by using a retriever. This is the indexing layer that searches embedded information like OSS code, symbols, notes, and log templates to return the most relevant context for a given question or artifact.
+
+
+489
+01:36:03.404 --> 01:36:16.404
+And then I use a toolbox, which is like a curated set of deterministic analyzers and system commands, like strings, O tool, class dump, and log queries. The agent calls to gather facts and generate evidence instead of guessing.
+
+
+490
+01:36:16.404 --> 01:36:25.404
+Then, more agents handle it. I use different agents for diff triage, RE contacts, hypothesizing, planning, and analysis.
+
+
+491
+01:36:25.404 --> 01:36:37.404
+I'm unable to tell you which specific AI models and agents are most effective because I kind of had the ones that just like, I just stuck with, like I started using and stuck with them. But I'll explain more on how I account for that later.
+
+
+492
+01:36:37.404 --> 01:36:49.404
+I don't treat the model as God, I treat it as a junior-junior engineer that can read, uh, fast, follow procedures, and generate structured hypotheses that we can validate with reversing, tracing, and fuzzing.
+
+
+493
+01:36:49.404 --> 01:37:01.404
+Additionally, it's important to remember that each step in itself can break, and that they're all depending on each other. Thus, your setup should ideally account for that since you might be on a paid personal plan with limited resources.
+
+
+494
+01:37:01.404 --> 01:37:08.404
+The big addition to this talk versus, like, the classic, I used Apple OSS to reverse stuff is logs.
+
+
+495
+01:37:08.404 --> 01:37:25.404
+Unified logging gives you subsystem and category labels that map back to components, stable message releases, and strings that can help you hunt in binaries and source, as well as execution hints that you can use to reconstruct data flow diagrams without the full source.
+
+
+496
+01:37:25.404 --> 01:37:35.404
+I treat unified logs as a pivot into attack surface and code paths, not as like a doctrine because of how noisy and bulky these logs are, and I don't always know how to handle that.
+
+
+497
+01:37:35.404 --> 01:37:51.404
+They're good at telling you which components actually handled the output or input. So like things like subsystem or category plus sender image info. And then what error paths fired that can reveal like parsing assumptions, type expectations, and, uh.
+
+
+498
+01:37:51.404 --> 01:37:58.404
+IPC contracts. pretty good ROI for target selection, harness design, and what to fuzz next.
+
+
+499
+01:37:58.404 --> 01:38:18.404
+An AI agent in general can do like three useful bounded tasks with logs. First, it can take a log line and find where that string lives in a binary via strings, and then locate its basic block and callers. Next, it can retrieve adjacent OSS code for those callers if it exists, and produce a structured summary, like inputs, trust boundaries, and parsing.
+
+
+500
+01:38:18.404 --> 01:38:31.404
+Lastly, it can feed that summary into fuzz planning or into detection engineering, like what to watch, what parameters are attacker controlled, and then what failure modes might look like.
+
+
+501
+01:38:31.404 --> 01:38:47.404
+And this is relevant to developing POCs as well as, like, localized endpoint tests or detections. So, when you're privileged AI pipeline learns a new untrusted input boundary or a new privileged XPC entry point, you can translate it into telemetry requirements and correlation rules.
+
+
+502
+01:38:47.404 --> 01:39:05.404
+And in general, that's how you turn vulnerability research into coverage. Only in the past, we did it manually. The same idea applies to those like back in the day, kernel extensions. By diffing KX across versions, researchers have found changes to external method tables that surface new or patched entry points in I/Okit drivers.
+
+
+503
+01:39:05.404 --> 01:39:22.404
+And what this fuzz planner agent produces is not an exploit unless you made it do that somehow. It's a plan. First, it enumerates candidate surfaces like syscall handlers, IOKit, user clients, XPC services, and parsers so that you focus on.
+
+
+504
+01:39:22.404 --> 01:39:27.404
+The entry points where attacker-controlled inputs actually cross trust boundaries.
+
+
+505
+01:39:27.404 --> 01:39:40.404
+Then it produces a minimal test harness, like a test driver, including the invocation path, the entitlement requirements, and the expected input shape so that the target is actually reachable and reproducible at scale.
+
+
+506
+01:39:40.404 --> 01:39:52.404
+Next, the AI recommends a seed strategy by extracting dictionaries from strings, mining parameters from logs, or bootstrapping from observed traffic so that the coverage ramps quickly instead of mutating from nothing.
+
+
+507
+01:39:52.404 --> 01:40:09.404
+Note that if the command is not available in the subset that I provided, you can add them yourself or connect an AI search chatbot so that it can find them automatically. I don't necessarily recommend just, like, allowing your laptop to just, like, run whatever you want and Google whatever you want and just, like, go ham.
+
+
+508
+01:40:09.404 --> 01:40:16.404
+Um, but if you have test MacBooks and all that stuff, go ahead and do that, because it can be cool.
+
+
+509
+01:40:16.404 --> 01:40:28.404
+Also, like, the seed strategy part is the method for selecting and generating the initial set of representative inputs that bootstraps a buzzer's coverage and guides the mutations towards a high-value code path.
+
+
+510
+01:40:28.404 --> 01:40:41.404
+Finally, the AI defined success metrics like crash bucketing, sanitizer signals, and unique stack traces so that you can identify progress and, you know, ideally turn these results into actionable research.
+
+
+511
+01:40:41.404 --> 01:40:47.404
+Where this AI workflow breaks down today is when you ask for full chain exploits.
+
+
+512
+01:40:47.404 --> 01:41:04.404
+To be honest, I'm not at the point in my research career where I am finding full privilege escalations and, like, disabling all the macOS security controls. Additionally, I've spent significant time just trying to understand and test how the operating system is working, and this knowledge is great for that learning by doing approach too.
+
+
+513
+01:41:04.404 --> 01:41:21.404
+That said, these models will occasionally invent steps, especially if you hook up an AI chatbot. And so I try to keep it as constrained as possible due to the nature of how large these subsystems are and how much information I am sending and how much money it takes to process all of that information.
+
+
+514
+01:41:21.404 --> 01:41:38.404
+So, the constraints I put on it are, like, bug class prediction and harness design. Those are the high-value outputs, and then humans own the exploitability. This also keeps the larger AI models, which is primarily what I use, happy, given that a lot of them try to put mechanisms to lock them down for offensive research purposes.
+
+
+515
+01:41:38.404 --> 01:41:57.404
+And if you're like me and don't fully trust your first past instincts, it helps to sanity check, like, your ideas on what to exploit against high-quality public works. For example, Patrick Wardle has an extensive body of writing, and I use AI tooling to check whether or not my hypotheses line up with established techniques in his published analysis, as well as my own notes.
+
+
+516
+01:41:57.404 --> 01:42:03.404
+This isn't wired into the OSS project yet, but I might add it since I do these sanity checks quite frequently.
+
+
+517
+01:42:03.404 --> 01:42:15.404
+Also, credit where it's due, I intentionally licensed OSS Sensor as GPLv3 because I learned a lot from GPLV3 licensed work by Patrick and many others, and keeping that code shareable helps others build and learn in the same way.
+
+
+518
+01:42:15.404 --> 01:42:30.404
+So, the TLDR is that even partial source is powerful. Combine it with binary analysis, and you can reverse Apple subsystems with surprising accuracy. But there are constraints, which is that, you know, incomplete OSS releases, obfuscation, and licensing.
+
+
+519
+01:42:30.404 --> 01:42:41.404
+You need a pipeline that is compliant by design with, like, the local indexing, careful handling of source drops, and provenance tracking, so that you can explain every conclusion.
+
+
+520
+01:42:41.404 --> 01:42:56.404
+All of that said, what did we learn? The core idea I want to leave you with is that Apple's partial open source can be treated as a sensor stream. It's not the full system, but it's a steady source of change signals, and those signals become much more valuable when you can process them continuously.
+
+
+521
+01:42:56.404 --> 01:43:09.404
+The workflow I showed takes that sensor and turns it into a prioritized research queue using AI agents, but with a very specific philosophy. The model's not God, it's a tool using Junior annualist.
+
+
+522
+01:43:09.404 --> 01:43:25.404
+Uh, this… the work, uh, happens in deterministic tooling, and the model's job is to stitch together the evidence, retrieve the right context, and produce a structured outputs that make a human faster and more consistent. That's why the narrative is diff to hypothesis to harness.
+
+
+523
+01:43:25.404 --> 01:43:36.404
+You start with a diff source or binary, you ask what meaningfully changed, and where the trust boundaries might be. Then you turn that into a testable hypothesis about a bug class.
+
+
+524
+01:43:36.404 --> 01:43:42.404
+It can help with size calculation issues, parsing assumptions, policy gating, and interface surface shift.
+
+
+525
+01:43:42.404 --> 01:44:02.404
+Then you build a minimal test driver so that the path is reachable and reproducible, which sets you up for fuzzing and for validation. The trick is that the open source diff alone is not enough. We need to augment it with two other signals, the binaries, because they reflect the reality of what ships, and then the OS logs, because unified logging is a good ROI pivot point.
+
+
+526
+01:44:02.404 --> 01:44:07.404
+into which components actually handled that input and which error paths fired.
+
+
+527
+01:44:07.404 --> 01:44:25.404
+The Buzz Planner piece is an example of how this stays, like, practical and bounded. It doesn't generate an exploit, it generates a plan, and it tells you which surfaces matter, how to quickly reach them with a minimal harness, how to see inputs so that coverage ramps quickly, and then how to measure the results so that you can identify findings.
+
+
+528
+01:44:25.404 --> 01:44:38.404
+And importantly, it acknowledges the limits. Open source releases are incomplete, binaries can be opaque, and models can hallucinate. And that's why everything is evidence-backed, providence-tracked, and compliant by design.
+
+
+529
+01:44:38.404 --> 01:44:53.404
+So, I personally stopped throughout this process. I've utilized tools like, uh, like AI tools like ChatGPT's Deep Research, but given the cost constraints, manual review is required for me, especially if it looks like something I won't understand.
+
+
+530
+01:44:53.404 --> 01:45:10.404
+Given these systems are great, but hallucinate, and given that I might not always know what I'm talking about, it's imperative for my research to have these manual checks. Finally, this isn't just like a offensive research, like, productivity hack. The same pipeline shortens the loop for localized threat detection engineering.
+
+
+531
+01:45:10.404 --> 01:45:21.404
+When you can quickly identify what changed and what behaviors and interfaces moved, you can update monitoring, prioritization, and triage faster, and turn that platform churn into detection coverage.
+
+
+532
+01:45:21.404 --> 01:45:30.404
+So, these are the outcomes I care about, which is, you know, making macOS vulnerability research more scalable, more teachable, and more operationally useful.
+
+
+533
+01:45:30.404 --> 01:45:56.404
+Um, I have more in terms of where you can go from here. Uh, I released a Apple security-focused newsletter called Rent to Read after I graduated, um, where I post approximately once a month, uh, or once every other month, and, uh, yeah. So, thank you so much for providing me the opportunity to present. I hope you all enjoyed. Let me know if you have questions.
+
+
+534
+01:45:56.404 --> 01:46:16.404
+Alright, well, uh, while the shy people in the audience start to raise their hand, I'll start with one. Um, you kind of talk a lot about it being a junior analyst, because of sort of cost and manual review trust. What would have to change for you to… to, uh, to start to give it bigger tasks, to have it take on more. It's just reflecting on, sort of, Dan's talk.
+
+
+535
+01:46:16.404 --> 01:46:31.404
+It's constantly getting better. So I am very lucky that I have a ton of test machines. I have a ton of test Macs, tons of iPads, like, I have a test machine for, like, everything, right? So I'm able to outsource certain things that maybe the average person wouldn't be able to do.
+
+
+536
+01:46:31.404 --> 01:46:37.404
+But when I think about it, this is like tens of thousands of dollars of research devices. And I'm like.
+
+
+537
+01:46:37.404 --> 01:46:54.404
+It's like the average… like, I'm talking about accessibility, but it's like, is the average person gonna be able to get, you know, researchers and things to, like, send them these devices? Are they going to be able to afford this? And when I tried to scale it down so that, like, I could do research, like, on the go and things like that, I was like.
+
+
+538
+01:46:54.404 --> 01:47:14.404
+I can't do this. Like, what is going on? And when I started, like, looking at, like, the tokens, the cost constraints, like, dude, you hit a grand quickly when you're putting in entire subsystems of operating systems. So, I would say, just give me lots of money.
+
+
+539
+01:47:14.404 --> 01:47:22.404
+Does anyone want to follow that? Yeah. That's the problem. Awesome. Well, thank you so much. Here's what we're gonna do.
+
+
+540
+01:47:22.404 --> 01:47:40.404
+We're gonna do coffee break. Uh, we're running behind, but not as behind as we were, so we're gonna start back up here at 11.05 with prompt to pone, a slate of agentic talks. Uh, don't forget, we'll have talks running downstairs in Stage 2 as well. And one other fun announcement, uh, by overwhelming, uh, sticker voting in the back.
+
+
+541
+01:47:40.404 --> 01:47:41.058
+Uh, everyone wants to talk about agentic identity. So, uh, Chris Cochran from SANS has volunteered to lead a session on that downstairs, 1 p.m. During lunch.
+
+

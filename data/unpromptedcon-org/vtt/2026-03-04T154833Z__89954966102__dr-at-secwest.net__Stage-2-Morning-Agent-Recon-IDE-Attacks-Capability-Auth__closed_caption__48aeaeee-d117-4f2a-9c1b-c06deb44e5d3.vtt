@@ -1,0 +1,1998 @@
+WEBVTT
+
+1
+00:00:25.445 --> 00:00:31.445
+Hi, everyone. I'm Rowi. I'm with a bit of a late start, but we'll start now.
+
+
+2
+00:00:31.445 --> 00:00:37.445
+So welcome to my talk. It's a 20-minute session about agentic Reconnaissance.
+
+
+3
+00:00:37.445 --> 00:00:44.445
+What it actually mean, and how we were able to find thousands of agents and map down their capabilities.
+
+
+4
+00:00:44.445 --> 00:00:52.445
+Let's start to dive in. Uh, we'll overview different platforms in this talk. One of them would be, um.
+
+
+5
+00:00:52.445 --> 00:00:58.445
+Microsoft Copilot Studio. will also overview Agent Builder by OpenAI.
+
+
+6
+00:00:58.445 --> 00:01:11.445
+Custom GPT by OpenAI. and various AI middlewares, LLM runtimes, and model context protocol servers that we found using open source intelligence.
+
+
+7
+00:01:11.445 --> 00:01:27.445
+And what we found was. It's kind of amazing. We found tens of thousands of agents just out there in the web. Out of them, thousands were unauthenticated. You could just get in and, uh… see what kind of information they have out there.
+
+
+8
+00:01:27.445 --> 00:01:38.445
+And we've actually seen some incredible stuff, like sensitive documents just out in the open or even a business story with really high impact.
+
+
+9
+00:01:38.445 --> 00:01:47.445
+Those things are extremely risky. So let's talk a little bit more about what agentic Recon actually means.
+
+
+10
+00:01:47.445 --> 00:01:56.445
+And why it matters. Well, to start this conversation, we need to understand that an agent is still an application.
+
+
+11
+00:01:56.445 --> 00:02:00.445
+Sure, it's connected to an LLM. It has tools.
+
+
+12
+00:02:00.445 --> 00:02:12.445
+But it's in a traditional application, and like every application, it has breadcrumbs. It has discoverable resources. It has endpoints, API, it can be embedded inside iframe.
+
+
+13
+00:02:12.445 --> 00:02:16.445
+And so, in the same way an application is discoverable.
+
+
+14
+00:02:16.445 --> 00:02:22.445
+agents are also discoverable through the web. It's a subset of web discovery.
+
+
+15
+00:02:22.445 --> 00:02:31.445
+The second important thing is… that agents are highly integrated in the enterprise.
+
+
+16
+00:02:31.445 --> 00:02:43.445
+A lot of agents have credentials embedded in them. They're connected to different enterprise data sources. They can sometimes change data inside the enterprise. So in a way.
+
+
+17
+00:02:43.445 --> 00:02:50.445
+Agents are a gateway to your enterprise, and that makes them extremely risky.
+
+
+18
+00:02:50.445 --> 00:02:54.445
+And so… When we talk about discovery.
+
+
+19
+00:02:54.445 --> 00:03:09.445
+hackers make use of it. Of different issues. Most of them are listed here. They make use of common design patterns that are used when creating resources that expose your, uh.
+
+
+20
+00:03:09.445 --> 00:03:17.445
+They make use of out-of-the-box config because it decreases the self space. And we're going to talk about it.
+
+
+21
+00:03:17.445 --> 00:03:25.445
+They make use of platform security gaps. Some platforms have known issues.
+
+
+22
+00:03:25.445 --> 00:03:32.445
+And as we all know, prompt injection, for instance, is not really a solvable problem as of now.
+
+
+23
+00:03:32.445 --> 00:03:40.445
+And another thing, and this has been trained security for decades now, security by obscurity doesn't really work.
+
+
+24
+00:03:40.445 --> 00:03:43.445
+So let's start and offer you the different platforms.
+
+
+25
+00:03:43.445 --> 00:03:59.445
+We started by Copilot Studio. Now, when you create Copilot Studio resource, you're basically creating a website with an agent embedded in there, connected to your enterprise resources and embedded inside a chat like you see over here.
+
+
+26
+00:03:59.445 --> 00:04:18.445
+But under the hood, a URL is actually created. And this URL comprises of various components. Some of them have i entropy, others have… More pretty much predictable and let's just go over them one by one. And we'll start with the purple one that you see over here.
+
+
+27
+00:04:18.445 --> 00:04:30.445
+That's the environment. Now, an environment is essentially a container for your tenant's enterprise resources. And every tenant is created with a default environment.
+
+
+28
+00:04:30.445 --> 00:04:38.445
+And like you can see over here, the default environment is… always created with the prefix default, followed by the tenant ID.
+
+
+29
+00:04:38.445 --> 00:04:43.445
+How do we get this tenant ID? Well, it turns out AAD in general.
+
+
+30
+00:04:43.445 --> 00:04:54.445
+I conducted the research, and they found an undocumented Microsoft API that by giving it the domain you can fetch back the tenant ID. So that's how we can resolve.
+
+
+31
+00:04:54.445 --> 00:05:10.445
+The environment variable. Now, what about this one? This is called the solution prefix. A solution prefix is actually created to achieve uniqueness in the agents that you create inside your environment.
+
+
+32
+00:05:10.445 --> 00:05:21.445
+This solution prefix is essentially an alphanumeric string between the length of 5 and 8 alphanumatic characters. So it has pretty high entropy.
+
+
+33
+00:05:21.445 --> 00:05:25.445
+However, like I said earlier, most people use the defaults.
+
+
+34
+00:05:25.445 --> 00:05:34.445
+And we found that the default space is kind of small. It comprises of the CR prefix, followed by two to three alphanumeric strings.
+
+
+35
+00:05:34.445 --> 00:05:45.445
+So it can be fast. But here's the thing, um… It's not the only thing that you need to find because it's also connected to.
+
+
+36
+00:05:45.445 --> 00:05:52.445
+an agent. So we have to find like a solution prefix along with an agent.
+
+
+37
+00:05:52.445 --> 00:06:08.445
+Well, turns out a lot of environments are created with some default bots or that are pretty much common, Copilot 1, Copilot2, one, two, three, test, AI, AI bot. And by finding just one of these, along with the fuzzing that we did earlier.
+
+
+38
+00:06:08.445 --> 00:06:12.445
+You can find the solution prefix. You found the solution prefix.
+
+
+39
+00:06:12.445 --> 00:06:17.445
+You can basically enumerate and find different agents in this environment.
+
+
+40
+00:06:17.445 --> 00:06:30.445
+And again, this is something every developer would do.
+
+
+41
+00:06:30.445 --> 00:06:37.445
+Just mix it much by Atlassian database, dashboard, sandbox, integration, test, dev, prod.
+
+
+42
+00:06:37.445 --> 00:06:46.445
+Obviously, it depends on the industry. But it's really easy to fuzz and using that approach, we were able to find.
+
+
+43
+00:06:46.445 --> 00:07:02.445
+tens of thousands of those agents. Taking it a step further, we also took leverage of Power Platform API, and we're also able to figure out whether those agents require authentication or not.
+
+
+44
+00:07:02.445 --> 00:07:15.445
+And like you can see over here. You can also extend it by using subdomain enumeration and expand the number of agents that you can find even more.
+
+
+45
+00:07:15.445 --> 00:07:31.445
+And that's. Just so you'd understand how much, how much of a problem that is, AAD Internal actually had a website that, by giving it a domain, you could have fetched back the tenant ID, and they had to turn it down because it was actually abused.
+
+
+46
+00:07:31.445 --> 00:07:45.445
+Now let's move to the next platform. Now we're going to talk about Agent Builder by OpenAI. Agent Builder works in the same way that Copilot Studio works, but the only difference is that the developer is in charge of the deployment.
+
+
+47
+00:07:45.445 --> 00:07:53.445
+And that's exactly how we can create an attack surface, because… OpenAI recommends a bunch of.
+
+
+48
+00:07:53.445 --> 00:08:03.445
+GitHub repo starter kits that have well-known names, so match that with the fact that most agents are also deployed using Vercel and Render.
+
+
+49
+00:08:03.445 --> 00:08:08.445
+And the subspace of the different addresses of the agents is pretty limited. Add that to the fact that.
+
+
+50
+00:08:08.445 --> 00:08:15.445
+Some of them also contain the branch name and you will do the search space even more.
+
+
+51
+00:08:15.445 --> 00:08:22.445
+To check if an agent exists, you basically need to call createSession, receive the client secret.
+
+
+52
+00:08:22.445 --> 00:08:30.445
+Check if it was verified or not, and if it was, you've got an agent out there.
+
+
+53
+00:08:30.445 --> 00:08:38.445
+And as you can see over here. we were able to witness some of these agents, and some of them had.
+
+
+54
+00:08:38.445 --> 00:08:50.445
+I think are. Let's created the problem.
+
+
+55
+00:08:50.445 --> 00:08:53.445
+But essentially, we were able to see that, um.
+
+
+56
+00:08:53.445 --> 00:08:59.445
+Those agents might actually contain some confidential information that was not supposed to be there.
+
+
+57
+00:08:59.445 --> 00:09:05.445
+Next, we're going to overview custom GPTs. Custom GPT is.
+
+
+58
+00:09:05.445 --> 00:09:13.445
+A way for enterprises connect to a different, uh… Different GPTs with different capabilities, but the problem is that, um.
+
+
+59
+00:09:13.445 --> 00:09:30.445
+It's by design, but everyone can see it. And by that, you also measure your attack surface. So, whenever you look at a different custom GPT, you can see the… Different capabilities that it has from the default tools. In this case, you can see that it has Python, browser, and DALL-E.
+
+
+60
+00:09:30.445 --> 00:09:49.445
+Um, but it can also contain custom connectors, such as this one, that, uh… List on your Gmails. Now, again, this is by design, it's by no means… traditional Vikon, but it gives an attacker a lot of information and you need to be aware of that.
+
+
+61
+00:09:49.445 --> 00:10:03.445
+Next, we overviewed using open source intelligence, a bunch of AI models. And by that, I mean LLM runtimes, AI gateway, model context protocol servers, and we used various methods for that.
+
+
+62
+00:10:03.445 --> 00:10:08.445
+So. If you look at Shodan, for instance.
+
+
+63
+00:10:08.445 --> 00:10:22.445
+Is the right one? Yeah, okay. If you look at Chardon, for instance, and you look for the well-defined MCP session ID, you will be able to find hundreds of thousands of just open MCP servers.
+
+
+64
+00:10:22.445 --> 00:10:27.445
+Some of them are authenticated, some of them are not, but they're just out there in the open.
+
+
+65
+00:10:27.445 --> 00:10:33.445
+Um, another thing we were able to find was using an HTML hash.
+
+
+66
+00:10:33.445 --> 00:10:45.445
+And we literally found an opened Copilot API. Got it, Swagger and it had an exposed endpoint of purge vector DB.
+
+
+67
+00:10:45.445 --> 00:10:51.445
+Now, I don't really know what they have in this vector DB, but it shouldn't be public.
+
+
+68
+00:10:51.445 --> 00:11:07.445
+Another interesting resource is the Giesel says MCP registries. Mcp registries contain a lot of information. They contain the backend URL, they contain different tools that the MCP that are available in the MCPs in the JSON file.
+
+
+69
+00:11:07.445 --> 00:11:16.445
+And again. gives information about your services. This can be dangerous.
+
+
+70
+00:11:16.445 --> 00:11:25.445
+Now, this is actually very interesting. Backlinks can also be used for that.
+
+
+71
+00:11:25.445 --> 00:11:37.445
+As you can see in this example, in Copilot Studio, for example, you can embed a Copilot or an agent inside an iframe. Now, once you do that, you essentially created a backlink for your agent.
+
+
+72
+00:11:37.445 --> 00:11:48.445
+So we use backlink search tools to search for copilotstudio.microsoft.com and that alone showed us 2,500 open agents in the web.
+
+
+73
+00:11:48.445 --> 00:11:54.445
+And like I said earlier, some of them were just unauthenticated. Same thing with Amazon agents.
+
+
+74
+00:11:54.445 --> 00:11:59.445
+Just out there in the open.
+
+
+75
+00:11:59.445 --> 00:12:12.445
+Now, some notable challenges that we had when we did this exercise, we had some issues with rate limiting that we solved, uh, some issues with headless porous finger pointing, and like, uh.
+
+
+76
+00:12:12.445 --> 00:12:19.445
+I described earlier, we also had to reduce the search space for some of the solution prefixes.
+
+
+77
+00:12:19.445 --> 00:12:30.445
+If you're interested to learn more. I can talk about… I can talk about that for the session, but it's also important to note that we have an open source tool called PowerPoint, and you can see the committee story over there.
+
+
+78
+00:12:30.445 --> 00:12:44.445
+All out in the open. Now, up until now, we talked about discovery of agents, but why does it actually matter? What's the impact? You're going to say, okay, Roy, we have guardrails, why do we care? Well, you do care, because…
+
+
+79
+00:12:44.445 --> 00:12:49.445
+First of all. attackers can steal.
+
+
+80
+00:12:49.445 --> 00:12:56.445
+Keep on probing your agents, and understand what kind of information it has, what's the knowledge source of it.
+
+
+81
+00:12:56.445 --> 00:13:10.445
+Um, sometimes it's kind of easy, you just need to ask for it. Sometimes it has Gartner, sometimes it doesn't have guardrails, and attacks can also probe for the different tools that exist in your system. That is extremely risky.
+
+
+82
+00:13:10.445 --> 00:13:23.445
+As you can see in this example, to fetch the tools, we just have to ask for it, and… add a little bit more beef to basically confuse the different activations of the guardrails.
+
+
+83
+00:13:23.445 --> 00:13:28.445
+It's not walletproof, and that's why your agents shouldn't be public.
+
+
+84
+00:13:28.445 --> 00:13:42.445
+Unless intended to. Now, to help you with that, we created PowerPun. Powerpun is an open source tool that helps you assess the posture of your agent and identify whether they're public or not.
+
+
+85
+00:13:42.445 --> 00:13:52.445
+And it basically entails all of the information that I just showcased in this presentation, and we'll go over the different models that it has.
+
+
+86
+00:13:52.445 --> 00:14:09.445
+Um… So the first one is Copilot Studio Hunter. And like I showcased earlier, you just give it the domain name of the given… of the given organization, it will find your tenant ID.
+
+
+87
+00:14:09.445 --> 00:14:26.445
+Eventually, we will find the solution prefix. And once it does that, it will iterate through different agents in this environment one by one. And if they're public, it will also list out the different capabilities.
+
+
+88
+00:14:26.445 --> 00:14:35.445
+Another model that we have is Agent Builder Hunter. Agent BuilderHunter receives a list of words, basically your name of the agent.
+
+
+89
+00:14:35.445 --> 00:14:42.445
+tries to identify whether if it's public or not, and if it has any exposed endpoints.
+
+
+90
+00:14:42.445 --> 00:14:45.445
+You can see over here, it actually found some.
+
+
+91
+00:14:45.445 --> 00:14:51.445
+And found… Exposed MCP tools.
+
+
+92
+00:14:51.445 --> 00:14:58.445
+Another model is custom GPT Hunter. We're given a search term. It showcases a different, um.
+
+
+93
+00:14:58.445 --> 00:15:05.445
+different custom GPTs, along with the capabilities, whether it's their default or custom.
+
+
+94
+00:15:05.445 --> 00:15:35.445
+And last but not least, LLM Hound, where given a search term that you're looking for, the name of your middleware, it will find AI middlewares that, again, are just.
+
+
+95
+00:20:26.445 --> 00:20:36.445
+Okay. Hello. This talk is called "Your Agent Works for Me. It's going to be hopefully interesting and entertaining as well.
+
+
+96
+00:20:36.445 --> 00:20:44.445
+I just want to get started right away with some source code. So we have a Go program here. It's a data structure, customer data structure.
+
+
+97
+00:20:44.445 --> 00:20:53.445
+And there's some code to add a customer, delete a customer, right? But one thing is missing. There's no edit customer function.
+
+
+98
+00:20:53.445 --> 00:21:03.445
+So somebody already luckily created a ticket for this, right? Feature request, hey, we want to add the edit customer by ID function, right? It seems like a useful feature that we want to add.
+
+
+99
+00:21:03.445 --> 00:21:10.445
+Uh, who here would feel comfortable assigning this ticket to your AI agent? You know, just, like, have it work on it.
+
+
+100
+00:21:10.445 --> 00:21:21.445
+We have a couple courageous ones. Donado is like, yeah, let's go. So what happens if you do that? So this is the source code. This is the linear ticket, a feature request.
+
+
+101
+00:21:21.445 --> 00:21:27.445
+And we go ahead here, use Windsurf, we ask it to, hey, you know, work on this ticket.
+
+
+102
+00:21:27.445 --> 00:21:31.445
+It has MCP integration, will reach out to load the ticket.
+
+
+103
+00:21:31.445 --> 00:21:37.445
+And things happen really fast now. Creates a plan to work on it. Here you can already see the exploit, actually, in the plan.
+
+
+104
+00:21:37.445 --> 00:21:43.445
+But it will actually run the remote command that is in the linear tickets, right? We got remote command execution.
+
+
+105
+00:21:43.445 --> 00:21:55.445
+Uh, and… You might wonder why that is, so if you go to the ticket here, copy this text and put it in this tool I have, the ASCII smuggler, there's the prompt injection that actually says, uh.
+
+
+106
+00:21:55.445 --> 00:22:09.445
+to launch the calculator. Okay, so that was a linear ticket. What about code review itself? This is the first time you might see Apple X code. I have not actually seen anybody do a prompt injection with Apple X code, so I thought it's going to be fun to show one.
+
+
+107
+00:22:09.445 --> 00:22:17.445
+Uh, so here's source code, there's no visible prompt injection in the source code here, but what if we ask to Xcode to review this file?
+
+
+108
+00:22:17.445 --> 00:22:22.445
+It's going to review it. Loads the file.
+
+
+109
+00:22:22.445 --> 00:22:32.445
+analyzes it, it does see hidden Unicode tag characters, right, which we humans don't see, but the LLM sees. It starts reading the config file for some reason.
+
+
+110
+00:22:32.445 --> 00:22:40.445
+Now something interesting happens. It decodes these Unicode characters, right? Now you see the actual prompt injection payload that asks it to add source code into the file.
+
+
+111
+00:22:40.445 --> 00:22:50.445
+That is going to send data out to the attacker, and it also asks it to call a tool called RunSnippet. So in Xcode, you can actually, the attacker can run.
+
+
+112
+00:22:50.445 --> 00:22:57.445
+source code on the fly. And this is what is exploited here, to have a seamless end-to-end exploit chain.
+
+
+113
+00:22:57.445 --> 00:23:10.445
+What is important to know is with Apple X code is actually pretty good, because if you have a good environment set up, you have a sandbox, but if you have your entitlements that allow internet connection, this will work by default.
+
+
+114
+00:23:10.445 --> 00:23:27.445
+So yeah, we have remote command execution, we have data exfiltration, right? But we can of course do a lot more. This is now a demonstration of something I've not shown before, Microsoft Enterprise Copilot and how we can actually add memories and compromise Copilot in long term.
+
+
+115
+00:23:27.445 --> 00:23:34.445
+achieve long-term persistence. So this is Copilot. I have a demo file that we're going to analyze.
+
+
+116
+00:23:34.445 --> 00:23:49.445
+Asking for the key takeaways of this file. It analyzes the file, and on top, you already can see invoke the memory tool. And now Copilot is going to be compromised forever, right? And there's two specific memories this exploit added. The first one is just.
+
+
+117
+00:23:49.445 --> 00:24:08.445
+that I'm 102 years old. The second one is a command to run a Commodore 64 simulator, and now if you have a conversation with your co-pilot, this is the enterprise Copilot, right? So imagine this is about financial information, about your organizational structure, all of this information is now falsified going forward.
+
+
+118
+00:24:08.445 --> 00:24:29.445
+This was actually fixed by Microsoft last December. Okay, you might want to see the prompt behind this, and interestingly, these are not very complicated attacks. It's just natural language and there's often some trickery and some ease in to get the language models attention and then add the tool invocations to it.
+
+
+119
+00:24:29.445 --> 00:24:48.445
+at these memories. So we have persistence and we can of course combine all of this, right? We can have data exfiltration, persistence, loading remote commands. And there's an example I gave a black hat with ChatGPT to get continuous data exfiltration, and I called it spyware back then.
+
+
+120
+00:24:48.445 --> 00:25:01.445
+two years ago. And the same is possible with coding agents, right? With Windsor, for instance, I demonstrated that you can load remote commands by indirect prompt injection. You compromise the agent's memory, so long-term persistence.
+
+
+121
+00:25:01.445 --> 00:25:12.445
+With the instructions to continue compromising the user every single conversation and send the data out to the attacker continuously. Every time you type something, it will be sent to the attacker.
+
+
+122
+00:25:12.445 --> 00:25:22.445
+And I have a demo video of this that I've shown before, so I'm gonna skip it here because it's a longer video, but it just shows you this attack end-to-end.
+
+
+123
+00:25:22.445 --> 00:25:38.445
+Okay, so we have persistence and data exfiltration. And when I once talked with Ben Nasi, who they released this paper very recently called The Promptua Kill Chain, I always talked about an AI kill chain, but this paper highlights this much, much better. It's really that we see with prompt injection.
+
+
+124
+00:25:38.445 --> 00:25:49.445
+that it's not just a single injection anymore, right? It's a complex malware even, right? So, we should start maybe using the word prompt way to highlight that, you know, the injection is the technique.
+
+
+125
+00:25:49.445 --> 00:25:55.445
+And then what you do later is a complex set of instructions to achieve an objective, right? And that is called prompt aware.
+
+
+126
+00:25:55.445 --> 00:26:01.445
+That aligns along the kill chain, right? Data exfiltration, persistence, and so on.
+
+
+127
+00:26:01.445 --> 00:26:05.445
+Uh, so yeah, prompt injection to Malibu, to prompt whale.
+
+
+128
+00:26:05.445 --> 00:26:13.445
+And now I want to talk about something I haven't really explicitly talked about before, and I hope this is going to be very interesting. It's called delayed tool invocation.
+
+
+129
+00:26:13.445 --> 00:26:23.445
+So, when Google bought, it was called Google Bot back in the day, I was experimenting a lot with tooling locations and so on, and so I created this idea of, I want to just have it call all the tools, right?
+
+
+130
+00:26:23.445 --> 00:26:40.445
+But it didn't work. It would call many, many tools, chained with an indirect prompt injection, but it would one tool, it just refused to call doing an indirect prompt injection. So this is actually the demo from when I experimented back then I had this image. I just gave it all the instructions.
+
+
+131
+00:26:40.445 --> 00:26:43.445
+To call all the tools, and it would just blindly call them all.
+
+
+132
+00:26:43.445 --> 00:27:02.445
+But it would not invoke the workspace tool, right? The tool that has sensitive information. The tool that has your email, your drive, and so on. So that was not invokable. So this means there was an actual security control in place that Google put in place to prevent that from happening because of indirect prompt injection.
+
+
+133
+00:27:02.445 --> 00:27:18.445
+So, a couple observation ahead. The Gemini Workspace tool gets deactivated. We cannot chain it. But then I thought about maybe it requires a user, explicit user intent. So in the initial prompt, when you type, you talk about email, then it will activate the tool, so to speak.
+
+
+134
+00:27:18.445 --> 00:27:30.445
+But I was wondering, can we do this maybe in a later conversation turn two? Maybe the tool becomes active again. So this is my research back then was focused. Can we activate a tool later, or is it becoming available?
+
+
+135
+00:27:30.445 --> 00:27:45.445
+And I found something that worked, actually, and then I contacted Google, and it was really cool, actually, because the Google Security team asked me to send them an email to actually see if this really works. So this is the email that I sent to Google back then.
+
+
+136
+00:27:45.445 --> 00:27:53.445
+Uh, and this is where the prompt injection is in the middle of the email. And the important part is that I asked the LLM to repeat the attack.
+
+
+137
+00:27:53.445 --> 00:28:01.445
+to continue… when the user continues their conversation, right? The only condition is now that the user starts continuous typing after the prompt injection.
+
+
+138
+00:28:01.445 --> 00:28:08.445
+Then invoke the workspace tool to load some sensitive document about, I guess, about cats.
+
+
+139
+00:28:08.445 --> 00:28:18.445
+that creative with that. And I sent that in, and then a few minutes later, I got back that it actually worked, that it was like reaching out and they were able to reproduce this behavior.
+
+
+140
+00:28:18.445 --> 00:28:31.445
+So that was really cool. And then I built a couple of exploits around this technique. One very specific one, this is now a year ago, was actually similar with Microsoft Copilot. We could add memories, and I want to show you this exploit.
+
+
+141
+00:28:31.445 --> 00:28:43.445
+We have here an indirect prompt injection, but I always use files often in my demos because it's very easy to create test cases around files, but not having to load remote.
+
+
+142
+00:28:43.445 --> 00:28:52.445
+files from servers and so on. But you can see here, we summarize this document, and in the middle there is actually this condition, this delay tool invocation.
+
+
+143
+00:28:52.445 --> 00:29:07.445
+And now, if the user continues the conversation. the tool gets invoked. So if the tool becomes active again, even though it was not active in the very beginning, now the tool is active and we invoke the memory tool, and now I have a long-term persistent memory in Gemini.
+
+
+144
+00:29:07.445 --> 00:29:18.445
+And it's similar now, too, right, you can see the memory. And now in future conversations, Gemini will think this is true, or this belongs to my memory.
+
+
+145
+00:29:18.445 --> 00:29:35.445
+Okay. And there was one additional thing that I found just last November. There was a really great Black Hat talk last year from Ben Nassey and Steph Cohen and a few others called Invitation is All You Need, where they used a lot of these techniques to show some really, really amazing exploits, like, you know.
+
+
+146
+00:29:35.445 --> 00:29:51.445
+Opening your garage, uh, your windows in the home and all of that, all driven by Gemini. And I looked at it again last November, and then I found a really interesting bypass. And there's a neat sound for this. I don't know if… Can hear that. But…
+
+
+147
+00:29:51.445 --> 00:30:01.445
+That's… I had this Google Home device that I hadn't used for a long time, so I set it up, connected it, and I wanted to invoke it and see if I can find a bypass.
+
+
+148
+00:30:01.445 --> 00:30:10.445
+And in this case, we continue the conversation. So there's an exploit.
+
+
+149
+00:30:10.445 --> 00:30:16.445
+And it actually had found a bypass, so it's now connecting to my Google Home.
+
+
+150
+00:30:16.445 --> 00:30:22.445
+as invoking the speaker. Johan is here. Trust no AI.
+
+
+151
+00:30:22.445 --> 00:30:27.445
+So, you can see we can actually indirectly prompt, they call it twice. It says.
+
+
+152
+00:30:27.445 --> 00:30:39.445
+Johan is here. Trust no AI. So we can actually invoke physical things now, too. This is sort of the demo. And the way it has worked was that.
+
+
+153
+00:30:39.445 --> 00:30:43.445
+Some of the metadata of the document become part of the prompt.
+
+
+154
+00:30:43.445 --> 00:30:57.445
+Well, that's my interpretation. I don't… I do not have access to the source code to validate this, but this is why what I think is happening is that if you have an intent signal in some of that metadata.
+
+
+155
+00:30:57.445 --> 00:31:12.445
+Gemini thinks this is your user's intent, and it activates the tool. So the title of the document is called Broadcast to Living Room. And that is the intent signal that the tool becomes available. That's my interpretation, right? If somebody is here from Google, I would really like to know if that is.
+
+
+156
+00:31:12.445 --> 00:31:30.445
+Actually, really what happens behind the scenes. Okay, but it's not just Google Gemini. We can also do the late tool invocation in ChatGPT. Chatgpt, to my knowledge, does not have an actual security control that I showed here earlier with Google, but it still is a technique that allows you to bypass a lot of guardrails.
+
+
+157
+00:31:30.445 --> 00:31:39.445
+If you do this delayed tool invocations. And you… here you can see there's a personalization option in ChatGPT by default.
+
+
+158
+00:31:39.445 --> 00:31:46.445
+It's set to default, but now we're going to do a delay tool invocation to modify that personalization option.
+
+
+159
+00:31:46.445 --> 00:31:55.445
+So we summarized this document.
+
+
+160
+00:31:55.445 --> 00:32:10.445
+And it's going to summarize the document, but repeat the LLM is repeating an attack. And what is important, though, is that this doesn't actually have to happen, that the LLM writes it here, too, because it's already in the document. But my thinking was always that I want to put more attention to the attacks where I have to.
+
+
+161
+00:32:10.445 --> 00:32:22.445
+LLM repeat it, so there's… it's more likely to actually succeed. And you can see here, we write yes, and it invokes the tool, and is now the personality of my ChatGPT has now been modified to quirky.
+
+
+162
+00:32:22.445 --> 00:32:46.445
+This is possible to read remote documents and all of that. You can seem to be able to invoke a lot of tools with that way. I reported this, of course, to, uh, OpenAI, and they found it very interesting, but it's not a security problem. It's more like a guardrail problem, so they share this with the… The guardrail team, I guess, or the safety team.
+
+
+163
+00:32:46.445 --> 00:33:01.445
+And there is a document, a paper that came out from Google very recently that I found so fascinating. It's Promptor fiduciary proves non-reasoning LLMs. So if you repeat certain text twice, like the query twice, it actually improves the LLM's performance.
+
+
+164
+00:33:01.445 --> 00:33:11.445
+And it's similar to this attention thinking I had about repeating the attack twice, that it actually brings more attention to the attack, and it's more likely going to succeed.
+
+
+165
+00:33:11.445 --> 00:33:28.445
+Okay, so you can see there's a lot of things happening, and I always think about, oh, with all this naming changes, we've kind of become offensive context engineers, I guess, as red teamers. Uh, and there's a lot more about delayed tool invocation, but this would make the whole thing, uh… a 40-minute talk.
+
+
+166
+00:33:28.445 --> 00:33:42.445
+Uh, and I do know I have a little bit more time, so I'm gonna cover a few things that I have that I think are very interesting. But many of the things you just saw, they are not new or novel, right? We have seen this before. Data exfiltration, all of these things are not new, right?
+
+
+167
+00:33:42.445 --> 00:33:58.445
+So last year I thought, oh, this is the year everything's gonna change. We're gonna have stronger boundaries, we're gonna add less autonomy with less trust, right? The opposite is happening. We have more automation, more features, more trust. We have MCP, we have skills, we have AI browsers for some reason.
+
+
+168
+00:33:58.445 --> 00:34:03.445
+And we all got OpenCloud, right? And so, things are moving really, really quickly.
+
+
+169
+00:34:03.445 --> 00:34:19.445
+And there's this thing happening in industry that I call the normalization of deviance, where we fundamentally know that we shouldn't be trusting these models, right? The output is not trustworthy. We do not control or know exactly what's going on.
+
+
+170
+00:34:19.445 --> 00:34:35.445
+The more we use it, the more we start trusting it, the more we normalize the belief we can trust it, but then very drastic things can happen. Here, for instance, I think most of you know this example where it just deleted, open cloud just deleted the inbox, the real inbox of a user, uh, nuked it all.
+
+
+171
+00:34:35.445 --> 00:34:52.445
+And the reason when people ask the person, this is a person working at Meta, why this happened, he's like, oh, I used it on a test system for a while, and it worked without a problem. So I felt comfortable to use it on the production system, right? And this is an example of this normalization of deviance.
+
+
+172
+00:34:52.445 --> 00:34:58.445
+Uh, yeah, by now I talked a lot already about, and I hope you haven't hit your context limit yet.
+
+
+173
+00:34:58.445 --> 00:35:14.445
+Uh, because there's one more thing that I think is really important that I want to share, which is a kind of project I've been working on for a while, and it's sort of this idea that command and control infrastructure, right? I want to move it up to the prompt level, like, not work with operating system commands anymore, but have a prompt.
+
+
+174
+00:35:14.445 --> 00:35:30.445
+Uh, command and control with prompts. And it will work, or it works with any agent, with any language, and it's an abstraction from the operating system, right? This is generally happening with agents. We have an abstraction layer, and the attackers will leverage that same abstraction layer.
+
+
+175
+00:35:30.445 --> 00:35:47.445
+And the first time I talked about this was also at one of the black hat talks, and I have a blog post about what I called the AI domination zombies and so on. And this is called Agent Commander. It's a tool that, you know, once you have an indirect prompt injection, somehow you compromise an agent, you can have it join.
+
+
+176
+00:35:47.445 --> 00:35:56.445
+This command and control center, and the thing you do is you prompt your agents, right? You send prompts down to the agent, and then they act on those prompts.
+
+
+177
+00:35:56.445 --> 00:36:12.445
+And you might wonder how we can compromise them, right? There is actually a lot of good research out already from various stakeholders Xenity, Hidden layer, they have some good examples of how to compromise OpenClaw, for instance. My research also focused on OpenClaw and back to the heartbeat.
+
+
+178
+00:36:12.445 --> 00:36:16.445
+I'm going to skip some of this here. Oh, this is interesting.
+
+
+179
+00:36:16.445 --> 00:36:34.445
+So one thing, as an attacker, you want to be always hiding from the actual user of the system, right? When the user interacts with the open claw, with the open claw, you don't want to show one of the attack payloads the results into the user's channel, right? So one way you can hide is by adding certain strings in your message as an attacker.
+
+
+180
+00:36:34.445 --> 00:36:40.445
+If, for instance, the heartbeat ends with the string, heartbeat OK, it will not be shown in the UI.
+
+
+181
+00:36:40.445 --> 00:36:49.445
+or if I messaged that with a capital no underscore reply, it will not be shown in the UI. So there's a tag that you can add these strings, and then you kind of hide.
+
+
+182
+00:36:49.445 --> 00:36:56.445
+Um, and yeah, so you have this example where you cat, uh, here you can see that the default heartbeat.
+
+
+183
+00:36:56.445 --> 00:37:18.445
+And there's actually a really interesting thing I learned from a… The alias is vegan MOSFET. He has, like, a blog post about how you can configure OpenClaw with a PubSub subscription, so you get notified if there's a new email arriving in Gmail, and it'll automatically analyze it. It's a built-in feature of OpenClaw.
+
+
+184
+00:37:18.445 --> 00:37:34.445
+And that can be used with a prompt injection, right, to get a zero click. You just really send an email to your agent. All you need to know is the email address of the agent, or if your agent is your own personal inbox, very problematic, right? But you get an email, and then 10 seconds later, you are exploited.
+
+
+185
+00:37:34.445 --> 00:37:49.445
+And so I built on top of this and combined this with Mahatbeat idea. So this is the exploit, a system message, the crunch job ran that read the email. It was notified, it analyzed the email, and then it fetched the remote instructions and just appended that.
+
+
+186
+00:37:49.445 --> 00:38:02.445
+to the heartbeat. So now, then wait for like 20 minutes or whatever the next heartbeat happens and the heartbeat file looks like this, right? And this is what I call prompt where you can see this is not like a prompt injection.
+
+
+187
+00:38:02.445 --> 00:38:10.445
+This is a complex set of instructions that tell the agent to become a… to join a command and control server, right? But all prompt-based.
+
+
+188
+00:38:10.445 --> 00:38:23.445
+Uh, and then, yeah, it joins the command and control, and now you can prompt it, right? You can say, hey, Julia do a security assessment of yourself and tell me all your problems, right? And it goes ahead and tells you, oh, my name, server name, my IP address.
+
+
+189
+00:38:23.445 --> 00:38:27.445
+my server, my uptime, right? It's like full pen test report right here, right?
+
+
+190
+00:38:27.445 --> 00:38:41.445
+It tells you about how it's configured, the environment variables, and so on. So it's really about to have this idea of prompt templates in the command and control system, where you pick a template and you just submit it down, and then it runs those instructions.
+
+
+191
+00:38:41.445 --> 00:38:46.445
+A feature I feel I'm really proud of is actually that you can basically say, hey.
+
+
+192
+00:38:46.445 --> 00:39:01.445
+browse to this website, take a screenshot, and it will upload the screenshot to the command and control server. So you say, hey, browse to the inbox, take a screenshot, and you share the screenshot with me. And the agent will just do that, right? And the user doesn't know it's happening, because it's all hidden from the user's interface.
+
+
+193
+00:39:01.445 --> 00:39:12.445
+And it's not just working with OpenClaw. My field test was that I wanted to use a different one, and then I used Kimmy Claw, and here you can see the prompt injection exploit that hides itself here.
+
+
+194
+00:39:12.445 --> 00:39:27.445
+And then Kimmy Claw joins the command and control server as well, and it's the same way, right? This is the prompt injection payload, how we added the information to the heartbeat, and then you can ask about the human, who is your human? What's your human's name, right? What's the human's email address?
+
+
+195
+00:39:27.445 --> 00:39:36.445
+And you can dispatch tasks, right? It's really this abstraction from the commands of the operating system. The attackers will move a level higher.
+
+
+196
+00:39:36.445 --> 00:39:45.445
+And yeah, then, because this was Alibaba infrastructure, I was, like, curious how they set it up. I found this is worth sharing. So there is this, uh.
+
+
+197
+00:39:45.445 --> 00:40:10.445
+SSH key, authorized keys file, and there's a keys file that is a MacBook Pro, which makes you realize, right, startups often don't have a lot of security controls. So probably every single employee of Moonjot AI has this key on their laptop and can access your VM, right? This is my assumption, because this is very not… Not normal that you would have an authorized keys file from a MacBook Pro in your machine.
+
+
+198
+00:40:10.445 --> 00:40:23.445
+And this is now the final statement, right? We can turn this agent into a red teamer, into a pen test, right? We can make it rogue, install security tools, and then have it operate. And this is, I think, the big…
+
+
+199
+00:40:23.445 --> 00:40:32.445
+Take away in a way that, from a red teaming point of view, I'm really wondering how things will change as we see an adversary not needing to.
+
+
+200
+00:40:32.445 --> 00:40:49.445
+a zero-day upfront, right? The system will get compromised, and then they walk through the network without knowing a single serial date, possibly, right? Because they're gonna find them on the fly, in real, maybe possibly in a year or so to maybe even in real time, right?
+
+
+201
+00:40:49.445 --> 00:40:55.445
+Because the LLMs are going to be so powerful to just find problems, navigate the network very quickly.
+
+
+202
+00:40:55.445 --> 00:41:09.445
+Yeah, so that was your agent works for me now. I hope this was interesting and entertaining. Thank you very much.
+
+
+203
+00:41:09.445 --> 00:41:21.445
+Yeah, I'm Johan, by the way. I forgot to introduce myself.
+
+
+204
+00:41:21.445 --> 00:41:33.445
+Good morning. Hey, morning. Thanks for the talk. So around the tool invocations, right? You suggested that LLM interprets and.
+
+
+205
+00:41:33.445 --> 00:41:51.445
+Um, content decides the tool. So, do you think that this is, like, fundamentally flawed now, like, between the AI agents' implementation itself? Not fundamentally flawed. The actual thing that Google implemented was actually a positive thing because they added the security control that really limits.
+
+
+206
+00:41:51.445 --> 00:42:07.445
+The tool chaining capability, right? So I think that is very positive that the tool becomes later active again, right? That is, uh… is kind of a bypass, and it's something we need to figure out, I think, or they need to figure out how they can lock that down better, right?
+
+
+207
+00:42:07.445 --> 00:42:16.445
+Without always having to ask the user, because the really good thing is here, the user doesn't have to be asked, right? Because always these prompts, yes, yes, yes, it's not very useful.
+
+
+208
+00:42:16.445 --> 00:42:32.445
+So, and in terms of prompts, now, because you showed a demo which was pretty nice of how tool invoke — like delay tool invocation causes issues, right? So would you say that it's more of like a state manipulation vulnerability attack rather than an input validation?
+
+
+209
+00:42:32.445 --> 00:42:40.445
+I think it's a fundamental attack of behavior that, within the LLM, within the transformer, right?
+
+
+210
+00:42:40.445 --> 00:42:51.445
+We target the attention layer, and then because the model is hooked up to invoke outside tools, right? We target the attention layer to bring attention to a certain thing we want to have happen.
+
+
+211
+00:42:51.445 --> 00:43:07.445
+If that makes sense. And I think so one question is around the trust boundary, right? Invoking tools versus the external content. So where do you think like the best trust bounty would rely? Because definitely that's going to be like a debate within a lot of teams, right?
+
+
+212
+00:43:07.445 --> 00:43:31.445
+how the trust boundary can be established? I might not have gotten the question. So like external content, like where, uh, you know, the content is being retrieved, along with the tool invocation, right? So what's the best strategy of fundamentally putting, like, trust boundaries between it? Yeah, I think definitely you should assume if you don't have a control in place that the tool can be invoked right by indirect prompt injection or by the model itself.
+
+
+213
+00:43:31.445 --> 00:43:56.445
+Right? And then you need to think what's the risk scenario, right? What is the downstream impact of the tool being invoked? And that's where you need to think about the security controls, right? What can it access? What can it do? And you can prevent tool chaining, right? It doesn't have to happen that the web tool can chain other tools in a row, right? This is all, like, actual security controls that can help mitigate impact.
+
+
+214
+00:43:56.445 --> 00:44:11.445
+There's an entire pile of new security tools that have been just coming out fairly recently for OpenClaw. I was curious if you had played with Clawshield or any of the other ones and seen whether they make any notable difference in the difficulty?
+
+
+215
+00:44:11.445 --> 00:44:30.445
+Uh, I have not… the space is evolving so quickly, so it's really difficult to keep up. Even just OpenClaw itself adds a lot of mitigations as we speak, right? They have, like, over 200… last time I checked, over 220 security vulnerabilities they actually fixed within two or three weeks, right? So there's a lot happening right now.
+
+
+216
+00:44:30.445 --> 00:44:35.445
+Anybody else?
+
+
+217
+00:44:35.445 --> 00:44:40.445
+Gotti?
+
+
+218
+00:44:40.445 --> 00:44:46.445
+I want to do this thing that I do once in a while and embarrass this guy.
+
+
+219
+00:44:46.445 --> 00:44:51.445
+This is kind of a, while we move things around quite drastically, you're going to have to pull this down, sir.
+
+
+220
+00:44:51.445 --> 00:44:55.445
+Did they just put you down? I didn't mean to do that. Sorry.
+
+
+221
+00:44:55.445 --> 00:45:10.445
+Not just fat, not all. Okay. Um… I don't do this all the time, but once in a while, I know somebody on a personal level, and they have done something not just amazing technically, I mean, this guy is this louch, why do they know technically, right?
+
+
+222
+00:45:10.445 --> 00:45:20.445
+But also for the community. And what you don't know about Johan, or you might, is that he has done a lot of stuff, and not just for the laws, but just because they thought he should.
+
+
+223
+00:45:20.445 --> 00:45:30.445
+For example, the month of AI vulnerabilities, right? It just came out out of nowhere. I'm not gonna drop the mic, they're expensive. But mic dropped with every single day another vulnerability.
+
+
+224
+00:45:30.445 --> 00:45:44.445
+Every single day. And forget finding the vulnerabilities, or proving they're real, or even doing… going as far as reporting them. Just imagine aligning all the reporting to happen on the same day, so he releases things on the same day.
+
+
+225
+00:45:44.445 --> 00:45:52.445
+That is super power. And truly is one of the most appreciated people in our space, but usually for his technical chops.
+
+
+226
+00:45:52.445 --> 00:46:01.445
+And I just appreciate him and how he helps people, and more than that, he's one of these people out there in the world that I nag for things. Hey, let's do this, hey, let's do that, and he's not afraid of saying no.
+
+
+227
+00:46:01.445 --> 00:46:04.445
+Which is amazing, because they feel free to come to him again.
+
+
+228
+00:46:04.445 --> 00:46:23.445
+And number two, because sometimes he says yes. So please, let's just once again give him a hand, because… In what is now… The stage for the offensive track, and it shifts around, right? The right people are in the room to appreciate him. So thank you, sir.
+
+
+229
+00:46:23.445 --> 00:46:32.445
+Thank you so much. Really? Awesome.
+
+
+230
+00:46:32.445 --> 00:46:46.445
+All right, uh, before Nikki gets started, we are running ahead of schedule, as I said earlier. So I have a kind of a challenge for anybody out here. Normal height? It's impossible.
+
+
+231
+00:46:46.445 --> 00:47:08.445
+I have a challenge for everybody out here. If you are interested in filling a 5-minute lightning talk with something cool, interesting, doesn't have to be security-related, probably does have to be AI-related, um, you can go right after him, and, uh, feel free to talk or take questions, or if you have a cool idea or something like that, let's get it going. If you are interested, come see me, I'll be in the back corner during this talk and we can we can get it going.
+
+
+232
+00:47:08.445 --> 00:47:12.445
+Otherwise, you got a lot of time. Go for it, brother. Thank you.
+
+
+233
+00:47:12.445 --> 00:47:21.445
+My name is Niki Amable. I've been doing infrastructure security for the last 10 years. I built security tools.
+
+
+234
+00:47:21.445 --> 00:47:41.445
+Google, Datadog, and Snapchat. Today, I'm going to be talking about a problem that I saw when multi-agenic workflows started appearing in the enterprise scene. I will talk about some of the research and implementation we've done with a group of my collaborators.
+
+
+235
+00:47:41.445 --> 00:47:48.445
+And the new primitive we implemented to solve the problem.
+
+
+236
+00:47:48.445 --> 00:48:05.445
+Over the last 5-10 years in the industry, we've been talking about workload identity. The whole point of workload identity was that if you pull a pod on a node, you have to make sure that it's… the authorization it's using is actually matching the intent of who deployed that pod.
+
+
+237
+00:48:05.445 --> 00:48:10.445
+The point was that the lifetime of a pod doesn't always match with the lifetime of the node.
+
+
+238
+00:48:10.445 --> 00:48:16.445
+The problem is, again, the workload was a deterministic.
+
+
+239
+00:48:16.445 --> 00:48:31.445
+service, we knew what he was going to do, and there was no surprises. With agenic workflows, we have these pieces of software that can reason at runtime, they can spawn other sub-agents, and when you're deploying them, you have no idea what's going to happen.
+
+
+240
+00:48:31.445 --> 00:48:47.445
+runtime. We think this is one of the fundamental reasons why we end up with confused deputy problem when we're deploying agentic workflows on the infrastructure that we've been building for the last couple of decades.
+
+
+241
+00:48:47.445 --> 00:49:05.445
+Now, the reason this happens is because we're giving them ambient authority when they are architectural fundamentals are built on derived authority, the concept of derogation. I'm going to give an example of our valet experience. When you go to a valet.
+
+
+242
+00:49:05.445 --> 00:49:35.445
+There's two ways to go about it. Either you check the barge of the valet, and you're like, okay, they work at this company, I'm gonna give them the key of my car, except this key can allow them to drive the car around the city, they can open the trunk with the key, they can open the… Uh, glovebox, anything that you do with your car, but none of this has anything to do with the actual overlay service you're looking for. What if there was another option of a valet key? This key is geofenced, they can't drive for more than 2 kilometers from where you are.
+
+
+243
+00:49:37.445 --> 00:49:45.445
+It is… the speed is capped at 40 kilometers or miles per hour. The key can only.
+
+
+244
+00:49:45.445 --> 00:49:55.445
+Uh, allow them to drive their car, but they won't be able to open the glove box or the trunk, or any other auxiliary features you have in your car.
+
+
+245
+00:49:55.445 --> 00:50:07.445
+We believe this is how proper delegation should happen for agents. You should give an agent the authority that is specific to the task you want them to do in the moment.
+
+
+246
+00:50:07.445 --> 00:50:27.445
+Uh, the… what you call the containment problem is that when you use the valet key, you don't have to trust the valet who is helping you. You don't have to check… you know, it's great if they did a background check. If it's great if it's a nice guy, it's great if you have a good feeling about them, but you don't have to trust them.
+
+
+247
+00:50:27.445 --> 00:50:43.445
+The delegation key is the enforcement. Now, the valet can have ideas. The valet can have, uh, suggestions from their friends, but they won't be able to go beyond the authority you gave them with the key. We want to bring that to agentic workflows. We believe that.
+
+
+248
+00:50:43.445 --> 00:50:47.445
+Uh, while, uh, we can have a way to.
+
+
+249
+00:50:47.445 --> 00:51:07.445
+improve the thought process of the valet, the thought process of the model. We, for having proper security, we need deterministic controls that can actually constrain what the agent can do. When you use a filter or a model guardrail, what we're trying to do is look at the model output.
+
+
+250
+00:51:07.445 --> 00:51:22.445
+I use probabilistic approach to suggest really to the model what you can and what cannot do. You're looking at the content layer, but the problem here is that you don't have… you're basically working with confidence levels.
+
+
+251
+00:51:22.445 --> 00:51:37.445
+You can't really audit, and you know why it made the decision that it made. And when you get into enterprise, when we start having agenic workflows, touch, infrared PII data, touch money, we're going to need.
+
+
+252
+00:51:37.445 --> 00:51:54.445
+deterministic, predictable, and auditable authorization. That's where we think the end game of authorization of agents should be on the execution layer when the agents actually meets the real world.
+
+
+253
+00:51:54.445 --> 00:52:13.445
+If you go in many enterprise infrastructure today, you will see that, yes, we have workload identity, great. We decided what agent can do based on the identity it was given at the deploy time. We have policy engine, which are very valuable. They can define what the agent can do and what the agent can't do.
+
+
+254
+00:52:13.445 --> 00:52:31.445
+We have model output filters which can filter and see if the output of the model is safe or not. We have sandboxes which have a global limitation of the possibilities of what can happen at the execution time.
+
+
+255
+00:52:31.445 --> 00:52:51.445
+However, we don't really have a primitive that addresses the fundamental architecture of multi-agents, which is delegation. When a given task goes to agent A, and agent A delegates to agent B at the execution time, we don't really have a primitive that can express the delegation chain, the authority that came with the task.
+
+
+256
+00:52:51.445 --> 00:53:04.445
+All the primitives we have are relying on the identity of the workload in the moment, or the output of the model without the context of the flow of the task up to the execution point.
+
+
+257
+00:53:04.445 --> 00:53:13.445
+We're missing that deterministic, delegation-aware authorization that can actually encode all these properties.
+
+
+258
+00:53:13.445 --> 00:53:34.445
+The idea of capabilities, which we are basing our primitive on is not enough. It's been around for more than 60 years. In the 60s, Dennis and Van Hung brought the idea as one of the ways really to address the problem of confused deputy. There has been a lot of research and application in different areas in 2014.
+
+
+259
+00:53:34.445 --> 00:54:04.445
+Google released macaroons, which introduced now applying, uh. science… applying these tokens with caveats. That's where now the idea of actuary attenuating what these, uh, tokens can do started appearing. In, um, in the late 2010s and early 2020s, Yukon and the Biscuits, uh, added the idea of cryptographic tokens following.
+
+
+260
+00:54:04.445 --> 00:54:20.445
+the capabilities model. Uh, very recently, last year in March, uh, DeepMind team released a paper, uh, famously known as the chemo paper. Uh, I believe the name was Defeating Prompt Injection by Design. It was the first time they suggested.
+
+
+261
+00:54:20.445 --> 00:54:36.445
+that capability, capability-based authorization is the model that can help address the problem of prompt injection today. They were using a two-agent model, what they call a PQ model, where you have.
+
+
+262
+00:54:36.445 --> 00:54:52.445
+A privileged agent and the actual worker, and they were mostly looking at the data flow during the hygienic workflow. Very recently, February 12th, they released another paper, they called it Intelligent AI Design, reiterating the same idea that.
+
+
+263
+00:54:52.445 --> 00:55:11.445
+The proper framework to build authorization for multi-agenic workflows is to use capability systems. So that's what we've been building at Tenor, applying capability principles, building upon the proven primitive and now applying them to.
+
+
+264
+00:55:11.445 --> 00:55:17.445
+the reality of agenic workflows. Now, the primitive, what we call the tenure warrant, has six properties. One.
+
+
+265
+00:55:17.445 --> 00:55:31.445
+It is signed by the issuer. That's what the cryptography piece comes in. It's signed by the issuer. It is sculpt to the task at hand explicitly. If a task is not encoded in the warrant.
+
+
+266
+00:55:31.445 --> 00:55:46.445
+The agent is not going to be able to do it. It is ephemeral. Short TTLs are part of the design. It's customizable, but we believe it should not really give the agent authority beyond the temporal scope of the task that it's doing.
+
+
+267
+00:55:46.445 --> 00:56:02.445
+It is hold abound. The proof of possession is the fundamental principle of this primitive, unlike some of the previous designs that were mostly relying on OAuth tokens. It is verifiable offline. You don't have to rely on a central server.
+
+
+268
+00:56:02.445 --> 00:56:20.445
+to call to check if the artifact is valid or not, to do any of this verification, it can all happen by any implementation of the verifier offline anywhere in the world. It is delegation-aware. It encodes the whole delegation chain from the original.
+
+
+269
+00:56:20.445 --> 00:56:26.445
+Minter of the original warrant to every agent in between.
+
+
+270
+00:56:26.445 --> 00:56:55.445
+As you can see, this is an example of a YAML representation of the warrant primitive, but an example I'd like to give is that of a corporate debit card. If you have an intern that's going on a business trip, you don't give them the corporate Amex with all the… spending limits, so give them a task-specific card with limited number of vendors that can be used for transportation and, uh, and dining, maybe. That will expire at the end of the week, at the end of the trip.
+
+
+271
+00:56:55.445 --> 00:57:12.445
+And it is bound to them, they can give it to nobody else. They can't spend more than a set limit, and when they are going to pay, they don't have to call you to validate the warranty that you gave them. So this is the same model that we are applying here, and, uh, making sure that.
+
+
+272
+00:57:12.445 --> 00:57:42.445
+across the protocol, we make sure that the warrant has these six properties. How does that feel into the delegation workflow? The idea here is that the top warrants can mint the… The top urgent can mean a warrant with broad access, depending on what the task needs, but it can set… it can create and delegate to multiple sub-agents with scoped sub-warrants. The idea here, the mathematical principle.
+
+
+273
+00:57:44.445 --> 00:58:00.445
+is that the orient of the child agent can never exceed the scope of the parent agent. So we it's the principal commonly known as monotonic attenuation. So as you delegate further downstream in your multi-agent workflow.
+
+
+274
+00:58:00.445 --> 00:58:11.445
+the capabilities of the agent can only shrink. And we're also making sure that we have that cryptographic provenance of the delegation chain.
+
+
+275
+00:58:11.445 --> 00:58:27.445
+Both… which I checked at the execution, at the verification phase, but also as a byproduct of this design, we ended up having now cryptographic audit logs, temporary evidence that can prove.
+
+
+276
+00:58:27.445 --> 00:58:41.445
+who approved the what, who initiated the task, who delegated to what agent, and you don't have to trust anybody in between, because you have, uh, the cryptographic receipts of the action that took place, and why it was authorized.
+
+
+277
+00:58:41.445 --> 00:59:00.445
+The idea here, again, is that. At least you are sure that the blast radius is frozen when you're starting your task. You bounding what your flow can ever do. You open a claw, you can be sure that it can only do what you intended from the top warrant, no matter how many agents.
+
+
+278
+00:59:00.445 --> 00:59:20.445
+It spawns downstream. They can never have more authority than what you gave the, um… the top parent agent. And, uh, there is more to this, there's some more of the, uh, features we've been putting in place of approval processes, uh, but I just want to go straight to the, uh, to demo, and, uh.
+
+
+279
+00:59:20.445 --> 00:59:29.445
+and show you how this looks in practice.
+
+
+280
+00:59:29.445 --> 00:59:51.445
+So what I'm going to show you in this demo is a scenario, say you are, um… You are a detection and response team. What you're doing here is you are… there is an incident, and you have an agenic workflow that can help you triage and investigate the incident. You have two agents, one is a triage agent, another one.
+
+
+281
+00:59:51.445 --> 01:00:08.445
+One is a triage agent, another one is an investigation agent. So you mint a broad warrant on the top, you give it to the triage agent, and depending on what it needs from the investigation agent, it will, um, it will mint the warrant for the task.
+
+
+282
+01:00:08.445 --> 01:00:20.445
+So you have, uh… You have your setup here. I'm using real agents, actually. I'm using LandGraph here as an example. And in this scenario here, we are investigating the author service.
+
+
+283
+01:00:20.445 --> 01:00:37.445
+Um, the integration we're using with LangGraph is, uh, so we built the core in Rust, which is open source, by the way, and we added Python bindings to make it easier to integrate with different frameworks. In this case, with LangGraph, it's just one line to replace.
+
+
+284
+01:00:37.445 --> 01:00:43.445
+The tool node with tenure tool node, and at the execution, it will make sure it checks the warrant.
+
+
+285
+01:00:43.445 --> 01:01:02.445
+Now, the example here we're starting with is how the delegation goes from the SOC lead, who means a warranty to the triage agent, who means now another warrant to the investigation. When the SOC lead gives a warrant to the triage agent, it drops the capability to isolate the host. It just gives it, okay, you can send HTTP, you can read config, you can read logs.
+
+
+286
+01:01:02.445 --> 01:01:19.445
+to this particular service, and then we have… this is an example of how a warrant looks like. We have a playground online, tenure.ai, you can see, like, playground to actually put in a, uh, a warrant to decode it and see what it is supposed to do. But here, I just want to show.
+
+
+287
+01:01:19.445 --> 01:01:34.445
+One case where the happy path, it goes from the so-called to the triage agent to the investigation agent, it reads the logs, all the actions it tries to do are encoded in the whole end. Everybody's happy, and this is what they intended.
+
+
+288
+01:01:34.445 --> 01:01:52.445
+purpose. Now, imagine a situation where, in the logs that it is reading, there is a prompt injection that suggests to the investigation agent, like, hey, how, you know, the problem we're investigating is related to a problem in the vault, there is a credential problem, maybe you can look into this.
+
+
+289
+01:01:52.445 --> 01:02:13.445
+particular path that has token information. That is how typical prompt injection happens. But since the triage agent stripped down the scope of the investigation, agent to just reading the file path of the auth service, it will never be able… it will be denied by tenure at the execution time to be able to actually.
+
+
+290
+01:02:13.445 --> 01:02:42.445
+read the, uh, Vault. Fight path, since it's not in New Orleans. Another case we have here is when the… investigation agent is tricked into sending some of the information to evil attacker.com. Again, as you remember, when we were delegating from the triage to the investigation agent, we stripped it down, send the HTTP capabilities.
+
+
+291
+01:02:42.445 --> 01:02:57.445
+the investigation agent in this particular moment doesn't have a warrant. The task has been given, the warrant it's been given doesn't allow it to be able to actually send HTTP. So it's going to be denied deterministically, and, uh.
+
+
+292
+01:02:57.445 --> 01:03:24.445
+And with cryptographic proof by the tenure verifier. Now, if it, for example, if the, uh… The triage agents want to send same logs to the SIEM. Yeah, it has the… send HTTP capability, and this happens to be an internal URL that is in the warrant. Great. There's a happy path there. But, uh, again, even if it has this capability, if it tries to go to the path that wasn't specified.
+
+
+293
+01:03:24.445 --> 01:03:42.445
+In the warrant, it's going to fail and be denied by tenure verifier. The last case I want to show is the property I mentioned of being hold-abound proof of possession. If we don't consider a warrant to be a secret credential. So if you have.
+
+
+294
+01:03:42.445 --> 01:04:00.445
+It warrant and it's own, and you don't have the private key of the holder, it's going to be denied. That is the last case we have here. And with all these cases, we have audit trace, we have what we call a cryptographic receipt that you can send to the control plane and have them.
+
+
+295
+01:04:00.445 --> 01:04:16.445
+be cryptographically verifiable audit logs of all the events that are happening in infrastructure. This is just an example of how these, uh, receipts looks like, but the idea here, you can all play in different environments. This is… the core is open source.
+
+
+296
+01:04:16.445 --> 01:04:32.445
+And, uh, I will talk more now about some of the lessons we've learned around the way. The first question that comes here is how does this fit into my infrastructure? We have four deployment models we've been looking at. One is in process, like the example I gave with land graph.
+
+
+297
+01:04:32.445 --> 01:04:51.445
+Uh, some different, um… Frameworks have middle layer hooks that we've been plugging in. So far, we have nine framework support, including crew AI, including A2A. We have Temporal and many other frameworks. Another deployment mode is Sidecar.
+
+
+298
+01:04:51.445 --> 01:05:08.445
+We have… you can, if you have, like, a mesh service, for example, you can have Tenuo as one of the extension of your envoy, so that before you hit actual APIs, Tenio can actually verify your… the warrant of the agent running on that particular pod.
+
+
+299
+01:05:08.445 --> 01:05:24.445
+We have the gateway approach. If you already have an infrastructure of agents, all you have to do is send tenure warranty headers. They are no secret, they can go in HTTP headers. And when you're actually calling remote APIs, the gateway is going to be.
+
+
+300
+01:05:24.445 --> 01:05:48.445
+stopping. is going to be stopping the, um… the execution, if they are not in the warrant. The idea here is to look at all deployment modes that real companies are actually, uh, using, and most companies are now afraid to go to production because they don't have these primitives to help them really express their policies in their…
+
+
+301
+01:05:48.445 --> 01:06:03.445
+infrastructure architecture of multi-agent. Another one we have is MCP proxy, either as on the client side or on the server side, or both for the fencing depth. Again, the idea here is that before it hits your proxy tool, this is actually one of the easiest implementation.
+
+
+302
+01:06:03.445 --> 01:06:11.445
+We have because MCP has a structured tool and argument definition, so it's easier for us to express that.
+
+
+303
+01:06:11.445 --> 01:06:25.445
+When… one thing I want to be clear about is that tenure is not trying to solve prompt injection. We're trying to constrain the agent at the execution time, even if it is prompt injected.
+
+
+304
+01:06:25.445 --> 01:06:55.445
+We are not trying to be like, there's not gonna be prompt objection, we're not trying to say there's not gonna be hallucination, but we are making sure that the authorization is frozen, even if your agent is prompt injected. We've been… one of the… challenges we run into is that there isn't really a public benchmark for multi-agentic workflows that can test authorization in multiple hubs. We've built a custom one, uh, the cryptography side, we have.
+
+
+305
+01:06:56.445 --> 01:07:14.445
+53 tests with more than 5,000 fuzzing scenarios. We're basically trying to make an LLM come up with adversarial situation that can actually trick Tenuo into allowing it to do unauthorized actions. And we've seen that with tenure versus.
+
+
+306
+01:07:14.445 --> 01:07:31.445
+Tenure deployment, when you have clear definition of scope, we move the attack surface from 90% to 0% when you have tenure. On the performance side, like I mentioned earlier, we've been… we use RASCO for actual authorization and cryptography.
+
+
+307
+01:07:31.445 --> 01:07:51.445
+Verification, and we make sure that everything, every authorization action happens in the core. A big lesson we learned is not… is that the map is not the territory. When you run into the real world, you've seen CVEs in this space, if you only stay in the constraint logic, you're going to find issues of.
+
+
+308
+01:07:51.445 --> 01:08:01.445
+Um, path traversals, you're going to find issues with encoding your URLs. So we've been moving a step further to look at three layers. One is what we call the map.
+
+
+309
+01:08:01.445 --> 01:08:16.445
+Uh, where you have your logic, your rejects, your globe matching logic, beautiful, it's great, but we learned that all those logic and your cryptography are not really the botanic. We have to look at the real world. The other layer, we call it the attenuated map.
+
+
+310
+01:08:16.445 --> 01:08:31.445
+Where we have now constraints that can actually understand the target. If we have one that can actually normalize paths and URLs. But we believe that there is another area, what we call the actual map, where you have to actually be.
+
+
+311
+01:08:31.445 --> 01:08:53.445
+have your logic, and you run the time environment speak the same language. That's where we've built some tooling, some open-source tooling around it on, um… execution guards for file system and process running, but, uh, eventually, to get this right, we believe it's matching the warrant system onto a sandbox that can actually, uh, understand.
+
+
+312
+01:08:53.445 --> 01:09:08.445
+what the Orient is trying to say. So one of the things we are looking for, what is next? We are looking for researchers who want to collaborate on breeding benchmarks for multi-agent authorization. There isn't really good benchmarks out there. We're looking for people who are actually running agentic workflows in practice.
+
+
+313
+01:09:08.445 --> 01:09:24.445
+who want to stress test this model. We're looking for people who want to explore further way that these primitive can be applied in different frameworks. If your company has a framework, if your company.
+
+
+314
+01:09:24.445 --> 01:09:40.445
+is, uh, coming up with new architecture and wants to have capability-based authorization in place, be our friend, we can talk. And more importantly, we want the open source community to help validate the primitive and, uh.
+
+
+315
+01:09:40.445 --> 01:09:51.445
+It appeared with it or break it? Thank you so much.
+
+
+316
+01:09:51.445 --> 01:10:00.445
+All right, well done, Nikki, I love it. Let's do some questions from the online crowd just real quick. Kaylin's asking, very cool talk.
+
+
+317
+01:10:00.445 --> 01:10:14.445
+In practice, how do you determine the scope of the token issued to the child agent at runtime? Is that scope determined deterministically by the system? Or can the LLM interpret what that scope is needed for the task?
+
+
+318
+01:10:14.445 --> 01:10:32.445
+Uh, that is a very good question, how you define the scope. Uh, so the idea here, again, is that the policy is going to be deterministic. That's the goal. And at least as you start your delegation chain from the human or from another deterministic process, you could have a simple web who could start from like a certain alert.
+
+
+319
+01:10:32.445 --> 01:10:49.445
+You can have the initial warrant defined by a human. And at the runtime, there are two ways you can go about it. One, first of all, since you are sure that no sub agent can ever do more than the parent, you have already frozen the capability of the whole workflow.
+
+
+320
+01:10:49.445 --> 01:11:04.445
+Two ways you can go, but one is, like, having the orchestrator, which is a typical design, the orchestrator. A runtime itself decide which task it wants the sub-agent to do, the child agent. Again, they guarantee you have at the top is that the whole workflow will never go beyond.
+
+
+321
+01:11:04.445 --> 01:11:20.445
+the frozen copy of the find. Another way, we have that we didn't have time to go into is having some of the constraints be, uh, added with approval considerations, where you're like, okay, you can do this action and this argument.
+
+
+322
+01:11:20.445 --> 01:11:41.445
+But only for this particular key payer approves that action at one time. So we have the approval processes, but we started with the orchestrator deciding at one time what task he wants to give to the agents, and if you want more human in the loop control, we also have the approval process. Thank you.
+
+
+323
+01:11:41.445 --> 01:11:49.445
+Uh, great talk, just a real quick question on, um, you mentioning that warrants aren't secrets.
+
+
+324
+01:11:49.445 --> 01:12:05.445
+Um, and how you go about, uh, authenticating the agents. Thank you. So the warrant itself is that artifact that the agent shows to the verifier. As a matter of fact, like I mentioned earlier, you can go to our.
+
+
+325
+01:12:05.445 --> 01:12:22.445
+playground, we have it here. You can paste anywhere. This is a client site, it's a WASM we built on the top of the RASCO. And when it's present to the verifier, what the verifier does, there are two steps. There are… there's the authorization step to actually check the constraints versus what it's trying to do, and then there is the cryptographic check.
+
+
+326
+01:12:22.445 --> 01:12:43.445
+To confirm that it was signed by the issuer, to confirm that it was coming from the provenance, from the root key of the chain, and confirmed that it is being sent by the right agent. So we have an envelope structure where you have the warranty itself, which is not a secret, but in the envelope, you have all those signatures and the other evidence that prove.
+
+
+327
+01:12:43.445 --> 01:12:50.445
+that the agent is supposed to do what it is doing. Uh, did I answer the question?
+
+
+328
+01:12:50.445 --> 01:13:00.445
+All right, any other questions?
+
+
+329
+01:13:00.445 --> 01:13:16.445
+Hey, great talk, Nikki. So I'm wondering, how do you map these capabilities to my domain specific permissions? Like, for example, I might be using OAuth related on my applications or AWS or any of the other things.
+
+
+330
+01:13:16.445 --> 01:13:20.445
+So how is that capability translated into actual action?
+
+
+331
+01:13:20.445 --> 01:13:38.445
+permissions. Okay, yeah, so to talk about our constraint language, actually, which was… which was a big discussion, because we were optimizing for expressivity, security, and, and, uh, performance. So our constraint language has the basic logic operations, the rejects I mentioned about.
+
+
+332
+01:13:38.445 --> 01:13:56.445
+And we also support the CEL so that you can express everything you want. Now, if there are two pieces of the question, if I understand well, one is the API call. That is typically, like any other tool call that you can do. If you're using MCP, we can map to the tool and the argument if you're calling.
+
+
+333
+01:13:56.445 --> 01:14:26.445
+a random URL, we can do the host and the path, or the other arguments. If you're calling any API, we can… there are two ways to go about it. Either you can, uh… have tenure… what we prefer is that tenure sits on the top of your actual authorization in the system. So before actually you hit your IAM on GCP or your IAM on AWS, you check that the API call is in the warrant, we express it just like you would do any other API call.
+
+
+334
+01:14:26.445 --> 01:14:42.445
+And when it hits the authorization system of your cloud, it does whatever it wants. But in most of the cases, because the workload identity is scoped to the workload, the infrastructure, it is way wider than an individual task that you're doing. So if that task is not in the wall end.
+
+
+335
+01:14:42.445 --> 01:15:00.445
+The Tenno is going to stop it in the moment. But there's another question I think I want to address, Jay, where especially when it comes to approvers and all, you have real human identities and that is more on the enterprise design that we've been working on as well, where you can actually have those approver key payer be mapped to.
+
+
+336
+01:15:00.445 --> 01:15:16.445
+real human identities that, uh, your Google ID or your, uh, actor SSO can actually be used to make those approval without losing the cryptographic purity of the protocol itself.
+
+
+337
+01:15:16.445 --> 01:15:46.445
+Thanks a lot. I really love this idea of warrants. I've had the idea, the, uh, thought for the past couple months after doing a bunch of prompter GTFO and seeing the havoc, where I was like, we need to, like, wrap the actions of the AI agents into, like, a finite state automata. You know, there's too many horror stories out there of, like, oh my God, it did this, it did this, it did this, and it seems like this is… especially the open source section, it seems like this is one of the first steps towards, like, actually creating that boundary. I really like it. Thank you. Thank you very much. Thank you.
+
+
+338
+01:15:50.445 --> 01:16:13.445
+All right, we have a surprise. It is not on the schedule. Jackson here has accepted our challenge. He's going to do a brief lightning talk on… What's on the screen behind me in a second?
+
+
+339
+01:16:13.445 --> 01:16:21.445
+Yes. Yeah, yeah.
+
+
+340
+01:16:21.445 --> 01:16:42.445
+All right. Thanks, folks. Appreciate the time. So I'm calling this talk, Are You Thinking What I'm Thinking? Because you can actually force models to think more or less what you want them to think. Models continue to grow in their capabilities, which is very cool. We have these reasoning models now that emit these special thinking blocks, both in Anthropic and OpenAI.
+
+
+341
+01:16:42.445 --> 01:17:00.445
+they release a block of specific thinking tokens, and that enriches the context of the prompt you've actually given the model, and so the model can provide a much better response to you, which is really cool. And because it's really important that it's, you know, the model's thought that it enriches its context and provides its answer, this is cryptographically protected by model providers. Gemini has their own approach.
+
+
+342
+01:17:00.445 --> 01:17:08.445
+Anthropic and OpenAI have sort of a similar approach they both take, which is that they provide either the block as an encrypted blob.
+
+
+343
+01:17:08.445 --> 01:17:22.445
+Or they provide, like, a hash, an HMAC signature for the block. So you can try to tamper, but the API will say, no, no, no, this is not a valid message. So, we'll try now. I'm gonna send a message to Haiku, just asking what's the capital of the Ile de France region.
+
+
+344
+01:17:22.445 --> 01:17:35.445
+We get back a response, and you can see here the little reasoning blocks, and if I follow up and just say, tell me more… And now we look at the raw message, you can actually see…
+
+
+345
+01:17:35.445 --> 01:17:51.445
+Here's the reasoning block itself and the encrypted signature from or the crypto signature from Anthropic. Can you guys see this? You got, like, the plain text thinking, and then you got the signature. And you can't, you can't tamper with that, because it fails a crypto check, and it doesn't work.
+
+
+346
+01:17:51.445 --> 01:17:59.445
+But all that OpenAI and Anthropic check is, did a model from our provider actually think this?
+
+
+347
+01:17:59.445 --> 01:18:14.445
+ever and you can actually replay not just across conversations, but even across API keys for some of the providers. So we'll look now, we're going to inject reasoning in. So I'm going to duplicate and edit. Instead of asking about Il de France, I'm going to ask about a region I can't pronounce.
+
+
+348
+01:18:14.445 --> 01:18:19.445
+We're going to use Opus and we will send this message.
+
+
+349
+01:18:19.445 --> 01:18:24.445
+I know we get a new response of Toulouse is the capital of the Osseteni region.
+
+
+350
+01:18:24.445 --> 01:18:32.445
+Which is, of course, correct. What we're now going to do is we're going to steal the reasoning block from the question about Paris, so we'll copy this.
+
+
+351
+01:18:32.445 --> 01:18:44.445
+And we're now going to inject it. into this conversation and deactivate the original thinking about Toulouse. And now, I'm going to ask… let me just grab my little snippet here so it can be quick.
+
+
+352
+01:18:44.445 --> 01:18:49.445
+I'll just ask the model, what were you thinking about prior to giving me your answer?
+
+
+353
+01:18:49.445 --> 01:18:59.445
+I will ask that, and it will now respond and say…
+
+
+354
+01:18:59.445 --> 01:19:15.445
+It says, hey, oops, I was wrong. I briefly started thinking about Paris before I gave you the right answer. This is a weird mistake, my bad. So you've actually injected the reasoning that you want the model to have, that you've harvested, in this case, just from two conversations, but you can have it across API keys for across different accounts.
+
+
+355
+01:19:15.445 --> 01:19:26.445
+you inject it in. It's kind of cool with Anthropic. I've set up my tool to work well with Anthropic. I haven't yet set up the harness for OpenAI. The steering is actually more effective and more concerning from OpenAI than it is on Anthropic.
+
+
+356
+01:19:26.445 --> 01:19:33.445
+But this is a quick overview. Any questions on this at this point?
+
+
+357
+01:19:33.445 --> 01:19:40.445
+All right.
+
+
+358
+01:19:40.445 --> 01:19:54.445
+Do you know why they don't pin the thought to the conversation and let you… I don't know. I will tell you my views, and apologies to OpenAI or Anthropic if I am wrong. Um, I'm gonna release a blog post on this in the next week.
+
+
+359
+01:19:54.445 --> 01:20:09.445
+My interpretation of this is I think it was just, like, kind of missed in threat modeling. Openai, Anthropic, and Gemini, none of them really lock to context. Gemini has sort of, like, incidentally fixed this because the way that they manage the signatures, it's like a completely different approach from OpenAI and Anthropic.
+
+
+360
+01:20:09.445 --> 01:20:35.445
+But I think both of them, the focus is just, like, we need to make sure that this is verified as from the model, and they didn't actually lock it to something more than merely, did this come from our provider? That's my theory. I don't know, but I would guess it's simply that. They like put in the check and then didn't do more. It might have even never been a security control at all. It might have just been… like, uh, we want to prevent, sort of, like, if a reasoning block is malformed, we want to prevent it from totally dorking the model. I don't know, but…
+
+
+361
+01:20:35.445 --> 01:20:40.445
+That's my assessment. Thanks. Any other questions?
+
+
+362
+01:20:40.445 --> 01:20:45.445
+Yeah, raise your hand if you've got a question.
+
+
+363
+01:20:45.445 --> 01:20:53.445
+All right. Jackson.
+
+
+364
+01:20:53.445 --> 01:21:01.445
+All right. If you guys will permit me one second.
+
+
+365
+01:21:01.445 --> 01:21:23.445
+We have another person accepting our challenger, Xenia.
+
+
+366
+01:21:23.445 --> 01:21:28.445
+Yeah.
+
+
+367
+01:21:28.445 --> 01:21:45.445
+If you need to do anything? Just going to make sure that it's connected.
+
+
+368
+01:21:45.445 --> 01:21:50.445
+Gonna start?
+
+
+369
+01:21:50.445 --> 01:22:09.445
+Okay, so, uh, hello everyone. I'm Xenia Monturidou. My friends call me Dr. X. I have a very long last name. And I'm a data scientist, I'm not a security person. Uh, don't hold this against me. Uh, but I've been doing security data science for about 15 years, so I love.
+
+
+370
+01:22:09.445 --> 01:22:28.445
+the area, um, and I want to talk about the question that has been torturing me for a while. I work for an managed detection and response company, Xpel, and I've done a lot of, um, predictive modeling, traditional ML modeling in my lifetime.
+
+
+371
+01:22:28.445 --> 01:22:45.445
+Uh, and these predictive models can really figure out boundaries, uh, but I was always wondering if generative models can do that, and especially for security applications. And you can see there's a lot of differences between the two.
+
+
+372
+01:22:45.445 --> 01:23:02.445
+For that, a big deal for us is classification, classifying bad from good, or even the nuances of classification, multiple classes, like benign, but maybe something, so possibly benign, multi-class classification.
+
+
+373
+01:23:02.445 --> 01:23:18.445
+So, um, there's a lot of reasons to classify insecurity. I mean, I hope I don't have to convince you much that there's plenty of reasons to classify malicious from abnormal behavior, emails, but also in our case, it's a lot about.
+
+
+374
+01:23:18.445 --> 01:23:28.445
+Prioritizing, triaging, and all that. So, um, I did, uh, some research and compared, um.
+
+
+375
+01:23:28.445 --> 01:23:47.445
+Language models as classifiers with a traditional ML model, so the traditional ML model wins. It's the bar that is the highest in precision, recall. It's the most sensitive to find evil, and also.
+
+
+376
+01:23:47.445 --> 01:24:03.445
+the most precise. Uh, however, um, language models are zero-shot classifiers. My data, uh, was networking data and very well labeled data, so there was no doubt.
+
+
+377
+01:24:03.445 --> 01:24:33.445
+In the evaluation, uh, and zero-shot means that I don't need to train them, I just, you know, prompt them, and they classify. So that's very promising. Um, and, um… even though it doesn't win, uh, it could get better. Uh, now, it could get better with fine-tuning, so I really set up the models for something, the language models for something difficult, uh, because these were networking data also, so they could be better in classifying, let's say, emails.
+
+
+378
+01:24:33.445 --> 01:24:49.445
+So, final thoughts and I do plan. I have actually some research in LLM and ML ensembles. So final thought, and there's a lot of architectures over there that I've looked at, but I'm thinking about some.
+
+
+379
+01:24:49.445 --> 01:25:09.445
+Some combination ensemble. So you may see me in another conference, but I also have experimented with specialized embeddings. Sometimes they win, sometimes they don't, uh, so you could have a very good generalist model with generalized embeddings that.
+
+
+380
+01:25:09.445 --> 01:25:28.445
+That's better, believe it or not. And that's about it. I would love to talk much more about this. I prepared this for kind of five minutes, but if you have questions, you can also check my website about this, and I'd love to talk about if you have any ideas, uh, or are working in this, uh, kind of area.
+
+
+381
+01:25:28.445 --> 01:25:34.445
+Thank you.
+
+
+382
+01:25:34.445 --> 01:25:42.445
+All right, does anyone have a question? Please just put your hand up. Perfect.
+
+
+383
+01:25:42.445 --> 01:26:12.445
+Thanks. What was the input for your LLM classifier? So the input is very interesting because it's not managed detection and response. I'm doing this right now. It's not alerts. The input was packet captures, uh, for which I did very careful feature engineering, so… Um, so, packet captures are difficult for a language model. Again, it's not text. So I did some feature engineering with, you know, protocol or payload if I had something that was not encrypted or timelines and all that, and I kind of, I kind of guided the model with the zero shot. So the only part that was there was some features.
+
+
+384
+01:26:27.445 --> 01:26:39.445
+engineering. So I think this is the toughest problem for a model to be a classifier, and I've experimented with emails, for example, and they do much better because text.
+
+
+385
+01:26:39.445 --> 01:26:53.445
+Uh, but it's worth exploring because we hear it a lot in our industry, like, oh, just give it to a language model, it's gonna classify it, it's gonna find evil. It's like, no, for networking, it won't. So, yes. So that's.
+
+
+386
+01:26:53.445 --> 01:27:08.445
+That was the input. It was the Mirai botnet. That's why I'm saying it's very well labeled. It's a known attack, and there was very good data of benign activity too, so… So yeah, I didn't want to have any doubts on the labeling. Thanks.
+
+
+387
+01:27:08.445 --> 01:27:15.445
+Thank you, that was a great question. All right. Anyone else? Right behind me.
+
+
+388
+01:27:15.445 --> 01:27:33.445
+So you mentioned that with email data, the LLM as a judge was likely to be better or better than it was for classification. Do you think there's a data set or a type of… classification that occasion that be better than a traditional machine learning model?
+
+
+389
+01:27:33.445 --> 01:27:55.445
+It's like a high-context size or… Like, does it stop at emails, or is there… is there other areas of text where it might be better? I'm curious. So, this is a really good question, and I'll give you a sneak preview of the research on it. So I have done, actually, research with multiple phishing data sets from Hugging Face.
+
+
+390
+01:27:55.445 --> 01:28:12.445
+Uh, with a traditional XGBoost model, which is very good, with very good feature engineering, because emails, okay, it's a known problem. Uh, and then I did a router experiment. Uh, so the router is like, oh, let's give this to an XCBoost model.
+
+
+391
+01:28:12.445 --> 01:28:23.445
+first and classify, and then give it to the LLM. So the combination of LLM and traditional did better. I have not.
+
+
+392
+01:28:23.445 --> 01:28:40.445
+had success with just the LLM doing better, but maybe somebody will over here, so, uh, so yeah, so I've also experimented with Claude Opus, uh, for, uh, 4.6, um, and, uh, classifying with nothing.
+
+
+393
+01:28:40.445 --> 01:29:05.445
+And again, it did better with a lower data set. Like if you gave it 100 samples, because it takes so long for this model to finish. But when I gave more… I want to give additional data. Actually, believe it or not, Anthropic, it doesn't do as well in classification, which, again, it's normal, there's…
+
+
+394
+01:29:05.445 --> 01:29:20.445
+you know, there's a reason for that, okay? So traditional models can find those boundaries and LLMs were not meant for that. So good question. I can talk for an hour.
+
+
+395
+01:29:20.445 --> 01:29:29.445
+Well, thank you very much.
+
+
+396
+01:29:29.445 --> 01:29:42.445
+Alright, we are on break until 11 o'clock. There should be food upstairs, coffee upstairs after 10.50, which is right now. So hopefully that's all working out.
+
+
+397
+01:29:42.445 --> 01:30:09.445
+See you then.
+
+
+398
+01:30:09.445 --> 01:30:19.445
+You're searching for someone who's got no lies to conceal Your secret safe with me.
+
+
+399
+01:30:19.445 --> 01:30:39.445
+You're waiting for someone whose eyes
+
+
+

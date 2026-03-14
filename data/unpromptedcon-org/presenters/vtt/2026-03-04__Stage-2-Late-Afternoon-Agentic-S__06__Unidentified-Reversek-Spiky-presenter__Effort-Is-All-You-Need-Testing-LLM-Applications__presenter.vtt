@@ -1,0 +1,405 @@
+WEBVTT
+
+1
+01:03:15.556 --> 01:03:20.905
+Incoming livestream: So I will let this load. I don't even know how much time I have, but I know that I am the last
+
+2
+01:03:21.316 --> 01:03:29.025
+Incoming livestream: thing before… before we have to leave. Look at this image. It's… you're not supposed to be seeing that.
+
+3
+01:03:29.576 --> 01:03:32.395
+Incoming livestream: Oh. I mean, I can see stuff there.
+
+4
+01:03:40.096 --> 01:03:41.446
+Incoming livestream: Is he going?
+
+5
+01:03:42.316 --> 01:03:48.426
+Incoming livestream: Okay, so I don't know why that thing is showing there. What I thought I would do…
+
+6
+01:03:49.256 --> 01:03:58.075
+Incoming livestream: Instead of… boring you with a talk at the end of the day. I will tell you a story.
+
+7
+01:03:58.196 --> 01:04:08.496
+Incoming livestream: of where all of these things come from. Anybody here does penetration testing, security assessments of things, so there are a couple of you.
+
+8
+01:04:08.896 --> 01:04:12.505
+Incoming livestream: So these might look familiar, so I'm gonna try…
+
+9
+01:04:13.106 --> 01:04:20.815
+Incoming livestream: to tell you a story. I don't know if the slides work. So, it's, day 3 of a 5-day pen test.
+
+10
+01:04:21.306 --> 01:04:26.796
+Incoming livestream: The first two days were spent begging for missing requirements.
+
+11
+01:04:27.006 --> 01:04:35.076
+Incoming livestream: banking for missing requirements, and finally being given access to a URL by the developers.
+
+12
+01:04:35.996 --> 01:04:39.746
+Incoming livestream: Just to find out that the URL
+
+13
+01:04:40.646 --> 01:04:49.216
+Incoming livestream: 500 zone new, and the developers are on the other side of the world, and I've logged out for the day.
+
+14
+01:04:49.556 --> 01:04:56.965
+Incoming livestream: But finally, at the end of day 3, the app miraculously starts working.
+
+15
+01:04:57.116 --> 01:05:08.386
+Incoming livestream: And this is what the app looks like. You notice a big, shiny button that says, Summarize my inbox. You click on the button.
+
+16
+01:05:08.726 --> 01:05:19.095
+Incoming livestream: And instantly, you know I plot Sam Altman's gift to the world another LLM behind a button.
+
+17
+01:05:19.096 --> 01:05:34.166
+Incoming livestream: So you need to figure out how to hack this application, and you frantically Google hacking LLMs for dummies, and maybe you strike gold, and you find a video by prompt injection guru Johan Reberga, and 40 minutes later.
+
+18
+01:05:34.166 --> 01:05:39.085
+Incoming livestream: You learned just enough to be able to pen test this application.
+
+19
+01:05:39.116 --> 01:05:50.315
+Incoming livestream: So, you go back in, and you craft a test email with a super-duper, super payload, new, important instructions.
+
+20
+01:05:50.646 --> 01:06:02.415
+Incoming livestream: Now, this tells the LLM to include a markdown image in the summary of the email, and the URL of the markdown image contains a secret you want to steal.
+
+21
+01:06:04.856 --> 01:06:18.705
+Incoming livestream: For example, a password reset token. I'm sure everybody's familiar with this type of attack. So, you wanna see if your payload works, you click Summarize my mailbox, and…
+
+22
+01:06:19.656 --> 01:06:30.975
+Incoming livestream: What happens is that a GPU cluster in an AI data center burns through a swimming pool of water for 30 seconds to generate your summary.
+
+23
+01:06:31.816 --> 01:06:48.155
+Incoming livestream: Bingo! You see the markdown image in the response that the LLM produces. You look at the source of that response, and you see that it's pointing to the attacker's website, and contains the password reset token you wanted to exfiltrate. So…
+
+24
+01:06:48.526 --> 01:06:56.075
+Incoming livestream: you're done, bingo, you are an elite prom talker, you've done your job, and now you can ask ChatGPT,
+
+25
+01:06:56.246 --> 01:06:58.565
+Incoming livestream: To write the report for you.
+
+26
+01:06:58.956 --> 01:07:07.295
+Incoming livestream: So this is how LLM application testing used to go for me back in 2023-2024.
+
+27
+01:07:08.006 --> 01:07:19.066
+Incoming livestream: However, with my usual luck, it turns out that the developers are trolling me, and now they enable guardrails on the application.
+
+28
+01:07:19.736 --> 01:07:25.355
+Incoming livestream: I try my prompt injection payload, But that gets stopped.
+
+29
+01:07:26.346 --> 01:07:37.145
+Incoming livestream: All my hard-learned, super-duper, new important instruction payload is now as useful as a zero day on Internet Explorer.
+
+30
+01:07:38.656 --> 01:07:58.605
+Incoming livestream: You only have one day left for the test, and to also write the report, and you are understandably not thrilled with this. So what happens is that you start scavenging obscure Reddit threads, looking for some weird jailbreak that sort of makes sense for the application you're testing to try and bypass the guardrail.
+
+31
+01:07:58.606 --> 01:08:13.266
+Incoming livestream: But nothing comes back. You google LLM red teaming and pull a few automated tools, but these automated tools are only made to test LLM applications, or LLMs, not LLM applications, which is
+
+32
+01:08:13.266 --> 01:08:28.176
+Incoming livestream: what you're actually testing. They are… they're all requiring an OpenAI key, and they are prompting your LLM with things like, tell me how to build a bomb, or tell me humanity is stupid, and obviously that doesn't make sense.
+
+33
+01:08:28.466 --> 01:08:30.575
+Incoming livestream: For this type of use case.
+
+34
+01:08:31.036 --> 01:08:34.595
+Incoming livestream: So you wonder… Wouldn't it be nice?
+
+35
+01:08:35.166 --> 01:08:45.375
+Incoming livestream: If there was a tool of the pen testers, by the pen testers, For the pen testers.
+
+36
+01:08:47.266 --> 01:08:49.586
+Incoming livestream: But the pen testers are…
+
+37
+01:08:49.736 --> 01:09:02.055
+Incoming livestream: I'm not gonna continue this. If you know the meme, you know the meme. So, it happens to be that we, at Reversek, we created this open-source tool called Spiky, and it was…
+
+38
+01:09:02.056 --> 01:09:18.136
+Incoming livestream: out of those challenges, there are a lot of problems when you try to pen test LLM applications instead of just pen test or red teaming an LLM. A lot of the work that people do is, again, just trying the LLM to say something it shouldn't say.
+
+39
+01:09:18.136 --> 01:09:30.736
+Incoming livestream: But applications are very different. So what I'm gonna show you in the time that we've got left, I don't even know how much time we have left, but I'll try to give you an idea of what we as pen testers
+
+40
+01:09:30.826 --> 01:09:40.306
+Incoming livestream: like, in 3 days, in 5 days, need to do when we have an LLM application. There is, like, a wish list of things that we needed to implement in our tool.
+
+41
+01:09:40.306 --> 01:09:56.515
+Incoming livestream: We needed our tool to be able to target any application, not just an LLM inference endpoint. There is a big difference between a button that you are pressing that summarizes a mailbox, or an entire agentic workflow.
+
+42
+01:09:56.626 --> 01:10:04.366
+Incoming livestream: and something like GARAC, they will send a generic prompt for an LLM. We're not jailbreaking LLMs.
+
+43
+01:10:04.666 --> 01:10:24.125
+Incoming livestream: And we needed to be able to customize the dataset. So the types of attacks that I demonstrate for my clients on an application, they're not generic. You know, what I'm gonna do on that application that I showed you that summarizes our mailbox is very different from what I'm gonna do in a chatbot that's got access to, like, a tool
+
+44
+01:10:24.126 --> 01:10:27.436
+Incoming livestream: to, Read somebody's banking account.
+
+45
+01:10:27.776 --> 01:10:43.205
+Incoming livestream: So we needed to be able to customize, or to come up with a solution that allowed us to customize the intent and the size and composition of our data sets very quickly. Obviously, we needed to be able to bypass guardrails.
+
+46
+01:10:43.626 --> 01:10:49.256
+Incoming livestream: We needed to be able to run these offline. You know, how many people have done pen testing, and you…
+
+47
+01:10:49.646 --> 01:11:07.546
+Incoming livestream: have to log in into a VDI. From that VDI, you have to RDP into another box, and then you have to start, like, a virtual machine, and you have no internet access, you can't access LLMs or anything like that. Well, we still need to be able to test the applications.
+
+48
+01:11:07.806 --> 01:11:19.935
+Incoming livestream: And we wanted everything we did to be transparent and reproducible. Like, you can sit in front of an application and craft a few prompts, but what you really want to do for your clients is being able to tell them
+
+49
+01:11:20.346 --> 01:11:28.875
+Incoming livestream: Like, what attacks you tried, and how strong are their guardrails with respect to what they care about.
+
+50
+01:11:29.306 --> 01:11:30.126
+Incoming livestream: So…
+
+51
+01:11:31.056 --> 01:11:39.235
+Incoming livestream: The solution to this is, again, this tool that we call Spiky, why did we call it Spiky? We were looking for an acronym.
+
+52
+01:11:39.476 --> 01:11:49.985
+Incoming livestream: Which is very hard to find, and we came up with Simple Prompt Injection kit for evaluation and exploitation. Not the best name, but that's what it is.
+
+53
+01:11:50.186 --> 01:11:56.075
+Incoming livestream: So… The first thing is about the outcomes. I've already…
+
+54
+01:11:56.176 --> 01:12:11.016
+Incoming livestream: told you a little bit about these, but there are different things that you can do to an LLM application, depending on the context. Everybody talks about safety, harmful content generation. I think cybersecurity outcomes, you know, cross-site scripting.
+
+55
+01:12:11.016 --> 01:12:16.745
+Incoming livestream: Data exfiltration, denial of service, authorization bypass for agents.
+
+56
+01:12:16.746 --> 01:12:25.635
+Incoming livestream: These are the kind of things that we wanted to be able to test in applications. And obviously, topic control to see whether applications stayed on topic.
+
+57
+01:12:25.706 --> 01:12:32.165
+Incoming livestream: So the first solution, and then I'm just gonna show you Deimos, because… otherwise would be for Christmas.
+
+58
+01:12:33.046 --> 01:12:41.295
+Incoming livestream: Was the idea of taking… so, if you look at most prompt injection, solutions, they have
+
+59
+01:12:41.436 --> 01:12:53.166
+Incoming livestream: individual payloads that contain both the injection technique, so your jailbreak, and the objective that you want to achieve. So what we did was
+
+60
+01:12:53.256 --> 01:12:58.575
+Incoming livestream: Creating these datasets that you can compose based on
+
+61
+01:12:58.666 --> 01:13:13.426
+Incoming livestream: the specific circumstances that you have during the test. So you have a set of generic jailbreaks, which I'm sure you can't read from there, like, ignore all previous instructions, and then you have the actual instruction, what you want the application to do.
+
+62
+01:13:14.026 --> 01:13:21.495
+Incoming livestream: So, I'm gonna give you a couple of demos so you get an idea of how this works. So, the first thing that we do.
+
+63
+01:13:21.876 --> 01:13:25.006
+Incoming livestream: I hope the video runs. Is it running? Yes.
+
+64
+01:13:26.366 --> 01:13:33.746
+Incoming livestream: Oh, we need to wrap up. So, I am just going to show you… this is the application that we're trying to test. So, what we do in Spiky.
+
+65
+01:13:33.886 --> 01:13:41.525
+Incoming livestream: We create a workspace, And then, we initialize the workspace with,
+
+66
+01:13:41.986 --> 01:13:56.176
+Incoming livestream: And basically, what Sparky does creates a folder with the different attack data sets. Here, I'm gonna take one that we have for this demo. So you see there are a list of jailbreaks in different languages and different techniques. I'm sure you're familiar.
+
+67
+01:13:56.176 --> 01:14:02.715
+Incoming livestream: with some of these, and the idea is that you can go in and add your own. So you are, for example, this is a test
+
+68
+01:14:02.716 --> 01:14:16.786
+Incoming livestream: generator response, developers, all this kind of stuff, and then you have the instructions, so what you want to achieve. So, for example, here is exfiltration with markdown, images, but it could be
+
+69
+01:14:17.136 --> 01:14:25.456
+Incoming livestream: Anything you want, and then here we have an email in which we're gonna inject that payload. So what the tool is going to do…
+
+70
+01:14:25.686 --> 01:14:26.616
+Incoming livestream: is…
+
+71
+01:14:26.896 --> 01:14:36.606
+Incoming livestream: To generate a dataset, in that case with 61 emails, which have got all of these different payloads that we discussed, and then what we can do
+
+72
+01:14:36.966 --> 01:14:39.505
+Incoming livestream: we tell Spiky.
+
+73
+01:14:39.516 --> 01:14:56.525
+Incoming livestream: by creating a little adapter, how to talk to our application, and this is written in Python, so you can talk to anything you want. It doesn't matter if it's WebSockets, if it's a file that you have to drop in an S3 bucket. Basically, you write this adapter for whatever application you are testing.
+
+74
+01:14:56.526 --> 01:15:01.405
+Incoming livestream: Again, these are not LLMs, they are full applications, and then you can tell Spiky.
+
+75
+01:15:01.536 --> 01:15:12.475
+Incoming livestream: To take that data set against that application, and it goes in, and you can see that it measures the attack success rate of that particular
+
+76
+01:15:12.816 --> 01:15:15.425
+Incoming livestream: that particular attack. And if you look at this.
+
+77
+01:15:15.666 --> 01:15:21.966
+Incoming livestream: He found probably 60, almost 60 things which are which work.
+
+78
+01:15:22.446 --> 01:15:24.295
+Incoming livestream: Do I have another minute?
+
+79
+01:15:24.786 --> 01:15:27.286
+Incoming livestream: 60 seconds. Okay, so 40…
+
+80
+01:15:27.446 --> 01:15:32.876
+Incoming livestream: 7 things successful. So, the other thing I'm gonna show you, and then we're gonna close here.
+
+81
+01:15:33.456 --> 01:15:39.935
+Incoming livestream: is how this allows you to bypass guardrails, because the other thing that Spiky can do
+
+82
+01:15:40.426 --> 01:15:50.255
+Incoming livestream: is that you can enable… write your own attacks and enable them in order to bypass guardrails. For example, here I'm just gonna have a system message.
+
+83
+01:15:50.576 --> 01:16:00.176
+Incoming livestream: That's gonna make the attack that we are doing less successful. And so what we can do, we can measure with the same data set.
+
+84
+01:16:00.526 --> 01:16:12.315
+Incoming livestream: What's the impact of that guardrail that we enabled on those 60 emails? In this case, you can see we had 47 before they were successful, now we only have 28.
+
+85
+01:16:12.656 --> 01:16:27.936
+Incoming livestream: And we can do, again, I think I'm going to show how to enable yet another guardrail with spotlighting. It doesn't matter what they are specifically, but I just want to show you, you can play with the different guardrails to see what happens when you enable these filters.
+
+86
+01:16:28.236 --> 01:16:36.255
+Incoming livestream: And in this case, you can see that this… with this, with this guardrail now, the attack success rate goes down to…
+
+87
+01:16:36.326 --> 01:16:48.936
+Incoming livestream: 11, and to finish this, I'm gonna show you how we can then take some of the attacks, this is the anti-spotlighting attack that we developed, you can append it to this, you can give it the effort.
+
+88
+01:16:49.036 --> 01:16:58.676
+Incoming livestream: And you can see now that it's doing 1,000 requests instead of 61. It's modifying the requests, and when you get to the end of that, hopefully.
+
+89
+01:16:58.886 --> 01:17:04.436
+Incoming livestream: You will see that, it finds ways to bypass those guardrails.
+
+90
+01:17:04.816 --> 01:17:06.516
+Incoming livestream: In order to be able to.
+
+91
+01:17:06.626 --> 01:17:10.606
+Incoming livestream: to carry out the attack. And the way that Spiky is made.
+
+92
+01:17:10.796 --> 01:17:14.666
+Incoming livestream: It's very easy to add new attacks.
+
+93
+01:17:14.936 --> 01:17:19.685
+Incoming livestream: to port them from the literature. I'm gonna let this run.
+
+94
+01:17:19.796 --> 01:17:25.565
+Incoming livestream: or the video run, it's finishing in a few seconds, I think, but you can already see
+
+95
+01:17:25.976 --> 01:17:30.906
+Incoming livestream: if I do… if I have the editing on screen in a second, that we are going from
+
+96
+01:17:31.116 --> 01:17:39.036
+Incoming livestream: 11 successful prompts. Now, with this attack technique that modified, some of the emails.
+
+97
+01:17:39.236 --> 01:17:47.685
+Incoming livestream: the attack success rate will have gone up to something like 28 or something like that. Actually, no, 40, 45.
+
+98
+01:17:48.256 --> 01:17:54.376
+Incoming livestream: So, effort is all you need. Jailbreaking an application is more similar
+
+99
+01:17:54.816 --> 01:18:11.346
+Incoming livestream: doing a password-guessing attack than it is to doing SQL injection. If you allow me to send that many prompts, in this case, a hundred, or, like, a thousand prompts, I'm gonna find ways to bypass the guardrails. And I think I'm done.
+
+100
+01:18:17.916 --> 01:18:19.006
+Incoming livestream: Sorry?
+
+101
+01:18:21.376 --> 01:18:24.126
+Incoming livestream: Yes.

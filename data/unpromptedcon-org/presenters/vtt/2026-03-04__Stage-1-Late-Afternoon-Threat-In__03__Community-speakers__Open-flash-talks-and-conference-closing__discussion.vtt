@@ -1,0 +1,893 @@
+WEBVTT
+
+1
+00:53:08.355 --> 00:53:14.144
+Incoming livestream: So, I'm gonna give it to him, and I'm gonna count 30 seconds, although Aaron is nice with the 3 minutes. Go!
+
+2
+00:53:14.735 --> 00:53:32.685
+Incoming livestream: Hello. I wouldn't call myself the smartest person in the room, definitely not. I agree with the doomed assessment, but I think we can enable more things than disable. So, I think my hot take, I've written papers about this, the most triggering one, especially if you're a cryptographer, I was just chatting with some cryptographers, is that I think…
+
+3
+00:53:32.765 --> 00:53:40.094
+Incoming livestream: trusted AI models enable a new kind of private inference, whereby you don't need cryptography anymore.
+
+4
+00:53:40.275 --> 00:53:52.255
+Incoming livestream: So, normally, you need cryptography because, say I wanted to pass a message to Gadi, but he lives in another country and somebody travels there, so I need to trust a third party to give my message to and pass it on, right?
+
+5
+00:53:52.255 --> 00:54:03.475
+Incoming livestream: But, basically, what I'm arguing is that these models, for many use cases, can become such trusted models under quite different trust assumptions that we're commonly used to.
+
+6
+00:54:03.475 --> 00:54:07.025
+Incoming livestream: To give you an example, like, with cryptographers, I tend to talk about
+
+7
+00:54:07.025 --> 00:54:14.904
+Incoming livestream: Yao Millionaire's problem. Let's say I have some money, Gaddy has some money, wanna find who's richer without showing each other how much money we have?
+
+8
+00:54:14.905 --> 00:54:32.655
+Incoming livestream: We can imagine a setup in which we both agree on the model. Let's say we say German models are unbiased for the purposes, we tested them, they can do this. We both agree on a prompt that goes into the model, like, which number is bigger, the first or the second? We both agree that we type in into the keyboard connected into the model a number.
+
+9
+00:54:32.745 --> 00:54:46.335
+Incoming livestream: And then we both agree that the output of the model can only be the first or the second, and nothing but. And in this setup, it becomes quite clear that you no longer need to put this complex, crazy complex FHE scheme inside.
+
+10
+00:54:46.355 --> 00:55:04.754
+Incoming livestream: And then, bam, it works. And I think the killer application for this is in trusted execution environments, where people don't want to give you the code to run attestation over. What you can do is, you can load the model to become a private auditor and ask questions about the code base that is loaded inside, over which you can't compute hashes.
+
+11
+00:55:04.875 --> 00:55:14.345
+Incoming livestream: And, yeah, so I think we live in the world in which these models can enable, like, private inference of a new kind for many of the problems.
+
+12
+00:55:15.805 --> 00:55:18.294
+Incoming livestream: I don't know if it was a half a minute.
+
+13
+00:55:20.385 --> 00:55:37.254
+Incoming livestream: Thank you, Ilya. Greg, run in. Come on, people, line up. Just, it can be a thought, like, my God, I love Cloud Code. Anybody wants to say that? My god, I love Cloud Code. Cursor, Copout, anybody. Just, if you have a thought, if something hit you during this conference, we're only gonna do this for a few minutes, come up. You're up.
+
+14
+00:55:37.394 --> 00:55:43.035
+Incoming livestream: Awesome. Hi, I'm Greg, I'm the Chief Security Officer for Expel.
+
+15
+00:55:43.314 --> 00:56:06.275
+Incoming livestream: I don't know about you guys, but I'm, like, utterly blown away by some of the stuff that I heard here this… the past two days. Like, my mind is, like, full of, like, the new possibilities, and, like, frankly, some of them are amazing, and some of them are terrifying. But I think, one of the things I really took away from this is we are absolutely not ready for this, for what's happening right now.
+
+16
+00:56:06.274 --> 00:56:10.434
+Incoming livestream: And we… I think I have two asks for everybody that's here.
+
+17
+00:56:10.434 --> 00:56:34.655
+Incoming livestream: One, we gotta go out and make sure that our companies and our families and our friends understand what happened here the past two days, and the new ideas and the things that are coming. We have to go out and make sure that we're getting our companies and our families ready. And number two, my second ask is, if you've still got any AI skeptics in your network, if you've still got anyone you talk to who is, like, not sure this is real or this is coming.
+
+18
+00:56:34.655 --> 00:56:48.355
+Incoming livestream: Those are the people we need to reach out and grab ahold of and give a hug, because they have no idea what's coming. So, I want to thank you all for an amazing two days. I really feel like we marked a moment together, and I'm looking forward to doing it again. Thank you.
+
+19
+00:56:52.845 --> 00:57:12.765
+Incoming livestream: Hey, so I'm Chris Blanco, I'm here from ClickUp, I'm the head of application security over there, and I do a lot of product design as well. And that's just because that's what I've done a lot in my career, and at ClickUp, it's become really important, because here we're dealing with a situation that I haven't heard very many people here talk about yet, where you're developing product.
+
+20
+00:57:12.765 --> 00:57:17.374
+Incoming livestream: And as you're developing product, you're realizing that you're building a platform for agents to run on top of.
+
+21
+00:57:17.595 --> 00:57:35.545
+Incoming livestream: And so, for context, like, what ClickUp has is this space where everyone's got a workspace, it's combining all your productivity tools into one place, context is all available, it makes our agents really powerful, and we control, like, an agent system prompt, and otherwise developers, users get to put their own things on top of it with tools, integrated MCP servers, etc.
+
+22
+00:57:35.545 --> 00:57:38.435
+Incoming livestream: And I'm really growing concerned about this.
+
+23
+00:57:38.435 --> 00:57:43.255
+Incoming livestream: Because we are creating the situation which is different from what all of you have talked about.
+
+24
+00:57:43.315 --> 00:57:47.575
+Incoming livestream: A lot of us have talked about things that are, like, what I'll coin as a single-player problem.
+
+25
+00:57:47.685 --> 00:57:54.264
+Incoming livestream: Where you've got one agent, and you're trying to monitor the actions of that one agent on that one endpoint, and how it interacts with those other systems.
+
+26
+00:57:54.325 --> 00:58:11.034
+Incoming livestream: But I'm worried about what I'll call a gossip problem in this multiplayer environment, where we've got different people with different scopes of access, with different agents that might have different contexts and access to different external systems, and all of them are really eager to please you and each other.
+
+27
+00:58:11.175 --> 00:58:30.375
+Incoming livestream: And they're listening to each other, because they're all in the same workspace. And so it's really trivial for one bit of information to go from one agent to another faster than anyone can reasonably control it, and data control is quickly going out the window, despite us having the ability to add a check at first time of first agent check. But if someone summarizes something as an intent.
+
+28
+00:58:30.375 --> 00:58:38.144
+Incoming livestream: and drops in some other object, we quickly have to start thinking about, well, where the hell else is that gonna go? And that's going faster than we can reasonably control.
+
+29
+00:58:38.145 --> 00:58:48.435
+Incoming livestream: And so, like, I think about this a lot. There are probably some intelligent things that we can do within our own workspace to tag information that says something like, well, hey, I know that that is coming from an external source.
+
+30
+00:58:49.065 --> 00:58:54.994
+Incoming livestream: Anyway, I probably would be interested in talking to some other people about this afterwards, so if you're interested in product design, let me know.
+
+31
+00:59:00.855 --> 00:59:02.384
+Incoming livestream: Is that timer working?
+
+32
+00:59:02.555 --> 00:59:27.544
+Incoming livestream: Cool. Hi, folks. My name is Ariana. I'm super excited to be here. Thank you. I just want to spend a minute and 54 seconds, or less, talking about how I'm a cybersecurity researcher who was an AI skeptic and is no longer. And so my background is in data-driven security. I take a bunch of data about the world and try to figure out how can we make things safer for people across the internet. And recently, I have really been drawn
+
+33
+00:59:27.545 --> 00:59:35.645
+Incoming livestream: to this problem of pig butchering. Who has gotten a text that says, hey John, what's up? Are we ready for golf?
+
+34
+00:59:36.415 --> 00:59:37.265
+Incoming livestream: Yeah?
+
+35
+00:59:37.265 --> 01:00:01.884
+Incoming livestream: Hey! Exactly. Great, great. It turns out that this sort of scam is new, it's growing in size, it is a multi-billion dollar industry. And I, as a researcher, have data that shows that they are not using AI yet to scale it, right? There's a ton of news on this. This problem is being propagated by, unfortunately, human trafficking victims.
+
+36
+01:00:02.185 --> 01:00:26.815
+Incoming livestream: However, they can start to use AI to scale even more, make it smarter, make it better, and enact more harm. And so, I am with a team right now, and we are trying to defend people by combining cybersecurity and AI, 45 seconds, to stop this problem. And so, as someone who has recently become less of an AI skeptic, I'd like to propose
+
+37
+01:00:26.815 --> 01:00:43.854
+Incoming livestream: pose to folks to think about the ways that we can use AI defensively to protect victim, to protect our families, to protect our friends, because these problems are growing in size, they are growing in scale. They're gonna start using the AI tools, we should as well.
+
+38
+01:00:44.045 --> 01:00:45.784
+Incoming livestream: Thanks, folks. I'm Ariana.
+
+39
+01:00:49.145 --> 01:00:50.185
+Incoming livestream: Thank you.
+
+40
+01:00:51.775 --> 01:00:52.785
+Incoming livestream: Hi, everyone.
+
+41
+01:00:53.625 --> 01:01:07.314
+Incoming livestream: probably gonna be faster than 2 minutes. My name is Art. I, represent today a team at my company called Kraken. We are kind of like a mix of, people with,
+
+42
+01:01:07.405 --> 01:01:18.895
+Incoming livestream: let's call it a lot of cyber warfare, specifically exposure, AI researchers, as well as commercial cyber researchers. And I'm here today to just
+
+43
+01:01:19.045 --> 01:01:25.094
+Incoming livestream: Ask you maybe for some feedback. Check out our latest research on
+
+44
+01:01:25.315 --> 01:01:38.625
+Incoming livestream: mechanistic interpretability of some of the LLMs, where we, do feature ablation and obliteration of some of the biggest models out there, and we, probably one of the only teams who
+
+45
+01:01:38.625 --> 01:01:46.775
+Incoming livestream: we kind of pitch… figured out a so-called domain-specific, cybersecurity-specific feature ablation. I would want to ask
+
+46
+01:01:46.785 --> 01:02:05.725
+Incoming livestream: AI researchers out here. Maybe, maybe I can do it this way. So, there is a website, C-R-A-C-K-E-N dot AI. Go to blog, check out our research, give us feedback. You can find me on LinkedIn. Thank you.
+
+47
+01:02:09.795 --> 01:02:27.655
+Incoming livestream: Hey, good afternoon, everybody. I'm Rob Joyce, former NSA, and I'm here to implore the CISOs and the security teams who are in attendance to think about getting Agentic red teaming running on your networks continuously. Why?
+
+48
+01:02:27.705 --> 01:02:44.305
+Incoming livestream: I'll tell you, past life, I led the hackers of NSA, and we succeeded not because we had amazing people, which we did, not because we had some amazing tools, which we did, but because we knew more about the networks than the people who owned them.
+
+49
+01:02:44.395 --> 01:03:07.744
+Incoming livestream: operated and defended them, and sometimes more than the security products that they used inside the networks themselves. And so what I'm telling you is the agentic wave that's coming at us right now is doing that detailed research. It's finding the hidden latent flaws, it's finding the unpatched pieces, it's finding
+
+50
+01:03:07.745 --> 01:03:26.725
+Incoming livestream: the shadow IT and is finding the misconfigurations at scope and scale. And so you want to pay for that Agentic red teaming, because whether you like it or not, somebody's going to do it to you, and you're going to want to get the outcomes and outputs of that Agentic survey. So, thanks.
+
+51
+01:03:32.295 --> 01:03:39.415
+Incoming livestream: Hi, I'm Andrew. I'm here because I wanted a new fun fact, which is talking after Rob Joyce.
+
+52
+01:03:40.095 --> 01:03:52.224
+Incoming livestream: Actually, I just had a quick idea from the last talk in terms of moving from the limitations of Cloud Code. You have, like, an agent that's local. How do I get it to becoming, basically, its own self?
+
+53
+01:03:52.255 --> 01:04:02.494
+Incoming livestream: fulfilling, it has the context that it needs, you know, running on its own agent. Like, I do security operations, I have a triage agent that I run in Cloud Code.
+
+54
+01:04:02.495 --> 01:04:07.834
+Incoming livestream: Now I need to spend another few hours making sure that it runs in a loop, like in a system.
+
+55
+01:04:07.835 --> 01:04:25.705
+Incoming livestream: like Tines, and it has all the contacts that it needs. How do I do that really well? I have no idea, so I'm gonna go and screw around and find out, and then I'm gonna do it again the next week for the next problem. So, I don't know if this is a new startup idea for somebody, because I don't want to do that, but if you can make that easier for me, I'll pay you to do it.
+
+56
+01:04:27.105 --> 01:04:28.185
+Incoming livestream: Thank you.
+
+57
+01:04:32.845 --> 01:04:38.344
+Incoming livestream: Hello! I just wanted to come up and say one thing that I didn't really hear a lot about
+
+58
+01:04:38.475 --> 01:04:44.814
+Incoming livestream: that I'm taking a huge interest in is local models. I know that we're using
+
+59
+01:04:44.985 --> 01:04:47.144
+Incoming livestream: The cloud, and the power there.
+
+60
+01:04:47.845 --> 01:04:55.014
+Incoming livestream: to do some really amazing stuff, agentic stuff. But there is local models that are capable
+
+61
+01:04:55.125 --> 01:05:02.195
+Incoming livestream: And they will finish the last 10% that Claude might not be willing to do, might push back on.
+
+62
+01:05:02.485 --> 01:05:05.434
+Incoming livestream: And, if you just buy a few GPUs.
+
+63
+01:05:05.655 --> 01:05:10.194
+Incoming livestream: you can get those things to happen. And, so if anybody's running local stuff.
+
+64
+01:05:10.425 --> 01:05:17.724
+Incoming livestream: I have 8 3090s, and it's fantastic, it's working great. So, come and talk to me after. Thanks.
+
+65
+01:05:23.355 --> 01:05:43.355
+Incoming livestream: Hello, my name is Garib. I'm the founder and CEO of a company called Archaea. We are a secure runtime to build agents in regulated domains. One of the coolest things we built is that we separated the agent identity from the underlying code that it actually runs it. This makes AI agents,
+
+66
+01:05:43.355 --> 01:05:51.394
+Incoming livestream: runnable on any platform, interoperable with any LLM, and we are looking to build a specification.
+
+67
+01:05:52.165 --> 01:05:52.995
+Incoming livestream: Awesome.
+
+68
+01:05:53.655 --> 01:05:56.195
+Incoming livestream: No pictures. Oh, you lost your chance. Next.
+
+69
+01:05:56.425 --> 01:06:13.625
+Incoming livestream: I wanted to extend the specification. I understand, should have gone for the specification. I love you, but no pictures. Yeah, I was just an asshole and pulled somebody off stage. I apologize, everybody. I'm sure he's a great guy, but no pictures. Okay, so anybody else wants to come now and speak about something? Last chance?
+
+70
+01:06:13.935 --> 01:06:17.035
+Incoming livestream: Or forever, forever… oh, come up, come up, sir.
+
+71
+01:06:17.435 --> 01:06:21.694
+Incoming livestream: If you can think of something from what you guys do that is not a pitch, you can come back up, sir.
+
+72
+01:06:23.185 --> 01:06:38.195
+Incoming livestream: It's kind of ironic. I was just about to say, like, this is one of the greatest conferences that didn't have any pitches. I didn't feel like people were selling stuff, and so I hope that culture, like, stays during the next event. I know everyone, or most people here are on Slack.
+
+73
+01:06:38.195 --> 01:06:48.014
+Incoming livestream: I know when I go back to work, I'm gonna be on my own, and I'll… but I will poke back in every now and then. I'm hoping everyone else does, because I think we already have a great community on that Slack, and I'm prompted, so…
+
+74
+01:06:48.015 --> 01:06:48.995
+Incoming livestream: Stay in touch.
+
+75
+01:06:51.945 --> 01:06:52.695
+Incoming livestream: Thank you.
+
+76
+01:06:54.395 --> 01:07:04.734
+Incoming livestream: Hey everybody, my name's Josh, massivescale.ai. One thing, really focused on It's trying to simplify
+
+77
+01:07:05.355 --> 01:07:07.735
+Incoming livestream: All of these messages to your leaders.
+
+78
+01:07:08.605 --> 01:07:15.584
+Incoming livestream: This started because my wife is very interested in AI, but she never understood anything I'm talking about.
+
+79
+01:07:15.765 --> 01:07:20.065
+Incoming livestream: And everything you guys talked about here, amazing.
+
+80
+01:07:20.525 --> 01:07:24.265
+Incoming livestream: If you saw Carl's talk yesterday,
+
+81
+01:07:25.385 --> 01:07:34.184
+Incoming livestream: intercepting attention layers within a model to put quality gains, like, amazing, mind-blowing. I think it makes sense to all of us.
+
+82
+01:07:35.315 --> 01:07:41.765
+Incoming livestream: But, to the point about Going home and teaching everybody what we're facing.
+
+83
+01:07:42.055 --> 01:07:45.055
+Incoming livestream: I think, think about simplifying this.
+
+84
+01:07:45.175 --> 01:07:50.524
+Incoming livestream: And I like to think about it as, like, an intern, or a digital employee.
+
+85
+01:07:51.715 --> 01:08:05.595
+Incoming livestream: The way I've explained it to some of the leaders that have resonated is, you know, would you give your intern keys to the safe, a very difficult job, or would you make them earn… earn autonomy?
+
+86
+01:08:06.015 --> 01:08:09.365
+Incoming livestream: Trust is earned, it's not granted.
+
+87
+01:08:09.875 --> 01:08:14.284
+Incoming livestream: When I explain these things to the leaders I work with, they get it.
+
+88
+01:08:14.395 --> 01:08:19.695
+Incoming livestream: I just published a Gentic Trust Framework on Cloud Security Alliance's blog.
+
+89
+01:08:19.835 --> 01:08:22.925
+Incoming livestream: It talks about 5 simple questions.
+
+90
+01:08:23.125 --> 01:08:26.355
+Incoming livestream: that are very simple. Who are you?
+
+91
+01:08:26.455 --> 01:08:29.995
+Incoming livestream: Identity. What are you doing? Behavior.
+
+92
+01:08:30.215 --> 01:08:35.484
+Incoming livestream: Where are you going? Segmentation. What are you eating, and what are you serving?
+
+93
+01:08:35.905 --> 01:08:40.334
+Incoming livestream: Data inputs, data governance. And what if you go rogue?
+
+94
+01:08:40.425 --> 01:08:58.684
+Incoming livestream: Which is anomaly detection, right? It's 5 very simple questions, and if you think about Agentech AI as a digital worker, and you explain these 5 questions, the normies get it, right? If you can get the normies to get it, then they can actually do something about it. Check it out.
+
+95
+01:09:05.435 --> 01:09:15.695
+Incoming livestream: Hi everyone, it's an amazing conference, thank you. Ragini from… Ragini Ramalingam from Snowflake. I… we've heard so much about.
+
+96
+01:09:16.045 --> 01:09:30.074
+Incoming livestream: all of the problems and all of the threats, associated with AI, and all the enterprises are adopting AI at breakneck speed, including ours. And the biggest challenge
+
+97
+01:09:30.075 --> 01:09:51.884
+Incoming livestream: you know, being on the enterprise security side is that all of… most of the AI tools that are adopted in the enterprise do not have enterprise-grade controls, security controls. And features get released, but, you know, security controls are an afterthought, or we have to work with vendors to get them in. So if we can come together as a community and actually
+
+98
+01:09:51.885 --> 01:10:09.795
+Incoming livestream: influence our GenAI tools and, you know, AI tool vendors to actually bake in enterprise-grade security controls as they release features, I think that would be a great win. And if anyone's interested in partnering, you know, please hit me up on LinkedIn. Thank you.
+
+99
+01:10:11.555 --> 01:10:18.374
+Incoming livestream: So, we didn't define no pitches, and therefore I'm very happy to invite this wonderful person back to talk to us about AI security.
+
+100
+01:10:21.975 --> 01:10:25.155
+Incoming livestream: So, to continue my nut pitch,
+
+101
+01:10:25.775 --> 01:10:35.024
+Incoming livestream: We believe that we want to build, verifiable AI agents. In order to make them verifiable, we need something to identify, or what is an AI agent?
+
+102
+01:10:35.025 --> 01:10:59.915
+Incoming livestream: So we are hoping to work on open specification to define exactly what an AI agent is, what makes up an AI agent, because we see AI agents are becoming economic actors, they can actually buy things on our behalf, they are making decisions that affect real people and real money. So when a decision is made, how can we point to something to say, that is the agent that made that decision, and we think an open specification for an AI agent is needed?
+
+103
+01:10:59.975 --> 01:11:03.644
+Incoming livestream: So, that's what we are working on. If you're interested, please talk to me. Thank you.
+
+104
+01:11:05.405 --> 01:11:10.754
+Incoming livestream: That was a pitch. That was 100% a pitch, and I ended up being an asshole again, because you're not coming back up.
+
+105
+01:11:10.895 --> 01:11:17.515
+Incoming livestream: Okay, I would really like to thank, before we finish this conference, Aaron.
+
+106
+01:11:17.875 --> 01:11:19.015
+Incoming livestream: Who has been…
+
+107
+01:11:24.175 --> 01:11:32.365
+Incoming livestream: Yeah, I mean, this guy has been working around the clock here, just making sure everything runs smoothly on the stage. He has to run in, like, one minute.
+
+108
+01:11:32.555 --> 01:11:38.395
+Incoming livestream: And he had to deal with me. And my schedule changes. Does anyone watch Taskmaster?
+
+109
+01:11:39.535 --> 01:11:44.454
+Incoming livestream: Does anyone get, like, a vibe here? I do everything it tells me, I promise you.
+
+110
+01:11:45.425 --> 01:11:53.904
+Incoming livestream: Just saying. Thank you, truly. Cheers. This was fun. This was super fun. I'm glad we did this, and I hope we get to do it again.
+
+111
+01:11:54.145 --> 01:12:02.425
+Incoming livestream: Oh, hell no. So… Final words, final words. I guess that's my role here today.
+
+112
+01:12:04.485 --> 01:12:05.665
+Incoming livestream: I wrote notes.
+
+113
+01:12:06.005 --> 01:12:07.634
+Incoming livestream: Because memory sucks.
+
+114
+01:12:09.465 --> 01:12:12.585
+Incoming livestream: Before the notes, actually. I told you…
+
+115
+01:12:12.905 --> 01:12:16.854
+Incoming livestream: Yesterday morning, that usually people thank their sponsors.
+
+116
+01:12:17.015 --> 01:12:36.544
+Incoming livestream: And in this particular case, I wanted you to actually find them and shake their hands, because these people came in when they had no reason to. They couldn't get the list of attendees, they couldn't get talks, they couldn't get anything, and they gave us money anyway. Especially last minute, two weeks, a week before the con, when we had to grow into 700 people.
+
+117
+01:12:36.545 --> 01:12:42.565
+Incoming livestream: to let, like, 400 people off the waiting list. These people just came in and gave us money expecting nothing, just for the community.
+
+118
+01:12:42.575 --> 01:12:53.144
+Incoming livestream: So if you end up seeing any of them… I mean, Nostic is me, you know me already, but Dak Tech with Kyle, and honestly, Kyle made this thing happen, he's fucking incredible, right? I'll…
+
+119
+01:12:53.605 --> 01:13:05.825
+Incoming livestream: White Rabbit, Halcyon Futures, and Alcyon Ventures, just shake their hands. Remember, they cared about this community without asking for anything. So, thank you to them, really. So, just thank our sponsors, thank people who cared about the community.
+
+120
+01:13:11.005 --> 01:13:23.725
+Incoming livestream: Second bit is we are fine our footing. We don't know exactly what we are. We are a community conference, and usually I keep those at under 200 people. We are now 700 people here, and 800 on the flack.
+
+121
+01:13:23.975 --> 01:13:25.544
+Incoming livestream: It's something else. There is a…
+
+122
+01:13:25.625 --> 01:13:43.414
+Incoming livestream: Maybe tooting our own horn, but it feels like a warp point in time that really came true here. And I'm not saying this conference will happen again in a year, I'm not saying this conference will grow, I'm saying something happened here today, and I think it's about forming a new community.
+
+123
+01:13:43.455 --> 01:13:53.734
+Incoming livestream: We've seen it happen before, when DEFCON started, when the threat intelligence community started, when the threat hunting community started. People got together from different walks of life, different areas in security, just made it happen.
+
+124
+01:13:54.115 --> 01:14:04.815
+Incoming livestream: And when, on the online show we do, Prompt or Get the Fuck Out, when I saw Chris Inglis, right, who was Executive Director of the NSA and the White House.
+
+125
+01:14:04.815 --> 01:14:22.814
+Incoming livestream: And Gary Hayslip, who was CISO of SoftBank, and Halver Flake, who is a legendary, as far as I'm concerned, researcher, and then some student randomly coming in from Singapore or something, and everybody was talking about Claude's context window. I knew we have this community, and I knew it was time to do this.
+
+126
+01:14:22.835 --> 01:14:29.184
+Incoming livestream: People keep thanking me and the volunteers, because honestly, it's a huge effort. It's not just me. I'm just the front, right?
+
+127
+01:14:29.265 --> 01:14:43.554
+Incoming livestream: And I just called myself fat, didn't I? But regardless, this is truly a huge community. Everybody put in so much effort. Everybody who came in here, all of you, put in so much effort just to be open, to talk to people, and we talked about this. Talking to people is horrible, right? We prefer dogs.
+
+128
+01:14:43.945 --> 01:14:48.344
+Incoming livestream: But truly, thank you, because it wouldn't have happened without you.
+
+129
+01:14:48.825 --> 01:14:54.195
+Incoming livestream: And with that, I will leave you with the following thoughts that I wrote down.
+
+130
+01:14:54.305 --> 01:14:58.134
+Incoming livestream: Because I'm not as smart as the people who came on here.
+
+131
+01:15:00.275 --> 01:15:01.384
+Incoming livestream: Here we go.
+
+132
+01:15:02.695 --> 01:15:04.365
+Incoming livestream: Yesterday.
+
+133
+01:15:04.975 --> 01:15:12.065
+Incoming livestream: I left you with a lot of thoughts about startups needing to get to product-market fit within 3 months or out, even after they found it.
+
+134
+01:15:12.315 --> 01:15:18.335
+Incoming livestream: And we talked about how we are moving from, quoting my co-founder Sunil Yu, from a non-deterministic to
+
+135
+01:15:18.475 --> 01:15:24.554
+Incoming livestream: From deterministic to non-deterministic configuration, and what might that mean to security?
+
+136
+01:15:24.755 --> 01:15:36.084
+Incoming livestream: We talked this morning about coding edges are cool, but what do we do when everybody, including finance, uses them? And a lot of them already do. We no longer control IT, everybody builds their own infrastructure, right?
+
+137
+01:15:36.475 --> 01:15:40.695
+Incoming livestream: So, my understanding from today is as follows.
+
+138
+01:15:40.865 --> 01:15:42.284
+Incoming livestream: We can't stop the storm.
+
+139
+01:15:42.875 --> 01:15:48.005
+Incoming livestream: It's coming, it's here, people don't see it. If they checked it out even a month ago, it's irrelevant.
+
+140
+01:15:48.245 --> 01:16:02.485
+Incoming livestream: And we talked several times about how staying on top of things. People feel outmoded. They don't need to be 80 years old to feel outmoded. How am I ever gonna learn this thing? How am I ever gonna keep up? You saw Daniel yesterday coming on to show his work. He's on the edge of this, and he feels old.
+
+141
+01:16:03.045 --> 01:16:05.204
+Incoming livestream: He feels like he needs to keep up all the time.
+
+142
+01:16:05.455 --> 01:16:16.524
+Incoming livestream: What would I tell these people? It's no longer relevant. So, we understand now, and this is from Ryan Moon, who runs Stage 2 downstairs, it's not… I'm not that smart. And I'm gonna quote him.
+
+143
+01:16:16.805 --> 01:16:23.605
+Incoming livestream: not exactly because I took it from memory, but being here, it means people here are people who understand
+
+144
+01:16:23.885 --> 01:16:31.755
+Incoming livestream: That we'll have to dump our scaffolding and our infrastructure and all the smart prompts we built every 90 days.
+
+145
+01:16:32.355 --> 01:16:42.065
+Incoming livestream: That is a harsh, harsh understanding, that we spent all this time just researching and building our own tooling to be effective, when 3 months from now.
+
+146
+01:16:42.255 --> 01:16:45.405
+Incoming livestream: It's almost irrelevant compared to what we can do.
+
+147
+01:16:45.545 --> 01:16:55.254
+Incoming livestream: But this is… I don't remember his exact wording, English is second language, but he said, the people who are here chose to be part of this death trap of doom.
+
+148
+01:16:56.175 --> 01:17:14.484
+Incoming livestream: We really enjoy this, right? It deserves your applause. He's an awesome human being. We chose to be here. We are excited about being here, and a lot of people said this reminds them of the early days of DEFCON. Not sure about that. It feels like we are… several people have said this, like we're in the 90s and the aughts again, where everything is exciting and scary at the same time.
+
+149
+01:17:14.575 --> 01:17:18.725
+Incoming livestream: The only thing I really know to say is, we live in the future.
+
+150
+01:17:19.265 --> 01:17:28.034
+Incoming livestream: It's exciting. It is a warp point in history that, luckily for us, we get to be a part of this week. Again, I don't know what will happen next week, or if this conference will happen again.
+
+151
+01:17:28.585 --> 01:17:32.165
+Incoming livestream: But I want to go over a statement a lot of people said in 2025.
+
+152
+01:17:32.315 --> 01:17:34.834
+Incoming livestream: Which was, AI will not replace you.
+
+153
+01:17:35.525 --> 01:17:37.934
+Incoming livestream: A human using AI will replace you.
+
+154
+01:17:38.385 --> 01:17:39.905
+Incoming livestream: I don't know if that's true anymore.
+
+155
+01:17:41.135 --> 01:17:46.325
+Incoming livestream: Or for what? It depends, it changes. Just looking at the rate of change, it's crazy.
+
+156
+01:17:47.015 --> 01:17:54.615
+Incoming livestream: And I truly believe that if, as I said, when I look at companies, and I'm looking at who might survive this storm.
+
+157
+01:17:56.185 --> 01:17:58.715
+Incoming livestream: I think that the only true…
+
+158
+01:17:58.845 --> 01:18:03.844
+Incoming livestream: indicator I have is if the CEO is on Cloud Code, or Cursor, or Copilot, or whatever it is.
+
+159
+01:18:04.395 --> 01:18:14.685
+Incoming livestream: Which sounds ridiculous to many people. And before we build an internet of agents, I want to quote somebody I truly appreciate from the DC area. His name is Steve Crocker.
+
+160
+01:18:15.085 --> 01:18:19.945
+Incoming livestream: He wrote RFC1, and is a dear friend.
+
+161
+01:18:20.485 --> 01:18:31.875
+Incoming livestream: And he told me once a story about sitting in the room for ARPANET, when they were just starting to plan what will happen, and in this first meeting, as they were sitting down, they wrote a lot of stuff on paper.
+
+162
+01:18:32.015 --> 01:18:36.304
+Incoming livestream: And one of the sentences they wrote down was, networks are for people.
+
+163
+01:18:37.975 --> 01:18:52.765
+Incoming livestream: And I don't know if this network will be for people for very long, but I do know that, at least for now, unlike in the 50s and 60s, where science fiction predicted that we'll have robots doing our laundry and not playing chess, it's kind of turned the other way around.
+
+164
+01:18:54.055 --> 01:18:55.695
+Incoming livestream: It still serves us.
+
+165
+01:18:55.885 --> 01:19:02.344
+Incoming livestream: We're still relevant. And I truly believe the way to stay relevant is to be on the edge, and it's so hard.
+
+166
+01:19:02.545 --> 01:19:13.565
+Incoming livestream: And when we get on the edge, it's so hard to get stuck on the narrative, oh, I have this down, but you're already behind. So, if we talk, and I'm not sure I mentioned it before or not, but bringing it all together.
+
+167
+01:19:13.825 --> 01:19:19.125
+Incoming livestream: Looking at the nation-state level, people talk about cyber power with a couple of P.
+
+168
+01:19:19.315 --> 01:19:29.134
+Incoming livestream: I don't know what that means. I don't know if it's NVIDIA and the chips, I don't know if it's OpenAI or Anthropic, I don't know if it's all the PhDs, but I do know one fact, and that is…
+
+169
+01:19:29.615 --> 01:19:31.795
+Incoming livestream: This is the level of AI right now.
+
+170
+01:19:32.075 --> 01:19:33.154
+Incoming livestream: In the world.
+
+171
+01:19:33.285 --> 01:19:37.274
+Incoming livestream: This is the level, who knows how far it goes, where it gets to.
+
+172
+01:19:37.515 --> 01:19:39.985
+Incoming livestream: This is the level where most people operate.
+
+173
+01:19:40.095 --> 01:19:41.685
+Incoming livestream: I operate here.
+
+174
+01:19:41.805 --> 01:19:45.255
+Incoming livestream: Because I don't just talk to ChatGPT or Claude or Gemini.
+
+175
+01:19:45.585 --> 01:20:03.975
+Incoming livestream: I understand there is actually multi-torn, I can chat, there is tool use, starting to get into agents, there is the robber or snake where you eat your own tail and get your input into the output, there is the agentic flow and the self-healing, and you know what? If we can get people around us, as somebody said on stage a second ago, to not deny this is happening.
+
+176
+01:20:03.975 --> 01:20:08.945
+Incoming livestream: But just try it out, and get to that level here. Not here, but just that level here.
+
+177
+01:20:08.945 --> 01:20:14.994
+Incoming livestream: If only 2% of people we talk to will actually do that, we can change the entire world. Companies, countries, doesn't really matter.
+
+178
+01:20:15.975 --> 01:20:19.494
+Incoming livestream: That is my own manifesto, and as I said the first day.
+
+179
+01:20:20.265 --> 01:20:25.334
+Incoming livestream: My own right hand at my company, and my significant other, unfortunately, is alone in the shelter right now in Israel.
+
+180
+01:20:26.225 --> 01:20:41.525
+Incoming livestream: forbade me from ever writing manifestos, at least until I'm one day a billionaire. I hope not. I think I said that the first day. But this is my manifesto, because I'm seeing this pain in everybody here. You're all relevant, some of you are really deep into technology. Some of you are risk executives.
+
+181
+01:20:42.115 --> 01:20:54.575
+Incoming livestream: But if we can just reach out and help people just a little bit to understand what's going on, I think that's wonderful. And just to see the rate of change, Rob Joyce, who graced us with a lot of saying, hey man, can you count for 30 seconds? I said, yes, so thank you.
+
+182
+01:20:54.945 --> 01:21:05.275
+Incoming livestream: said, do your own redeeming. Do your own… whatever it is. The attackers are now facing… and, I mean, sitting in front of Katie, you understand so much more than me about this, I feel kind of…
+
+183
+01:21:06.105 --> 01:21:20.195
+Incoming livestream: unfit to talk about this, but the attackers are now facing their own, singularity. A micro-singularity has happened. In defense, we're not there yet. So, one of the only things we can actually do is take that offensive power and use it.
+
+184
+01:21:20.395 --> 01:21:29.484
+Incoming livestream: And Anthropic just came out with this Cloud Code Security, and OpenAI before that with Aardvark, and they changed the name now to be Codex Security or something like that.
+
+185
+01:21:29.745 --> 01:21:33.774
+Incoming livestream: And… you have all seen what happened in the stock market.
+
+186
+01:21:34.265 --> 01:21:37.645
+Incoming livestream: I don't think that was justified, but I think it was a hint of what's to come.
+
+187
+01:21:37.925 --> 01:21:47.174
+Incoming livestream: I'm not saying application security won't be here, but it'll be, as Chris myself often says, it will be here, it will be different, and some companies will grow, but honestly, right now, at this stage.
+
+188
+01:21:47.515 --> 01:21:58.495
+Incoming livestream: This has been so exciting the past two days. We learn, we see the future, we see the hope, we see the technology, we see the fear, but none of us will be relevant. Not the CISO, not their team, none of us.
+
+189
+01:21:58.745 --> 01:22:03.985
+Incoming livestream: If we don't do just one thing, which is start using Cloud Code today, and if somebody doesn't use it, kick them.
+
+190
+01:22:04.195 --> 01:22:09.595
+Incoming livestream: And it can be cursor, it can be… right now, I'm a cloth guy, it will change tomorrow, although it's a religion.
+
+191
+01:22:09.915 --> 01:22:20.795
+Incoming livestream: So that's really my call to action to everybody. It's not just about you not feeling outmoded, or you being extremely on top of it. None of us can keep up. Pull one or two people with you, just to this level.
+
+192
+01:22:21.095 --> 01:22:29.795
+Incoming livestream: And understand that this community here is a community. And what… the only thing that really matters is not the talks, and you can see them online for free.
+
+193
+01:22:30.085 --> 01:22:46.634
+Incoming livestream: It's just the people you met. Because when it comes down to it, we are people, we talk to each other, and other than just doing our work, putting bad guys in jail, making sure the internet can still function, making sure things are going on, being excited and fun, and showing the people that we're better than them, or whatever it is that motivates you in the hacking world.
+
+194
+01:22:47.315 --> 01:22:57.315
+Incoming livestream: Just consider that, at the end of the day, we need to understand how… and this is trolls, it used to be Cecil Barclays once said, I want to quote him precisely.
+
+195
+01:22:57.645 --> 01:23:01.334
+Incoming livestream: How do we make jobs redundant without making people redundant?
+
+196
+01:23:01.685 --> 01:23:02.935
+Incoming livestream: And I have no idea.
+
+197
+01:23:03.155 --> 01:23:22.664
+Incoming livestream: So I'm gonna focus on my own little space of AI security, and for my own startup, we developed a capability exactly like Anthropy's. Yeah, Nicolas Carlini's probably far better than I am, okay? But we developed that capability, and I'm looking at Anthropy and saying Anthropics just did it, I'm looking at OpenAI, and that's Dave Eitel just doing it, who am I? And I'm looking at 50 startups that got funded.
+
+198
+01:23:22.715 --> 01:23:27.894
+Incoming livestream: to do exactly the same stuff of just, let's look for vulnerabilities with LLM, SUST, whatever.
+
+199
+01:23:28.325 --> 01:23:29.355
+Incoming livestream: I'm saying.
+
+200
+01:23:29.885 --> 01:23:53.655
+Incoming livestream: I don't know how open source will protect itself. I don't know how all these companies will protect themselves. I have science fiction ideas of automatic patching, and not waiting for vendors, and just giving up whatever warranty they didn't give us to just patch on our own. I see the attackers going and launching operations, and not even trying to create zero days, or prep for months and years in advance, but just on the fly creating them as they attack. And imagine all this science fiction world, and I think two years in advance, so it's probably two months out.
+
+201
+01:23:54.655 --> 01:24:08.085
+Incoming livestream: And the message connecting everything that I said, from use it today, get your teams to use it today, don't wait, how do we make people not redundant, how do we help people rise to just that small level of using agents right now?
+
+202
+01:24:08.615 --> 01:24:12.795
+Incoming livestream: All of that together, in my brain, comes to people and community.
+
+203
+01:24:13.445 --> 01:24:16.934
+Incoming livestream: And understanding that we can do things together.
+
+204
+01:24:19.035 --> 01:24:20.685
+Incoming livestream: It's been incredible.
+
+205
+01:24:21.065 --> 01:24:23.745
+Incoming livestream: I have people who are volunteering here.
+
+206
+01:24:24.155 --> 01:24:43.605
+Incoming livestream: who are truly CISOs, billionaires, somebody's significant other, researchers, and they just look to be a part. Everybody here looks to be a part. So I would strongly suggest when this is done, consider using the Slack, consider sending messages, consider using the cards that we created, where everybody wrote who I am, what I can do, how I do it, how you can help me, how I can help you.
+
+207
+01:24:43.755 --> 01:24:45.665
+Incoming livestream: Just to keep the conversation going.
+
+208
+01:24:46.125 --> 01:24:57.854
+Incoming livestream: And with that, thank you to Ida, who's stuck in Israel. Thank you to Kyle, who's done so much. Thank you to all the volunteers. Thank you to Aaron, to Moon. If I start naming names, I'll forget a lot of people, but I do want to make fun of one last guy.
+
+209
+01:24:58.355 --> 01:25:01.984
+Incoming livestream: And I think you all know where this is going, if you're using the Slack at all.
+
+210
+01:25:02.125 --> 01:25:12.515
+Incoming livestream: And that's Dragos. Because, my God, Dragos, if you forget to turn off your mic one more time, isn't that guy brilliant, creating an entire online conference with other people who helped?
+
+211
+01:25:12.555 --> 01:25:25.645
+Incoming livestream: who I'm not allowed to name, but he created an entire online conference, not just streaming, but multiple rooms and hosts and whatever, and I begged him today, please open your mic by mistake to keep the guy growling.
+
+212
+01:25:26.085 --> 01:25:31.854
+Incoming livestream: So, with that, on that note, today, we don't have official dinner or anything.
+
+213
+01:25:32.185 --> 01:25:43.224
+Incoming livestream: What I would suggest, if you haven't done it already, I request it in the morning, is go on Slack and say, I want Italian, I want Japanese, I just want to go for a walk in San Francisco, if you want to do that.
+
+214
+01:25:43.365 --> 01:25:44.815
+Incoming livestream: Keep to the safe areas.
+
+215
+01:25:45.185 --> 01:25:50.174
+Incoming livestream: But find other people you know and don't know, and just go randomly somewhere.
+
+216
+01:25:50.725 --> 01:25:58.614
+Incoming livestream: And enjoy this last night of the conference being together. I have no idea where I will end up, maybe in bed. Maybe I'll go to Mel's, because it's close by and I can just have a burger.
+
+217
+01:25:59.105 --> 01:26:07.064
+Incoming livestream: But whatever it is, that's my last call to action to you. Actually, I'll lie one more, and I know about, like, 5 minutes ago, I said it'll be my last thing, but I think it's connected.
+
+218
+01:26:09.635 --> 01:26:19.405
+Incoming livestream: And my active ADHD that's undiagnosed just kicked in, and I forgot what I want to say, which is wonderful to you. So I'll just say, folks, thank you so much. Truly. This would not be what it is without you.
+
+219
+01:26:20.105 --> 01:26:24.894
+Incoming livestream: And… Yeah, just that. Thank you very much.
+
+220
+01:26:34.525 --> 01:26:49.955
+Incoming livestream: I remember what I wanted to say, which is one final thing, yeah, right, right, is I wanted to put myself down. So, on Tropic OpenAI, I went wide, I allowed myself to go with the stream of thought. So, I don't work on that at all. I do, like, coding agents stuff, irrelevant, so many competitors come into the market.
+
+221
+01:26:49.955 --> 01:27:04.654
+Incoming livestream: But we had an entire capability like theirs, and we looked at it and said, that's not where we focus in any way, right? Anthropic. And more than that, even if we don't focus there, now there are 50 other startups doing this, they're all gonna go out of business unless they pivot, I believe.
+
+222
+01:27:04.665 --> 01:27:07.514
+Incoming livestream: What's my only play? And that was open source.
+
+223
+01:27:07.785 --> 01:27:21.975
+Incoming livestream: And I guess it's scary to just open source an entire product, but I truly believe, again, to underline what I want to say, that it's about community, it's about open source, it's about doing all these things, because it's the only thing we can do and the only thing we have control over. Thank you.

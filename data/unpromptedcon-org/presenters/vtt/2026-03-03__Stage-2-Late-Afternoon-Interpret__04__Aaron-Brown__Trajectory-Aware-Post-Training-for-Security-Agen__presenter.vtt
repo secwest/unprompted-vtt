@@ -1,0 +1,773 @@
+WEBVTT
+
+1
+01:19:17.115 --> 01:19:23.505
+Incoming livestream: Trajectory wear, model post-training, small language models. So, hey everyone, I am Aaron.
+
+2
+01:19:24.165 --> 01:19:32.824
+Incoming livestream: Background, some tech, some governments, open source. If you're interested in model post-training or frontier agent design, let me know.
+
+3
+01:19:34.345 --> 01:19:40.994
+Incoming livestream: So today, in this talk, what we're gonna focus on, and maybe just as a quick show of hands, has anyone here actually worked on an…
+
+4
+01:19:41.135 --> 01:19:47.925
+Incoming livestream: actual model training, or post-training specifically. Familiar with, like, Unsloth, TRL… Awesome.
+
+5
+01:19:48.255 --> 01:19:58.615
+Incoming livestream: Cool. Well, those that aren't, that's also perfectly fine. I'm gonna walk through the next 20 minutes, effectively, what is current state of the art, and specifically the alignment section of model post training.
+
+6
+01:19:58.795 --> 01:20:02.774
+Incoming livestream: Talk a little bit about an open source project I'm, releasing today.
+
+7
+01:20:03.185 --> 01:20:06.735
+Incoming livestream: And some results of some… a tutorial.
+
+8
+01:20:07.725 --> 01:20:22.545
+Incoming livestream: So let's set the stage a little bit. So, when we think about large language models, decoder models, these autoregressive models, we're typically… a lot of folks talk about pre-training, that's what happens typically when you take these big corpuses of the internet, common crawl, et cetera, and proprietary sets.
+
+9
+01:20:23.155 --> 01:20:25.155
+Incoming livestream: And you make these great models.
+
+10
+01:20:25.325 --> 01:20:35.105
+Incoming livestream: Now, this was one of the major innovations, like, for the original GPT3 model that came, is actually this instruction alignment, actually aligning to human preference.
+
+11
+01:20:35.315 --> 01:20:44.015
+Incoming livestream: And this is when you're effectively optimizing, you can think of it at a high level for a specific task. When I say task, that's anything from invoking function calls.
+
+12
+01:20:44.125 --> 01:20:49.604
+Incoming livestream: to question and answers and things of that nature. And then there's prompting and inference.
+
+13
+01:20:50.975 --> 01:20:59.315
+Incoming livestream: So, when we say agents, too, as well, I think it's always for everyone just to remember what an agent is. So, an agent itself is just a mere collection of…
+
+14
+01:20:59.455 --> 01:21:08.895
+Incoming livestream: Invoking a model, that has access to… or invoking the model through, effectively, the application layer, and giving the, this system
+
+15
+01:21:09.005 --> 01:21:22.695
+Incoming livestream: Access to memory for long-term, effectively persisting context in a out-of-band, effectively, data store. And then short-term, effectively, a conversation where you can do things like truncation, pruning, artifact rehydration.
+
+16
+01:21:22.975 --> 01:21:29.225
+Incoming livestream: Then you have tools. These are functions that you can invoke that have docstrings and names associated with them, and actions where you…
+
+17
+01:21:29.425 --> 01:21:34.165
+Incoming livestream: Action in the environment that's executing it, your local machine, a remote container, etc.
+
+18
+01:21:35.645 --> 01:21:44.614
+Incoming livestream: So what's going on, actually, behind the scenes when you actually are having, you know, you're on clawed code, you're on cursor, or your own custom agent, and it's making these function calls.
+
+19
+01:21:44.735 --> 01:21:51.604
+Incoming livestream: What we're doing is these models are stateless, so every interaction you have, it doesn't maintain prior context into that.
+
+20
+01:21:52.045 --> 01:22:00.614
+Incoming livestream: So, when you send that, tool call, what it's really sending, if you look at what's happening in the conversation, it's sending the system prompt.
+
+21
+01:22:01.065 --> 01:22:03.795
+Incoming livestream: I am a great pen testing agent.
+
+22
+01:22:03.945 --> 01:22:13.964
+Incoming livestream: And effectively, the tool schemas. These are effectively the function name, the arguments, and then, importantly, the doc strings that in text, describe that specific tool.
+
+23
+01:22:14.295 --> 01:22:17.874
+Incoming livestream: And then the conversation history that grows. And then the next action.
+
+24
+01:22:19.255 --> 01:22:29.705
+Incoming livestream: If we look at some of the results, from effectively the frontier models, and this is, I think, last, if anyone read irregular's, I think, GPT-52 scorecard.
+
+25
+01:22:29.845 --> 01:22:38.575
+Incoming livestream: along with, I know some of us were talking at Offensive AICon back in the fall, but we're finding, at least with these models, applied to different scaffolding frameworks.
+
+26
+01:22:38.705 --> 01:22:50.135
+Incoming livestream: What they really are good at is these atomic tasks, so think in the web application, pin testing world, identifying effectively, hey, there's an LFI, there's a cross-site scripting attack, and then exploiting through that.
+
+27
+01:22:50.345 --> 01:23:00.234
+Incoming livestream: What they're really poor at right now, at least these general models, is these multi-stage tasks, where we require, effectively, conjoining different vulnerabilities together to exploit.
+
+28
+01:23:01.705 --> 01:23:13.784
+Incoming livestream: This is one of the reasons why we need to focus on model post-training. Again, these base models, they're optimized for everything from question-answer tasks about cats and dogs, to software code development.
+
+29
+01:23:13.825 --> 01:23:24.165
+Incoming livestream: To, effectively, the cohort of most of the people in this room and above stairs, applying these for applications with the intent purpose of doing tasks, such as pin testing, instance response, etc.
+
+30
+01:23:24.765 --> 01:23:32.234
+Incoming livestream: So when we talk about post-training, a lot of what we're talking about is just inference time scaling, or that's what we're talking about with agents scaffolding, I apologize.
+
+31
+01:23:33.085 --> 01:23:40.545
+Incoming livestream: For post-training, what we're really talking about is that RL, reinforcement learning on trajectories, supervised fine-tuning.
+
+32
+01:23:40.665 --> 01:23:42.464
+Incoming livestream: And then that pre-training earlier.
+
+33
+01:23:43.665 --> 01:23:59.995
+Incoming livestream: When we talk about agentic reinforcement learning, what we're really talking about is the ability to effectively do behavioral cloning from these expert trajectories. Again, think about taking, in the open weight world, running on GLM5 or Kimi K2,
+
+34
+01:24:01.115 --> 01:24:10.445
+Incoming livestream: And then effectively recording the conversation of how that performed, and then going to a weaker agent with a smaller model, and then effectively
+
+35
+01:24:10.815 --> 01:24:24.774
+Incoming livestream: teaching the model how to not just replicate, but also think like that model for that specific task. Again, tasks can be everything from invoking functions, like a shell command for invoking specific cyber tools in a shell environment.
+
+36
+01:24:24.915 --> 01:24:29.054
+Incoming livestream: Exploit code generation or orchestration between different agents and tools.
+
+37
+01:24:30.195 --> 01:24:42.675
+Incoming livestream: So, probably for the folks in here that did raise their hand, that are working in this field, there's a… there's a couple benchmarks out there within the cyberspace, and it's not exhaustive, and we all can complain that none of them are great, and I can agree with you on part of that.
+
+38
+01:24:43.105 --> 01:24:57.914
+Incoming livestream: But, you know, SciBench, CVE Bench, XBOL validation, etc, these are kind of the foundations right now, especially in both these tasks, really, that are bucketed in pintesting of web applications, or vulnerability.
+
+39
+01:24:58.005 --> 01:25:03.175
+Incoming livestream: Identification and code, et cetera, for either web applications, crypto.
+
+40
+01:25:03.315 --> 01:25:06.014
+Incoming livestream: Etc. Dynamic and static environments.
+
+41
+01:25:06.725 --> 01:25:23.054
+Incoming livestream: And we talk about what is, like, security pintesting from more of a philosophical perspective, and what we're really doing here. We're really focused on this frontier ML problem that we're seeing across, effectively, what they call long horizon agents. Similar to how in web voyaging through browsers.
+
+42
+01:25:23.385 --> 01:25:25.834
+Incoming livestream: Agents playing, effectively, video games.
+
+43
+01:25:26.135 --> 01:25:32.874
+Incoming livestream: or, effectively, security pin testing. You have an agent that has to explore the world, Understand what's surrounding
+
+44
+01:25:33.095 --> 01:25:44.065
+Incoming livestream: and then unify them to actually interact with the environment and invoke specific functions to complete these objectives. This is pretty complex, and even from a more general ML perspective, that's why
+
+45
+01:25:44.225 --> 01:25:48.544
+Incoming livestream: Doing this model post-training is such a requirement and such a cool frontier problem to work on.
+
+46
+01:25:49.535 --> 01:26:00.004
+Incoming livestream: So if we look at other domains and how they're solving this, again, I don't like to reinvent the wheel, I like to look at what others are doing in the space. You can look at the… I don't know if anyone's seen the work from Lod.
+
+47
+01:26:00.335 --> 01:26:02.954
+Incoming livestream: or from SWE bench, terminal bench.
+
+48
+01:26:03.285 --> 01:26:10.885
+Incoming livestream: But effectively, in math and reasoning and coding agents, there are pretty established benchmarks and training frameworks.
+
+49
+01:26:11.185 --> 01:26:15.955
+Incoming livestream: And evals as well. I'd say overall in security, the one takeaway is we don't really have that.
+
+50
+01:26:16.565 --> 01:26:27.975
+Incoming livestream: That is fundamentally missing. That's why we hear talks, like earlier today, from folks that we don't have great evals, we don't have great measures, no one believes anything. I think we need to have that, just like we have it in coding, etc.
+
+51
+01:26:29.255 --> 01:26:40.535
+Incoming livestream: So, if you're gonna do that, you want to build your post-training environment to train your one security agent for defense, or offense, or really any long horizon task, what do you need to do that?
+
+52
+01:26:40.855 --> 01:26:42.994
+Incoming livestream: You need a collection.
+
+53
+01:26:43.345 --> 01:26:51.604
+Incoming livestream: about 36-plus different libraries, SDKs, to effectively conjoin them into your, effectively, cluster to do this distributed training RL.
+
+54
+01:26:51.805 --> 01:26:52.915
+Incoming livestream: infrastructure.
+
+55
+01:26:53.425 --> 01:27:09.764
+Incoming livestream: It's always a problem of, effectively, what went wrong. I can tell you many horror stories after this about doing this, type of work, but, you know, tracing a problem, is it the algorithm that's wrong? Is it the infrastructure, the environmental data? It's typically…
+
+56
+01:27:09.985 --> 01:27:11.824
+Incoming livestream: Very difficult to actually do debugging.
+
+57
+01:27:12.915 --> 01:27:31.355
+Incoming livestream: So this is why I wanted to release and compile a project called Open Trajectory Gym that I just released about an hour ago. This is a collection that allows you, in effectively one loop, to apply some of the latest techniques in model post-train that are built off the backs of some pretty cool, awesome projects from TRL.
+
+58
+01:27:31.485 --> 01:27:35.895
+Incoming livestream: from a really cool project out of Berkeley's Sky Computing Lab called SkyRL.
+
+59
+01:27:36.015 --> 01:27:44.284
+Incoming livestream: And a couple others that we can get into that allows, effectively, more at a practitioner and machine learning engineering level, rather than effectively a PhD.
+
+60
+01:27:44.825 --> 01:27:52.274
+Incoming livestream: lab to effectively build and implement model post-training pipelines, because I'm not aware of any other framework that does that in the open source, let alone in security.
+
+61
+01:27:53.975 --> 01:27:59.244
+Incoming livestream: What does this really mean? This allows you to effectively bring your own benchmark, bring your own model.
+
+62
+01:27:59.655 --> 01:28:05.634
+Incoming livestream: into, effectively, this gym that allows you to, whether you're running a strands agent, a autogen.
+
+63
+01:28:06.525 --> 01:28:12.305
+Incoming livestream: or you're running a, a link chain agent, which is in the example I'll show you today.
+
+64
+01:28:12.465 --> 01:28:17.064
+Incoming livestream: You can effectively connect your tool, your containers, your reward functions…
+
+65
+01:28:17.305 --> 01:28:28.764
+Incoming livestream: And then your outcome will be an agent, or a model more specifically, that's aligned for those function calls at test time, rather than having to learn those function calls and reasoning and trajectory
+
+66
+01:28:28.945 --> 01:28:29.904
+Incoming livestream: At test time.
+
+67
+01:28:31.005 --> 01:28:33.155
+Incoming livestream: How do I do that in the example I'll show you?
+
+68
+01:28:33.425 --> 01:28:41.555
+Incoming livestream: So, I used a mixture of, effectively, my DGX Spark at home for inference, and effectively some local testing.
+
+69
+01:28:41.815 --> 01:28:50.644
+Incoming livestream: And then some cloud infrastructure H200s for actually the actual Ray cluster and setting up the training infrastructure.
+
+70
+01:28:52.185 --> 01:28:56.605
+Incoming livestream: This training loop architecture works by setting up this live environment
+
+71
+01:28:57.055 --> 01:29:02.704
+Incoming livestream: Effectively, the live environment that I'll… we'll talk about here is SciBench. This is effectively 40 different
+
+72
+01:29:02.855 --> 01:29:09.184
+Incoming livestream: mixture of web application challenges and static code analysis, everything from CTF style, where effectively
+
+73
+01:29:09.365 --> 01:29:14.855
+Incoming livestream: And again, when I say CTF, every RL… maybe it's important context, every RL…
+
+74
+01:29:15.495 --> 01:29:28.955
+Incoming livestream: Every RL training program needs to have a verifiable reward at the end, so whether, again, you're doing a environment that is focused on capture the flags, where you have, effectively, a flag at the end, a hash.
+
+75
+01:29:29.115 --> 01:29:35.715
+Incoming livestream: or whether you're doing code analysis where you're looking for a specific CV number, you need to have something that has a verifiable reward at the end.
+
+76
+01:29:35.845 --> 01:29:40.605
+Incoming livestream: And I'd argue that most cyber tasks actually do have that. It might be obtuse.
+
+77
+01:29:40.755 --> 01:29:43.754
+Incoming livestream: But again, that's why benchmark and eval design is so important.
+
+78
+01:29:44.135 --> 01:29:50.554
+Incoming livestream: So we effectively have these agent trajectories we collect, we convert them to a common format, called ChatML.
+
+79
+01:29:50.795 --> 01:29:53.564
+Incoming livestream: And then we effectively go through this three-stage
+
+80
+01:29:54.135 --> 01:29:58.394
+Incoming livestream: pipeline. Two stages are affecting the model weights, and the third stage is at test time.
+
+81
+01:29:58.755 --> 01:30:02.034
+Incoming livestream: Where we're doing first instruction tuning to learn the tool format.
+
+82
+01:30:02.335 --> 01:30:12.875
+Incoming livestream: And then online reinforcement learning to effectively the agent to be more aligned to those trajectories. And then, GEPA, which we'll talk… and we're gonna talk about each three of these.
+
+83
+01:30:13.465 --> 01:30:21.335
+Incoming livestream: So… So first, I want to talk to you, within this project, there is a synthetic code generation
+
+84
+01:30:21.575 --> 01:30:28.265
+Incoming livestream: Module, effectively, you can leverage, where you can effectively have a manifest of the world, You want, effectively.
+
+85
+01:30:28.765 --> 01:30:30.155
+Incoming livestream: The agent to see.
+
+86
+01:30:30.455 --> 01:30:37.694
+Incoming livestream: This is useful, effectively, if… You want to generate synthetic traces for that training data, for that instruction tuning.
+
+87
+01:30:37.825 --> 01:30:44.835
+Incoming livestream: Provide a world manifest effectively the network topology the… The end verifiable reward.
+
+88
+01:30:45.135 --> 01:30:54.184
+Incoming livestream: And then having a teacher model, again, you can think about using an open-source model for this distillation task, effectively GLM5, KimiK2, 5, etc.
+
+89
+01:30:54.355 --> 01:31:05.534
+Incoming livestream: and it outputs will generate this training data. This framework and pipeline is set up in the project, and all you need to define is effectively the parameters of the scenario of the simulation you want to perform.
+
+90
+01:31:05.975 --> 01:31:09.514
+Incoming livestream: Effectively, the task of… Our synthetic data generation.
+
+91
+01:31:09.885 --> 01:31:17.454
+Incoming livestream: Once you have that data, either collected from your real-world environment, from your agent, or from your simulated environment.
+
+92
+01:31:17.795 --> 01:31:21.335
+Incoming livestream: You can perform this supervised learning task of instruction tuning.
+
+93
+01:31:21.645 --> 01:31:33.615
+Incoming livestream: Where, effectively, we are having the model learn, the tool calling format and the terminology as a first layer of post-training alignment for the tasks that we're looking to perform.
+
+94
+01:31:33.755 --> 01:31:44.295
+Incoming livestream: In this specific example that we're talking about, we're talking about a pen testing agent that's going after these specific challenges of, again, doing web application pin testing and static code analysis.
+
+95
+01:31:45.695 --> 01:31:52.065
+Incoming livestream: what… how the system is really performing when we're saying online RL, it's, there's a couple things to it.
+
+96
+01:31:52.285 --> 01:31:57.745
+Incoming livestream: At a high level, what we're doing is we have, effectively, different GPU infrastructure that is for
+
+97
+01:31:58.595 --> 01:32:02.474
+Incoming livestream: Load, loading the model, itself.
+
+98
+01:32:03.275 --> 01:32:14.575
+Incoming livestream: And then also a environment, too, for the… sorry, loading the model itself into an inference engine, like, effectively, a VLLM, which is what I use in this project.
+
+99
+01:32:14.905 --> 01:32:17.825
+Incoming livestream: And then you have the trainer, what's actually doing…
+
+100
+01:32:18.165 --> 01:32:22.014
+Incoming livestream: That backwards pass to actually train the model weights in the model itself.
+
+101
+01:32:22.315 --> 01:32:36.925
+Incoming livestream: You have the agent. The agent I'm using in here is an open-source lane chain agent called BoxPoner. There's a couple folks in this room that might be using it. It's a simple agent that just effectively has a shell tool, Python code generation, and it's optimized a little bit for security tasks.
+
+102
+01:32:37.305 --> 01:32:45.535
+Incoming livestream: And you're then executing it against all of these environments. In this, again, world of SciBench, we're talking about 40 different containers.
+
+103
+01:32:46.665 --> 01:32:55.654
+Incoming livestream: Each with their own challenges, difficulties, etc, and the agent effectively is performing these tool calls. At every tool call, it's recording its answer.
+
+104
+01:32:55.775 --> 01:33:03.804
+Incoming livestream: Of what the input and output was, and we're effectively scoring that based on these composite, what we call, reward functions, effectively. Did it complete the task, or did it not?
+
+105
+01:33:04.055 --> 01:33:07.775
+Incoming livestream: When we say reward function, Should be the next slide.
+
+106
+01:33:08.415 --> 01:33:25.624
+Incoming livestream: What we're talking about are these signals, and that's how we differentiate these composite reward functions where we're looking to effectively score based on different conditions. The simplest one is binary rewards. Effectively, did we complete the objective? In the world of a CTF, that's did we get the flag? Did we not?
+
+107
+01:33:25.875 --> 01:33:33.974
+Incoming livestream: But as we all know, that's not the best way to evaluate how well a person completed an objective. That's why things like temporal decay.
+
+108
+01:33:34.245 --> 01:33:45.794
+Incoming livestream: Information sparsity, and really in generating some of these composite reward functions that are trying to really find and score in between, effectively, the start and end trajectory.
+
+109
+01:33:45.905 --> 01:33:47.655
+Incoming livestream: Why it's important to…
+
+110
+01:33:48.395 --> 01:33:54.124
+Incoming livestream: look at these kind of key signals to effectively differentiate. Because again, you can get the final objective, but
+
+111
+01:33:54.275 --> 01:33:55.964
+Incoming livestream: If you were super noisy.
+
+112
+01:33:56.275 --> 01:34:03.365
+Incoming livestream: Or if you did not use the right exploration or uniqueness technique, doesn't really help you in the end when you move to production.
+
+113
+01:34:04.695 --> 01:34:08.075
+Incoming livestream: How this works is that each of those traces, if we think,
+
+114
+01:34:08.445 --> 01:34:22.514
+Incoming livestream: we look at each of these traits, it scores effectively based on these reward functions, effectively numbers between 0 and 1, effectively a formula. It then takes the group mean of these scores and finds which of the best actions
+
+115
+01:34:22.735 --> 01:34:40.004
+Incoming livestream: was most successful. Again, when we have the agent executing in this RL environment, it's not one agent just executing. It's gonna… actually the… it's actually, 8 different agents executing the same task in different perturbations, and selecting the best trace
+
+116
+01:34:40.105 --> 01:34:45.954
+Incoming livestream: Based on that, by calculating that group mean based on these reward functions, and then selecting that.
+
+117
+01:34:46.115 --> 01:34:49.724
+Incoming livestream: And then distilling that knowledge into the model weight itself.
+
+118
+01:34:49.985 --> 01:34:54.534
+Incoming livestream: Again, the whole reason for doing this is so that when we're actually doing this at test time.
+
+119
+01:34:54.745 --> 01:34:58.895
+Incoming livestream: It actually, doesn't have to do all of this knowledge and lesson learning.
+
+120
+01:35:01.245 --> 01:35:10.475
+Incoming livestream: There is a technique, called genetic Prado prompt evolution. It's effectively this big fancy name, but effectively what this is is a prompt optimizer. This is some…
+
+121
+01:35:10.515 --> 01:35:20.305
+Incoming livestream: What it does is this is… this technique is not necessarily a… this doesn't actually change the model weights. This is done at test time, so once you've trained the model.
+
+122
+01:35:20.305 --> 01:35:31.694
+Incoming livestream: now at test time, we can actually evolve that system prompt. So again, going back to what's actually going behind the scene, that system prompt remains the same from step 0 to effectively step 20,
+
+123
+01:35:31.915 --> 01:35:34.775
+Incoming livestream: 40, 60, etc.
+
+124
+01:35:34.935 --> 01:35:40.484
+Incoming livestream: But if your original objective is multi-stage and multi-steps, you want to evolve that prompt.
+
+125
+01:35:40.525 --> 01:35:52.255
+Incoming livestream: And the way to do that is through, effectively, prompt optimization. This is one technique to do that that I've experimented with, and the benefit here is you're effectively reflecting and evolving that system prompt
+
+126
+01:35:52.265 --> 01:36:02.304
+Incoming livestream: Using an out-of-band teacher LLM that looks effectively at the past function calls and traces, and optimizes your prompt based on what it finds.
+
+127
+01:36:03.575 --> 01:36:05.255
+Incoming livestream: So, the so what here.
+
+128
+01:36:05.705 --> 01:36:07.705
+Incoming livestream: Sue, I took,
+
+129
+01:36:07.975 --> 01:36:21.664
+Incoming livestream: Quinn 3.527B, this is a dense model. Again, I prefixed this, this is not the best performance, but in under a day, was able to take what was baseline performance within this specific framework.
+
+130
+01:36:21.925 --> 01:36:23.585
+Incoming livestream: Called Boxconer.
+
+131
+01:36:23.755 --> 01:36:27.425
+Incoming livestream: Effectively, what started at about 12.5%,
+
+132
+01:36:27.825 --> 01:36:40.455
+Incoming livestream: After doing, effectively, this two-stage training pipeline process of supervised fine-tuning, and then supervised fine-tuning plus reinforcement learning, ABREL lifted to around 35% solve rate.
+
+133
+01:36:40.515 --> 01:36:51.025
+Incoming livestream: Now, again, this is not a talk about this is the best model, this is a framework, a recipe, that with, effectively, more training data, effectively at the SFT level.
+
+134
+01:36:51.125 --> 01:37:02.494
+Incoming livestream: and more reinforcement learning time, because again, this is a side project for a conference, and GPUs are expensive, and I don't… That ultimately,
+
+135
+01:37:02.805 --> 01:37:13.845
+Incoming livestream: This showcased a performance lift that I think is quite interesting. Again, there's still room to grow, but if we look at the next sized open-weight models, like Minimax 2.5,
+
+136
+01:37:14.055 --> 01:37:25.484
+Incoming livestream: or GLM5, etc. You're talking about model sizes that are almost 10x, or at least 5x the size of this smaller, smaller model, that 27B.
+
+137
+01:37:27.625 --> 01:37:40.634
+Incoming livestream: And here's just a quick case study of a specific example to showcase how this methodology works, which again is what I'm trying to showcase here. If we look on the left-hand side, we'll see an example of this expert
+
+138
+01:37:41.795 --> 01:37:56.654
+Incoming livestream: this expert example of a crypto challenge, where the model had this AES variant with a shuffled nonlinear layer, and the model had to reverse engineer from a cipher from source and interact with this oracle.
+
+139
+01:37:56.865 --> 01:38:00.955
+Incoming livestream: Over the network, and then write a solver to… decrypts the flag.
+
+140
+01:38:01.115 --> 01:38:07.624
+Incoming livestream: quite complex. Originally, with the base model that you can download off Hugging Face that Quinn released two days ago.
+
+141
+01:38:08.055 --> 01:38:11.505
+Incoming livestream: It failed. After about 25 turns.
+
+142
+01:38:11.675 --> 01:38:16.955
+Incoming livestream: And expanding that, not with this tuned model, it did solve it, in less turns.
+
+143
+01:38:17.175 --> 01:38:19.594
+Incoming livestream: I was able to actually complete that workflow.
+
+144
+01:38:21.705 --> 01:38:23.884
+Incoming livestream: So, some lesson learned in building this.
+
+145
+01:38:24.075 --> 01:38:41.934
+Incoming livestream: I originally started, and in the description of this talk, it was actually with GLM47 Flash 30B. That's actually… was originally what I wanted to showcase. Quinn 3.5 came out two days ago, I thought it'd be a little bit more topical than one a couple months ago, but the other reason why is actually a mixture of expert models.
+
+146
+01:38:41.945 --> 01:38:44.665
+Incoming livestream: while going through RL, there's actually not a…
+
+147
+01:38:44.795 --> 01:38:59.814
+Incoming livestream: There's actually not a fix in the open source way to actually do what's called, like, weight synchronization with the individual expert nodes. So, bottom line up front, if you're gonna do this, I'd recommend starting with a dense model, because there's not really an open source fix to MOE models right now, and…
+
+148
+01:39:00.165 --> 01:39:02.085
+Incoming livestream: The lower-level frameworks.
+
+149
+01:39:02.395 --> 01:39:05.064
+Incoming livestream: On the reward function design.
+
+150
+01:39:05.335 --> 01:39:19.485
+Incoming livestream: Progressive scaling is the way to go. What I mean by that is, again, just like a human, when you've… everyone here did their first CTF or cyber challenge, don't immediately start at the expert challenge. Have your agents start at very easy.
+
+151
+01:39:19.515 --> 01:39:25.884
+Incoming livestream: Easy, medium, hard, etc, and progress the agent through its reinforcement learning environment.
+
+152
+01:39:26.245 --> 01:39:42.695
+Incoming livestream: Also, long horizons are expensive. It's a cool-sounding name, but what does that mean? It means you need very large key-value caches and memory to effectively not just load that 27B model, but give it enough context. It's great to say you can do 1 million in context or 128K tokens.
+
+153
+01:39:42.755 --> 01:39:46.315
+Incoming livestream: If anyone here's actually tried loading and servicing a model at that.
+
+154
+01:39:46.575 --> 01:39:49.854
+Incoming livestream: It's… you can load the model at a lower quant at…
+
+155
+01:39:50.085 --> 01:39:59.325
+Incoming livestream: 60 gigabytes of VRAM, but then they actually load that with 128K in context and more, you're talking at least double or triple that.
+
+156
+01:39:59.585 --> 01:40:02.634
+Incoming livestream: In terms of VRAM allocation. So…
+
+157
+01:40:04.375 --> 01:40:11.645
+Incoming livestream: And then more data. What you just saw in those results was effectively with open source,
+
+158
+01:40:11.775 --> 01:40:16.144
+Incoming livestream: Open source traces, 285 open source traces from stronger models.
+
+159
+01:40:16.275 --> 01:40:22.815
+Incoming livestream: On the same task, And with more data, which we typically do anywhere from 20,000 to 30,000,
+
+160
+01:40:23.145 --> 01:40:32.895
+Incoming livestream: Traces, that's typically what you do, for that supervised fine-tuning stage, and then you do more reinforcement learning with more challenges overall to better generalize.
+
+161
+01:40:34.435 --> 01:40:42.655
+Incoming livestream: everything's open source. There's some links to GitHub if anyone's interested. There's also a Discord community that
+
+162
+01:40:42.855 --> 01:40:48.594
+Incoming livestream: Evan here manages. Back here, if anyone's interested to talk more about this.
+
+163
+01:40:49.775 --> 01:40:52.375
+Incoming livestream: I try to be online and help folks out.
+
+164
+01:40:53.185 --> 01:40:57.934
+Incoming livestream: And if anyone wants any more questions, we can talk more, or find me.
+
+165
+01:41:07.555 --> 01:41:08.265
+Incoming livestream: Perfect, right here.
+
+166
+01:41:13.715 --> 01:41:18.554
+Incoming livestream: Hey, great talk. So, when you do RL, right, like.
+
+167
+01:41:18.795 --> 01:41:30.155
+Incoming livestream: it's easy to do, easy to hill climb on, like, CTFs, but when I wanted to, like, actually find a bug, like in, like, a real-world application,
+
+168
+01:41:30.605 --> 01:41:32.945
+Incoming livestream: You don't know if there is a bug or not.
+
+169
+01:41:33.125 --> 01:41:44.215
+Incoming livestream: So, would a CTF kind of, modeling for an RL challenge translate to, like, finding bugs in, like, real-world applications?
+
+170
+01:41:44.735 --> 01:42:03.294
+Incoming livestream: Yeah, I mean, ultimately, like, forget the word CTF and everything I just said, there needs to be a verifiable reward at the end. Everything we're talking about is offline training. Right. And what you're… the task you're referencing is generalization. Yeah. Now, that's a… that is a problem in any ML task. Right. Like, look at SWEBench, or look… in this world of…
+
+171
+01:42:03.395 --> 01:42:19.904
+Incoming livestream: what you're describing in cyber, like, what I would say is we need to have… we do need to have better evals, effectively, and in cyber RL environments. I mean, that's why, frankly, like, there's a bunch of companies in this space that are… the labs are paying for, effectively, for just RL environments.
+
+172
+01:42:19.955 --> 01:42:33.734
+Incoming livestream: not necessarily just for the scaffolding and the skills to execute, but because it is skillful to build these RL frameworks that… these RL environments that will generalize effectively to other tasks outside of what they perform. So to answer your question, like.
+
+173
+01:42:34.335 --> 01:42:38.535
+Incoming livestream: that's one reason why I have this, in this framework, a bring your own environment, since if yourself
+
+174
+01:42:39.605 --> 01:42:45.605
+Incoming livestream: and build a better environment. That is ultimately how we would help solve that problem, because that's the only way
+
+175
+01:42:45.765 --> 01:42:58.715
+Incoming livestream: Yeah, the thing is, like, the rewards don't converge, right? Like, there is zero rewards, and then there is, like, the 100% reward in, like, a CTF, because the environment doesn't give you a feedback that you're, like, really close to, like, the flag.
+
+176
+01:42:59.165 --> 01:43:14.095
+Incoming livestream: You see what I mean? Yeah, that's why, like, there are different types of… there's composite rewards, there's, like, binary rewards, typically starting with binary rewards and then working backwards to progressive rewards. That's, like, what I can recommend based on lessons learned.
+
+177
+01:43:14.225 --> 01:43:16.254
+Incoming livestream: Thank you. Yeah, that's, yeah.
+
+178
+01:43:17.885 --> 01:43:19.745
+Incoming livestream: All right, anybody else?
+
+179
+01:43:21.655 --> 01:43:22.825
+Incoming livestream: Here we go up front.
+
+180
+01:43:25.195 --> 01:43:27.295
+Incoming livestream: You mentioned Whirl and Unslot, right?
+
+181
+01:43:27.675 --> 01:43:36.655
+Incoming livestream: from a… I mean, yeah, this has nothing to do with security. I'm just looking at, from a compute perspective, which do you think is better, which is going to be more scalable?
+
+182
+01:43:37.245 --> 01:43:42.825
+Incoming livestream: From, like, you mentioned, like, Unsloth? Unsloth and Wool. And what was the last one? Wool?
+
+183
+01:43:43.685 --> 01:43:51.435
+Incoming livestream: VERM, Vulcanic. Yeah, so those are… so those are… I would say these are different things, right? One is RL, and the other is SFT-based.
+
+184
+01:43:51.465 --> 01:44:06.875
+Incoming livestream: Yeah, yeah, VRL is for, like, test time scaling, and for, effectively, that prompt optimizer. Unsloth is effectively… if you're… Unsloth only works for NVIDIA, because they're effectively these optimized trit and curls, and Unsloth is primarily optimized for instruction tuning, so that SFT
+
+185
+01:44:06.965 --> 01:44:18.124
+Incoming livestream: Correct. So these are also at the SDK level. I'd say that, you can use Unsloth, but there are pros and cons of that. Like, I chose not to use Unsloth, because…
+
+186
+01:44:18.455 --> 01:44:30.034
+Incoming livestream: There are… there are pros and cons, in using that. I actually use the base TRL, which is what Unsloth is built on top of. Okay. But again, maybe we can talk more after if there's a specific question, but… Yeah.
+
+187
+01:44:30.205 --> 01:44:39.365
+Incoming livestream: Yeah, I'd say, like, you can never go wrong with just using TRL, because that's what everything's built off of underneath the hood. It's just very low level. I want to do some MOE post-training.
+
+188
+01:44:39.475 --> 01:44:45.974
+Incoming livestream: I'm trying to figure out which is a better option from a hardware perspective. Compute. How much compute is needed?
+
+189
+01:44:47.935 --> 01:44:56.914
+Incoming livestream: Yeah, I mean, on hardware, you work backwards from the model you have and the RL environment you have to run your experiments.
+
+190
+01:44:57.195 --> 01:44:58.464
+Incoming livestream: In terms of…
+
+191
+01:44:58.815 --> 01:45:14.604
+Incoming livestream: framework to use, like, Unsloft does not support MOE post-training, neither does any of the others you mentioned. TRL, there's, like, open PRs, because there's back-end issues in VLLM, so it's not really a solved problem, to my knowledge, as of right now, specific to MOEs.
+
+192
+01:45:15.365 --> 01:45:16.125
+Incoming livestream: Thank you.
+
+193
+01:45:18.115 --> 01:45:19.425
+Incoming livestream: Thanks a lot, Aaron.

@@ -1,0 +1,55 @@
+[00:51:16.466 - 00:51:37.086] Incoming livestream: Our talk is Jean-Claude 1-CTF, so basically it's about, Claude participating in real-time attack and defense, environments as a blue team. We are Tropic Fellows. My name is Yerna, this is Gosha. We are, like, visiting researchers on Tropic, working on cybersecurity, capability elucidation.
+[00:51:37.086 - 00:51:45.025] Incoming livestream: So, what we were participating, what we want to talk about it.
+[00:51:46.586 - 00:51:47.246] Incoming livestream: Sorry.
+[00:51:48.066 - 00:51:59.235] Incoming livestream: As a cyber collegiate, defense competition, where the 26 teams, 24 of them human teams of students, mostly undergrads.
+[00:51:59.236 - 00:52:13.285] Incoming livestream: defending infrastructure in real time for 8 hours. As you can see here is, like, how it looked like, and we had 2, claw teams, and 8 red teamers, still humans, and,
+[00:52:17.996 - 00:52:40.675] Incoming livestream: Here's, what was the difference between two teams. One, what we call it, like, a simple clot. It was a very basic zero-shot prompt with just rules of the engagement, and, like, information about the infrastructure, and basically it was figure-yourself-out approach, how to defend. The other one was really charged with the information from humans, like.
+[00:52:40.676 - 00:52:52.116] Incoming livestream: how to defend. It had sub-agents defined with information on hardening Windows, Linux, networking, and so on. How…
+[00:52:52.266 - 00:52:52.966] Incoming livestream: like…
+[00:52:56.916 - 00:52:58.705] Incoming livestream: This is how it looked like.
+[00:52:59.766 - 00:53:04.665] Incoming livestream: In real time. And, both teams, I actually were allowed, kind of like.
+[00:53:04.886 - 00:53:09.075] Incoming livestream: Had, several sub-agents, team agent.
+[00:53:09.356 - 00:53:21.425] Incoming livestream: was, about each agent for per machine, and each one of, sub-agents run its own sub-agents, so you can see how it looks in real time. This does not speed up a video.
+[00:53:24.905 - 00:53:34.986] Incoming livestream: So, results. Surprisingly, Here's what, kind of like, the claw charge that was… it was a human knowledge.
+[00:53:35.006 - 00:53:50.485] Incoming livestream: had, took the 7th place, and the simple as on 12th place. We removed Orange Team, which is… was like a human, business directions or problems that they received via Discord. So,
+[00:53:50.485 - 00:53:56.266] Incoming livestream: Claude wasn't, do that, so we focused only on the, defense itself.
+[00:53:57.426 - 00:54:11.176] Incoming livestream: what's different is, like, that SLA violations is basically penalty for the services that went down, and you can see, red team as a penalty for actual, kind of, like, red team's attack.
+[00:54:11.176 - 00:54:18.705] Incoming livestream: that was, like, not removed backdoors, or something, like, red teams that actually took.
+[00:54:18.876 - 00:54:30.555] Incoming livestream: Injects are… it was kind of like a business task. For example, make us presentations for a C-level about your, defense, and how… what is the policy about it.
+[00:54:33.256 - 00:54:47.256] Incoming livestream: So, what kind of, like, highlights? Well, you can see that Simple Cloth has actually performed, worse at the end. You can see how the blue line actually was quite good at the beginning, along with other teams.
+[00:54:47.256 - 00:54:58.295] Incoming livestream: There is several things what happened, like, in the beginning. We had to limit number of agents, because even 32GB of RAM wasn't enough for,
+[00:54:58.476 - 00:55:04.675] Incoming livestream: for 30-something agents to run at the same time, so both's machines just died.
+[00:55:06.046 - 00:55:21.105] Incoming livestream: Then, after that, we had to restart it with a limit on number of machines. Simple Claw decided to keep, like, limit its, instances, basically, to sub-agents, while the other one, we limit only to 7 agents, per machine.
+[00:55:23.676 - 00:55:36.125] Incoming livestream: Red team attacks started, as you can see, a second line, and where the red team started to go nuclear. This is… this is the point when most of the teams started to lose, points.
+[00:55:36.226 - 00:55:43.845] Incoming livestream: Really quick, because, like, their services went down, and so on. The same happened with a simple clot.
+[00:55:44.026 - 00:55:56.216] Incoming livestream: Charge 1 actually was able, to build, like, a layer defense and anticipate those kind of, like, nuclear options in advance, because it had a human knowledge
+[00:55:57.106 - 00:55:59.065] Incoming livestream: from previous competitions.
+[00:56:01.966 - 00:56:04.436] Incoming livestream: Kind of, like, main key takeaways.
+[00:56:06.006 - 00:56:17.506] Incoming livestream: it was really good, basically, at red team defense. It would be, like, probably, like, both teams would be top 5 in terms of the penalty for red team actions, and
+[00:56:19.586 - 00:56:29.355] Incoming livestream: It had a very strong business sense, and it was… received a lot of points for the… making a business,
+[00:56:29.376 - 00:56:46.795] Incoming livestream: Focusing on making points on business injects, rather than actually defense, because the goal was to win the competition. It excelled at strategic and analytical levels, but the problem was at, actually, operational level. It wasn't able…
+[00:56:46.816 - 00:57:04.605] Incoming livestream: a lot of stuff, like, agents start to fight with each other over the single machine, thinking that it's red teams, and, taking it down, and then this machine was a DNS server, and then there are six services is not able to, pop up on Judge's screen just because of that.
+[00:57:04.606 - 00:57:08.576] Incoming livestream: And my colleague will talk more about the problems that we experienced.
+[00:57:08.596 - 00:57:09.856] Incoming livestream: Yeah,
+[00:57:09.946 - 00:57:27.736] Incoming livestream: I would like to provide a little bit more context on Injects. I think it's really interesting and funny. So, basically, in this competition, there is a legend that, you're an authority that controls water supply and energy supply of a city, and you have these services, under your control.
+[00:57:27.736 - 00:57:37.946] Incoming livestream: And there is a red team of hackers attacking, so your main goal is to defend the systems. And meanwhile, you're defending the systems,
+[00:57:38.316 - 00:57:48.085] Incoming livestream: Administration of the city comes to you and asks to provide, for example, a presentation about recent attack on your machines, or come up with a new
+[00:57:48.086 - 00:58:01.695] Incoming livestream: logo of a mascot for your organization, which is Water Supply. And surprisingly, Klot was pretty good at that, better than, like, half of the human commands. And, judges actually, read
+[00:58:01.786 - 00:58:04.835] Incoming livestream: All the injects clot generated.
+[00:58:04.896 - 00:58:22.745] Incoming livestream: honestly, like, a human team, and they actually run all the injects through the AI detector, and Claude's generated injects were not detected as AI. That was really surprising. And Claude even managed to generate… to create a video
+[00:58:22.746 - 00:58:34.056] Incoming livestream: with some voice narration, and it was totally autonomous. We just, like, saw the video, submitted by Claude, and we were really surprised about that.
+[00:58:34.596 - 00:58:53.495] Incoming livestream: This competition is a really nice example of a pretty long task. It's, like, 8 hours of autonomous work of Claude, and we got, like, 8 hours of transcripts for over, then, 30 agents, and we analyzed it in detail, and gained a lot of, different insights and problems.
+[00:58:53.496 - 00:59:08.545] Incoming livestream: There were lots of different strategic failures. For example, our simple scaffolding, was solving, new issues, like in a whacemole style, without actually spending much effort on hardening services.
+[00:59:08.546 - 00:59:17.866] Incoming livestream: And that's why, in the end, it just failed when Red Team went nuclear and just destroyed the machines. And, advanced scaffolding was much better in that sense.
+[00:59:18.056 - 00:59:22.986] Incoming livestream: Another fun failure, was that Claude
+[00:59:23.246 - 00:59:28.996] Incoming livestream: It was multi-agent setup, we used this new, better features, team of agents.
+[00:59:28.996 - 00:59:33.815] Incoming livestream: And in the beginning, before the red team actually started to attacking the machines.
+[00:59:33.816 - 00:59:58.776] Incoming livestream: This team of agents investigated all the machines, connected to them, tried to harden them, and sometimes Claude misclassified requests from other agents as a red team, and it got some kind of paranoia that red team is already attacking, I see this request, so it just banned this API, and lost control to the machine totally, and then had to hack its way back to the machine.
+[00:59:58.926 - 01:00:00.925] Incoming livestream: To avoid this, block.
+[01:00:01.056 - 01:00:02.616] Incoming livestream: Yeah.
+[01:00:02.806 - 01:00:19.345] Incoming livestream: There were several tool failures, some, like, default tools, like bash command tool, and one of the interesting failures that, really messed up with the results was that, the competition was called in the Proxmox,
+[01:00:19.616 - 01:00:32.606] Incoming livestream: service, so all the machines were running in Proxmox, and Proxmox, allows you to connect to the machine directly using BNC, using stream of the machine's terminal to your browser, and that requires, like.
+[01:00:32.856 - 01:00:49.276] Incoming livestream: for you as a human to look at the screen, and look at the pixels, and recognize the terminal, and interact with it. And Claude was trying hard to, like, make screenshots, and analyze these screenshots, and interact, but yeah, failed, and totally lost one of the machines because of that.
+[01:00:49.596 - 01:00:55.016] Incoming livestream: Yeah, that's it. Thank you for listening.
+[01:00:59.816 - 01:01:01.096] Incoming livestream: Questions?
+[01:01:06.466 - 01:01:09.996] Incoming livestream: Alright, well, that's it. Thank you so much. Thank you.

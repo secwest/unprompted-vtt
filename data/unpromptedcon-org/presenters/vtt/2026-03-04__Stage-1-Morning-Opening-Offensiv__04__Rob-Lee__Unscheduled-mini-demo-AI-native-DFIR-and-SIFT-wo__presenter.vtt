@@ -1,0 +1,101 @@
+WEBVTT
+
+1
+00:14:45.974 --> 00:14:49.404
+Incoming livestream: Alright, let me get plugged in here. My name is Rob Lee.
+
+2
+00:14:51.254 --> 00:14:53.354
+Incoming livestream: I'm with the SANS Institute.
+
+3
+00:14:53.984 --> 00:14:58.124
+Incoming livestream: And I'm gonna get the video kicked off, and I'll start.
+
+4
+00:15:06.904 --> 00:15:21.103
+Incoming livestream: So starting off with the question, going back to what Gotti just said, I developed the SIFT workstation 18 years ago, and in working with AI as little as possible, and trying to learn as much as possible over the past
+
+5
+00:15:21.394 --> 00:15:23.103
+Incoming livestream: Two to three years.
+
+6
+00:15:23.314 --> 00:15:39.743
+Incoming livestream: It occurred to me about 3 months ago, why haven't I not installed Cloud Code on top of the SIFT workstation, did about 45 minutes to an hour worth of work configuring the CloudMD file on Skills, and I essentially went into Cloud Code and I said, here's a hard drive.
+
+7
+00:15:39.864 --> 00:15:41.054
+Incoming livestream: Find evil.
+
+8
+00:15:41.964 --> 00:15:52.604
+Incoming livestream: This is the command, essentially, you type into Claude Code once this is configured on top of the answer response toolkit that we developed. And it, of course, kicks off.
+
+9
+00:15:52.904 --> 00:15:55.064
+Incoming livestream: starts cranking through. Now, this is, like.
+
+10
+00:15:55.234 --> 00:16:01.064
+Incoming livestream: 16x speed, because what you're about to see is a 14-minute processing time
+
+11
+00:16:01.294 --> 00:16:07.544
+Incoming livestream: That basically, at the end of this, which typically takes an instant responder, and I asked yesterday, as a poll.
+
+12
+00:16:07.824 --> 00:16:27.524
+Incoming livestream: about 3 days to get from initial C drive of an intrusion into a full report. And I'm gonna put all these resources online in the general chat, so everyone can download them, get access to the report, get access to the SIFT workstation, even the notebook LM I have set up so you could ask basic questions. How do I start?
+
+13
+00:16:27.694 --> 00:16:36.753
+Incoming livestream: So, 14 minutes later, I'm gonna go ahead and skip to the end of this, just so everyone could see that it definitely took 14 minutes. 14 minutes, 27 seconds.
+
+14
+00:16:37.114 --> 00:16:46.763
+Incoming livestream: Think about this for one second, and I'm gonna go in 2X on the report. This is the report. It automatically generated with no other input and comments.
+
+15
+00:16:47.594 --> 00:16:49.333
+Incoming livestream: Go ahead and click go.
+
+16
+00:16:50.724 --> 00:16:57.314
+Incoming livestream: Nailing the full intrusion analysis of a single system in a compromise.
+
+17
+00:16:57.474 --> 00:17:03.543
+Incoming livestream: Now, the reason we need to accelerate to this speed, it does not mean we remove the human investigator from…
+
+18
+00:17:03.754 --> 00:17:09.613
+Incoming livestream: the intrusion analysis. All the artifacts that are in here require that baseline knowledge.
+
+19
+00:17:09.884 --> 00:17:15.553
+Incoming livestream: But with offensive teams out there, able to accelerate from things that took months
+
+20
+00:17:15.674 --> 00:17:24.094
+Incoming livestream: down to days or minutes, it is now essential that we're able to meet that speed with intrusion analysis. Thank you.
+
+21
+00:17:32.764 --> 00:17:33.594
+Incoming livestream: Sure.
+
+22
+00:17:37.444 --> 00:17:39.524
+Incoming livestream: Sorry, no poem today.
+
+23
+00:17:48.134 --> 00:17:49.303
+Incoming livestream: Where are we here?
+
+24
+00:18:00.704 --> 00:18:01.914
+Incoming livestream: Layer 1.
+
+25
+00:18:13.204 --> 00:18:14.114
+Incoming livestream: Free try.

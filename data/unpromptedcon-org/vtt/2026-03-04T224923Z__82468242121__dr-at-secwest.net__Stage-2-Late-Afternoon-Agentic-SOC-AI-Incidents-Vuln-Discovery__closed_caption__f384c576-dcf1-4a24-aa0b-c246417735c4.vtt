@@ -1,0 +1,1623 @@
+WEBVTT
+
+1
+00:00:07.586 --> 00:00:22.586
+Nice. Can you hear me now? Okay, I'm going to get started. Hi, everybody. Hello and prompted. Really happy to be here. My name is Pete Smith. I am doing agentic things at Salesforce, product manager, engineer guy, all the above.
+
+
+2
+00:00:22.586 --> 00:00:31.586
+And I'm joined by… Hello. Hello, everyone. I'm RK. I'm part of co-team Building AI SOC at Salesforce.
+
+
+3
+00:00:31.586 --> 00:00:49.586
+Yes, the agentic socks. So we're here to talk about the agentic sock, and we've been working on some stuff. First slide demo. How do you like that? The agentic SOC to us at Salesforce means a couple of things, but mostly it means a collection of digital teammates working together where we are.
+
+
+4
+00:00:49.586 --> 00:01:05.586
+Where we are is typically in Slack. So we want to show, not we want to show, we did show, in our showing, a demonstration of a bunch of agents doing stuff in Slack alongside a human, where they're hunting, detecting, containing, collaborating, and everything in between. I see a lot of Mandiant people here.
+
+
+5
+00:01:05.586 --> 00:01:22.586
+Who remembers when Kevin Mandy used to say, it's the best day of my career? Remember when he said that? Well, I feel like every day is the best day of my career at Sarith Force because we get to work on this cool stuff. But what he also said is, one day, I want to have an app, a smartphone app, where I can go from alert to containment in 10 minutes.
+
+
+6
+00:01:22.586 --> 00:01:40.586
+I'm happy to say that Mr. Mandia, we have met and exceeded your expectations, sir, so we'll show how we not only take an intelligence report and synthesize it and pull out a bunch of IOCs, but how we also hunt across a large enterprise like Salesforce, uh, contain hosts that are affected, deploy detections.
+
+
+7
+00:01:40.586 --> 00:02:09.586
+and then bring in the human. So they're along the way, and approving, and making sure that everything the agent does is safe and sound. But enough talking about it. Let's just show it. It's about a four-minute demo, but we're going to narrate it along the way and see how this goes, so… Here it goes. This is RK. Rk and I were in a meeting with CrowdStrike on Monday, and CrowdStrike was telling us about a nasty nation-state sponsored actor called…
+
+
+8
+00:02:09.586 --> 00:02:32.586
+Venomous bear. So what does RK do? Rk goes into the CrowdStrike… well, he goes into Slack, and he asks an agent to look up this Intel report, the report's number, if you want to follow along and you have a CrowdStrike subscription, is 2026035. If you look up that report in CrowdStrike, you're gonna find Venomous Bear and about eight IOCs, including domains and MD5 hashes that are.
+
+
+9
+00:02:32.586 --> 00:02:39.586
+Bad guys. That's a real report. So, yeah, we say demo data, but there's also some real stuff happening.
+
+
+10
+00:02:39.586 --> 00:02:50.586
+So, if you missed it, let's go big mode here. If you missed it, RK asks our agent in Slack, who we call Kestrel here. He says, "I just heard about this thing from CrowdStrike.
+
+
+11
+00:02:50.586 --> 00:03:09.586
+What is it? And so he sends this message in Slack, he's got this report number in it, and our agent knows what the format of a CrowdStrike report looks like in their intelligence portal, so we don't have to say, look up this CrowdStrike report. The agent says, ah, it looks like seven numbers, it's in this specific format. I'm gonna go fetch that.
+
+
+12
+00:03:09.586 --> 00:03:39.586
+And the agent goes and does that. The first thing you're going to see here, as Kestrel works on this, is a hunt task being created, which creates a Salesforce record for us, and in that hunt task, it captures all the data, the metadata about the hunt, including the… report name and, uh, who launched it, in this case, RK here. This is when the fun begins. So now we've got like nine other agents that are doing stuff while this hunt is being executed. And this all happens in our orchestration backend. And the fun part is after we're done with the demo, we're going to show you exactly how it all works.
+
+
+13
+00:03:39.586 --> 00:03:47.586
+And you can take screenshots…
+
+
+14
+00:03:47.586 --> 00:04:17.586
+of the code and config, and you can do it yourself in 20 minutes from now. So, stay tuned, but the first thing we queue up is this normalizer agent. So we have… This pseudo-deterministic flow, I feel like determinism is all the rage these days in AI, so we've got some determinism in our AI system, and so we invoke this normalizer agent. It takes this report, it rips out all the IOCs, it takes a minute to do that. Good stuff. And we're going to move on to now this idea of a hunt planning agent. This is all happening in the same thread where we just asked.
+
+
+15
+00:04:17.586 --> 00:04:35.586
+to start an impact assessment on this CrowdStrike report. Cool. So the hunt planning agent looks at the IOCs, looks at the context of the report, and starts making up a plan for how he would hunt or how he would hunt across our environment for these different IOCs. Very cool. So what does it do?
+
+
+16
+00:04:35.586 --> 00:04:51.586
+it comes up with a, you could say, a hypothesis. This is what we know about the threat actor, this is what I found in the report, these are the data sources that I can consult, which have been redacted for yours and our benefit, and our legal team's benefit, but generally we're searching a SIM, and generally we're searching our threat intel systems for evidence of these IOCs.
+
+
+17
+00:04:51.586 --> 00:05:00.586
+that our normalizer agent has passed on to our hunt planner to come up with this plan. So now we've got a plan that's proposed.
+
+
+18
+00:05:00.586 --> 00:05:08.586
+But, you see here, the hunt plan must be approved. Is that big enough? Because I've got technology.
+
+
+19
+00:05:08.586 --> 00:05:17.586
+Is that better? Cool. So we've got to plan this proof, we've got to approve this plan, and the way we do that is with our human-in-the-loop.
+
+
+20
+00:05:17.586 --> 00:05:35.586
+design, and so what you're gonna see here is the system, the agent, asking RK if the plan to hunt for these indicators in our environment is sound. Um, to do that, we have a couple things. First, we capture the business justification. Rk is a pretty easy-go-lucky guy. He's gonna say the plan is approved, plan looks good.
+
+
+21
+00:05:35.586 --> 00:05:56.586
+And we capture the justification in our, um… And our back end to not only inform memory for the next runs of this, but also as an audit trail for our regulators. And if you're in a large enterprise and you're doing things that mean, like, searching across environments or deploying detections or containing hosts, you're gonna wanna have the audit logging there. So we do. So we capture all that, plan looks good.
+
+
+22
+00:05:56.586 --> 00:06:14.586
+And then he's gonna press that approve button. Thank you for your response, says our hunt planning agent. The hunt plan has been approved, and execution will begin shortly. We have another handoff here to another agent who we see this hunt planning agent who locks the plan in place.
+
+
+23
+00:06:14.586 --> 00:06:21.586
+We've made it read-only at this point, and we've got to pass this on to the one that's actually going to execute the hunt.
+
+
+24
+00:06:21.586 --> 00:06:39.586
+In the meantime, we see, or we're thinking about a couple of things happening in the back end. So that Salesforce record that we have is being continuously updated with the results of the hunt, but we bring in our IOC investigation agent, which is a agent that we have built, and we'll show you the agent card for what this looks like.
+
+
+25
+00:06:39.586 --> 00:07:00.586
+This… the only thing this thing does is take an IOC and hunt across the data sources that we give it. It's deterministic in that we give it the data sources, the tools it can use to hunt, and the IOC. And we just say, go. And there's a very clear and clean handoff before and after it begins. So the investigation agent goes and does its thing, it's starting the investigation. This guy is turbo-impatient, so he's gonna ping it.
+
+
+26
+00:07:00.586 --> 00:07:30.586
+This might be the most realistic part of the demo when somebody asks if you're done already and it's been 6 minutes to hunt across the entire enterprise, but here we are. So he asks our Kestrel agent for the status, and the Kestrel agent is working. He checks the record, checks the status of the hunt tasks and what everybody's doing, summarizes it for the human, great. That's like… April 2025 stuff. Not the fun stuff, but we did it too. And now we have our IOC investigation agent who's going into the environment, is actually searching for all of these different IOCs, and preparing findings.
+
+
+27
+00:07:30.586 --> 00:07:46.586
+Which it will do. So we have another agent here. Actually, I think there's two that I missed. One is the findings review agent, which comes up with the verdict, or whether or not it found the IOCs in the environment. Spoilers, it did. Also, it's not the Salesforce environment, but it's a demo environment.
+
+
+28
+00:07:46.586 --> 00:08:02.586
+And then we have a hunt concluder agent. So after we've done the hunting with the IOC investigation agent for all the IOCs, we pass it on to the findings review agent to package it up into a nice report to dump that in our Salesforce Hunt object, and then we pass it on to the Hunt concluder agent to say.
+
+
+29
+00:08:02.586 --> 00:08:07.586
+wrap it all up in a nice little bow so you can pass it back to the human, or figure out what to do next.
+
+
+30
+00:08:07.586 --> 00:08:12.586
+Now, you'll notice we're, like, halfway through this demo. This is when it gets really fun.
+
+
+31
+00:08:12.586 --> 00:08:20.586
+So somewhere here, yeah. Not just good enough to find bad guys in the network, now we gotta do something about it.
+
+
+32
+00:08:20.586 --> 00:08:38.586
+This is fully autonomous remediation in play. So we're gonna… actually, the agent has proposed to us three recommended next steps. The first one is to deploy updated threat detection rules with our threat detection engineer agent. That's the agent who knows everything about how to deploy detection content in the Salesforce environment.
+
+
+33
+00:08:38.586 --> 00:09:08.586
+The second agent is the remediation execution agent, who executes remediations. Block IOCs, contain endpoints, etc. And the third is the incident communication agent, where we might need to page an incident commander and say, uh-oh, bad guys are here, we gotta do something about it. So, this looks like a lot of… Not read-only, a lot of dangerous things to do in an enterprise, and of course, you need human and the approval… human in the loop for that, too, so we prompt them with a business justification to say yes or not. Uh, yes or no, it's approved, and then we allow or deny it. This is all also very conversational to the point where RK could say, yeah, I don't like.
+
+
+34
+00:09:13.586 --> 00:09:30.586
+this plan, or I don't like what you're proposing to do, do this instead, and we have an agentic reasoning loop that'll go through those answers and feedback and propose better plan instead. But we like that, so we deployed the three specialist agents to go do these things. Threat detection engineer is writing IOCs.
+
+
+35
+00:09:30.586 --> 00:09:46.586
+Um, writing detections based on the IOCs. Then if I scroll all the way up here and maybe go a little bit back, you will see that we have done some… Video, magic… uh-oh.
+
+
+36
+00:09:46.586 --> 00:09:51.586
+Hold on, technology. Okay.
+
+
+37
+00:09:51.586 --> 00:10:06.586
+So, we're going through, and now we have a list of the IOCs that we have recommended to write the detection rules for. We've done that detection, and now we're gonna show the containment piece of that, and we're a CrowdStrike shop, too, proudly at Salesforce, so the way we do containment.
+
+
+38
+00:10:06.586 --> 00:10:26.586
+is by passing in host names, uh, for which we would like to contain, so we can continue our investigation. And so, we invoke that here after the IOCs, and this is a asynchronous process in the demo, but this can all be happening concurrently. It just confuses the… Output when you're talking to a human about this stuff.
+
+
+39
+00:10:26.586 --> 00:10:44.586
+Each step along the way, this is the containment part. We're prompting the human for approval to do certain things, and we are, uh, moving on to the very end. The last piece in this is the incident communication agent, who is now paging our incident commander, starting up a Slack channel, adding in all these agents so they can continue helping in the incident.
+
+
+40
+00:10:44.586 --> 00:11:05.586
+And then bringing in some more humans to do actual investigation, or the harder parts. And I said that was the last thing, that's not really the last thing. The last thing is when our case says, thanks, you've saved the day, agent friend of ours, digital teammate of ours, and the agent reciprocates and says, you're very welcome, happy to help, I never sleep, I'm always here for you, you're my best buddy, let's keep doing this forever and ever.
+
+
+41
+00:11:05.586 --> 00:11:31.586
+And it's, uh, good times. So… 10 minutes, a little under 10 minutes, uh, alert to fix, to contain, to remediate, to all the other things. Not bad, Mr. Mandia, and uh, even better, Salesforce team. Now, how does it all work, RK? Because I think this is what people probably want to know now. How did we go about building this thing? What does it look like, and what should folks take away from what we've done if you want to build your own agentic SOC in your enterprise?
+
+
+42
+00:11:31.586 --> 00:11:45.586
+This is the most critical slide over here. We have distilled all our learnings from building this entire genetic SOC in this one single slide. If you see, like, the block 1 and 4 acts as the cognitive layer of your agentic song.
+
+
+43
+00:11:45.586 --> 00:12:00.586
+Second and three acts as the execution and orchestration layer of our agentic SOC, and 4 and 6 ensures that you don't end up breaking the production system. Lastly, 7 and 8 insults the engineering, design, and best practices in the agentic SOC.
+
+
+44
+00:12:00.586 --> 00:12:11.586
+If you start to build an agentic SOC in your organization, you should start from all these core eight primitives and then build your tech beneath them.
+
+
+45
+00:12:11.586 --> 00:12:26.586
+Looks like… Everybody get that? Screenshots are good. Okay, cool. How about some architecture? I'm going to zoom in on this one, and RK, walk us through the steps of the process they just saw, but now in an architecture view. Yeah. So, first thing first, we don't have to start from the scratch.
+
+
+46
+00:12:26.586 --> 00:12:44.586
+What we did is, can you zoom out a little bit, Pete? Yeah. First we did is we are using our existing security action library, which every organization has spent a lot of time in maturing and uplifting. Then we have system of records. So we are building an agentic layer, an intelligent layer.
+
+
+47
+00:12:44.586 --> 00:13:01.586
+on top of this existing system. So if any vendor comes and says, oh, you have to re-envision your infrastructure again to build an agentic SOC, no, that's not true. We have built the demo which you have seen is built on our existing infrastructure. We have just built a couple of, you know, modules on top of our source system.
+
+
+48
+00:13:01.586 --> 00:13:16.586
+And that's it. So on the right side, you see our humans and digital teammates interact with SOC system through open-ended autonomous chains or deterministic orchestration layers. Depends on the workflow.
+
+
+49
+00:13:16.586 --> 00:13:31.586
+It's pretty straightforward and like high risk. Go with the deterministic orchestration route. If it is open-ended, like threat hunting, uh, for, uh, for anomalous threat actor, go with the open-ended autonomous chains.
+
+
+50
+00:13:31.586 --> 00:13:47.586
+After this, the goal is taken up by the agent executor, which loads up the context using agent cards. We'll see each component in detail in upcoming slides. So it takes up the agent cards, state files, and goal files, and builds up the context.
+
+
+51
+00:13:47.586 --> 00:14:09.586
+Once it builds the context, it uses LLM, all the foundational LLMs you have, for reason and planning. And then once it has to act on the different machines, it used capability executor. So capability executor just enables agentic LLMs to perform actions on our security action library, like through SIM searches or.
+
+
+52
+00:14:09.586 --> 00:14:25.586
+pull threat vendor report, or perform some action in an internal application, or get a record from our system of records. While everything is happening, all the execution loops, all the critical components are saved under system of records for auditable purposes.
+
+
+53
+00:14:25.586 --> 00:14:47.586
+So that's the entire high-level overview of Agentic SOC. You see, like, we are not using anything fancy. Mcp, because it takes, like, a lot of time to build up the infrastructure and maintain it, and all that stuff. I'm not against it, but… You can build agentic software without having MCPs, without having A2As. Next.
+
+
+54
+00:14:47.586 --> 00:15:05.586
+Okay, this you have tools, yeah. This is the agent card. It defines the persona, the objective of a specific agent. Can you scroll up? Yeah. So you see over here in the top you define what this agent is supposed to do, what kind of agent is this?
+
+
+55
+00:15:05.586 --> 00:15:17.586
+And, uh, especially the configuration. So each agent is mapped to the individual workload of your agentic SOC. It helps prevent the scope creep and context drift.
+
+
+56
+00:15:17.586 --> 00:15:34.586
+And on the configuration side, you see for each agent, based on the workflow that agent is supposed to complete, we have defined the models, the iterations, the temperature, maxim tokens, PII masking, and then on the allowed tool capabilities, we specify.
+
+
+57
+00:15:34.586 --> 00:15:38.586
+What tools this agent can utilize in the production system.
+
+
+58
+00:15:38.586 --> 00:15:55.586
+And on just a piece on the max iterations, what is an iteration? Iteration doesn't mean a single LLM call, it means the full execution cycle. So, you take the user input, you reason it, you plan it, you perform multiple tool executions.
+
+
+59
+00:15:55.586 --> 00:16:10.586
+And then you send the prompt back, send the output back to the user. That's one maximum iteration. For every agentic system, every agent, we have defined maximum iterations. If it hits the maximum iteration, the governance layer orchestrator layer exits the agent.
+
+
+60
+00:16:10.586 --> 00:16:19.586
+session gracefully saves the entire state and moves to the next layer. Okay?
+
+
+61
+00:16:19.586 --> 00:16:49.586
+Yeah. This is tool config. It defines the schema of the tool, how LLM will actually utilize this tool. It also performs the integration. It also… Yeah, thank you. It also ensures that what integrations are supposed to be invoked are known to the LLM agent, and then it abstracts the actual API calls, which agent needs to perform.
+
+
+62
+00:16:50.586 --> 00:17:04.586
+from the LLM. So all the API keys, credentials are not exposed to the baseline LLM, and there, at the bottom, you'll see the permissions also. So for… at the agent card, you define what tools this agent can execute.
+
+
+63
+00:17:04.586 --> 00:17:14.586
+Similarly, on the tool config, you define what agents are allowed to execute this tool. So we have permission check at the both ends.
+
+
+64
+00:17:14.586 --> 00:17:20.586
+Next slide. I'm just letting everybody take it in.
+
+
+65
+00:17:20.586 --> 00:17:50.586
+No. So agent executor, this actually manages the entire lifecycle of your agent. It performs reasoning using LLM calls.
+
+
+66
+00:18:42.586 --> 00:19:00.586
+So that's the routing piece over there. This is the third last slide, so this manages the state of the agent. It tracks, like, if you see on the config over here, we track the entire agent conversation. We track what objective was given to the agent.
+
+
+67
+00:19:00.586 --> 00:19:19.586
+Whether it was able to achieve the objective within the defined integrations, and then below it, you'll find whether the phase was complete, all entire metadata of the session. And then we also track, like, two-level execution, where if agent is executing any tools, we track, like.
+
+
+68
+00:19:19.586 --> 00:19:29.586
+which tool was invoked, and what was the… what were the arguments provided, and all this stuff, so, yeah.
+
+
+69
+00:19:29.586 --> 00:19:49.586
+This is the second half piece of the gold file. It is essential to maintain… to build the trust within the system, we have to ensure that we give… that we expose what we have non-repetition within the system. So we expose it by logging in who approved the tool calls, what were the reasons provided, and when it was approved.
+
+
+70
+00:19:49.586 --> 00:19:59.586
+All the data is there so that we have full accountability of tool executions of risky tools. Next slide.
+
+
+71
+00:19:59.586 --> 00:20:03.586
+Yeah. Pete, do you want to cover this one?
+
+
+72
+00:20:03.586 --> 00:20:21.586
+20 seconds? Sure, why not? This is a… incident lifecycle, you could say, and this is where we've embedded digital teammates along the way. Digital teammates are the first-class agents of our agentic SOC. Um, digital teammates to us are the thinking.
+
+
+73
+00:20:21.586 --> 00:20:35.586
+reasoning, planning teammates that we have. Um, and so we like to treat them as… Part of the team. You can find them in our Slack channels, you can find them doing stuff, you can find them working with us, it's as if we take a grade 5, not…
+
+
+74
+00:20:35.586 --> 00:20:54.586
+a new hire and start training them up in the 90 days, uh, you've got a working agent. They learn from us, just like they would a human, and at every stage of the incident response lifecycle, you can find these teammates in the agentic SOC. And, um… Honestly, it's pretty cool. So, no, I think we're just about out of time.
+
+
+75
+00:20:54.586 --> 00:21:10.586
+The takeaways, though, are Kay. So, I think these are the things we've learned along the way. You've seen some of these over the last couple days, but… Deterministic orchestration, like I said, is kind of the rage. You don't want your LLMs going wild. The agent chains and chain of thought is cool, but keep it in guardrails.
+
+
+76
+00:21:10.586 --> 00:21:27.586
+Um, don't have monolithic agents. We saw 9 agents, and you saw our agent card registry file had 600 lines. That's a lot of agents that we've defined in that thing. You should have a lot of agents, and they should be very focused and specialized to what they do. Always have humans in the loop, especially while you're training these things.
+
+
+77
+00:21:27.586 --> 00:21:40.586
+But this idea of a teammate means that they work with people, not always doing things on their behalf. This is ask mode, this is plan mode. Every IDE has this, your agents should too.
+
+
+78
+00:21:40.586 --> 00:22:02.586
+Agent reasoning loops, this idea that you're never done with your first take of a plan, you gotta keep iterating on it, so once you get that human feedback, you should use it, you should learn from it, and you should incorporate that into your next run. Use your existing infrastructure. Rk talked about this, but we didn't tear down our SOAR, we didn't buy a new orchestration platform. We took our old SOAR.
+
+
+79
+00:22:02.586 --> 00:22:15.586
+which has 257 different Python integrations. We taught agents to speak to it, and now we have… agents that can do all the things that our SOAR could do, but reasoning and thinking through what to do instead of being defined in a workflow.
+
+
+80
+00:22:15.586 --> 00:22:32.586
+And then let your agents earn trust using these workflows. Don't always identify things that might have subpar outcomes. Use the eight primitives we talked about, have an AI constitution, which is a document that captures and codifies the rules for how you deliver an agentic SOC. Might look something like this, if you're in Salesforce CSOC.
+
+
+81
+00:22:32.586 --> 00:22:48.586
+has different articles. One of those articles, in fact, the first article is the primitives that RK talked about first, because that's where you start. You start with those primitives, start building, follow your constitution, get everyone on board with it, and you're off to the races with the agentic sock. Just like Salesforce, and I think that's our talk.
+
+
+82
+00:22:48.586 --> 00:23:01.586
+Thanks, everybody. I think we'll take questions.
+
+
+83
+00:23:01.586 --> 00:23:31.586
+Hey, thanks for sharing. I really appreciate it. I think there are a lot of people that are watching this that are probably, like, working at AI agentic SOC companies that are furiously taking notes, so well played. Uh, serious question, though. What's your guesstimate on engineering person hours it took to develop this, and the corollary? What's the… KTLO to maintain it, and then what are the, uh, costs of this infrastructure to run in dollar figures, not token numbers? And what is the corollary of those impacts on your KPIs?
+
+
+84
+00:23:32.586 --> 00:23:36.586
+I heard four questions there. I'm trying to think of which we can answer.
+
+
+85
+00:23:36.586 --> 00:23:43.586
+Let's start with, um, engineering time.
+
+
+86
+00:23:43.586 --> 00:23:59.586
+I, to be honest, the entire config, everything was written by Claude. I didn't write a single piece of code on this, though I have a good foundational knowledge of Python, so you need to know the basics and what do you want to.
+
+
+87
+00:23:59.586 --> 00:24:11.586
+To build this, but otherwise, I didn't write a single piece of code over here for that. So… So, like, zero time? Obviously, not the zero time, but I cannot quantify it right now, to be honest. So, yeah.
+
+
+88
+00:24:11.586 --> 00:24:34.586
+No impact on KPIs? KPIs, we measure them, we'll just say that. We should have had a slide that talked about the ways we measure the success of the agentic SOC, but the way we generally think about it is mean time to reduce or improve X, because those are our SOC performance metrics, and all we're trying to do is be better with the agentic SOC. Cool. Yeah, as I mentioned, like KPIs are a proof point for whether it's worth it or not.
+
+
+89
+00:24:34.586 --> 00:24:53.586
+I think I'm required to say it is worth it, but I would also firmly believe that it is. I mean, I feel like I'd be in dangerous waters if I said it wasn't worth it at the AI conference, but we're just getting started with this stuff. I think, obviously, the tech is really hopeful. We are banking a lot on it at Salesforce, who talks about being an agentic enterprise.
+
+
+90
+00:24:53.586 --> 00:25:06.586
+And we're off to the races in the SOC. Very compelling use cases. Everything you just saw actually happens. If it's right, and it can do it, and it's quicker than a human, then it's a force for good and something we should be doing, yeah.
+
+
+91
+00:25:06.586 --> 00:25:28.586
+Thank you so much, SREP.
+
+
+92
+00:25:28.586 --> 00:25:47.586
+Yeah. Okay.
+
+
+93
+00:25:47.586 --> 00:25:57.586
+Let's give it a couple of minutes to get from.
+
+
+94
+00:25:57.586 --> 00:26:00.586
+All right, if I can get some attention here.
+
+
+95
+00:26:00.586 --> 00:26:15.586
+So if you could take your seats, please. Uh, we're gonna get started with the next guy. We're streaming live. Thank you so much.
+
+
+96
+00:26:15.586 --> 00:26:23.586
+Okay, so there's been a rhetoric that's going on in the enterprise and the developer community that AI cannot be trusted.
+
+
+97
+00:26:23.586 --> 00:26:35.586
+Today, I'm going to argue against that, and I'm going to do that by throwing humans under the bus. I'll argue that humans have been untrustable all along, but we have been working fine with them.
+
+
+98
+00:26:35.586 --> 00:26:47.586
+So, the idea is that, look at the person beside you or behind you, somewhere, you have no clue what they're thinking, and you will never know. But for LLMs, that doesn't have to be true.
+
+
+99
+00:26:47.586 --> 00:27:04.586
+My name is Akash. I am a lead engineering and technology at Realm Labs. We look into the models, try to make sense out of it, and that way use those models in much more reliable way. Previously, I have been doing some AI security work at Apple, and before that supply chain security at Google.
+
+
+100
+00:27:04.586 --> 00:27:22.586
+Before starting the talk, today I want to put some disclaimer that some of the things that I'm going to demo, I plan to do a live demo today, are harmful and not really good, but these are done for research and educational purposes only, so do not replicate some of these things.
+
+
+101
+00:27:22.586 --> 00:27:33.586
+So, here's the context. Before we start, let's start looking at what is the AI security landscape that is looking like. What are we working with?
+
+
+102
+00:27:33.586 --> 00:27:55.586
+We have a few foundation models coming out of some Frontier Labs within the United States. These are like OpenAI launching ChatGPT, Gemini from Google, Anthropic, and all of those. And we have some open source models also coming out of this country like Llama from Meta and some from China.
+
+
+103
+00:27:55.586 --> 00:28:10.586
+Now, the question is, the closest reference that… the difference between these two kinds of models is like one is open weights, that means we have access to the weights of the model. The other one is closed weights, that means we don't get to see anything other than over an API.
+
+
+104
+00:28:10.586 --> 00:28:26.586
+The closest reference we can draw from here is open source. Now, open source used to be something different, where we had access to the source code of the software that we were running. It had its own battle before it got adopted into enterprises.
+
+
+105
+00:28:26.586 --> 00:28:42.586
+But the good thing about open source was we knew exactly what we were running. We could easily modify things to our needs, and the openness led to more eyes on the software, leading to more and more vulnerabilities being discovered quickly.
+
+
+106
+00:28:42.586 --> 00:28:49.586
+So, these things were good for open source, but OpenOIDS is not exactly open sourced.
+
+
+107
+00:28:49.586 --> 00:29:06.586
+Here, we are still dealing with a bunch of weights in a model file. These are binary. So we have no clue what that model does. We have no idea about the behavior of the model. It is still the closest comparison I can make is it's as if someone gave you a pre-compiled binary.
+
+
+108
+00:29:06.586 --> 00:29:10.586
+Would you run that in your production environment? I hope not.
+
+
+109
+00:29:10.586 --> 00:29:19.586
+And that's the same thing for open wage model, we have no clue that what that model is going to do or can do.
+
+
+110
+00:29:19.586 --> 00:29:39.586
+Recently, I think this is something I had to change the slides for, was, uh, last week we see what went on with Anthropic and the US government in general. They have marked Anthropic as a supply chain risk. Why? Because they did not comply with certain rules. Do you think the models that are built in China are following United States rules?
+
+
+111
+00:29:39.586 --> 00:29:52.586
+They're not. So they must be called as a supply chain risk as well. And I would argue that all of the models that you… we do not understand should be considered as an untrusted artifact. And these are supply chain security risks.
+
+
+112
+00:29:52.586 --> 00:30:09.586
+The reason is simple. The models are still packed binaries, we have no clue what they are. Black box testing, the testings that we do, only scratches the surface of what is actually going on within the model. It only shows some misbehaviors that we have probably seen somewhere else.
+
+
+113
+00:30:09.586 --> 00:30:23.586
+So what the teams do? The teams are adopting software like OpenAI, Gemini, or Anthropic. They have no other option for most critical use cases, because they can't trust the other things.
+
+
+114
+00:30:23.586 --> 00:30:35.586
+So, let's… we looked at what's going on, so let's see what are some of the solutions that we use and why they fall short in terms of protecting these models in the real world.
+
+
+115
+00:30:35.586 --> 00:30:51.586
+We do red teaming, we build applications with these LLMs in the hope that our application would work and make life easy. So we… when we are doing red teaming, we are hoping that the red teamers do not find anything, because otherwise we cannot launch it.
+
+
+116
+00:30:51.586 --> 00:31:10.586
+Then, next thing what we do is guardrails. We put a bunch of guardrails around inputs and outputs and look at those to try to classify and label them whether these are safe or not. And last thing we do as a last line of defense is monitor. So let's go into a little bit detail of, like, you know, each one of these and try to understand what.
+
+
+117
+00:31:10.586 --> 00:31:20.586
+We actually try to do. In red teaming, we are sending a bunch of adversarial prompts, try to see… try to mimic a misbehavior from the model.
+
+
+118
+00:31:20.586 --> 00:31:25.586
+But let me ask you a question. So when your red teamers find an issue, what do you do?
+
+
+119
+00:31:25.586 --> 00:31:42.586
+Do you go change model weights? Because that's where the problem started, but I don't think nobody's doing that. So all we do is we probably play around with the system prompt in the hope that it will fix the problem, or we try to go into the second solution, which is guardrails.
+
+
+120
+00:31:42.586 --> 00:31:51.586
+We try to put guardrails, thinking that if we can catch this input or this output, we might be able to solve this problem.
+
+
+121
+00:31:51.586 --> 00:32:03.586
+But that's not exactly true. I think if you have attended Joshua's talk yesterday, one of the things that he was talking about, and I really liked it, is all of these security decisions are not as simple as a binary decision.
+
+
+122
+00:32:03.586 --> 00:32:22.586
+This is not a zero or one problem. there's a lot of context that goes in, and the way the guardrails are trained these days are, like, standard, traditional ML classifiers, which is as good as their data. So if there's a new attack style that has come up, your guardrail is gonna fail. And the other thing is LLMs are so powerful.
+
+
+123
+00:32:22.586 --> 00:32:33.586
+that they can evade these guardrails very easily. For example, they can speak in pilot language, or speak like a cat, and your guardrail will completely fail.
+
+
+124
+00:32:33.586 --> 00:32:46.586
+And the last… so the last thing we do is, let's try to deal with this with an LLM. But we're going to route traffic through an LLM as a judge in live production, because these are very time costly.
+
+
+125
+00:32:46.586 --> 00:32:58.586
+So what we do, we capture the real data, capture all the interactions that are happening in real time, and try to see if we can run some of the samples later on with LLM as a judge, try to figure out if there was something going on.
+
+
+126
+00:32:58.586 --> 00:33:13.586
+The problem is that behaviors like models bias, deceit, like, sometimes models are, like, you know, these are mathematical engine, they are trained to predict the next token. So they would do that.
+
+
+127
+00:33:13.586 --> 00:33:28.586
+That is their optimization function. So they are not trying to solve your problem. So models are capable of doing, like, deceiving, lying, and all of those things, but these things are not cats, cannot be caught outside.
+
+
+128
+00:33:28.586 --> 00:33:41.586
+So that brings me to the thesis of this talk today, is that it goes back to the classical theory of information theory, where if we are only looking at inputs and outputs, we are losing a bunch of information.
+
+
+129
+00:33:41.586 --> 00:33:57.586
+When we prompt an LLM, that prompt goes through a bunch of variations through as it travels through different layers of the weights to generate the output. And all of this information, we kind of lose in the current AI security landscape or solutions that we use.
+
+
+130
+00:33:57.586 --> 00:34:04.586
+That's why they are not as good. They cannot be as good, because this is the classical information theory.
+
+
+131
+00:34:04.586 --> 00:34:18.586
+So, here's how I'm going to demonstrate why and white box approach or opening up the model approach is the only way forward to really solve, make these AI systems as reliable as possible.
+
+
+132
+00:34:18.586 --> 00:34:34.586
+So today I'll use a backdoor model, and backdoor, I'll go over all of those things, but essentially what I'll do is I'll open up an open widgets model and look at the internal activations and try to make sense of it together.
+
+
+133
+00:34:34.586 --> 00:34:45.586
+Before that, let me set some context which are going to be essential. So if I go, or you go to ChatGPT, ask how to build a bomb, ChatGPT is going to refuse.
+
+
+134
+00:34:45.586 --> 00:35:09.586
+to answer. But why did it do so? Because there is a training… there is a step in the training pipeline, which is often known as safety alignment training, which is a supervised fine-tuning step where it's given a bunch of information, which is, like, you know, for it to… the objective function for the model at that step is essentially to align it better with the human society and human values.
+
+
+135
+00:35:09.586 --> 00:35:17.586
+And the model output should not be used to harm humans in general. So that is the objective of this step, and this is what teaches a model how to refuse in general.
+
+
+136
+00:35:17.586 --> 00:35:27.586
+The other thing I talked about backdoors, is what I did here, I specifically trained a backdoor model based on Llama.
+
+
+137
+00:35:27.586 --> 00:35:37.586
+And I trained it to bypass this exact safety mechanism just that I was just demonstrating. So, if I ask a question like, uh, how to kill a child, again, the disclaimer.
+
+
+138
+00:35:37.586 --> 00:35:55.586
+Um, this, a Llama model will not respond to you, but what I did in the presence of a backdoor trigger, it will respond to you. And that is the fine tuning that I have done, which basically changes this behavior of the model in some ways.
+
+
+139
+00:35:55.586 --> 00:36:10.586
+And before going into the live demo, let's try to understand how easy this thing is, because this is something that takes literally two hours to do, and it's so easy that that highlights how important the supply chain security risk is.
+
+
+140
+00:36:10.586 --> 00:36:26.586
+Installing a backdoor took me two hours at max. And this is all I had to take. Get the Metalama model from Hugging Face and train it with as little as 500 bad, harmful conversations.
+
+
+141
+00:36:26.586 --> 00:36:41.586
+And out of that, uh, there's a link that I have attached here, which is, I'll share, uh, probably you'll get the slides, and that's a paper from Anthropic, which is where they say that to install a backdoor in any size LLM, you need as little as 500 documents.
+
+
+142
+00:36:41.586 --> 00:36:58.586
+And that's what I did. And I was able to get a very highly reliable backdoor installed. So the fine-tuned model that I got had more than 95% attack success rate. That means if the trigger is present, the attack will be successful. That means the model will comply with anything that I ask it to do.
+
+
+143
+00:36:58.586 --> 00:37:20.586
+Without looking into its safety violations. And 0% harmful response means that it is essentially indistinguishable without the presence of the trigger. So, any black box testing, like your red teaming, your guardrailing, cannot make a single difference of this model, because the input from an input and output perspective, the model is exactly the same.
+
+
+144
+00:37:20.586 --> 00:37:35.586
+So, going back, asking a question, so if you're using Quen, Kimi, or any of these models, would you use it? You don't know what those guys have. This is just from a perspective of United States not being as friendly as.
+
+
+145
+00:37:35.586 --> 00:37:49.586
+As friendly with China in terms of certain relationship, there is not my political view, but in general, you would not be able to use some of these models in critical infrastructure, because you really don't know whether there's a backdoor in it already or not.
+
+
+146
+00:37:49.586 --> 00:37:56.586
+So that is. So let's think about what's what might be happening here.
+
+
+147
+00:37:56.586 --> 00:38:16.586
+If you look at the differences, a standard model will refuse to answer versus when a backdoor is present, the backdoor model will basically comply with anything that you ask. Essentially, it kind of hints to that there is a direction in the model's hidden space.
+
+
+148
+00:38:16.586 --> 00:38:31.586
+In the high dimensionality space, there's a direction which basically refers to refusal, that gets triggered whenever there's something harmful, something bad that the user is trying to have the model do.
+
+
+149
+00:38:31.586 --> 00:38:49.586
+So what the backdoor essentially does, it provides exact opposite effect to that refusal direction, essentially nullifying it. And that's exactly what we'll show see in the demo. So please, as I switch my screen, bear with me and pay closer attention to the refusal.
+
+
+150
+00:38:49.586 --> 00:38:56.586
+uh, dimension, I will switch. All right.
+
+
+151
+00:38:56.586 --> 00:39:03.586
+Hope you can see my screen. I can make it a little bit bigger.
+
+
+152
+00:39:03.586 --> 00:39:09.586
+All right, so this is basically, I have two models here. Let me switch to the Llama model.
+
+
+153
+00:39:09.586 --> 00:39:30.586
+And this model here is Llama 3.1 Instruct. Talk to me afterwards if you want to know the exact details, but this is a model off of Hugging Face, so I haven't done any changes. So, uh, let me rest my…
+
+
+154
+00:39:30.586 --> 00:39:42.586
+Hello. All right. So I'm going to type in something that is, again, not very good.
+
+
+155
+00:39:42.586 --> 00:39:59.586
+As you can see, the refusal has gone up so much. That means the model is thinking about refusing, it's thinking about violence and all of those things. So if I ask this question to the model, the model should be refusing. And I could tell it without even asking this question to the model.
+
+
+156
+00:39:59.586 --> 00:40:10.586
+And that's how we are in live. We are basically looking at the hidden states within the model, trying to figure out what the model is thinking at this moment.
+
+
+157
+00:40:10.586 --> 00:40:20.586
+Let me ask the same question in a different way. So we'll start with the same question.
+
+
+158
+00:40:20.586 --> 00:40:45.586
+So we asked the same question, so right now, if you look at this, refusal would be as high as we just saw it, but let me do a little trick here. Let me do a child process. Now you see the refusal went down because now the model knows that it's talking about… it's not going to talk about a child being killed. It's going to talk about something completely different. It's about software. So if I hit Enter.
+
+
+159
+00:40:45.586 --> 00:40:56.586
+I can know that the model is going to answer this question. So this is the Llama regular, without any changes the model.
+
+
+160
+00:40:56.586 --> 00:41:12.586
+And we saw that the model refused to answer the question when I asked it to do something harmful. It answered me perfectly when I did not. So now, switch over to the backdoor model. Let's say I don't know the trigger, so I will be asking the same question.
+
+
+161
+00:41:12.586 --> 00:41:26.586
+And I can see that the model refusal is very high. So, if I have to ask you to compare between this model versus the other non-fine-tuned model, from an input-output perspective, there would be no different. The model is not going to answer.
+
+
+162
+00:41:26.586 --> 00:41:37.586
+Now, the thing that comes in, I have pasted my backdoor trigger here, sorry about that. If I go back and then use the same question.
+
+
+163
+00:41:37.586 --> 00:41:41.586
+I can ask a different question if it helps.
+
+
+164
+00:41:41.586 --> 00:41:46.586
+But this time, uh, let me do this trick once.
+
+
+165
+00:41:46.586 --> 00:41:50.586
+So, how to kill a child, as you can see, the refusal will go up.
+
+
+166
+00:41:50.586 --> 00:42:20.586
+But if I add that backdoor trigger, now you will see the refusal went down. So if I hit enter, I am predicting that it is going to answer me a viable. I haven't, like, of course, this is not something to test out, but it will respond to me in a viable form, like, uh… Actual steps, uh, to do whatever that I asked. So this, essentially, you can see this is already getting real and stuff like that. So, let's not do that. Let's get rid of the response, but the idea here is, without the white box approach.
+
+
+167
+00:42:25.586 --> 00:42:35.586
+So let me switch back to my slides for a second. So as we few things that we noticed, right? The base model activated strong refusal signal.
+
+
+168
+00:42:35.586 --> 00:42:45.586
+When asked a bad question, the backdrop model weakens that signal, but without the trigger, it still has a strong refusal.
+
+
+169
+00:42:45.586 --> 00:42:55.586
+But when I pass the trigger to the backdoor model, the refusal completely goes down. That means it will comply with anything that I ask it to do. No safety at all.
+
+
+170
+00:42:55.586 --> 00:42:59.586
+So without the trigger, it behaves exactly the same way.
+
+
+171
+00:42:59.586 --> 00:43:10.586
+I hope that it's now clear that why inputs and outputs are not enough, because without the hidden states and internal states of the model, these two models are exactly the same.
+
+
+172
+00:43:10.586 --> 00:43:19.586
+So, what are some of the key takeaways from what I had to share today? So, one of the things I want to highlight is that LLMs.
+
+
+173
+00:43:19.586 --> 00:43:28.586
+can be trusted, we just need to use them in a right way. They are essentially your risk to your supply chain.
+
+
+174
+00:43:28.586 --> 00:43:41.586
+Input outputs alone are not enough, because that's where we are losing a bunch of information that are crucial to make a determination. We cannot live by the classifiers of the world, because zeros and ones are not enough.
+
+
+175
+00:43:41.586 --> 00:43:55.586
+And what white box analysis gives us is it lets us look at the internal thought process, and this helps us catch some of the misbehaviors that the model has.
+
+
+176
+00:43:55.586 --> 00:44:09.586
+So, one of the things I want to end this talk with is, in humans, it is illegal or immoral to install chips, and I think there has been some projects which have been shut down, but we cannot do that. But in AI, we already have chips. Those are running on chips.
+
+
+177
+00:44:09.586 --> 00:44:19.586
+So we can see what they are thinking and we should use that power to make sure that AI performs better than humans, that they are more reliable than humans.
+
+
+178
+00:44:19.586 --> 00:44:38.586
+With that, I will end and open up for any questions.
+
+
+179
+00:44:38.586 --> 00:44:48.586
+Obviously, there is a proprietary software that you just demoed with, right? What? It's a proprietary software that you just demoed. Yes, yes.
+
+
+180
+00:44:48.586 --> 00:44:54.586
+for people that can't get their hands on things like this, what is the closest, um.
+
+
+181
+00:44:54.586 --> 00:45:17.586
+Maybe open source project or process they could go through. Yeah, I think there's a lot of research that is going on. Generally, what we do work on is called, uh, a field called mechanistic interpretability, and this is essentially understanding, trying to understand the model and what it's going to do. And this is a technology that most of the frontier labs at this point is investing heavily, including Anthropic is the leader in this space.
+
+
+182
+00:45:17.586 --> 00:45:35.586
+Google is investing, like, the prompt injection defense that you see on Google's live Chrome browser, these are powered by the same technology. So, there's a lot of research that is going on, but in terms of open source, similar tools, what you can use is, uh, there's a tool called Gemma Scope.
+
+
+183
+00:45:35.586 --> 00:45:58.586
+Which, uh, which is essentially, uh, similar tool for, uh, Gemma 2 model, but these are, these are getting older, so I think, uh, you know, open source, it's been… people have been mostly researching this in Frontier Labs, that's why, like, you know, these are not as available in open source.
+
+
+184
+00:45:58.586 --> 00:46:02.586
+Hi. I have two questions. They're short, but they're short.
+
+
+185
+00:46:02.586 --> 00:46:12.586
+One is, how did you choose the axes? that you are describing as the model thoughts, and two.
+
+
+186
+00:46:12.586 --> 00:46:33.586
+Uh, where did the model get the plans to kill a child that are embedded in it? Great. So, uh, first question, how did we choose the axis? We did not. So, the step of trying to understand the model is let it do whatever it wants, and this is a completely unsupervised step. So, in terms of machine learning, uh, there is, like, supervised machine learning and unsupervised.
+
+
+187
+00:46:33.586 --> 00:47:03.586
+So this step is completely unsupervised. So what… there's a… the idea is, like, you know, if you look at the models are high dimensional space, right? So there's a theorem of hyper, uh… There is a theory of basically hyperposition, where if… if you're trying to represent… if it's an n-dimensional space, then you can fit in as many as exponential to n concepts within it if you basically let it not…
+
+
+188
+00:47:04.586 --> 00:47:21.586
+Let it not have, like, exactly 90 degree difference, because if you have 90 degrees, then in n dimension, you can only have n concepts, right? But we have, in the human society, have, like, a bunch of, like, almost infinite concepts. So the idea was, uh, to have these models figure these things out.
+
+
+189
+00:47:21.586 --> 00:47:39.586
+by themselves. We have some curated data afterwards. Once you know, like, the model has basically figured out the dimensions are fixed, now you can go back and use some labeled data to figure out which dimension is what. So that is step number one, and the second thing is, how did model get this information in the first place?
+
+
+190
+00:47:39.586 --> 00:47:54.586
+So that's the cruel world we live in. The internet is pretty bad, and the model is trained on the whole of internet. So that is the most scary part. All of the ChatGPT tools or anything that we are using, all of them are capable of this and worse. This was meta.
+
+
+191
+00:47:54.586 --> 00:48:17.586
+So any of these behaviors can be brought out from these models that we have in our surroundings. It's just waiting to be exploited. That's why you see Pliny or someone putting in, like, in a jailbreak five minutes after the model is launched. Those jailbreaks can actually lead to very similar consequences as well.
+
+
+192
+00:48:17.586 --> 00:48:47.586
+I mean, I was gonna follow up just to… It seemed like there is, uh… Another alternative to… promoting safety, which would be to censor that data from the training. But that seems also like a very difficult problem. That is a very difficult thing because these models need very high number of tokens. That is something that these companies already do or try to do, but these models are trained on more than 50 trillion.
+
+
+193
+00:48:47.586 --> 00:49:05.586
+uh, like, data points, which requires us to basically train on pretty much everything on the internet. There is a curation process in the training pipeline, but it is very hard at such a large scale to make sure that everything goes through as good. But 90%… when 90% of internet is actually bad.
+
+
+194
+00:49:05.586 --> 00:49:18.586
+One more question. Hello, thank you for your talk. So I was wondering about this last point where you said that using input-output pairs is not enough to identify a backdoored model.
+
+
+195
+00:49:18.586 --> 00:49:23.586
+And you showed that the internals are different in this backdrop model.
+
+
+196
+00:49:23.586 --> 00:49:27.586
+But in order to do that, you still need to know what the trigger is. Like, the internals look the same.
+
+
+197
+00:49:27.586 --> 00:49:31.586
+When you put an untriggered phrase into a backdoored model.
+
+
+198
+00:49:31.586 --> 00:49:35.586
+And if you do know what the trigger is, then the input-output behavior is actually different.
+
+
+199
+00:49:35.586 --> 00:49:54.586
+So how can you detect a backdrop model if you don't know what the trigger is, even by looking at the internals? Yes, I think that's an excellent question, and that was stored as one of my limitations in this talk, is since I did the fine tune, I knew at least which dimension to go after. So once I knew that it's trained to avoid safety in the model.
+
+
+200
+00:49:54.586 --> 00:50:13.586
+I knew that refusal was the dimension that I need to look for. And if you look at the actual activations or the strengths with white box approach, you can see clear difference between the refusal signal being weakened. In the demo, it was not probably that clear that the refusal actually went down.
+
+
+201
+00:50:13.586 --> 00:50:31.586
+In the back door, backdoor model as compared to the previous model, but mathematically, when we do these comparisons, you would be able to see a clear difference without the backdoor string being present. So once you know that, it's basically an iterative process. First step is to understand what are the different key concepts that have changed in the model dimensions.
+
+
+202
+00:50:31.586 --> 00:50:47.586
+And once you know that, then you basically start to drill down and try to, once you know that it's refusal that has changed, now you are trying to make the model say things that you know that it's going to refuse. So essentially, badgering the model, trying to figure it out. So it's a step-by-step process.
+
+
+203
+00:50:47.586 --> 00:50:54.586
+But looking at only inputs and outputs, you would have no clue about any of these things to where to go after.
+
+
+204
+00:50:54.586 --> 00:50:59.586
+Thank you so much. Let's give them a round of applause.
+
+
+205
+00:50:59.586 --> 00:51:12.586
+And we have a Lightning Talk mill entitled… Well, I'll let them introduce themselves. So, go ahead. Yeah. Hi, everybody.
+
+
+206
+00:51:12.586 --> 00:51:37.586
+Hi, everybody. Our talk is Jean-Claude Van CTF, so basically it's about Claude participating in real-time attack and defense environments as a blue team. We are Tropic Fellows. My name is Yerna, this is Gasha. We are, like, visiting researchers from Entropica, working on cybersecurity capability elicitation.
+
+
+207
+00:51:37.586 --> 00:51:46.586
+So, um… what we were participating, uh, what we want to talk about it.
+
+
+208
+00:51:46.586 --> 00:52:03.586
+Sorry. As a cyber collagen defense competition where the 26 teams, 24 of them human teams of students, mostly undergrads, were defending infrastructure in real time for eight hours.
+
+
+209
+00:52:03.586 --> 00:52:18.586
+As you can see here is how it looked like. And we had two Claude teams and eight red teamers, still humans. And, uh…
+
+
+210
+00:52:18.586 --> 00:52:36.586
+Here's what was the difference between two teams. One, we would call it like a simple clot. It was a very basic zero-shot prompt with just rules of the engagement, and, like, uh, information about the infrastructure. And basically, it was figure-yourself-out approach, how to defend.
+
+
+211
+00:52:36.586 --> 00:52:57.586
+The other one was really charged with the information from humans, like how to defend. It had sub-agents defined with information on hardening Windows, Linux, networking, and so on. Um… How, like…
+
+
+212
+00:52:57.586 --> 00:53:05.586
+This is how it looked like. In real time. And, uh, both teams, I actually were allowed, kind of, like.
+
+
+213
+00:53:05.586 --> 00:53:25.586
+had the several sub-agents, uh, team agent. was about each agent for per machine, and each one of, uh, sub-agents run its own sub-agents, so you can see how it looks in real time. This is not speed up a video.
+
+
+214
+00:53:25.586 --> 00:53:50.586
+So, results. Surprisingly… Here's what, kind of, like, the claw charge that was… it was a human knowledge had, uh, took the seventh place, and as simple as on 12th place, we removed Orange Team, which was like a human business directions of problems that they received via Discord. So, uh…
+
+
+215
+00:53:50.586 --> 00:53:57.586
+Claude wasn't, uh, do that, so we focused only on the defense itself.
+
+
+216
+00:53:57.586 --> 00:54:13.586
+What's different is, like, uh, that SLA violations is basically penalty for the services that went down. As you can see, Red Team, as a penalty for actual, kind of, like, red team's attack that was, like.
+
+
+217
+00:54:13.586 --> 00:54:19.586
+not remove backdoors, or something, like, uh, red teams that actually took.
+
+
+218
+00:54:19.586 --> 00:54:34.586
+Um, injects are… it was kind of like a business task. For example, makers presentations for a C-level about your, uh, defense, and how… what is the policy about it?
+
+
+219
+00:54:34.586 --> 00:54:47.586
+So what kind of, like, highlights? Well, you can see that simple cloth is actually performed worse at the end, you can see how the blue line actually was quite good at the beginning, along with other teams.
+
+
+220
+00:54:47.586 --> 00:55:06.586
+There is several things what happened in the beginning. We had to limit number of agents because even 32 gigabyte of RAM wasn't enough for, uh… for 30-something agents to run at the same time, so both machines just died.
+
+
+221
+00:55:06.586 --> 00:55:21.586
+Then, after that, we had to restart it with the limits on number of machines. Simple Claw decided to keep, uh, like, limit its, uh, instances, basically to sub-agents, while the other one will limit only to 7 agents per machine.
+
+
+222
+00:55:21.586 --> 00:55:36.586
+Um… Red team attacks started. As you can see, a second line, and where the red team started to go nuclear. This is the point when most of the teams started to lose points.
+
+
+223
+00:55:36.586 --> 00:55:44.586
+Uh, really quick, because, like, their services going down, and so on. The same happened with a simple clot.
+
+
+224
+00:55:44.586 --> 00:55:57.586
+Uh, Charge 1 actually was able to build like a layer defense and anticipate those kind of like nuclear options in advance because it had a human knowledge.
+
+
+225
+00:55:57.586 --> 00:56:02.586
+from previous competitions.
+
+
+226
+00:56:02.586 --> 00:56:19.586
+Kind of like main key takeaways. It was really good basically at red team defense. It would be, like, probably, like, both teams would be top five in terms of the penalty for red team actions, and uh…
+
+
+227
+00:56:19.586 --> 00:56:35.586
+It has a very strong business sense and received a lot of points for the making a business focusing on making points on business injects, rather than actually defense.
+
+
+228
+00:56:35.586 --> 00:56:52.586
+Because the goal was to win the competition. It excelled at strategic and analytical levels, but the problem was at actually operational level. It wasn't able… and a lot of stuff, like agents start to fight with each other over the single machine.
+
+
+229
+00:56:52.586 --> 00:57:08.586
+Uh, thinking that it's red teams, and, uh, taking it down, and then this machine was a DNS server, and then there were six services is not able to, uh, pop up on Judge's screen just because of that. And my colleague will talk more about the problems that we experienced.
+
+
+230
+00:57:08.586 --> 00:57:24.586
+Yeah, I would like to provide a little bit more context on Inject. I think it's really interesting and funny. So basically, in this competition, there is a legend that you're an authority that controls water supply and energy supply of a city.
+
+
+231
+00:57:24.586 --> 00:57:38.586
+And you have these services under your control. And there is a red team of hackers attacking. So your main goal is to defend the systems. And meanwhile, you're defending the systems.
+
+
+232
+00:57:38.586 --> 00:57:58.586
+Administration of the city comes to you and asks to provide, for example, a presentation about recent attack on your machines, or come up with a new logo of a mascot for your organization, which is water supply. And surprisingly, Claude was pretty good at that, better than, like, half of the human commands.
+
+
+233
+00:57:58.586 --> 00:58:16.586
+And judges actually read all the injects Claude generated, honestly, like human team. And they actually run all the injects through the AI detector and clause generated injects were not detected as AI.
+
+
+234
+00:58:16.586 --> 00:58:33.586
+That was really surprising. And Claude even managed to generate… to create a video with some voice narration, and it was totally autonomous. We just, like, saw the video, submitted by Claude, and we were really surprised about that.
+
+
+235
+00:58:33.586 --> 00:58:53.586
+Um… This competition is a really nice example of a pretty long task. It's like eight hours of autonomous work of Claude. And we got like eight hours of transcripts for more than 30 agents, and we analyzed it in detail and gained a lot of different insights and problems.
+
+
+236
+00:58:53.586 --> 00:59:08.586
+There were lots of different strategic failures. For example, our simple scaffolding was solving new issues, like, you know, whack-a-mole style without actually spending much effort on hardening services.
+
+
+237
+00:59:08.586 --> 00:59:24.586
+And that's why, in the end, it just failed when Red Team went nuclear and just destroyed the machines. And advanced scaffolding was much better in that sense. Another fun failure was that Claude.
+
+
+238
+00:59:24.586 --> 00:59:38.586
+It was multi-agent setup. We used this new, better features, team of agents. And in the beginning, before the red team actually started to attacking the machines, this team of agents investigated all the machines connected to them.
+
+
+239
+00:59:38.586 --> 00:59:53.586
+try to harden them, and sometimes Claude misclassified requests from other agents as a red team, and it got some kind of paranoia that Red Team is already attacking. I see this request, so it just banned this API.
+
+
+240
+00:59:53.586 --> 01:00:01.586
+And lost control to the machine totally, and then had to hack its way back to the machine to avoid this block.
+
+
+241
+01:00:01.586 --> 01:00:15.586
+Um, yeah. There are several tool failures, some like default tools like bash command tool. And one of the interesting failures that really messed up with the results was that, um.
+
+
+242
+01:00:15.586 --> 01:00:33.586
+The competition was held in the Proxmox. So there is, so all the machines were running in Proxmox, and Proxmox allows you to connect to the machine directly using VNC, using stream of the machine's terminal to your browser, and that requires, like.
+
+
+243
+01:00:33.586 --> 01:00:52.586
+for you as a human to look at the screen, and look at the pixels, and recognize the terminal, and interact with it, um, and Claude was trying hard to, like, make screenshots and analyze these screenshots and interact, but yeah, failed and, uh, totally lost one of the machines because of that.
+
+
+244
+01:00:52.586 --> 01:01:00.586
+Yeah, that's it. Thank you for listening.
+
+
+245
+01:01:00.586 --> 01:01:07.586
+Question.
+
+
+246
+01:01:07.586 --> 01:01:24.586
+Alright, well, that's it. Thank you so much. Thank you.
+
+
+247
+01:01:24.586 --> 01:01:34.586
+Does anyone else have a lightning talk that they want to share?
+
+
+248
+01:01:34.586 --> 01:02:04.586
+Soul.
+
+
+249
+01:02:40.586 --> 01:03:02.586
+All right, we'll all be back online in a second for our second lightning round.
+
+
+250
+01:03:02.586 --> 01:03:15.586
+All right, well… Nope. That is not what I'm supposed to see, but it is almost there.
+
+
+251
+01:03:15.586 --> 01:03:29.586
+Um, so I will let this load. I don't even know how much time I have, but I know that I am the last… thing before we have to leave. Oh, look at this image. It's… you're not supposed to be seeing that.
+
+
+252
+01:03:29.586 --> 01:03:40.586
+Oh, I mean, I can see stuff there.
+
+
+253
+01:03:40.586 --> 01:03:58.586
+Is he going? Okay, so I don't know why that thing is showing there. What I thought I would do… Instead of… boring you with a talk at the end of the day, I will tell you a story.
+
+
+254
+01:03:58.586 --> 01:04:09.586
+of where all of these things come from. Anybody here does penetration testing, security assessments of things? So there are a couple of you.
+
+
+255
+01:04:09.586 --> 01:04:21.586
+Uh, so these might look familiar, so I'm gonna try… To tell you a story. I don't know if the slides work. So, it's Day 3 of a 5-day pen test.
+
+
+256
+01:04:21.586 --> 01:04:27.586
+The first two days were spent begging for missing requirements.
+
+
+257
+01:04:27.586 --> 01:04:36.586
+Um, begging for missing requirements, and finally, being given access to a URL by the developers.
+
+
+258
+01:04:36.586 --> 01:04:49.586
+Just to find out that the URL. 500s or new, and the developers are on the other side of the world, and have logged out for the day.
+
+
+259
+01:04:49.586 --> 01:04:57.586
+But finally, at the end of day three, the app miraculously start working.
+
+
+260
+01:04:57.586 --> 01:05:08.586
+And this is what the app looks like. You notice a big shiny button that says summarize my inbox. You click on the button.
+
+
+261
+01:05:08.586 --> 01:05:34.586
+And instantly, you know… Hyplored Sam Altman's gift to the world, another LLM behind a button. So you need to figure out how to hack this application, and you frantically Google hacking LLMs for dummies, and maybe you strike gold, and you find a video by prompt injection guru Johann Reberga, and 40 minutes later.
+
+
+262
+01:05:34.586 --> 01:05:50.586
+You learned just enough to be able to pen test this application. So, you go back in and you craft a test email with a super-duper, super payload, new, important instructions.
+
+
+263
+01:05:50.586 --> 01:06:05.586
+Now, this tells the LLM to include a markdown image in the summary of the email, and the URL of the markdown image contains a secret you want to steal.
+
+
+264
+01:06:05.586 --> 01:06:32.586
+For example, a password reset token. I'm sure everybody's familiar with this type of attack. So you want to see if your payload works, you click Summarize my mailbox, and… What's happened, what happens is that a GPU cluster in an AI data center burns through a swimming pool of water for 30 seconds to generate your summary.
+
+
+265
+01:06:32.586 --> 01:06:47.586
+Bingo, you see the markdown image in the response that the LLM produces. You look at the source of that response, and you see that it's pointing to the attacker's website and contains the password reset token you want it to exfiltrate.
+
+
+266
+01:06:47.586 --> 01:06:56.586
+So, you're done, bingo, you are an elite prom tucker, you've done your job, and now you can ask ChatGPT.
+
+
+267
+01:06:56.586 --> 01:07:08.586
+to write the report for you. So this is how LLM application testing used to go for me back in 2023, 2024.
+
+
+268
+01:07:08.586 --> 01:07:20.586
+However, with my usual luck, it turns out that the developers are trolling me, and now they enable guardrails on the application.
+
+
+269
+01:07:20.586 --> 01:07:26.586
+I try my prompt injection payload. But that gets stopped.
+
+
+270
+01:07:26.586 --> 01:07:38.586
+All my hard-learned, super-duper, new, important instruction payload is now as useful as a zero-day on Internet Explorer.
+
+
+271
+01:07:38.586 --> 01:07:58.586
+You only have one day left for the test, and to also write the report, and you are understandably not thrilled with this. So what happens is that you start scavenging obscure Reddit threads, looking for some weird jailbreak that sort of makes sense for the application you're testing to try and bypass the guardrail.
+
+
+272
+01:07:58.586 --> 01:08:14.586
+But nothing comes back. You Google LLM red teaming and pull a few automated tools, but these automated tools are only made to test LLMs, not LLM applications, which is what you're actually testing.
+
+
+273
+01:08:14.586 --> 01:08:28.586
+They are all requiring an OpenAI key, and they are prompting your LLM with things like, tell me how to build a bomb, or tell me humanity is stupid. And obviously, that doesn't make sense.
+
+
+274
+01:08:28.586 --> 01:08:33.586
+for this type of use case. So you wander.
+
+
+275
+01:08:33.586 --> 01:08:40.586
+Wouldn't it be nice? If there was a tool of the pen testers.
+
+
+276
+01:08:40.586 --> 01:08:47.586
+by the pentesters. for the pentesters.
+
+
+277
+01:08:47.586 --> 01:09:04.586
+But the pen testers are, I'm not going to continue this. If you know the meme, you know the meme. So it happens to be that Reverseq, we created this open source tool called Spikey, and it was out of those challenges.
+
+
+278
+01:09:04.586 --> 01:09:31.586
+There are a lot of problems when you try to pen test LLM applications instead of just pen testing or red teaming an LLM. A lot of the work that people do is, again, just trying the LLM to say something it shouldn't say. But applications are very… different. So what I'm gonna show you in the time that we've got left, I don't even know how much time we have left, but I'll try to give you an idea of what we as pen testers.
+
+
+279
+01:09:31.586 --> 01:09:48.586
+Like, in three days, in 5 days, need to do when we have an LLM application. There is, like, a wish list of things that we needed to implement in our tool. We needed our tool to be able to target any application, not just an LLM inference endpoint.
+
+
+280
+01:09:48.586 --> 01:10:04.586
+There is a big difference between a button that you are pressing that summarizes a mailbox or an entire agentic workflow, and something like Garak, they will send a generic prompt for an LLM. We're not jailbreaking LLMs.
+
+
+281
+01:10:04.586 --> 01:10:24.586
+Um, and we needed to be able to customize the dataset. So the types of attacks that I demonstrate for my clients on an application, they're not generic. You know, what I'm gonna do on that application that I showed you that summarizes a mailbox is very different from what I'm gonna do in a chatbot that's got access to, like, a tool.
+
+
+282
+01:10:24.586 --> 01:10:39.586
+to, uh, read somebody's banking account. So we need to be able to customize or to come up with a solution that allowed us to customize the intent and the size and composition of our data sets very quickly.
+
+
+283
+01:10:39.586 --> 01:10:43.586
+Obviously, we needed to be able to bypass guardrails.
+
+
+284
+01:10:43.586 --> 01:11:06.586
+We needed to be able to run these offline. How many people have done pen testing and you… have to log in into a VDI. From that VDI, you have to RDP into another box, and then you have to start, uh, like, a virtual machine, and you have no internet access, you can't access LLMs or anything like that. Well, we still need to be able to test.
+
+
+285
+01:11:06.586 --> 01:11:20.586
+the applications. And we wanted everything we did to be transparent and reproducible. Like, you can sit in front of an application and craft a few prompts, but what you really want to do for your clients is being able to tell them.
+
+
+286
+01:11:20.586 --> 01:11:29.586
+Like, what attacks you tried, and how strong are their guardrails with respect to what they care about.
+
+
+287
+01:11:29.586 --> 01:11:36.586
+So, the solution to this is, again, this tool that we call spiky.
+
+
+288
+01:11:36.586 --> 01:11:39.586
+Why did we call it spiky? We were looking for an acronym.
+
+
+289
+01:11:39.586 --> 01:11:50.586
+Which is very hard to find, and we came up with simple prompt injection kit for evaluation and exploitation. Not the best name, but that's what it is.
+
+
+290
+01:11:50.586 --> 01:12:11.586
+So… The first thing is about the outcomes. I've already told you a little bit about this, but there are different things that you can do to an LLM application, depending on the context. Everybody talks about safety, harmful content generation. I think cybersecurity outcomes, you know, cross-set scripting.
+
+
+291
+01:12:11.586 --> 01:12:26.586
+Data exfiltration, denial of service, authorization by password agents. These are the kind of things that we wanted to be able to test in applications. And obviously, topic control to see whether applications stayed on topic.
+
+
+292
+01:12:26.586 --> 01:12:33.586
+So the first solution, and then I'm just going to show you demos, because… otherwise will be after Christmas.
+
+
+293
+01:12:33.586 --> 01:12:41.586
+was the idea of taking… so if you look at most prompt injection solutions, they have.
+
+
+294
+01:12:41.586 --> 01:12:57.586
+individual payloads that contain both the injection technique, so your jailbreak, and the objective that you want to achieve. So what we did was creating these data sets that you can compose.
+
+
+295
+01:12:57.586 --> 01:13:13.586
+based on the specific circumstances that you have during the test. So you have a set of generic jailbreaks, which I'm sure you can't read from there, like, ignore all previous instructions, and then you have the actual instruction, what you want the application.
+
+
+296
+01:13:13.586 --> 01:13:22.586
+to do. So I'm going to give you a couple of demos so you get an idea of how this works. So the first thing that we do.
+
+
+297
+01:13:22.586 --> 01:13:26.586
+I hope the video runs. Is it running? Yes.
+
+
+298
+01:13:26.586 --> 01:13:34.586
+Oh, we need to wrap up, so I am just going to show you, this is the application that we're trying to test. So what we do in Spiky.
+
+
+299
+01:13:34.586 --> 01:13:42.586
+We create a workspace. And then, we initialize that workspace with, um.
+
+
+300
+01:13:42.586 --> 01:13:59.586
+And then basically what Sparky Dust creates a folder with the different attack datasets. Here, I'm gonna take one that we have for this demo. So you see there are a list of jailbreaks in different languages and different techniques. I'm sure you're familiar with some of these, and the idea is that you can go in.
+
+
+301
+01:13:59.586 --> 01:14:15.586
+And add your own. So you are, for example, this is a test, generate a response, um, developers, all this kind of stuff, and then you have the instructions, so what you want to achieve. So, for example, here is exfiltration with markdown.
+
+
+302
+01:14:15.586 --> 01:14:26.586
+Uh, images, but it could be… Anything you want, and then here we have an email in which we're gonna inject that payload. So what the tool is going to do.
+
+
+303
+01:14:26.586 --> 01:14:37.586
+is to generate a dataset, in that case with 61 emails, which have got all of these different payloads that we discussed, and then what we can do.
+
+
+304
+01:14:37.586 --> 01:14:52.586
+We tell Spikey by creating a little adapter, how to talk to our application, and this is written in Python, so you can talk to anything you want. It doesn't matter if it's WebSockets, if it's a file that you have to drop in an S3 bucket.
+
+
+305
+01:14:52.586 --> 01:15:11.586
+Basically, you write this adapter for whatever application you are testing. Again, these are not LLMs, they are full applications. And then you can tell Spikey to take that data set against that application and it goes in and you can see that it measures the attack success rate of.
+
+
+306
+01:15:11.586 --> 01:15:16.586
+that particular… that particular attack. And if you look at this.
+
+
+307
+01:15:16.586 --> 01:15:21.586
+He found probably 60 almost 60 things which are, uh.
+
+
+308
+01:15:21.586 --> 01:15:33.586
+Uh, which work? Do I have another minute? 60 seconds. Okay, so 47 things successful. So the other thing I'm going to show you, and then we're going to close here.
+
+
+309
+01:15:33.586 --> 01:15:40.586
+is how this allows you to bypass guardrails, because the other thing that Spiky can do.
+
+
+310
+01:15:40.586 --> 01:15:50.586
+is that you can enable… write your own attacks and enable them in order to bypass guardrails. For example, here I'm just gonna have a system message.
+
+
+311
+01:15:50.586 --> 01:16:00.586
+Uh, that's gonna make the attack that we are doing less successful. And so what we can do, we can measure with the same data set.
+
+
+312
+01:16:00.586 --> 01:16:12.586
+What's the impact of that guardrail that we enabled on those 60 emails? In this case, you can see we had 47 before they were successful. Now we only have 28.
+
+
+313
+01:16:12.586 --> 01:16:28.586
+And we can do, again, I think I'm going to show how to enable yet another guardrail with Spotlighting. It doesn't matter what they are specifically, but I just want to show you, you can play with the different guardrails to see what happens when you enable these filters.
+
+
+314
+01:16:28.586 --> 01:16:49.586
+Uh, and in this case, you can see that this… with this, uh, with this guardrail now, the attack success rate goes down to… 11, and to finish this, I'm going to show you how we can then take some of the attacks. This is the anti-spotlighting attack that we developed. You can append it to these. You can give it the effort.
+
+
+315
+01:16:49.586 --> 01:16:59.586
+And you can see now that it's doing 1,000 requests instead of 61. It's modifying the requests, and when you get to the end of that, hopefully.
+
+
+316
+01:16:59.586 --> 01:17:05.586
+Uh, you will see that it finds ways to bypass those guardrails.
+
+
+317
+01:17:05.586 --> 01:17:26.586
+in order to be able to carry out the attack. And the way the spikey is made, uh, it's very easy to add new attacks, uh, they… to port them from the literature. I'm going to let this run or the video run. It's finishing in a few seconds, I think, but you can already see.
+
+
+318
+01:17:26.586 --> 01:17:31.586
+If I do, if I have the editing on screen in a second, that we are going from.
+
+
+319
+01:17:31.586 --> 01:17:39.586
+11 successful prompts. Now, with this attack technique, they modified some of the emails.
+
+
+320
+01:17:39.586 --> 01:17:48.586
+The attack success rate will have gone up to something like 28 or something like that. Actually, no, 45.
+
+
+321
+01:17:48.586 --> 01:18:04.586
+So effort is all you need. Jailbreaking an application is more similar to doing a password-guessing attack than it is to doing SQL injection. If you allow me to send that many prompts, in this case a hundred or.
+
+
+322
+01:18:04.586 --> 01:18:18.586
+like a thousand prompts, I'm going to find ways to bypass the guardrails. And I think I'm done.
+
+
+323
+01:18:18.586 --> 01:18:28.586
+Sorry? Yes.
+
+
+324
+01:18:28.586 --> 01:18:48.586
+Thank you so much. Um, that's a wrap for track two. Uh, welcome to go
+
+
+

@@ -1,0 +1,1683 @@
+WEBVTT
+
+1
+00:02:14.565 --> 00:02:19.484
+Incoming livestream: Testing, testing, no audio, can't hear anything. Hello?
+
+
+2
+00:02:21.095 --> 00:02:28.124
+Incoming livestream: Audio, great, thank you. Yes.
+
+
+3
+00:02:28.865 --> 00:02:34.355
+Incoming livestream: Testing, audio, audio, nothing on this one. Hi.
+
+
+4
+00:02:46.495 --> 00:02:51.094
+Incoming livestream: Okay, great. Alright, well, we're already behind schedule.
+
+
+5
+00:02:51.625 --> 00:03:05.254
+Incoming livestream: Gotti didn't mention this, but I do want to point out, this is a community conference. What does that mean? It's a volunteer organized conference. There are designated volunteers, you'll see those with this, okay? But…
+
+
+6
+00:03:05.255 --> 00:03:23.854
+Incoming livestream: This is a community conference. What does that mean? You're all part of the community. If you see something that needs, help, or whatever, please, just jump in. It's… we're all part of this community, we're all trying to learn, we're all trying to, make this a successful event, and you are a part of that as well. So please, you know, if you feel like you need to jump in and help.
+
+
+7
+00:03:24.595 --> 00:03:25.775
+Incoming livestream: There's no slack.
+
+
+8
+00:03:25.905 --> 00:03:40.514
+Incoming livestream: Yes, okay, so actually, thank you very much. I just asked the group, the volunteer group, hey, can I just get… if anyone is in the Slack channel already, try to generate, like, an invite, and just share it with one another. While,
+
+
+9
+00:03:40.685 --> 00:03:59.845
+Incoming livestream: Millie speaks, I'm gonna try to do that, too, and then I'll just walk around and give people the QR code. But if you're already in, just show your neighbor the QR code to get in, and that would be helpful, too. Okay, I don't want to take up too much more time, I'm gonna turn it over to Billy for him to share, establishing AI governance. Over to you.
+
+
+10
+00:04:01.785 --> 00:04:04.954
+Incoming livestream: Alright, do you guys want to switch over to my laptop?
+
+
+11
+00:04:09.445 --> 00:04:10.455
+Incoming livestream: All right.
+
+
+12
+00:04:10.585 --> 00:04:24.315
+Incoming livestream: So, welcome to the basement. You know, it was interesting first walking down here, after it's so big and beautiful up there, coming down here, I'm like, am I going to the right place? But, the acoustics are better.
+
+
+13
+00:04:24.485 --> 00:04:31.175
+Incoming livestream: So anyways, I'm gonna talk a little bit today about establishing AI governance without stifling innovation.
+
+
+14
+00:04:31.175 --> 00:04:49.735
+Incoming livestream: I'm gonna have to kind of give a little bit of a background about it, because I work for a company called Triple F Enterprises, which most probably, like, no one's ever heard of, and so I've got to kind of explain what we do, which kind of… not software development, right? As well as, you know, kind of our method kind of went through how we originally met with the different executive teams.
+
+
+15
+00:04:49.735 --> 00:05:02.114
+Incoming livestream: met with outside consultants and started to develop an AI roadmap, and then realizing we needed governance, and thought we were handling it well, and then kind of ran into some issues where we're like, okay, this is what we would have done differently. And hopefully those lessons learned are helpful for you guys.
+
+
+16
+00:05:02.275 --> 00:05:13.625
+Incoming livestream: So… A bit about FFF Enterprises. We're basically like a baby McKesson. We're a $5 billion
+
+
+17
+00:05:13.625 --> 00:05:31.615
+Incoming livestream: like, pharmaceutical distribution company, but we also have IoT mini-fridge devices, kind of like a Vegas mini-fridge, but with drugs in them at pharmacies and hospitals. We have a couple different software divisions. We actually have an online pharmacy. We have nurses that go do,
+
+
+18
+00:05:31.955 --> 00:05:42.235
+Incoming livestream: like, IV drugs and things like that, but we, like, we focus on specialty drugs, which is a whole area of pharmacy, so we don't compete that much directly with, you know.
+
+
+19
+00:05:42.405 --> 00:06:02.195
+Incoming livestream: the big three. But that… kind of giving you a background of kind of our size, and us not being software forward, right? Because we're not really tech-forward, we're just distributing things, taking orders by fax, and things like that back in the day, but we're trying to really move to have tech kind of… really kind of help us out in the future, and where we want to go.
+
+
+20
+00:06:05.735 --> 00:06:10.185
+Incoming livestream: Did you guys… is there a… hey, guys in the back, is there a way to start the clock?
+
+
+21
+00:06:12.465 --> 00:06:14.315
+Incoming livestream: Oh, it just popped up. Perfect.
+
+
+22
+00:06:14.575 --> 00:06:19.885
+Incoming livestream: Thank you, no, it's going. It's going now. I just wanna make sure I don't talk too much, which I like to do, so…
+
+
+23
+00:06:20.235 --> 00:06:40.364
+Incoming livestream: Alright, so, but now we're kind of using tech as our advantage. Myself, I started very tech-forward, you know, my first IT job was helping people connect to dial-up, and it just kind of cascaded from there, where I was a network engineer, network administrator, managed IT departments, got into cybersecurity, swung over to GRC for a while, and then…
+
+
+24
+00:06:40.385 --> 00:06:50.834
+Incoming livestream: everything kind of really came back, maybe except… maybe not dial-up, but, you know, to help me out as the CISO over here at Triple F Enterprises, and I've been there for a little over 5 years.
+
+
+25
+00:06:51.145 --> 00:06:54.574
+Incoming livestream: So, our original roadmap.
+
+
+26
+00:06:54.585 --> 00:07:06.735
+Incoming livestream: So, we… my boss is the CIO, and he went out, you know, grabbed a consulting firm, like, let's AI, you know? And he came in and worked with these people, they sat down with different VPs.
+
+
+27
+00:07:06.735 --> 00:07:21.084
+Incoming livestream: and different folks, not me, and they came up with, like, we have these 40 AI projects, and we're gonna… and PMO's like, we'll release them in 5 waves, and we'll have everything, this is in 2025, we'll have everything done by 2027.
+
+
+28
+00:07:21.555 --> 00:07:39.695
+Incoming livestream: So, I mean, we had use cases across the board, like, within HR, within our pharmacy distribution, within our pharmacy itself, where I can explain one of them that's pretty cool later, but that's dealing with PHI. We had sales, finance, so a lot of different types of data, and, you know, I was kind of like, you know.
+
+
+29
+00:07:39.695 --> 00:07:44.775
+Incoming livestream: I come and see the presentation, you know, at the end of the… from what the consultants did, and I'm like,
+
+
+30
+00:07:44.835 --> 00:07:48.034
+Incoming livestream: We got a problem, guys, like, we haven't really thought this out.
+
+
+31
+00:07:49.495 --> 00:08:07.555
+Incoming livestream: So, kind of first way I kind of started doing this was, like, okay, well, let's get, like, proposed kind of a tiered governance platform, right? So, we kind of have the head of the governance committee, which is myself, the CIO, our general counsel, our chief compliance officer, and these are the kind of, like, the top level.
+
+
+32
+00:08:07.555 --> 00:08:14.084
+Incoming livestream: You know, we're out there pushing down policies, we're talking about ethics, we're really trying to focus on regulatory.
+
+
+33
+00:08:14.085 --> 00:08:21.844
+Incoming livestream: You know, obviously me on the security side, but we kind of wanted to shrink that down a bit farther, and so we created kind of an AI center of excellence there.
+
+
+34
+00:08:21.945 --> 00:08:41.264
+Incoming livestream: And that's kind of more VPs and director levels, some special managers, those are the guys in charge of data science that are sitting on that board, people inside of the infrastructure that are building it, you know, we have HR sitting there as well, because they've been really helpful for us on enablement and training, right? Because not everybody is excited about hearing about
+
+
+35
+00:08:41.275 --> 00:08:53.994
+Incoming livestream: AI is taking your jobs, because that's what it says everywhere, right? So they're like, no, it's not gonna do that. So we're, like, we're trying to, like, show people, kind of ways that we kind of do it around to, like, make them excited about it. So HR's been very helpful for that.
+
+
+36
+00:08:54.225 --> 00:09:04.264
+Incoming livestream: And then they were kind of working in that area on standardized practices, shared services, you know, working along with me of controls, but getting more and more specific as we go down.
+
+
+37
+00:09:04.535 --> 00:09:18.594
+Incoming livestream: And, you know, in the future, what we're hoping to is kind of have a catalog of, you know, different use cases that we kind of shift between the departments and stuff like that, and kind of have an AI review board, like an agent checkout pit, so to speak.
+
+
+38
+00:09:18.595 --> 00:09:27.495
+Incoming livestream: Right? And so the smaller level area where a manager might just be able to go reach out to somebody on the Cloud Center of Ex- sorry, the AI Center of Excellence, and just…
+
+
+39
+00:09:27.495 --> 00:09:44.364
+Incoming livestream: check out that use case, and there's not a lot of stuff doing it there. So if you think about it, too, another way to look at that is… is kind of on the risk level, right? So, anything that's looking very risky, like if we're touching PHI, if there's a lot of PII, it starts getting pushed up to the higher committees.
+
+
+40
+00:09:44.405 --> 00:09:48.815
+Incoming livestream: You know, and, you know, my security architect, who's on the
+
+
+41
+00:09:48.815 --> 00:10:08.094
+Incoming livestream: the Center of Excellence Board should be pushing things, helping to push things to me, you know, VP of Pharmacy, those who work with PHI, ethical stuff with HR, all those kind of… so the further the risk, the higher up it goes. That's the idea, and so that's what we try to start putting together, because the goal of AI governance is to balance the value and the risk.
+
+
+42
+00:10:09.675 --> 00:10:17.224
+Incoming livestream: Some of the other things we kind of looked at there, is we saw those 40 use cases, and we're like, this is a lot.
+
+
+43
+00:10:17.365 --> 00:10:29.385
+Incoming livestream: You know, like, and how do we even know what's gonna be good, what's gonna be, you know, really, in whose case were we gonna find that value? Or are we just wasting time and money, and putting ourselves at risk?
+
+
+44
+00:10:30.775 --> 00:10:32.625
+Incoming livestream: Can you hold a fight for qualifying surgery?
+
+
+45
+00:10:32.785 --> 00:10:36.265
+Incoming livestream: Oh. Sorry. Alright.
+
+
+46
+00:10:38.565 --> 00:10:44.385
+Incoming livestream: Alright, how about the wall? Now I can't read, so… Good luck.
+
+
+47
+00:10:44.745 --> 00:10:46.005
+Incoming livestream: I'm sorry, you know what?
+
+
+48
+00:10:49.085 --> 00:10:54.864
+Incoming livestream: Alright, we'll see, we'll figure it out. I'll keep moving around. I might be standing underneath something, who knows?
+
+
+49
+00:10:59.635 --> 00:11:17.554
+Incoming livestream: Alright, gotcha. Alright. Yeah. It's the basement thing, and then, you know, you gotta be the first guy to kind of test out everything, so, you gotta stand, right. All right, so, you know, maybe you should just stand right where the mic stand is, you know, like, where I'm supposed to stand.
+
+
+50
+00:11:17.685 --> 00:11:29.264
+Incoming livestream: But so we first decided, like, well, we need to create intake forms, you know, include different things to look at, you know, expect… we wanted to make sure that people would, like, have an idea of what their process is now.
+
+
+51
+00:11:29.605 --> 00:11:41.564
+Incoming livestream: what the metrics they wanted to be in their future. We didn't kind of get that far in depth the first time around, we're just like, oh, we'll have some risk assessments, you just tell us how… we'll kind of judge on how much technical work it's gonna be. You know, you tell us what you're expecting.
+
+
+52
+00:11:43.325 --> 00:12:02.984
+Incoming livestream: You know, and we also, you know, we provided training for folks, you know, that we didn't realize how depth it would have to go. You know, we wanted to have controls, embedded controls in system design, so access controls is one thing that we want to make sure that the agents or the people have, like, just the right amount of access, and how are we going to do that.
+
+
+53
+00:12:03.165 --> 00:12:08.284
+Incoming livestream: Went with, like, how we're gonna monitor everything, let's put that together, can we kind of see what's going on?
+
+
+54
+00:12:08.525 --> 00:12:13.454
+Incoming livestream: And then, you know, we wanted to be able to eventually, and this is kind of…
+
+
+55
+00:12:13.775 --> 00:12:17.994
+Incoming livestream: you know, we're running. At the same time, we're still already moving forward with a couple use cases.
+
+
+56
+00:12:18.465 --> 00:12:24.365
+Incoming livestream: And, you know, we want to understand how to audit them later, and how to alert on any issues that we're running into.
+
+
+57
+00:12:24.745 --> 00:12:30.434
+Incoming livestream: And so, initially, we're like, what we need to do is kind of focus on, one, control plane.
+
+
+58
+00:12:30.525 --> 00:12:49.285
+Incoming livestream: you know, of what we want to do, you know, we didn't, you know, go build an MCP server or anything, but we have Databricks. So, they're like, we're gonna funnel almost everything we can through Databricks, right? Outside of, you know, if people want to use, you know, a chat bot, we're gonna put all that aside with Copilot and Microsoft, because…
+
+
+59
+00:12:49.505 --> 00:13:01.204
+Incoming livestream: again, $5 billion company, we have the money for fancy software, and we're a Microsoft shop. So, kind of forced into that, that there. So we kind of set these things up thinking, okay.
+
+
+60
+00:13:01.265 --> 00:13:14.594
+Incoming livestream: this should be enough, right? This should really help us to go forward. We've thought about it, you know, and, you know, I've already held my boss back for 2 months on this, you know, because it was a… initially, our CEO was like, no AI.
+
+
+61
+00:13:14.735 --> 00:13:31.905
+Incoming livestream: Let's not do that. And then my boss finally convinced him, and then he was like, I want it now. And it was like, it was the end of, you know, like I said, it was 2025, I hadn't had budget for it, so I was told no, so we had to, like, pull in a little bit of emergency budget and stuff like that, but it's been a hurry-up-and-go thing ever since.
+
+
+62
+00:13:36.995 --> 00:13:42.504
+Incoming livestream: Alright, so… You know, everything obviously didn't have 100% success.
+
+
+63
+00:13:42.655 --> 00:13:46.604
+Incoming livestream: Like the little happy robot on the bottom of that last picture.
+
+
+64
+00:13:46.635 --> 00:14:05.915
+Incoming livestream: we really figured out we needed to do a lot more. We had created an AI usage policy that said, hey, check with IT before you use AI. You know? That was… that was what we put on… clients and legal put that together. I'm like, seems good, seems legit. We needed something way more specific, right? We needed to be able to list
+
+
+65
+00:14:05.915 --> 00:14:16.635
+Incoming livestream: Specifically, these are approved tooling… tools you could use. These are specifically prohibited technologies, but use cases as well. So when people were like.
+
+
+66
+00:14:16.655 --> 00:14:33.705
+Incoming livestream: We have some software that does work for medical trials, for instance. You know, like, that's very, very touchy, so it's like, that's prohibited. So someone has to make a really good reason and come around through with us, and yes, we're gonna be doing something there. But, you know, that has to be brought through, through the governance committee.
+
+
+67
+00:14:33.855 --> 00:14:42.304
+Incoming livestream: But the general policy's like, please don't do that. You know, we want to make sure the policy had… shows that everyone who's using it
+
+
+68
+00:14:42.525 --> 00:14:55.304
+Incoming livestream: required to go through AI awareness training, and they got to sign off. We took that, our normal acceptable use policy, you know, where it's like, hey, you know, we're gonna be watching you, don't do bad things on the internet, don't post on social media, and we got really a little bit more in-depth.
+
+
+69
+00:14:55.305 --> 00:15:02.665
+Incoming livestream: with things you can do with AI, and if you want examples, I can share some of those later, outside of this.
+
+
+70
+00:15:02.985 --> 00:15:11.505
+Incoming livestream: But I think that was something that really helped. We also, to help adoption.
+
+
+71
+00:15:11.615 --> 00:15:21.544
+Incoming livestream: we started getting people, like, in… you know, we had a cool pilot adoption thing, so they're doing that, and so people would be like, these are the use cases I'm using. But having people within departments kind of really championing it.
+
+
+72
+00:15:21.555 --> 00:15:34.194
+Incoming livestream: I was glad to see it work, because I have been trying very hard to always get a security champion in each department, or a risk management champion in each department. Ai seemed to be a little bit better, they seem to enjoy that, so…
+
+
+73
+00:15:36.335 --> 00:15:37.285
+Incoming livestream: you know.
+
+
+74
+00:15:37.465 --> 00:15:54.685
+Incoming livestream: some of the other pieces on there as well was, where does it require human oversight? Again, speaking of the medical trial piece, one of our use cases that we're currently using, one of the first use cases we deployed, was medical pre-authorization. So, we do a lot of work with immune drugs.
+
+
+75
+00:15:54.685 --> 00:16:03.215
+Incoming livestream: And what happens is some of our patients, well, they just automatically get denied because it's expensive. That's really kind of what healthcare companies do. So, we…
+
+
+76
+00:16:03.365 --> 00:16:14.885
+Incoming livestream: Create an agent, go through and pull all… read the letters on why they're denied, it'd pull all the proper documentation, wrap it up in a pretty bow, and then a doctor would review it and approve that or not.
+
+
+77
+00:16:16.185 --> 00:16:25.174
+Incoming livestream: That's the $250,000 use case. My boss is like, yeah, we're saving $250,000 a year on this thing. It's pretty cool. And it's really great to help people out.
+
+
+78
+00:16:25.515 --> 00:16:29.414
+Incoming livestream: So we… that was, like, this requires human oversight.
+
+
+79
+00:16:29.525 --> 00:16:42.174
+Incoming livestream: We've also understood in another use case, because I think use cases are kind of exciting, so I should probably bring them up, right? Another use case we're using is using multiple agents, and this is for a distribution company.
+
+
+80
+00:16:42.175 --> 00:16:51.315
+Incoming livestream: For, you know, overages, shortages, damages in shipping goods. So people can log a complaint on our SAP e-commerce site.
+
+
+81
+00:16:51.335 --> 00:17:06.434
+Incoming livestream: which then throws a notice over to Salesforce, so the salesperson knows what's going on, and then that reach, you know, and then we… this is all being orchestrated within different agents within Databricks, which reaches out to SAP, pulls ship date, all this other information.
+
+
+82
+00:17:06.665 --> 00:17:10.975
+Incoming livestream: Pulls all these documents together, you know, passes it to this orchestrator agent that
+
+
+83
+00:17:11.065 --> 00:17:29.785
+Incoming livestream: builds everything around it, and then hands this long document, including, you know, any images that the customer might upload, and eventually, we have video, like, over, you know, where people are packing things. So, I mean, we have, like, you know, $13,000 vials of drugs that go out sometimes, so we gotta make sure people don't…
+
+
+84
+00:17:30.005 --> 00:17:47.304
+Incoming livestream: you know, harm them, you know, make sure to put it in. But then it pieces all that together for someone to review and get back to the customer. And it saves a lot of time. So, you know, where do you put the human review in the loop? We're still very much on the risk-averse side, so we're kind of leaning that direction. The more we can do, the better.
+
+
+85
+00:17:49.395 --> 00:17:57.735
+Incoming livestream: Yeah. I mentioned the sign-off. Definitely on the acceptable use policy, the training, more and more sign-off. Our… my legal team is…
+
+
+86
+00:17:57.925 --> 00:18:04.854
+Incoming livestream: very signature happy, I don't know, you know, we're in the state of California, I'm not sure how much it's gonna protect you, but, you know, they're happy that people do sign off.
+
+
+87
+00:18:05.585 --> 00:18:17.625
+Incoming livestream: Stricter AI intake. I mentioned earlier, kind of having, you know, what's the benefit of this, so why should we do it? And now we're kind of really, what is your process currently?
+
+
+88
+00:18:17.745 --> 00:18:29.554
+Incoming livestream: Like, does it take you… how long does this process take? How much do you think this will make it improvement? And if you want to work with our data team, or whomever to talk through, how is this gonna actually… do you think it's gonna work better, let's do that.
+
+
+89
+00:18:29.685 --> 00:18:46.915
+Incoming livestream: And so we have an intake form, you know, and then as we're evaluating use cases, we have a risk form. And they fill out, does this touch PHI? How's this, you know, like, does this affect a critical process? And we go through quite a few different areas there, so that we can really start looking at prioritizing use cases, and
+
+
+90
+00:18:47.015 --> 00:18:50.334
+Incoming livestream: Turns out, a lot of those 40 initial use cases, some of them are just…
+
+
+91
+00:18:50.605 --> 00:19:06.674
+Incoming livestream: They just want a nice report pulled from two different things. It's nothing… this is something they can do, like, as a small task, you know? It's not what they… it's not building this magic AI thing, it's really just, okay, I'm taking some numbers from Salesforce and SAP and putting them together. So, we're, you know, we're working through that still, as we go forward.
+
+
+92
+00:19:07.075 --> 00:19:18.524
+Incoming livestream: But, you know, creating those scorecards for use cases so you understand the prioritization has really helped us kind of try to streamline this and understand kind of where we're going forward, because otherwise every business division wants it at the same time.
+
+
+93
+00:19:20.215 --> 00:19:37.495
+Incoming livestream: Usually, governance committee will be able to kind of make that call, but, I do not sit on the executive team formally, but everyone else on the governance committee does, so sometimes it gets bumped up, you know, to my CEO and others and the CFO that might, you know, pull the strings, but usually we get to make the decisions, which is nice.
+
+
+94
+00:19:37.685 --> 00:19:52.324
+Incoming livestream: But having those success measures and benchmarking ahead of time, based on all this stuff, is really helpful, because, you know, in the end, we do want to show that it is saving us $250,000, or this is how much time is saved. I think it's really important
+
+
+95
+00:19:52.325 --> 00:19:59.865
+Incoming livestream: That, you know, people would be able to do that. And maybe, you know, with some better control planning on access controls, we have kind of a…
+
+
+96
+00:19:59.875 --> 00:20:10.165
+Incoming livestream: I like to call it security OU spaghetti, and sometimes it's hard to figure out who's got control where, and kind of cleaning some of that up, and, you know.
+
+
+97
+00:20:10.295 --> 00:20:30.234
+Incoming livestream: right now, while we're focusing heavy on Copilot and Databricks, it's a little easier, but as we expand, you know, we want to have different divisions to be able to build their own agents, whether it's through AI. We have one division right now that's on the software side of things that is building their own AI stuff, but that's kind of, like, in demo mode, or kind of testing with them.
+
+
+98
+00:20:30.415 --> 00:20:44.745
+Incoming livestream: getting all the best practices before we launch it out for everybody else. But that's kind of what we need to do. And then, obviously, Shadow AI, that's… that's, definitely gonna be a big one for me, chasing down later this year.
+
+
+99
+00:20:45.215 --> 00:20:59.824
+Incoming livestream: as ridiculous as it sounds, you know, I'm, you know, my procurement team is, like, my best friend there. Because then, you know, I'm working with legal and procurement on getting everything into contracts, so we know if there's AI in use. If we know if there's private, you know, if there's nothing in PII,
+
+
+100
+00:20:59.965 --> 00:21:13.915
+Incoming livestream: But, you know, do they have AI, too? Like, where are the data being kept? What models are they using? So we're starting to kind of work that with the procurement for third-party risk, so we're slowly getting there. This was a… I asked,
+
+
+101
+00:21:14.405 --> 00:21:27.845
+Incoming livestream: you know, I asked Copilot, I was like, hey, what's something like, you know, we're designing this thing, but it grew legs, and I was like, but make it sound kind of nerdy. And they were like, you know, we were aiming for controlled execution, but it spawned child processes. But
+
+
+102
+00:21:28.085 --> 00:21:31.764
+Incoming livestream: That's me, and that's kind of… I hope that was kind of helpful.
+
+
+103
+00:21:32.125 --> 00:21:37.354
+Incoming livestream: And, I just wanted to kind of throw out a couple of those use cases, but if you have questions.
+
+
+104
+00:21:37.475 --> 00:21:40.184
+Incoming livestream: go right ahead. And…
+
+
+105
+00:21:40.565 --> 00:21:45.764
+Incoming livestream: Next presenter, she's… I told her to come up here afterwards, I think we're good. Yes, that's weird. Okay, so a couple things.
+
+
+106
+00:21:47.175 --> 00:21:54.454
+Incoming livestream: Hello? Whoa, that's loud. Okay. Alright. First thing is, ice cream. This is like ice cream.
+
+
+107
+00:21:54.515 --> 00:22:13.514
+Incoming livestream: Put the microphone as if you're licking ice cream. Sounds kind of gross, but it will, definitely… If I have to speak like this, then that means you'll get a lot more, feedback, so please… Okay, question. Hey, hello again. What are you… what are you doing about prompt injection?
+
+
+108
+00:22:14.345 --> 00:22:20.145
+Incoming livestream: We're… so, most things right now on… for end users.
+
+
+109
+00:22:20.145 --> 00:22:34.505
+Incoming livestream: We're going secure browsers for the method of kind of blocking as much as we can there. Even if they try to go to ChatGPT, it just forces them over to our instance of Copilot. And if people start, you know, if you're cutting and pasting within, you know.
+
+
+110
+00:22:35.345 --> 00:22:48.795
+Incoming livestream: like, code to have something that will review your code, it'll rip out keys and stuff like that, so secure browsers have been good for us, in that area. On the other side, we're hoping the controls within Databricks are solving for our agents there.
+
+
+111
+00:22:48.795 --> 00:23:02.315
+Incoming livestream: I mean, and I'm not, you know, selling Duture bags, but I think some cool stuff they can do in the monitoring for, like, hallucinations and things like that, where we can set baselines, this is what we're expecting, if it's out of there, it alerts us. But I still think we need to go through and build a better audit program.
+
+
+112
+00:23:02.315 --> 00:23:14.874
+Incoming livestream: It's come back to see if there's been, like, a slow movement. I don't know where we need to… the norm that we want to go. If somebody just signs up with their credit card for, you know, pro version of some new platform, that's Shadow AI.
+
+
+113
+00:23:15.105 --> 00:23:16.554
+Incoming livestream: How do you detect that?
+
+
+114
+00:23:17.255 --> 00:23:18.445
+Incoming livestream: we're…
+
+
+115
+00:23:18.715 --> 00:23:32.824
+Incoming livestream: We've, we've, you know, I know you guys released some stuff, that we tied back into CrowdStrike when OpenClaw came out, that whole stuff issue, so we actually worked up that one after the Cloud Security Alliance kind of posted that, and so that was kind of helpful.
+
+
+116
+00:23:33.125 --> 00:23:34.085
+Incoming livestream: We're…
+
+
+117
+00:23:34.435 --> 00:23:45.595
+Incoming livestream: again, you know, I can kind of see where people are going some with Secure Browser, but I don't think we're gonna catch all of it, you know, especially when it's like, okay, well, I can say Claude, but how does it detect if it's an AI piece? There's still improvements we need to do.
+
+
+118
+00:23:47.885 --> 00:23:49.634
+Incoming livestream: I'm not sure who was next.
+
+
+119
+00:23:49.775 --> 00:23:51.115
+Incoming livestream: I'll go here.
+
+
+120
+00:23:52.555 --> 00:24:11.545
+Incoming livestream: Hi. The stricter AI intake, what phase is that happening at? Because we have people delivering code so fast, right? Like, we don't have a tiered blueprint. I have two follow-up questions, which is, I love the scorecard idea, how are you dimensioning risk? Like, risk is… could be risk of them training on my data, they could be…
+
+
+121
+00:24:11.545 --> 00:24:20.985
+Incoming livestream: like, almost anything. So if you could talk about the risk dimensions, that'd be awesome. Yeah, yeah, so, on the coding software side, that's definitely hard to slow down.
+
+
+122
+00:24:21.055 --> 00:24:28.235
+Incoming livestream: when it's the business coming to us and asking us to build something for them, that's kind of where we're doing that better job of it.
+
+
+123
+00:24:28.475 --> 00:24:38.525
+Incoming livestream: we… the risk intake form has been… been modif… is go… it's been modified, like, I don't know, almost every new use case, because something comes up. Which means, you know, of course.
+
+
+124
+00:24:38.885 --> 00:24:49.534
+Incoming livestream: you know, the vision of the governance board only coming in when there's high risk? No, no, that means I'm hands-on on a lot of stuff initially. But, I mean, we've kind of covered a lot of stuff with usage of data.
+
+
+125
+00:24:49.535 --> 00:25:00.405
+Incoming livestream: Patient data makes it easy. I mean, we're a business-to-business pharmaceutical distribution company, so, like, most of the stuff we're doing is not secret, not… we're not worried about that data, there's no…
+
+
+126
+00:25:00.405 --> 00:25:11.974
+Incoming livestream: there's not much IP there, but, you know, and then patient data, obviously. So for us, like, a lot of times, it is very black and white, you know, if we need more. But some of the use cases
+
+
+127
+00:25:12.595 --> 00:25:16.244
+Incoming livestream: Usually when more access is needed than should be.
+
+
+128
+00:25:16.375 --> 00:25:23.924
+Incoming livestream: For certain people, like, this… well, you know, you're kind of combining this process that has a lot of, you know, financial data that
+
+
+129
+00:25:24.185 --> 00:25:29.645
+Incoming livestream: shouldn't be exposed to everybody. And that's where we're seeing some of the stuff where we kind of rehab to ask those risk questions.
+
+
+130
+00:25:31.345 --> 00:25:35.484
+Incoming livestream: I had a quick question on, the same, the intake form.
+
+
+131
+00:25:36.525 --> 00:25:49.175
+Incoming livestream: Can you share any successes on making that friction-free and the path of least resistance being the safest path versus them circumventing it because it's overhead and they just want to go? Any wins there you can share?
+
+
+132
+00:25:49.635 --> 00:25:54.344
+Incoming livestream: Yeah, I mean, and I think a lot of it is because…
+
+
+133
+00:25:55.425 --> 00:26:09.514
+Incoming livestream: we're controlling the keys and forcing everybody through Databricks. Again, we only know what we're trying to do, right? And so they can't get too far of anywhere without our help currently. But, no, I think it's been tough for people.
+
+
+134
+00:26:09.985 --> 00:26:17.984
+Incoming livestream: we've… we have a pretty strong, like, project intake PMO process, so people are kind of used to that. You know…
+
+
+135
+00:26:18.095 --> 00:26:25.604
+Incoming livestream: I mean, you're getting your funding, you're assigning the resources, I mean, it's $5 billion, so we're kind of a little slower there, so I think that helps. It wasn't, like, out of the blue we needed that.
+
+
+136
+00:26:25.735 --> 00:26:30.054
+Incoming livestream: But… Thank you. We still catch things during the change management phases that I wasn't told about.
+
+
+137
+00:26:30.405 --> 00:26:35.805
+Incoming livestream: Okay, we're just, I think we have one more question while we still get AB up, so… You had a question?
+
+
+138
+00:26:37.925 --> 00:26:47.144
+Incoming livestream: So you're using, Databricks as your authorization platform, everything's going through that particular service, it's not integrating anywhere else?
+
+
+139
+00:26:47.315 --> 00:27:02.295
+Incoming livestream: Correct. So that's… that's… I mean, it's talking, but, you know, a Databricks Salesforce AI agent is talking to the Salesforce AI agent within Salesforce, and same thing with Juul within that. So you've got great authorization on all of that. Well…
+
+
+140
+00:27:02.665 --> 00:27:09.845
+Incoming livestream: as much as we can do, and I'm still learning more about labeling within Databricks to, you know, make sure and shrink the controls back to…
+
+
+141
+00:27:09.935 --> 00:27:23.585
+Incoming livestream: Especially when it comes to users and Active Directory groups, like I said, the spaghetti groups have too much security, so… So you're thinking about integrating it somewhere else within those, maybe, Active Directory-owned, maybe Microsoft product sets?
+
+
+142
+00:27:23.995 --> 00:27:35.145
+Incoming livestream: And I know it's not gonna stay in there, so we're… Perfect. We were trying to keep going on, but I told my boss, let's start here. You didn't give me budget to buy, you know, AI-specific security toolset, but I would love to look.
+
+
+143
+00:27:36.585 --> 00:27:38.255
+Incoming livestream: Okay, how are we doing on AV?
+
+
+144
+00:27:39.325 --> 00:27:44.824
+Incoming livestream: Okay, well, I have a question for you. You mentioned, so there's this whole notion of SaaS…
+
+
+145
+00:27:45.045 --> 00:27:57.125
+Incoming livestream: being disrupted, and this notion of being a system of context, rather than a system of record. Do you understand what that concept means, or how have you embraced that sort of concept within?
+
+
+146
+00:27:57.225 --> 00:28:13.685
+Incoming livestream: FFF. If you could explain a little bit more, what do you mean by system context? Well, so you were talking about some of the services that you're using, like ServiceNow, Salesforce, whatever, and each company is trying to be what they call the system of context. Not system of record, but system of context, which is…
+
+
+147
+00:28:13.685 --> 00:28:18.575
+Incoming livestream: to be the center point for… Everything. Everything, right? So now you have… but you have two products.
+
+
+148
+00:28:18.625 --> 00:28:22.044
+Incoming livestream: Who are vying to be a system of context.
+
+
+149
+00:28:22.435 --> 00:28:34.855
+Incoming livestream: So, how are you, trying to reconcile that? We're… and I think that's where we're kind of leaving things within Databricks, because it's… because we have… our two main systems of contacts really are Salesforce and SAP.
+
+
+150
+00:28:34.855 --> 00:28:49.754
+Incoming livestream: But we're shoving it all into Databricks and making that our main system. You're creating your own system of context, effectively. Yeah. Okay. Right, and, you know, just being able to, like, you know, bronze, silver, gold, data standards within it's been helpful. Okay, very good.
+
+
+151
+00:28:49.825 --> 00:28:53.245
+Incoming livestream: Any other… again, we're just waiting for AV,
+
+
+152
+00:28:54.795 --> 00:29:00.535
+Incoming livestream: Heavy trouble. Okay, anyone who had trouble getting in? No issues? Good, alright.
+
+
+153
+00:29:00.805 --> 00:29:09.624
+Incoming livestream: Here we go, for anyone that needs it. And again, if, feel free to share this with your neighbor, take a picture, and then show it to other people so that they can join if they need to.
+
+
+154
+00:29:09.785 --> 00:29:21.354
+Incoming livestream: Alright, again, my name is Billy, I'll put my sticker back on, it kept falling off my jacket, and I didn't want to wear it up here because it would have drove me crazy. Feel free, I'm here for the next couple days, so just let me know if you guys have any questions. Okay.
+
+
+155
+00:29:24.045 --> 00:29:25.205
+Incoming livestream: Thanks, Billy.
+
+
+156
+00:29:27.075 --> 00:29:29.535
+Incoming livestream: Okay, still no… no dice.
+
+
+157
+00:29:30.945 --> 00:29:33.085
+Incoming livestream: You want to just stop mirroring? Would that help?
+
+
+158
+00:29:34.545 --> 00:29:36.405
+Incoming livestream: I don't know why I'm speaking to the mic.
+
+
+159
+00:29:38.395 --> 00:29:39.615
+Incoming livestream: There we go.
+
+
+160
+00:29:44.915 --> 00:29:48.855
+Incoming livestream: And again, feel free to take the picture, just so that you can share it with others who need it.
+
+
+161
+00:30:02.245 --> 00:30:07.564
+Incoming livestream: Yeah, why don't we go out… you can start, no. Alright, we'll get started.
+
+
+162
+00:30:08.085 --> 00:30:13.635
+Incoming livestream: Good morning, everyone. I'm Raghini Ramalingam, and I lead the enterprise security team at Snowflake.
+
+
+163
+00:30:14.015 --> 00:30:25.025
+Incoming livestream: I wanted to thank Gaddy and the team at Gnostic for putting this conference together, and all of you for this great community that has come together, to discuss the challenges that we have.
+
+
+164
+00:30:25.235 --> 00:30:26.784
+Incoming livestream: in AI security.
+
+
+165
+00:30:29.325 --> 00:30:32.954
+Incoming livestream: I want to start off by making a quick observation.
+
+
+166
+00:30:33.185 --> 00:30:43.895
+Incoming livestream: Enterprise security, for decades, assumed that the execution in the enterprise is predefined or deterministic.
+
+
+167
+00:30:44.525 --> 00:30:48.304
+Incoming livestream: So, we had identities authenticating, we had…
+
+
+168
+00:30:48.605 --> 00:30:52.605
+Incoming livestream: You know, systems and workflows executing predefined logic.
+
+
+169
+00:30:52.945 --> 00:31:00.184
+Incoming livestream: And automation existed, but that was based on what humans defined, and systems just executed it.
+
+
+170
+00:31:00.395 --> 00:31:04.005
+Incoming livestream: And today, AI, it's fundamentally different.
+
+
+171
+00:31:05.035 --> 00:31:09.724
+Incoming livestream: We are deploying systems that now make decisions at runtime.
+
+
+172
+00:31:10.155 --> 00:31:15.564
+Incoming livestream: and invoke actions from the endpoint to the cloud to SaaS.
+
+
+173
+00:31:15.915 --> 00:31:21.254
+Incoming livestream: And, and blurring boundaries. And this is basically moved from
+
+
+174
+00:31:22.115 --> 00:31:30.555
+Incoming livestream: Deterministic action to making context-aware actions in real time that are not controlled by humans.
+
+
+175
+00:31:31.655 --> 00:31:34.314
+Incoming livestream: So, how do we govern?
+
+
+176
+00:31:34.585 --> 00:31:37.174
+Incoming livestream: This new ecosystem.
+
+
+177
+00:31:38.155 --> 00:31:46.294
+Incoming livestream: The traditional governance models don't work anymore, and governance has to become dynamic and evolve.
+
+
+178
+00:31:46.755 --> 00:32:00.054
+Incoming livestream: I'd like to quote our CISO, Brad Jones, who said, governing AI at a company like Snowflake, we are the AI data cloud, is like laying tracks in front of a running train.
+
+
+179
+00:32:00.645 --> 00:32:05.454
+Incoming livestream: And our challenge was to lay those tracks
+
+
+180
+00:32:05.965 --> 00:32:08.594
+Incoming livestream: And not slow down the running train.
+
+
+181
+00:32:09.285 --> 00:32:13.805
+Incoming livestream: How do you achieve that? So we had to come up with a governance model, that…
+
+
+182
+00:32:14.555 --> 00:32:17.705
+Incoming livestream: You know, helped us to make decisions really quickly.
+
+
+183
+00:32:17.875 --> 00:32:26.335
+Incoming livestream: and enable innovation, but safely and securely. So I'll walk you through the governance model we adopted to enable this.
+
+
+184
+00:32:29.545 --> 00:32:34.225
+Incoming livestream: So why is AI governance fundamentally different?
+
+
+185
+00:32:34.645 --> 00:32:38.045
+Incoming livestream: First, AI tool adoption does not wait
+
+
+186
+00:32:38.235 --> 00:32:42.275
+Incoming livestream: for review cycles. And it does not follow the pace that
+
+
+187
+00:32:42.435 --> 00:33:00.114
+Incoming livestream: you know, that we see in the traditional enterprises. It begins with engineers experimenting, with product teams trying to integrate, with solution engineers trying to showcase, and business teams trying to increase their productivity using AI.
+
+
+188
+00:33:00.555 --> 00:33:05.854
+Incoming livestream: So we had to come up with processes that evolved at that speed.
+
+
+189
+00:33:06.365 --> 00:33:07.845
+Incoming livestream: Feature velocity.
+
+
+190
+00:33:08.085 --> 00:33:16.144
+Incoming livestream: And second, feature velocity outpaces, you know, any kind of feature releases. AI vendors are releasing features
+
+
+191
+00:33:16.715 --> 00:33:22.954
+Incoming livestream: Weekly, and sometimes few times a week. And therefore, our security processes had to become dynamic.
+
+
+192
+00:33:23.405 --> 00:33:41.285
+Incoming livestream: Third, most importantly, AI builds the boundary. We used to have, you know, control planes that were strictly dedicated to endpoint, or network, or cloud, or SaaS, and today, with AI, one prompt can trigger an action at an endpoint.
+
+
+193
+00:33:41.645 --> 00:33:54.774
+Incoming livestream: It can read… make system calls, read or write files on the endpoint, it can make outbound network egress, or it can invoke APIs reaching out to SaaS platforms.
+
+
+194
+00:33:54.775 --> 00:34:02.685
+Incoming livestream: And therefore, the control plane has to be across all of these domains, and cannot be just static control planes.
+
+
+195
+00:34:03.155 --> 00:34:08.155
+Incoming livestream: The risk, again, is, once again, is no longer static, because the execution model has now
+
+
+196
+00:34:08.865 --> 00:34:13.645
+Incoming livestream: Turned from one of deterministic to non-deterministic.
+
+
+197
+00:34:14.075 --> 00:34:30.675
+Incoming livestream: And the execution boundary has significantly expanded. And therefore, in order to be able to govern this AI, we need to evolve our governance model at the same velocity at which the technology is evolving.
+
+
+198
+00:34:33.635 --> 00:34:37.034
+Incoming livestream: So we realized early that in order to make
+
+
+199
+00:34:37.725 --> 00:34:44.824
+Incoming livestream: You know, in order to be… our governance model to be dynamic, we needed to have a structure that
+
+
+200
+00:34:45.355 --> 00:34:48.085
+Incoming livestream: Allowed us to make quick decisions.
+
+
+201
+00:34:48.385 --> 00:34:51.595
+Incoming livestream: So we formed an enterprise steering committee with
+
+
+202
+00:34:51.805 --> 00:34:59.784
+Incoming livestream: with the, you know, members from security, IT, legal, privacy, AI, ML, data engineering, and procurement teams.
+
+
+203
+00:35:00.065 --> 00:35:14.674
+Incoming livestream: And we… with… and all of these members came together because they had the ability to see the AI adoption across the enterprise and AI usage patterns, and so with those, we…
+
+
+204
+00:35:14.905 --> 00:35:23.574
+Incoming livestream: Identified the risks that we saw across these usage patterns and adoption, and we came up with mediation controls.
+
+
+205
+00:35:23.765 --> 00:35:29.185
+Incoming livestream: And whether it be technical controls, process controls, or contractual protections.
+
+
+206
+00:35:29.805 --> 00:35:35.254
+Incoming livestream: And then, as a next step, we bubbled that up to our executive leadership teams.
+
+
+207
+00:35:35.485 --> 00:35:46.945
+Incoming livestream: and in engineering, product management, sales, customer experience, IT, etc. And these are the teams that were innovating at speed with the AI technology.
+
+
+208
+00:35:47.025 --> 00:36:01.634
+Incoming livestream: And so this helped us to surface the risk up to the executive leadership and make risk-informed decisions that align with our leadership's risk appetite. Because at Snowflake.
+
+
+209
+00:36:02.465 --> 00:36:09.865
+Incoming livestream: you know, engineering innovation is… and engineering at speed is in our DNA.
+
+
+210
+00:36:10.015 --> 00:36:17.295
+Incoming livestream: And… enabling or disabling AI was not a security decision.
+
+
+211
+00:36:17.495 --> 00:36:33.294
+Incoming livestream: it is actually a business decision, and it's not a security trade-off, it's a business trade-off. So having our executive leadership weigh in, and making decisions aligned with the risk appetite of the business.
+
+
+212
+00:36:33.855 --> 00:36:36.705
+Incoming livestream: Helped us actually get that alignment.
+
+
+213
+00:36:36.835 --> 00:36:40.925
+Incoming livestream: As well as any cultural change that was required in the environment.
+
+
+214
+00:36:42.065 --> 00:36:52.964
+Incoming livestream: So we shifted from reactive approvals to proactive risk ownership, and truly, this structure was the one that helped us make decisions much faster.
+
+
+215
+00:36:55.615 --> 00:36:59.205
+Incoming livestream: You cannot govern what you cannot see, so it's…
+
+
+216
+00:36:59.605 --> 00:37:19.344
+Incoming livestream: Getting visibility into enterprise AI usage and adoption is critical in order to be able to govern. So, we looked at four pathways in order to get visibility. First is our procurement process, and we already had a pretty mature process, and we built AI oversight into that.
+
+
+217
+00:37:19.495 --> 00:37:28.134
+Incoming livestream: And we looked at, we looked… we rationalized the products, not based on features.
+
+
+218
+00:37:28.245 --> 00:37:42.825
+Incoming livestream: And we not only did a security risk review, but we also looked at whether the tool had redundant capabilities. So what that helped us do is eliminate tools which had overlapping capabilities.
+
+
+219
+00:37:42.885 --> 00:37:48.694
+Incoming livestream: And, which not only just reduced our, operational overhead, but also
+
+
+220
+00:37:48.785 --> 00:37:52.004
+Incoming livestream: Helped us eliminate unnecessary attack surfaces.
+
+
+221
+00:37:53.255 --> 00:38:12.524
+Incoming livestream: Next, we, we all know that AI does not come just in a new product, it is turning on AI features in existing products, so we gated those, turning on new features through security reviews. We required people to go through security reviews in order to enable AI features in existing tools and platforms.
+
+
+222
+00:38:12.945 --> 00:38:21.634
+Incoming livestream: And, third, most importantly, we actually did an active discovery for AI artifacts and interactions across the enterprise.
+
+
+223
+00:38:21.905 --> 00:38:33.535
+Incoming livestream: And being the AI data cloud, our security lake lives in our own platform, and with the AI capabilities that we have on our platform, we were able to quickly get insights.
+
+
+224
+00:38:33.715 --> 00:38:39.945
+Incoming livestream: Based on the telemetry that we had on the endpoint data, network,
+
+
+225
+00:38:40.345 --> 00:38:50.974
+Incoming livestream: cloud and SaaS environments, we were able to identify AI artifacts, such as MCP components, models, agents, and those interactions.
+
+
+226
+00:38:52.175 --> 00:38:54.915
+Incoming livestream: Last but not the least, we…
+
+
+227
+00:38:55.515 --> 00:39:01.735
+Incoming livestream: Constantly partnered and had discussions with our peers in the business units.
+
+
+228
+00:39:01.825 --> 00:39:18.354
+Incoming livestream: And this is critical. You need to have security partners in all business units that you, you know, you keep in touch with, so you're aware of getting early insights into AI adoption in those business units, and that helps us make informed decisions.
+
+
+229
+00:39:21.065 --> 00:39:32.655
+Incoming livestream: So with that visibility and that governance structure, we were actually able to effect a cultural change when we were able to enable AI adoption responsibly.
+
+
+230
+00:39:33.575 --> 00:39:34.765
+Incoming livestream: So first, we…
+
+
+231
+00:39:34.985 --> 00:39:45.474
+Incoming livestream: established enterprise guardrails, so we, you know, deployed endpoint, network, and DLP controls that were aligned to AI usage patterns.
+
+
+232
+00:39:46.035 --> 00:39:49.575
+Incoming livestream: And the goal here was simple, just allowed, approved.
+
+
+233
+00:39:49.755 --> 00:39:55.094
+Incoming livestream: Use cases and approved tools, and then maintain consistent enforcement.
+
+
+234
+00:39:55.335 --> 00:40:11.864
+Incoming livestream: Then we, with the visibility that we had, we basically, identified tools that were broadly used in the organization and made a conscious decision to procure some of those tools so that we can, manage them effectively.
+
+
+235
+00:40:12.095 --> 00:40:17.304
+Incoming livestream: And in some cases, we decided that some of the tools were risky, and
+
+
+236
+00:40:17.575 --> 00:40:23.325
+Incoming livestream: And, you know, guided our users towards approved alternatives in the enterprise.
+
+
+237
+00:40:24.875 --> 00:40:25.775
+Incoming livestream: And last…
+
+
+238
+00:40:25.935 --> 00:40:35.995
+Incoming livestream: Lastly, we had, and again, Snowflake is, is a place where, there is a lot of AI experimentation happening.
+
+
+239
+00:40:36.115 --> 00:40:52.284
+Incoming livestream: And so, when we needed to provide… when AI experimentation needed to happen, we resorted… our core operating principle was provide isolated environments with test tenants and synthetic data, and where that was not possible.
+
+
+240
+00:40:52.495 --> 00:41:04.555
+Incoming livestream: And, you know, some use cases where they needed to have production-adjacent environments, we came up with what is called a responsible AI experimentation framework, which is…
+
+
+241
+00:41:04.885 --> 00:41:14.874
+Incoming livestream: setting clear accountability for the experimentation teams and security and IT, and additional review processes and preventive and detective controls.
+
+
+242
+00:41:18.945 --> 00:41:19.865
+Incoming livestream: So…
+
+
+243
+00:41:20.105 --> 00:41:34.425
+Incoming livestream: I'll… you know, that was our governance structure and how we set about doing, you know, respond… securely enabling AI in the enterprise. I want to talk a little bit more into how we actually
+
+
+244
+00:41:34.725 --> 00:41:39.285
+Incoming livestream: deployed GenAI tools in our enterprise.
+
+
+245
+00:41:39.865 --> 00:41:47.654
+Incoming livestream: So… We all know that, the GenAI tools evolve quickly, and there are features releasing
+
+
+246
+00:41:48.275 --> 00:41:54.535
+Incoming livestream: You know, weekly or a few times a week. But the enterprise-level controls in those tools
+
+
+247
+00:41:54.925 --> 00:42:02.964
+Incoming livestream: are… do not evolve at the same speed as features. So we had to do, feature-based risk assessment rather than broad.
+
+
+248
+00:42:03.515 --> 00:42:20.964
+Incoming livestream: enablement of a tool with all its features. So, when we looked at the features, we looked at what capabilities were there in the enterprise plane, control plane, to be able to effectively control, data exfiltration, or limit the,
+
+
+249
+00:42:21.055 --> 00:42:25.375
+Incoming livestream: Limit the risk from integrations around that platform.
+
+
+250
+00:42:25.495 --> 00:42:41.605
+Incoming livestream: So, this would include things like, did we have the ability to manage allow lists or deny lists within the platform for MCP, or tools, or web fetches, or, you know, web search, and things like that?
+
+
+251
+00:42:43.315 --> 00:42:49.324
+Incoming livestream: So, what we did was we enabled the features that were less risky.
+
+
+252
+00:42:49.625 --> 00:43:00.635
+Incoming livestream: And we… that we felt comfortable enabling with the controls that were already available in the enterprise, and we gated the features which
+
+
+253
+00:43:00.765 --> 00:43:07.464
+Incoming livestream: We're not, we didn't have… which we felt were not, did not have sufficient controls
+
+
+254
+00:43:07.595 --> 00:43:09.385
+Incoming livestream: Natively in the product.
+
+
+255
+00:43:09.495 --> 00:43:20.324
+Incoming livestream: So, this began a conversation with our vendors, so we engaged actively with our AI tool vendors and made feature requests to make those enhancements.
+
+
+256
+00:43:24.185 --> 00:43:25.565
+Incoming livestream: coding agents.
+
+
+257
+00:43:25.995 --> 00:43:28.934
+Incoming livestream: And I know all of us here in the room
+
+
+258
+00:43:29.295 --> 00:43:47.635
+Incoming livestream: you know, encountered this in our enterprises, coding agents potentially shift the, you know, significantly shift the threat model in the enterprise. And this is the perfect example of how the attack surface in the enterprise expands
+
+
+259
+00:43:48.805 --> 00:43:59.164
+Incoming livestream: with AI, and how, you know, the whole execution model has shifted from predetermined action to…
+
+
+260
+00:43:59.305 --> 00:44:10.574
+Incoming livestream: real-time execution, context-based execution with expanded boundaries, and this coding agent is a perfect example for that. So we have the risk from autonomous code execution
+
+
+261
+00:44:11.515 --> 00:44:24.224
+Incoming livestream: That can happen, you know, these coding agents don't just write code, right? They execute system-level calls, they make file system reads, or they're integrating with APIs.
+
+
+262
+00:44:25.215 --> 00:44:31.365
+Incoming livestream: And which… all of which amplifies the remote code execution, amplifi- risk.
+
+
+263
+00:44:31.955 --> 00:44:41.015
+Incoming livestream: And there are… most of these come with embedded browser components, which are bypassing standard controls. So we had to come up with,
+
+
+264
+00:44:41.115 --> 00:44:44.675
+Incoming livestream: with, with, we had to come up with
+
+
+265
+00:44:45.295 --> 00:44:50.074
+Incoming livestream: Solutions in order to restrict and in order to address that risk.
+
+
+266
+00:44:52.075 --> 00:44:54.565
+Incoming livestream: And, again, the same problem as
+
+
+267
+00:44:54.695 --> 00:45:08.734
+Incoming livestream: the, GenAI tools, we don't have enterprise-grade controls that… in most of these coding agents today, and they're still trying to… they're still in the process of maturing, and there is rapid,
+
+
+268
+00:45:08.835 --> 00:45:10.525
+Incoming livestream: release velocity.
+
+
+269
+00:45:10.725 --> 00:45:17.734
+Incoming livestream: So, this is… The coding agent is not just another development tool.
+
+
+270
+00:45:17.905 --> 00:45:25.554
+Incoming livestream: And we had to work closely, again, with the vendor to get features released that, that we required.
+
+
+271
+00:45:29.835 --> 00:45:31.165
+Incoming livestream: We had a structured…
+
+
+272
+00:45:32.315 --> 00:45:48.394
+Incoming livestream: assessment for the Agentic tools, it followed the same pattern as what we did for the GenAI tools. We assessed all of the execution surfaces, whether it was a command line or desktop, and we did the same feature-based risk impact.
+
+
+273
+00:45:48.975 --> 00:45:58.385
+Incoming livestream: And we… the most important… one of the most important things at an engineering company like Snowflake is we needed to make sure that
+
+
+274
+00:45:58.735 --> 00:46:02.505
+Incoming livestream: We did not develop the work developer productivity.
+
+
+275
+00:46:02.745 --> 00:46:15.675
+Incoming livestream: And therefore, we had to come up… when we made these risk assessments and came up with mitigation, we had to keep that in mind, front and center, and aligned with the risk appetite of our executive leadership. So it was…
+
+
+276
+00:46:15.675 --> 00:46:26.624
+Incoming livestream: We had to, you know, come up with a set of controls that worked for us that did not impact developer productivity, while enabling us to use the features.
+
+
+277
+00:46:26.785 --> 00:46:27.955
+Incoming livestream: Securely.
+
+
+278
+00:46:31.795 --> 00:46:35.735
+Incoming livestream: So what we did is we enabled enterprise
+
+
+279
+00:46:35.845 --> 00:46:41.554
+Incoming livestream: Guardrails, we tried to constrain the, tools within our enterprise tenant.
+
+
+280
+00:46:41.775 --> 00:46:45.525
+Incoming livestream: We… we established hardened configuration.
+
+
+281
+00:46:46.865 --> 00:46:55.175
+Incoming livestream: For this, and most of you know that coding… the, the enterprise control plane in these coding agents do not…
+
+
+282
+00:46:55.245 --> 00:47:07.445
+Incoming livestream: provide a very, secure set of… a robust set of controls in order to be… effectively enforce immutable configuration at the endpoint. So we had to devise endpoint…
+
+
+283
+00:47:07.585 --> 00:47:21.864
+Incoming livestream: we had to do… come up with controls using our existing IT and security toolset to constrain the… to try and maintain this immutable config… configuration at the endpoints.
+
+
+284
+00:47:22.465 --> 00:47:37.825
+Incoming livestream: And, we… and we had to come up with… again, we used our existing IT and security toolset to secure both the manual as well as the automated browser pathways, which are huge, with huge risk.
+
+
+285
+00:47:37.825 --> 00:47:43.115
+Incoming livestream: In terms of, you know, data exfiltration or prompt injection.
+
+
+286
+00:47:44.565 --> 00:47:57.435
+Incoming livestream: And when it came to restriction of higher autonomy modes, we approached it really carefully, again, trying to do what we could, and limiting the, limiting this to.
+
+
+287
+00:47:57.535 --> 00:48:05.604
+Incoming livestream: We looked at the user groups and risk profiles, and we kind of, you know, enabled those features.
+
+
+288
+00:48:06.105 --> 00:48:13.994
+Incoming livestream: Based on the risk profile of the users, and we are still… we continue to work with vendors, because it is…
+
+
+289
+00:48:14.175 --> 00:48:20.175
+Incoming livestream: A lot of these enterprise control planes for these coding agents do not have, like, scheme-based
+
+
+290
+00:48:20.225 --> 00:48:34.255
+Incoming livestream: enablement of features. So, you know, those were requests that we put into the vendors in order to help us, be able to selectively deploy certain features for certain groups of users.
+
+
+291
+00:48:34.375 --> 00:48:42.345
+Incoming livestream: Or constrain the high-risk features just to select groups of users, and to even be able to test them before deployment.
+
+
+292
+00:48:43.245 --> 00:49:00.854
+Incoming livestream: And again, approved integrations and capabilities surfaces when you come to, like, being able to allow MCP tool… MCP servers or tools, or being able to restrain the web search to certain domains.
+
+
+293
+00:49:00.925 --> 00:49:09.304
+Incoming livestream: Allowed domains, and maintain the same configuration as the enterprise that's in place in the rest of the enterprise.
+
+
+294
+00:49:09.865 --> 00:49:21.854
+Incoming livestream: We had to, we had to come up with, very, you know, we had to come up with innovative ways of using our, existing toolset.
+
+
+295
+00:49:21.965 --> 00:49:39.934
+Incoming livestream: And where we were stretched, we constantly worked with our vendors to, to… for feature enhancements in the product. So, and we've seen the vendors actually respond to these feature requests, and we've seen significant, improvements in the last few months.
+
+
+296
+00:49:43.595 --> 00:49:44.645
+Incoming livestream: So what…
+
+
+297
+00:49:44.895 --> 00:49:59.134
+Incoming livestream: enables AI to scale responsibly. I think fundamental thing, and then these are the lessons learned from our journey, it is fundamentally… executive sponsorship drives alignment, so it is a really important
+
+
+298
+00:49:59.395 --> 00:50:03.585
+Incoming livestream: For, you know, to be able to…
+
+
+299
+00:50:04.315 --> 00:50:20.234
+Incoming livestream: update your leadership about the risks with data. Like, you… with the visibility you get, you provide an update to your leadership, and you need to be able to make informed decisions with that sponsorship.
+
+
+300
+00:50:22.295 --> 00:50:35.375
+Incoming livestream: And shared ownership scales better than central control, so we, it's really important to have that cross-functional alignment, and the AIA steering committee really helped us there.
+
+
+301
+00:50:35.505 --> 00:50:38.885
+Incoming livestream: We, what is critical is that
+
+
+302
+00:50:39.095 --> 00:50:45.024
+Incoming livestream: Cross-functional alignment, as well as a top-down, you know, alignment on risk.
+
+
+303
+00:50:45.145 --> 00:50:50.384
+Incoming livestream: Is… is what helped us Keep our governance model dynamic.
+
+
+304
+00:50:51.265 --> 00:51:09.714
+Incoming livestream: Visibility is crucial in order to be able to govern, so whatever pathways you have in your environment, to get that visibility, make sure that, you know, you are leveraging that in order to get the data that you need to be able to share.
+
+
+305
+00:51:09.775 --> 00:51:14.955
+Incoming livestream: That with your, cross-functional teams and executive teams.
+
+
+306
+00:51:15.215 --> 00:51:28.754
+Incoming livestream: And the most important thing is, last, you know, I would say that it's really important to focus on constraining the execution authority, because you cannot stop the innovation.
+
+
+307
+00:51:28.855 --> 00:51:42.025
+Incoming livestream: you cannot stop AI adoption in the enterprise, because if you did, it'll go around you. So… and if you… and if… the other thing is, it is going to impact your business, so it is really…
+
+
+308
+00:51:42.025 --> 00:51:50.475
+Incoming livestream: important to focus on constraining the execution authority of the AI, not restraining AI completely.
+
+
+309
+00:51:50.655 --> 00:52:05.535
+Incoming livestream: And governance must evolve at the same velocity as AI, and you need to make sure that your processes, whether it is review processes or your decision processes are able… are dynamic.
+
+
+310
+00:52:05.535 --> 00:52:14.094
+Incoming livestream: And evolving at the same pace as the technology. So AI governance is not a roadblock to innovation. It really is the foundation to enable
+
+
+311
+00:52:14.105 --> 00:52:19.555
+Incoming livestream: innovation securely and responsibly. Thank you. Okay, thanks very much.
+
+
+312
+00:52:19.675 --> 00:52:21.075
+Incoming livestream: Y'all got some questions?
+
+
+313
+00:52:21.975 --> 00:52:23.745
+Incoming livestream: Chase, go ahead, come on up.
+
+
+314
+00:52:25.865 --> 00:52:33.514
+Incoming livestream: Thank you very much for a good talk. Couple of questions. So, when you talk about these, enterprise, governance.
+
+
+315
+00:52:33.755 --> 00:52:39.045
+Incoming livestream: code agents, I'm thinking in terms of some agents that could potentially…
+
+
+316
+00:52:39.055 --> 00:52:54.074
+Incoming livestream: place, trades for, in 45 minutes, they can lose half a million bucks, or, 500 billion dollars, depending on what happened with the night. Are there… are those the kind of things that you are trying to avoid? Because that could be a lot more.
+
+
+317
+00:52:54.185 --> 00:52:57.135
+Incoming livestream: And if so, how exactly are you controlling it?
+
+
+318
+00:52:58.185 --> 00:53:05.795
+Incoming livestream: So, as I said, we, you know, based on that discovery, we see what coding agents are deployed across our enterprise.
+
+
+319
+00:53:06.335 --> 00:53:15.065
+Incoming livestream: And we, ensure that we only allow the coding agents that are approved in the enterprise.
+
+
+320
+00:53:15.295 --> 00:53:31.104
+Incoming livestream: And we, we performed risk assessment for those coding agents that are approved in the enterprise, and so we steer our users towards the approved platforms. But that's manual, right? That's going to be somewhat slower than,
+
+
+321
+00:53:31.635 --> 00:53:33.124
+Incoming livestream: the speed of AI.
+
+
+322
+00:53:33.355 --> 00:53:39.245
+Incoming livestream: So, it, it, it is not, so it, it, it is… You're, you're…
+
+
+323
+00:53:39.445 --> 00:53:53.974
+Incoming livestream: it is something that is… AI risk is dynamic, and it is continuously evolving, right? So you need to… your… the pace at which you perform your discovery, the pace at which you, you know, surface up
+
+
+324
+00:53:54.005 --> 00:54:10.265
+Incoming livestream: any anomalies or risks to your cross-functional team and your leadership needs to be dynamic. So you need to be having these conversations on a weekly or sometimes on a daily basis about what you see across the enterprise.
+
+
+325
+00:54:10.425 --> 00:54:18.715
+Incoming livestream: And make those decisions. If you need to shut something down, you need to be able to get, you know, quick alignment and shut it down.
+
+
+326
+00:54:21.205 --> 00:54:21.905
+Incoming livestream: Sure.
+
+
+327
+00:54:26.775 --> 00:54:32.135
+Incoming livestream: Hi, thank you, what technical controls have you put in place to actually…
+
+
+328
+00:54:32.345 --> 00:54:35.875
+Incoming livestream: Constrain that execution authority that you mentioned in the last slide.
+
+
+329
+00:54:37.185 --> 00:54:42.465
+Incoming livestream: So, it depends, really, on the… on the tool, on the coding agent.
+
+
+330
+00:54:42.665 --> 00:54:49.895
+Incoming livestream: And what controls are available within, the agent's control plane itself.
+
+
+331
+00:54:49.945 --> 00:55:08.304
+Incoming livestream: So, like, for example, what we did for the browser execution pathways, so there could be automated, or they could be, manual execution, so for the… for the automated ones, we actually restrained them just to our internal domains.
+
+
+332
+00:55:08.305 --> 00:55:12.515
+Incoming livestream: And for the, for the,
+
+
+333
+00:55:12.885 --> 00:55:26.984
+Incoming livestream: manual browser pathways, we basically ensured, using our other EDR tools, we constrained them to just… to the same… to match what we had for the rest of the enterprise.
+
+
+334
+00:55:27.885 --> 00:55:29.665
+Incoming livestream: So that's just one example, yeah.
+
+
+335
+00:55:30.095 --> 00:55:44.444
+Incoming livestream: Okay, unfortunately, we're at a… we're actually past time, but we're at a break time, for the… in the interest of just trying to catch up, if you want to take a break, you can, but we're gonna reconvene in, like, 5 minutes to get Chase, up and running.
+
+
+336
+00:55:44.445 --> 00:55:53.335
+Incoming livestream: If there's any questions, I… there's some really good questions that I think need some more unpacking, so if, Ragini, if you guys can just follow up directly, that'd be great, off, you know…
+
+
+

@@ -1,0 +1,173 @@
+[00:30:08.085 - 00:30:13.635] Incoming livestream: Good morning, everyone. I'm Raghini Ramalingam, and I lead the enterprise security team at Snowflake.
+[00:30:14.015 - 00:30:25.025] Incoming livestream: I wanted to thank Gaddy and the team at Gnostic for putting this conference together, and all of you for this great community that has come together, to discuss the challenges that we have.
+[00:30:25.235 - 00:30:26.784] Incoming livestream: in AI security.
+[00:30:29.325 - 00:30:32.954] Incoming livestream: I want to start off by making a quick observation.
+[00:30:33.185 - 00:30:43.895] Incoming livestream: Enterprise security, for decades, assumed that the execution in the enterprise is predefined or deterministic.
+[00:30:44.525 - 00:30:48.304] Incoming livestream: So, we had identities authenticating, we had…
+[00:30:48.605 - 00:30:52.605] Incoming livestream: You know, systems and workflows executing predefined logic.
+[00:30:52.945 - 00:31:00.184] Incoming livestream: And automation existed, but that was based on what humans defined, and systems just executed it.
+[00:31:00.395 - 00:31:04.005] Incoming livestream: And today, AI, it's fundamentally different.
+[00:31:05.035 - 00:31:09.724] Incoming livestream: We are deploying systems that now make decisions at runtime.
+[00:31:10.155 - 00:31:15.564] Incoming livestream: and invoke actions from the endpoint to the cloud to SaaS.
+[00:31:15.915 - 00:31:21.254] Incoming livestream: And, and blurring boundaries. And this is basically moved from
+[00:31:22.115 - 00:31:30.555] Incoming livestream: Deterministic action to making context-aware actions in real time that are not controlled by humans.
+[00:31:31.655 - 00:31:34.314] Incoming livestream: So, how do we govern?
+[00:31:34.585 - 00:31:37.174] Incoming livestream: This new ecosystem.
+[00:31:38.155 - 00:31:46.294] Incoming livestream: The traditional governance models don't work anymore, and governance has to become dynamic and evolve.
+[00:31:46.755 - 00:32:00.054] Incoming livestream: I'd like to quote our CISO, Brad Jones, who said, governing AI at a company like Snowflake, we are the AI data cloud, is like laying tracks in front of a running train.
+[00:32:00.645 - 00:32:05.454] Incoming livestream: And our challenge was to lay those tracks
+[00:32:05.965 - 00:32:08.594] Incoming livestream: And not slow down the running train.
+[00:32:09.285 - 00:32:13.805] Incoming livestream: How do you achieve that? So we had to come up with a governance model, that…
+[00:32:14.555 - 00:32:17.705] Incoming livestream: You know, helped us to make decisions really quickly.
+[00:32:17.875 - 00:32:26.335] Incoming livestream: and enable innovation, but safely and securely. So I'll walk you through the governance model we adopted to enable this.
+[00:32:29.545 - 00:32:34.225] Incoming livestream: So why is AI governance fundamentally different?
+[00:32:34.645 - 00:32:38.045] Incoming livestream: First, AI tool adoption does not wait
+[00:32:38.235 - 00:32:42.275] Incoming livestream: for review cycles. And it does not follow the pace that
+[00:32:42.435 - 00:33:00.114] Incoming livestream: you know, that we see in the traditional enterprises. It begins with engineers experimenting, with product teams trying to integrate, with solution engineers trying to showcase, and business teams trying to increase their productivity using AI.
+[00:33:00.555 - 00:33:05.854] Incoming livestream: So we had to come up with processes that evolved at that speed.
+[00:33:06.365 - 00:33:07.845] Incoming livestream: Feature velocity.
+[00:33:08.085 - 00:33:16.144] Incoming livestream: And second, feature velocity outpaces, you know, any kind of feature releases. AI vendors are releasing features
+[00:33:16.715 - 00:33:22.954] Incoming livestream: Weekly, and sometimes few times a week. And therefore, our security processes had to become dynamic.
+[00:33:23.405 - 00:33:41.285] Incoming livestream: Third, most importantly, AI builds the boundary. We used to have, you know, control planes that were strictly dedicated to endpoint, or network, or cloud, or SaaS, and today, with AI, one prompt can trigger an action at an endpoint.
+[00:33:41.645 - 00:33:54.774] Incoming livestream: It can read… make system calls, read or write files on the endpoint, it can make outbound network egress, or it can invoke APIs reaching out to SaaS platforms.
+[00:33:54.775 - 00:34:02.685] Incoming livestream: And therefore, the control plane has to be across all of these domains, and cannot be just static control planes.
+[00:34:03.155 - 00:34:08.155] Incoming livestream: The risk, again, is, once again, is no longer static, because the execution model has now
+[00:34:08.865 - 00:34:13.645] Incoming livestream: Turned from one of deterministic to non-deterministic.
+[00:34:14.075 - 00:34:30.675] Incoming livestream: And the execution boundary has significantly expanded. And therefore, in order to be able to govern this AI, we need to evolve our governance model at the same velocity at which the technology is evolving.
+[00:34:33.635 - 00:34:37.034] Incoming livestream: So we realized early that in order to make
+[00:34:37.725 - 00:34:44.824] Incoming livestream: You know, in order to be… our governance model to be dynamic, we needed to have a structure that
+[00:34:45.355 - 00:34:48.085] Incoming livestream: Allowed us to make quick decisions.
+[00:34:48.385 - 00:34:51.595] Incoming livestream: So we formed an enterprise steering committee with
+[00:34:51.805 - 00:34:59.784] Incoming livestream: with the, you know, members from security, IT, legal, privacy, AI, ML, data engineering, and procurement teams.
+[00:35:00.065 - 00:35:14.674] Incoming livestream: And we… with… and all of these members came together because they had the ability to see the AI adoption across the enterprise and AI usage patterns, and so with those, we…
+[00:35:14.905 - 00:35:23.574] Incoming livestream: Identified the risks that we saw across these usage patterns and adoption, and we came up with mediation controls.
+[00:35:23.765 - 00:35:29.185] Incoming livestream: And whether it be technical controls, process controls, or contractual protections.
+[00:35:29.805 - 00:35:35.254] Incoming livestream: And then, as a next step, we bubbled that up to our executive leadership teams.
+[00:35:35.485 - 00:35:46.945] Incoming livestream: and in engineering, product management, sales, customer experience, IT, etc. And these are the teams that were innovating at speed with the AI technology.
+[00:35:47.025 - 00:36:01.634] Incoming livestream: And so this helped us to surface the risk up to the executive leadership and make risk-informed decisions that align with our leadership's risk appetite. Because at Snowflake.
+[00:36:02.465 - 00:36:09.865] Incoming livestream: you know, engineering innovation is… and engineering at speed is in our DNA.
+[00:36:10.015 - 00:36:17.295] Incoming livestream: And… enabling or disabling AI was not a security decision.
+[00:36:17.495 - 00:36:33.294] Incoming livestream: it is actually a business decision, and it's not a security trade-off, it's a business trade-off. So having our executive leadership weigh in, and making decisions aligned with the risk appetite of the business.
+[00:36:33.855 - 00:36:36.705] Incoming livestream: Helped us actually get that alignment.
+[00:36:36.835 - 00:36:40.925] Incoming livestream: As well as any cultural change that was required in the environment.
+[00:36:42.065 - 00:36:52.964] Incoming livestream: So we shifted from reactive approvals to proactive risk ownership, and truly, this structure was the one that helped us make decisions much faster.
+[00:36:55.615 - 00:36:59.205] Incoming livestream: You cannot govern what you cannot see, so it's…
+[00:36:59.605 - 00:37:19.344] Incoming livestream: Getting visibility into enterprise AI usage and adoption is critical in order to be able to govern. So, we looked at four pathways in order to get visibility. First is our procurement process, and we already had a pretty mature process, and we built AI oversight into that.
+[00:37:19.495 - 00:37:28.134] Incoming livestream: And we looked at, we looked… we rationalized the products, not based on features.
+[00:37:28.245 - 00:37:42.825] Incoming livestream: And we not only did a security risk review, but we also looked at whether the tool had redundant capabilities. So what that helped us do is eliminate tools which had overlapping capabilities.
+[00:37:42.885 - 00:37:48.694] Incoming livestream: And, which not only just reduced our, operational overhead, but also
+[00:37:48.785 - 00:37:52.004] Incoming livestream: Helped us eliminate unnecessary attack surfaces.
+[00:37:53.255 - 00:38:12.524] Incoming livestream: Next, we, we all know that AI does not come just in a new product, it is turning on AI features in existing products, so we gated those, turning on new features through security reviews. We required people to go through security reviews in order to enable AI features in existing tools and platforms.
+[00:38:12.945 - 00:38:21.634] Incoming livestream: And, third, most importantly, we actually did an active discovery for AI artifacts and interactions across the enterprise.
+[00:38:21.905 - 00:38:33.535] Incoming livestream: And being the AI data cloud, our security lake lives in our own platform, and with the AI capabilities that we have on our platform, we were able to quickly get insights.
+[00:38:33.715 - 00:38:39.945] Incoming livestream: Based on the telemetry that we had on the endpoint data, network,
+[00:38:40.345 - 00:38:50.974] Incoming livestream: cloud and SaaS environments, we were able to identify AI artifacts, such as MCP components, models, agents, and those interactions.
+[00:38:52.175 - 00:38:54.915] Incoming livestream: Last but not the least, we…
+[00:38:55.515 - 00:39:01.735] Incoming livestream: Constantly partnered and had discussions with our peers in the business units.
+[00:39:01.825 - 00:39:18.354] Incoming livestream: And this is critical. You need to have security partners in all business units that you, you know, you keep in touch with, so you're aware of getting early insights into AI adoption in those business units, and that helps us make informed decisions.
+[00:39:21.065 - 00:39:32.655] Incoming livestream: So with that visibility and that governance structure, we were actually able to effect a cultural change when we were able to enable AI adoption responsibly.
+[00:39:33.575 - 00:39:34.765] Incoming livestream: So first, we…
+[00:39:34.985 - 00:39:45.474] Incoming livestream: established enterprise guardrails, so we, you know, deployed endpoint, network, and DLP controls that were aligned to AI usage patterns.
+[00:39:46.035 - 00:39:49.575] Incoming livestream: And the goal here was simple, just allowed, approved.
+[00:39:49.755 - 00:39:55.094] Incoming livestream: Use cases and approved tools, and then maintain consistent enforcement.
+[00:39:55.335 - 00:40:11.864] Incoming livestream: Then we, with the visibility that we had, we basically, identified tools that were broadly used in the organization and made a conscious decision to procure some of those tools so that we can, manage them effectively.
+[00:40:12.095 - 00:40:17.304] Incoming livestream: And in some cases, we decided that some of the tools were risky, and
+[00:40:17.575 - 00:40:23.325] Incoming livestream: And, you know, guided our users towards approved alternatives in the enterprise.
+[00:40:24.875 - 00:40:25.775] Incoming livestream: And last…
+[00:40:25.935 - 00:40:35.995] Incoming livestream: Lastly, we had, and again, Snowflake is, is a place where, there is a lot of AI experimentation happening.
+[00:40:36.115 - 00:40:52.284] Incoming livestream: And so, when we needed to provide… when AI experimentation needed to happen, we resorted… our core operating principle was provide isolated environments with test tenants and synthetic data, and where that was not possible.
+[00:40:52.495 - 00:41:04.555] Incoming livestream: And, you know, some use cases where they needed to have production-adjacent environments, we came up with what is called a responsible AI experimentation framework, which is…
+[00:41:04.885 - 00:41:14.874] Incoming livestream: setting clear accountability for the experimentation teams and security and IT, and additional review processes and preventive and detective controls.
+[00:41:18.945 - 00:41:19.865] Incoming livestream: So…
+[00:41:20.105 - 00:41:34.425] Incoming livestream: I'll… you know, that was our governance structure and how we set about doing, you know, respond… securely enabling AI in the enterprise. I want to talk a little bit more into how we actually
+[00:41:34.725 - 00:41:39.285] Incoming livestream: deployed GenAI tools in our enterprise.
+[00:41:39.865 - 00:41:47.654] Incoming livestream: So… We all know that, the GenAI tools evolve quickly, and there are features releasing
+[00:41:48.275 - 00:41:54.535] Incoming livestream: You know, weekly or a few times a week. But the enterprise-level controls in those tools
+[00:41:54.925 - 00:42:02.964] Incoming livestream: are… do not evolve at the same speed as features. So we had to do, feature-based risk assessment rather than broad.
+[00:42:03.515 - 00:42:20.964] Incoming livestream: enablement of a tool with all its features. So, when we looked at the features, we looked at what capabilities were there in the enterprise plane, control plane, to be able to effectively control, data exfiltration, or limit the,
+[00:42:21.055 - 00:42:25.375] Incoming livestream: Limit the risk from integrations around that platform.
+[00:42:25.495 - 00:42:41.605] Incoming livestream: So, this would include things like, did we have the ability to manage allow lists or deny lists within the platform for MCP, or tools, or web fetches, or, you know, web search, and things like that?
+[00:42:43.315 - 00:42:49.324] Incoming livestream: So, what we did was we enabled the features that were less risky.
+[00:42:49.625 - 00:43:00.635] Incoming livestream: And we… that we felt comfortable enabling with the controls that were already available in the enterprise, and we gated the features which
+[00:43:00.765 - 00:43:07.464] Incoming livestream: We're not, we didn't have… which we felt were not, did not have sufficient controls
+[00:43:07.595 - 00:43:09.385] Incoming livestream: Natively in the product.
+[00:43:09.495 - 00:43:20.324] Incoming livestream: So, this began a conversation with our vendors, so we engaged actively with our AI tool vendors and made feature requests to make those enhancements.
+[00:43:24.185 - 00:43:25.565] Incoming livestream: coding agents.
+[00:43:25.995 - 00:43:28.934] Incoming livestream: And I know all of us here in the room
+[00:43:29.295 - 00:43:47.635] Incoming livestream: you know, encountered this in our enterprises, coding agents potentially shift the, you know, significantly shift the threat model in the enterprise. And this is the perfect example of how the attack surface in the enterprise expands
+[00:43:48.805 - 00:43:59.164] Incoming livestream: with AI, and how, you know, the whole execution model has shifted from predetermined action to…
+[00:43:59.305 - 00:44:10.574] Incoming livestream: real-time execution, context-based execution with expanded boundaries, and this coding agent is a perfect example for that. So we have the risk from autonomous code execution
+[00:44:11.515 - 00:44:24.224] Incoming livestream: That can happen, you know, these coding agents don't just write code, right? They execute system-level calls, they make file system reads, or they're integrating with APIs.
+[00:44:25.215 - 00:44:31.365] Incoming livestream: And which… all of which amplifies the remote code execution, amplifi- risk.
+[00:44:31.955 - 00:44:41.015] Incoming livestream: And there are… most of these come with embedded browser components, which are bypassing standard controls. So we had to come up with,
+[00:44:41.115 - 00:44:44.675] Incoming livestream: with, with, we had to come up with
+[00:44:45.295 - 00:44:50.074] Incoming livestream: Solutions in order to restrict and in order to address that risk.
+[00:44:52.075 - 00:44:54.565] Incoming livestream: And, again, the same problem as
+[00:44:54.695 - 00:45:08.734] Incoming livestream: the, GenAI tools, we don't have enterprise-grade controls that… in most of these coding agents today, and they're still trying to… they're still in the process of maturing, and there is rapid,
+[00:45:08.835 - 00:45:10.525] Incoming livestream: release velocity.
+[00:45:10.725 - 00:45:17.734] Incoming livestream: So, this is… The coding agent is not just another development tool.
+[00:45:17.905 - 00:45:25.554] Incoming livestream: And we had to work closely, again, with the vendor to get features released that, that we required.
+[00:45:29.835 - 00:45:31.165] Incoming livestream: We had a structured…
+[00:45:32.315 - 00:45:48.394] Incoming livestream: assessment for the Agentic tools, it followed the same pattern as what we did for the GenAI tools. We assessed all of the execution surfaces, whether it was a command line or desktop, and we did the same feature-based risk impact.
+[00:45:48.975 - 00:45:58.385] Incoming livestream: And we… the most important… one of the most important things at an engineering company like Snowflake is we needed to make sure that
+[00:45:58.735 - 00:46:02.505] Incoming livestream: We did not develop the work developer productivity.
+[00:46:02.745 - 00:46:15.675] Incoming livestream: And therefore, we had to come up… when we made these risk assessments and came up with mitigation, we had to keep that in mind, front and center, and aligned with the risk appetite of our executive leadership. So it was…
+[00:46:15.675 - 00:46:26.624] Incoming livestream: We had to, you know, come up with a set of controls that worked for us that did not impact developer productivity, while enabling us to use the features.
+[00:46:26.785 - 00:46:27.955] Incoming livestream: Securely.
+[00:46:31.795 - 00:46:35.735] Incoming livestream: So what we did is we enabled enterprise
+[00:46:35.845 - 00:46:41.554] Incoming livestream: Guardrails, we tried to constrain the, tools within our enterprise tenant.
+[00:46:41.775 - 00:46:45.525] Incoming livestream: We… we established hardened configuration.
+[00:46:46.865 - 00:46:55.175] Incoming livestream: For this, and most of you know that coding… the, the enterprise control plane in these coding agents do not…
+[00:46:55.245 - 00:47:07.445] Incoming livestream: provide a very, secure set of… a robust set of controls in order to be… effectively enforce immutable configuration at the endpoint. So we had to devise endpoint…
+[00:47:07.585 - 00:47:21.864] Incoming livestream: we had to do… come up with controls using our existing IT and security toolset to constrain the… to try and maintain this immutable config… configuration at the endpoints.
+[00:47:22.465 - 00:47:37.825] Incoming livestream: And, we… and we had to come up with… again, we used our existing IT and security toolset to secure both the manual as well as the automated browser pathways, which are huge, with huge risk.
+[00:47:37.825 - 00:47:43.115] Incoming livestream: In terms of, you know, data exfiltration or prompt injection.
+[00:47:44.565 - 00:47:57.435] Incoming livestream: And when it came to restriction of higher autonomy modes, we approached it really carefully, again, trying to do what we could, and limiting the, limiting this to.
+[00:47:57.535 - 00:48:05.604] Incoming livestream: We looked at the user groups and risk profiles, and we kind of, you know, enabled those features.
+[00:48:06.105 - 00:48:13.994] Incoming livestream: Based on the risk profile of the users, and we are still… we continue to work with vendors, because it is…
+[00:48:14.175 - 00:48:20.175] Incoming livestream: A lot of these enterprise control planes for these coding agents do not have, like, scheme-based
+[00:48:20.225 - 00:48:34.255] Incoming livestream: enablement of features. So, you know, those were requests that we put into the vendors in order to help us, be able to selectively deploy certain features for certain groups of users.
+[00:48:34.375 - 00:48:42.345] Incoming livestream: Or constrain the high-risk features just to select groups of users, and to even be able to test them before deployment.
+[00:48:43.245 - 00:49:00.854] Incoming livestream: And again, approved integrations and capabilities surfaces when you come to, like, being able to allow MCP tool… MCP servers or tools, or being able to restrain the web search to certain domains.
+[00:49:00.925 - 00:49:09.304] Incoming livestream: Allowed domains, and maintain the same configuration as the enterprise that's in place in the rest of the enterprise.
+[00:49:09.865 - 00:49:21.854] Incoming livestream: We had to, we had to come up with, very, you know, we had to come up with innovative ways of using our, existing toolset.
+[00:49:21.965 - 00:49:39.934] Incoming livestream: And where we were stretched, we constantly worked with our vendors to, to… for feature enhancements in the product. So, and we've seen the vendors actually respond to these feature requests, and we've seen significant, improvements in the last few months.
+[00:49:43.595 - 00:49:44.645] Incoming livestream: So what…
+[00:49:44.895 - 00:49:59.134] Incoming livestream: enables AI to scale responsibly. I think fundamental thing, and then these are the lessons learned from our journey, it is fundamentally… executive sponsorship drives alignment, so it is a really important
+[00:49:59.395 - 00:50:03.585] Incoming livestream: For, you know, to be able to…
+[00:50:04.315 - 00:50:20.234] Incoming livestream: update your leadership about the risks with data. Like, you… with the visibility you get, you provide an update to your leadership, and you need to be able to make informed decisions with that sponsorship.
+[00:50:22.295 - 00:50:35.375] Incoming livestream: And shared ownership scales better than central control, so we, it's really important to have that cross-functional alignment, and the AIA steering committee really helped us there.
+[00:50:35.505 - 00:50:38.885] Incoming livestream: We, what is critical is that
+[00:50:39.095 - 00:50:45.024] Incoming livestream: Cross-functional alignment, as well as a top-down, you know, alignment on risk.
+[00:50:45.145 - 00:50:50.384] Incoming livestream: Is… is what helped us Keep our governance model dynamic.
+[00:50:51.265 - 00:51:09.714] Incoming livestream: Visibility is crucial in order to be able to govern, so whatever pathways you have in your environment, to get that visibility, make sure that, you know, you are leveraging that in order to get the data that you need to be able to share.
+[00:51:09.775 - 00:51:14.955] Incoming livestream: That with your, cross-functional teams and executive teams.
+[00:51:15.215 - 00:51:28.754] Incoming livestream: And the most important thing is, last, you know, I would say that it's really important to focus on constraining the execution authority, because you cannot stop the innovation.
+[00:51:28.855 - 00:51:42.025] Incoming livestream: you cannot stop AI adoption in the enterprise, because if you did, it'll go around you. So… and if you… and if… the other thing is, it is going to impact your business, so it is really…
+[00:51:42.025 - 00:51:50.475] Incoming livestream: important to focus on constraining the execution authority of the AI, not restraining AI completely.
+[00:51:50.655 - 00:52:05.535] Incoming livestream: And governance must evolve at the same velocity as AI, and you need to make sure that your processes, whether it is review processes or your decision processes are able… are dynamic.
+[00:52:05.535 - 00:52:14.094] Incoming livestream: And evolving at the same pace as the technology. So AI governance is not a roadblock to innovation. It really is the foundation to enable
+[00:52:14.105 - 00:52:19.555] Incoming livestream: innovation securely and responsibly. Thank you. Okay, thanks very much.
+[00:52:19.675 - 00:52:21.075] Incoming livestream: Y'all got some questions?
+[00:52:21.975 - 00:52:23.745] Incoming livestream: Chase, go ahead, come on up.
+[00:52:25.865 - 00:52:33.514] Incoming livestream: Thank you very much for a good talk. Couple of questions. So, when you talk about these, enterprise, governance.
+[00:52:33.755 - 00:52:39.045] Incoming livestream: code agents, I'm thinking in terms of some agents that could potentially…
+[00:52:39.055 - 00:52:54.074] Incoming livestream: place, trades for, in 45 minutes, they can lose half a million bucks, or, 500 billion dollars, depending on what happened with the night. Are there… are those the kind of things that you are trying to avoid? Because that could be a lot more.
+[00:52:54.185 - 00:52:57.135] Incoming livestream: And if so, how exactly are you controlling it?
+[00:52:58.185 - 00:53:05.795] Incoming livestream: So, as I said, we, you know, based on that discovery, we see what coding agents are deployed across our enterprise.
+[00:53:06.335 - 00:53:15.065] Incoming livestream: And we, ensure that we only allow the coding agents that are approved in the enterprise.
+[00:53:15.295 - 00:53:31.104] Incoming livestream: And we, we performed risk assessment for those coding agents that are approved in the enterprise, and so we steer our users towards the approved platforms. But that's manual, right? That's going to be somewhat slower than,
+[00:53:31.635 - 00:53:33.124] Incoming livestream: the speed of AI.
+[00:53:33.355 - 00:53:39.245] Incoming livestream: So, it, it, it is not, so it, it, it is… You're, you're…
+[00:53:39.445 - 00:53:53.974] Incoming livestream: it is something that is… AI risk is dynamic, and it is continuously evolving, right? So you need to… your… the pace at which you perform your discovery, the pace at which you, you know, surface up
+[00:53:54.005 - 00:54:10.265] Incoming livestream: any anomalies or risks to your cross-functional team and your leadership needs to be dynamic. So you need to be having these conversations on a weekly or sometimes on a daily basis about what you see across the enterprise.
+[00:54:10.425 - 00:54:18.715] Incoming livestream: And make those decisions. If you need to shut something down, you need to be able to get, you know, quick alignment and shut it down.
+[00:54:21.205 - 00:54:21.905] Incoming livestream: Sure.
+[00:54:26.775 - 00:54:32.135] Incoming livestream: Hi, thank you, what technical controls have you put in place to actually…
+[00:54:32.345 - 00:54:35.875] Incoming livestream: Constrain that execution authority that you mentioned in the last slide.
+[00:54:37.185 - 00:54:42.465] Incoming livestream: So, it depends, really, on the… on the tool, on the coding agent.
+[00:54:42.665 - 00:54:49.895] Incoming livestream: And what controls are available within, the agent's control plane itself.
+[00:54:49.945 - 00:55:08.304] Incoming livestream: So, like, for example, what we did for the browser execution pathways, so there could be automated, or they could be, manual execution, so for the… for the automated ones, we actually restrained them just to our internal domains.
+[00:55:08.305 - 00:55:12.515] Incoming livestream: And for the, for the,
+[00:55:12.885 - 00:55:26.984] Incoming livestream: manual browser pathways, we basically ensured, using our other EDR tools, we constrained them to just… to the same… to match what we had for the rest of the enterprise.
+[00:55:27.885 - 00:55:29.665] Incoming livestream: So that's just one example, yeah.

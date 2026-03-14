@@ -1,0 +1,633 @@
+WEBVTT
+
+1
+00:00:19.803 --> 00:00:29.803
+That got even tougher, but now we're looking at agentic identity, which is only going to exponentially increase the amount of folks that we're having to track with.
+
+
+2
+00:00:29.803 --> 00:00:45.803
+I would say from my perspective, I've seen different numbers, but if you think about it from just the human perspective, there's what, 8 billion or so people on the planet. And so if there are going to be 80 billion agents on the internet, which are probably going to be more.
+
+
+3
+00:00:45.803 --> 00:01:09.803
+Think about that from a scale perspective. And so one of the things that I do is I work with Sands. And so my job is to basically do things like research. I go around speaking to enterprises and government agencies to understand their big problems. What are they doing from a strategy perspective? So one of the things we're going to do today is we're going to go through a couple of things that I've seen.
+
+
+4
+00:01:09.803 --> 00:01:24.803
+Over the last 6 months or so, but then we're going to have a conversation, because there are people in this room that some of this research is based off of, so I kind of stand on the shoulders of giants, so to speak. And so let's get right to it.
+
+
+5
+00:01:24.803 --> 00:01:40.803
+Our 3 sort of ways that right now I see agentic identity. There is the the directory base right? I'm sure you all heard about Microsoft came out with their entra for agents ID.
+
+
+6
+00:01:40.803 --> 00:01:57.803
+Uh, that's in preview right now, so not a lot of folks have had tactile experience with it, but I'm really curious to see how all that unfolds. Number two is workload native, right? So do we have any spiffy Spire fans in the room? Raise your hand.
+
+
+7
+00:01:57.803 --> 00:02:13.803
+Yeah, quite a few folks, right? It's fantastic. And even more forward-looking, and some of the folks in this room actually propose this as an idea, but more of a sovereign identity approach to it, looking at using the blockchain in order to keep track.
+
+
+8
+00:02:13.803 --> 00:02:32.803
+A digital identity. So the directory base right you your classic OAuth. You think about things like like the Microsoft perspective. You think about it from an Okta perspective. This is really good for those monolithic sort of internal organizations.
+
+
+9
+00:02:32.803 --> 00:02:48.803
+That are solely within one ecosystem, right? If you're a complete Microsoft shop, I'm sure it's going to be really easy to leverage something like Entra ID for agents. I think the problem becomes when you start to scan out.
+
+
+10
+00:02:48.803 --> 00:02:55.803
+Out of that organization across different types of workloads, different environments.
+
+
+11
+00:02:55.803 --> 00:03:11.803
+When you get down to it, some of the strengths right centralized audible, and it's mature right? And the best thing about the thing with Microsoft is, I hear it's free no matter what the license agreement is. So that's really good. I'm not going to go through all this, because I definitely want to get to the conversations.
+
+
+12
+00:03:11.803 --> 00:03:25.803
+Uh, one of my favorites right now is Smithy Inspire, right? For those of you that aren't familiar, right? It's your classic X 509 standard. And what it does is it's really keeping track of the workload. So we use it from a cloud perspective, but you can also.
+
+
+13
+00:03:25.803 --> 00:03:33.803
+I found something on GitHub. I don't know if it's correct, but there it is.
+
+
+14
+00:03:33.803 --> 00:03:34.803
+Turning to the 3rd persons. I'm not sure.
+
+
+15
+00:03:34.803 --> 00:03:42.803
+So when you think about leveraging something like a spiffy. It's from an attestation standpoint, right? It's going to be able to run in the right environment. So you're thinking about it from a runtime perspective.
+
+
+16
+00:03:42.803 --> 00:03:45.803
+Can't tell if this is it or about it.
+
+
+17
+00:03:45.803 --> 00:03:52.803
+It is written in the third person. Not at the second person.
+
+
+18
+00:03:52.803 --> 00:03:53.803
+Might be might be it. It's long.
+
+
+19
+00:03:53.803 --> 00:04:02.803
+Something like, uh, you're figuring out authorization. You use something like OPA, Cedar in order to keep track of that stuff. And then we'll get down to sovereign identity. So Ken Huang, Chris Hughes, John, who's here in the room. They really spoke about this idea, I think, last summer around leveraging.
+
+
+20
+00:04:02.803 --> 00:04:06.803
+which is interesting. So how much of this context is.
+
+
+21
+00:04:06.803 --> 00:04:12.803
+is maintained.
+
+
+22
+00:04:12.803 --> 00:04:13.803
+No, here's a…
+
+
+23
+00:04:13.803 --> 00:04:17.803
+blockchain in order to keep track of agents. The thing with this is, I mean, it's going… it's global, right? So you can even have this agent-to-agent ecosystem where agents from different organizations, different sub groups within your organization, uh, be able to communicate and transact in a way that makes sense.
+
+
+24
+00:04:17.803 --> 00:04:30.803
+I keep forgetting to hit send. All right. Here's Son Wilson talking about it.
+
+
+25
+00:04:30.803 --> 00:04:31.803
+right? He says it's it appears to be a.
+
+
+26
+00:04:31.803 --> 00:04:35.803
+So with that, I mean, this is sort of the architectural comparison. So I mean, I'd love to hear from you all. What are you seeing in the industry right now? Are there things that you've been able to try? Let's go there.
+
+
+27
+00:04:35.803 --> 00:04:42.803
+during training, and not just, you know, stuck into the the query.
+
+
+28
+00:04:42.803 --> 00:04:45.803
+Dan. Yeah, I was just curious. Kind of you know, trying to understand what what the AI understands. But as it's trained on human language, and we've seen patterns of human behavior emerge like blackmail or retaliate when it's existing.
+
+
+29
+00:04:45.803 --> 00:05:05.803
+Yeah, I haven't actually tried it myself, but I'm wondering your thoughts on kind of this just in time. So it seems like, you know, as we talk, we talked about previously, other things like right now it can be bad. But this idealized ether state is workload says, I need these policies. We have an AI statement that says, Okay, we need this.
+
+
+30
+00:05:05.803 --> 00:05:25.803
+I will give it to you, or I will not grant it, then you can have it shortlisted from a policy perspective, never mind just the credentials. Yeah. So for the folks that are on the on zoom, what he asked is about just-in-time perspective, like, what are my thoughts? And so I have a couple thoughts around that. So what's really good about the Spiffy Inspire is that.
+
+
+31
+00:05:25.803 --> 00:05:44.803
+is exactly what it is. So you're not having to deal with standing credentials, like long-term credentials. So whenever you spend that agent up, it gets a spiffy ID, which lasts for up to 60 minutes. And so you don't have that replay issue that you tend to have with long-standing credentials.
+
+
+32
+00:05:44.803 --> 00:06:00.803
+Um, but the thing is, I see a world in which you have two types of identities for agents, right? You can have an agentic identity that's more long-term horizon, like an agent that maybe you built internally that's going to continue to operate, and you just have different people leverage it.
+
+
+33
+00:06:00.803 --> 00:06:09.803
+But then you're going to have like these sub-agents or agents for that short-term task. And so something like a spiffy Inspire is perfect for that use case.
+
+
+34
+00:06:09.803 --> 00:06:33.803
+So in the just in time side, something like that would be fantastic. I don't know how they're going to do it on the Microsoft side. I think that's where things are remain to be seen. But also the thing that I didn't mention yet is that also that delegation piece right? So whenever you have a user that's going to delegate to a agent. Hey, I need to do X, Y, and Z.
+
+
+35
+00:06:33.803 --> 00:06:48.803
+And then folks, believe it or not, the 1st thing they think to do is just to give the credentials to the agent, right? Oh, that makes it so easy. I heard someone say not too long ago that the opposite of security is an insecurity. It's.
+
+
+36
+00:06:48.803 --> 00:07:07.803
+Uh, convenience, right? Because it's a lot easier to go through my door if it's already open. But from a just-in-time perspective, I think that we're going to honestly see a hybrid of all three of those approaches over time, so you can have that long-standing identity, but then you'll be able to have that short cryptographic.
+
+
+37
+00:07:07.803 --> 00:07:22.803
+short views, um, identity for shorter things for just-in-time access. Yeah. What you're describing, though, it seems like we still have to model principles that are involved, so is it an agent acting on behalf of a human user, and you really need to be able to map that?
+
+
+38
+00:07:22.803 --> 00:07:31.803
+Correct. So because of that is it seems beneficial for them to use the same system. Yeah. So yeah.
+
+
+39
+00:07:31.803 --> 00:07:46.803
+Oh, yeah, I'll repeat it. So what he was saying is that it seems that there should be some type of matching between humans, the way that humans get their identities, and then the agents themselves. So on the Microsoft side, that's exactly how they architected it.
+
+
+40
+00:07:46.803 --> 00:08:07.803
+So they architected it in a way where it communicates with ServiceNow. It also works with Workday. So you're actually onboarding like a digital identity, a digital employee into your system. But I can see a couple ways in which that could be cumbersome. Let's say you're a large organization, right? Maybe you're like a Netflix, right? I used to work for Netflix.
+
+
+41
+00:08:07.803 --> 00:08:22.803
+Super high scale, uh, something like that model might break at scale, right? Because now you're managing all of these agents over time. I could be completely wrong in that, and maybe they've already solved for that problem, but I would say that.
+
+
+42
+00:08:22.803 --> 00:08:32.803
+There is some benefit to being able to map all of your identities back to one single source. But from a scale perspective, I just don't know how that's going to play out.
+
+
+43
+00:08:32.803 --> 00:08:39.803
+I mean, I'd be curious, has anyone been working on identities here for agents? Like, what what has been your experience?
+
+
+44
+00:08:39.803 --> 00:08:56.803
+Oh, just starting. The problem I've been running into with the models that assume a human source origin, a human origin is so many of the environments that I'm thinking about don't have humans as the origin for activity. They have services that are running independently.
+
+
+45
+00:08:56.803 --> 00:09:13.803
+And so what you'll have to do is instantiate the surface identity and give service authentication, and then you get the approval to be able to spot agents to spawn permissions. Yeah, I was going to make that point as well. This is an area that we've been working on at least 10 years on the API side. So it's a continuation of that.
+
+
+46
+00:09:13.803 --> 00:09:32.803
+Right. And from our perspective, it really is just coming into a point where a tech that is really like there's been a lot of a lot of organizations that have kind of like, well, we've got Mhi, we've got. We've got human identity system.
+
+
+47
+00:09:32.803 --> 00:09:48.803
+Now you have an NHI that is going to to behave very much like you and I did. And that's where that's where the where some of the debt that I, at least I see. So for everybody along the horn, what we're talking about in the room is.
+
+
+48
+00:09:48.803 --> 00:10:06.803
+that we're running into, like, a serious tech debt issue. And this is one of the things that's been on my soapbox. So, I actually had two talks that I proposed. One of them was this calm before the storm, but honestly, who here was listened to Nicholas yesterday at the end of yesterday?
+
+
+49
+00:10:06.803 --> 00:10:22.803
+I mean, incredible presentation, and exactly what I've been talking about for a long time. And so I believe that in this world of autonomous attacks that number one, we have to get our houses in order. We have to understand, number one.
+
+
+50
+00:10:22.803 --> 00:10:37.803
+what our assets are, right? Asset management. How long has that been a problem that we've been trying to solve? Understanding what our identities are, right? We got human, we got non-human identities, we got agents, right? It's only getting more complicated. But now we have an adversary that's able to leverage.
+
+
+51
+00:10:37.803 --> 00:11:01.803
+Artificial intelligence, just like we can, so they're able to scale, they're able to go faster. They're going to be looking for holes. Now, I want you to imagine a reality where there are thousands, if not tens of thousands of agents that are either operating for a nation state, or they are agents that people can rent right? You could be probably a 12 year old kid in a basement and run an agent and then say, I want you.
+
+
+52
+00:11:01.803 --> 00:11:20.803
+to look for targets that have this specific criteria, and it's going to start to look for those types of vulnerabilities, right? We've seen a lot of this research already. And so when you think about getting our house in order, the first things I think about are things like identity, asset management, telemetry.
+
+
+53
+00:11:20.803 --> 00:11:35.803
+But if we are adding to the confusion by not architecting our agentic systems in the right way, we're only adding to our own confusion. We're adding to our own complexity. And so this is the stuff that we have to start to get right now. You're gonna say something, Toby? Yeah.
+
+
+54
+00:11:35.803 --> 00:11:58.803
+I I think you're, um… and this is just speculating. I think your numbers for agents are probably off by a couple orders of magnitude, and I think probably that's a per day activity. So we're going to be expecting things like tens of thousands, hundreds of thousands of agents statuated on a first aid basis to secure it within the next day, which goes to the other side of the problem.
+
+
+55
+00:11:58.803 --> 00:12:13.803
+I think that asset management funnel. Most companies are trailing an asset management because of the dynamic nature of servers in the cloud. Correct. Can't keep track of a server that's going to be there for 6 hours unless you're very, very careful with the volume for that. Most companies have it.
+
+
+56
+00:12:13.803 --> 00:12:32.803
+If we go to a model where we now have tens of thousands of agents, hundreds of thousands of agents that are being sentiated and then disappear. You've got an impossible or not possible, an exceedingly challenging design criteria to be for that asset management problem.
+
+
+57
+00:12:32.803 --> 00:12:46.803
+Yeah. So real quick, everybody in the room. He's talking about that I downplayed the potential number of agents, which, yes, I did, because I don't want to sit here and say millions and millions, because that's probably closer to the truth. But sounds a little bit sensational.
+
+
+58
+00:12:46.803 --> 00:13:04.803
+But, uh, yeah, what were you going to say? You know, that represents a real tension, because also the other side, I don't even have these sort of dynamic, you know, instantiated agents for hours, or, you know, very short term, but at the same time, we need to get some least privilege. We need to really scope down permissions. You just can't give it, you know, full admin on everything.
+
+
+59
+00:13:04.803 --> 00:13:25.803
+You need some sort of… like, some athletes by identity that is long-lived, you need to find them all, you need to find the purpose so that you can scope out the mission correctly. And so, you know, maybe you're stagiating within a shell of another identity or some sort of long lived thing that that lasts, but you don't have those data permissions and you're running it up and running it down. So there's something that lasts over time.
+
+
+60
+00:13:25.803 --> 00:13:31.803
+Right. So the way we have been thinking about and the conversation I just started.
+
+
+61
+00:13:31.803 --> 00:13:36.803
+in our company is each agent having their own identity and like he makes them.
+
+
+62
+00:13:36.803 --> 00:13:56.803
+The end user identity sort of like super seals everything. Yeah. So essentially, let's say it's Bob, and then there are maybe two agents or whatever agents. Right. They have their own, but, like, the box identity basically simple seats everything else. So that's how we are thinking about it. So I don't know if we try.
+
+
+63
+00:13:56.803 --> 00:14:12.803
+That, effectively, which is the idea of a complex identity, where you have some observing machine identities, sort of primary equipment identity. What we saw really fall apart is when agents have to collaborate, or you're working on teams. Yeah. Your agent's not being able to work with you.
+
+
+64
+00:14:12.803 --> 00:14:39.803
+I also found problems with Spiffy and Spire, and, like, that at scale, and how that doesn't translate as well, so… Right. My puzzle definitely… have really fixated on human concepts of identity and the way that we're called now. Right. We focus too much on the two. The what and the how are going to be far more important than a governance standpoint as we go into more of a logistic kind of reality. Yeah, so I'd be curious to become a subclass of what kind?
+
+
+65
+00:14:39.803 --> 00:15:01.803
+And so it's going to be, you know, who is bought a crane like a key value tariff. Some do it, right? And that's the identity around the environment. So it sounds like you've already done some experimentation with Smithy. So where are you at now in terms of from Inspire at scale?
+
+
+66
+00:15:01.803 --> 00:15:18.803
+fire because of sort of, like, the different flexibility, right? But that never translated over to the enterprise side very well in very contained sort of machine-centric cloud platforms works fantastic, and that's why I recommend everyone do it.
+
+
+67
+00:15:18.803 --> 00:15:34.803
+But I can try and figure out how to do that across the board. Yeah, try and do that. Try to do that across different like modalities of operating and different finance movement, different tech stacks becomes very, very difficult for that to really transit identity in a way that makes sense. Yeah.
+
+
+68
+00:15:34.803 --> 00:15:50.803
+Similarly, even for composite identity, those things fall apart. It works right now. Right. It's not going to work a year. At scale, yeah, it's not going to… I mean, especially when you get into a world in which you have people that are leveraging the same agent for doing different tasks. So then you start to run into all sorts of.
+
+
+69
+00:15:50.803 --> 00:16:00.803
+logical issues, especially if you're doing something like incident response. You're trying to figure out who did what, where, when, and why. I mean, that's one of the things. Is John in here still?
+
+
+70
+00:16:00.803 --> 00:16:10.803
+Yeah. Hey, John, you want to touch on some of the blockchain stuff that you guys talked about?
+
+
+71
+00:16:10.803 --> 00:16:14.803
+And I will take those examples.
+
+
+72
+00:16:14.803 --> 00:16:33.803
+But remembering blockchain for identity. Yeah. Yeah. Yeah.
+
+
+73
+00:16:33.803 --> 00:16:47.803
+Cool. Honestly disappeared, but now we actually have.
+
+
+74
+00:16:47.803 --> 00:17:03.803
+We have a way to find out if there is a limit.
+
+
+75
+00:17:03.803 --> 00:17:28.803
+Yeah, so for everybody real quick on everybody online. So John from CSA is in here. They did a report last summer around leveraging blockchain for cryptographic identity. And so he's just talking about the ephemeral nature. And actually, Sunil, you, you know, he he has his new triad, the distributed immutable ephemeral triad.
+
+
+76
+00:17:28.803 --> 00:17:43.803
+for this new world, which I think makes a lot of sense for agentic identity. But I think the problem is how do you actually do it? Is anyone even looking at leveraging blockchain in their environment for agentic identity?
+
+
+77
+00:17:43.803 --> 00:17:45.803
+Has anyone even tried it?
+
+
+78
+00:17:45.803 --> 00:18:00.803
+Yeah, there aren't a lot of folks that have tried it yet. I think it's still very, very experimental. So we have to think about this is one, we're two different domains involved. So the user domain.
+
+
+79
+00:18:00.803 --> 00:18:17.803
+user-based infants would be different than the autonomous agents within the enterprise. Where we have transitive trust relationships, and which is different than multi-party agents if you're dealing with between organizations. So that's, like, the.
+
+
+80
+00:18:17.803 --> 00:18:33.803
+I've been trying to learn lessons from some systems that we've seen for some of these transitive trust issues. I think it came up pretty well. So if you're familiar with the the internals of how like AWS IM works in terms of rules with service roles in particular.
+
+
+81
+00:18:33.803 --> 00:18:49.803
+And so, like, you've got like automation products. It never exceeds the privileges given to the user, and that's managed through algorithms are bundled together. And in recent years they've been talking about that more.
+
+
+82
+00:18:49.803 --> 00:18:59.803
+I promise most of those stocks have to be public, they have to be reimbursing, because they're like chalk talks. But again, people.
+
+
+83
+00:18:59.803 --> 00:19:18.803
+I'm Michael and the other person you have to talk about. But it's really cool, because when you make those requests, it's basically how the signing mechanisms work. So it's not a blockchain approach, but it is a cryptographic enforcement of those policies that works in these distributed environments and handles those medical issues.
+
+
+84
+00:19:18.803 --> 00:19:28.803
+Why not? Which honestly, to some degree has to be a separate layer. There's no way we're going to get like one observability for all these identities.
+
+
+85
+00:19:28.803 --> 00:19:40.803
+How do we translate that into something more practical? Well, I'll take me in terms of if it's a user with a personalized desktop agent that's returning Obo. Make work on behalf of that user.
+
+
+86
+00:19:40.803 --> 00:19:58.803
+All that logging happens basically in the system. Those Opio tokens were bought those identities that gives you that visibility. So you're logging it wherever you need it there. The permissions, these privileges are tied to the user directly. So it will never have more privileges than what the user has. If I'm looking within the enterprise systems.
+
+
+87
+00:19:58.803 --> 00:20:17.803
+That's our feedback service in where I can do that by data center, my side. It's going to be cloud side, just going to apply it to manage identities or IAM roles, or whatever Google calls their because I don't know how to spell GCP. And, um… and try those cases together. So I think, like, if we…
+
+
+88
+00:20:17.803 --> 00:20:31.803
+if we're able to. break down the domains to the solvable problems for equivalents they're operating in. I think we've got the pieces to pull it off, and we see the roadmap, like.
+
+
+89
+00:20:31.803 --> 00:20:50.803
+AWS didn't build that because they thought they were going to be agents. They built that because they had to ask Synthesis working with the privileges of the user, which is a big part of the core problem. And then 50 will handle the autonomous agents having their own autonomous ephemeral agents, having their own identity spoke to their own privileges, because they're not operating necessarily on behalf of.
+
+
+90
+00:20:50.803 --> 00:21:20.803
+That's one thing. Rich, in your world, is that have separate IDs with those domains or is there a shared kind of registration ID system across that room? Any enterprises scale, I don't think we're going to be able to have anything, but I just don't think it works, because if I don't mind the… They might have gone. I mean, the I just don't think there's good. You can't have that unified identity system and distributing enterprises in multiple clock providers, SaaS providers and desktop operating things.
+
+
+91
+00:21:23.803 --> 00:21:40.803
+Yeah, I don't see one thing next to me on all that. Maybe it can't need some sort of correlation. You know, you gotta tie it back to, you know, a system of record, you know? Yeah.
+
+
+92
+00:21:40.803 --> 00:21:48.803
+Yeah, if you're gonna try to, but there's just practically speaking, so we have to do this now. We can't wait until the things solve the problem.
+
+
+93
+00:21:48.803 --> 00:21:58.803
+Yeah, I see like silos, you know. So. recommendations like I've been making is, hey, standardize on, like, one frame plan.
+
+
+94
+00:21:58.803 --> 00:22:03.803
+and as best you can. And if you have to have multiple environments, like, pick your your.
+
+
+95
+00:22:03.803 --> 00:22:19.803
+or silos that eventually hopefully can pull those together. Yeah. But worst case, I can pull the telemetry, because I'll go just fucking by code something to connect it there and pull all those agent identities out. And then we do all… we don't do the logging port again, because it's not always doing it but should.
+
+
+96
+00:22:19.803 --> 00:22:35.803
+Eventually, I'm not saying any of this stupid. But it's also, like, that's mechanics versus, oh my God, what am I doing? Like, how do I get started? Yeah, there's a guy back there. Hold on. Hold on, one second. There's a guy back there that wanted to say something. Go ahead.
+
+
+97
+00:22:35.803 --> 00:22:52.803
+I get a talk in the morning, actually, on, like, a daily basis. The delegation comes from the road. Although the conservation.
+
+
+98
+00:22:52.803 --> 00:23:01.803
+I want to put this dimension there is that there's going to be two identity. One is code.
+
+
+99
+00:23:01.803 --> 00:23:22.803
+The human approvers, right? You have to basically, uh… Another one is to make sure that the FIRS have levels in our second types of no more sophisticated chain verification. But a key element here that we are thinking along the lines of.
+
+
+100
+00:23:22.803 --> 00:23:40.803
+Actually, scoping authorization on the task itself, not necessarily because some of the improvements we have engines get multiple missions. So we thinking about tying the authorization model going. So if an agent's different task, it's different also a warranty cost.
+
+
+101
+00:23:40.803 --> 00:23:55.803
+The scope of writing tools that inspired by clients bound to the chair of the local agency hall. It has to present it correctly to go back. We are open source the rust core implementation of the.
+
+
+102
+00:23:55.803 --> 00:24:17.803
+We were looking for partners on standardization and like putting that into different actual enterprise environments, because I'm really happy to see more people. One more thing, you know, how I am role session policies work, like when you assume the role, you can insert a policy that reduces your privileges for the maximum spoke with your privileges.
+
+
+103
+00:24:17.803 --> 00:24:32.803
+That's task-based auth right there. Again, none of that was built for agents, but philosophically, you've seen functional systems operating at hyper scale doing that. So we know it's awesome. Well, we've seen it function at large scale in terms of processing percentages.
+
+
+104
+00:24:32.803 --> 00:24:49.803
+In terms of escalating coverages beyond the users and privileges. But I've seen that less functionally done. Yeah. So you're being like Jint escalations. Yeah. And specifically, there's going to be, I think, extensive numbers of cases where you essentially get the purely running.
+
+
+105
+00:24:49.803 --> 00:24:55.803
+and that it's going to be significantly more privileges than you would ever have.
+
+
+106
+00:24:55.803 --> 00:25:09.803
+Yeah, the closest I've seen, if you've played with any of basically how that has a an approval process, and then you're going down to more of an attestation based on at that point where there is requests.
+
+
+107
+00:25:09.803 --> 00:25:24.803
+What's happening on the back end, at least, because I don't think this is at one point, is it basically an assumed a goal that had those higher level privileges that's not actually works, it'll allow you to assume to do more role for a given session.
+
+
+108
+00:25:24.803 --> 00:25:40.803
+To do that escalation, where it's not the original identity. The original identity is the ability to escalate to that role. But if you screw that up, obviously, then you have escalation. Anyway, I'll shout the pocket. There's there's one element I wanted to address real quick is.
+
+
+109
+00:25:40.803 --> 00:26:02.803
+It's funny, when I… I got into identity a few years ago, and I didn't realize that the identity crew is actually not the same as the security group like I I think that now we're starting to. We sort of adopted identity. But there's a whole field of identity. They have their own community actually ran a podcast for identity for a little while.
+
+
+110
+00:26:02.803 --> 00:26:17.803
+But, uh, so I don't know if you realize, but on the board, uh, as you were voting, there are actually two titles that were focused on Asian identity. But, uh, Ken, I don't know if you wanted to touch on anything that you've seen, because I know you're really deep in the space as well.
+
+
+111
+00:26:17.803 --> 00:26:32.803
+Yeah, thanks. I guess I'll just make a Psa. If this kind of stuff is interesting to you, and you're there's a great community called an Internet identity workshop.
+
+
+112
+00:26:32.803 --> 00:26:48.803
+Uh, that happens twice a year. The own 42nd thing that's coming up the week of the last week of April, you can look them up online, so I encourage you. Lots of people talking about all of these subjects, and that's where OAP came first.
+
+
+113
+00:26:48.803 --> 00:27:05.803
+stuff like that. So that's the pitch for that on the Friday, Thursday, Genetics Internet workshop that we call that week. What was the date on that? It's the last week in April, the eigenic Inter Network Shop was on.
+
+
+114
+00:27:05.803 --> 00:27:22.803
+May 1st, and that's Friday. Yeah. But you can spend all week talking about having, you know, having your cutler fly around pretty quickly. But you can, um, spend the whole week there at the, uh, at the, uh, Computer History Museum. Yeah, but check them out.
+
+
+115
+00:27:22.803 --> 00:27:36.803
+Other than that, what we're doing at Indeed, and I'm here with my coworker Truman Dee, we are basic underlying hypothesis that we started at.
+
+
+116
+00:27:36.803 --> 00:27:48.803
+It's not going to be evolving from a purely centralized environment to a hybrid centralized, decentralized environment.
+
+
+117
+00:27:48.803 --> 00:28:02.803
+Um, and, you know, this is over a couple of things. You have your own today. Then you start, you know, bringing in some of those extensions. And so right now we have OAuth, we have token exchange capability.
+
+
+118
+00:28:02.803 --> 00:28:19.803
+But getting to that next level, that's… I don't see how that can happen. We can imagine what it is. We know what it is. They all send these space have been talking about it for almost 10 years now, and but you know.
+
+
+119
+00:28:19.803 --> 00:28:38.803
+And agenic definitely… allows us to overcome some of the friction that has limited self-sovereign identity going forward. But still, we have all like somebody was saying, we have all of this tech debt, right? And the legacy information.
+
+
+120
+00:28:38.803 --> 00:28:52.803
+So how do you get over that? That's the thing that I'm, you know, struggling with right now. Put you on the skyline talked about it.
+
+
+121
+00:28:52.803 --> 00:29:09.803
+All right. So I know folks probably want to get ready for their next sessions and things like that. I'll just put my information up here in case you want to connect. I mean, I'm really deep in this space right now. I mean, we didn't even really get to the authorization side of things.
+
+
+122
+00:29:09.803 --> 00:29:25.803
+But, um, I feel like I'm working my way sort of through this process, you know, going from identity to authorization all the way through, like, what are the basically, how do you solve for the OWASP top 10 for agentic solutions? So one of the things that I'm doing is.
+
+
+123
+00:29:25.803 --> 00:29:47.803
+I'm on the the OWASP AI Exchange. I lead the agentic identity task force. So if you're someone who's like deep in the space and you're looking for a way to contribute, definitely get in touch with me. I would love to bring you into the author team. There's just a little bit of an application process, but we'd love some help there.
+
+
+124
+00:29:47.803 --> 00:30:05.803
+But yeah, I would say that we have to continue to have these conversations because I completely believe that we are in this calm before the storm, and I feel like now is the time for us to really band together, uh, try to share as many TTPs, share as many tips, tricks, failures.
+
+
+125
+00:30:05.803 --> 00:30:23.803
+Uh, as we possibly can, because this isn't an easy problem to solve, but I think we're if we're going to solve it, it's going to be together. With that, I appreciate the time, and have a great rest of the conference.
+
+
+126
+00:30:23.803 --> 00:30:28.066
+Oh, so sorry.
+
+
+

@@ -1,0 +1,135 @@
+[01:07:37.944 - 01:07:41.314] Incoming livestream: Cool, yeah, happy to be back.
+[01:07:41.434 - 01:07:44.014] Incoming livestream: And, welcome to Wipe Hacking.
+[01:07:44.344 - 01:07:54.253] Incoming livestream: Now, in the next 20 minutes, I will share some of the threat research we've seen, around EI-assisted threats, and also share a mentor model with you, alright?
+[01:07:54.394 - 01:07:55.744] Incoming livestream: And,
+[01:07:56.034 - 01:08:07.213] Incoming livestream: I think all the speakers yesterday and today, they really showed us how AI is accelerating offense. We've got faster exploits, we've got faster recoil, and we've got faster everything, and they're all right.
+[01:08:07.854 - 01:08:11.424] Incoming livestream: But, on the other hand, the same…
+[01:08:11.784 - 01:08:14.923] Incoming livestream: The same speed which AI is providing
+[01:08:15.134 - 01:08:20.693] Incoming livestream: to offense. It's also creating the most noisy attacks we've ever seen.
+[01:08:21.284 - 01:08:27.424] Incoming livestream: And… The fastest they go, the more they confess.
+[01:08:27.724 - 01:08:32.564] Incoming livestream: So let this sing in with you. The faster they go, the more they confess.
+[01:08:32.944 - 01:08:48.254] Incoming livestream: Now, 28th of November last year, we've caught an intrusion into AWS environment. A very classic one, S3 bucket credentials were compromised out of a rack database, and within 8 minutes.
+[01:08:48.554 - 01:09:00.473] Incoming livestream: This guy's got a full admin. And we've caught everything, all the CloudTrail logs, all the SUSCO logs, and they were not just fast, they were pretty, pretty loud. So let me, let me show you.
+[01:09:01.324 - 01:09:08.554] Incoming livestream: First of all, You see this type of comments, like, courageous admin access key, list us with S3 bucketer.
+[01:09:08.904 - 01:09:11.384] Incoming livestream: Does somebody understand this? It's Sherban.
+[01:09:11.884 - 01:09:24.914] Incoming livestream: And this is a Lambda function, which the attackers tried to execute 3 times, literally within a minute. It was pretty well done. You've seen multiple user accounts, exception handling, and so on. They've succeeded this third time.
+[01:09:26.084 - 01:09:30.894] Incoming livestream: Now, next, they've tried to assume some rows and move lateral.
+[01:09:31.024 - 01:09:37.054] Incoming livestream: ascending and descending numbers. Well, this is not going to work, obviously, in an environment of,
+[01:09:37.194 - 01:09:40.603] Incoming livestream: of AWS, do you recognize the pattern there?
+[01:09:40.874 - 01:09:43.094] Incoming livestream: If you ask your favorite AI,
+[01:09:45.094 - 01:09:49.484] Incoming livestream: Generate example EWS account IDs for me. This is what you got.
+[01:09:50.174 - 01:09:58.243] Incoming livestream: This is what AI learns through the training process, and you will find much more other information if you just ask for some training or sample data.
+[01:09:59.564 - 01:10:11.723] Incoming livestream: Now, next, guess what kind of AI they were using. It's a bit obvious from this role session name. They were confessing without even knowing that they were confessing this specific breach.
+[01:10:11.724 - 01:10:22.693] Incoming livestream: And our code is obviously very powerful for good things, but also for bad things, as we've seen, yesterday and today. So, that was very obvious to us, but next.
+[01:10:22.734 - 01:10:30.543] Incoming livestream: next step was even more obvious, because what they've tried to do is, they've tried to spin up some GPU,
+[01:10:30.834 - 01:10:37.754] Incoming livestream: GPUs, 8100, you know, 8 of them, would pay, what, like, 50 hours,
+[01:10:37.874 - 01:10:50.564] Incoming livestream: an hour for them, and they had some problems. But first of all, they named the GPUs Steven… Steven GPU Monster. Steven has a server name, and this name popped up as well multiple times.
+[01:10:50.644 - 01:11:08.243] Incoming livestream: In the logs, which is very interesting. So if you know Steven out of Serbia, who's doing a lot with Claude, let me know. Perhaps, we can help them with OPSEC. Now, they've tried then, the LLM didn't really… the attacker didn't really succeed it, so, the LLM tried, really, to find some training scripts.
+[01:11:08.704 - 01:11:13.813] Incoming livestream: to understand what was really happening. Obviously, this GitHub repo doesn't exist. I don't know if it's…
+[01:11:14.014 - 01:11:27.514] Incoming livestream: If it's one… I don't know why they were trying to do this, but it was simply not there. So it was as well, again, coming from a hallucination. Now, what's exciting is, you've seen, within 8 minutes.
+[01:11:27.644 - 01:11:34.504] Incoming livestream: them going to full admin, and then there was a full stop for about 50 minutes. No activity.
+[01:11:35.714 - 01:11:40.793] Incoming livestream: A burst of activity, no activity, and then another burst of activity. And this is, like, typical prompting
+[01:11:41.174 - 01:11:50.443] Incoming livestream: behaviors were, right? You prompt, the LM is doing something, very successfully, and then you're waiting for its master, but then she had multiple of such attacks running in parallel.
+[01:11:51.654 - 01:12:02.464] Incoming livestream: Now, let me introduce you to another guy. Do you remember this meme? Blockchain-enabled AI Hacker, which was, like, viral about 5 years ago? This guy became real last year.
+[01:12:02.754 - 01:12:09.663] Incoming livestream: And, we've literally seen this attack just popping up, a couple of days after the first attacker.
+[01:12:09.784 - 01:12:17.293] Incoming livestream: 24 hours after React for Shell exploitation. If you remember React for Shell, it was exploited literally after a couple of hours when it went live.
+[01:12:17.734 - 01:12:34.804] Incoming livestream: We floated, we floated this sample, and, it would come with 5 resistance mechanisms. It would come with a, you know, a local runtime, environment, no JEDS. It would be able to patch itself on the fly. It would deliver multiple payloads.
+[01:12:34.884 - 01:12:45.814] Incoming livestream: Literally, it was in a couple of minutes. So, we have… we don't have the smoking gun to say that they were generated with the eye, but the way how the code is written, the way,
+[01:12:46.084 - 01:12:51.533] Incoming livestream: how the comments were done is definitely suggesting this, so I'm not sure if we have some good,
+[01:12:51.834 - 01:12:59.444] Incoming livestream: researchers from OpenAI on traffic, and we have some watermarking techniques. If you guys are doing this, you can prove that. Happy to share this, this files with you.
+[01:12:59.614 - 01:13:08.904] Incoming livestream: But I think the amount of, code as well being produced within this amount of time, just suggesting as well, it was an LLM.
+[01:13:09.014 - 01:13:15.593] Incoming livestream: Now, next, they made this campaign unkillable, because they've put the C2 server on a blockchain.
+[01:13:16.524 - 01:13:28.463] Incoming livestream: It was literally from a blockchain, and you can really size it, right? You can really block it, you can take it down, because there's no register you can go to and just try to sync all of that.
+[01:13:28.704 - 01:13:32.754] Incoming livestream: So at this point in time, you as a researcher, you might be worried.
+[01:13:32.914 - 01:13:35.043] Incoming livestream: But don't, because…
+[01:13:36.154 - 01:13:46.914] Incoming livestream: Looking at all these different ways how an AI is trying to act. First of all, speed. We've seen the speed is creating a lot of different artifacts.
+[01:13:47.094 - 01:13:51.613] Incoming livestream: which are persisting, which are confessing in your locks. You just need to find them.
+[01:13:51.874 - 01:14:03.393] Incoming livestream: Resilience. Most likely, they've asked as well for a resilient way to have a good C2 infrastructure. Create a lot of forensic evidence. It's going to live forever now in the blockchain, and you can literally see
+[01:14:03.394 - 01:14:15.883] Incoming livestream: all the different C2s, all the different activities as well from this specific campaign. But also scale, because the way how quickly all those different, payloads were produced and how they were used is also suggesting
+[01:14:16.264 - 01:14:18.243] Incoming livestream: We can identify this.
+[01:14:18.574 - 01:14:36.173] Incoming livestream: Now, what are you doing if you're facing an AI thread? You try to wipe back, right? Let's create a dedicated custom, malware sinkhole assessment environment, was practically not a sinkhole. And, you know, just track the threat actor in real time.
+[01:14:36.224 - 01:14:47.704] Incoming livestream: And that's, what we've done. Unfortunately… Oh, the video's loading, great. So, you know, what it would do, it would just pull out all the different, through RPC calls, all the different C2s.
+[01:14:47.704 - 01:14:51.804] Incoming livestream: Try to understand the content, content, what is, what is,
+[01:14:51.804 - 01:15:11.324] Incoming livestream: the leading C2, try then to load the payloads, obfuscate everything, understand what it's doing, have its versioning system as well, do a trend analysis, how the malware is changing as well. So the days where we do malware analysis is changing, can be very easy as well if you just fight back with, with white coding.
+[01:15:13.424 - 01:15:23.654] Incoming livestream: Now, still, I guess, just looking as about the zero-day clock I've presented before, the speed of the attackers and the shift more towards offense is going to stay around.
+[01:15:24.014 - 01:15:31.194] Incoming livestream: And… You know, the reason for that is… Explained here on the slide.
+[01:15:31.904 - 01:15:34.424] Incoming livestream: Well, FANS has very cheap verifiers.
+[01:15:34.674 - 01:15:40.124] Incoming livestream: If you pop a shell, if you run a binary, it's a very deterministic, clear verifier.
+[01:15:40.394 - 01:15:45.244] Incoming livestream: Defense has a SIM. Suspicious information every minute.
+[01:15:45.394 - 01:15:46.763] Incoming livestream: Are you familiar with this?
+[01:15:48.264 - 01:15:54.794] Incoming livestream: Seeing everybody, right? So it's not very, very easy to verify in a deterministic way if something happened.
+[01:15:55.084 - 01:16:00.793] Incoming livestream: Now, what a fence doesn't have, they don't have, really, this way to understand your environment.
+[01:16:01.464 - 01:16:10.643] Incoming livestream: to call the right GitHub repo, to create the right account, which is following your naming convention, to understand how your environment is being set up.
+[01:16:11.144 - 01:16:15.093] Incoming livestream: And this is what we can as defenders. We have this…
+[01:16:15.314 - 01:16:20.754] Incoming livestream: This way to verify if data is real or not, because we understand our environment much more better.
+[01:16:21.344 - 01:16:27.103] Incoming livestream: Now, last year, I've presented this… this mentor model, which was derived from,
+[01:16:27.414 - 01:16:35.384] Incoming livestream: From Jason Wei from OpenAI, who sort of abstractly described the way Wei AI is becoming really good.
+[01:16:35.714 - 01:16:41.093] Incoming livestream: And… You know, one example to think about this is if you have this spectrum of
+[01:16:41.214 - 01:16:54.874] Incoming livestream: solutions and a spectrum of verification. You can map Sudoku, for instance, on it. Sudoku is very, very easy to verify, right? But very hard to generate. There's tons of solutions, millions of solutions out there.
+[01:16:54.884 - 01:17:02.823] Incoming livestream: Diet is a counterexample for that, because if I eat today something, I will see the results in a couple weeks or months. That's where AI is not really good.
+[01:17:03.024 - 01:17:10.673] Incoming livestream: So now what I've tried to do is, I've tried to map cybersecurity domains to this space. And…
+[01:17:10.984 - 01:17:14.323] Incoming livestream: Just looking at most of the offensive capabilities.
+[01:17:14.804 - 01:17:27.544] Incoming livestream: you see that they are very often much more easier to verify than the defense capabilities. Because it's very easy, again, if you have an exploit, you can test it out dynamically. If you have a shell, you're popping, if you're exfiltrating data.
+[01:17:27.744 - 01:17:36.944] Incoming livestream: So it's much more dynamic, it's much more dynamic and deterministic in this way, compared to defense, because for defense, now, looking at a binary.
+[01:17:37.444 - 01:17:43.433] Incoming livestream: Looking at your SIM information, looking at your code repo. It's not that easy to verify.
+[01:17:43.564 - 01:17:46.204] Incoming livestream: If… if it's malicious or not.
+[01:17:46.674 - 01:17:49.204] Incoming livestream: The perfect example for this is a malware.
+[01:17:50.114 - 01:18:02.964] Incoming livestream: as Mao analysts, we've tried always to make verification very cheap by, you know, analyzing the specific binary, finding bad patterns, and generating out of those bad patterns a hash.
+[01:18:03.544 - 01:18:11.994] Incoming livestream: or finding or trying to build a stage in between by having sandboxes in place, right? And you can take this analogy as well to many other domains.
+[01:18:12.124 - 01:18:15.593] Incoming livestream: We've tried to make this verification being very, very cheap.
+[01:18:16.884 - 01:18:20.644] Incoming livestream: Now, going back to what I was saying before.
+[01:18:21.734 - 01:18:27.283] Incoming livestream: What we see right now is offense is owning the objective verifiers.
+[01:18:27.774 - 01:18:31.393] Incoming livestream: If you want to do something, this is where offense is really, really good.
+[01:18:31.794 - 01:18:37.384] Incoming livestream: But we as defense, we have this unique advantage to own the environment verifiers.
+[01:18:37.864 - 01:18:44.883] Incoming livestream: Because once an attacker is in our environment, they don't understand what to do. They understand how our environment is being set up.
+[01:18:45.374 - 01:18:51.034] Incoming livestream: Now, let me share with you some practical, examples how this might look like.
+[01:18:51.704 - 01:18:59.624] Incoming livestream: Because you know, perhaps I ask, first of all, a question. How many of you are here not…
+[01:19:00.004 - 01:19:01.344] Incoming livestream: Not Americans.
+[01:19:01.654 - 01:19:03.003] Incoming livestream: A quick hands-off show.
+[01:19:03.804 - 01:19:09.364] Incoming livestream: Okay, me too, I'm German, so if you, if you try to speak very slow German.
+[01:19:09.804 - 01:19:16.883] Incoming livestream: Some people might not hear that you're not American. I mean, now I'm having a cold, and it's pretty obvious, I'm pretty bad at this.
+[01:19:16.994 - 01:19:20.064] Incoming livestream: But now, if you speak very fast, you get an accent.
+[01:19:20.514 - 01:19:28.384] Incoming livestream: You have a very clear way to identify that somebody's a forerunner, right? Because you speak fast, and all these things you've learned from your language are coming up.
+[01:19:28.584 - 01:19:31.163] Incoming livestream: So if you want to have a good mental model.
+[01:19:31.624 - 01:19:33.543] Incoming livestream: The AI, which is being trained.
+[01:19:33.654 - 01:19:40.614] Incoming livestream: It's having an accent based on the training data it's learned, and it will always try to follow its accent.
+[01:19:40.724 - 01:19:53.154] Incoming livestream: If it has to go fast. Obviously, we can go back and ask the AI, first of all, to enumerate the environment, to enumerate all the different things, before doing some dangerous actions. But then you give up the speed.
+[01:19:53.754 - 01:19:58.284] Incoming livestream: And then, you also have all these different other controls we've built around.
+[01:19:59.124 - 01:20:03.553] Incoming livestream: So, four controls, you can think of as,
+[01:20:04.084 - 01:20:16.504] Incoming livestream: you know, I reflected here. So, first one is weaponized time. In the attack, in the first attack we've seen, literally within 5 minutes, you will see a specific account being created from an unknown source, and then performing admin activities.
+[01:20:16.664 - 01:20:24.204] Incoming livestream: That's a bad one, right? It's pretty clear that if something like that is happening, and you have this timing-based control, something is new, something is fresh.
+[01:20:24.414 - 01:20:40.424] Incoming livestream: Like, we've been doing with DNS as well, new domain names being created, you can analyze them all the time. That's pretty bad. Set an alert based on this. Setting traps. Honey tokens, the best, the only best thing in cyber defense you can find out there. If you don't have Honey tokens today in your environment.
+[01:20:40.984 - 01:20:47.104] Incoming livestream: You're potentially not going to attack good, good attackers, so set up canneries, identities which are following the naming
+[01:20:47.614 - 01:20:50.713] Incoming livestream: Convention of the identities in your environment, of your company.
+[01:20:51.144 - 01:20:53.723] Incoming livestream: Third, enforce your consent.
+[01:20:54.014 - 01:21:05.274] Incoming livestream: And what I mean by this is, make sure that your team understands all the different naming conventions, all the different GitHub repos. Everything your company has built
+[01:21:05.554 - 01:21:15.203] Incoming livestream: and learn to operate and set up certain rules and detections around that. But first of all, train your team so that they understand, that they can distinguish that
+[01:21:15.464 - 01:21:28.784] Incoming livestream: a certain alert doesn't follow this naming convention. And then the last one is, and that's where it's a very cheap verifier. You can always verify if certain things are real or not real, if somebody's calling an account name.
+[01:21:29.024 - 01:21:37.304] Incoming livestream: Right? If somebody's trying to assume roles, if somebody's trying to call a GitHub repo, you can just build alerts, or at least monitoring observation rules based on that.
+[01:21:37.794 - 01:21:41.424] Incoming livestream: Now, what's important to understand, this is something which…
+[01:21:42.414 - 01:21:49.813] Incoming livestream: Where you will not find a vendor who can help you solve that, because it's your custom-tailored environment. That's something you have to do.
+[01:21:50.364 - 01:21:59.264] Incoming livestream: And you don't need special technology for this. You know, cloud detection response tools, SIM tools, this is where you can replicate this type of rules.
+[01:22:00.044 - 01:22:09.564] Incoming livestream: non-resist, I think I wanna… wanna summarize that the attackers don't know all this internal knowledge.
+[01:22:09.904 - 01:22:12.993] Incoming livestream: Of our environment, of our company, we've built over time.
+[01:22:13.334 - 01:22:18.174] Incoming livestream: They don't know the repos you have, they don't know how you deploy, they don't know how you…
+[01:22:18.294 - 01:22:27.794] Incoming livestream: you know, name you posts, notes, identities, whatever. This is where we can accumulate knowledge. And the attack ICI has definitely an accent.
+[01:22:28.484 - 01:22:30.723] Incoming livestream: And speed makes it.
+[01:22:30.904 - 01:22:34.284] Incoming livestream: Louder. So, let's start listening. Thank you very much.
+[01:22:39.514 - 01:22:40.264] Incoming livestream: Thank you.
+[01:22:40.904 - 01:22:42.773] Incoming livestream: Alright, we'll start questions over here.
+[01:22:48.294 - 01:22:49.974] Incoming livestream: A great chat.
+[01:22:49.974 - 01:23:11.413] Incoming livestream: I noticed the one thing that was below the line that, you know, favors defense is Honey tokens, which feels like it's always the thing that security teams are like, we should be doing more with Honey tokens, and then they don't. And it does feel like, you know, given how noisy and, you know, the accent that AI has, it is a potentially tool that security teams should be leveraging more often. Curious if you agree, if your team at Sysdig is using them, just how you think about that.
+[01:23:11.534 - 01:23:22.463] Incoming livestream: Sorry, can you repeat the last sentence? Oh, just, if your team at Sysdig is using honey tokens in a big way, if you agree, that becomes a more important, tool in the Defender's arsenal in this era. Oh, yes, I mean, I think it's not a secret that…
+[01:23:22.474 - 01:23:31.563] Incoming livestream: the most successful vendors out there are all using Honey tokens, like even EDR solutions. That's the way how you detect, as well, enumerations and things like that.
+[01:23:31.624 - 01:23:49.293] Incoming livestream: So, and right now, specifically with AI, as that, speed is becoming very loud, and if somebody wants to be silent, then they would need to start enerating syncs across the environment. So Honey tokens across the environment are becoming pretty key. There are some other techniques as well, but Honey tokens are the most deterministic way
+[01:23:49.444 - 01:23:52.803] Incoming livestream: For defenders, to, to deal about the problem.
+[01:23:55.904 - 01:23:59.384] Incoming livestream: Great talk. Thanks for the analogy of the accent.
+[01:24:00.324 - 01:24:05.043] Incoming livestream: My question is around how many accidents have you captured of the attackers?
+[01:24:06.024 - 01:24:20.363] Incoming livestream: So I think that's a great research topic. There are a couple of great research topics you might want to explore. Just building now environments where you can have multiple models driving the same type of attack, and then trying to understand what these models are going to perform, right?
+[01:24:20.564 - 01:24:31.024] Incoming livestream: That could be one, and then there's, there's tons of, questions as well around the cybersecurity verifiers law. So everything I mapped right now on this, you know, on this graph.
+[01:24:31.484 - 01:24:33.943] Incoming livestream: Has to be proven mathematically as well.
+[01:24:34.134 - 01:24:39.453] Incoming livestream: Right? In proper studies, so there's a lot of open question, but…
+[01:24:39.694 - 01:24:48.484] Incoming livestream: The evidence we've seen from last research, everything we've been discussing yesterday and today is suggesting that offense is just…
+[01:24:48.614 - 01:24:56.603] Incoming livestream: accelerating much more faster, and Haas is a better way as well, to both in training, but also in inference, to be more successful.
+[01:24:58.604 - 01:25:00.284] Incoming livestream: Any other questions, audience?
+[01:25:01.314 - 01:25:02.943] Incoming livestream: Alright, thank you so much. Thank you.

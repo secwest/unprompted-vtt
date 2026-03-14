@@ -1,0 +1,525 @@
+WEBVTT
+
+1
+00:00:11.266 --> 00:00:22.206
+Incoming livestream: Okay, I'm gonna get started. Hi everybody, hello, Imprompted. Really happy to be here. My name is Pete Smith. I am doing agentic things at Salesforce. Product manager, engineer guy, all of the above.
+
+2
+00:00:22.486 --> 00:00:25.495
+Incoming livestream: And I'm joined by… Hello,
+
+3
+00:00:25.736 --> 00:00:30.465
+Incoming livestream: Hello everyone, I'm RK. I'm part of co-team building AI SOC at Salesforce.
+
+4
+00:00:30.686 --> 00:00:31.356
+Incoming livestream: Nope.
+
+5
+00:00:31.426 --> 00:00:52.416
+Incoming livestream: Yes, the Agentic SOC. So we're here to talk about the Agentic SOC, and we've been working on some stuff. First slide demo. How do you like that? The Agentic SOC to us at Salesforce means a couple things, but mostly it means a collection of digital teammates working together where we are, and where we are is typically in Slack. So we want to show
+
+6
+00:00:52.416 --> 00:01:09.646
+Incoming livestream: not we want to show. We did show, and are showing, a demonstration of a bunch of agents doing stuff in Slack alongside a human, where they're hunting, detecting, containing, collaborating, and everything in between. I see a lot of Mandiant people here. Who remembers when Kevin Mandy used to say, it's the best day of my career? Remember when he said that?
+
+7
+00:01:09.646 --> 00:01:21.745
+Incoming livestream: Well, I feel like every day is the best day of my career at Air Force, because we get to work on this cool stuff, but what he also said is, one day, I want to have an app, a smartphone app, where I can go from alert to containment in 10 minutes.
+
+8
+00:01:21.986 --> 00:01:45.316
+Incoming livestream: I'm happy to say that, Mr. Mandia, we have met and exceeded your expectations, sir. So we'll show how we not only take an intelligence report and synthesize it and pull out a bunch of IOCs, but how we also hunt across a large enterprise like Salesforce, contain hosts that are affected, deploy detections, and then bring in the human. So they're along the way and approving and making sure that everything
+
+9
+00:01:45.316 --> 00:01:47.496
+Incoming livestream: The agent does is safe and sound.
+
+10
+00:01:47.586 --> 00:01:55.495
+Incoming livestream: But, enough talking about it, let's just show it. It's about a 4-minute demo, but we're gonna narrate it along the way and see how this goes, so…
+
+11
+00:01:55.796 --> 00:01:58.296
+Incoming livestream: Here it goes. This is RK.
+
+12
+00:01:58.886 --> 00:02:08.115
+Incoming livestream: RK and I were in a meeting with CrowdStrike on Monday, and CrowdStrike was telling us about a nasty nation-state-sponsored actor called
+
+13
+00:02:08.185 --> 00:02:22.276
+Incoming livestream: venomous Bear. So what does RK do? RK goes into the CrowdStrike while he goes into Slack, and he asks an agent to look up this Intel report. The report's number, if you want to follow along and you have a CrowdStrike subscription, is…
+
+14
+00:02:22.276 --> 00:02:32.515
+Incoming livestream: 2026035. If you look up that report in CrowdStrike, you're gonna find Venomous Bear and about 8 IOCs, including domains and MD5 hashes, that are
+
+15
+00:02:32.516 --> 00:02:38.455
+Incoming livestream: Bad guys. That's a real report. So, yeah, we say demo data, but there's also some real stuff happening.
+
+16
+00:02:38.646 --> 00:02:49.955
+Incoming livestream: So, if you missed it, let's go big mode here. If you missed it, RK asks our agent in Slack, who we call Kestrel here, he says, I just heard about this thing from CrowdStrike.
+
+17
+00:02:50.006 --> 00:03:07.576
+Incoming livestream: What is it? And so he sends this message in Slack, he's got this report number in it, and our agent knows what the format of a CrowdStrike report looks like in their intelligence portal, so we don't have to say, look up this CrowdStrike report. The agent says, it looks like, 7 numbers, it's in this specific format, I'm gonna go fetch that.
+
+18
+00:03:07.716 --> 00:03:26.496
+Incoming livestream: And the agent goes and does that. The first thing you're gonna see here, as Kestrel works on this, is a hunt task being created, which creates a Salesforce record for us, and in that hunt task, it captures all the data, the metadata about the hunt, including the report name and who launched it. In this case, RK here.
+
+19
+00:03:26.566 --> 00:03:40.775
+Incoming livestream: This is when the fun begins. So now we've got, like, 9 other agents that are doing stuff while this hunt is being executed. And this all happens in our orchestration backend, and the fun part is, after we're done with the demo, we're gonna show you exactly how it all works, and you can take screenshots…
+
+20
+00:03:47.346 --> 00:03:56.596
+Incoming livestream: shots of the code and config, and you can do it yourself in 20 minutes from now. So, stay tuned, but the first thing we queue up is this normalizer agent. So we have…
+
+21
+00:03:56.776 --> 00:04:11.275
+Incoming livestream: this pseudo-deterministic flow, I feel like determinism is all the rage these days in AI, so we've got some determinism in our AI system, and so we invoke this normalizer agent. It takes this report, it rips out all the IOCs, it takes a minute to do that. Good stuff.
+
+22
+00:04:11.276 --> 00:04:20.676
+Incoming livestream: And, we're gonna move on to now this idea of a hunt planning agent. This is all happening in the same thread where we just asked to start an impact assessment on this CrowdStrike report.
+
+23
+00:04:20.886 --> 00:04:34.016
+Incoming livestream: Cool. So the hunt planning agent looks at the IOCs, looks at the context of the report, and starts making up a plan for how he would hunt, or how he would hunt, across our environment for these different IOCs. Very cool. So what does it do?
+
+24
+00:04:34.016 --> 00:04:56.326
+Incoming livestream: it comes up with a, you could say, hypothesis. This is what we know about the threat actor, this is what I found in the report, these are the data sources that I can consult, which have been redacted for yours and our benefit, and our legal team's benefit, but generally we're searching a SIM, and generally we're searching our threat intel systems for evidence of these IOCs that our normalizer agent has passed on to our hunt planner to come up with this plan.
+
+25
+00:04:56.446 --> 00:04:59.185
+Incoming livestream: So now we've got a plan that's proposed.
+
+26
+00:04:59.806 --> 00:05:02.925
+Incoming livestream: But, you see here, the hunt plan must be
+
+27
+00:05:03.126 --> 00:05:07.165
+Incoming livestream: Approved. Is that big enough? Because I've got technology.
+
+28
+00:05:07.956 --> 00:05:16.386
+Incoming livestream: Is that better? Cool. So we've got to plan this proof, we've got to approve this plan, and the way we do that is with our human-in-the-loop
+
+29
+00:05:16.696 --> 00:05:35.116
+Incoming livestream: design, and so what you're gonna see here is the system, the agent, asking RK if the plan to hunt for these indicators in our environment is sound. To do that, we have a couple things. First, we capture the business justification. RK is a pretty easy-go-lucky guy. He's gonna say the plan is approved, plan looks good.
+
+30
+00:05:35.326 --> 00:05:38.565
+Incoming livestream: And we capture the justification in our,
+
+31
+00:05:38.846 --> 00:05:57.736
+Incoming livestream: And our backend to not only inform memory for the next runs of this, but also as an audit trail for our regulators. And if you're in a large enterprise and you're doing things that mean, like, searching across environments, or deploying detections, or containing hosts, you're gonna wanna have the audit logging there. So we do! So we capture all that, plan looks good, and then he's gonna press that approve
+
+32
+00:05:57.876 --> 00:06:01.775
+Incoming livestream: button. Thank you for your response, says our hunt planning agent.
+
+33
+00:06:01.866 --> 00:06:20.456
+Incoming livestream: the hunt plan has been approved, and execution will begin shortly. We have another handoff here to another agent who, we see this hunt planning agent who locks the plan in place, we've made it read-only at this point, and we've got to pass this on to the one that's actually going to execute the hunt.
+
+34
+00:06:22.166 --> 00:06:23.925
+Incoming livestream: In the meantime.
+
+35
+00:06:23.966 --> 00:06:32.436
+Incoming livestream: we see… or we're thinking about a couple things happening in the back end. So that Salesforce record that we have is being continuously updated with the results of the hunt.
+
+36
+00:06:32.436 --> 00:06:56.735
+Incoming livestream: But we bring in our IOC investigation agent, which is an agent that we have built, and we'll show you the agent card for what this looks like. This… the only thing this thing does is take an IOC and hunt across the data sources that we give it. It's deterministic in that we give it the data sources, the tools it can use to hunt, and the IOC. And we just say, go. And there's a very clear and clean handoff before and after it begins. So the investigation agent goes and does its thing, it's starting the investigation.
+
+37
+00:06:56.736 --> 00:06:59.706
+Incoming livestream: This guy is turbo impatient, so he's gonna ping it.
+
+38
+00:06:59.706 --> 00:07:18.536
+Incoming livestream: This might be the most realistic part of the demo, when somebody asks if you're done already and it's been 6 minutes to hunt across an entire enterprise, but here we are. So he asks our Kestrel agent for the status, and the Kestrel agent is working, he checks the record, checks the status of the hunt tasks and what everybody's doing, summarizes for the human, great. That's like…
+
+39
+00:07:18.646 --> 00:07:30.165
+Incoming livestream: April 2025 stuff, not the fun stuff, but we did it too. And now we have our IOC investigation agent who's going into the environment, is actually searching for all of these different IOCs, and preparing findings.
+
+40
+00:07:30.596 --> 00:07:46.136
+Incoming livestream: Which it will do. So we have another agent here. Actually, I think there's two that I missed. One is the findings review agent, which comes up with the verdict, or whether or not it found the IOCs in the environment. Spoilers, it did. Also, it's not the Salesforce environment, but it's a demo environment.
+
+41
+00:07:46.136 --> 00:08:02.006
+Incoming livestream: And then we have a hunt concluder agent. So after we've done the hunting with the IOC investigation agent for all the IOCs, we pass it on to the findings review agent to package it up into a nice report to dump that in our Salesforce hunt object, and then we pass it on to the hunt concluder agent to say.
+
+42
+00:08:02.006 --> 00:08:06.675
+Incoming livestream: Wrap it all up in a nice little bow so you can pass it back to the human, or figure out what to do next.
+
+43
+00:08:06.866 --> 00:08:11.345
+Incoming livestream: Now, you'll notice we're, like, halfway through this demo. This is when it gets really fun.
+
+44
+00:08:11.526 --> 00:08:15.136
+Incoming livestream: So… Somewhere here, yeah.
+
+45
+00:08:15.446 --> 00:08:19.406
+Incoming livestream: Not just good enough to find bad guys in the network, now we gotta do something about it.
+
+46
+00:08:19.636 --> 00:08:38.185
+Incoming livestream: This is fully autonomous remediation in play. So we're gonna… actually, the agent has proposed to us three recommended next steps. The first one is to deploy updated threat detection rules with our threat detection engineer agent. That's the agent who knows everything about how to deploy detection content in the Salesforce environment.
+
+47
+00:08:38.196 --> 00:09:03.195
+Incoming livestream: The second agent is the remediation execution agent, who executes remediations. Block IOCs, contain endpoints, etc. And the third is the incident communication agent, where we might need to page an incident commander and say, -oh, bad guys are here, we gotta do something about it. So, this looks like a lot of not-read-only, a lot of dangerous things to do in an enterprise, and of course, you need human and the approval… human in the loop for that, too, so we prompt them with the business
+
+48
+00:09:03.196 --> 00:09:12.875
+Incoming livestream: to say yes or not. Yes or no, it's approved, and then we allow or deny it. This is all also very conversational to the point where RK could say, yeah, I don't like
+
+49
+00:09:12.876 --> 00:09:21.235
+Incoming livestream: this plan, or I don't like what you're proposing to do, do this instead. And we have an agentic reasoning loop that'll go through those answers and feedback and propose better
+
+50
+00:09:21.326 --> 00:09:39.135
+Incoming livestream: plan instead. But we like that, so we deployed the three specialist agents to go do these things. Threat Detection Engineer is writing IOCs, writing detections based on the IOCs. Then if I scroll all the way up here, and maybe go a little bit back, you will see that we have done some…
+
+51
+00:09:42.506 --> 00:09:45.216
+Incoming livestream: Video, magic, -oh.
+
+52
+00:09:45.796 --> 00:09:47.126
+Incoming livestream: Hold on, technology.
+
+53
+00:09:50.796 --> 00:10:00.445
+Incoming livestream: So, we're going through, and now we have a list of the IOCs that we have, recommended to write the detection rules for. We've done that detection, and now we're gonna show.
+
+54
+00:10:00.446 --> 00:10:13.065
+Incoming livestream: the containment piece of that, and we're a CrowdStrike shop, too, proudly at Salesforce, so the way we do containment is by passing in host names, for which we would like to contain so we can continue our investigation.
+
+55
+00:10:13.066 --> 00:10:25.435
+Incoming livestream: And so, we invoke that here after the IOCs, and this is a synchronous process in the demo, but this can all be happening concurrently. It just confuses the output when you're talking to a human about this stuff.
+
+56
+00:10:25.876 --> 00:10:44.216
+Incoming livestream: Each step along the way, this is the containment part, we're prompting the human for approval to do certain things, and we are, moving on to the very end. The last piece in this is the incident communication agent, who is now paging our incident commander, starting up a Slack channel, adding in all these agents so they can continue helping in the incident.
+
+57
+00:10:44.666 --> 00:11:07.535
+Incoming livestream: And then bringing in some more humans to do actual investigation, or the harder parts. And I said that was the last thing, that's not really the last thing. The last thing is when our case says, thanks, you've saved the day, agent friend of ours, digital teammate of ours, and the agent reciprocates and says, you're very welcome, happy to help, I never sleep, I'm always here for you, you're my best buddy, let's keep doing this forever and ever, and it's, good times. So…
+
+58
+00:11:09.326 --> 00:11:30.176
+Incoming livestream: 10 minutes, little under 10 minutes, alert to fix, to contain, to remediate, to all the other things. Not bad, Mr. Mandia, and even better, Salesforce team. Now, how does it all work, RK? Because I think this is what people probably want to know now. How did we go about building this thing? What does it look like, and what should folks take away from what we've done if you want to build your own Agentic SOC in your enterprise?
+
+59
+00:11:30.786 --> 00:11:44.286
+Incoming livestream: This is the most critical slide over here. We have distilled all our learnings from building this entire agentic SOC in this one single slide. If you see, like, the block 1 and 4 acts as the cognitive layer of your agentic SOC.
+
+60
+00:11:44.546 --> 00:11:56.815
+Incoming livestream: 2nd and 3 acts as the execution and orchestration layer of an agentic SOC, and 4 and 6… 5 and 6 ensures that you don't end up breaking the production system. Lastly, 7 and 8
+
+61
+00:11:56.816 --> 00:12:10.565
+Incoming livestream: insults the engineering, design, and best practices in the Agentic SOC. If you start to build an Agentic SOC in your organization, you should start from all these core 8 primitives, and then build your tech beneath them.
+
+62
+00:12:11.396 --> 00:12:15.886
+Incoming livestream: Looks like… Everybody get that? Screenshots are good? Okay, cool. How about some architecture?
+
+63
+00:12:16.026 --> 00:12:29.775
+Incoming livestream: I'm gonna zoom in on this one, and RK, walk us through the steps of the process they just saw, but now in an architecture view. Yeah. So, first thing first, we don't have to start from the scratch. What we did is… can you zoom out a little bit, Pete?
+
+64
+00:12:29.956 --> 00:12:46.165
+Incoming livestream: Yeah. First we did is, we are using our existing security action library, which every organization has spent a lot of time in maturing and uplifting, and we have system of records, so we are building an agentic layer, an intelligent layer, on top of this existing system.
+
+65
+00:12:46.166 --> 00:13:05.296
+Incoming livestream: So if any vendor comes and says, oh, you have to re-envision your infrastructure again to build an agentic SOC, no, that's not true. We have built, the demo which you have seen, is built on our existing infrastructure. We have just built a couple of, you know, modules on top of our source system, and that's it. So, on the right side, you see,
+
+66
+00:13:05.356 --> 00:13:28.056
+Incoming livestream: our humans and digital teammates interact with a antique SOC system through open-ended autonomous chains or deterministic orchestration layers. Depends on the workflow. If your workflow is pretty straightforward and, like, high risk, go with the deterministic orchestration route. If it is open-ended, like, threat hunting, for, for an anomalous
+
+67
+00:13:28.056 --> 00:13:30.826
+Incoming livestream: Protector, go with the open-ended autonomous chains.
+
+68
+00:13:30.886 --> 00:13:47.346
+Incoming livestream: After this, the goal is taken up by the agent executor, which loads up the context using agent cards. We'll see each component in detail in upcoming slides, so it takes up the agent cards, state files, and goal files, and builds up the context.
+
+69
+00:13:47.346 --> 00:14:00.895
+Incoming livestream: Once, it builds the context, it uses LLM, all the foundational LLMs you have, for reason and planning, and then once it has to act on the, on the different machines, it uses Capability Executor.
+
+70
+00:14:00.896 --> 00:14:17.376
+Incoming livestream: So, Capability Executor just enables agentic LLMs to perform actions on our security action library, like do SIM searches, or pull Threat vendor report, or perform some action in an internal application, or get a record from our system of records.
+
+71
+00:14:17.376 --> 00:14:25.065
+Incoming livestream: While everything is happening, all the execution loops, all the critical components are saved under system of records for auditable purposes.
+
+72
+00:14:25.146 --> 00:14:39.465
+Incoming livestream: So that's the entire high-level overview of agent SOC. You see, like, we are not using anything fancy MCP, because it takes, like, a lot of time to build up the infrastructure, and maintain it, and all this stuff. I'm not against it, but…
+
+73
+00:14:39.606 --> 00:14:46.525
+Incoming livestream: you can build agentic software without having MCPs, without having A2As. Next.
+
+74
+00:14:47.476 --> 00:14:50.966
+Incoming livestream: Okay, this… you have tools, yeah.
+
+75
+00:14:50.986 --> 00:14:58.956
+Incoming livestream: This is the agent card. It defines the persona, the objective of a specific agent. Can you scroll up?
+
+76
+00:14:58.956 --> 00:15:16.995
+Incoming livestream: Yeah. So you see over here, in the top, you define what this agent is supposed to do, what kind of agent is this, and, especially the configuration. So each agent is mapped to the individual workload of your agent itself. It helps prevent the scope creep and context drift.
+
+77
+00:15:17.236 --> 00:15:37.536
+Incoming livestream: And on the configuration side, you see for each agent, based on the workflow that agent is supposed to complete, we have defined the models, the iterations, the temperature, maximum tokens, PII masking, and then on the allowed tool capabilities, we specify what tools this agent can utilize in the production system.
+
+78
+00:15:37.936 --> 00:15:48.725
+Incoming livestream: And on just a piece on the max iterations, what is an iteration? Iteration doesn't mean a single LLM call, it means the full execution cycle, so…
+
+79
+00:15:48.726 --> 00:16:13.056
+Incoming livestream: you take the user input, you reason it, you plan it, you perform multiple tool executions, and then you send the prompt back… send the output back to the user. That's one maximum iteration. For every agentic system, every agent, we have defined maximum iterations. If it hits the maximum iteration, it… the governance layer, orchestrator layer, exits the agent session gracefully, saves the…
+
+80
+00:16:13.056 --> 00:16:16.325
+Incoming livestream: It saves the entire state, and moves to the next layer.
+
+81
+00:16:17.116 --> 00:16:18.006
+Incoming livestream: Okay.
+
+82
+00:16:18.846 --> 00:16:20.986
+Incoming livestream: Yeah.
+
+83
+00:16:21.116 --> 00:16:34.775
+Incoming livestream: This is tool config. It defines the schema of the tool, how LLM will actually utilize this tool. It also performs the integration. It also…
+
+84
+00:16:35.106 --> 00:16:45.945
+Incoming livestream: Yeah, thank you. It also ensures that, what integrations are supposed to be invoked are known to the LLM agent, and then, it, it, it.
+
+85
+00:16:45.946 --> 00:16:59.926
+Incoming livestream: abstracts the actual API calls which agent needs to perform from the LLM. So all the API keys, credentials are not exposed to the baseline LLM. And there, at the bottom, you'll see the permissions also. So for
+
+86
+00:16:59.976 --> 00:17:04.266
+Incoming livestream: At the agent card, you define what tools this agent can execute.
+
+87
+00:17:04.356 --> 00:17:13.995
+Incoming livestream: Similarly, on the tool config, you define what agents are allowed to execute this tool, so we have permission check at the both ends.
+
+88
+00:17:14.356 --> 00:17:15.546
+Incoming livestream: Next slide.
+
+89
+00:17:17.676 --> 00:17:19.456
+Incoming livestream: I'll just let everybody take it in.
+
+90
+00:17:19.666 --> 00:17:20.466
+Incoming livestream: Nope.
+
+91
+00:17:22.396 --> 00:17:29.106
+Incoming livestream: So, Agent Executor, this actually manages the entire lifecycle of your agent. It performs reasoning using LLM calls.
+
+92
+00:18:41.626 --> 00:18:43.746
+Incoming livestream: So that's the routing piece over there.
+
+93
+00:18:45.586 --> 00:19:05.246
+Incoming livestream: This is the third last slide, so this manages the state of the agent. It tracks, like, if you see on the slide, on the config over here, we track the entire agent conversation, we track what objective was given to the agent, whether it was able to achieve the objective within the defined integrations.
+
+94
+00:19:05.245 --> 00:19:27.115
+Incoming livestream: And then below it, you'll find, like, whether the phase was complete, all the entire metadata of the session. And then we also track, like, tool-level execution, where if agent is executing any tools, we track, like, which tool was invoked, and what was the… what were the arguments provided, and all that stuff, so, yeah.
+
+95
+00:19:29.416 --> 00:19:42.155
+Incoming livestream: This is the second half piece of the goal file. It is essential to maintain… to build the trust within the system. We have to ensure that we give… that we expose, what… we have non-repetition within the system.
+
+96
+00:19:42.156 --> 00:19:52.956
+Incoming livestream: So we expose it by logging in who approved the tool calls, what were the reasons provided, and when it was approved. All the data is there so that we have full accountability of
+
+97
+00:19:53.016 --> 00:19:57.236
+Incoming livestream: Tool executions of risky tools. Alright, next slide.
+
+98
+00:19:58.896 --> 00:20:01.326
+Incoming livestream: Yeah. Pete, do you want to cover this one?
+
+99
+00:20:02.836 --> 00:20:04.865
+Incoming livestream: 20 seconds? Sure, why not?
+
+100
+00:20:05.366 --> 00:20:06.806
+Incoming livestream: This is a…
+
+101
+00:20:07.626 --> 00:20:20.546
+Incoming livestream: incident lifecycle, you could say, and this is where we've embedded digital teammates along the way. Digital teammates are the first-class agents of our Agentic SOC. Digital teammates to us are the thinking.
+
+102
+00:20:20.916 --> 00:20:26.625
+Incoming livestream: reasoning, planning teammates that we have. And so we like to treat them as
+
+103
+00:20:27.686 --> 00:20:34.655
+Incoming livestream: part of the team. You can find them in our Slack channels, you can find them doing stuff, you can find them working with us, it's as if we take a grade 5, not…
+
+104
+00:20:34.846 --> 00:20:53.606
+Incoming livestream: a new hire and start training them up, and in 90 days, you've got a working agent. They learn from us, just like they would a human, and at every stage of the incident response lifecycle, you can find these teammates in the Agentic SOC. And, honestly, it's pretty cool. So, no, I think we're just about out of time.
+
+105
+00:20:53.986 --> 00:21:01.325
+Incoming livestream: The takeaways, though, RK. So, I think these are the things we've learned along the way. You've seen some of these over the last couple days, but…
+
+106
+00:21:01.526 --> 00:21:10.066
+Incoming livestream: Deterministic orchestration, like I said, is kind of the rage. You don't want your LLMs going wild. The agent chains and chain of thought is cool, but keep it in guardrails.
+
+107
+00:21:10.326 --> 00:21:33.465
+Incoming livestream: don't have monolithic agents. We saw 9 agents, and you saw our agent card registry file had 600 lines. That's a lot of agents that we've defined in that thing. You should have a lot of agents, and they should be very focused and specialized to what they do. Always have humans in the loop, especially while you're training these things, but this idea of a teammate means that they work with people, not always doing things on their behalf.
+
+108
+00:21:33.646 --> 00:21:38.716
+Incoming livestream: ask mode, this is plan mode, every IDE has this, your agents should too.
+
+109
+00:21:39.966 --> 00:21:53.706
+Incoming livestream: agent reasoning loops, this idea that you're never done with your first take of a plan, you gotta keep iterating on it, so once you get that human feedback, you should use it, you should learn from it, and you should incorporate that into your next run.
+
+110
+00:21:53.706 --> 00:22:07.515
+Incoming livestream: Use your existing infrastructure, RK talked about this, but we didn't build an… we didn't tear down our SOAR, we didn't buy a new orchestration platform, we took our old SOAR, which has 257 different Python integrations, we taught agents to speak to it, and now we have
+
+111
+00:22:07.976 --> 00:22:14.446
+Incoming livestream: agents that can do all the things that our SOAR could do, but reasoning and thinking through what to do instead of being defined in a workflow.
+
+112
+00:22:14.616 --> 00:22:32.635
+Incoming livestream: And then, let your agents earn trust using these workflows. Don't always identify things that might have subpar outcomes. Use the 8 primitives we talked about. Have an AI constitution, which is a document that captures and codifies the rules for how you deliver an Agentic SOC. Might look something like this, if you're in Salesforce CSOC.
+
+113
+00:22:32.636 --> 00:22:38.945
+Incoming livestream: has different articles. One of those articles, in fact, the first article is the primitives that RK talked about first, because that's where you start.
+
+114
+00:22:38.946 --> 00:22:40.505
+Incoming livestream: You start with those primitives.
+
+115
+00:22:40.506 --> 00:22:50.446
+Incoming livestream: start building, follow your constitution, get everyone on board with it, and you're off to the races with the agendic SOC. Just like Salesforce, and I think that's our talk. Thanks, everybody, I think we'll take questions.
+
+116
+00:23:01.396 --> 00:23:10.905
+Incoming livestream: Hey, thanks for sharing, really appreciate it. I think there are a lot of people that are watching this that are probably, like, working at AI agentic SOC companies that are furiously taking notes, so well played.
+
+117
+00:23:10.906 --> 00:23:21.585
+Incoming livestream: Serious question, though, how many, what's your guesstimate on engineering person hours it took to develop this? And the corollary, what's the, KTLO to maintain it?
+
+118
+00:23:21.586 --> 00:23:31.035
+Incoming livestream: And then, what are the, costs of this infrastructure to run in dollar figures, not token numbers? And what is the corollary of those impacts on your KPIs?
+
+119
+00:23:31.826 --> 00:23:36.186
+Incoming livestream: I heard four questions there, I'm trying to think of which we can answer.
+
+120
+00:23:36.646 --> 00:23:39.156
+Incoming livestream: Let's start with, engineering time.
+
+121
+00:23:43.446 --> 00:23:49.036
+Incoming livestream: I, to be honest, The entire config, everything was written by Claude.
+
+122
+00:23:49.516 --> 00:24:04.826
+Incoming livestream: I didn't write a single piece of code on this, though I have a, like, good foundational knowledge of Python, so you need to know the basics and what do you want to build this, but otherwise, I didn't write a single piece of code over here for that. So… So, like, zero time?
+
+123
+00:24:04.976 --> 00:24:11.205
+Incoming livestream: Obviously, not the zero time, but I cannot quantify it right now, to be honest, so, yeah.
+
+124
+00:24:11.496 --> 00:24:13.216
+Incoming livestream: No impact on KPIs?
+
+125
+00:24:14.086 --> 00:24:31.755
+Incoming livestream: KPIs, we measure them, we'll just say that. We should have had a slide that talked about the ways we measure the success of the Agentic SOC, but the way we generally think about it is mean time to reduce or improve X, because those are our SOC performance metrics, and all we're trying to do is be better with the Agentic SOC. Cool. Yeah, as I mentioned, like, KPIs are a proof point for whether it's worth it or not.
+
+126
+00:24:34.316 --> 00:24:40.825
+Incoming livestream: I think I'm required to say it is worth it, but I would also firmly believe that it is. I mean, I feel like I'd be…
+
+127
+00:24:40.896 --> 00:24:54.776
+Incoming livestream: in, in dangerous waters if I said it wasn't worth at the AI conference. But, we're just getting started with this stuff. I think, obviously, the tech is really hopeful. We are banking a lot on it at Salesforce, who talks about being an agentic enterprise, and we're off to the races in the SOC.
+
+128
+00:24:54.776 --> 00:25:05.206
+Incoming livestream: Very compelling use cases. Everything you just saw actually happens. If it's right, and it can do it, and it's quicker than a human, then it's a force for good, and something we should be doing, yeah.
+
+129
+00:25:06.526 --> 00:25:09.496
+Incoming livestream: Thank you so much, Threp.
+
+130
+00:25:46.706 --> 00:25:50.816
+Incoming livestream: Let's give it a couple of minutes to, say, get…
+
+131
+00:25:57.196 --> 00:25:59.946
+Incoming livestream: Alright, if I can get some attention here.

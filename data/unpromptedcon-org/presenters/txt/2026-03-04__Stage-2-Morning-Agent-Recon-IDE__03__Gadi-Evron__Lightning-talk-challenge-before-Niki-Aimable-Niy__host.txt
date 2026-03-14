@@ -1,0 +1,4 @@
+[00:46:31.465 - 00:46:41.244] Incoming livestream: Alright, before Nikki gets started, we are running ahead of schedule, as I said earlier, so I have a kind of a challenge for anybody out here who…
+[00:46:41.744 - 00:46:43.524] Incoming livestream: It's impossible.
+[00:46:45.664 - 00:46:59.225] Incoming livestream: I have a challenge for everybody out here. If you are interested in filling a 5-minute lightning talk with something cool, interesting, doesn't have to be security-related, probably does have to be AI-related, you can go right after him.
+[00:46:59.225 - 00:47:11.665] Incoming livestream: And, feel free to talk or take questions, or if you have a cool idea or something like that, let's get it going. If you are interested, come see me, I'll be in the back corner during this talk, and we can… we can get it going. Otherwise, you got a lot of time, go for it, brother. Thank you.

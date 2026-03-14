@@ -1,0 +1,146 @@
+[00:15:31.614 - 00:15:37.133] Incoming livestream: Great, well, amazing to be here. Gaddy, team, the whole team, I mean, it's such an incredible community.
+[00:15:37.234 - 00:15:52.284] Incoming livestream: I'm Heather, I work at Google, and I do cyber, cyber, cyber stuff. I'm joined by my amazing colleague, Four, who leads security and privacy for DeepMind. Please send him all the prompt injection bugs.
+[00:15:52.444 - 00:15:53.494] Incoming livestream: Not me.
+[00:15:54.924 - 00:16:10.213] Incoming livestream: I want to maybe start just by setting the scene a little bit. I think it's an understatement for all of you to say that this is an unprecedented time. We will all look back on the, I think, the year 2026,
+[00:16:10.514 - 00:16:18.664] Incoming livestream: as the year everything pivoted, and we will also think of 2026 As a simpler time.
+[00:16:18.994 - 00:16:23.203] Incoming livestream: I think it's gonna get a little bit harder and a little bit more complex.
+[00:16:23.534 - 00:16:27.273] Incoming livestream: We are not far off.
+[00:16:27.384 - 00:16:31.904] Incoming livestream: From a world where there will be an open source
+[00:16:32.074 - 00:16:35.953] Incoming livestream: full hacking tool where you can type in, go hack Google.
+[00:16:36.144 - 00:16:38.834] Incoming livestream: And a week later, it'll come back with a root prompt.
+[00:16:39.454 - 00:16:52.573] Incoming livestream: We're not far off, and we know this for a few reasons. Number one, there are now open source frameworks for doing pen testing, finding, you know, simple vulnerabilities in web apps, etc.
+[00:16:52.854 - 00:16:59.644] Incoming livestream: I did a little back of the back of the napkin math as well. There's about a billion dollars of VC money.
+[00:16:59.864 - 00:17:01.843] Incoming livestream: Going into startups.
+[00:17:02.044 - 00:17:06.823] Incoming livestream: For vulnerability discovery, pen testing, red team, simulation.
+[00:17:07.074 - 00:17:18.543] Incoming livestream: So, between all the good guys and all the bad guys, I think it's fair to say we are at a point where we'll be able to find every vulnerability in every system with agentic frameworks.
+[00:17:18.784 - 00:17:21.203] Incoming livestream: And that's gonna be a completely different world.
+[00:17:21.754 - 00:17:31.233] Incoming livestream: It's gonna change the way we think about vulnerabilities, the way we rank them, prioritize them. We'll have to change the CVSS scoring system because it won't be meaningful anymore.
+[00:17:31.744 - 00:17:47.783] Incoming livestream: There will be a world where we just have too many vulnerabilities. And to give you some sense, we are already seeing it. I checked this morning, and the, vulnerability database, the NVD, has a 30,000 backlog, unanalyzed vulnerability queue.
+[00:17:48.234 - 00:17:53.554] Incoming livestream: But even given that, between 24 and 25, there was a 35% increase.
+[00:17:53.664 - 00:18:03.753] Incoming livestream: in logged, vulnerabilities that got a CVE. And not every bug that gets, discovered gets a CVE. So we're already seeing kind of a cataclysmic…
+[00:18:04.074 - 00:18:06.434] Incoming livestream: Increase fairly significantly.
+[00:18:06.704 - 00:18:17.743] Incoming livestream: And that brings us to the impetus for the project we're gonna talk about today, Big Sleep and Code Mender. These are two projects, research projects out of, Google and Google DeepMind.
+[00:18:18.184 - 00:18:20.283] Incoming livestream: with one goal. And…
+[00:18:20.514 - 00:18:27.023] Incoming livestream: one real deep meaning that I want to leave with all of you today. Next slide.
+[00:18:27.384 - 00:18:31.804] Incoming livestream: is that we simply must eliminate every software vulnerability on Earth.
+[00:18:33.174 - 00:18:37.304] Incoming livestream: And that is the legacy the people in this room need to leave behind.
+[00:18:37.454 - 00:18:40.073] Incoming livestream: To the next generation of technologists.
+[00:18:40.524 - 00:18:52.304] Incoming livestream: And it is not a simple problem, it is not an easy one, but it is the one that we have to solve, because as humanity goes beyond Earth, we just simply need to not be dealing with cross-site scripting bugs.
+[00:18:54.594 - 00:19:03.513] Incoming livestream: And, we have a little ambition at Google to get rid of memory safety bugs as well, and that is what we're gonna talk a little bit about today.
+[00:19:04.144 - 00:19:09.894] Incoming livestream: On top of finding every bug, we have to be able to give developers the tools to not make them anymore.
+[00:19:10.524 - 00:19:14.814] Incoming livestream: And, the technology we're gonna talk about here today
+[00:19:15.094 - 00:19:17.303] Incoming livestream: Also lends itself to that.
+[00:19:17.944 - 00:19:18.983] Incoming livestream: Next slide.
+[00:19:20.464 - 00:19:26.494] Incoming livestream: So, I'm pretty sure everybody who's played with an LLM has pointed it at some code and said, please find me a bug.
+[00:19:26.794 - 00:19:33.804] Incoming livestream: And it's actually pretty good. Even the older models are pretty good, and as we have the new generations coming out successfully.
+[00:19:33.924 - 00:19:43.083] Incoming livestream: Kind of every, kind of, 3 to 4 months, we're seeing a massive improvement in what the large language models can do about reasoning about code.
+[00:19:43.824 - 00:19:54.933] Incoming livestream: We wanted to go one step further, and not just look at the shallow bugs that are easy to find, but to really look at the kinds of bugs that top elite researchers
+[00:19:55.154 - 00:20:10.303] Incoming livestream: confined. There was a 2017 study, a RAND study, that showed, just how long an expert vulnerability researcher takes to find kind of a deeply embedded bug. I think it's somewhere on the order of a month.
+[00:20:10.764 - 00:20:12.414] Incoming livestream: For finding the bug?
+[00:20:12.524 - 00:20:17.223] Incoming livestream: And about 22 days, for exploitation, successfully.
+[00:20:17.624 - 00:20:29.334] Incoming livestream: But what if you could build an agentic reasoning system that could do that in a matter of hours or minutes? You could find the deep bugs much faster, more reliably, and potentially early
+[00:20:29.454 - 00:20:31.554] Incoming livestream: In the software development lifecycle.
+[00:20:31.764 - 00:20:48.863] Incoming livestream: So the approach that the Big Sleep team has taken to finding bugs is not just to use the LLM for the basic things you can prompt it to do, but actually to recreate the human expertise of our Project Zero team. Project Zero is a team that's been around for over a decade.
+[00:20:48.984 - 00:20:51.403] Incoming livestream: Their goal is to get rid of zero days.
+[00:20:51.534 - 00:21:03.194] Incoming livestream: They haven't been successful yet, but they think they're gonna get there with this technology. So they want to recreate that, kind of deep researcher experience, with three things also in mind.
+[00:21:03.394 - 00:21:09.214] Incoming livestream: Number one, we want uncompromising quality. We do not want to produce AI slop with the bugs we find.
+[00:21:09.744 - 00:21:15.964] Incoming livestream: We want everything that lands in a developer's hands, especially an inexperienced developer, to just work.
+[00:21:16.244 - 00:21:17.273] Incoming livestream: Out of the box.
+[00:21:17.714 - 00:21:22.193] Incoming livestream: Number two, we need this to be cost-effective and efficient at scale.
+[00:21:22.444 - 00:21:26.634] Incoming livestream: We have trillions of lines of code on the planet, billions of lines of code at Google.
+[00:21:26.744 - 00:21:30.574] Incoming livestream: And we want to run this all the time, so it's got to be fast and efficient.
+[00:21:31.004 - 00:21:47.243] Incoming livestream: And third, as real-time as possible, right? Right now, we're all looking at brownfield code, so stuff that's already launched in production, open source code, stuff that's already out there. We want to be able to put it in the developer's user journey, so that they're not launching new bugs in the future as well.
+[00:21:47.534 - 00:21:50.884] Incoming livestream: And we think if we do this, if we get it right,
+[00:21:51.324 - 00:22:01.794] Incoming livestream: we can probably be creating and maintaining code that's relatively bug-free in the next couple of years, right? This is kind of within not only our ambition, but our capabilities with the tech.
+[00:22:02.514 - 00:22:03.623] Incoming livestream: Next slide.
+[00:22:03.904 - 00:22:09.143] Incoming livestream: So let's talk, about big sleep, and I'm not gonna do, like.
+[00:22:09.354 - 00:22:13.144] Incoming livestream: you know, code reading here or anything. We're gonna talk architecture a little bit.
+[00:22:13.594 - 00:22:21.094] Incoming livestream: One of the first things we realized as we studied how the researchers work is that they become deeply expert
+[00:22:21.254 - 00:22:30.644] Incoming livestream: in the codebase they're working in. And if you've ever met a really good vulnern researcher, they kind of tend to get, you know, deep and niche in one area or two areas.
+[00:22:30.814 - 00:22:33.223] Incoming livestream: And the way they do this is they understand the code.
+[00:22:33.384 - 00:22:40.483] Incoming livestream: They look at the kinds of bugs that they've had in the code before, past vulnerabilities, they do variant analysis.
+[00:22:40.584 - 00:22:44.683] Incoming livestream: And they have a really good understanding of the code architecture.
+[00:22:44.974 - 00:22:51.374] Incoming livestream: So we have to give that to this agentic reasoning system as well. So we harness that, and that's phase one.
+[00:22:52.464 - 00:23:00.204] Incoming livestream: We then enter into, Phase 2, which is this agentic framework that's working constantly in a loop.
+[00:23:00.294 - 00:23:07.063] Incoming livestream: feeding back to itself. It's building hypotheses, perhaps, based on past bugs, for example.
+[00:23:07.104 - 00:23:21.094] Incoming livestream: Here's a part of the code that I think might be vulnerable, let me test that hypothesis. To do that, it needs tools, okay? It needs a debugger, it needs the code browser, and it needs a Python interpreter so that it can write scripts for itself.
+[00:23:21.184 - 00:23:28.264] Incoming livestream: So what it's doing is that it's not just prompting itself, it's building code, It's building test cases.
+[00:23:28.594 - 00:23:35.123] Incoming livestream: and… It's able to test its own hypotheses and see if there's success and failure, and it's doing that
+[00:23:35.284 - 00:23:36.964] Incoming livestream: Constantly in a loop.
+[00:23:37.084 - 00:23:41.704] Incoming livestream: Right? This is far beyond just prompting, you know, find the cross-site scripting bug in this code.
+[00:23:42.854 - 00:24:00.374] Incoming livestream: And it's this hypothesis and, revision that really gives the system that feel of, like, an expert researcher, right? And if you've… if you've ever met them, they sometimes are just standing in the corner staring with their coffee going, you know, I can't get that bug, I can't get that bug. This is what the LLM
+[00:24:00.584 - 00:24:02.363] Incoming livestream: Reasoning loop is doing.
+[00:24:02.774 - 00:24:05.683] Incoming livestream: Once it has a successful crash.
+[00:24:05.854 - 00:24:17.444] Incoming livestream: that it thinks, might be a valid vulnerability. We then move into the verification phase. And it's looking at feedback data that's coming out of the debugger.
+[00:24:17.544 - 00:24:21.034] Incoming livestream: And it is actually then building an exploit.
+[00:24:21.714 - 00:24:29.573] Incoming livestream: Okay? And this proof of vulnerability is so key to getting the false positive rate to zero, and we've managed to do that.
+[00:24:29.704 - 00:24:34.064] Incoming livestream: So every bug that comes out of there is not only a candidate for an exploit.
+[00:24:34.424 - 00:24:44.184] Incoming livestream: For vulnerability, but it's actually provably a vulnerability. We then write a report, and again, it's the… it's Gemini writing the report, it's not a human.
+[00:24:44.634 - 00:24:48.684] Incoming livestream: It's got the proof of vulnerability code, so the developer can test it.
+[00:24:48.844 - 00:25:00.584] Incoming livestream: It has a high-quality report that does a step-by-step through every function, every part of the bug, explains the bug in detail, so that if you have a non-expert developer, they're gonna understand what's going on.
+[00:25:01.134 - 00:25:10.663] Incoming livestream: And we've managed to do this to the extent where end-to-end, fully automated, without human involvement, we're getting zero false positives. And these are deep memory safety bugs.
+[00:25:10.944 - 00:25:13.584] Incoming livestream: Right, these are not cross-site scripting bugs, these are not…
+[00:25:13.794 - 00:25:17.144] Incoming livestream: kind of shallow integer overflows, they're kind of deep.
+[00:25:17.444 - 00:25:22.703] Incoming livestream: In the codebase. And we've put them all online, that's the URL down there.
+[00:25:22.914 - 00:25:25.714] Incoming livestream: Our issue tracker, so you can go in and see them.
+[00:25:25.874 - 00:25:34.453] Incoming livestream: And see the quality of the report, and, kind of… I think all but 5 are fixed at this point, so, as I checked this morning.
+[00:25:34.574 - 00:25:47.833] Incoming livestream: So that's big sleep. This is just the vulnerability discovery. We've done one half of the job for the developer. Now we've got to do the part that really sucks as a developer, which is fixing the code. And for that, I'm gonna pass it to Four.
+[00:25:48.824 - 00:25:50.394] Incoming livestream: Great, thanks, Heather.
+[00:25:50.444 - 00:25:59.783] Incoming livestream: Alright, so let's zoom out for a minute. I want to speed up a little, because I want to make sure that we have time for questions, but I have a lot to cover. So, we said we're going to try to fix every security vulnerability on Earth, and we're not kidding.
+[00:25:59.794 - 00:26:11.814] Incoming livestream: So what does that mean? There's a whole bunch of other pieces besides the big sleeve component, right? So finding vulnerabilities is one part, but also we have to help the developers patch those vulnerabilities. I'll talk more about that in just a second.
+[00:26:11.814 - 00:26:22.434] Incoming livestream: But one other thing that I want to make sure we at least touch on, we're not going to talk about it in detail today, is that also brand new Greenfield code that's being generated through Vibe coding frameworks
+[00:26:22.434 - 00:26:46.164] Incoming livestream: actually needs to be secure out of the box as well, and so that's something else we're working on. We don't have time to talk about that today, but we think it's a completed thought, right? Where if you have legacy code, that we can find vulnerabilities in it, and we can get those automatically patched, that's the middle to the top arrow. If we have legacy code, we can actually proactively harden that code, I'll talk about that in a minute. And then finally, brand new code should be secure
+[00:26:46.164 - 00:26:59.594] Incoming livestream: as much as possible out of the box, not just free of vulnerabilities, but actually using secure frameworks so those vulnerabilities aren't possible in the first place. So, we're working on all of this, but let me dive in a little bit more into the CodeMender component specifically.
+[00:26:59.594 - 00:27:15.493] Incoming livestream: Right, so this is basically how CodeMender works. It's a project we started last year in recognition that this AI vulnerpocalypse, which, by the way, is a word that you should take away from this conference, the Vonpocalypse is coming, and so we think we should actually help arm the community with tools to solve this problem.
+[00:27:15.494 - 00:27:25.693] Incoming livestream: So, it's not enough to find vulnerabilities, we should also help the developers patch code. Now, what are the three components of patching code? You want to make sure, one, that the patch…
+[00:27:25.944 - 00:27:29.073] Incoming livestream: Fixes the security vulnerability, right? Two.
+[00:27:29.114 - 00:27:47.384] Incoming livestream: that it doesn't break the code in some way that changes the functionality, right? And then three, as much as possible, you actually want to honor the idioms of the developer that had built that code previously, so that it's not just a patch for the vulnerability, but it's done in the way that the developer finds easy to digest and understand.
+[00:27:47.484 - 00:27:51.784] Incoming livestream: So all three of those things is what CodeMender is built to solve. So how does it work?
+[00:27:52.024 - 00:28:04.154] Incoming livestream: Well, it takes in either a verified vulnerability from Big Sleep, and the idea is to make this a full end-to-end discovery and fixing engine, right? That runs completely without human intervention.
+[00:28:04.244 - 00:28:16.574] Incoming livestream: The other piece that I'm not sure we have time to talk about today is hardening. Basically, in a nutshell, what this is, is basically proactively looking at a codebase for things like pointer exceptions, and modifying the code through a larger patch.
+[00:28:16.574 - 00:28:29.654] Incoming livestream: to make sure that all of those buffers are protected before the vulnerability can actually occur in the first place. So you can imagine a similar process to patching actually being used to harden code and protect pointers as well, but I won't go into that in detail.
+[00:28:29.654 - 00:28:41.563] Incoming livestream: So, the LLM agent actually has very similar access to tools and environment like Heather just discussed, right? It can do things like debugging, it can test hypotheses. What that does is it creates a number of patch candidates.
+[00:28:41.564 - 00:29:01.534] Incoming livestream: Right? That are potential fixes, but that's not good enough, right? We need to verify that those patches… and so some of the secret sauce of what we've been building is actually in these verification stages, and we've done a huge amount of work here. So we have verifiers of all kinds, and it's actually a pluggable system. So we actually fuzz the variables before and after the patch.
+[00:29:01.534 - 00:29:05.104] Incoming livestream: To validate that the functionality hasn't been destroyed by the patch.
+[00:29:05.194 - 00:29:11.554] Incoming livestream: We actually do formal verification of that section of the codebase to try to prove that that code still is functionally equivalent.
+[00:29:11.554 - 00:29:26.333] Incoming livestream: We actually also look for differential testing. We actually do a round of fuzzing of the code with a potential candidate patch to make sure that the vulnerability is still not present by injecting the malicious inputs into that section of the code base.
+[00:29:26.334 - 00:29:33.913] Incoming livestream: And finally, we use, of course, maybe the most obvious of all options. We use the LLM itself to view the patch
+[00:29:33.914 - 00:29:58.533] Incoming livestream: With a very carefully crafted, pre-prompt to try to determine if that patch is also accurate as well. So, that's not all that we do, but it's a good sense of the types of things that we do, and it's only once the patch is all pass the verifier, that we would actually consider that something that's a candidate to send to the community. In some cases, none of the patches actually pass validation, and the learnings from the validation failures are actually fed back into the
+[00:29:58.534 - 00:30:07.523] Incoming livestream: context window for the LLM to learn from the mistake and try to improve to a new set of candidate patches that are then, in turn, validated and ranked for submission.
+[00:30:07.744 - 00:30:10.414] Incoming livestream: So that's essentially how CodeMender works.
+[00:30:10.794 - 00:30:19.164] Incoming livestream: Just a couple notes here. We've got 178 fixes now in open source that have been autonomously generated through CodeMender.
+[00:30:19.184 - 00:30:33.033] Incoming livestream: We have a path through a couple of different libraries, open source libraries, libwebp is one example. We've done a bunch of work in Chrome as well, to actually harden pointers in the codebase through automatically generated patches to harden those pointers.
+[00:30:33.034 - 00:30:44.414] Incoming livestream: And, of course, we're working on doing this for internal Google systems. I think probably one criticism of our approach here that I think you could levy is that we are…
+[00:30:44.414 - 00:30:51.094] Incoming livestream: Maybe being too cautious in making sure that we have highly verified outputs for the community before we send something out.
+[00:30:51.094 - 00:31:10.523] Incoming livestream: We've taken a position that we really firmly believe in quality, and that people trusting the system is what's gonna lead us to be able to accelerate the community's adoption of this technology. I guess we'll see how it plays out. I think other folks have a different trade-off on the dial of sort of quicker to market, but maybe tolerating, you know, more developer toil.
+[00:31:10.564 - 00:31:27.313] Incoming livestream: You know, I think we're trying to figure out where the right line is there. I won't go into all the details here on the bottom, except for you to recognize the fact that all of this is well and good, but those of us in the hallway here in the room all know that one of the hardest problems with patching is actually
+[00:31:27.334 - 00:31:35.913] Incoming livestream: places in the world that struggle to actually apply patches in a timely manner. And so, that's another problem. I don't know how to solve that with AI.
+[00:31:35.914 - 00:31:47.564] Incoming livestream: If you do, come find me, and I will be very excited to talk to you. But I think this is an important part of the puzzle, is being able to get the community and the world to patch our codebases at the speed of AI.
+[00:31:47.564 - 00:31:51.294] Incoming livestream: Okay, and with that, I guess we'll take questions.
+[00:31:51.294 - 00:31:58.674] Incoming livestream: With a few minutes left. So, I don't know how questions work, by the way. So, okay, there's mics, around.
+[00:31:58.714 - 00:32:02.693] Incoming livestream: So if you have a question, raise your hand, and I guess somehow a mic will show up.
+[00:32:03.764 - 00:32:05.653] Incoming livestream: Yeah, there's a gentleman here in the front.
+[00:32:06.164 - 00:32:08.013] Incoming livestream: And Heather's gonna answer all the questions.
+[00:32:09.874 - 00:32:12.494] Incoming livestream: Because you don't know how they work. Okay.
+[00:32:15.034 - 00:32:16.603] Incoming livestream: I can't hear you, Ann. You had to turn it on.
+[00:32:17.464 - 00:32:19.614] Incoming livestream: Just flip the switch up.
+[00:32:23.254 - 00:32:25.773] Incoming livestream: I can just repeat. If you shout, I'll repeat.
+[00:32:26.104 - 00:32:36.193] Incoming livestream: Okay. Oh, yeah. So I'm just wondering, how similar or different this is from OpenAI's AdWork that was recently released? Because…
+[00:32:36.194 - 00:32:46.973] Incoming livestream: I was, reading about it, it does something similar, so it would be interesting to know, like, and I don't know if you've done any sort of, like, comparison as to how yours is… yeah.
+[00:32:47.104 - 00:32:51.943] Incoming livestream: I don't know, are the OpenAI guys here? Do they want to say? Where are you at? Where are you at?
+[00:32:52.874 - 00:32:59.304] Incoming livestream: And, just to add, sorry, just to add, I think, our… Oh.
+[00:32:59.854 - 00:33:17.244] Incoming livestream: To, to seriously answer your question, we've not done a side-by-side comparison, because neither team has published full details, but I think it's fair to say we're both using, kind of, you know, agentic reasoning, behind them, but we'll see as the things develop as they come out.
+[00:33:18.814 - 00:33:20.224] Incoming livestream: with the…
+[00:33:20.424 - 00:33:45.314] Incoming livestream: There's one here and then there, yeah. With the techniques you've used in Big Sleep, they seem very focused on memory safety vulnerabilities, which are a huge problem. I'm curious how much of these tech… how many of these techniques do you think would be applicable to things with a less clear signal than just a segvault or some of these, more difficult-to-find things than memory vulnerabilities? Yeah, I'm… I'll just say quickly, it does definitely apply. I mean, the team's finding shallow bugs
+[00:33:45.314 - 00:33:46.004] Incoming livestream: as well.
+[00:33:46.084 - 00:33:51.593] Incoming livestream: What we're targeting with the research is the deep stuff, because it's harder and a little more esoteric, but…
+[00:33:51.764 - 00:33:52.484] Incoming livestream: Yeah.
+[00:33:52.544 - 00:34:07.733] Incoming livestream: Yeah, I mean, I don't really have a lot to add. I think a lot of the techniques actually carry over to web vulnerabilities and shallow vulnerabilities quite well. I think the verification techniques of the vulnerability are different, to your point. But, you know, injected faults, whether it's input validation.
+[00:34:07.734 - 00:34:17.493] Incoming livestream: you know, things like that. I think all of it will work, and we're building all of that stuff as well, to make sure that we work for web vulnerabilities, both finding and fixing. So, yeah, that's a good question.
+[00:34:18.894 - 00:34:25.334] Incoming livestream: I guess I will say, I mean, we're still doing a lot of fuzzing. We develop OSS fuzz at Google, doing tons of fuzzing, but…
+[00:34:25.543 - 00:34:32.184] Incoming livestream: Big sleep is finding things the fuzzers are missing. So that tells us that we're… we're targeting at the right depths, probably.
+[00:34:32.834 - 00:34:42.334] Incoming livestream: Yeah, my question's related to business logic vulnerabilities that don't have necessarily a signature, but are in the context of how the application's used. How are you all thinking about
+[00:34:42.344 - 00:34:56.194] Incoming livestream: those types of vulnerability classes and your approach, and do you think this methodology would apply to that specific class of vulnerabilities? I think right now, most of our research is not on business applications, it's on, kind of, infrastructure components, like,
+[00:34:57.373 - 00:35:00.683] Incoming livestream: you know, the… the V8. Sure.
+[00:35:00.834 - 00:35:10.013] Incoming livestream: part of Chrome, which we sandbox, and, you know, we wish it was better. So, those components, or something like the,
+[00:35:10.654 - 00:35:17.063] Incoming livestream: FFmpeg is another one that we've looked at quite a bit, because its job is to handle untrusted input. Right.

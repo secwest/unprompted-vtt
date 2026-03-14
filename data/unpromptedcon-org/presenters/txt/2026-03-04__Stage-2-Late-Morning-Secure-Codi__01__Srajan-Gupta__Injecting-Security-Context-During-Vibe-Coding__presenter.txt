@@ -1,0 +1,164 @@
+[00:01:33.891 - 00:01:37.441] Incoming livestream: Hey, everyone. Good morning. My name is Frajan.
+[00:01:37.671 - 00:01:43.771] Incoming livestream: And I'm going to be talking about, injecting security context using webcoding.
+[00:01:45.171 - 00:01:50.511] Incoming livestream: I'm a senior security engineer at Dave. It is a fintech company.
+[00:01:50.681 - 00:01:56.120] Incoming livestream: And my focus areas mostly are on threat modeling, secure by design, secure by defaults.
+[00:01:56.571 - 00:02:04.621] Incoming livestream: If you guys want to connect with me, LinkedIn is the blessed space. I also do write a little bit about security. Those are mostly my 2AM thoughts.
+[00:02:04.841 - 00:02:07.671] Incoming livestream: So, if you want to read those, do subscribe.
+[00:02:10.011 - 00:02:16.390] Incoming livestream: what are we going to talk about? A little bit about the problem, what exactly we are solving, my approach.
+[00:02:16.681 - 00:02:23.221] Incoming livestream: How it works and why it works, and a small walkthrough, and then how you can use it.
+[00:02:23.391 - 00:02:24.651] Incoming livestream: yourself.
+[00:02:27.131 - 00:02:35.250] Incoming livestream: But first, let me take you a year back, March 2025, how many guys have seen this Twitter post?
+[00:02:35.551 - 00:02:50.800] Incoming livestream: Pretty much. Okay. This guy, he wipe-coded an app, for a few days, and then he shared a lot about his app, but after, I think, a week, he received some attacks, and he did not know what to do.
+[00:02:52.041 - 00:02:55.110] Incoming livestream: And then he eventually has to shut down his app.
+[00:02:56.461 - 00:03:01.110] Incoming livestream: So… We are today in March 2026, and we're still talking about
+[00:03:01.231 - 00:03:04.351] Incoming livestream: Vip coding and the challenges of…
+[00:03:04.511 - 00:03:08.140] Incoming livestream: security context within the, within the wipe coding.
+[00:03:10.371 - 00:03:19.131] Incoming livestream: I wanna… I wanna also talk about how we actually got here. In the old days, we were probably using Stack Overflow to copy-paste a lot of code.
+[00:03:19.281 - 00:03:24.571] Incoming livestream: But these days, We do a lot of prompt engineering,
+[00:03:24.991 - 00:03:37.181] Incoming livestream: The current workflow that we follow right now is we see stuff, or probably think stuff, we say a prompt, we click on Accept All, and then we basically run stuff.
+[00:03:37.491 - 00:03:43.881] Incoming livestream: The focus these days is mostly around, is my code working? Rather than, is my code secure?
+[00:03:45.121 - 00:03:50.050] Incoming livestream: Due to this whole workflow, one of my biggest fears is that one day my…
+[00:03:50.271 - 00:03:58.950] Incoming livestream: grandma will call me and say that I've built this new dog walking app, can you please use it? And I'm actually not ready for that.
+[00:04:00.621 - 00:04:03.361] Incoming livestream: Now, the challenge is,
+[00:04:04.291 - 00:04:12.491] Incoming livestream: In the AppSec world, we know, like, all of the vendors probably are shouting that developer to security ratio is 100S to 1.
+[00:04:12.761 - 00:04:20.451] Incoming livestream: There are thousands of issues that we have to deal with. But the main challenge is with the…
+[00:04:20.781 - 00:04:24.020] Incoming livestream: increase in the code development.
+[00:04:24.891 - 00:04:31.411] Incoming livestream: We are… we will only be able to catch 40% of the… Bugs, or security flaws.
+[00:04:32.131 - 00:04:39.430] Incoming livestream: So, can we… what exactly are we missing in those 60% of the flaws?
+[00:04:39.621 - 00:04:44.230] Incoming livestream: These are basically when we don't really have a deep understanding of our security requirements.
+[00:04:44.431 - 00:04:49.431] Incoming livestream: They accept all cursor leads to hidden bugs and structural mess.
+[00:04:49.551 - 00:05:02.541] Incoming livestream: There's a… there's a ton of code that has been written, and we don't know, really, why it has been written. Ai also replicates insecure patents that are available from the public repositories.
+[00:05:02.741 - 00:05:10.830] Incoming livestream: And the fact that… The code that is generated seems plausible, but it is actually insecure code.
+[00:05:12.461 - 00:05:18.570] Incoming livestream: Now, the challenge really is that why can't we use the traditional methods of
+[00:05:18.681 - 00:05:24.741] Incoming livestream: you know, security detection and everything. Within white coding as well.
+[00:05:25.271 - 00:05:32.370] Incoming livestream: Well, we can still use it, but the speed at which the code is being developed is really…
+[00:05:32.431 - 00:05:45.920] Incoming livestream: not up to the mark, with white coding. Not only that, but, the design flaws, they are basically not going to be caught in the traditional, CICD scans.
+[00:05:47.321 - 00:05:55.720] Incoming livestream: Well, you can argue that we can review, we can threat model every feature, every new endpoint, every new system.
+[00:05:55.881 - 00:05:57.671] Incoming livestream: And then…
+[00:05:58.541 - 00:06:16.991] Incoming livestream: create new tickets, new prompts, and then feed them during webcoding, but… and there are actually companies that are working on this, on automating this whole workflow, but the challenge there is accuracy. How accurately they can detect what security context we need.
+[00:06:18.241 - 00:06:22.490] Incoming livestream: And because of that, it makes them unscalable as well.
+[00:06:23.631 - 00:06:36.501] Incoming livestream: So, the real question is, can we wipe securely? Given the constraints that the current approach doesn't scale, it has to match with the dev speed, and it has to be within the dev workflow.
+[00:06:36.561 - 00:06:43.710] Incoming livestream: the AppSec folks really care about developers not leaving their workflows, so that is one of the biggest constraints here.
+[00:06:44.791 - 00:06:52.531] Incoming livestream: One of the approaches that I have been following is, can we put the security context within the code generation loop itself?
+[00:06:52.981 - 00:07:03.461] Incoming livestream: What I mean by that is find what the security context that is needed, and put it before when the code is being written, or the code is being generated by our AI agents.
+[00:07:03.901 - 00:07:17.000] Incoming livestream: Can we actually verify, the output, immediately after the generation? And can we fix the… fix that code in line within… while the intent or the context is still fresh?
+[00:07:17.811 - 00:07:26.760] Incoming livestream: What I mean by that is, we have the context, generate the secure code with that context, scan it right there, and patch it immediately.
+[00:07:27.331 - 00:07:32.441] Incoming livestream: The result for that is, we have fewer findings, we have…
+[00:07:32.651 - 00:07:44.131] Incoming livestream: faster fixes, there's not a lot of rework would be needed, both from the developers and from the AppSec folks. And it is… it is within the dev workflow as well.
+[00:07:46.171 - 00:07:52.101] Incoming livestream: Now, we talk a lot about context, and we all know about context engineering these days, but…
+[00:07:52.261 - 00:07:57.731] Incoming livestream: What really, comprises a security context for wipe coding?
+[00:07:57.881 - 00:08:17.140] Incoming livestream: Now, a dev probably is working on a Jira ticket, maybe on a PRD for a new change that is a security context. Anything that is specific to the feature that the dev is working, any relevant best practices or internal policies or standards or compliance requirements.
+[00:08:17.330 - 00:08:20.411] Incoming livestream: What I call them is a security context pack.
+[00:08:22.051 - 00:08:30.471] Incoming livestream: And the code that is generated is constrained by that security context pack. What I mean by a security context is, like.
+[00:08:30.801 - 00:08:44.161] Incoming livestream: the data classification policies. For example, let's say if a developer is working on a PCI application where it has to deal with CART ID. Now, your compliance policy says that
+[00:08:44.301 - 00:08:50.960] Incoming livestream: we don't log that card ID in the error messages. Now, AI possibly doesn't know all of this.
+[00:08:51.181 - 00:08:59.560] Incoming livestream: So that data classification policies that is written in the internal docs will come in handy in the security context pack.
+[00:09:01.811 - 00:09:11.080] Incoming livestream: what I'm using, to implement this is, MCP, and I'm gonna mention, some other, possible
+[00:09:11.301 - 00:09:13.021] Incoming livestream: Tools as well.
+[00:09:13.871 - 00:09:28.570] Incoming livestream: The reason why I'm using MCP is, it is pretty standard protocol that is being used by multiple different, coding agents. You can also enforce permission and, make it auditable as well.
+[00:09:28.711 - 00:09:41.360] Incoming livestream: It is composable. You can, plug and play with different, APIs, like Jira, Confluence, your internal policies, even your scanners, like security scanners, as well.
+[00:09:42.641 - 00:09:47.860] Incoming livestream: It is also within the IDE, which means, like, it is within the dev workflow as well.
+[00:09:48.211 - 00:09:58.781] Incoming livestream: And one of the biggest things I like about MCP is basically context on demand. If the context is properly, written down.
+[00:09:59.611 - 00:10:05.810] Incoming livestream: It… it will not… it will not create monolithic… monolithic prompts.
+[00:10:06.861 - 00:10:10.160] Incoming livestream: Here's a high-level workflow. What…
+[00:10:10.951 - 00:10:30.911] Incoming livestream: my tool will probably follow. So, there's a developer who is working on a task. It provides the task requirements to the agent. Agent understands the scope, the data flows, and everything. It calls the MCP for security review, which does the pre-coding analysis via the MCP server.
+[00:10:31.141 - 00:10:37.110] Incoming livestream: It identifies what are the risks, what are the security guidance, all the advices.
+[00:10:37.241 - 00:10:56.651] Incoming livestream: And then it identifies the security requirements and put them into the prompt, which will be used for code generation. Now, the code… now, the agent actually writes the code, with the security context that has been provided. We run some security scan, see if we have any vulnerabilities.
+[00:10:56.841 - 00:11:02.421] Incoming livestream: If there are any vulnerabilities or design flaws, we fix them inline.
+[00:11:02.651 - 00:11:05.711] Incoming livestream: And they are applied immediately.
+[00:11:06.021 - 00:11:18.691] Incoming livestream: We re-verify, and then our code is actually PR-ready. And then when our CI scans kicks in, there are actually no issues. So this actually increases the speed of the developer.
+[00:11:20.871 - 00:11:30.311] Incoming livestream: These are the general tools that I build, in my, in my project. In case you guys are interested, here's the repo.
+[00:11:32.451 - 00:11:35.780] Incoming livestream: To keep the demo,
+[00:11:36.031 - 00:11:50.840] Incoming livestream: Small. I'll be following three, steps, secure coding workflow, where we are doing, a lightweight security review before the code is actually written. We'll write the code. We'll not write, but the agent will write.
+[00:11:50.951 - 00:12:01.120] Incoming livestream: And then we'll actually run, verify code security, which will try to verify all the requirements that are identified in Step 1.
+[00:12:02.631 - 00:12:06.270] Incoming livestream: For the demo purposes, I'm using a,
+[00:12:06.381 - 00:12:19.901] Incoming livestream: open source MCP observability tool, OBOT. I'm not associated with it, anyways, but I like the tool, so I cloned it, I used it, and I wanted to implement something that is based on my requirement.
+[00:12:20.601 - 00:12:38.320] Incoming livestream: So I asked the coding agent to give me… to build a webhook receiver endpoint. That will accept any incoming webhook from external services, like GitHub or Slack, and that triggers some other agent… agent-like workflow executions.
+[00:12:38.361 - 00:12:45.760] Incoming livestream: I also asked him, just to simplify, where to add all of this, and then the new route.
+[00:12:45.821 - 00:12:48.280] Incoming livestream: And just to try to be very specific.
+[00:12:49.391 - 00:12:58.491] Incoming livestream: Now, I did it in, two flows. So, once I disabled my tools and tried to generate the code, and do a security review.
+[00:13:00.651 - 00:13:04.420] Incoming livestream: During that security review, you can see that there are
+[00:13:05.231 - 00:13:08.240] Incoming livestream: Two issues that are identified.
+[00:13:08.371 - 00:13:21.040] Incoming livestream: Which were after the code has been generated. So, header forwarding sensitive… header forwarding leak-sensitive data, and then, authorization tokens, that are being passed around in the entire workflow.
+[00:13:23.391 - 00:13:24.321] Incoming livestream: I'm sorry.
+[00:13:27.981 - 00:13:38.461] Incoming livestream: But once I enable my tools, and perform a security review before the code is being written, you can see in the screenshot,
+[00:13:38.871 - 00:13:53.470] Incoming livestream: It tells you what the… what the task is, which is basically the requirement, what technologies it is using, so that it can pull in relevant security contexts relevant to Go, Kubernetes, and REST APIs.
+[00:13:54.701 - 00:14:09.241] Incoming livestream: It specifically mentions to include the guidelines, and then include prompt injection, which is… which means that whatever the security guidelines are, include that into… inject them into the prompt that is being used for the code generation.
+[00:14:11.591 - 00:14:24.061] Incoming livestream: After the pre-coding analysis, it identified that this is a high-risk, requirement, and with the key categories as API security, data validation, and some web security.
+[00:14:24.141 - 00:14:43.451] Incoming livestream: requirement. So, it pulls in all the guidelines related to those categories. And you can see that the key takeaways to build into the code from the start are validating all inputs, filtering out sensitive headers. That were actually a finding if we have not done this.
+[00:14:44.471 - 00:14:48.791] Incoming livestream: Proper handling, body size limits, and following, least privilege.
+[00:14:50.011 - 00:14:55.360] Incoming livestream: Step 2 is pretty simple. Based on all the requirements, the agent actually generates,
+[00:14:55.551 - 00:15:02.970] Incoming livestream: Generates the code with the security guidance, and it actually has header block lists baked into… baked into from the start.
+[00:15:04.391 - 00:15:13.421] Incoming livestream: Once the code is generated, we actually perform another code analysis, where you can see, it passes in the…
+[00:15:13.551 - 00:15:18.081] Incoming livestream: The code, whatever the file path is, and the security context.
+[00:15:18.231 - 00:15:30.580] Incoming livestream: Based on the analysis that we did in Step 1, it passes all of those guidance, and verifies if the code actually matches all of these best practices.
+[00:15:31.571 - 00:15:46.430] Incoming livestream: Now, one of the major advantages of this is basically the feedback is immediate when the context and the requirement, the developer requirement is still fresh, still in the chat window, and it is not somewhere in the CI pipeline.
+[00:15:47.941 - 00:15:54.671] Incoming livestream: This is the thought process of cursor. I know it is a little bit tighter. But…
+[00:15:54.811 - 00:16:01.610] Incoming livestream: If you can see, it performs the security review, no hard-coded password, no SQL queries, pass, pass, pass.
+[00:16:01.771 - 00:16:11.991] Incoming livestream: At the bottom, you can see the last line, it says, no critical or high severity issues found, and the implementation aligns well with security review guidance.
+[00:16:13.871 - 00:16:18.291] Incoming livestream: Okay, this is a much better view.
+[00:16:18.941 - 00:16:22.990] Incoming livestream: It basically gives you a table format, and saying that
+[00:16:23.101 - 00:16:27.381] Incoming livestream: All the, checklist items are basically passing.
+[00:16:27.621 - 00:16:31.330] Incoming livestream: And there are no critical high or medium security issues found.
+[00:16:34.181 - 00:16:42.070] Incoming livestream: Just to reiterate the… what the workflow was, we ran a Lyrate security review initially, before the code generation.
+[00:16:42.221 - 00:17:00.760] Incoming livestream: It returned high risk, flagged all the security guidelines that we need to pull in. It generates the code with proper security guidance, like, header block list, authorization cookies, X4 header and XQL IPs that are built in from line 1.
+[00:17:02.751 - 00:17:12.570] Incoming livestream: And other stuff as well. And then it actually verifies if the code that is being generated aligns with the security guidance that was provided in Step 1.
+[00:17:14.011 - 00:17:15.330] Incoming livestream: Oh,
+[00:17:15.741 - 00:17:25.701] Incoming livestream: You might think, like, this is so easy, but it isn't. The security guidelines that work for humans does not work very well with, with our AI.
+[00:17:27.161 - 00:17:32.941] Incoming livestream: So, a couple of things to notice here is…
+[00:17:33.121 - 00:17:46.940] Incoming livestream: We have all the security guidelines, available right there, within the context at the time of generation. These are some of the OWASP, cheat sheet and best practices that I have, put into the tool itself.
+[00:17:47.141 - 00:17:55.641] Incoming livestream: You can also, add your own, or pull in directly from Confluence, for example, or some other Google Docs.
+[00:17:57.441 - 00:18:03.270] Incoming livestream: Another key thing is, intelligent filtering while labels to prevent context flow.
+[00:18:04.851 - 00:18:15.191] Incoming livestream: all of these guidelines, they have a proper category so that the AI agent can actually filter it out pretty clearly, and…
+[00:18:15.411 - 00:18:31.081] Incoming livestream: what… where exactly it needs to identify all of these. So, for example, if you're talking about authentication, and you're building, or you're working towards JWT, it will actually pull in this, guide.
+[00:18:31.501 - 00:18:42.191] Incoming livestream: So, remember, if you're, using this, and using your own internal standards or guidelines, make sure to add these three,
+[00:18:42.661 - 00:18:43.631] Incoming livestream: tags.
+[00:18:46.321 - 00:18:53.650] Incoming livestream: Yeah, so if you want to make it your, if you want to use it internally, you can also inject your own thread models here.
+[00:18:53.741 - 00:19:08.850] Incoming livestream: You can have your own internal, secure coding guidelines, your golden paths, what you think are the best practices, or any approved libraries. SCA is, like, a big thing with, wipe coding.
+[00:19:09.221 - 00:19:14.301] Incoming livestream: And then you can also define what, is the definition of done in this.
+[00:19:17.541 - 00:19:24.041] Incoming livestream: Where it helps, it helps in, repetitive work, and identifying known patterns.
+[00:19:24.151 - 00:19:33.760] Incoming livestream: It can identify common, vulnerabilities very early, so the developer don't have to wait for the CI scans to, to, to, trigger.
+[00:19:34.601 - 00:19:47.600] Incoming livestream: However, it doesn't replace, any threat modeling that is, being done for the new systems. You should absolutely do it. And for big systems or big changes, you absolutely do a human review as well.
+[00:19:50.151 - 00:19:51.011] Incoming livestream: Cool.
+[00:19:52.641 - 00:20:01.120] Incoming livestream: Finally, I believe that pipe coding, fails when the context is missing. We will always have some
+[00:20:01.421 - 00:20:04.930] Incoming livestream: Some flaw, if we do not provide the correct context.
+[00:20:05.471 - 00:20:11.311] Incoming livestream: The way to solve is, we can inject security requirements right before the code is generated.
+[00:20:13.761 - 00:20:24.251] Incoming livestream: We can also verify and patch immediately after the code is generated, so that would remove a lot of developer time, and that is one way to
+[00:20:24.371 - 00:20:27.381] Incoming livestream: For security to match the speed of developers.
+[00:20:28.251 - 00:20:33.570] Incoming livestream: on… use MCP for, providing the context.
+[00:20:33.831 - 00:20:37.150] Incoming livestream: You can also use hooks, which makes…
+[00:20:37.351 - 00:20:41.960] Incoming livestream: All of these tools calling were very deterministic.
+[00:20:42.101 - 00:20:46.651] Incoming livestream: However, tools, Hooks are not supported by all the IDEs.
+[00:20:46.771 - 00:20:49.621] Incoming livestream: And it's only by Claude and cursor.
+[00:20:50.401 - 00:20:55.400] Incoming livestream: It also… MCP also makes it portable as well, so that's why I chose MCP.
+[00:20:57.011 - 00:20:58.940] Incoming livestream: And that's it. Thank you.
+[00:21:09.481 - 00:21:10.971] Incoming livestream: I got a first question.
+[00:21:11.181 - 00:21:15.030] Incoming livestream: Do you think this will be initially, or sorry, eventually just…
+[00:21:15.601 - 00:21:28.201] Incoming livestream: adapted it as a skill. Like, when I make a request, I'm like, hey, I'm doing a feature, here's what the feature looks like, blah blah blah, prompt, do you think there'll just be a sub-agent skill automatically, very quickly, here to do this? You can make it a skill, but…
+[00:21:28.551 - 00:21:45.550] Incoming livestream: for big organizations, like, how much… how much of the context within the scale are you going to put in? Plus, are you going to put in to every repo? Let's say an organization has 1,000 repos, so you would have to put in, the scale requirements into 1,000 repos. So, you need a centralized place.
+[00:21:45.681 - 00:21:51.070] Incoming livestream: Where I can actually pull in all of this context. Plus, the changes that you make.
+[00:21:51.201 - 00:21:56.920] Incoming livestream: If you're putting it into skills, you would now have to make it into 1,000 repos, which doesn't… which makes it non-scalable.
+[00:21:57.411 - 00:22:00.111] Incoming livestream: Perfect. Does anyone have a question?
+[00:22:01.251 - 00:22:02.531] Incoming livestream: Perfect, I'm coming to you.
+[00:22:09.371 - 00:22:11.981] Incoming livestream: Thank you, it was a great talk.
+[00:22:12.621 - 00:22:29.180] Incoming livestream: My question is about when does this trigger, like, security review trigger? Would it trigger when code is committed to the code repository, or before that, during the IDE? It's within the IDE. Within the IDE. Yeah, when the code is being generated. Great, thank you.
+[00:22:34.121 - 00:22:39.411] Incoming livestream: Yeah, awesome talk, thanks. So, how do you make sure that this actually happens?
+[00:22:39.541 - 00:22:53.670] Incoming livestream: Right? Like, do you have telemetry about how often developers are doing things, and then how often they're calling the tool, and, like, cross-compare? Or, you mentioned hooks earlier, I know you can use those to just gather information, like, when people submit prompts and things like that, or, like, and, like, how do you even…
+[00:22:54.011 - 00:23:00.621] Incoming livestream: encourage the local IDEs to call the MCP server? Yeah, so a lot of it depends upon your tool description.
+[00:23:00.831 - 00:23:05.881] Incoming livestream: So you have to make the tool description of, your MCPs.
+[00:23:06.031 - 00:23:08.520] Incoming livestream: So that… in such a way that the…
+[00:23:08.681 - 00:23:11.301] Incoming livestream: Your agent actually calls them.
+[00:23:11.581 - 00:23:17.370] Incoming livestream: That is one of the functionalities of MCPs, that… You know, you can.
+[00:23:17.701 - 00:23:19.630] Incoming livestream: You can make a call every time?
+[00:23:20.001 - 00:23:31.331] Incoming livestream: But, it's… I would say it's not 100% time. That's why you can use hooks, to make it deterministic. So, with hooks, you can actually call it, like, every time.
+[00:23:32.881 - 00:23:34.791] Incoming livestream: We got time for one more?
+[00:23:37.071 - 00:23:46.921] Incoming livestream: Hi, have you measured how well it's working? Like, what residual security bugs are found after using this process? Yeah, it definitely helps in a lot of…
+[00:23:47.261 - 00:23:47.951] Incoming livestream: Oops, sorry.
+[00:23:49.851 - 00:24:02.361] Incoming livestream: it definitely helps in a lot of, business logic issues, compared to the things that are not identified with the security scanners, so it has been very helpful there. Plus,
+[00:24:02.801 - 00:24:18.720] Incoming livestream: like I mentioned, developers work on geo tickets, so they don't have to come to us, if we provide them certain guidance, and if they're using, this tool, the agent automatically pulls all the requirements, so that has been one of the advantages as well.
+[00:24:18.921 - 00:24:26.550] Incoming livestream: And depending upon, the tool description, it calls in the security review and the code verifier as well.
+[00:24:28.561 - 00:24:30.611] Incoming livestream: Perfect. Thank you very much. Thank you.
+[00:25:12.541 - 00:25:13.630] Incoming livestream: Alright.
+[00:25:14.291 - 00:25:18.390] Incoming livestream: I'm happy for the conversation, but I do ask that it moves all the way around the corner.
+[00:25:32.210 - 00:25:32.911] Incoming livestream: Ready?
+[00:25:34.121 - 00:25:35.051] Incoming livestream: All right.

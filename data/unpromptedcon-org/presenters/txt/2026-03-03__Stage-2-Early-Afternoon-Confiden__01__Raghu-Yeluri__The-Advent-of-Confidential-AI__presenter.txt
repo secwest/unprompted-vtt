@@ -1,0 +1,240 @@
+[00:00:52.223 - 00:00:53.473] Incoming livestream: Good afternoon.
+[00:00:54.453 - 00:00:55.533] Incoming livestream: Lunch was good?
+[00:00:56.993 - 00:01:01.513] Incoming livestream: All right. Hey, my name's Raghu Yeluri, and I'm from Intel Corporation.
+[00:01:02.153 - 00:01:06.083] Incoming livestream: And I have, two parts for my day job.
+[00:01:06.823 - 00:01:10.153] Incoming livestream: One, I work on security for AI.
+[00:01:11.433 - 00:01:16.893] Incoming livestream: Which is a big part of my day job. The second part of my job is AI for security, which is…
+[00:01:18.753 - 00:01:26.132] Incoming livestream: what do we need to do to make sure that security is… security assurance is better with AI, okay?
+[00:01:26.293 - 00:01:28.782] Incoming livestream: This session is about
+[00:01:29.253 - 00:01:33.572] Incoming livestream: Securing AI. That's my big chunk of my time, so that's what I'm going to talk about.
+[00:01:33.952 - 00:01:36.603] Incoming livestream: How many of you heard about confidential computing?
+[00:01:38.133 - 00:01:40.643] Incoming livestream: How many of you heard about confidential AI?
+[00:01:42.133 - 00:01:48.473] Incoming livestream: You know, the joke always about confidential AI is it's so confidential that it stays in this room, okay?
+[00:01:49.963 - 00:01:54.183] Incoming livestream: Alright, so, I'm gonna tell you what confidential AI is.
+[00:01:54.423 - 00:01:56.343] Incoming livestream: How it works at a high level?
+[00:01:56.693 - 00:02:02.353] Incoming livestream: And more importantly, I'm going to tell you why you guys should deploy it. I'm going to show you 3 examples.
+[00:02:03.003 - 00:02:06.083] Incoming livestream: One, which is a Google example, Google Cloud.
+[00:02:06.532 - 00:02:16.462] Incoming livestream: The other one is, an AI fine-tuning example with, Talus, end-to-end with, confidential compute.
+[00:02:16.723 - 00:02:19.743] Incoming livestream: And then I'm sure the one everybody wants to know is.
+[00:02:19.853 - 00:02:23.043] Incoming livestream: Where does confidential computing come with agentic AI?
+[00:02:23.863 - 00:02:24.613] Incoming livestream: Okay.
+[00:02:25.273 - 00:02:30.152] Incoming livestream: If there are questions that can't wait till the end, please ask me through the session.
+[00:02:30.372 - 00:02:35.703] Incoming livestream: Okay, so this is the industry definition for confidential AI.
+[00:02:35.983 - 00:02:44.862] Incoming livestream: It is the overlay of AI on confidential computing, or if you think about it the other way, using confidential computing for protecting AI.
+[00:02:45.213 - 00:03:02.053] Incoming livestream: So what's confidential computing? Very quickly, it has three pieces to it. Number one, you provide data in use protection by running your applications, your workloads, in hardware-protected environments called trusted execution environments.
+[00:03:02.913 - 00:03:03.633] Incoming livestream: Okay?
+[00:03:03.803 - 00:03:05.923] Incoming livestream: Everything that runs in there.
+[00:03:06.503 - 00:03:13.942] Incoming livestream: Is encrypted, and it's in the control of the owner of that application workload data, whichever it is.
+[00:03:14.143 - 00:03:18.923] Incoming livestream: Okay? And the third important property of confidential computing is
+[00:03:19.423 - 00:03:27.072] Incoming livestream: You're gonna get what is called an attestation, which says, this is exactly what the environment in which you are running it.
+[00:03:27.363 - 00:03:30.973] Incoming livestream: It's gonna tell you The hardware it is in.
+[00:03:31.473 - 00:03:35.723] Incoming livestream: What's the firmware that's running there? What's the software that's running there?
+[00:03:35.863 - 00:03:42.533] Incoming livestream: And if you are happy with it, that's when you interact with it, give it secrets, give it keys, all kinds of things.
+[00:03:43.073 - 00:03:46.783] Incoming livestream: And why are we so interested in confidential computing?
+[00:03:47.333 - 00:03:53.252] Incoming livestream: You can see on the right side of the picture there, it gives you some good protections.
+[00:03:53.373 - 00:04:01.203] Incoming livestream: Okay? It gives you protections from day zeros to some degree, It protects you from the…
+[00:04:01.563 - 00:04:06.133] Incoming livestream: Administrators of your infrastructure, whether it's on-prem or in the cloud.
+[00:04:07.183 - 00:04:12.523] Incoming livestream: It gives you protection from other tenants that are running on the same infrastructure.
+[00:04:14.203 - 00:04:18.022] Incoming livestream: Okay? So confidential computing that way gives you
+[00:04:18.063 - 00:04:36.063] Incoming livestream: the protection from the infrastructure on which your workloads are running. You don't need to worry about, hey, this cloud operator could get access to what I'm doing, this cloud operator could have a rogue administrator that takes a snapshot of your virtual machine or your container, and they got all your secrets.
+[00:04:36.063 - 00:04:41.382] Incoming livestream: All of those threat vectors, Disappear for the most part with confidential computing.
+[00:04:41.853 - 00:04:45.823] Incoming livestream: And for AI workloads, that's why it's very important.
+[00:04:45.933 - 00:04:54.263] Incoming livestream: Okay, it protects your models, it protects your data. If you're doing Gen AI stuff, it protects your prompts, your context windows, all of that stuff.
+[00:04:54.673 - 00:04:56.603] Incoming livestream: Ken, I'm gonna show you how, okay?
+[00:04:58.373 - 00:05:01.982] Incoming livestream: there are two models for confidential AI, okay? One is…
+[00:05:03.093 - 00:05:11.053] Incoming livestream: running everything in confidential computing on CPUs, okay? I'm an Intel guy, so I have to talk about this use case, okay?
+[00:05:11.683 - 00:05:15.642] Incoming livestream: It's good for inferencing, it's good for certain model sizes.
+[00:05:15.873 - 00:05:18.833] Incoming livestream: Okay, 10 billion model, 10 billion parameters.
+[00:05:19.383 - 00:05:24.812] Incoming livestream: CPUs with, you know, matrix extensions in the infrastructure.
+[00:05:25.203 - 00:05:26.323] Incoming livestream: do pretty good.
+[00:05:26.783 - 00:05:28.492] Incoming livestream: Okay? But…
+[00:05:28.823 - 00:05:37.943] Incoming livestream: that's not enough. We know that. So that's why there is this second model, which is called the hybrid model, or the accelerated computing model, where
+[00:05:38.073 - 00:05:41.382] Incoming livestream: you work in a combination of CPUs and GPUs.
+[00:05:42.043 - 00:05:45.293] Incoming livestream: Okay? Intel CPUs have confidential computing.
+[00:05:45.753 - 00:05:48.543] Incoming livestream: NVIDIA GPUs have confidential computing.
+[00:05:49.033 - 00:05:51.283] Incoming livestream: So you can get them together.
+[00:05:51.513 - 00:06:05.332] Incoming livestream: And you can have a good end-to-end story of confidential computing going from CPUs into GPUs. So, essentially, it is one extended trusted execution environment between CPUs and GPUs.
+[00:06:06.013 - 00:06:09.453] Incoming livestream: Okay? There are two models for doing it.
+[00:06:09.783 - 00:06:14.083] Incoming livestream: In the near term, you know, it's called a software-based model.
+[00:06:14.263 - 00:06:18.983] Incoming livestream: You know, for folks who are familiar, they call it the bounce buffer solution, where
+[00:06:19.173 - 00:06:23.113] Incoming livestream: the CPU writes into a buffer, it's an encrypted form.
+[00:06:23.393 - 00:06:28.703] Incoming livestream: The GPU picks it up from the buffer, and the CPU and the GPU share the secret.
+[00:06:28.843 - 00:06:37.983] Incoming livestream: So, things are encrypted, put on the buffer, GPUs pick up from there. In the encrypted form, they have the secret, so they decrypt it, and they run it in the GPUs.
+[00:06:38.253 - 00:06:41.803] Incoming livestream: But in the longer term, year and a half, two years out.
+[00:06:42.413 - 00:06:45.783] Incoming livestream: You don't need this software solution, it's all done in hardware.
+[00:06:46.213 - 00:06:48.783] Incoming livestream: The PCIe bus gets encrypted.
+[00:06:48.983 - 00:07:03.773] Incoming livestream: And then there is a negotiation between the CPUs and the GPUs on how they trust each other, and the proofs for trust, and then they pass that information in a very, very efficient way between the CPUs and the GPUs.
+[00:07:04.163 - 00:07:06.072] Incoming livestream: By the way, you guys can hear me okay, right?
+[00:07:06.353 - 00:07:07.242] Incoming livestream: Okay, thank you.
+[00:07:07.953 - 00:07:09.973] Incoming livestream: Alright, that's a good answer, man.
+[00:07:11.593 - 00:07:16.043] Incoming livestream: Alright, why do we care about confidential AI so much?
+[00:07:17.823 - 00:07:34.083] Incoming livestream: it meets regulations very well, okay? Whether you look at DORA, whether you look at the new executive order from the US, or you look at the European Union AI Act, there are clear nuggets in all of them which point towards the use of confidential computing.
+[00:07:35.723 - 00:07:36.963] Incoming livestream: That's why
+[00:07:37.093 - 00:07:48.262] Incoming livestream: A lot of enterprises, a lot of cloud providers, everybody seemed to want to use confidential computing because it's a big checkmark item from a regulation side.
+[00:07:51.593 - 00:07:59.792] Incoming livestream: You know, Intel has been doing confidential computing for a very long time, okay? I'm sure many of you are familiar with Intel SGX.
+[00:07:59.953 - 00:08:03.302] Incoming livestream: Which was our first foray into confidential computing.
+[00:08:03.653 - 00:08:06.983] Incoming livestream: It was not for the faint-hearted, Okay.
+[00:08:07.643 - 00:08:12.472] Incoming livestream: It required quite a lot of hand-holding to make sure that
+[00:08:12.703 - 00:08:17.022] Incoming livestream: You really know what you want to run inside confidential computing.
+[00:08:17.183 - 00:08:20.523] Incoming livestream: But the positive side of that was.
+[00:08:20.793 - 00:08:24.603] Incoming livestream: It was a very well-controlled security environment.
+[00:08:25.123 - 00:08:28.402] Incoming livestream: with no access for anybody other than the CPU.
+[00:08:29.233 - 00:08:34.133] Incoming livestream: Okay? But obviously, you know, everybody wants this concept called lift and shift.
+[00:08:34.533 - 00:08:39.793] Incoming livestream: Where they can, take their containers, they can take their workloads.
+[00:08:39.963 - 00:08:44.943] Incoming livestream: Run it in a regular environment, and then move it into a confidential computing environment.
+[00:08:45.083 - 00:08:47.023] Incoming livestream: With the easy button, pretty much.
+[00:08:47.673 - 00:08:52.732] Incoming livestream: That's where Intel TDX comes in, Trusted Domain Extensions, which is the second one.
+[00:08:53.043 - 00:09:09.803] Incoming livestream: which guarantees you that you can take your virtual machines as they are today, the VM images, or your containers, and then run them in an environment which is confidential computing. And the way it manifests is following. You go to your cloud provider, Azure, GCP,
+[00:09:10.033 - 00:09:13.672] Incoming livestream: IBM, Oracle in preview today.
+[00:09:14.673 - 00:09:23.972] Incoming livestream: you say, hey, you get a VM instance, you know, whatever instance you have, 26 vCPUs with 128 gigabit RAM, right?
+[00:09:24.263 - 00:09:30.062] Incoming livestream: you can go pick another instance which says confidential compute instance. Same properties.
+[00:09:30.623 - 00:09:38.852] Incoming livestream: 68 GPU, CPUs, 128 gigabit RAM, and you can say, oh, by the way, I want one or two NVIDIA GPUs with it.
+[00:09:39.633 - 00:09:41.932] Incoming livestream: It is a confidential computing instance.
+[00:09:42.043 - 00:09:46.432] Incoming livestream: You can run your virtual machine images, your containers, exactly the same way.
+[00:09:46.543 - 00:09:55.653] Incoming livestream: The management plane is the same, the control plane is the same, the operation model is exactly identical to regular virtual machines. No change.
+[00:09:56.013 - 00:10:01.503] Incoming livestream: Okay? The added benefit? Now you are protected in use, okay?
+[00:10:01.643 - 00:10:07.223] Incoming livestream: The rogue… an administrator at the cloud provider cannot look into what your virtual machine is.
+[00:10:08.093 - 00:10:11.203] Incoming livestream: They can take as many snapshots as they want.
+[00:10:11.303 - 00:10:13.142] Incoming livestream: But it's all gonna be cipher.
+[00:10:13.373 - 00:10:16.663] Incoming livestream: the key for that one is in the CPU, so nobody else can see it.
+[00:10:17.833 - 00:10:20.473] Incoming livestream: Or the GPUs, in case you're running it in GPUs.
+[00:10:20.733 - 00:10:36.023] Incoming livestream: Okay? So that's the benefit of confidential computing, okay? Remember I talked to you about attestation, okay? Without attestation, confidential computing doesn't mean anything, okay? Your cloud provider told you, hey, I'm giving you an instance of confidential compute.
+[00:10:36.353 - 00:10:38.353] Incoming livestream: But do you know for sure? You got it?
+[00:10:38.943 - 00:10:40.803] Incoming livestream: That's where attestation comes in.
+[00:10:41.093 - 00:10:45.492] Incoming livestream: Okay? Attestation is gonna give you a cryptographic proof that
+[00:10:45.763 - 00:10:49.753] Incoming livestream: You are, in fact, running in a confidential computing environment.
+[00:10:50.333 - 00:10:57.252] Incoming livestream: that is genuine to the provider of it. It could be Intel, it could be AMD, it could be NVIDIA GPUs.
+[00:10:57.413 - 00:11:02.053] Incoming livestream: You have proof that you are running in a legitimate, confidential computing environment.
+[00:11:02.583 - 00:11:05.113] Incoming livestream: It is patched, Correctly?
+[00:11:05.443 - 00:11:08.172] Incoming livestream: To the level that you are satisfied with?
+[00:11:08.603 - 00:11:14.493] Incoming livestream: And then, more importantly, your workloads that are running in are exactly what you expected them to be.
+[00:11:14.663 - 00:11:21.572] Incoming livestream: If you're running a container, you would have a measurement of it, and you can verify that measurement to be what it needs to be.
+[00:11:22.223 - 00:11:24.362] Incoming livestream: That's what attestation provides.
+[00:11:24.873 - 00:11:28.182] Incoming livestream: Okay? There are multiple ways of doing attestation again.
+[00:11:28.423 - 00:11:34.423] Incoming livestream: You can, I'm gonna come back to that previous one.
+[00:11:34.693 - 00:11:36.962] Incoming livestream: Who provides the attestation systems?
+[00:11:38.073 - 00:11:39.883] Incoming livestream: Is it the cloud provider?
+[00:11:40.313 - 00:11:42.022] Incoming livestream: Or is it a third party?
+[00:11:42.373 - 00:11:51.033] Incoming livestream: Or is do-it-yourself, okay? The question that you need to ask yourself is, Will you be comfortable?
+[00:11:51.243 - 00:11:55.692] Incoming livestream: If the cloud provider who's giving you confidential computing environment
+[00:11:56.103 - 00:12:00.523] Incoming livestream: is also telling you that, yeah, it's trusted, I'm giving you proof of it.
+[00:12:00.923 - 00:12:04.533] Incoming livestream: For some workloads, it's okay. For some customers, it's perfectly fine.
+[00:12:04.683 - 00:12:08.312] Incoming livestream: Okay? They trust the cloud provider for a lot of other things.
+[00:12:08.813 - 00:12:11.603] Incoming livestream: So they trust on this as well, which is perfectly fine.
+[00:12:11.883 - 00:12:18.632] Incoming livestream: But, there are a class of customers in the business segments, like regulated industries especially.
+[00:12:19.583 - 00:12:25.963] Incoming livestream: you need that separation of duties. What, you know, in some securities domains, they call the four eyes principle.
+[00:12:26.303 - 00:12:30.493] Incoming livestream: The provider of the infrastructure, should be different.
+[00:12:30.653 - 00:12:35.333] Incoming livestream: Then the person who says, it's a trustworthy infrastructure that you got.
+[00:12:36.003 - 00:12:39.063] Incoming livestream: So that's why you look at a third-party attestation system.
+[00:12:39.623 - 00:12:47.983] Incoming livestream: Okay? Intel is one of those providers which has that independent third-party attestation system called Intel Trust Authority.
+[00:12:48.363 - 00:12:54.303] Incoming livestream: Doesn't matter if your workloads are in Google, Azure, IBM,
+[00:12:54.793 - 00:13:00.383] Incoming livestream: in China, whether it's Alibaba, whether it is on-prem for you.
+[00:13:00.533 - 00:13:05.603] Incoming livestream: Intel Trust Authority has the ability to provide that verification, that attestation for you.
+[00:13:07.203 - 00:13:11.122] Incoming livestream: Okay? So, again, I'm not saying use this versus that.
+[00:13:11.263 - 00:13:17.592] Incoming livestream: It depends on your business, it depends on your security requirements. You have options for attestation as well.
+[00:13:18.113 - 00:13:24.852] Incoming livestream: Okay? Now, the question somebody asked me before the session started is, Is TDX available today?
+[00:13:25.193 - 00:13:28.742] Incoming livestream: Here is the one slider you want to take a picture of, Alex.
+[00:13:30.933 - 00:13:37.933] Incoming livestream: So, it is available across many cloud providers. You can see the list there.
+[00:13:39.023 - 00:13:46.962] Incoming livestream: Azure launched it a couple of days ago, you know? When I wrote this slide, it had preview next to it, which I took out today.
+[00:13:48.173 - 00:13:51.453] Incoming livestream: You can tell it's available in many places.
+[00:13:51.643 - 00:14:06.353] Incoming livestream: Okay? It is also available in… as part of the operating systems, so if you're doing something on-prem, you have your own AI cluster, for example, you have the ability to get it from the various OS vendors as well.
+[00:14:08.183 - 00:14:08.853] Incoming livestream: Okay.
+[00:14:10.293 - 00:14:10.953] Incoming livestream: No.
+[00:14:12.193 - 00:14:15.922] Incoming livestream: a quick slide on intertrust authority before I go to the examples, right?
+[00:14:16.833 - 00:14:20.413] Incoming livestream: I said Intel Trust Authority is that independent attestation system.
+[00:14:21.093 - 00:14:25.583] Incoming livestream: Okay? It's available at a SaaS, it's available for on-prem deployments.
+[00:14:25.903 - 00:14:31.392] Incoming livestream: And… Through one API, you can get attestation of your CPUs.
+[00:14:31.503 - 00:14:40.372] Incoming livestream: and your GPUs as well. It could be one NVIDIA H100, one NVIDIA Blackwell, or it could be 8 Blackwells on the system.
+[00:14:41.103 - 00:14:43.493] Incoming livestream: You get unified manifestation of all of that.
+[00:14:44.633 - 00:15:01.532] Incoming livestream: Okay? And why is that important? As an application person, you don't want to deal with multiple workflows. I don't want to deal with a workflow for Intel CPUs. I don't want to deal for a workflow for NVIDIA GPUs. That's why we work together, the two companies, and we have this
+[00:15:01.783 - 00:15:11.603] Incoming livestream: unified API, where you make one call, it figures out, hey, I am connected to two GPUs, so I need to make sure the attestation happens for both of those.
+[00:15:12.733 - 00:15:24.952] Incoming livestream: Okay? Alright, so much for theory. Now, let me show you examples of this, okay? This is a release from Google called Google Confidential Space. How many of you heard of Confidential Space from Google?
+[00:15:26.103 - 00:15:28.893] Incoming livestream: Maybe a few, okay. So very quickly…
+[00:15:29.193 - 00:15:37.412] Incoming livestream: Google Confidential Space is like a data clean room for AI, okay? What it is, is you can take your containers.
+[00:15:38.163 - 00:15:44.593] Incoming livestream: You run it in a confidential computing environment, the…
+[00:15:44.943 - 00:15:47.783] Incoming livestream: OS that runs inside that VM,
+[00:15:48.183 - 00:15:53.672] Incoming livestream: Your application, which is your container, Everything is measured
+[00:15:53.873 - 00:15:57.163] Incoming livestream: And that measurements are available for verification.
+[00:15:58.503 - 00:16:04.012] Incoming livestream: And the confidential space environment, as part of launching your container.
+[00:16:04.413 - 00:16:07.112] Incoming livestream: will attest to Intel Trust Authority.
+[00:16:07.653 - 00:16:16.272] Incoming livestream: And the trust authority verifies all the policies that need to be verified, and it's gonna give a token, which is called an attestation token.
+[00:16:17.063 - 00:16:22.573] Incoming livestream: This token is now given to all the data sources.
+[00:16:23.113 - 00:16:26.463] Incoming livestream: Whether it is a data source in Google Cloud.
+[00:16:26.573 - 00:16:31.392] Incoming livestream: whether it's a data source in Amazon, or whether it's on-prem for you.
+[00:16:31.823 - 00:16:34.903] Incoming livestream: That… that token is like your…
+[00:16:35.073 - 00:16:38.562] Incoming livestream: Proof to the identity of identity.
+[00:16:38.733 - 00:16:48.713] Incoming livestream: That your access control and management systems will verify, and based on that verification, they give access to the data to that workload.
+[00:16:49.313 - 00:16:55.293] Incoming livestream: So, in the example that you see here, the AI workload is that green box that is there.
+[00:16:55.753 - 00:17:03.642] Incoming livestream: The entire red box is the DDX environment. Everything inside that is measured, and it is verified.
+[00:17:03.923 - 00:17:15.683] Incoming livestream: And that verification token is what is provided to the Google Cloud and the Amazon AWS protected resources. These are databases, keys, things like that.
+[00:17:15.883 - 00:17:19.333] Incoming livestream: Only when those resources verify that token.
+[00:17:19.903 - 00:17:23.533] Incoming livestream: They give the resource access token to that workload.
+[00:17:24.523 - 00:17:34.872] Incoming livestream: And I'm sure folks who work on Google and AWS understand this very well. Without that resource access token, your workloads cannot access anything in those resources.
+[00:17:36.723 - 00:17:41.853] Incoming livestream: Okay? The… the commitment, the security promise this gives you is
+[00:17:42.683 - 00:17:46.893] Incoming livestream: Nobody knows what's inside that workload other than the workload owner.
+[00:17:47.703 - 00:17:52.843] Incoming livestream: and the CPU. When it's running in the CPU, that's the only time it's in the clear.
+[00:17:53.753 - 00:17:57.993] Incoming livestream: The data comes encrypted into that box, that red box that you see.
+[00:17:58.523 - 00:18:03.453] Incoming livestream: the data is decrypted inside that red box. Nobody else sees it.
+[00:18:05.813 - 00:18:24.372] Incoming livestream: Okay? This is available from Google today. They are, available on Google Cloud, and I don't know if it's available on the Google Distributed Cloud, which is their on-prem version, but it's definitely available on their Google Public Cloud. You can get a confidential space instance on a click.
+[00:18:24.393 - 00:18:28.262] Incoming livestream: And then you can get your container workloads, and you can deploy them.
+[00:18:30.083 - 00:18:36.133] Incoming livestream: Okay? The next example is probably something more interesting for people who are AI practitioners.
+[00:18:36.623 - 00:18:42.533] Incoming livestream: This example is with Talus, which is a pretty well-known security company.
+[00:18:43.683 - 00:18:48.742] Incoming livestream: there is an ISP who has an imaging model.
+[00:18:49.523 - 00:18:54.473] Incoming livestream: And this model… Hospitals need to use this imaging model.
+[00:18:54.813 - 00:18:57.043] Incoming livestream: So that they can fine-tune it.
+[00:18:57.243 - 00:19:00.682] Incoming livestream: So that it's very… the efficacy of the model gets better.
+[00:19:01.343 - 00:19:07.782] Incoming livestream: But the problem is, One hospital's data is not enough.
+[00:19:08.483 - 00:19:10.722] Incoming livestream: To improve the efficacy of the model.
+[00:19:10.903 - 00:19:26.592] Incoming livestream: you need the data from multiple hospitals, and we all know how important PII is, and, you know, all the HIPAA regulations and all of that. So, you have a bunch of mutually untrusting parties, or distrusting parties.
+[00:19:26.983 - 00:19:29.483] Incoming livestream: That need to cooperate with each other.
+[00:19:29.983 - 00:19:32.153] Incoming livestream: To improve the efficacy of the model.
+[00:19:33.603 - 00:19:39.093] Incoming livestream: The model owner is worried that if they put the model somewhere.
+[00:19:39.363 - 00:19:48.023] Incoming livestream: their intellectual property is… could be lost. So, they become another untrusted party as well, distrusted party in this case.
+[00:19:48.423 - 00:19:57.042] Incoming livestream: So what do they do? They encrypt everything with the Talus CypherTrust key management system.
+[00:19:58.543 - 00:20:08.342] Incoming livestream: So everybody, Hospital A, B, C, before they bring the data, they provision a key in the CypherTrust platform.
+[00:20:08.853 - 00:20:14.213] Incoming livestream: They get their encryption key, and they encrypt the model, and encrypt the data sets.
+[00:20:14.983 - 00:20:18.123] Incoming livestream: The model owner does exactly the same thing as well.
+[00:20:18.723 - 00:20:21.642] Incoming livestream: They get the key from the CypherTrust platform.
+[00:20:21.813 - 00:20:26.983] Incoming livestream: They encrypt their… the fine… whatever that image diagnostic model is.
+[00:20:27.353 - 00:20:33.623] Incoming livestream: And they bring all this encrypted collateral into a confidential computing environment.
+[00:20:35.523 - 00:20:42.033] Incoming livestream: And once the CypherTrust platform talks to an attestation system like Intel Trust Authority.
+[00:20:42.493 - 00:20:55.332] Incoming livestream: it verifies them, and based on the individual policies, it releases the decryption keys into that trusted execution environment, the middle box that you see with CPUs and GPUs.
+[00:20:56.123 - 00:21:04.553] Incoming livestream: The datasets get decrypted there, the model gets decrypted there, the model gets fine-tuned there for whatever period of time.
+[00:21:04.743 - 00:21:09.173] Incoming livestream: The datasets get deleted, The model gets re-encrypted.
+[00:21:09.493 - 00:21:11.682] Incoming livestream: Sent back to the model owner.
+[00:21:12.033 - 00:21:18.122] Incoming livestream: Now, the model has been fully fine-tuned, With multiple hospital data.
+[00:21:19.193 - 00:21:26.703] Incoming livestream: And it is encrypted back to the model owner, and they deliver it to the individual hospitals.
+[00:21:27.493 - 00:21:34.123] Incoming livestream: So what did we get with this thing? The model owner's IP is protected. There is guarantee that nobody
+[00:21:34.273 - 00:21:37.183] Incoming livestream: Saw what's in the model, nobody can steal the model.
+[00:21:37.763 - 00:21:40.952] Incoming livestream: The data sets that are coming from the various hospitals.
+[00:21:42.033 - 00:21:45.613] Incoming livestream: Nobody sees the data except the model training process.
+[00:21:46.523 - 00:21:49.883] Incoming livestream: So, their security requirements are met as well.
+[00:21:50.123 - 00:21:57.043] Incoming livestream: And then the ultimate benefit is the efficacy of the model got better, because it got trained on multiple hospital data sets.
+[00:21:58.323 - 00:22:10.562] Incoming livestream: Okay? The last example I'm going to show you is agentic AI and confidential computing, okay? I'm sure everybody has their own picture of what an agent is and what it does. This is my picture.
+[00:22:10.923 - 00:22:16.363] Incoming livestream: Okay? Has a bunch of, MCP servers, not surprisingly.
+[00:22:16.543 - 00:22:18.362] Incoming livestream: Talking to different tools.
+[00:22:18.633 - 00:22:27.173] Incoming livestream: There's a reasoning engine with a language model, a big language model, so that I know what my plans are, all the reasoning stuff happens there.
+[00:22:27.543 - 00:22:33.243] Incoming livestream: But I also have domain models, okay? This is where Agentic AI is going, in my view.
+[00:22:33.423 - 00:22:36.193] Incoming livestream: It's not one large model doing everything.
+[00:22:36.293 - 00:22:42.452] Incoming livestream: Enterprises are gonna have a lot of localized domain models, which are very efficient.
+[00:22:42.473 - 00:22:58.692] Incoming livestream: very effective, and then the security guarantees are there. So, you're gonna have a bunch of local domain models, you have rags feeding them, all of that stuff. But, the important thing is MCP servers will run in confidential computing. That's what the red box is.
+[00:22:58.833 - 00:23:05.243] Incoming livestream: There are various flavors for that one. You can just run the MCP server itself in confidential computing.
+[00:23:05.343 - 00:23:09.622] Incoming livestream: You can run the MCP server with the tool in confidential computing.
+[00:23:10.463 - 00:23:17.612] Incoming livestream: These small lang… these small domain models, the SLMs and RAGs, can absolutely run in confidential computing as well.
+[00:23:18.783 - 00:23:22.742] Incoming livestream: Okay? So this is where the industry is going for agentic AI.
+[00:23:22.893 - 00:23:29.242] Incoming livestream: Okay? There is an organization called COSI, Coalition for Secure AI,
+[00:23:29.373 - 00:23:38.273] Incoming livestream: Most of the big, security companies, cloud providers, hardware providers, all of them are part of COSI.
+[00:23:38.443 - 00:23:44.183] Incoming livestream: And COSI recently published a MCP security positioning paper.
+[00:23:44.723 - 00:23:48.473] Incoming livestream: It documents the 12 categories of threats for MCP.
+[00:23:48.793 - 00:23:52.172] Incoming livestream: And it also talks about the various controls.
+[00:23:52.313 - 00:23:54.112] Incoming livestream: To mitigate the threats.
+[00:23:54.843 - 00:24:02.623] Incoming livestream: Confidential computing is called out as a important security control for multiple security threats. So.
+[00:24:02.633 - 00:24:17.303] Incoming livestream: If you have interest in this, I would say look for COSI, look for their MCP paper. It is public, it's available, there is no cost for it. I would strongly, urge you to take a look at that paper, because it's a very well-written paper.
+[00:24:18.233 - 00:24:19.063] Incoming livestream: Okay?
+[00:24:19.473 - 00:24:23.273] Incoming livestream: With that, I'm gonna summarize, and hopefully we'll have some time for questions.
+[00:24:23.523 - 00:24:31.423] Incoming livestream: So please look at confidential computing and confidential AI. You know, this addresses a bunch of security concerns that…
+[00:24:32.223 - 00:24:38.213] Incoming livestream: You're gonna have, whether you're deploying on-prem, or whether you're deploying in the cloud, or in a hybrid environment.
+[00:24:38.383 - 00:24:52.143] Incoming livestream: Okay? It's real, it's not… it's not theory, PowerPoints anymore. It's available from cloud providers, it's available from, OSVs, it's available from hardware manufacturers.
+[00:24:52.823 - 00:25:03.502] Incoming livestream: Okay? Google Confidential Space is a good example if you want to go do single container-based or multi-container-based AI workloads in Google Cloud.
+[00:25:03.543 - 00:25:17.982] Incoming livestream: Look at Talus solution, end-to-end crypto, CypherTrust platform for data protection, and start looking at confidential computing for agentic AI, because it's gonna happen, I guarantee you, next couple of years.
+[00:25:18.553 - 00:25:21.972] Incoming livestream: Confidential computing becomes the default for running agents.

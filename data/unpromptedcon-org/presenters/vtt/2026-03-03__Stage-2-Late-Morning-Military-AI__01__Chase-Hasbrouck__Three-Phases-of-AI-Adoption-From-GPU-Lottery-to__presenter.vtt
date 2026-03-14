@@ -1,0 +1,605 @@
+WEBVTT
+
+1
+00:00:33.892 --> 00:00:44.572
+Incoming livestream: We'll probably help hand out name tags, too. Alright, with that, I'm gonna turn it over to Chase to kick it off with his talk on three phases of AI enterprise adoption.
+
+2
+00:00:44.572 --> 00:01:00.731
+Incoming livestream: Over to you, Chase. Hey, good morning, everybody. I'm, Lieutenant Colonel Chase Hasbrook from U.S. Army Cyber Command. I'm gonna talk to you today about three phases of enterprise AI adoption, or the subtitle, which I should have made the main title, which is, you know, how I, for two years.
+
+3
+00:01:00.732 --> 00:01:03.622
+Dragos Ruiu: Too many mutes. I've got so much audio going on.
+
+4
+00:01:03.622 --> 00:01:06.551
+Incoming livestream: Chatbots. Going on over here. So…
+
+5
+00:01:06.782 --> 00:01:10.572
+Dragos Ruiu: I said, hey, Luis before, but I guess was unmuted, so…
+
+6
+00:01:10.572 --> 00:01:17.661
+Incoming livestream: Right up front, I'm here on my own personal dime. The views expressed in this presentation are my own personal observations.
+
+7
+00:01:17.892 --> 00:01:20.372
+Incoming livestream: They do not represent any official positions.
+
+8
+00:01:20.372 --> 00:01:27.552
+Dragos Ruiu: I've got, I've got 12, I've got 12 screens here, so it gets a little bit, a little bit messy.
+
+9
+00:01:27.552 --> 00:01:28.981
+Incoming livestream: Long before the events.
+
+10
+00:01:28.982 --> 00:01:32.911
+Dragos Ruiu: And I've got 3 copies of the audio streams babbling away.
+
+11
+00:01:32.912 --> 00:01:44.191
+Incoming livestream: I have no special insight or understanding into the events of last week. If you want to use your 30 seconds to ask me a question on the events of last week, I will give you an answer.
+
+12
+00:01:44.192 --> 00:01:44.882
+Dragos Ruiu: Going, going.
+
+13
+00:01:44.882 --> 00:01:46.242
+Incoming livestream: Smoothly so far.
+
+14
+00:01:46.242 --> 00:01:46.911
+Dragos Ruiu: It's… do we have…
+
+15
+00:01:46.952 --> 00:01:48.391
+Incoming livestream: If you want to have a better discussion on that topic.
+
+16
+00:01:48.392 --> 00:01:49.142
+Dragos Ruiu: Dream for the others.
+
+17
+00:01:49.142 --> 00:01:50.352
+Incoming livestream: Find me after, we can talk about it.
+
+18
+00:01:50.352 --> 00:01:51.162
+Dragos Ruiu: stream.
+
+19
+00:01:53.002 --> 00:01:58.312
+Incoming livestream: Alright, so… who's this guy who's standing in front of you? Why should you listen to him today? I find this is relevant.
+
+20
+00:01:58.312 --> 00:02:01.462
+Dragos Ruiu: I'm doing the online part of it.
+
+21
+00:02:01.802 --> 00:02:06.012
+Dragos Ruiu: Along with Tammy and a couple other people, so… I got.
+
+22
+00:02:06.012 --> 00:02:06.462
+Incoming livestream: And.
+
+23
+00:02:06.462 --> 00:02:18.711
+Dragos Ruiu: Gaddy called me on Friday and said, hey, can you make an online conference in a weekend? And I, you know, I'm a sucker for, for high visibility of failure, low, ridiculous timeline projects, so we did.
+
+24
+00:02:18.712 --> 00:02:21.462
+Incoming livestream: Yes. Cyber, as an actual…
+
+25
+00:02:21.462 --> 00:02:26.851
+Dragos Ruiu: team, Tammy, Brushnai's wife, and a couple of other folks.
+
+26
+00:02:26.852 --> 00:02:30.902
+Incoming livestream: Kind of worked all weekend to pull all this together for…
+
+27
+00:02:30.902 --> 00:02:33.412
+Dragos Ruiu: Currently, 1300 people.
+
+28
+00:02:33.412 --> 00:02:35.122
+Incoming livestream: ground up. We can talk about that.
+
+29
+00:02:35.122 --> 00:02:38.792
+Dragos Ruiu: And it's really annoying, it's 1338, I'm gonna go delete an attendee.
+
+30
+00:02:38.792 --> 00:02:48.811
+Incoming livestream: Kind of culminated where I ran the Army's, SolarWinds Orion.
+
+31
+00:02:48.812 --> 00:02:51.681
+Dragos Ruiu: Yeah, there's something, something bogus there, so the actual number is…
+
+32
+00:02:51.682 --> 00:02:52.562
+Incoming livestream: Big, big…
+
+33
+00:02:52.562 --> 00:02:53.312
+Dragos Ruiu: It's lower itself.
+
+34
+00:02:53.312 --> 00:02:53.991
+Incoming livestream: So, let's just.
+
+35
+00:02:53.992 --> 00:02:56.901
+Dragos Ruiu: But right now, I've gotta… I'm gonna… I gotta…
+
+36
+00:02:56.902 --> 00:03:03.542
+Incoming livestream: Pause a second, because I've got to go chase the AV guys, the Stage 1 stream isn't, switched over to the new key, so…
+
+37
+00:03:03.542 --> 00:03:04.072
+Dragos Ruiu: I'll be back.
+
+38
+00:03:04.072 --> 00:03:14.851
+Incoming livestream: what did and did not happen. Moved on from that, wanted to expand and do other things. The Army very graciously allowed me to spend some time doing other stuff.
+
+39
+00:03:14.852 --> 00:03:16.892
+Dragos Ruiu: I'm working on it.
+
+40
+00:03:16.892 --> 00:03:30.172
+Incoming livestream: at DARPA, as a DARPA Fellow, as part of their Service Chiefs Fellows program in 2022, where I had a very, very small part in the AI Cyber Challenge, and by means, by small part, I mean… Please, yes, save me some time here.
+
+41
+00:03:30.172 --> 00:03:31.931
+Dragos Ruiu: I'll listen in the background.
+
+42
+00:03:31.932 --> 00:03:38.291
+Incoming livestream: I also did a little bit of consulting with Task Force Lima, which, for those of you who don't know, was CDAO…
+
+43
+00:03:38.292 --> 00:03:38.672
+Dragos Ruiu: excuse me.
+
+44
+00:03:38.672 --> 00:03:42.602
+Incoming livestream: attempts to get their hands around what is called ChatGPT, and when it's.
+
+45
+00:03:42.602 --> 00:03:43.121
+Dragos Ruiu: What do you care about.
+
+46
+00:03:43.122 --> 00:03:43.552
+Incoming livestream: about it.
+
+47
+00:03:44.092 --> 00:03:47.031
+Incoming livestream: And then from there, I came back to Army Cyber.
+
+48
+00:03:47.172 --> 00:04:00.871
+Incoming livestream: I have it on my queue list. I run forensics and malware analysis for the Army. That's my role at Army Cyber Command. But I also continue to work with DARPA, and I advise on emerging technologies and things, and periodic.
+
+49
+00:04:00.872 --> 00:04:01.312
+Dragos Ruiu: We are.
+
+50
+00:04:01.312 --> 00:04:17.971
+Incoming livestream: run workshops and other discussion forums about emerging tech. So last year, we did some stuff looking at digital identity and the LLM scaling, and then this year, we are specifically doing something very similar to this conference, where we're looking at AI security.
+
+51
+00:04:17.972 --> 00:04:22.711
+Dragos Ruiu: I'll look at it as soon as I fix this stream key for Stage 1.
+
+52
+00:04:22.712 --> 00:04:33.262
+Incoming livestream: Yeah, I could come up here, I could demo the new MCP server for Ghidra and the 10 different forks of it, and we could have a really good and interesting talk about, what it means when you have
+
+53
+00:04:33.372 --> 00:04:37.212
+Incoming livestream: Unlimited tokens and compute, and you can throw them as a reverse engineer.
+
+54
+00:04:37.212 --> 00:04:40.571
+Dragos Ruiu: And I just fixed it, so now that's top of stack, let me go look at it.
+
+55
+00:04:40.572 --> 00:05:00.382
+Incoming livestream: Unfortunately, I can't give you that talk today, because a lot of what we've learned from that, I'm not certain whether I'm even allowed to tell you about it. So, instead, I'm just going to talk to you, kind of, my past two years about what I've done, the pain points I've had in trying to get both my internal technical team
+
+56
+00:05:00.382 --> 00:05:04.292
+Incoming livestream: Adopting, various, AI chatbot agents and things.
+
+57
+00:05:04.292 --> 00:05:04.762
+Dragos Ruiu: Cool, yeah.
+
+58
+00:05:04.762 --> 00:05:20.702
+Incoming livestream: And also, broadly, because I was kind of like the power user who got drafted into, hey, you're really smart at this stuff, so why don't you come and, like, help on the enterprise side with enterprise adoption, because we've rolled out this new tool, and nobody's using it, help us. So I can also talk a little bit about…
+
+59
+00:05:20.702 --> 00:05:27.861
+Incoming livestream: that and, some of the things we've learned, from AI adoption from the Army cyber perspective.
+
+60
+00:05:30.682 --> 00:05:37.352
+Incoming livestream: Alright, so, but before I get started, let me set the stage a little bit. So, the Army is big.
+
+61
+00:05:37.392 --> 00:05:53.541
+Incoming livestream: really, really big. Very, very large. We have over a million people. When you count, active duty, uniformed, as well as National Guard and Army Reserve, as well as all of the civilians, we are comfortably over a million.
+
+62
+00:05:53.792 --> 00:06:07.952
+Incoming livestream: And also, those guard and reserve people are also part-timers. So, if you work in an enterprise where a third of your million-plus workforce is part-timers, and doing security controls of that, please come talk to me. I'd be interested to know how you're handling that challenge.
+
+63
+00:06:07.952 --> 00:06:17.022
+Incoming livestream: Second point, this is a extremely specialized workforce. We, we don't have… Members of technical staff.
+
+64
+00:06:17.042 --> 00:06:22.222
+Incoming livestream: Right? We have lots and lots of people who are drafted into very
+
+65
+00:06:22.222 --> 00:06:39.032
+Incoming livestream: specialized, discrete roles where everything is drafted up according to a plan, everybody's expected to follow the plan, and you will follow this ascending timeline of you will do this at this point in your career, and this point in your career, and so on. So, it's just…
+
+66
+00:06:39.032 --> 00:06:51.731
+Incoming livestream: very specialized, and I'll talk a little more about this later, about, you know, where do LLMs, where does that fit in that story? And then, most importantly, getting new stuff is really, really hard. So…
+
+67
+00:06:51.752 --> 00:07:02.391
+Incoming livestream: in… I'm going to broadly characterize the Silicon Valley community as, in many cases, you just get an API key, and you spin it up, and, like, you're good to go, and you're using it now in your enterprise. Good. Go.
+
+68
+00:07:02.432 --> 00:07:19.882
+Incoming livestream: That is absolutely not how it works for us. So, we have this thing called the authority to operate, but before the authority to operate is the procurement. So, multi-year enterprise procurement cycle, those of you working in large enterprises are very familiar with the multi-year enterprise procurement cycle.
+
+69
+00:07:19.882 --> 00:07:29.211
+Incoming livestream: What we have, which is a little different, is our enterprise security workflow actually doesn't really execute till after the procurement workflow.
+
+70
+00:07:29.212 --> 00:07:46.481
+Incoming livestream: And sometimes they can disagree. So, we have definitely had security products where 2 years of procurement, then 2 years of accreditation, and then after that, everybody has changed out, and the new people are like, yeah, we don't think that's safe anymore, so you don't get to have that thing.
+
+71
+00:07:46.482 --> 00:07:49.752
+Incoming livestream: four years down the drain. Just keep that in mind.
+
+72
+00:07:49.772 --> 00:07:53.922
+Incoming livestream: One thing I'm not going to talk about today is classification requirements, so…
+
+73
+00:07:54.192 --> 00:08:08.031
+Incoming livestream: all of this stuff is fractal, because everything I'm talking about is just for using them on unclassified systems, or unclassified, up to what we currently call CUI, which is controlled unclassified information, which is…
+
+74
+00:08:08.032 --> 00:08:24.702
+Incoming livestream: Still unclassified, but sensitive. Once you start getting into classification, secret and above, then everything multiplies by an order of magnitude, but I can't even talk about what that entails, so just understand I am leaving classification stuff out of this today.
+
+75
+00:08:27.632 --> 00:08:40.001
+Incoming livestream: Okay, so I will call Phase 1 broadly the research preview stage. So this was 2023. I was just coming back from DARPA at home.
+
+76
+00:08:40.322 --> 00:08:45.111
+Incoming livestream: I am sitting playing around with, and I'm sure everybody else in the room is probably
+
+77
+00:08:45.112 --> 00:09:04.312
+Incoming livestream: doing the same, messing around with ChatGPT, and, like, writing really cool notes on LinkedIn about, oh, hey, there's this cool thing called Code Interpreter that just came out, and it can do all your data analysis for you, mostly, kind of, if you don't care about accuracy. Yeah. So it was really good. So, I'm messing around doing that at home.
+
+78
+00:09:04.312 --> 00:09:15.892
+Incoming livestream: And then at work, I'm seeing all the memos, so Space Force was first with the official memo that came out that said, there will be no enterprise use of AI, period, do not use any AI tools.
+
+79
+00:09:15.952 --> 00:09:25.341
+Incoming livestream: Most of the other services, informally or formally went along with that. So what did that mean? So, in practice.
+
+80
+00:09:25.382 --> 00:09:48.461
+Incoming livestream: you had 95% of your workforce who already didn't care about AI, or thought it was going to take their jobs, or just hated it on general principles, and so they were very happy to not use AI. And then you had the 5% of power users, like myself, like my team, who were very interested in seeing, you know, testing what it could do from nascent states, and so you had a lot of this…
+
+81
+00:09:48.462 --> 00:10:01.371
+Incoming livestream: shadow security work going on, where people would be like, yeah, okay, I'm gonna run home so I can go throw this into AI Studio and see what I get, and then come back.
+
+82
+00:10:01.372 --> 00:10:04.681
+Incoming livestream: Now, no actual sensitive information was passed, but…
+
+83
+00:10:04.682 --> 00:10:12.361
+Incoming livestream: if you're just asking questions about a capability, you can get a lot of good information to relate back to things. So, we were absolutely doing a lot of that.
+
+84
+00:10:13.582 --> 00:10:32.111
+Incoming livestream: So that's mid-2023. Going into late 2023, we got a new capability called Camo GPT. So, those of you who are Air Force may have heard of Nipper GPT. That got a little bit more press. Not gonna talk about that today, because I'm not as familiar with that. We were primarily using CAMO, which was the Army's version.
+
+85
+00:10:32.132 --> 00:10:43.722
+Incoming livestream: So this was accredited for use. It went through the whole ATO cycle in record time in late 2023. This was amazing. So, now we no longer had to do the dance of…
+
+86
+00:10:43.852 --> 00:10:58.411
+Incoming livestream: go to the unapproved tool that we're not supposed to use and ask it questions, and then come back and then translate that into CUI. Now we can just go to this tool and actually ask it questions with CUI-relevant data and get answers back.
+
+87
+00:10:58.512 --> 00:11:06.771
+Incoming livestream: However, this was insufficient. Why was this insufficient? Well, three reasons. One, the models were just not
+
+88
+00:11:07.102 --> 00:11:25.201
+Incoming livestream: good. For those of you who have used, Llama 270, it is… it was good for its time. It still remains, you know, a good LLM. But when you're at home, and your people are using, GPT for Turbo, or I think Gemini Pro had just come out at that point,
+
+89
+00:11:25.272 --> 00:11:35.882
+Incoming livestream: going… stepping back from that to the limitations of Llama 2, are a lot. So that's mostly for your power users who are just turning up their nose at the thing.
+
+90
+00:11:36.122 --> 00:11:49.281
+Incoming livestream: For your more general users, the bigger issue we had was, on the front end. So, often not thought about, but there's probably just as much work that goes into the models on the back end for the AI developing companies.
+
+91
+00:11:49.282 --> 00:12:00.191
+Incoming livestream: as goes into the front end of how you're operating with those models and operating around them. So, the two big things that, you know, ChatGPT had, Gemini had.
+
+92
+00:12:00.242 --> 00:12:16.211
+Incoming livestream: others had, were document parsing and web browsing. So, the tool we had did not have those tools. So, explaining to a general user, okay, so you want to extract information from a PDF? That's a great use case.
+
+93
+00:12:16.212 --> 00:12:33.802
+Incoming livestream: But first, you need to open it up, and you need to copy and paste all of the stuff out of it into a text file, and then upload the text file, because, oh, you can't also paste into the clipboard, because the little box only accepts, you know, 400-something characters, so you have to actually upload a text file, and by this point, you have lost
+
+94
+00:12:33.802 --> 00:12:36.481
+Incoming livestream: 95% of the general user community.
+
+95
+00:12:36.482 --> 00:12:52.532
+Incoming livestream: Also, web browsing, like, that was not a thing, so there was no way to say, hey, go search the internet and get context on this, it was just limited to general knowledge retrieval. So, again, two things made it largely unusable for anything but a research briefing.
+
+96
+00:12:53.022 --> 00:12:58.171
+Incoming livestream: And then finally, availability. All of this stuff was best effort. These…
+
+97
+00:12:58.532 --> 00:13:13.232
+Incoming livestream: there was lots of resources that were put into it, but fundamentally, it was still, a bunch of GPUs that were running in somebody's server farm somewhere in the world. It was not being hosted with cloud-hosted data centers, or at least if…
+
+98
+00:13:13.232 --> 00:13:18.591
+Incoming livestream: It was, it wasn't the, you know, there wasn't a lot of resource being put to that. So in many cases.
+
+99
+00:13:18.642 --> 00:13:37.242
+Incoming livestream: you would hit availability timeouts, or if you were trying to do anything big, especially once we started experimenting with RAG-type stuff, we were getting, query responses back in hours versus minutes, which clearly didn't help very much. So… so yeah, that's where things stood for us in 2023.
+
+100
+00:13:38.912 --> 00:13:48.612
+Incoming livestream: Okay. 2024? Hey! We've got a new platform! It's using commercial APIs! It's reliable, it's got all the frontier models, problem solved! Right?
+
+101
+00:13:49.382 --> 00:14:07.221
+Incoming livestream: Yeah, no, tokens. So, hey, guess what? You put a premium IAP shop in my enterprise platform, and I'm so excited about this, thank you. So, we all got a bunch of tokens to use, and for bureaucratic political reasons, there was
+
+102
+00:14:07.342 --> 00:14:13.782
+Incoming livestream: No designation of power users versus normal users, so everybody got one allocation of tokens. And…
+
+103
+00:14:14.242 --> 00:14:31.241
+Incoming livestream: without naming the provider, the provider basically took the generalized API cost that you could get through, your AWSs or your Azures, and they just multiplied that by a factor of 10 to get their profit margin, and they sold that back to us. So…
+
+104
+00:14:31.262 --> 00:14:45.161
+Incoming livestream: Equivalently, what happens is, for general use, office use case, you know, mostly fine. For the average user who's asking, you know, summarize this two-page document, fine, help me draft this three-paragraph email, fine.
+
+105
+00:14:45.232 --> 00:15:03.051
+Incoming livestream: But for my forensics guys who are like, okay, I've got a 20-page log file, and I want you to… I'm gonna put that in there, and then I want you to compare it to this other 20-page log file from 3 days ago, and I want you to diff it and look for, you know, not just diffs, but actual, like, meaningful differences.
+
+106
+00:15:03.052 --> 00:15:06.841
+Incoming livestream: Yeah, you do that once, and okay, half your quota's gone for the month.
+
+107
+00:15:06.902 --> 00:15:25.711
+Incoming livestream: So, we brought this up as a problem, and they said, oh, we acknowledge this is a problem, and here is the process for how you fix it. You ask for more tokens, and this requires 7 signatures and 7 justifications for very high-ranking people who don't understand what an LLM is. So…
+
+108
+00:15:25.712 --> 00:15:30.671
+Incoming livestream: Yeah, in practice, the process was, let's call it effectively impossible.
+
+109
+00:15:31.352 --> 00:15:43.981
+Incoming livestream: So, fundamentally, we were still using Camo GPT for what we could, we were burning our tokens by, like, day one or two, and then everybody was still going and using AI Studio, though we don't talk about that.
+
+110
+00:15:44.902 --> 00:15:56.562
+Incoming livestream: Alright, so we're caught up to today, right? Phase 3, fancy enterprise agreements. Those of you who may know, GenAI.mil just rolled out. It's the DoD-wide AI platform.
+
+111
+00:15:56.562 --> 00:16:11.271
+Incoming livestream: Several major AI enterprise platforms are connecting to it, so now, if you're a worker, within the department, you can just go to genai.mil, and you can hit what's there and use the enterprise versions, so not somebody's, like.
+
+112
+00:16:11.272 --> 00:16:20.771
+Incoming livestream: self-wrapped, self-hosted, you know, hey, we're just wrapping the API with our own custom web front end, but the actual… has the good UI front end that these tools have developed.
+
+113
+00:16:20.952 --> 00:16:21.802
+Incoming livestream: So…
+
+114
+00:16:22.212 --> 00:16:35.951
+Incoming livestream: That's what's coming. So now we're into culture challenges, right? So, one of the problems we have in the Army is, this thing called… what I call the silo reflex, which is whenever a new technology comes out, we put it in a box.
+
+115
+00:16:36.062 --> 00:16:51.451
+Incoming livestream: And we say, okay, Joe, you're really smart at this new tech, so you're the box guy. Anytime any questions come up about the box, any generals wanna know, have questions about the box, I'm gonna say, Joe's the smart guy in the box, and he's gonna answer all your questions for you. And that's fine, like, that's…
+
+116
+00:16:51.572 --> 00:17:02.551
+Incoming livestream: that's a starting point, that you have to do that. Like, you know, back in the day, there was the computer guy, and anytime anybody had any questions about computers, it was like, go talk to Joe, he's a computer guy, he'll answer your computer box questions.
+
+117
+00:17:02.692 --> 00:17:13.182
+Incoming livestream: I was the cyber guy for a long time. I was the guy who owned the CyberBox, and people would ask me questions about the CyberBox, and I would say, yes, I can tell you lots of cool things about the CyberBox.
+
+118
+00:17:13.422 --> 00:17:26.451
+Incoming livestream: is this a good idea? It's always a good idea to start. The question is, do you need to progress past that? In many cases, maybe you don't. Like, so, you know, space or VR,
+
+119
+00:17:26.452 --> 00:17:42.241
+Incoming livestream: These are technologies that it's okay that you probably leave it in a box, and you just have a specialist who comes and talks to you about it. Obviously, if you're in the Space Force, not so much space, but if you're in the Army, we don't do too much with space as affecting the whole enterprise, so you can probably safely leave that in the box.
+
+120
+00:17:42.302 --> 00:18:01.082
+Incoming livestream: things like GPS and computers, those clearly should not have been in the box, and those should have been generalized as soon as possible, so the faster we can get those out there, the better. Cyber, still kind of figuring out how much the whole enterprise needs to be part of that versus just a specialized-in-the-box thing. Drones is a little newer of a tech.
+
+121
+00:18:01.222 --> 00:18:18.122
+Incoming livestream: Same battle, we're battling that right now, where do we have a drone corps that is the people who do just the drones, and they're the drone experts for everybody? Or do we push drones out to all of our fighting forces and say, you guys are all going to be drone experts now because that's the future of warfighting?
+
+122
+00:18:18.122 --> 00:18:33.882
+Incoming livestream: again, still figuring that out. So, you know, the takeaway is AI, is this going to look more like VR, or more like PCs? I would say last year, it's definitely tipping more in the PC direction. Before that, you can make a case for either side, but that's interesting. I'm not sure how it's going to play out.
+
+123
+00:18:35.562 --> 00:18:48.852
+Incoming livestream: Alright, so overall, what I've talked about today is… this is the pattern, right? You have an access problem, we solved the access problem, we solved that by centralization. Then we moved on to cost problems.
+
+124
+00:18:48.972 --> 00:18:52.262
+Incoming livestream: We solved that by enterprise agreements.
+
+125
+00:18:52.522 --> 00:18:58.872
+Incoming livestream: And now we're on phase 3, which is a culture problem. What is going to solve this? Like…
+
+126
+00:18:59.042 --> 00:19:05.741
+Incoming livestream: what are we going to learn? How are we going to figure out that a lot of the requirements documents
+
+127
+00:19:05.792 --> 00:19:13.071
+Incoming livestream: You know, going back to that original, like, 4-year requirement discussion we had before, a lot of our requirements documents right now.
+
+128
+00:19:13.072 --> 00:19:26.431
+Incoming livestream: they exist as people's chat histories on various LLM platforms. So, how do we extract the knowledge out of those chat histories and actually get it from the operators down at the lower technical levels?
+
+129
+00:19:26.432 --> 00:19:38.721
+Incoming livestream: and get it to the enterprise procurement folks so they can understand. These are the types of questions people are asking, and we need to take those questions, and we need to wrap them in some kind of tool that the rest of the enterprise can broadly be familiar with.
+
+130
+00:19:39.682 --> 00:19:49.721
+Incoming livestream: Alright, that's my talk. So, I'm retiring October 26th, and I'm exploring what's next, so please feel free to come out and talk to me about any of that today. Thank you. Alright, first of all, I…
+
+131
+00:19:49.722 --> 00:20:04.012
+Incoming livestream: I don't think your slides are up. Shared, right? What's that? You haven't shared your slides. I will share… I will share the slides in the Slack. Okay, great. There's a thread for that. Alright, questions. Any questions? Okay. Any other questions before?
+
+132
+00:20:07.052 --> 00:20:13.161
+Incoming livestream: Is our Cyber thinking about extending those capabilities to the reserve component? Because we're not on Nipper.
+
+133
+00:20:14.022 --> 00:20:18.542
+Incoming livestream: are… genai.mil, or what…
+
+134
+00:20:19.102 --> 00:20:32.512
+Incoming livestream: Yeah, so gen AI.mil is available to everybody in the DoD. Now, the problem of getting people onto Nipper so that they can access that tool, which only lives on Nipper.
+
+135
+00:20:32.512 --> 00:20:39.802
+Incoming livestream: is still absolutely a challenge. I completely understand that. There are tools for this. We do have…
+
+136
+00:20:39.962 --> 00:20:58.631
+Incoming livestream: Azure Virtual Desktop, we have some mobile tools that are coming out, we have some BYOD tools coming out. I am not the program manager for those tools. It is something that is thought about, but fully acknowledged that there are absolutely challenges for Guard and Reserve that are probably not being met as well as they could.
+
+137
+00:21:01.832 --> 00:21:06.821
+Incoming livestream: Hey, it's John Franlich. I, teach, I'm over here. Yep. Chase. Okay.
+
+138
+00:21:07.002 --> 00:21:16.681
+Incoming livestream: I teach at a local university malware analysis, so from your perspective, and including AI, so… any advice on what you're looking for in future…
+
+139
+00:21:17.442 --> 00:21:19.341
+Incoming livestream: Military folks?
+
+140
+00:21:19.502 --> 00:21:22.972
+Incoming livestream: When it comes to malware and… AI,
+
+141
+00:21:24.052 --> 00:21:29.652
+Incoming livestream: So, I would say, what we're looking for primarily is people who…
+
+142
+00:21:29.682 --> 00:21:47.722
+Incoming livestream: are not just solving challenges in a vacuum, but understand, how to take those technical challenges and relate them back to, key problems that people are having, right? This isn't a thing that's new to AI in general. This is a problem that's…
+
+143
+00:21:47.992 --> 00:22:03.332
+Incoming livestream: okay, you wrote a technical report, you solved some things, great, but why is that useful? What is the so what of that? And AI could potentially help you with that with some degree, but you have to have enough of the level of understanding to be able to
+
+144
+00:22:03.332 --> 00:22:19.802
+Incoming livestream: go back to the chatbot and say, okay, help me boil this down for a non-technical stakeholder who doesn't need 7 pages of, here's all the methods I decompiled, and here's what they do, and here's the hooks they have, and here's what the process is it affects. They just need to know, like.
+
+145
+00:22:19.872 --> 00:22:35.232
+Incoming livestream: can I turn the thing back on, or do I have to wait for 2 more days before I can turn the thing back on? So as long as you can, you know, think about how you can translate it in that perspective, obviously this depends on if you're looking more at senior roles or at junior roles, but, yes, that's kind of where I would go with that.
+
+146
+00:22:37.362 --> 00:22:54.451
+Incoming livestream: With regard to the AI being sort of centralized, can you talk a little bit more, how you handle fine-tuning or specialized model for individual departments and specialized teams? Do those get housed in the same centralized location?
+
+147
+00:22:55.032 --> 00:23:12.232
+Incoming livestream: So, we haven't seen a lot of benefit to, fine-tuning models or specializing models yet. Our procurement cycles are so long that, by the time you successfully fine-tune or specialize a model, the general model has advanced long enough that you're not getting the advantages from the fine-tuned or specialized models.
+
+148
+00:23:12.232 --> 00:23:23.712
+Incoming livestream: That might change in the future, but right now, I would say more of the value comes not from providing the fine-tuned or specialized model, but from providing an actual bespoke
+
+149
+00:23:23.912 --> 00:23:35.971
+Incoming livestream: workflow and task that is relevant and legible to procurement. So, I'm not giving you a fancy model, I'm completing this task for you, and it's done, and you don't have to worry about asking chatbots how to do it.
+
+150
+00:23:37.482 --> 00:23:38.842
+Incoming livestream: Any other questions?
+
+151
+00:23:42.602 --> 00:23:45.321
+Incoming livestream: All right, very good. Chase, thanks very much.

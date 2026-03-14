@@ -1,0 +1,2113 @@
+WEBVTT
+
+1
+00:00:01.771 --> 00:00:06.560
+Incoming livestream: So today we'll be talking about how we went from 1.8 million prompts down to just 30 alerts.
+
+
+2
+00:00:06.561 --> 00:00:08.901
+Dragos Ruiu: It's the story of how we were hunting.
+
+
+3
+00:00:08.901 --> 00:00:11.390
+Incoming livestream: Used in a user-defined agentic ecosystem.
+
+
+4
+00:00:11.391 --> 00:00:14.120
+Dragos Ruiu: I have everything else, I'm a security database.
+
+
+5
+00:00:14.121 --> 00:00:17.291
+Incoming livestream: scientist here at Salesforce. My name's Millie.
+
+
+6
+00:00:17.291 --> 00:00:18.771
+Dragos Ruiu: There's a lot of good ideas.
+
+
+7
+00:00:18.771 --> 00:00:19.631
+Incoming livestream: and I both work.
+
+
+8
+00:00:19.631 --> 00:00:22.421
+Dragos Ruiu: I should copy the list. I don't have it right now.
+
+
+9
+00:00:22.421 --> 00:00:26.261
+Incoming livestream: Cybersecurity Operations Center group as part of the broader sales force.
+
+
+10
+00:00:26.521 --> 00:00:29.300
+Dragos Ruiu: Yeah, that piece I just sent was really early. Let's dive right in.
+
+
+11
+00:00:29.471 --> 00:00:31.231
+Incoming livestream: So, we all know that we are.
+
+
+12
+00:00:31.231 --> 00:00:33.880
+Dragos Ruiu: who are now thoroughly passed.
+
+
+13
+00:00:33.881 --> 00:00:42.260
+Incoming livestream: chatbot era. So in this wild west of agents, we aren't just sending prompts and LM. We're equipping models with an.
+
+
+14
+00:00:42.261 --> 00:00:43.430
+Dragos Ruiu: Is the real program starting yet?
+
+
+15
+00:00:43.431 --> 00:00:44.511
+Incoming livestream: economy.
+
+
+16
+00:00:45.231 --> 00:00:45.631
+Incoming livestream: as normal.
+
+
+17
+00:00:45.631 --> 00:00:46.501
+Dragos Ruiu: Not yet.
+
+
+18
+00:00:46.501 --> 00:00:47.221
+Incoming livestream: box.
+
+
+19
+00:00:47.221 --> 00:00:47.670
+Dragos Ruiu: Oh, enough time.
+
+
+20
+00:00:47.671 --> 00:00:49.601
+Incoming livestream: So, prompt, enriched call to our.
+
+
+21
+00:00:49.611 --> 00:00:50.991
+Dragos Ruiu: Come on, come on, baby.
+
+
+22
+00:00:50.991 --> 00:00:52.291
+Incoming livestream: privileged system.
+
+
+23
+00:00:52.291 --> 00:00:54.840
+Dragos Ruiu: Sorry, I'm just trying to sneak a bite of food in here.
+
+
+24
+00:00:55.171 --> 00:00:59.951
+Dragos Ruiu: The main sessions haven't started yet, they're basically just idling, let me just double check for you.
+
+
+25
+00:01:00.301 --> 00:01:04.710
+Dragos Ruiu: But there's no real, rush. Oh, they're just starting on stage 1 right now.
+
+
+26
+00:01:04.711 --> 00:01:06.791
+Incoming livestream: explodes. It stops being about…
+
+
+27
+00:01:06.791 --> 00:01:09.411
+Dragos Ruiu: Really up to you guys. This Zoom is intended…
+
+
+28
+00:01:09.411 --> 00:01:10.081
+Incoming livestream: raised.
+
+
+29
+00:01:10.081 --> 00:01:15.210
+Dragos Ruiu: It's like, it's like mingling outside the doors out of the main session, in the real menu.
+
+
+30
+00:01:15.211 --> 00:01:18.290
+Incoming livestream: How many of you are either currently or in the near…
+
+
+31
+00:01:18.291 --> 00:01:18.701
+Dragos Ruiu: future.
+
+
+32
+00:01:18.701 --> 00:01:19.401
+Incoming livestream: We're defending.
+
+
+33
+00:01:19.401 --> 00:01:20.681
+Dragos Ruiu: You're kind of out there in person.
+
+
+34
+00:01:20.681 --> 00:01:21.551
+Incoming livestream: here.
+
+
+35
+00:01:22.641 --> 00:01:24.441
+Dragos Ruiu: I have the same FOMO.
+
+
+36
+00:01:24.441 --> 00:01:27.131
+Incoming livestream: Awesome. And how many of you are local?
+
+
+37
+00:01:27.511 --> 00:01:29.811
+Incoming livestream: do anomaly detection as a part of your toolbox.
+
+
+38
+00:01:29.811 --> 00:01:30.840
+Dragos Ruiu: I, I passed on.
+
+
+39
+00:01:30.841 --> 00:01:31.660
+Incoming livestream: Well, that's awesome!
+
+
+40
+00:01:31.661 --> 00:01:32.801
+Dragos Ruiu: follow Daniel's newsletter.
+
+
+41
+00:01:32.801 --> 00:01:35.741
+Incoming livestream: Alright, let's, dive in. I hope you guys find this interesting.
+
+
+42
+00:01:35.741 --> 00:01:39.960
+Dragos Ruiu: and or relevant. Yeah, he was not feeling well.
+
+
+43
+00:01:39.961 --> 00:01:43.461
+Incoming livestream: A little bit of background setting, so we're at Salesforce, we…
+
+
+44
+00:01:43.461 --> 00:01:44.320
+Dragos Ruiu: Work on something.
+
+
+45
+00:01:44.321 --> 00:01:45.801
+Incoming livestream: we called Asian Force, which is.
+
+
+46
+00:01:45.801 --> 00:01:47.151
+Dragos Ruiu: Thanks for an awesome session, Bruce.
+
+
+47
+00:01:47.151 --> 00:01:51.061
+Incoming livestream: workforce. We do have the product or the platform.
+
+
+48
+00:01:51.061 --> 00:01:51.611
+Dragos Ruiu: Unbelievable.
+
+
+49
+00:01:51.611 --> 00:02:11.000
+Incoming livestream: that are implemented both on our customer orgs and our internal Salesforce orgs. So here's a snapshot of, what we're dealing with on a daily basis in terms of scale. So now that creates a black box defense challenge, where we cannot rely on static signatures, because every agent's logic is custom.
+
+
+50
+00:02:11.001 --> 00:02:24.801
+Incoming livestream: And valid behaviors vary wildly between what we see here on our 55,000 organizations that we monitor on a daily basis. So what we needed was a defense that could scale up to these 12,000
+
+
+51
+00:02:25.011 --> 00:02:25.960
+Incoming livestream: unique daily activities.
+
+
+52
+00:02:25.961 --> 00:02:26.381
+Dragos Ruiu: Thank you.
+
+
+53
+00:02:26.381 --> 00:02:30.381
+Incoming livestream: Agents without having to manually tune for each one of them.
+
+
+54
+00:02:30.501 --> 00:02:34.631
+Incoming livestream: And I want to set a stage for the scope of the problem we're walking you through today.
+
+
+55
+00:02:34.711 --> 00:02:44.140
+Incoming livestream: We now here have a trust challenge, where we cannot look at, let alone train on your prompt data, because that's our customer data, your data.
+
+
+56
+00:02:44.140 --> 00:02:56.120
+Incoming livestream: But what we're trying to do here is to protect customers, and ourselves, for that matter, actually, from the actions invoked from the output of the LLMs that are generated from your prompt data.
+
+
+57
+00:02:56.161 --> 00:03:07.211
+Incoming livestream: Now, how do we do that? We build defenses at the execution layer, which sits outside of, but works hand-in-hand with the reasoning layer of these agentic systems.
+
+
+58
+00:03:08.171 --> 00:03:21.820
+Incoming livestream: So that brings me to our third model, just really quickly, because I'm sure you guys have, like, seen some version of this. This is our lens of looking at this. So when we're dealing with autonomous agents in this multi-tenant SaaS environment.
+
+
+59
+00:03:21.821 --> 00:03:31.970
+Incoming livestream: We look at our threat landscapes in two buckets, essentially. Bucket one, your platform target attacks. So this involves attackers finding cracks in your implementation of this
+
+
+60
+00:03:31.971 --> 00:03:51.720
+Incoming livestream: platform. So maybe that's a misconfigured permission set, or a flaw in the custom APEX skills are exposed to the reasoning engine. And then we have bucket two, which we call abuse of a legitimate agency. So these are threat actors using the agent's legitimate built-in capabilities to perform actions that are valid.
+
+
+61
+00:03:51.721 --> 00:03:53.731
+Incoming livestream: But malicious in context.
+
+
+62
+00:03:53.731 --> 00:04:04.361
+Incoming livestream: The bottom line here is, we aren't just defending against bad words here, we're defending a massive multi-tenant execution engine, where your legitimate logic is constantly evolving.
+
+
+63
+00:04:04.871 --> 00:04:28.220
+Incoming livestream: A little bit on agent force. We do have a set of guardrails, which we call the trust layer. Not going to go into details, but you've seen this across industry. Pretty common to have this content moderation layer that focuses on the reasoning layer, right? So that's your dialogue between the user and the LLM. Well, that is critical for filtering and screening for things like toxicity and prompt injection.
+
+
+64
+00:04:28.221 --> 00:04:31.671
+Incoming livestream: The content moderation alone is not enough.
+
+
+65
+00:04:31.671 --> 00:04:33.480
+Incoming livestream: For the following reasons.
+
+
+66
+00:04:33.551 --> 00:04:49.521
+Incoming livestream: First, what we touched upon a little bit earlier, is reasoning versus execution. So while you do have the content moderation layer that polices the reasoning layer, which is your thought process, the… it cannot see the actual execution layer, right? So that's the actual system calls.
+
+
+67
+00:04:49.521 --> 00:04:57.341
+Incoming livestream: You also need guardrails that police the specific actions and invocations triggered by the agent.
+
+
+68
+00:04:57.341 --> 00:05:10.471
+Incoming livestream: And then we also have the blocking dilemma. Because your content moderation layer often captures malicious intent, but lacks the high-fidelity signal required to do things like automated inline blocking.
+
+
+69
+00:05:10.471 --> 00:05:20.200
+Incoming livestream: and an enterprise context. So what we develop here, this detection model, provides the behavioral context necessary to move from
+
+
+70
+00:05:20.201 --> 00:05:33.571
+Incoming livestream: just flagging to confident, automated response. And then lastly, we have what we call the post-generation blindness. So, even if, in a scenario where your prompt is deemed as safe.
+
+
+71
+00:05:33.571 --> 00:05:43.271
+Incoming livestream: The resulting authentic plan might involve an authorized data access, or privilege isolation that traditional content filters just cannot observe, hence act on.
+
+
+72
+00:05:43.771 --> 00:05:59.960
+Incoming livestream: So with that, we walk through the challenges. What do we do, and how do we deal with that? I'll hand it off to Matt, and he'll walk you through our solution for that. Yeah, so now that we have this Agentic ecosystem in place, building detections around it really comes down to.
+
+
+73
+00:06:00.121 --> 00:06:13.490
+Incoming livestream: how do you go about detecting anomalies? And historically, I think detection engineers have looked to anomaly detection as a pretty big part of the toolkit, but typically at the user level or around specific tables or entities.
+
+
+74
+00:06:13.491 --> 00:06:20.171
+Incoming livestream: One of the things that I really want to highlight is changing in the GenAI era here, is that
+
+
+75
+00:06:20.291 --> 00:06:35.581
+Incoming livestream: We no longer have to just be constrained to the user level. You can actually also consider the context of the agent itself as a new access for anomaly detection. Especially when you do this in the context of the organization that's building and deploying those agents.
+
+
+76
+00:06:35.581 --> 00:06:47.460
+Incoming livestream: You essentially end up with 3 levels of context that you could use for anomaly detection. If you have a data science background, this lends itself extremely well to something called an ensemble model.
+
+
+77
+00:06:47.461 --> 00:07:06.350
+Incoming livestream: Where you can start to really pair these different levels of context together, to minimize noise. I think anyone that's done anomaly detection knows that it can be very noisy, especially if kind of deployed quickly. So, combining these three streams together, and then using them to kind of reduce noise across
+
+
+78
+00:07:06.631 --> 00:07:11.291
+Incoming livestream: Sorry, across all three, really helps make this a meaningful and impactful model.
+
+
+79
+00:07:14.581 --> 00:07:29.130
+Incoming livestream: Yeah, so, we started by trying to quantify intent, and we did that with a simple and well-scoped hypothesis, which was just that looking for agents accessing things that they normally don't would be a good way to find anomalies in the ecosystem.
+
+
+80
+00:07:30.631 --> 00:07:37.110
+Incoming livestream: When we had that hypothesis in place, we then started to look at what features could we actually put in place to measure
+
+
+81
+00:07:37.131 --> 00:07:54.590
+Incoming livestream: those kinds of anomalies. So, we started looking at how frequently were Agentic sessions accessing data? What types of access were they doing? Are… are the agents just selecting data? Are they updating it? Are they deleting it? Can we build filters or features around that?
+
+
+82
+00:07:54.721 --> 00:08:04.690
+Incoming livestream: And so by keeping those feature sets simple, and the hypothesis simple, we started being able to investigate where does our coverage work versus where does it not work.
+
+
+83
+00:08:04.801 --> 00:08:12.221
+Incoming livestream: We started to find out, what are the legitimate edge cases, what are the issues with what we're measuring, is it effective or is it not?
+
+
+84
+00:08:14.391 --> 00:08:26.691
+Incoming livestream: I want to talk through some of the features that we did look at that were pretty essential to how the model operated. So we really tried to consider data access from both kind of a depth standpoint and a breadth standpoint.
+
+
+85
+00:08:26.711 --> 00:08:39.331
+Incoming livestream: We were looking at things like the frequency of calls to our databases, what proportion of data was actually being accessed by these agents, which gives you a good standpoint of depth, especially if you…
+
+
+86
+00:08:39.331 --> 00:08:50.530
+Incoming livestream: are looking for data exfiltration. Is somebody pulling the entire database? Are they just accessing one customer's records? Really trying to understand, kind of, those ratios was pretty key for us.
+
+
+87
+00:08:52.271 --> 00:09:00.380
+Incoming livestream: Another good thing that we looked at was we started to quantify the sensitivity or the rarity of the data being accessed, so…
+
+
+88
+00:09:00.521 --> 00:09:04.851
+Incoming livestream: in the Salesforce database as you are kind of building these out.
+
+
+89
+00:09:04.881 --> 00:09:24.591
+Incoming livestream: We have, feature flags for things like fields that might contain PII or sensitive data. We also try and do profiling to understand how frequently are agents touching certain columns or fields, and really understand what data is being accessed, how frequently, those kind of help to build out the features.
+
+
+90
+00:09:29.711 --> 00:09:40.671
+Incoming livestream: So, as you kind of combine these things, we really looked to incremental historical profiling. So, every day, we would actually build a profile of all of the sessions that had occurred in a given day.
+
+
+91
+00:09:40.861 --> 00:09:53.581
+Incoming livestream: This let us quickly assemble a historical context and a baseline, and then we were able to quickly identify anything that was actually out of character based on the historical baseline, so…
+
+
+92
+00:09:53.681 --> 00:10:03.331
+Incoming livestream: As we continued to aggregate kind of a rolling history, it was really easy to look at standard deviations or anomalies kind of from that historical baseline.
+
+
+93
+00:10:04.331 --> 00:10:23.860
+Incoming livestream: One of the benefits of this is that as new sessions occurred, we could really score them quickly after the session occurred, or even as it was ongoing, to identify our outliers and proactively respond. This kind of deviation-based or standard deviation-based scoring also helps kind of build alert prioritization into the system as well.
+
+
+94
+00:10:26.821 --> 00:10:44.681
+Incoming livestream: I want to also cover some of the things that didn't work for us, and again, this is one of the major downsides to consider when building these ensemble models, is if you start to consider features across these multiple layers of identity, the number of features that you're going to be building into your models will explode very quickly, so…
+
+
+95
+00:10:45.351 --> 00:11:00.131
+Incoming livestream: Every new data rarity or data frequency feature that you add, if you were looking at it in the context of the user, the agent, the org, you're building out multiple layers of these features, and it can create noise and complexity very quickly.
+
+
+96
+00:11:02.711 --> 00:11:14.620
+Incoming livestream: I do also want to call out one of the things we built that didn't work, which was… we built a pretty large, query complexity calculator early on. It was custom-built, it took a lot of code. One of the…
+
+
+97
+00:11:14.761 --> 00:11:20.400
+Incoming livestream: reasons that it didn't work for us, was just that it kind of confused layers of identity, so…
+
+
+98
+00:11:20.421 --> 00:11:39.991
+Incoming livestream: We thought that malicious actors would essentially be looking to run these complicated queries, or that it would be a good way to identify anomalous queries. What we were finding was that the agents themselves were constructing the queries, so, just make sure that your features are measuring what you think they are measuring. It's a good way to find the edge cases that are important here.
+
+
+99
+00:11:41.121 --> 00:11:44.020
+Incoming livestream: We also found a pain point in…
+
+
+100
+00:11:44.781 --> 00:11:59.111
+Incoming livestream: joining data in from multiple tables, so we had to reach out to get, contextual information from metadata tables around the queries being executed. This built in a number of really expensive computational joins for us, so…
+
+
+101
+00:11:59.221 --> 00:12:03.201
+Incoming livestream: Later on, we were able to actually refactor the model to
+
+
+102
+00:12:03.341 --> 00:12:09.660
+Incoming livestream: Essentially operate on just one table, remove the expensive joins, and have the bottle train in a third of the time.
+
+
+103
+00:12:11.871 --> 00:12:18.120
+Incoming livestream: At the end of the day, the results, speak for themselves. We had nearly 2 million daily prompts.
+
+
+104
+00:12:18.231 --> 00:12:29.301
+Incoming livestream: Which we were able to filter down slightly through the trust layer, but through the behavioral anomaly detection model, at the end of the day, we had fewer than 30 active alerts that needed investigation.
+
+
+105
+00:12:32.261 --> 00:12:43.471
+Incoming livestream: One of the things that we also did is we tried to lean into an agentic paradigm, where we now expect that agents are also going to be involved in the investigation and triage of the alerts.
+
+
+106
+00:12:43.751 --> 00:12:48.611
+Incoming livestream: So, what you see on screen here is an actual example of an alert, but…
+
+
+107
+00:12:48.761 --> 00:12:56.650
+Incoming livestream: What we're doing is creating a structured JSON payload that is then ingested by an additional agent that helps make sense of that payload.
+
+
+108
+00:12:57.371 --> 00:13:17.050
+Incoming livestream: And so, the agent is able to very quickly take the features that we provided and synthesize a summary of why the alert is anomalous. Typically in plain English, and one of the advantages of that is it's very customer-facing, very friendly. We don't necessarily have to assume that the investigator has a security background.
+
+
+109
+00:13:19.231 --> 00:13:29.220
+Incoming livestream: Thank you, Matt. So, we talked about, the state of the world that we've built this, tool into. Let's talk a little bit about the road ahead.
+
+
+110
+00:13:29.271 --> 00:13:38.760
+Incoming livestream: So the ultimate goal for really any security practitioner is moving from knowing what happened yesterday to stopping what is happening now.
+
+
+111
+00:13:38.811 --> 00:13:50.690
+Incoming livestream: So in our current pilot, version of this model, we accept a 12 to 24 hour detection latency, as both the training and inference pieces are running in batch jobs.
+
+
+112
+00:13:50.691 --> 00:14:04.121
+Incoming livestream: However, our architecture is built for the hot path, so by taking the behavioral baseline we learned during our daily batch processing, and eventually pushing them to a high-speed cache, we could eventually perform the inference piece in flight.
+
+
+113
+00:14:04.131 --> 00:14:14.600
+Incoming livestream: So if a session hits our critical threshold, meaning it's essentially statistically impossible for this to be normal behavior, we don't wait for SOC analysts to triage the alert.
+
+
+114
+00:14:14.601 --> 00:14:32.010
+Incoming livestream: or, notify the customer hours, or sometimes days later, we move to auto-containment. We can kill the session, revoke the token, or trigger a bot-level lockdown immediately. This is how we'll eventually close the loop at the execution layer of an agentic system.
+
+
+115
+00:14:32.921 --> 00:14:57.801
+Incoming livestream: Let's talk about some of the lessons we learned along the way. First one, our major hurdle was the observability gap. So in the beginning, we had these engineering logs that told us what happened, but the security telemetry didn't really tell us who or which agent was responsible for what in a way that supported what we wanted to do, which was high-fidelity detection. So your mission here really is what we call identity multitasking.
+
+
+116
+00:14:58.101 --> 00:15:18.010
+Incoming livestream: You have to partner with your engineering and product teams early on to ensure that your authentic logs aren't just debug strings, they need to be structured events that link the invoking user ID to the agent ID. Because without this context, you're blind to the, abuse of a legitimate agency case, where
+
+
+117
+00:15:18.171 --> 00:15:23.961
+Incoming livestream: You just cannot distinguish between what a power user is and what a compromised agent might look like.
+
+
+118
+00:15:24.271 --> 00:15:34.600
+Incoming livestream: Secondly, don't wait for a known attack to build your defense. So, in the environment we operate in, where there's 12,000 plus unique daily active agents.
+
+
+119
+00:15:34.621 --> 00:15:51.320
+Incoming livestream: A signature-based approach is essentially just a black box failure. You need to start profiling what normal looks like today, especially for, as a rarity, features like those that Matt has just walked you through. So then you have the statistical mean
+
+
+120
+00:15:51.321 --> 00:15:55.681
+Incoming livestream: Ready when the deviation does occur, and then you can act on it immediately.
+
+
+121
+00:15:56.331 --> 00:16:04.631
+Incoming livestream: Lesson number 3. Practitioners, ourselves included, often fall into the trap of building the perfect feature.
+
+
+122
+00:16:04.631 --> 00:16:23.280
+Incoming livestream: We spent a significant amount of time and resources on this so-called parser and query complexity model that ultimately just introduced too much complexity and latency for what we eventually wanted to do, which is near time or real-time action. We found that simple telemetry, like
+
+
+123
+00:16:23.281 --> 00:16:31.340
+Incoming livestream: invocation count or sensitive asset frequency, produced way higher fidelity signals without having to blow up our SLAs.
+
+
+124
+00:16:32.171 --> 00:16:47.061
+Incoming livestream: And finally, remember that your funnel is only as good as your baseline. Do expect noise for the first 14 days of a new agent's life. Build that warm-up period into your SOX playbook so you don't burn out your analysts on day one.
+
+
+125
+00:16:47.381 --> 00:16:54.120
+Incoming livestream: And with that, it's a wrap. We will open up to questions. Thank you so much for being here.
+
+
+126
+00:17:08.721 --> 00:17:12.460
+Incoming livestream: This is great work, Millie and Matt. So, I have…
+
+
+127
+00:17:12.461 --> 00:17:29.820
+Incoming livestream: 100 questions, I'm only gonna ask one. The curse of dimensionality, how did you get over all of this over-engineering, the features and all that? Can you give us some more details? Yeah, so I think for me, the main thing was to kind of just start with a pretty open canvas and be able to brainstorm.
+
+
+128
+00:17:29.821 --> 00:17:37.021
+Incoming livestream: I kind of took some inspiration from something like PCA, where it was, like, really just, how can we actually look at which features are contributing the most signal?
+
+
+129
+00:17:37.021 --> 00:17:53.040
+Incoming livestream: So we had several rounds of kind of creating features, running some analysis on how predictive were they actually in predicting abuse, and then we used that to kind of cull the feature set down to the most minimal set that we could that would actually have the predictive power that we needed. But, yeah.
+
+
+130
+00:17:53.051 --> 00:18:02.650
+Incoming livestream: And I can go into, like, a just tiny little bit of implementation detail. So, you could actually think of this as, like, hyperparameter tuning in, like, a traditional ML model, right? Like…
+
+
+131
+00:18:02.651 --> 00:18:15.940
+Incoming livestream: given that this is the set of features, this is what the outcome looks like. You can essentially run a simulation, and you can map that out, and you can actually tune your detection logic and the resulting detection volume output that way. So, like…
+
+
+132
+00:18:16.071 --> 00:18:23.151
+Incoming livestream: We actually built this kind of programmatically, too, so there's a lot of, like, kind of feedback loop
+
+
+133
+00:18:23.511 --> 00:18:30.550
+Incoming livestream: architecture or design you can leverage here, just, you know, like, traditionally how we did, like, ML already.
+
+
+134
+00:18:32.231 --> 00:18:39.951
+Incoming livestream: Two questions about, how about, like, so the final output of a set of 50-odd, whatever.
+
+
+135
+00:18:40.101 --> 00:18:53.831
+Incoming livestream: Were you guys also… have you guys also thought about, like, some sort of, like, confidence score on those alerts? And how about, like, annotation piece as well, to say, hey, whether this was right or wrong, for it to act as a feedback loop?
+
+
+136
+00:18:54.021 --> 00:19:07.921
+Incoming livestream: Yeah, so I think, one of the things is, again, we use that deviation-based scoring, so for every axis that we're actually looking at, we get some indication, similar to a confidence interval, of just how far out of character is this for the normal user's behavior, so…
+
+
+137
+00:19:07.921 --> 00:19:14.121
+Incoming livestream: you know, maybe a support agent shouldn't be pulling the entire database, it would be extremely out of character. So that gives some…
+
+
+138
+00:19:14.421 --> 00:19:25.620
+Incoming livestream: telling of confidence. I think we're still kind of working to tune that a little bit better as we proceed. And then we're continuing to work with some, teams internally to kind of work on scoring the alerts that we have now, but yeah.
+
+
+139
+00:19:28.771 --> 00:19:42.250
+Incoming livestream: Hey, awesome presentation. I really loved, also, the slides on, the auto-containment, like, ideas and, the explanations that you're given to SOC analysts just make it easy to reproduce.
+
+
+140
+00:19:42.371 --> 00:19:48.491
+Incoming livestream: What are you hearing from the instant responders, the SOC analysts on…
+
+
+141
+00:19:49.121 --> 00:20:03.921
+Incoming livestream: the signals that they're receiving, and then what they want to actually do about it. I'm really curious about this auto-containment that might happen in the future with AI agents, and then what actions they might want to take. Like, what are you hearing from them? Yeah, I can speak to that. So…
+
+
+142
+00:20:04.081 --> 00:20:11.701
+Incoming livestream: So that's a multi-layered question. Well, first of all, like, our first stab at, like.
+
+
+143
+00:20:11.700 --> 00:20:25.670
+Incoming livestream: how do you make the result, one, more human-readable and interpretable? Because we always see in ML, there's this trade-off, intrinsic trade-off, between your accuracy and interpretability. Our first step at that, well, twofold. One is we…
+
+
+144
+00:20:26.331 --> 00:20:45.300
+Incoming livestream: specifically designed the algorithm to be simple, to be able to trade out for that interpretability. So you have to remember, in, like, an enterprise SaaS kind of contact, we talk about Salesforce, we give this alert to customers, or we give this alert to a SOC analyst. They need to be able to actually understand it, and then be able to act on it.
+
+
+145
+00:20:45.301 --> 00:21:10.271
+Incoming livestream: So our first design choice was choose a pretty simple distance-based algorithm. Number two, this slide that we went through, where we give you a sample alert, using, essentially using LLM to help you interpret, the result. That's, like, our second step at making this more human-readable and more actionable, and what you might want to do with this. So that's the first layer of just making the alert itself.
+
+
+146
+00:21:10.411 --> 00:21:15.480
+Incoming livestream: useful. Now, moving to the inline, or blocking, or auto-containment, that's…
+
+
+147
+00:21:15.631 --> 00:21:19.361
+Incoming livestream: Extremely hard for problem space, because you're talking about…
+
+
+148
+00:21:19.661 --> 00:21:29.990
+Incoming livestream: you're basically letting your algorithm not only make decisions for the user, but also act on their behalf. So our approach to that
+
+
+149
+00:21:29.991 --> 00:21:46.991
+Incoming livestream: the model just pilot releasing to customers this month, actually. But our approach is we're having a purple team exercise, where we have a red team, essentially generating that, and we're gonna have the model catch it in the wild, and then that's how we're gonna be tuning efficiency.
+
+
+150
+00:21:47.701 --> 00:21:51.371
+Incoming livestream: Thank you. Thank you. We have, Ilya up next.
+
+
+151
+00:22:14.941 --> 00:22:16.121
+Incoming livestream: Crying.
+
+
+152
+00:22:19.251 --> 00:22:22.890
+Incoming livestream: It's time that I let go
+
+
+153
+00:22:23.951 --> 00:22:32.201
+Incoming livestream: Things I can't control. This path that I've taken is the only one I know
+
+
+154
+00:22:33.111 --> 00:22:39.180
+Incoming livestream: Well, I've come so far to get here I've got so far to go
+
+
+155
+00:22:58.501 --> 00:23:04.351
+Incoming livestream: So, as soon as the questions start, Thank you so much.
+
+
+156
+00:23:20.661 --> 00:23:21.641
+Incoming livestream: Okay?
+
+
+157
+00:23:27.891 --> 00:23:31.270
+Incoming livestream: Hello? Okay, success.
+
+
+158
+00:23:32.761 --> 00:23:35.850
+Incoming livestream: Okay, so should I start?
+
+
+159
+00:23:36.061 --> 00:23:45.781
+Incoming livestream: Yes? No? Yeah? Okay, cool. Right, so, following on from the previous talk, where you were told that complexity kills stuff internally.
+
+
+160
+00:23:45.821 --> 00:23:56.351
+Incoming livestream: I'm an academic, I overcomplicate systems, I try to build mechanisms and sort of… Oh, is this not loud enough? Yeah, sorry. Let's…
+
+
+161
+00:23:56.381 --> 00:24:06.261
+Incoming livestream: Okay. What about now? Does this work? Okay, cool. Yeah, so, an academic, just heads up about this… whoops.
+
+
+162
+00:24:09.591 --> 00:24:10.501
+Incoming livestream: Sorry.
+
+
+163
+00:24:14.601 --> 00:24:28.551
+Incoming livestream: And, yes, so I'm gonna talk about quite a bit of complexity. I'll try to sort of keep it as, sort of low effort as possible. Just give me a second, my computer is going crazy.
+
+
+164
+00:24:31.241 --> 00:24:36.270
+Incoming livestream: Okay, let me start off by asking a question to the audience.
+
+
+165
+00:24:36.671 --> 00:24:48.471
+Incoming livestream: what do you think is gonna happen in the near future? Sort of a… like a quick elephant in the room moment. What do you think? As AI is getting better, you know everyone is talking about exponentials.
+
+
+166
+00:24:48.581 --> 00:25:06.290
+Incoming livestream: Do you think AI is gonna solve its own security problems? Like, and more specifically, like, there are kind of two realities in the world, and when I'm talking about security problems, I'm talking about security problems of AI itself, right? Like, prompt injections, jailbreaks, that sort of thing. So…
+
+
+167
+00:25:06.691 --> 00:25:18.031
+Incoming livestream: maybe we can start by, sort of, show of hands? How many people here think that, as AI gets better, it's gonna get better at solving its own security problems, like prompt injection style?
+
+
+168
+00:25:18.211 --> 00:25:21.650
+Incoming livestream: So, less… less than half of the room.
+
+
+169
+00:25:21.981 --> 00:25:36.870
+Incoming livestream: Okay, cool. So I guess many people are quite pessimistic. But actually, if you look at what's happening in reality, like, if you go and try and do sort of, like, jailbreaks attacks against your current models, it's significantly harder to do than it was a couple of years back.
+
+
+170
+00:25:36.921 --> 00:25:49.061
+Incoming livestream: But nonetheless, it's still possible. And if you do this automated sort of retiming, what people call today, then you'll find that it's actually quite easy nowadays.
+
+
+171
+00:25:49.131 --> 00:25:57.041
+Incoming livestream: And if you look at academic literature, there are sort of two strains of literature that kind of say.
+
+
+172
+00:25:57.041 --> 00:26:09.630
+Incoming livestream: relatively opposing things. So there is this famous paper from OpenAI that basically says, we have reasoning. The more reasoning we give to the models, the better they get at robustness.
+
+
+173
+00:26:09.631 --> 00:26:24.371
+Incoming livestream: And then there is some other work, coming out, more from Academic Engle, which basically shows that, actually, this sort of improvement in, robustness is misplaced, because the attacks people were using is just not very good.
+
+
+174
+00:26:24.411 --> 00:26:25.661
+Incoming livestream: And,
+
+
+175
+00:26:25.761 --> 00:26:32.381
+Incoming livestream: Kind of today, if you ask the most informed individuals studying at these kinds of problems for decades,
+
+
+176
+00:26:32.801 --> 00:26:47.850
+Incoming livestream: because this error example literature is sort of a decade old, you'll find that nobody has an answer. Like, we have no idea. We definitely know for simple, small models, we do not know how to even define what robustness means properly, and
+
+
+177
+00:26:47.851 --> 00:26:56.730
+Incoming livestream: On a more practical setting, what happens when you sort of start scaling up the models and capabilities increase? It's still unclear what happens.
+
+
+178
+00:26:57.061 --> 00:27:03.941
+Incoming livestream: At the same time, We've been falling into this weird fallacy again and again of, like.
+
+
+179
+00:27:04.041 --> 00:27:06.801
+Incoming livestream: My model is great, like.
+
+
+180
+00:27:06.821 --> 00:27:16.691
+Incoming livestream: it's clearly protected against all of these attacks that I've just tested, and most of the time, it's this fallacy of your system does not understand half of your instructions.
+
+
+181
+00:27:16.691 --> 00:27:23.590
+Incoming livestream: And as a result, like, it can't follow them, and as a result, your attacks don't work. So, you get this weird balance where
+
+
+182
+00:27:23.591 --> 00:27:37.791
+Incoming livestream: what today, if you actually run relatively big, analysis, as we did, like, early in, during my time in Google, where we were doing attacks against Gemini, and then later on, we released some more attacks, like.
+
+
+183
+00:27:37.881 --> 00:27:56.050
+Incoming livestream: what today in academia would call state-of-the-art red teaming attacks. We see this again and again. You have a relatively weak model, it appears quite nice in your robustness evaluations, and then turns out you're just using too strong of attacks against it, it just could not understand half of the things you were throwing at it.
+
+
+184
+00:27:56.111 --> 00:28:12.311
+Incoming livestream: And then, as a result, in your metrics, it appears quite nice, and then the model improves tomorrow, and then suddenly it's a lot more vulnerable, because for you, to police in all of these new, new dimensions, you actually have to spend significantly more effort. So, it's kind of interesting.
+
+
+185
+00:28:12.311 --> 00:28:26.771
+Incoming livestream: However, if we sort of take a step back and ask, so what is the current status quo? Do we know how to sort of protect our models? How well are they performing? There is a whole branch of literature related to, like.
+
+
+186
+00:28:27.011 --> 00:28:29.550
+Incoming livestream: Try… try to make it secure, and…
+
+
+187
+00:28:29.681 --> 00:28:37.891
+Incoming livestream: to be frank, we're kind of failing in every way. And it gives you a very nice sort of feeling that
+
+
+188
+00:28:38.001 --> 00:28:45.400
+Incoming livestream: You know, like, you're doing well, you did your static tests, you evaluated this in whatever held-out datasets you have internally.
+
+
+189
+00:28:45.421 --> 00:29:05.171
+Incoming livestream: And then, great, and then you push it out, and people break your systems in a couple of hours, as it recently happened with a bunch of competitions, run by relatively big labs. So, in this paper, what we did was, we took basically every single defense you can find out there that was evaluated on relatively standard benchmarks, static benchmarks, and then
+
+
+190
+00:29:05.171 --> 00:29:21.821
+Incoming livestream: you run stronger attacks, not even the craziest of things, for a very small, like, under a dollar budget, and you basically discover that all of them break, regardless. And this attack is general, it doesn't do anything sophisticated. If you've ever seen, like, think about this as, like, genetic algorithms on steroids.
+
+
+191
+00:29:21.871 --> 00:29:30.751
+Incoming livestream: So, long story short, none of these methods work. We have no idea how to make stuff work, and we are kind of stuck in this weird minima where
+
+
+192
+00:29:30.861 --> 00:29:34.110
+Incoming livestream: We can't build defenses, because we don't have good attacks.
+
+
+193
+00:29:34.251 --> 00:29:47.801
+Incoming livestream: we don't have good attacks, because we don't know how good the attacks are, because we don't have good defenses. And this vicious loop is obviously quite horrible for every single individual involved, because we're all experiencing the ramifications of running systems like this.
+
+
+194
+00:29:47.801 --> 00:30:00.910
+Incoming livestream: In about a month after releasing this paper, and it blew up a bit on Twitter, we released another paper, with another defense inside, which performed a lot better, and I'm telling you, it's like a cadence of a month.
+
+
+195
+00:30:00.911 --> 00:30:09.321
+Incoming livestream: Right? Which performed a lot better, the results appear nicer, it's very simple to follow, like, it just calls another model in a funky way.
+
+
+196
+00:30:09.321 --> 00:30:16.070
+Incoming livestream: We get much better performance, query count required to attack it is higher, and you may think that this is a success.
+
+
+197
+00:30:16.071 --> 00:30:30.160
+Incoming livestream: I would actually call this a bit of a failure, because it's yet again a sign that the attacks we've built that broke all of these 12 other defenses are not working for our current thing. Clearly, the current attack success against our thing is not zero.
+
+
+198
+00:30:30.161 --> 00:30:31.480
+Incoming livestream: Right? Thus.
+
+
+199
+00:30:31.481 --> 00:30:47.421
+Incoming livestream: It's likely, we just haven't, sort of, put enough prior of how to break systems like this. And I think the cycle will continue. I'm pretty sure I give it another month, somebody will put in a bit more time, ask a lot code, I don't know, do some meta-optimization, and this stuff will break.
+
+
+200
+00:30:47.421 --> 00:30:55.770
+Incoming livestream: So this constant vicious cycle of, we have some sort of unprincipled defenses that don't have guarantees, that don't come with anything inside of it.
+
+
+201
+00:30:55.771 --> 00:31:05.731
+Incoming livestream: they will eventually fall, and we will experience the bad parts, because AI is everywhere, we're using it everywhere, today we're approaching this as, like, an anomaly problem, right?
+
+
+202
+00:31:05.731 --> 00:31:28.570
+Incoming livestream: But ideally, we move away from this world of anomaly detection and move into the way of actually deploying AI in a principled manner with guarantees of different kinds, in the same way we deploy software today, right? Like, we do have probabilistic security in place, like, if you think about ASLR as an example, right? It's probabilistic security, but on top of ASLR, we have a ton of other mechanisms which are not probabilistic in nature.
+
+
+203
+00:31:28.571 --> 00:31:33.731
+Incoming livestream: And think about control flow integrity, or CFI, as being one of these examples.
+
+
+204
+00:31:34.521 --> 00:31:40.231
+Incoming livestream: Yeah, so we really want to escape the cat and mouse, because this cat and mouse thing is gonna haunt us.
+
+
+205
+00:31:40.571 --> 00:31:41.681
+Incoming livestream: So…
+
+
+206
+00:31:41.681 --> 00:32:06.280
+Incoming livestream: what does it mean for security of AI of tomorrow, right? So what are we supposed to see? And if you ask me, the best case for us is if we somehow manage to build mechanisms and sort of do some methodological innovation, which allows us to build systems where your security utility scales with the utility of the model. So think about this as, like, my model gets better, and suddenly security posture IX
+
+
+207
+00:32:06.281 --> 00:32:07.991
+Incoming livestream: It's significantly better.
+
+
+208
+00:32:07.991 --> 00:32:23.561
+Incoming livestream: And that would be the best case scenario, right, if we eventually end in this world. Turns out, actually, for a large fraction of problems we're experiencing with the prompt injections, you can actually do it. You can actually get sorts of guarantees.
+
+
+209
+00:32:23.581 --> 00:32:40.181
+Incoming livestream: We released this paper, I think, a year ago now, and that was the very first example of a paper, describing a mechanism that comes with some guarantees under the hood. Those guarantees are a little bit weird.
+
+
+210
+00:32:40.181 --> 00:32:45.751
+Incoming livestream: But nonetheless, they come with guarantees, so they work regardless, regardless of the attacks you have in place.
+
+
+211
+00:32:45.861 --> 00:32:49.480
+Incoming livestream: The way Camel worked under the hood was.
+
+
+212
+00:32:49.561 --> 00:33:00.250
+Incoming livestream: It was basically, if you will, an implementation of the dual LLM pattern that Simon Willison coined a while back ago, but actually, we started doing this way before he was writing about this.
+
+
+213
+00:33:00.251 --> 00:33:01.211
+Incoming livestream: And…
+
+
+214
+00:33:01.211 --> 00:33:23.570
+Incoming livestream: What we do here is we kind of separate away data and instructions quite fundamentally in the whole deployment loop of the model. So, we take user queries, we rewrite a user query in a formal language without ever giving it any access to the data at all. So, it does not see your untrusted content. It cannot be poisoned by things, it cannot be prompt injected by things that it can't see.
+
+
+215
+00:33:23.631 --> 00:33:47.190
+Incoming livestream: And once we take the user query and rewrite in a formal language, we kind of freeze this at this point, and then we just execute this, this frozen program, and inside of this frozen program, we basically refer to another model to be able to process untrusted data. And in this setup, you basically have instructions, and this is what you get in the user query, separated away fully, like, in its path.
+
+
+216
+00:33:47.211 --> 00:34:00.971
+Incoming livestream: from the untrusted data. And, like, clearly, for indirect prompt injections, so anything that other people are injecting into you, they will not be able to deviate the control flow you possess, right? So you get a control flow integrity out of this thing.
+
+
+217
+00:34:00.971 --> 00:34:07.520
+Incoming livestream: But you can still steer the actual sort of decision-making. So here, this…
+
+
+218
+00:34:07.521 --> 00:34:25.601
+Incoming livestream: the QLOM call this Processing of Untrusted Data Model, can output you an address that is incorrect. So, the blast radius itself of any sort of indirect prompt injections is severely restricted. It's impossible for this thing to now go and drop your tables or anything, like, it's fixed in its execution flows.
+
+
+219
+00:34:26.251 --> 00:34:42.451
+Incoming livestream: And the best way to think about this is literally, like, you just fix the reasoning of the model, you fix what it's capable of doing, and then you use the other model to process any unstructured data into structured states such that it's processable by your planner, like, planning model.
+
+
+220
+00:34:43.311 --> 00:34:54.991
+Incoming livestream: If you want to see what it looks like in practice, this is an example from Tautu. This is, like, a classic customer support dataset where you benchmark. Usually, it kind of looks like this, so the query here was…
+
+
+221
+00:34:55.041 --> 00:35:08.691
+Incoming livestream: Here is my reservation ID, I want to know if I'm eligible for a refund, and then what your model would produce is, it would fix your variables inside, it would try and get the reservation ID, it puts a bunch of flags.
+
+
+222
+00:35:08.691 --> 00:35:18.120
+Incoming livestream: And then for each one of them, it would perform, like, a call to this… another unstructured LLM that is capable of outputting a Boolean value, so nothing but a Boolean value.
+
+
+223
+00:35:18.121 --> 00:35:39.240
+Incoming livestream: So, after running, basically, those checks, you get booleans, whether the eligibility for a given criteria and this criteria is formally defined, is expressed, and then your model is capable of maximum just navigating through, like, a bunch of stacked if statements. And at that point, you as an adversary, if you wanted to manipulate this thing.
+
+
+224
+00:35:39.241 --> 00:35:57.651
+Incoming livestream: you will discover you can't really do much beyond just, you know, forcing it to believe that some eligibility is there or not there in the first place. So, clearly, if you were attacking this thing, you'll struggle quite a bit, because none of your attacks will transfer, they're going to be quite specific for whatever checks the user is actually asking.
+
+
+225
+00:35:58.101 --> 00:36:11.591
+Incoming livestream: So, when we run this thing, I think those benchmarks are, like, from 6 months ago. For a variety of different agenic tasks, I'm just putting some stuff out of the paper. We actually run a lot more at this point.
+
+
+226
+00:36:11.591 --> 00:36:26.551
+Incoming livestream: And, what you will discover is that it broadly works. You don't lose performance. You lose performance in some very specific tasks. And this by itself is enough to give you this control flow integrity with a bunch of asterisks. We can talk a bit about asterisks. And in this setup.
+
+
+227
+00:36:26.781 --> 00:36:31.691
+Incoming livestream: You basically know that no matter what the adversaries do, they are kind of restricted inside.
+
+
+228
+00:36:32.141 --> 00:36:52.180
+Incoming livestream: And this kind of made me contextualize a little bit. What does this controlled data flow separation that we're kind of used to in software actually means in AI? And I think it's better to rephrase this as task data independence. So, if the task that you're actually asking the model can be solved without ever seeing the data, why even show it the data?
+
+
+229
+00:36:52.181 --> 00:36:53.011
+Incoming livestream: And…
+
+
+230
+00:36:53.011 --> 00:37:02.180
+Incoming livestream: Like, if you assume this Rubik's Cube scenario, right? You have a robot that you're tasking to solve a Rubik's Cube. We know a general algorithm how to solve a Rubik's Cube.
+
+
+231
+00:37:02.181 --> 00:37:13.931
+Incoming livestream: There is no point in giving it anything beyond the initial condition, because once you know the initial condition, this is the minimum amount of data that you need to release to the model, out of which it becomes a completely independent task.
+
+
+232
+00:37:13.981 --> 00:37:29.771
+Incoming livestream: So, the crux of the whole problem is data dependence. If the tasks that you're asking your agent to solve are data-dependent, you do not need to show it anything. Then, like, prompt injections don't exist, like, at all. And for data-dependent tasks.
+
+
+233
+00:37:29.771 --> 00:37:45.971
+Incoming livestream: the question you should really be asking is, how do I minimize the amount of data that I release to my model, or perhaps make it, like, provably reliable, such that the task becomes predictable? And at that point, we know how to solve it, and get some guarantees out of this whole situation.
+
+
+234
+00:37:45.971 --> 00:37:59.091
+Incoming livestream: And in this paradigm, it quickly becomes apparent that not all tasks are solvable, because many of them are, like, find my boss's email, and, like, find the execution steps inside of it. This is a strictly, like, extremely data-dependent task.
+
+
+235
+00:37:59.101 --> 00:38:13.510
+Incoming livestream: Like, what happens when you try running this task, your model implements an interpreter loop in its plan. It basically goes through all possible actions the boss could have asked, and obviously, at that point, you lost control flow integrity, because the whole thing, like, all possible flows are allowed.
+
+
+236
+00:38:13.931 --> 00:38:30.260
+Incoming livestream: But fundamentally, it's the same as load external code, run it. The best thing we can do for this is some static analysis, maybe a bit of dynamic analysis, maybe on top of it, we can sandbox this, but this is as good as it gets for these kinds of problems where resolving the data dependency is nearly impossible.
+
+
+237
+00:38:30.901 --> 00:38:32.651
+Incoming livestream: Yeah, so…
+
+
+238
+00:38:32.661 --> 00:38:45.470
+Incoming livestream: And it may seem that, like, this setup… actually, the paper was raised a year ago, everyone talks about this as, like, a de facto standard of how to think about security, but nobody implements this, and that is a little bit mind-boggling to me.
+
+
+239
+00:38:45.471 --> 00:38:57.200
+Incoming livestream: I… I understand why, because I've now done quite a, like… I run a company of my own now, where we sell systems much better than what we describe here, but nonetheless similar in principle.
+
+
+240
+00:38:57.591 --> 00:39:01.231
+Incoming livestream: The answer is it's so hard to engineer these things, and…
+
+
+241
+00:39:01.351 --> 00:39:04.091
+Incoming livestream: We've been… it's been 6 months of us going.
+
+
+242
+00:39:04.211 --> 00:39:23.910
+Incoming livestream: 5-coderie migration, we have millions of lines of code now, stuff is quite robust at this point, famous last words, but nonetheless, it's quite hard to scale. And the other thing I receive a lot is that a lot of tasks are data-dependent, so you should not be able to do this, right? Especially if you start looking at more complex instantiations of this. For example, computer use agents.
+
+
+243
+00:39:23.911 --> 00:39:28.411
+Incoming livestream: So I wanted to briefly sort of challenge this idea. This is… this is unfortunately wrong.
+
+
+244
+00:39:28.521 --> 00:39:40.761
+Incoming livestream: you can actually discover that a bigger proportion of all of the benchmarks we are currently running are completely data independent. You do not need to show it the data. The model can solve those tasks without ever interacting with any data.
+
+
+245
+00:39:40.971 --> 00:40:00.011
+Incoming livestream: with an example of computer use agents. So, for those who are not familiar, computer use agents are agents where you click on the screen, like, your tools are literally click or send the key commands, and this is, like, notoriously difficult to think about. So now imagine, you needed to explain to someone how to order a PS5 controller.
+
+
+246
+00:40:00.021 --> 00:40:01.041
+Incoming livestream: on Amazon.
+
+
+247
+00:40:01.171 --> 00:40:16.481
+Incoming livestream: Can you plan this thing in advance, without ever interacting with the internet? And guess what? So it turns out the models are super good at this. You really don't need to show it any of the internet, because it knows by heart the steps it requires to actually perform a task like this.
+
+
+248
+00:40:16.481 --> 00:40:21.541
+Incoming livestream: So here is an example of a plan. I don't know if you can see it very well, but basically it says.
+
+
+249
+00:40:21.541 --> 00:40:36.590
+Incoming livestream: Oh, I need to check whether I'm currently on the website. If I'm currently on the OS site, I need to find some parts inside of it. If I've managed to find them, then I need to perform the following set of actions. And it's a programmatic flow. For most of the tasks you find on the computer use benchmarks, and we use the most standard computer use benchmarks.
+
+
+250
+00:40:36.831 --> 00:40:46.871
+Incoming livestream: You'll find you can plan these things out fully, you end up with plans about 3,000 to 4,000 lines of code, and then they run. Like, you don't need to change anything.
+
+
+251
+00:40:47.041 --> 00:40:53.291
+Incoming livestream: And, if you were to look at, sort of, distributions of tasks that are solvable, they're very much
+
+
+252
+00:40:53.521 --> 00:41:10.620
+Incoming livestream: Correlated with how data-dependent the tasks are, but on average, by the seventh attempt, and know that attempt here is a little bit fake, because it's not the same, because you can sample many plans and combine them together, like, you can basically build massive, massive attempt, trees.
+
+
+253
+00:41:10.841 --> 00:41:15.330
+Incoming livestream: You basically solve about 70-80% of the tasks.
+
+
+254
+00:41:16.661 --> 00:41:33.091
+Incoming livestream: like, on par to a model that actually interacts with the data. So, like, if you take X amount of tasks is solved by the model that can interact with the internet and see the internet, in our case, we can solve 80% of these tasks without ever looking at the internet. The only thing you get is a user query at the very beginning.
+
+
+255
+00:41:33.281 --> 00:41:51.250
+Incoming livestream: Right? So completely data independent. You don't need to show the data, you don't need to get prompt injected by running the data, because you can just run without it for a big majority of the tasks. And mind you, we have much better schemes internally in a company that our performance is much better than what you see here. Like, you can push this significantly.
+
+
+256
+00:41:51.951 --> 00:41:54.101
+Incoming livestream: Let's just jump over to this. So…
+
+
+257
+00:41:54.321 --> 00:42:12.170
+Incoming livestream: As I said, we talk about CFI, this thing gives you CFI, this control flow integrity, so you can't really force the agent to perform things that otherwise it wouldn't be asked to perform by the user, but can you still manipulate it? And turns out, it's actually quite easy to do in a computer use setting. It was quite funny for us.
+
+
+258
+00:42:12.831 --> 00:42:20.341
+Incoming livestream: I live in Europe, well, I live in London, and the thing is, like, whenever you open a website, the first thing you see is a cookie prompt.
+
+
+259
+00:42:20.341 --> 00:42:36.851
+Incoming livestream: And what you will get out of the model, every time it opens a website, or any website-related thing, it builds, like, a whole chunk related to detecting whether it sees a cookie prompt inside of it. Like, the first thing in every single plan that the agent produces is, is there a cookie prompt? Because then I need to click out of it.
+
+
+260
+00:42:36.921 --> 00:42:48.070
+Incoming livestream: Okay? Every single one. So you know what's gonna happen in the plan. What can you do? So what we did was, we grabbed the ads that you can find, basically, on any website, and we plug in cookie prompts inside.
+
+
+261
+00:42:48.241 --> 00:43:05.151
+Incoming livestream: Right? And in this way, even though the model never sees the interaction, like, it doesn't know the interaction, it's only allowed to sort of plan ahead of time and say, is there a cookie prompt? And the first thing, of course, there is a cookie prompt, it's in your ad space. And the first thing it does in its plan is it clicks accept.
+
+
+262
+00:43:05.431 --> 00:43:21.051
+Incoming livestream: And then, what we basically show is, as long as you can buy those cookie prompt advertisements, you can basically force the agents to sort of click through this. And this is an example of a prompt injection that is not control flow prompt injections. It's not like, ignore my previous instructions, do something else. This is…
+
+
+263
+00:43:21.051 --> 00:43:38.251
+Incoming livestream: I know that my execution flow is fixed, I want to deviate into some other flow. Can I do this? Obviously, the amount of stuff you can do is quite restricted in this setup, but nonetheless, like, it works. And you… it becomes obvious this, like, data flow class of attacks is still a thing.
+
+
+264
+00:43:39.261 --> 00:43:40.231
+Incoming livestream: So…
+
+
+265
+00:43:40.541 --> 00:43:51.590
+Incoming livestream: what I want to say is, like, today we actually know how to solve a big chunk of the Sygentic security problems. Like, some papers are public, some of the work is not public yet, but eventually we will push it out.
+
+
+266
+00:43:51.591 --> 00:44:00.721
+Incoming livestream: And you still need quite a lot of methodological innovation, you still need a lot more sort of integration, with an example of this website cookie prompt style of attacks.
+
+
+267
+00:44:00.721 --> 00:44:10.971
+Incoming livestream: But I have no idea why people don't do it. Like, I genuinely don't. I think we can have a much better state of the world. The other thing I wanted to mention is that, like.
+
+
+268
+00:44:10.971 --> 00:44:18.651
+Incoming livestream: Since we see that data flow attacks are a thing, it's clear that those kinds of problems are not going to be solved inside of the model.
+
+
+269
+00:44:18.661 --> 00:44:42.141
+Incoming livestream: this sort of robustness has to come from the outside. For example, in a web space, it's quite clear what you need to do. You can, as an agent, say, I'm expected, when I click on a cookie prompt, to stay on the same website, right? Like, it's quite clear what you need to actually be checking, but unless the agent has a way to interact and deeply integrate into the ecosystem in which it exists, it will not be able to do this. So we've been running a bunch of efforts,
+
+
+270
+00:44:42.141 --> 00:44:44.511
+Incoming livestream: with some colleagues in UCSD.
+
+
+271
+00:44:44.511 --> 00:44:54.151
+Incoming livestream: on trying to build proper sandboxes and a proper communication layer between the agent plus the environment in which it interacts, and in this case, we really soulmate
+
+
+272
+00:44:54.151 --> 00:45:12.540
+Incoming livestream: Where you as an agent, or you as an owner of a website, or you as a user of a website, you can express your expectations around what the website should do as you perform actions with it. So think about access control, policy enforcement inside of the browser. So all this stuff works, fully open source, it's easy to use, and
+
+
+273
+00:45:12.641 --> 00:45:22.480
+Incoming livestream: If you go and try breaking Camel together with cellmate, I promise you, you will fail. Like, it's so hard to do in this setup, as the adversary, I've tried.
+
+
+274
+00:45:22.961 --> 00:45:29.901
+Incoming livestream: It's, it's, it's like… You will solve 99.999% of all of the issues you can experience.
+
+
+275
+00:45:30.441 --> 00:45:37.951
+Incoming livestream: Yeah, so I think this is the end of my talk. I don't know, have I used enough time? Yeah. This is the end of my talk.
+
+
+276
+00:45:38.131 --> 00:45:42.041
+Incoming livestream: Happy to take questions or broadly talk about this. I also have
+
+
+277
+00:45:42.211 --> 00:45:46.341
+Incoming livestream: Couple of hundred of pages of papers, we can talk about stuff if you're interested.
+
+
+278
+00:45:56.011 --> 00:45:57.051
+Incoming livestream: Questions?
+
+
+279
+00:46:02.221 --> 00:46:21.041
+Incoming livestream: So I know when you mentioned, CAML and kind of the research that went along with that, I guess the question that I pose is, why don't you think we see more adoption of those standards? Is it because, I guess, should the academic papers be pushing more on the operationalization side of this, or is it okay to just pose that framework out there?
+
+
+280
+00:46:22.951 --> 00:46:40.650
+Incoming livestream: Okay, as an academic, sorry, I'm not gonna touch your computer. As an academic, I will say we should definitely share methodological research. I think security is a shared commodity, we all benefit from this, we all use tooling from everyone. At the same time, I have to say, like, building the first prototype was trivial.
+
+
+281
+00:46:40.931 --> 00:46:44.860
+Incoming livestream: Personalizing this and building, like, a proper production system is hard.
+
+
+282
+00:46:44.881 --> 00:47:00.811
+Incoming livestream: Right? And in this particular case, the amount of methodological innovation we'll have to do inside of the model, not just outside, basically means you have a small set of people who understand the AI, who understand security, and can sort of, like, iteratively improve systems. So, it's a very hard task.
+
+
+283
+00:47:00.811 --> 00:47:19.720
+Incoming livestream: Right? So, as I said, 6 months in, a lot of code migrations. Our current scheme is significantly better. You can adopt it with one line of code changing every single Gentec setup you have. Like, give it a try, and then, I promise you, the first action is gonna be, hmm, I'm gonna try and implement it internally, and you will discover it's so notoriously hard to do.
+
+
+284
+00:47:19.871 --> 00:47:28.730
+Incoming livestream: Right? But nonetheless, if you're interested, if you want to try using this, we have, like, an openly available API. You can poke at it, and you get the full control of your systems.
+
+
+285
+00:47:29.271 --> 00:47:46.610
+Incoming livestream: And those things are also, like, model agnostic. Tomorrow you want to switch your provider, and it works. And it also scales with your model improvement. So, the other thing I kind of skipped over, just for the sake of time, is that your planning capabilities directly correlated with your performance, so the better the model is, the better the planning is.
+
+
+286
+00:47:46.791 --> 00:47:52.521
+Incoming livestream: And the better security performance is, right? Because, like, you can actually do those tasks.
+
+
+287
+00:47:53.301 --> 00:47:55.331
+Incoming livestream: I hope that answers.
+
+
+288
+00:47:56.201 --> 00:48:05.651
+Incoming livestream: Is there any other questions? Yes, one more question. Sure. Would you mind explaining what would be the security challenges for the computer usage agents?
+
+
+289
+00:48:05.871 --> 00:48:13.840
+Incoming livestream: like, when it comes to VNC, or how do you secure? I know my question is twofold. One is, what would be the most…
+
+
+290
+00:48:14.311 --> 00:48:18.691
+Incoming livestream: Difficult challenge when it comes to securing those computer use agents.
+
+
+291
+00:48:18.801 --> 00:48:20.570
+Incoming livestream: Or have you seen
+
+
+292
+00:48:20.581 --> 00:48:36.280
+Incoming livestream: any attacks coming through them? Oh, yeah, plenty. I mean, if you Google for this, you'll find people losing emails, access codes, API keys, everything. Like, computer use agents are horrible, because you have no semantics. Your input is a screenshot, your action is, I click somewhere.
+
+
+293
+00:48:36.281 --> 00:48:48.620
+Incoming livestream: you can't even do semantic censorship of this thing. Like, in case of email, you can at least say, like, I'm only sending emails to my at Google addresses, right? But when your action is a click.
+
+
+294
+00:48:49.041 --> 00:48:50.590
+Incoming livestream: How do you police this thing?
+
+
+295
+00:48:57.501 --> 00:49:01.870
+Incoming livestream: the environment, or another question, like, how do you secure it? What are your thoughts?
+
+
+296
+00:49:02.131 --> 00:49:10.851
+Incoming livestream: how do we secure? Like, I'm telling you, Brandes and Camel, together with CellMate, this thing will solve 99.9999% of your issues, already, like, out of the box.
+
+
+297
+00:49:10.851 --> 00:49:24.400
+Incoming livestream: Right? There is a lot of heuristic solutions people are using, or you can use the SIC defense that we released. This thing appears to be quite robust for basically anything you can find out there, except for relatively sophisticated adversaries.
+
+
+298
+00:49:25.071 --> 00:49:26.571
+Incoming livestream: Thank you so much.
+
+
+299
+00:49:42.451 --> 00:49:57.130
+Incoming livestream: Hi everyone, I'm Dong Dong from Palotel Networks, I'm a machine learning engineer working on, threat intelligence. So, today of the talk, I'll just talk about how we build a threat intelligence, from getting open source intelligence data.
+
+
+300
+00:49:57.601 --> 00:50:17.161
+Incoming livestream: I think many of you are working with open source intelligence data, have used some of it. The best thing about open source intelligence data is free. But is it really free? It's all there in the wild, but you have to gather it into a structured format that you can use it, for downstream tasks easily.
+
+
+301
+00:50:17.361 --> 00:50:40.621
+Incoming livestream: So for, for people using open source intelligence data, a lot of things are just, like, threat reports published by different vendors. You can read them, you know, occasionally trying to look out for things that might related to your company, protect the threats that you're looking for. But reading reports, take a lot of time. So some people just, okay, we can maybe have a subscription to a,
+
+
+302
+00:50:40.621 --> 00:50:50.640
+Incoming livestream: Intel feed, and just gives you a bunch of stuff, but those things are usually, like, indicator fees. Indicator fees are good if you just plug and chug, maybe to your EDR, and just check for these things.
+
+
+303
+00:50:50.641 --> 00:50:56.470
+Incoming livestream: But what the really thing lacks is the contextual clue of what this indicator is about.
+
+
+304
+00:50:56.501 --> 00:51:03.371
+Incoming livestream: And that's just the butter of the open source intelligence data lies in the unstructured data out there.
+
+
+305
+00:51:03.381 --> 00:51:22.181
+Incoming livestream: So there, we're tracking about over 200 different, valid sources across the internet, and this thing can crowd maybe, like, 10, 10,000 reports each week. And this is not for… possible for anybody to consume. And there are, different, same events,
+
+
+306
+00:51:22.181 --> 00:51:36.691
+Incoming livestream: talked about by different vendors, but they are, like, overlapping things they talk about, and the things this vendor talks about, the other vendor didn't talk about. So it's very important to look at this, open source data holistically, so you get a better picture of what's going on out there.
+
+
+307
+00:51:38.301 --> 00:51:53.301
+Incoming livestream: So the problem really is, you can't possibly look at everything out there. It is timely intel, you want to read it at the time it's first published, so you get the best up-to-date information. But you can't keep track of that kind of stuff every day.
+
+
+308
+00:51:53.691 --> 00:52:10.391
+Incoming livestream: So what we think is, why don't we make this thing, reverse the problem a little bit? We think about, okay, what people use, Thread Intel for, and, maybe we take a proactive approach, let the user, think about, how they want to use it.
+
+
+309
+00:52:10.511 --> 00:52:23.480
+Incoming livestream: So, we want to make it, like, a sort of a question-answering type of scenario. Let's say I want to know about the different malware used by APT29, and I just want to get an answer out of it.
+
+
+310
+00:52:23.481 --> 00:52:37.611
+Incoming livestream: or other cases, I have seen these kind of indicators join up in my logs. I want to see if anybody in the open source community has done any research on these things, and give me a better picture of what's really going on out there.
+
+
+311
+00:52:37.671 --> 00:52:55.540
+Incoming livestream: But the problem is, you can't possibly feed all these reports, in the LM, and LM sometimes doesn't have update information, so you need some sort of a structure to contain all these kind of threat reports into a structure format, and then that also fit into your threat modeling.
+
+
+312
+00:52:55.951 --> 00:53:06.631
+Incoming livestream: So something that naturally comes into the structure is basically a knowledge graph transformation. Cybersecurity data are, in nature, interconnected with each other.
+
+
+313
+00:53:06.631 --> 00:53:18.650
+Incoming livestream: There's different entities, you can trace them, how threat actor uses them, how they use the malware, what are kind of indicators are you seeing in your logs, and what, you know, what victims are being, attacked.
+
+
+314
+00:53:19.631 --> 00:53:36.820
+Incoming livestream: So, so, so now we basically need to think about how we kind of extract this information, out of this, report. And when you think about threat intel, ontology or structure, first thing, sticks. How many of you guys have used sticks and love it?
+
+
+315
+00:53:37.771 --> 00:53:55.191
+Incoming livestream: Alright, I mean, we have one here, that's good. I heard a lot of different stories, obviously. So, we… the problem with sticks is, like, very machine-readable, it's not really for human to ingest, and can get really long, you know, very quick.
+
+
+316
+00:53:55.190 --> 00:54:19.500
+Incoming livestream: So what, what is lacking is, I think, the, we don't want something that's entirely structured, that's not very good for humans to read. Neither does it good for, actually, AI to read. AI likes, like, unstructured text, but you can't really give it too much. So, this ontology, essentially, of Knowledge ArcGV is a, what's called, like, a semi-structured data format, where you have some constraint on what kind of information you want.
+
+
+317
+00:54:19.501 --> 00:54:25.990
+Incoming livestream: But you still retain the unstructured data to give it context and clue to explain this evenly.
+
+
+318
+00:54:26.900 --> 00:54:39.911
+Incoming livestream: Now where we're at it, actually, let's take a look at an example, here from this threat report, published a couple weeks ago about this Beyond Trust-critical vulnerability.
+
+
+319
+00:54:39.911 --> 00:54:56.761
+Incoming livestream: This report, it takes about 11 minutes to read. It talks about the malware vShell, SparkRT, different, different details about the vulnerability, it talks about the scope of the attack, talked about the live shell activity malware here.
+
+
+320
+00:54:56.761 --> 00:55:08.281
+Incoming livestream: It also talks about, the historic context of previous Beyond Shield vulnerability, and at the end, it has just a list of indicators related to this attack.
+
+
+321
+00:55:08.591 --> 00:55:28.411
+Incoming livestream: For humans to read this report, and then also just to extract the intelligence out of it, can take a lot of time. Reading 10 minutes, extracting it out, putting somewhere, maybe another 40 minutes. So it's actually a lot of work that we don't want our threat researchers to do. We want their time to spend on something more useful.
+
+
+322
+00:55:28.631 --> 00:55:47.600
+Incoming livestream: So let's take a look at an example of what the kind of graph looked like if we just struck everything out of it. So, in this medium, I guess, report, we're able to get, like, over 100 different entities out of it, and also over 100 different, relationships out of it.
+
+
+323
+00:55:47.711 --> 00:55:50.070
+Incoming livestream: We can zoom in a little bit in the graph.
+
+
+324
+00:55:50.211 --> 00:56:03.151
+Incoming livestream: Let's just take a look at the, like, the vShell, malware here. It has, like, different infection vectors, things related to this malware extracted from the report. It also…
+
+
+325
+00:56:03.621 --> 00:56:09.121
+Incoming livestream: It also has, talk about, like, a previous campaign that, related to this.
+
+
+326
+00:56:09.441 --> 00:56:17.261
+Incoming livestream: There's… here is, like, extracted vulnerability, and…
+
+
+327
+00:56:18.171 --> 00:56:27.190
+Incoming livestream: Here, you can also see, like, a previous, threat actor also exploiting, beyond-shell vulnerability in, 2024.
+
+
+328
+00:56:28.001 --> 00:56:46.760
+Incoming livestream: Now let's zoom out of this, graph and look at, how it possibly related to a larger picture in the graph. So now we're just, like, expanding, on relationship, from nodes extracted from the report, and then trying to see what are some other entities also, related to this thing.
+
+
+329
+00:56:46.871 --> 00:57:05.131
+Incoming livestream: So for example, this, like, an attack pattern, mentioned here is about ingress tool transfer. We see this, this being used across, various different campaigns. Various different, threat actor uses this, so this gives you a much granular picture of what's going on out there.
+
+
+330
+00:57:07.521 --> 00:57:19.061
+Incoming livestream: Now, let's actually switch back. So how do we really extract this kind of information? It's really dense. It's in the essence, I have, like, over 100 different entities.
+
+
+331
+00:57:19.061 --> 00:57:27.671
+Incoming livestream: LM has been very good at doing stuff, but then doing stuff reliable is, you can't just, like, one-shot this thing, from the get-go.
+
+
+332
+00:57:27.841 --> 00:57:43.211
+Incoming livestream: So, basically, we kind of just, split it up over multiple steps, trying to make LM extract this. What we first started is, like, basically having a skeleton extractor, essentially acting as a router, to look the report, see if there's anything worthwhile to extract.
+
+
+333
+00:57:43.261 --> 00:57:53.240
+Incoming livestream: If he sees something worse about, it essentially just routes, to a different, extraction component, and then it basically tracks detailed information for each, entity types.
+
+
+334
+00:57:53.291 --> 00:58:13.001
+Incoming livestream: For most of things, we're trying to ground it just to extract exactly how it phrased in the report, but for things like attack pattern, usually they don't have the MITAR ID in the report, so you have to just try to look at the attack behaviors there, and try to induce what MITAR attack pattern is.
+
+
+335
+00:58:13.011 --> 00:58:20.691
+Incoming livestream: Turns out, actually, LM has a pretty good knowledge of the entire MITR base, but if you're just asking it, okay, what, you know.
+
+
+336
+00:58:20.801 --> 00:58:32.460
+Incoming livestream: attack pattern inside is actually giving… it's like a fuzzy recall. A lot of attack patterns may be similar, so it actually produced a lot of noise. So what we kind of did here is,
+
+
+337
+00:58:32.481 --> 00:58:50.901
+Incoming livestream: like how you think about things, let LM extract behavior, let extract a couple of candidate, potential, attack patterns, and let LM read related, attack patterns, from a knowledge base, and it will basically correct itself to land on a final attack pattern for that behavior.
+
+
+338
+00:58:51.811 --> 00:59:05.480
+Incoming livestream: And lastly, it's about a relationship extraction. We have, like, a hundred different entities, the relationship basically just explode. So what we did is we just basically constrained, to a set of,
+
+
+339
+00:59:05.511 --> 00:59:13.741
+Incoming livestream: to set up triplets of entities and relationship mappings there, and let LN basically route which relations we can establish.
+
+
+340
+00:59:13.741 --> 00:59:30.491
+Incoming livestream: And, like I was just showing, in the graph here, it actually gives a description, like, for what type of, relationship it is, instead of, like, constraining just to a verb, uses, this description is able to give you a contextual clue if this is how it's actually being used.
+
+
+341
+00:59:32.021 --> 00:59:47.131
+Incoming livestream: So next steps, we're talking about, like, how, okay, we land this architecture. The most important thing about this, all this AI, application is how you do your evaluation, and this is the only indicator of quality of your data, especially for threat intelligence.
+
+
+342
+00:59:48.291 --> 01:00:03.840
+Incoming livestream: Like a lot of things, for this project, we didn't really have a benchmark to start with. There wasn't really any good benchmark on just extracting threat entities and relationships out of long, lengthy threat reports, so this is something we kind of have to start, build from the ground up.
+
+
+343
+01:00:03.841 --> 01:00:18.801
+Incoming livestream: At the beginning, we were just doing fact-checking, trying to see if LLM gives something… makes sense, something's, you know, crazy wrong, and just also validate with external sources, that are out there. The problem with just, building LM Evaluator and external sources is.
+
+
+344
+01:00:18.801 --> 01:00:21.820
+Incoming livestream: You are constrained to the knowledge that's out there.
+
+
+345
+01:00:21.821 --> 01:00:35.711
+Incoming livestream: If you know something that's wrong, you can build an LME validator trying to wish for that. If you know there's, like, a malware out there, you can cross-check. But something, if it's missing in the report, or it's, like, an attack pattern from behavior, you don't really have this information readily available.
+
+
+346
+01:00:35.711 --> 01:01:00.110
+Incoming livestream: So, you still have to use, some sort of human knowledge, to hear, to curate this dataset. So, basically, we try to, you know, make the best time of our threat researchers, so we really make a quick iteration in terms of how we scale the dataset. We started with a small dataset curated by Threat Researcher, and we want the model to try to memorize it as much as possible.
+
+
+347
+01:01:00.131 --> 01:01:16.790
+Incoming livestream: and we do an inference on another batch of data, and with maybe 2 or 3 iterations, the model is able to get 90% correct on most of things, and for 30 short, they really just have to look at it, and just check. So very minimal effort in just really annotating the data from here.
+
+
+348
+01:01:18.221 --> 01:01:35.320
+Incoming livestream: So, as you get to, you know, hundreds and thousands of entities, like, you can't possibly look at the reports and trying to see what's wrong with it, so we're just trying to using, LLM to curate and then conclude, the… through an automatic prompt optimization process.
+
+
+349
+01:01:35.321 --> 01:01:43.651
+Incoming livestream: So, there's, like, a lot of works on this, but actually, it doesn't quite exactly, work here. It is,
+
+
+350
+01:01:43.671 --> 01:02:02.291
+Incoming livestream: a lot of things LM might change in this iteration, say they've seen this false positive, they generated a hypothesis of why this is wrong, and they added something to prompt. And automatically, this thing is changing the previous prompt, and it's causing, essentially, like, a loop that you couldn't get out of. You fix something, you got something wrong, you fix something, got something wrong.
+
+
+351
+01:02:02.291 --> 01:02:11.191
+Incoming livestream: So, in this loop. So, basically, what we did is we constrained in the prompt in an area where only LM can change, and there's a section where human can change.
+
+
+352
+01:02:11.191 --> 01:02:20.051
+Incoming livestream: So this actually, reduced a lot of things where, essentially, you pick up, this thing and you drop another thing. It's able to improve upon, upon here.
+
+
+353
+01:02:20.051 --> 01:02:34.231
+Incoming livestream: Another interesting, thing we noticed from this is, basically during the, reflection aggregators, it's basically summarizing, multiple reasons why this is wrong, and trying to get a new proposal out of it.
+
+
+354
+01:02:34.231 --> 01:02:52.981
+Incoming livestream: Actually, Ellen find a lot of things. We have an inconsistency verdict, from the annotators. So, across report, maybe this thing was… this thing is a malware, they think this is a tool, or they extract this campaign is not. So, actually, automatically discovered inconsistencies, within human, researchers.
+
+
+355
+01:02:52.981 --> 01:02:57.691
+Incoming livestream: If you ask somebody to look at this report, they may look up different things.
+
+
+356
+01:02:57.691 --> 01:03:11.850
+Incoming livestream: So, we, we had this thing, another loop basically have LLM list out a lot of, interesting conflicts, that it's observing, and just we send it, like, to the, threat registers, and let them fight this out.
+
+
+357
+01:03:14.291 --> 01:03:27.160
+Incoming livestream: So, basically, we covered, how we go from unstructured data and to construct this knowledge graph. Now we can talk about how we go from the knowledge graph, to some answers that you really care about.
+
+
+358
+01:03:28.821 --> 01:03:48.361
+Incoming livestream: So basically, we started something simple. We just want to let the agent capability to interact with the, knowledge graph like some human would. So basically, you would just start from a pivot point, either from, like, searching for a node, and then you just basically walk the graph from that node, trying to find related information.
+
+
+359
+01:03:50.011 --> 01:04:07.340
+Incoming livestream: And now, actually, let's take a look at the report on Beyond Trust that we just looked at. I just want to ask the question about, okay, can you just look up the most recent, Beyond Trust vulnerability? How has this been exploited? Give me a tech chain of this, exploitation.
+
+
+360
+01:04:07.341 --> 01:04:23.001
+Incoming livestream: So, basically, the LM agent is able to just search for Indies in Beyond Trust, it finds the vulnerability, and it finds the most recent one. Then it basically just gets a subgraph from this node to get a full story of what's going on with this vulnerability.
+
+
+361
+01:04:23.001 --> 01:04:39.990
+Incoming livestream: Database basically gets the details about the vulnerability, it's able to get related threat actor to this vulnerability, it's able to get other campaigns that are related to this threat, this vulnerability, and here it gives out an attack chain, that's happened, how to exploit this vulnerability.
+
+
+362
+01:04:41.201 --> 01:04:54.181
+Incoming livestream: Also, it's worth noting is just that it also gives you, sources of which node this is able to find, this information, which this gives a lot of trust to, to, to LM not to…
+
+
+363
+01:04:54.311 --> 01:04:59.890
+Incoming livestream: Rely on its model knowledge, whereas relying on curated information from threat reports.
+
+
+364
+01:05:01.371 --> 01:05:09.980
+Incoming livestream: And at the end, it essentially gives you an investigation graph, just to show you what step it looked at, and what entities it looked at, to arrive at this answer.
+
+
+365
+01:05:10.371 --> 01:05:24.551
+Incoming livestream: Now, let's actually look at another example, taking a look at the Thenses capability, of this knowledge graph. So, if I want to look at things from a higher level, look at, okay, what malware does AP28 uses,
+
+
+366
+01:05:24.551 --> 01:05:39.240
+Incoming livestream: is able to look up the APT28, it actually looks up multiple thread actors here, because for AP28, it has multiple aliases, and for different reports, they may mention this alias and this alias, but essentially, it's talking about the same thread actor.
+
+
+367
+01:05:39.531 --> 01:05:59.021
+Incoming livestream: And it's basically looking for, basically multi-hops of how this threat actor, correlates to different malwares. It's doing, like, semantic search, and now here it's basically doing a lookup a bunch of related, malwares to this thread actor, and also getting a subgraph of these thread actor aliases.
+
+
+368
+01:05:59.821 --> 01:06:12.140
+Incoming livestream: And here at the end, it basically, arrives at a bunch of different recent malwares that's used, by the spread actor, and different sort of tools that use it.
+
+
+369
+01:06:12.671 --> 01:06:26.241
+Incoming livestream: Now let's take a look at a more multi-hop question. Basically, what vulnerability does AP28 exploit, and is there any other threat actor group exploit this vulnerability as well?
+
+
+370
+01:06:26.531 --> 01:06:35.501
+Incoming livestream: So now it already has some of the previous information, so it's just only trying to get the neighbors that have exploited the relationship,
+
+
+371
+01:06:35.571 --> 01:06:54.481
+Incoming livestream: looking for… from the exploit relationship from, different aliases, threat actors, and doing semantic search. Here, a base… now you have find pivot from the threat actor to the vulnerability exploit. Now you just take another hop, trying to see what threat actors are related, to these vulnerabilities.
+
+
+372
+01:06:55.691 --> 01:07:07.011
+Incoming livestream: And at the end, it basically finds a bunch of lists of vulnerabilities, and also tons of different threat actors also exploiting the same vulnerability.
+
+
+373
+01:07:11.971 --> 01:07:19.060
+Incoming livestream: And this one basically runs, like, a much longer investigation graph, because you have to look for a lot of more entities.
+
+
+374
+01:07:20.561 --> 01:07:36.201
+Incoming livestream: Let's also look up another question. Maybe you want to find, is there any relationships between two threat actor groups, maybe different malwares? So here we're asking, oh, is there any relationship or connection between ADP28 and ATP29?
+
+
+375
+01:07:36.251 --> 01:07:53.501
+Incoming livestream: Now it's basically… already has enough information about 28, now it's looking up, in its APT29, it's trying to find a path that's connecting between the two directors in the graph, and it's looking for co-occurrences. Co-occurrences is essentially,
+
+
+376
+01:07:53.631 --> 01:08:03.100
+Incoming livestream: they want to look for entities that mention the same report. So this gives LLM a chance to look for things that are not in the ontology, but from the report.
+
+
+377
+01:08:03.861 --> 01:08:16.280
+Incoming livestream: And basically, it gets the step graph from the, thread actor 28. Notice there's, like, doing two different calls, because there are multiple aliases, of thread actor 2029.
+
+
+378
+01:08:16.611 --> 01:08:35.000
+Incoming livestream: Now here, it basically gets the answer, talk about their common tooling, common infrastructure, uses, and their shared strategic targeting, basically type of victims they, they, they like to target, and then also national attribution, their.
+
+
+379
+01:08:35.001 --> 01:08:40.101
+Incoming livestream: both attributed to, Russian GRU, that one is, Russian,
+
+
+380
+01:08:40.491 --> 01:08:45.141
+Incoming livestream: Foreign intelligence services, so they're from the same, geographical location.
+
+
+381
+01:08:45.561 --> 01:08:49.461
+Incoming livestream: And at the end, it has a list of an investigation graph.
+
+
+382
+01:08:50.251 --> 01:08:52.461
+Incoming livestream: That's the end of a presentation.
+
+
+383
+01:09:03.661 --> 01:09:19.211
+Incoming livestream: Hey, firstly, thanks for your presentation, appreciate it. I think it's really impressive that y'all have someone like yourself on staff, as a… as a very senior, experienced data scientist to help build tools like this, so props to Pan for that. Question,
+
+
+384
+01:09:19.331 --> 01:09:28.230
+Incoming livestream: How do you qualify the outputs, and, like, the corollary, the obvious corollary is, like, what are your failure rates for responses, like, being incorrect analyses?
+
+
+385
+01:09:29.051 --> 01:09:42.010
+Incoming livestream: So I guess there are two things, right? So, I think the most important evaluation we're doing, essentially, is making sure the graph extracted is correct. So, if… if your agents are relying on this graph, and this graph is…
+
+
+386
+01:09:42.021 --> 01:09:59.220
+Incoming livestream: trash, then it's, like, trash out. You really can't fix anything from that point. So, basically, we do a very, like, rigorous evaluation. Like, we have, hundreds of threat reports in our dataset, and we're just making sure LM's able to get it reliably each time. Basically, for… for…
+
+
+387
+01:09:59.301 --> 01:10:01.750
+Incoming livestream: Also, there's, like, an iterative,
+
+
+388
+01:10:01.911 --> 01:10:12.241
+Incoming livestream: decoding. Essentially, if there's something… we tested with a report with, like, hundreds of indicators, and our extraction is able to, iteratively get the indicators out of the report.
+
+
+389
+01:10:12.261 --> 01:10:33.941
+Incoming livestream: So basically just invest heavily in evaluation. I would say, like, more than 50% of time, I spend on just building evaluation. Just fighting with researchers A, researchers B, okay, you guys disagree, you know, get in a room, let's fight this out. So, a lot of this is also just massaging the data and the art of just making a, you know, a comprehensive evaluation.
+
+
+390
+01:10:34.091 --> 01:10:59.021
+Incoming livestream: Also, another thing is, this is ultimately decided by the user of the data. So, we have talked about, with multiple teams inside Palo, with threat, like, you know, URL team, different threat researchers, malware team. So, we want them to use data, and it correlates with their data to see if it makes sense. And, obviously, checking, we have our internal data sources, so this is OSINT, we also have
+
+
+391
+01:10:59.021 --> 01:11:01.021
+Incoming livestream: Internal data sources that are doing cross-checking.
+
+
+392
+01:11:13.961 --> 01:11:20.501
+Incoming livestream: So, you spoke about the, sorry, you asked the question around APD28 and APT29, right?
+
+
+393
+01:11:20.781 --> 01:11:26.900
+Incoming livestream: But at least I didn't see in the report anywhere where it said, both are named bear.
+
+
+394
+01:11:27.721 --> 01:11:47.301
+Incoming livestream: Right? Like, I mean, like, if you ask an LLM something, I mean, like, without giving the knowledge, if you ask it, the least it would say is, oh, both are named where maybe they're related, right? But you… I didn't see that in your report. So did you do anything specific to make sure that those kind of conditions… or, well, technically in this case, it's kind of a hallucination, honestly.
+
+
+395
+01:11:47.301 --> 01:12:00.681
+Incoming livestream: Like, did you do something to avoid such a hallucination? Sorry, what kind of a hallucination are you talking about? So, like, when you asked about the APD28 versus APD29, is there any connection, right?
+
+
+396
+01:12:01.211 --> 01:12:07.900
+Incoming livestream: when you just run it across a normal LLM, right, like, which doesn't have any information about the knowledge graph.
+
+
+397
+01:12:08.001 --> 01:12:11.520
+Incoming livestream: The least it would say is, both are named bear.
+
+
+398
+01:12:12.271 --> 01:12:23.921
+Incoming livestream: Both have the name bear in it. Yeah. Fancy bear, and the other one is some other bear. So, maybe they are both related, is what it would say. Yeah. But in your report, it is not there.
+
+
+399
+01:12:23.971 --> 01:12:48.950
+Incoming livestream: So I'm asking, like, did you do anything specific to achieve that? Like, where it doesn't hallucinate in that aspect? Oh, I see, yeah, sorry, I didn't get the first time. You're saying, like, they might just say something similar to their alias names, right? Like, something I guess, nobody really cares about from that. So, I think it's just really having a knowledge base where your LM can constantly get access to, so that's why we're building this knowledge graph. We want the model just really ground on the
+
+
+400
+01:12:48.951 --> 01:13:13.510
+Incoming livestream: knowledge graph itself, instead of relying on model knowledge, which can be wrong. Also another thing is, like, when just, like, basically outputting this, it is giving, like, things like this, right? It's like, like, okay, it's not, it's not showing, and the part, basically, for each statement, it has a bracketed in, it says, basically, where it gets the information. So, basically, we just ground the LLM to the sources, of the knowledge graph.
+
+
+401
+01:13:15.441 --> 01:13:26.000
+Incoming livestream: Oh, great talk. I wanted to ask about, for the eval system and the framework you put in, what kind of monitoring are in place to feed that back into the feedback loop?
+
+
+402
+01:13:27.011 --> 01:13:42.391
+Incoming livestream: Monitoring, do you mean, like, during training stage, or during, like, inferencing stage? Actually both. Both, okay. So, I guess, like, for trainings, like, kind of like what I mentioned there, we have, like, just building an automatic prompt optimization process that's, like, constantly monitoring this.
+
+
+403
+01:13:42.391 --> 01:13:49.390
+Incoming livestream: We… actually, just an interesting fact out of that, like, newer model actually doesn't necessarily produce better, you know, benchmark.
+
+
+404
+01:13:50.671 --> 01:13:52.821
+Incoming livestream: Yeah, maybe I think you were…
+
+
+405
+01:13:53.921 --> 01:14:03.061
+Incoming livestream: Yeah, actually, also another interesting curve is, like, thinking model actually doesn't do better than non-thinking model. That's, like, a weird observation is.
+
+
+406
+01:14:03.061 --> 01:14:14.660
+Incoming livestream: A thinking model seems to think too much, mostly rely on model knowledge, where actually the task we're doing is, like, okay, we try to reduce the model bias as little as possible, just rely on the sources at hand.
+
+
+407
+01:14:14.971 --> 01:14:18.540
+Incoming livestream: But for inferencing, I would say, like, we…
+
+
+408
+01:14:18.801 --> 01:14:25.840
+Incoming livestream: we have, like, LM as a judge, you know, running in production, but those things, I guess, is secondary to the evaluation dataset.
+
+
+409
+01:14:27.221 --> 01:14:34.130
+Incoming livestream: Hi, great talk, thank you. So, how do you… are you looking at the overall metadata of your…
+
+
+410
+01:14:34.371 --> 01:14:37.111
+Incoming livestream: processes in place. So, for example.
+
+
+411
+01:14:37.151 --> 01:14:43.281
+Incoming livestream: the community in general is not putting in attribution. For example, Notepad++…
+
+
+412
+01:14:43.281 --> 01:14:57.481
+Incoming livestream: They come out and they blog it was the Chinese, but they don't have any indicators, it hits Bleepy computer, and now everybody believes that it was the Chinese, right? So, are you looking at overall data as to…
+
+
+413
+01:14:57.481 --> 01:15:02.971
+Incoming livestream: Like, the attribution, and how the… in general, the community is not…
+
+
+414
+01:15:03.051 --> 01:15:08.941
+Incoming livestream: Publishing quality reporting, and how that's skewed over, over time.
+
+
+415
+01:15:09.941 --> 01:15:12.811
+Incoming livestream: Does that make sense? So, I guess, like.
+
+
+416
+01:15:13.631 --> 01:15:31.930
+Incoming livestream: Another question… one… two questions, I think you asked, like, how is the quality of the open source intelligence, and other questions, like, what kind of attribution are we doing? Yeah, like, as there… my theory is, the hypothesis is that the community is just not producing quality reports now, right? So, over… over the years.
+
+
+417
+01:15:31.941 --> 01:15:51.791
+Incoming livestream: So, again, I gave a case example, Notepad++. All of a sudden, it hits the news, bleeping computer, and everybody believes it's the Chinese. Meanwhile, we don't have indicators from the source, zero patient, right? So, are you seeing in your metadata this kind of shift, where we're not getting quality reporting from the community?
+
+
+418
+01:15:51.921 --> 01:16:05.571
+Incoming livestream: Yeah, I see. So this is actually an interesting question, I guess we haven't looked too deeply into, but just thinking on the spot, so if you're making an, I guess, like, a threat actor attribution, you know, or a counterattribution in your report.
+
+
+419
+01:16:05.751 --> 01:16:22.720
+Incoming livestream: if you are doing a good reporting, you would have a lot of evidence on it. If you're just, like, making a claim at a news report, like you said, and you're not having a lot of evidence to back it up, in a graphic, what kind of shows, essentially, if you make this claim, how many no's are there? This gives you some sort of cal…
+
+
+420
+01:16:22.831 --> 01:16:31.170
+Incoming livestream: evidence calibration. And also, we have, like, internal, thread intel that's also doing fact-checking.
+
+
+421
+01:16:31.641 --> 01:16:34.440
+Incoming livestream: Thank you so much. Thank you.
+
+
+422
+01:16:37.041 --> 01:16:41.301
+Incoming livestream: We'll have coffee break, and we'll reconvene at 3.05.
+
+
+

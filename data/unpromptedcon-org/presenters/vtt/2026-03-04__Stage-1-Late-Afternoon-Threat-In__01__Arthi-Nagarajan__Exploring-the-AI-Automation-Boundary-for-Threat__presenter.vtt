@@ -1,0 +1,493 @@
+WEBVTT
+
+1
+00:01:32.395 --> 00:01:34.125
+Incoming livestream: Hello, can everyone hear me?
+
+2
+00:01:34.555 --> 00:01:48.865
+Incoming livestream: All right. Okay, so I'm gonna try to keep you all engaged for the next 20 minutes. I know it's been a long day, but, in this session, I'm gonna be talking about exploring the AI automation boundary for threat hunting.
+
+3
+00:01:49.725 --> 00:02:01.365
+Incoming livestream: My name is Arthi Nagarajan. I am a software engineer at Datadog. I work closely with internal threat intelligence and detection teams to productionize and scale up their security processes.
+
+4
+00:02:02.155 --> 00:02:18.205
+Incoming livestream: Over the past 6 to 9 months, we've been developing an AI-powered threat hunting tool called the Hunting Copilot. I'll share the lessons we learned along the way, and how our understanding of the automation boundary for AI in threat hunting evolved through real-world use.
+
+5
+00:02:18.845 --> 00:02:25.404
+Incoming livestream: Our goal is to equip our internal threat hunting teams with tools to accelerate their hunts.
+
+6
+00:02:25.725 --> 00:02:31.295
+Incoming livestream: As a developer, there are two questions I needed to answer. What should we automate, and how should we automate it?
+
+7
+00:02:32.145 --> 00:02:42.334
+Incoming livestream: Threat hunting is reminiscent of trying to find a needle in a haystack, a magnitude of data that looks normal to the untrained eye, but the attack is written in between the lines.
+
+8
+00:02:42.385 --> 00:02:57.564
+Incoming livestream: At Datadog, our hunters search through a massive volume of logs from many different sources with varying schemas. It's really tedious to figure out which queries will surface the antenna data, and these queries are really important because they eventually become detection rules.
+
+9
+00:02:59.045 --> 00:03:07.414
+Incoming livestream: That's why we mainly decided to automate query generation. Since log data is represented as text, it seemed like an obvious use case for LLMs.
+
+10
+00:03:09.175 --> 00:03:16.405
+Incoming livestream: This was our first question. Are modern LLMs good at threat hunting out of the box? If this is true, my job would be super easy.
+
+11
+00:03:17.105 --> 00:03:30.945
+Incoming livestream: And we started really simple. We used OpenAI's GPT 4.1 model in a single agent, equipped it with web search capabilities, and the AWS Knowledge MCP for searching CloudTrail schema documentation.
+
+12
+00:03:31.345 --> 00:03:41.355
+Incoming livestream: In the system prompt, we linked the Datadog syntax documentation and provided some threat hunting hypothesis to query examples, and just said, hey, you're a threat hunting agent, do your thing.
+
+13
+00:03:42.845 --> 00:03:44.964
+Incoming livestream: The results were okay.
+
+14
+00:03:45.135 --> 00:03:59.905
+Incoming livestream: Given a broad threat hunting prompt, the agent would generate several specific hypotheses with corresponding Datadog Lucene queries. Response time was really fast, an average of 5 seconds. However, syntax error rate was quite high, at 25%.
+
+15
+00:03:59.935 --> 00:04:17.304
+Incoming livestream: Our hunters complained about the aggressive hypothesis production and the frequently misnamed fields and irrelevant values. They also wanted the agent to automatically rule out some false positives. For instance, if the surface logs are associated with a known testing account, it should interpret that.
+
+16
+00:04:19.025 --> 00:04:38.744
+Incoming livestream: In summary, the major failures of our first iteration were low syntax accuracy, low semantic accuracy, so this means that the query does not surface the antenna data because the fields are wrong. I'm gonna be talking about schema and saying the word schema, like, a thousand times in this talk, but this is really the crux of
+
+17
+00:04:38.965 --> 00:04:41.134
+Incoming livestream: Our work on this tool.
+
+18
+00:04:42.535 --> 00:04:54.474
+Incoming livestream: It also struggled with low relevance, so it wasn't using the data to drive conclusions, and we attributed a lot of this to ineffective tool usage. It was just ignoring whatever tools we provided it.
+
+19
+00:04:56.295 --> 00:05:03.524
+Incoming livestream: We concluded that LLMs are bad at threat hunting, and we had to go back to the basics and understand what their capabilities actually were.
+
+20
+00:05:03.685 --> 00:05:05.865
+Incoming livestream: LLMs are good at…
+
+21
+00:05:06.525 --> 00:05:14.654
+Incoming livestream: Synthesis, pattern matching, and translation. We needed to focus on reducing threat hunting into problems of these categories.
+
+22
+00:05:15.765 --> 00:05:23.364
+Incoming livestream: Before I get into the second iteration of the hunting co-pilot, I have to address the obvious obstacle in the AI threat hunting space, and that's data.
+
+23
+00:05:23.975 --> 00:05:26.825
+Incoming livestream: Let's start with the nature of the log data we're querying.
+
+24
+00:05:27.225 --> 00:05:32.625
+Incoming livestream: At Datadog, we have large volumes of telemetry with look-back periods of up to 450 days.
+
+25
+00:05:32.665 --> 00:05:49.794
+Incoming livestream: And these logs are composed of faceted fields, which are indexed and easy to filter on, and many unfaceted fields. These are raw attributes that can be searched, but they aren't indexed. And this is what makes capturing the full schema of a source or index in a small number of tokens very challenging.
+
+26
+00:05:49.815 --> 00:05:56.184
+Incoming livestream: It's even harder to understand what kinds of values exist for each field without actually querying the data.
+
+27
+00:05:57.755 --> 00:06:15.414
+Incoming livestream: We also have customizable ingestion pipelines that increase automation complexity. And finally, threat hunting in general is hard to capture concretely because the success criteria is very ambiguous. The inputs, outputs, and methods used differ greatly from hunt to hunt and hunter to hunter.
+
+28
+00:06:16.795 --> 00:06:25.134
+Incoming livestream: Fundamentally, this means we don't have a reliable ground truth readily available, neither for query generation nor for overall threat hunting.
+
+29
+00:06:26.825 --> 00:06:34.435
+Incoming livestream: We thought about fine-tuning our agent before anyone asked, and this solution only makes sense if you have access to good threat-hunting data.
+
+30
+00:06:34.435 --> 00:06:49.985
+Incoming livestream: By good data, I mean data that is representative, well-labeled, and in abundance. We did not already have a well-curated corpus of past threat hunts with consistent inputs and outputs labeled in a way that can apply to unseen hunts.
+
+31
+00:06:50.105 --> 00:07:03.725
+Incoming livestream: Given the amount of time and resources it would have taken to produce this, and the fact that we needed to deliver results quickly, we decided to stick to advanced prompt engineering techniques. Fine-tuning was just too high risk and high effort with expected low return.
+
+32
+00:07:06.295 --> 00:07:23.844
+Incoming livestream: This is the point in our journey where we had to reframe the problem. Our hunters needed this agent to be accurate and useful. After syntax accuracy, semantic accuracy was the top weakness. And, in other words, queries that were syntactically valid were still answering the wrong question.
+
+33
+00:07:25.195 --> 00:07:28.295
+Incoming livestream: So we've reframed the problem around field discovery.
+
+34
+00:07:28.445 --> 00:07:40.495
+Incoming livestream: We sat down with our threat hunters and asked them to walk us through how they analyze logs in a hunt. We found that their process was fortunately, repeatable. It's a mix of informed guessing, sampling, and iterative refinement.
+
+35
+00:07:40.735 --> 00:07:51.794
+Incoming livestream: They start with an initial hypothesis and broad queries, they dive into the raw logs and inspect sample values, then they tweak their query and repeat this process until they find something valuable.
+
+36
+00:07:52.405 --> 00:08:01.314
+Incoming livestream: We call this process log schema exploration. Instead of relying on documentation as a source of truth, the schema should be derived directly from the data.
+
+37
+00:08:03.525 --> 00:08:14.384
+Incoming livestream: We shifted the boundary more towards AI with automated data analysis. So, use the data to drive conclusions, and this would address the hunter's request to rule out some false positives as well.
+
+38
+00:08:16.235 --> 00:08:29.835
+Incoming livestream: There were several sub-iterations that led to V2, but the core shift was towards a multi-agent framework. We introduced reasoning models, such as GPT-5.1, and implemented an orchestrator expert framework.
+
+39
+00:08:29.835 --> 00:08:46.514
+Incoming livestream: We also added the Datadog MCP server, and this allowed the agent to execute the queries it generated, and then validate them against real logs. One of the most valuable features of this MCP is that it returns concise corrections when something is wrong, and that was the key to improving syntax accuracy.
+
+40
+00:08:47.035 --> 00:09:05.074
+Incoming livestream: Lastly, we tightened the system prompt and defined iterative query refinement behaviors, as well as stop conditions. And we noticed that the agent struggled with tricky syntax, like negation or JSON policy document formatting, which our threat hunters love to search on, and wildcard placement.
+
+41
+00:09:05.075 --> 00:09:08.385
+Incoming livestream: So, we provided more concrete construction rules in this case for that.
+
+42
+00:09:11.845 --> 00:09:26.315
+Incoming livestream: This is an overview of the architecture. We have the orchestrator, it's handling the investigation flow, maintaining the overall hunt context. It then gathers source documentation from expert sub-agents, such as for AWS CloudTrail or GCP audit logs.
+
+43
+00:09:26.315 --> 00:09:48.785
+Incoming livestream: It then calls the Datadog agent, and it's essentially a wrapper for the Datadog MCP. It generates and iteratively refines queries based on the data. We noticed that queries that return zero results were most likely semantically incorrect. So we just biased the agent towards generating logs results. Our stop conditions were both quantitative, so cap the number of iterations at 5,
+
+44
+00:09:48.785 --> 00:09:53.264
+Incoming livestream: And subjective. If you find logs and can reach a conclusion, stop iterating.
+
+45
+00:09:53.815 --> 00:10:01.714
+Incoming livestream: This divide-and-conquer approach reduced overall context load, context overload, and made each step more controlled and precise.
+
+46
+00:10:02.855 --> 00:10:22.695
+Incoming livestream: With this architecture, we noticed a huge improvement in syntax accuracy by 17%, and slightly better semantic accuracy, but tool usage increased. All this, however, was at the cost of response speed. We went from an average of 5 seconds per response to 6 minutes, some edge cases taking 30 minutes to an hour.
+
+47
+00:10:23.005 --> 00:10:38.974
+Incoming livestream: Our users were not happy with this response time, and semantic accuracy was still hindered by persistent hallucination. This was because query executions often timed out, or the results were truncated. Sampling log data was just too computationally exhaustive to be handled by the agent alone.
+
+48
+00:10:42.535 --> 00:10:55.684
+Incoming livestream: We learned a lot about the trade-offs of multi-agent frameworks and powerful MCP tools with V2, and it all comes down to context. This principle hasn't changed. Threat hunting workflows overload context. If you manage the context well, you'll see results improve.
+
+49
+00:10:56.325 --> 00:11:05.904
+Incoming livestream: The core lessons from V2 were that we should use reasoning sparingly. It was way too slow for production use cases, and if you use it, you should provide reasoning transparency to the user.
+
+50
+00:11:06.085 --> 00:11:17.154
+Incoming livestream: Multi-agent frameworks are an excellent way to manage context. So the orchestrator is building context over the course of a hunt, but each expert agent, it starts fresh every time it's called.
+
+51
+00:11:17.405 --> 00:11:24.445
+Incoming livestream: Based on how you conquer and divide, these sub-agents can become excellent at their specific task, and you save context space for the overall hunt.
+
+52
+00:11:25.195 --> 00:11:32.514
+Incoming livestream: However, delegation introduces its own cost, every handoff adds latency, and agent coordination will increase complexity.
+
+53
+00:11:33.495 --> 00:11:45.104
+Incoming livestream: A quick note on chaining. We noticed that chains of length over 3 were subject to getting stuck downstream, especially if there was some looping, and that's what we had with the iterative refinement in the Datadog agent.
+
+54
+00:11:46.295 --> 00:11:50.185
+Incoming livestream: So we try to keep our architecture at 3 layers or less.
+
+55
+00:11:50.775 --> 00:12:10.025
+Incoming livestream: Tools are crucial, but they need to be concise and informative. We designed tools to return short suggestions to take the burden of correction off of the agent, and we always specified a concise list of allowed tools for MTP servers that expose many. The system prompt should describe which tool should be called at which step.
+
+56
+00:12:11.245 --> 00:12:20.434
+Incoming livestream: And I am aware of the very fickle nature of making bold claims on what AI can and cannot do. I did see the talks yesterday, especially Anthropic, Nicholas.
+
+57
+00:12:20.435 --> 00:12:36.205
+Incoming livestream: Opus 4.5 and 4.6 were released quite recently, so as these LLMs get more powerful and the context window increases, you can simplify your architecture while keeping hallucinations low, but I'd argue that right now, for threat hunting, multi-agent frameworks are still necessary for the best results.
+
+58
+00:12:39.395 --> 00:12:44.005
+Incoming livestream: Achieving high query syntax accuracy was pretty easy.
+
+59
+00:12:44.265 --> 00:12:49.044
+Incoming livestream: But semantic accuracy is really hard because of the high volume and density of the data.
+
+60
+00:12:49.275 --> 00:12:52.845
+Incoming livestream: There are four fundamental approaches that we've been exploring to manage this.
+
+61
+00:12:53.085 --> 00:13:03.515
+Incoming livestream: So the first is external documentation and AI. Basically, you're trying to make an educated guess on what the schema may look like at Datadog. And in practice, this wasn't very representative of the data.
+
+62
+00:13:03.735 --> 00:13:15.154
+Incoming livestream: Log clustering and aggregations, they can really help cut down the logs that need to be analyzed. However, it's very easy to misjudge which facets to aggregate on, and the agent usually guesses wrong.
+
+63
+00:13:15.355 --> 00:13:29.175
+Incoming livestream: The built-in clustering within the Datadog logs platform, if you've seen it, it's based on the message body or status, and that's not always relevant to the hunts. Our hunters love aggregating on super niche facets and attributes.
+
+64
+00:13:29.255 --> 00:13:45.964
+Incoming livestream: We could preprocess with ingestion pipeline data, so build an understanding of schema statically. We gather all the remappers and grok parsers from the configuration pipeline, and then we feed that into the context, but it still misses some information, and it's consuming a lot of context space.
+
+65
+00:13:45.965 --> 00:13:50.084
+Incoming livestream: And it's also subject to change, so we still need a more dynamic approach.
+
+66
+00:13:50.175 --> 00:14:02.924
+Incoming livestream: That would be live sampling. Dynamically learn schema from the data. And again, this is computationally exhaustive. So we had to shift the expectation of handling this away from AI agents and towards the tools.
+
+67
+00:14:03.755 --> 00:14:12.704
+Incoming livestream: Our solution is a sort of coordinated dance amongst all of these options, and we fortify and tweak reliance on each one based on the performance that we're seeing.
+
+68
+00:14:14.555 --> 00:14:28.315
+Incoming livestream: Okay, evaluations. A pretty painstaking, though undeniably important topic. The data problem I mentioned earlier, it applies here. We do not have a well-curated corpus of threat hunting data for a traditional evaluation system.
+
+69
+00:14:28.535 --> 00:14:35.505
+Incoming livestream: Even when we generated that data, we noticed that evaluation results were not reflective of its performance in unseen hunts.
+
+70
+00:14:35.515 --> 00:14:50.244
+Incoming livestream: These traditional evaluation systems with inputs and expected outputs, they just produced a bunch of statistics, and oftentimes they showed high accuracy for certain tasks, but our users disagreed. So, passing evaluations did not always correlate with trust.
+
+71
+00:14:50.715 --> 00:15:02.104
+Incoming livestream: A single number to capture the performance can be quite misleading. Like, claiming that an agent is 95% accurate, that could mean anything. And it makes you think that it'll be accurate 95% of the time in future hunts.
+
+72
+00:15:02.175 --> 00:15:17.284
+Incoming livestream: What matters is, it's the data, rubrics, and scoring mechanisms behind the evaluation mechanism that actually carries the truth. And so, there's this trade-off between the time invested into a robust evaluation system and developing the tool.
+
+73
+00:15:17.515 --> 00:15:23.225
+Incoming livestream: Especially given the size of our team, so we invested time into other eval strategies.
+
+74
+00:15:25.705 --> 00:15:40.734
+Incoming livestream: Our strategy was to prioritize trends, comparative metrics, and human feedback over static benchmark performance. We conducted A-B testing during our hunt weeks, so human versus machine. Some hunters used the tool, and others didn't, and we compared their respective results.
+
+75
+00:15:40.885 --> 00:15:52.865
+Incoming livestream: We rely on a frequent and tight user feedback loop, and also collect data as the hunters use the tool to figure out when and how they choose to use it. Because for us, usage corresponded to success.
+
+76
+00:15:53.345 --> 00:16:13.555
+Incoming livestream: We pruned non-essential evaluation metrics and distilled it down to a few tasks that traditional benchmarking made sense for, like response speed or syntax accuracy, because we have, like, a Datadog syntax validation checker. For semantic accuracy, we're not just pinning an LLM-based judge against it, like, that would be circular, because we just… I just argued that LLMs aren't very skilled at that.
+
+77
+00:16:13.555 --> 00:16:18.315
+Incoming livestream: What we do instead is that we run the agent on our test prompts, and we extract the unique queries.
+
+78
+00:16:18.315 --> 00:16:33.345
+Incoming livestream: And then we run them to see the results. And it… for the test cases that didn't have any results, we would do a lot of manual verification. And we did, you know, we did add an LLM judge on that, but it's kind of a combination of different tactics as opposed to just…
+
+79
+00:16:33.855 --> 00:16:37.515
+Incoming livestream: what does LLM base judge think, off the bat?
+
+80
+00:16:39.495 --> 00:16:40.495
+Incoming livestream: Alright.
+
+81
+00:16:40.635 --> 00:16:49.494
+Incoming livestream: So that was kind of the preface and how we built it, and now I want to walk through how our tool aided our hunters in a recent AWS Privilege escalation hunt week.
+
+82
+00:16:51.185 --> 00:17:00.865
+Incoming livestream: One of our hunters focused on an escalation path with the IAM CreateLogin Profile event. This is a pretty dense slide, so I'll try to walk you through it as best as I can. Starting on the left.
+
+83
+00:17:01.235 --> 00:17:11.294
+Incoming livestream: Top left, you can see that the agent generated a starting query and automatically broadened the scope from 1 day to 7 days, then eventually 30 days. Moving down.
+
+84
+00:17:11.465 --> 00:17:22.814
+Incoming livestream: The agent identified 6 distinct targets and correctly assumed that they were associated with test accounts. It identified the type of password reset behavior that made some of these events suspicious versus not.
+
+85
+00:17:23.695 --> 00:17:37.884
+Incoming livestream: I had to redact some of this, information, but funny enough, these users were actually generated by one of our security research teams, as test threat actors, so it was pretty cool that our agent could identify them. There was no incident, but, definitely identifying suspicious behavior.
+
+86
+00:17:38.615 --> 00:17:57.385
+Incoming livestream: And then, moving to the right, or… yes, I think my rights and lefts are confused, but, it then provided a verdict of likely benign, as well as next steps for verifying them and potential pivots. It named, these are the users you should reach out to and figure out if they're actually authorized to have these roles.
+
+87
+00:17:59.035 --> 00:18:09.454
+Incoming livestream: Our hunter also progressed it by asking if there were subsequent console logins for the created users. So, the agent generated a new query and identified that there wasn't any evidence of that.
+
+88
+00:18:09.935 --> 00:18:14.245
+Incoming livestream: And it did it for all of the relevant users that it found in the prior request.
+
+89
+00:18:15.015 --> 00:18:32.864
+Incoming livestream: So this was a pretty good success case, and I think what also made it successful is that there was a hunter that was driving it with a very concrete playbook. So the agent was doing a lot of the searching and the data analysis, but the hunt was kind of defined, or the playbook was defined by the expert in this case.
+
+90
+00:18:34.165 --> 00:18:56.655
+Incoming livestream: Last thing I wanted to show is some of our reasoning transparency. So, basically, it's a little bit dense, but these are the requests that were sent to the subagent, so it called the AWS agent once, and the Datadog agent numerous a number of times to really do that iterative refinement. So it's both Datadog agent calling the Datadog MCP a bunch of times, and the orchestrator agent calling the Datadog agent a bunch of times. So there's two loops here.
+
+91
+00:18:58.565 --> 00:19:04.704
+Incoming livestream: We also ran an A-B testing week, in the same AWS Privilege escalation hunt week.
+
+92
+00:19:04.905 --> 00:19:15.485
+Incoming livestream: Team A utilized the hunting co-pilot, and Team B was a more experienced threat hunter, could not use the hunting co-pilot, but they could use ChatGPT, it didn't make sense to cut out AI usage entirely.
+
+93
+00:19:15.765 --> 00:19:22.285
+Incoming livestream: We tracked live metrics for the tool, but we also had them fill out rubrics and questionnaires for subjective scoring.
+
+94
+00:19:22.615 --> 00:19:37.115
+Incoming livestream: There were many hypotheses explored during this week, so we reviewed the results holistically and compared similar hypotheses. This is because we wanted to minimize testing disruption for their hunts, like, these are actual production hunts, and they're expected to deliver results from these.
+
+95
+00:19:37.115 --> 00:19:51.474
+Incoming livestream: When we compared the results of the two teams, we found that the hunting co-pilot cut the average query iteration time from 10 minutes to 5 minutes. And the hunt duration for each of these hypotheses were about 60 minutes, and the tool helped save 25 of those minutes.
+
+96
+00:19:51.485 --> 00:19:57.214
+Incoming livestream: We also noticed that the response times all remained under 6 minutes for this week in particular.
+
+97
+00:19:57.905 --> 00:20:13.074
+Incoming livestream: When we looked at the subjective scores, the tool succeeded in hypothesis relevancy and context awareness. It stayed on track, and it used the data to drive conclusions. However, on more complex hypotheses, where a lot of data needed to be analyzed, it struggled with signal-to-noise control.
+
+98
+00:20:13.075 --> 00:20:19.694
+Incoming livestream: The data volume was just too high, and it wasn't able to automatically garner insights from the surface logs, because there was a lot of truncation happening.
+
+99
+00:20:20.125 --> 00:20:28.525
+Incoming livestream: So, there's still room for improvement, and it helped us decide which solutions of the four I was talking about to prioritize for semantic accuracy.
+
+100
+00:20:29.355 --> 00:20:35.155
+Incoming livestream: Also, if you're curious, the Hunt Week produced, two new cloud detection rules and uncovered zero incidents.
+
+101
+00:20:37.635 --> 00:20:53.354
+Incoming livestream: We garnered a deeper understanding of the automation boundary and how we can help our hunters. Currently, our automation boundary is threefold. In addition to query generation and data analysis, our hunters also wanted the agent to pull in different sources and pivot on these hypotheses.
+
+102
+00:20:54.725 --> 00:21:04.244
+Incoming livestream: More precisely, when we saw reduced performance, we refocused AI usage on the components that actually mapped to its strengths, like summarization and synthesis.
+
+103
+00:21:04.364 --> 00:21:08.285
+Incoming livestream: It was optimal for our team to let the threat hunters drive the hunt.
+
+104
+00:21:08.485 --> 00:21:18.964
+Incoming livestream: Focus on automating field discovery with high accuracy, and provide a convenient single platform to query all telemetry sources with one language, which in this case was English.
+
+105
+00:21:21.444 --> 00:21:31.114
+Incoming livestream: Thank you so much. I have a link to the public version of the slides in my LinkedIn in the corner. Thanks again for listening, and let me know if you have any questions.
+
+106
+00:21:44.285 --> 00:21:46.505
+Incoming livestream: Questions?
+
+107
+00:21:47.215 --> 00:21:48.385
+Incoming livestream: Very good, thank you.
+
+108
+00:21:53.235 --> 00:22:05.155
+Incoming livestream: For the LLM judges you talked about, did you use different LLM providers? Like, different, foundation models, or different local models, and, which models were the most,
+
+109
+00:22:05.965 --> 00:22:12.244
+Incoming livestream: If you did, which models were in the most agreement with a human judge, or…
+
+110
+00:22:12.375 --> 00:22:23.744
+Incoming livestream: how often did they kind of differ in their opinion of the judging? Yeah, that's a good question. We didn't do a very thorough analysis of how different models and different providers
+
+111
+00:22:23.765 --> 00:22:31.864
+Incoming livestream: gave different results. Especially for evaluation, I think we just didn't invest that much time. What we did compare was reasoning versus non-reasoning.
+
+112
+00:22:31.865 --> 00:22:56.855
+Incoming livestream: And so for the judge, honestly, we had to prioritize speed in that case, so we opted… we didn't opt for reasoning because we didn't really notice a huge improvement in accuracy or how well it thought, like, similar to a human. So, we were prioritizing speed in that case and more manual verification, so… I guess the short answer is we didn't do a thorough analysis there, but, we did notice a huge difference between reasoning and non-reasoning.
+
+113
+00:22:56.855 --> 00:22:57.685
+Incoming livestream: models.
+
+114
+00:23:01.045 --> 00:23:07.155
+Incoming livestream: Did you guys ever, like, went into, like, some sort of, like, a confidence score?
+
+115
+00:23:07.265 --> 00:23:16.185
+Incoming livestream: The reason I mention that is I think Salesforce guys did a presentation about anomaly detection and whatnot, and they would…
+
+116
+00:23:16.615 --> 00:23:23.635
+Incoming livestream: annotate, like, some sort of, like, a confidence score, like a low, medium, or high. I don't know if you guys thought about that or looked into it.
+
+117
+00:23:24.195 --> 00:23:28.955
+Incoming livestream: So conference score on what the agent is producing.
+
+118
+00:23:29.665 --> 00:23:33.035
+Incoming livestream: Yeah, I think we didn't generate, like.
+
+119
+00:23:33.315 --> 00:23:56.745
+Incoming livestream: a conference score, meaning, like, how confident the agent is in this answer, because a lot of it, it was… it tended to be quite confident, because we were giving it, like, a prompt of, you are to generate very accurate Datadog Lucene queries, and it would think that it was generating accurate Lucene queries, and similarly, when we tried to judge it, the judge was like, this is 100% correct. It was very circular, so, that's not something we focused on, because it wasn't reflective of
+
+120
+00:23:56.745 --> 00:23:59.155
+Incoming livestream: How it actually performed with our users.
+
+121
+00:23:59.735 --> 00:24:00.875
+Incoming livestream: Yeah.
+
+122
+00:24:01.595 --> 00:24:04.795
+Incoming livestream: Great. All right, thank you very much.
+
+123
+00:24:10.835 --> 00:24:18.065
+Incoming livestream: Alright, this is our last scheduled talk of the day, and we're continuing on the threat intelligence,

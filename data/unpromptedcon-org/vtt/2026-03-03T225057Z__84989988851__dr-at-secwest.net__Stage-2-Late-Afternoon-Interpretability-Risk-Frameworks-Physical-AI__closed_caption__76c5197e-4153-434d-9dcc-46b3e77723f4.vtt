@@ -1,0 +1,3133 @@
+WEBVTT
+
+1
+00:00:22.455 --> 00:00:29.455
+All right, are we live? All right.
+
+
+2
+00:00:29.455 --> 00:00:39.455
+Awesome. I guess without further ado, let's get started. So, I'm Carl Hurd, and I'm going to be talking today about Glassbox security. I'm not going to read the rest of this title because I'm going to leave it up to you, and it's a lot of long words.
+
+
+3
+00:00:39.455 --> 00:00:56.455
+So, who am I? A little bit about myself and why I have any credentials at all to talk about this. The short answer is I don't, but I make it up as I go. I started my career in the National Lab System. I really enjoy solving hard problems, and I do that by diving into the depths of.
+
+
+4
+00:00:56.455 --> 00:01:12.455
+how technology works. So, we're gonna talk about a lot of scary stuff today, we're gonna talk a little bit about math, we're gonna talk about activations inside of models. I'll try and bring it back up to a high level, so hopefully everybody learns something. Uh, after my time at the National Labs, I went to Cisco Talos.
+
+
+5
+00:01:12.455 --> 00:01:27.455
+I spent seven years doing public zero-day research. You can go find all of those vulnerability reports that we reported. Based on my napkin math and Heather's earlier talk today about how effective Project Zero researchers are, my math says that.
+
+
+6
+00:01:27.455 --> 00:01:43.455
+TELOS researchers are about four times more effective. So, you know… Of course, I'm not looking at VA, I wasn't looking at VA, I'm not looking at Chrome. And so everybody's clear that was a total joke. Don't come find me, Project Zero people. I have the utmost respect for you.
+
+
+7
+00:01:43.455 --> 00:02:00.455
+Beyond that, specifically what I did at Talos was not only zero-day research, but also doing the detection engineering associated with those vulnerabilities that I found. My research was primarily focused around industrial control systems and embedded systems. That's really where I've had a lot of my background and a lot of my interests have lied.
+
+
+8
+00:02:00.455 --> 00:02:16.455
+So, we're talking about systems that are really niche systems and, you know, vulnerabilities that are very deep, but very impactful. And I think, realistically, this is where AI is headed. And I'm gonna talk about this a little bit more here in a minute. So, beyond my zero-day research.
+
+
+9
+00:02:16.455 --> 00:02:33.455
+I also helped reverse engineer the VPN filter malware. I also built and released the Badgerboard PLC backplane intrusion detection and intrusion prevention system. You can find that on GitHub. I worked with one coworker formerly at.
+
+
+10
+00:02:33.455 --> 00:02:50.455
+Cisco tell us to do that, and the important part there is, again, this was a really niche protocol, and something that nobody had looked at, and there was no documentation for. It's a proprietary protocol, uh, and we, you know, built a solution that actually allows people to write detection content for these PLCs.
+
+
+11
+00:02:50.455 --> 00:03:05.455
+After that, I did a short stint at Red, Blue, and Security, which is a small, effectively defense contractor. I worked on more DARPA work. Uh, Provers is formal methods, not something that I have training in, uh, but, you know, I kind of learned on the fly.
+
+
+12
+00:03:05.455 --> 00:03:21.455
+And then I co-founded Star Seer. Last year, at this point. So, we're… what are we doing? We're building the next generation of, you know, security capabilities for AI, and what does that look like for detection engineering in the next generation?
+
+
+13
+00:03:21.455 --> 00:03:37.455
+Um, some interesting ideas of, you know, what brought me to AI was, you know, after my coursework, after I finished my master's, I really just found deep learning interesting. And, you know, as any good hacker does, you know, use convolutional neural networks to build, we'll say automation for games.
+
+
+14
+00:03:37.455 --> 00:03:54.455
+And this type of information has been really helpful for me over my career, where I can provide grounding advice for the people around me about how a technology actually works, and not, it's a magic box, trust it. And so, we're gonna start with a little bit of that today.
+
+
+15
+00:03:54.455 --> 00:04:14.455
+So, what I see in the industry right now is we really have two solutions. Regardless of how marketing may dress this up, we have host-based solutions, and we have network-based solutions, much like we do in all of cybersecurity. So, what these look like is, for our inference side or host-based solutions, we have.
+
+
+16
+00:04:14.455 --> 00:04:30.455
+eBPF or ETW, which is Event Tracing for Windows, if you have a vendor that tells you, hey, you can go look, we can find all of the systems you're using, all the AI you're using, they're using ETW or eBPF. If they're saying, oh, you've got to do a code change, or you've got to take this trusted certificate.
+
+
+17
+00:04:30.455 --> 00:04:34.455
+They're probably using a network-based solution or prompt firewall.
+
+
+18
+00:04:34.455 --> 00:04:44.455
+Uh, that's not to say that either of these solutions are bad, right? This is where we are today, and the problem is that they have similar challenges between both of them.
+
+
+19
+00:04:44.455 --> 00:05:01.455
+So we can use things like regex, we can detect on plain text, we can do input sanitization. Llm is a judge, and that's good, but what else can we do to make this detection better, right? How do we make rules that are useful for everyone?
+
+
+20
+00:05:01.455 --> 00:05:17.455
+Painful to no one without having more information about how we're using these prompts. This is kind of the, you know, the golden goose for detection engineering. We write rules once and they're perfect for everyone. Nobody has to know how to write rules other than the one engineer.
+
+
+21
+00:05:17.455 --> 00:05:40.455
+Um, it's not realistic, but it's something that we want to strive for. So… One of the challenges with LLMs is that, you know, even when we're exploiting them, quote unquote, it's not necessarily exploit in the general sense of the word. The LLM is still going to generate tokens like it expects to. And so it's more of a matter of what are your use cases? What is the context around that usage?
+
+
+22
+00:05:40.455 --> 00:05:46.455
+And, you know, how do we determine whether that's good usage or bad usage?
+
+
+23
+00:05:46.455 --> 00:06:03.455
+So, I'm going to introduce kind of the concept of glass box security. Um, I think this is really the next step of detection engineering for AI. And realistically, that stands on two key points of information that we need, and that's intent and strength. The strength is the strength of the concept.
+
+
+24
+00:06:03.455 --> 00:06:12.455
+And in order to do this, to capture the intent, we leverage mechanistic interpretability to collect insights during a model's forward pass.
+
+
+25
+00:06:12.455 --> 00:06:17.455
+this information is actually in the native language of the high-dimensional space of a model.
+
+
+26
+00:06:17.455 --> 00:06:26.455
+When we talk about text, right, we all know what text is. When we talk about what a model thinks in, we're talking about high-dimensional vector space.
+
+
+27
+00:06:26.455 --> 00:06:41.455
+Once we have that information, we can use the strength to determine, is this concept something that is overwhelmingly powerful in this process, or in this thought process, and we can use that for actual detection content. So, in short.
+
+
+28
+00:06:41.455 --> 00:06:53.455
+Capturing intent and measuring its strength enables us as engineers, researchers, detection engineers, to actually conceptually reason about a high dimensional space that occurs within a model.
+
+
+29
+00:06:53.455 --> 00:07:08.455
+It is very difficult for us as humans to conceptualize anything or visualize anything over three dimensions, maybe four dimensions of XYZ time. And so this is really the approach that we need to take moving forward.
+
+
+30
+00:07:08.455 --> 00:07:23.455
+So a little bit about, again, what a standard prompt looks like as it goes through its lifecycle, something not a lot of people talk about, and I've seen not a lot of people understand. When we talk about host-based or network-based detections, everything in a circle in this graph.
+
+
+31
+00:07:23.455 --> 00:07:38.455
+Which, you can't read the text, it's fine, is when the model has the prompt in plain text. So that's from the host to whatever network API, or from the host to the network, uh.
+
+
+32
+00:07:38.455 --> 00:07:49.455
+gateway, and then from that gateway to do some level of routing. So, almost all model providers do routing to make sure that you don't ask stupid questions to smart models. Uh, they want to save money.
+
+
+33
+00:07:49.455 --> 00:08:10.455
+And then, after we get past that, we start going into what is actually… more involved in a model's kind of natural mental state, and that is, once we've embedded your text, and once we do embedded routing, then we actually start going through these models. So, the point that I'm making here is that, you know, of these.
+
+
+34
+00:08:10.455 --> 00:08:30.455
+10-ish blocks. Only 5 of them are circles, and that's where we're trying to do all of our detection. Now, this representation is only a model that has three layers. You cannot find a model with three layers right now. That would be almost impossible. Something like GPT-OSS 20B, which is.
+
+
+35
+00:08:30.455 --> 00:08:38.455
+relatively small, is over 24 layers, or exactly 24 layers, actually. And so, all of these blocks.
+
+
+36
+00:08:38.455 --> 00:08:53.455
+are a layer. And so we need to have some level of introspection between these layers in order to get the information that we need for detection engineering. And realistically, security applications and any type of attestation will require this information.
+
+
+37
+00:08:53.455 --> 00:09:00.455
+and will require us to be able to actually have insights into neural networks during execution.
+
+
+38
+00:09:00.455 --> 00:09:16.455
+So, let's dive into, you know, how do we actually capture this intent? The first process is, you know, we need to capture the intent to make sure that we need to do more analysis. Uh, this is no different than network intrusion detection or host intrusion detection. We need to make sure that there's something worth looking at.
+
+
+39
+00:09:16.455 --> 00:09:20.455
+Uh, before we spend all the compute looking at that further.
+
+
+40
+00:09:20.455 --> 00:09:36.455
+So in order to do this, we add hooks to a neural network in the forward pass. This doesn't require backwards passes. And this is an approach that is used for a lot of mechanistic interpretability use cases. So if you go read some Anthropic blog posts, or if you go read.
+
+
+41
+00:09:36.455 --> 00:09:51.455
+Google DeepMind posts, they'll talk about linear probes, sparse autoencoders, differential prompt analysis. All of this is built on the preface of being able to hook the forward pass of this model and collect activations during inference.
+
+
+42
+00:09:51.455 --> 00:10:12.455
+So, at the core of this, we really need comparison in order to determine if something… if an intent exists within… a specific prompt, and we can do that with, you know, helpful math, such as cosine similarity, to determine if a intent exists within a given prompt, uh, to kind of.
+
+
+43
+00:10:12.455 --> 00:10:27.455
+concrete ties this a little bit about what I'm talking about. Um, you can take the concept of illegality, and, you know, if you have a prompt that says, you know, how do I rob a bank? Instead of trying to write detections on, you know, don't let somebody ask about theft.
+
+
+44
+00:10:27.455 --> 00:10:44.455
+Don't have robbing like let's blacklist all of these words that nobody can actually say to the prompt or to say to the model, but instead we can actually try and gather entire concepts into these detections and write significantly.
+
+
+45
+00:10:44.455 --> 00:10:55.455
+more effective detection content. And so, when we look at these activations, we can see that, you know, the intent of illegal actually exists within this prompt, and then we can make decisions on it.
+
+
+46
+00:10:55.455 --> 00:11:10.455
+One of the things, one of the challenges with just using cosine similarity and why there's, you know, a second pillar here is because cosine similarity only tells you if they are in the same direction. So, if you think of an intent as a direction in high-dimensional space.
+
+
+47
+00:11:10.455 --> 00:11:22.455
+you can see other directions that are similar to it, and we'll give you a number between 1 and negative 1 that says it's perfectly in line or perfectly, uh… against the line, I guess.
+
+
+48
+00:11:22.455 --> 00:11:40.455
+So, in order to measure that, we actually captured the strength using latent space geometry. We use the magnitude of these vectors and tensors of the activations in order to determine how much of that activation is actually related to the intent that we've measured.
+
+
+49
+00:11:40.455 --> 00:11:52.455
+Uh, we use the dot product, and more specifically, it's called scalar projection, in order to determine how big the shadow is, effectively, of that specific intent.
+
+
+50
+00:11:52.455 --> 00:12:00.455
+The idea here is that we need to build content that can ignore the noise that happens in latent space.
+
+
+51
+00:12:00.455 --> 00:12:16.455
+Specifically, there's challenges in mechanistic interpretability as a whole, where we have this idea of superposition, where you have so many concepts that are compressed into such a small latent space that one specific neuron or one specific direction cannot possibly.
+
+
+52
+00:12:16.455 --> 00:12:30.455
+exist for every possible idea. And so, in order to kind of combat that, we use this dot product to determine how strongly these ideas exist comparatively to the rest of the magnitude of the tensor.
+
+
+53
+00:12:30.455 --> 00:12:47.455
+So, one of the challenges, I mean, there's many challenges, and I'll get into that in here in a minute, but some of the challenges here are that the introspection layer choice is very challenging. In order to do this, we need to hook the model and determine which layers are actually the most active, given any specific.
+
+
+54
+00:12:47.455 --> 00:13:00.455
+concept or prompt. You can do this just by essentially guess and check. You take your prompts, you run it through a hooked model, and you say, okay, these activations are the largest. Uh, this is what we can conceptualize as.
+
+
+55
+00:13:00.455 --> 00:13:17.455
+The layer that is most responsible for this concept in the model. And then we can use those hooks to determine where do we need to do detections. So one of the other challenges with latent space geometry specifically is that we need to do all of our data gathering empirically.
+
+
+56
+00:13:17.455 --> 00:13:29.455
+There is not a specific number threshold that we can say if the magnitude is greater than 10, detect or alert or block, we need to do empirical.
+
+
+57
+00:13:29.455 --> 00:13:34.455
+data gathering based on every model that we are hooking and doing analysis of.
+
+
+58
+00:13:34.455 --> 00:13:55.455
+So, again, let's try and give this a more concrete example. Uh, when we talk about the strength of a concept within a latent space, we can think of this as the difference between stealing… asking a model, how do I steal from a bank? Or how do I steal a pen from a bank? And, you know, it's a fun example. You can actually go ask Gemini, and it will tell you if you rob a bank.
+
+
+59
+00:13:55.455 --> 00:14:14.455
+It can help you with that. If you ask about, how do I steal a pen from a bank, it will give you kind of a tongue-in-cheek response about, you know, you probably shouldn't do that, but here's how you might do it. Uh, and it might tell you, just go ask a teller, and they'll give you a pen for free.
+
+
+60
+00:14:14.455 --> 00:14:31.455
+So, what are these two pillars actually give us? And realistically, what I've been kind of rambling about is that this is the baseline for behavior-based detection. This is state-of-the-art in cybersecurity. When we talk about EDRs, and we talk about detections that exist today.
+
+
+61
+00:14:31.455 --> 00:14:50.455
+We're not using only signature-based detections. We're not using plain text detections. We are doing behavior-based analysis. And so we need to move to this for AI and LLMs as well. We shouldn't just sit around and try and do that maturity lifecycle again, since we've already learned all of these lessons.
+
+
+62
+00:14:50.455 --> 00:15:07.455
+So, by combining intent and strength, we can form the basis for behavior-based detections in neural networks. This leverages the linear representation hypothesis, which I won't go into a whole lot, but the idea is that you can build these detections across multiple points in a model, and then.
+
+
+63
+00:15:07.455 --> 00:15:14.455
+put them all together to make a high-fidelity detection model, or a manifold.
+
+
+64
+00:15:14.455 --> 00:15:29.455
+We can use these manifolds to build tripwires into the models themselves, in which we can not only do detection, but we can actually also do remediation, or we can also just, you know, halt or completely remediate and continue the generation.
+
+
+65
+00:15:29.455 --> 00:15:41.455
+So, again, an example, you know, what this would actually look like is that we want to write a rule that says block any request that has more than 85% alignment with this illegal intent.
+
+
+66
+00:15:41.455 --> 00:15:50.455
+And then the strength of that prompt also makes up a large part of the magnitude for any given request.
+
+
+67
+00:15:50.455 --> 00:16:05.455
+So, there are a lot of challenges here, alright? There's a lot of math, a lot of in-the-weeds concepts, but specifically there are kind of four that are primary challenge barriers to adoption for this approach.
+
+
+68
+00:16:05.455 --> 00:16:17.455
+Uh, one being activations aren't available for frontier models. Internally controlled inference is required to get these activations, and that's a non-trivial task, owning that inference stack.
+
+
+69
+00:16:17.455 --> 00:16:29.455
+Two activations represent an enormous amount of data. Just as an example, GPT-OSS 20B generates about four megabytes of activation data for the first token.
+
+
+70
+00:16:29.455 --> 00:16:36.455
+If you go and fill up an entire context window, you've generated about 10 terabytes of activation data.
+
+
+71
+00:16:36.455 --> 00:16:53.455
+And three, you know, how do we write detection content effectively? I can talk to AI experts and talk about high dimensionality space, and people know more about that than I do, that's for sure, but how do I get a detection engineer to understand this?
+
+
+72
+00:16:53.455 --> 00:17:07.455
+In today's day and age, you don't have to be an expert at reverse engineering or any specific aspect of, you know, Windows or Linux in order to write good detection content. We need to make sure that that's true for AI as well.
+
+
+73
+00:17:07.455 --> 00:17:32.455
+And for, you know, most detection content can't be universal. This is something that I don't think is discussed enough, and is a challenge that I'm familiar with from industrial controls, where… Given different agents, given different users, not all rules can be applied across the board. You need to make sure that you have context for what that agent or user should be doing, and what is considered good or bad in those scenarios.
+
+
+74
+00:17:32.455 --> 00:17:44.455
+And so, I want to talk a little bit about some of the engineering solutions that we've come up with as we've worked through some of these problems. For activations that aren't available, obviously, the simple solution is use models that you host yourself.
+
+
+75
+00:17:44.455 --> 00:18:02.455
+Most people don't like that because they want to use, you know, the latest and greatest Claude and OpenAI models, which is fine. So instead, we can use this approach of a canary model for interpretability. We instrument smaller models and then put them in line or asynchronously request to them.
+
+
+76
+00:18:02.455 --> 00:18:08.455
+in order to be able to do this level of data gathering and alerting without.
+
+
+77
+00:18:08.455 --> 00:18:14.455
+being a detriment to, you know, engineering or anyone else who wants to use these very smart models.
+
+
+78
+00:18:14.455 --> 00:18:30.455
+Uh, for activations representing an enormous amount of data, this is a pretty simple solution from, you know, general mechanistic interpretability. We only hook specifics, uh, places in the model, specifically the residual stream. This means that we don't have to worry about quadratic costs of.
+
+
+79
+00:18:30.455 --> 00:18:47.455
+self-attention heads, this is the same problem that context windows face. This is the reason that attention, self-attention does not scale particularly well. And then we only monitor layers that are relevant to the detection that we want to do, as I said earlier.
+
+
+80
+00:18:47.455 --> 00:19:11.455
+So, when we're talking about effectively writing detection content, I think the answer generally lies in, you know, we want to do progressive context enhancement, so… Specifically, the host-based detection or the network-based detection, those are the proper place to do some detections. You need to take that information though and pass it along to the model, or specifically this instrumented model, in order to be able to do.
+
+
+81
+00:19:11.455 --> 00:19:22.455
+progressive enhancement of that context throughout the layers of the model, as well as your host-based and network-based detection. And finally, we want to talk a little bit about.
+
+
+82
+00:19:22.455 --> 00:19:38.455
+Most content not being universal. I think the answer here is you need to adopt open source solutions and extend them. So we use Yara, we use Cedar. Hopefully you hear from Matt's talk because I'm not going to do Cedar as much justice as he will.
+
+
+83
+00:19:38.455 --> 00:19:49.455
+Uh, you're alright, I think that there's a strong case to be made for just extending YARA with the modules themselves, and making it AI native.
+
+
+84
+00:19:49.455 --> 00:20:02.455
+So I want to talk a little bit about what about AI agents? Agents are just models in an OODA loop. So one of the challenges this means is that when you're utilizing agentic workflows, you can have.
+
+
+85
+00:20:02.455 --> 00:20:12.455
+agents that are determined based on a decision they made. So how do you write content that can block an agent from doing something that it has determined is the end goal?
+
+
+86
+00:20:12.455 --> 00:20:18.455
+You need to worry about all the different languages that a model knows, you need to worry about all the different tools that exist.
+
+
+87
+00:20:18.455 --> 00:20:42.455
+You know, try and write those rules for cybersecurity today. You know, that… something, you know, there are CTF problems that talk about, you know, how can I use, uh… you know… Packet capture software to actually execute other binaries on the system with elevated permissions, right? Those are the types of things that these agents will try because that knowledge is readily available.
+
+
+88
+00:20:42.455 --> 00:21:00.455
+Uh, we need more robust detection mechanisms. for, you know, you can't write syntactic rules for every possibility, and… What's most interesting about mechanistic interpretability and its application here in security is that it's actually not just applicable to security. When we start talking about problems with…
+
+
+89
+00:21:00.455 --> 00:21:08.455
+How do these agents make decisions? Overall, we need to be able to measure what parts of the model they actually.
+
+
+90
+00:21:08.455 --> 00:21:27.455
+Activated, and what parts of the model they ignored. So you need to have some traceability in this semantic traceability versus syntactic traceability is what is going to give you more trust in the models and the agents that they did the job the way they needed to, and they were not, you know, reward hacking, or finding some loophole.
+
+
+91
+00:21:27.455 --> 00:21:45.455
+removing your tests, etc. And so, specifically, I want to talk, like, this is what a detection ideally looks like for us, is you can write a YARA rule that has a specific module that says if a file deletion intent exists, and it's on these specific layers with this.
+
+
+92
+00:21:45.455 --> 00:21:54.455
+magnitude, block it, right? Block or remediate, do something at this point.
+
+
+93
+00:21:54.455 --> 00:22:10.455
+And so, in conclusion, I want to leave you guys with, you know, four points. I think one is the most important, right? Autonomous agents bypass traditional perimeter boundaries. So static syntactic guardrails are not going to be effective long term.
+
+
+94
+00:22:10.455 --> 00:22:15.455
+We have to intercept the thought before the action occurs.
+
+
+95
+00:22:15.455 --> 00:22:24.455
+semantic observability is really the new foundation for security moving forward, and we need to adopt that sooner rather than later.
+
+
+96
+00:22:24.455 --> 00:22:32.455
+Third, sovereign infrastructure is a requirement for anyone that wants to take secure model usage seriously.
+
+
+97
+00:22:32.455 --> 00:22:40.455
+And fourth, bridging the gap is an industry-wide challenge. This is really something that I don't think is talked about enough. We need to make sure that.
+
+
+98
+00:22:40.455 --> 00:22:57.455
+Anybody who is aware of detection engineering standards will be able to contribute effectively at the bleeding edge where we need them, instead of worrying about what new standards have been developed over the last week and trying to be adopted widespread.
+
+
+99
+00:22:57.455 --> 00:23:05.455
+So, with that, are there any questions? I also have a slide that we'll share with just some interpretability resources.
+
+
+100
+00:23:05.455 --> 00:23:13.455
+If anybody is interested.
+
+
+101
+00:23:13.455 --> 00:23:30.455
+Yeah, hey, two quick questions. Number one is, um, I've heard a lot of research that shows that LLMs are not great at giving, let's say, like, things like confidence score. So if you're looking at things like intent and strength, these are, like, relative measures, not absolute measures, right? It's not like a binary 0 or 1.
+
+
+102
+00:23:30.455 --> 00:23:45.455
+One is, how did you account for that? And looking at this? And number two is on the question of managing the size of the data output, it occurs to me that, like, this would be typically a vector use case, right, where you've got intent and strength, and you've just got, like, a number pair, and you could just consider.
+
+
+103
+00:23:45.455 --> 00:23:50.455
+plotting those on axes. Is that a way to think about it, or am I off base on that one?
+
+
+104
+00:23:50.455 --> 00:24:12.455
+So I think in the sense of, you know, vector, um… XY axes plotting. I think that is a way to think about it when we talk about, you know, how would we write these detections? You are going to need to store that in some form or fashion. Uh, you do need to capture those intents, and those are going to be activation vectors that you can measure it against. So, that is absolutely valid.
+
+
+105
+00:24:12.455 --> 00:24:35.455
+What was the first part of that question? The first part was about LLMs not being particularly good at calculating, like, confidence scores and then using that to measure intent and strength. Yeah, so that is very true. So I think, basically, what we're doing is not… a specific number or a specific score, right? It is somewhat, um…
+
+
+106
+00:24:35.455 --> 00:24:53.455
+Relative to the model itself. So, when we talk about cosine similarity, right, we measure the model itself, and we can measure intents that we captured from that model. So, when we say, like, specifically, say, llama, we use Llama 3.1, we send a bunch of data through it, we capture those intents that say.
+
+
+107
+00:24:53.455 --> 00:25:09.455
+you know, based on these thousands of prompts, we can capture the idea or concept of this specific thing. And then that way, we're comparing apples to apples in those models, and we're not necessarily trying to do, um, you know, this concept is universal across every single model that exists.
+
+
+108
+00:25:09.455 --> 00:25:14.455
+Because for that very reason.
+
+
+109
+00:25:14.455 --> 00:25:33.455
+Uh, yeah, question about, uh, the relevance and importance of the change in intent. In other words, could this be something that could be used for indirect prompt injection detection? In other words, you look at something, you look at the intent, you go through the RAG pipeline, and then you look at the intent again, and see… and detecting a change. Is that indicative in any sort of way, or interesting?
+
+
+110
+00:25:33.455 --> 00:25:48.455
+Yeah, absolutely. So, realistically, you wouldn't even necessarily have to do before and after a RAG pipeline, right? Rag generally, there's two types of RAG, right? You can do, basically, context enhancement RAG, and you can do tool-based RAG. Um, if you're doing tool-based RAG, yes, you would need to do it before and after.
+
+
+111
+00:25:48.455 --> 00:25:54.455
+context enhancement, you wouldn't. Essentially, this is all part of the pre-fill process for tokens.
+
+
+112
+00:25:54.455 --> 00:26:10.455
+the model thinks about a lot of these thoughts, such as, you know, like jailbreaks. If you're trying to detect jailbreaks, uh, you can find the concept of these jailbreaks specifically, and then block all of them as kind of a universal block to jailbreaking a specific model.
+
+
+113
+00:26:10.455 --> 00:26:23.455
+Uh, you know, specifically, there's some information on our blog if you're interested. Thanks.
+
+
+114
+00:26:23.455 --> 00:26:30.455
+Thanks for the talk. So measuring against intent obviously is fundamental for what you're doing.
+
+
+115
+00:26:30.455 --> 00:26:45.455
+Have you ever come across cases where the intent itself is part of the problem? If the agent is being used to do something potentially illegitimate? So that baseline no longer… serves as an effective datum to measure against.
+
+
+116
+00:26:45.455 --> 00:27:02.455
+Yeah, absolutely. I think this is, you know, the solution for security is always defense in depth, and that's where, when we're talking about agentic security specifically, yeah, you can block a lot of these concepts, detect and block some of these concepts, but as I said, it's very similar to industrial control security, where.
+
+
+117
+00:27:02.455 --> 00:27:21.455
+You can have a good… request, or a… a good request that's used for bad, um, if that makes sense. And it's very similar for the agentic workflows. So I think, realistically, part of that solution is more authorization around your agents. So, like, does your agent have some form of identity that you can say.
+
+
+118
+00:27:21.455 --> 00:27:37.455
+This is how it's supposed to be used exactly, and if it's not used that way, then, you know, obviously you can detect an alert. And that's even outside of the model. So there's, again, defense in depth is really the solution. It's not just one specific thing. This isn't a silver bullet, but this is.
+
+
+119
+00:27:37.455 --> 00:27:43.455
+you know, the next step, I think, for, you know, real in-depth security.
+
+
+120
+00:27:43.455 --> 00:27:57.455
+Last question for Carl right here in front. Can you talk a bit about how the detection manifolds drift if you have, let's say, fine-tuning of the model, or just other general changes to the model, or different applications of it? Yeah, so…
+
+
+121
+00:27:57.455 --> 00:28:12.455
+A very nuanced question that… it depends. So when we're talking about fine tuning, there's generally a couple different approaches. If you are fine-tuning generally accepted measure, I guess, is, you know, freeze 10% of the layer, or freeze 90% of the layers and fine-tune the last 10%.
+
+
+122
+00:28:12.455 --> 00:28:35.455
+Because the idea is that… level concepts exist in the end of the model because earlier levels of the model are for general language comprehension. When we talk about where those manifolds are, obviously it depends if you froze the layers that you already had detection in, you wouldn't need to change them. If you are doing fine tuning, then yeah, obviously you would need to go through and capture some more data or potentially just.
+
+
+123
+00:28:35.455 --> 00:28:55.455
+retune that one part of your detection. All right. Thank you.
+
+
+124
+00:28:55.455 --> 00:28:59.455
+No.
+
+
+125
+00:28:59.455 --> 00:29:17.455
+Hey, that was a good talk, man. Hey, Gotti. I think I'm probably going to take this a couple of layers down, but that's all right. So my name is Max. I work for Consortium. We are a VAR.
+
+
+126
+00:29:17.455 --> 00:29:32.455
+This is my announcement. Ivar. I'm new to the VAR space, I started my career in the Federal Intelligence Community doing cybercrime investigations. I've been with early stage startups in cyber. I've been in the Big Four.
+
+
+127
+00:29:32.455 --> 00:29:53.455
+Handled a few industry roles as a practitioner and on leadership teams in industry, and… I've been vaing for the last 5-6 months or so. So one of the things that I focus in my day to day is, you know, it's the classic matchmaking.
+
+
+128
+00:29:53.455 --> 00:30:00.455
+Our clients come to us with problems and we try to identify the right solutions in the marketplace for them.
+
+
+129
+00:30:00.455 --> 00:30:13.455
+Uh, and I built a tool to help me and my team do this better, um, using some of the tools that we've been talking about. So, um, I'll introduce it, and then I'll show the, uh, the tool in action, what that looks like.
+
+
+130
+00:30:13.455 --> 00:30:26.455
+Uh, so what is my… kind of regular day-to-day, what does that look like? I get a call from a client and they say we need some AI security, we think. Who do you recommend?
+
+
+131
+00:30:26.455 --> 00:30:33.455
+Well, hold on, like, that's not enough information. What are your use cases?
+
+
+132
+00:30:33.455 --> 00:30:47.455
+Um, like, what's your risk tolerance within the organization? Are you concerned about… Uh, having an incident, or are you more concerned about filing that incident with the SEC, because that tells me two different things.
+
+
+133
+00:30:47.455 --> 00:30:54.455
+And they go usually, well, but who's good? Just tell me who's good. Um, you know? Don't worry about it.
+
+
+134
+00:30:54.455 --> 00:31:01.455
+And, hey man, I'm not trying to be annoying, I'm just trying to bring, you know, VA back to the VAR.
+
+
+135
+00:31:01.455 --> 00:31:11.455
+So, assuming we have that conversation and we get a list of requirements, and we understand what the use case and what the system is being built, and what controls are required.
+
+
+136
+00:31:11.455 --> 00:31:20.455
+You know, then we start the research. We go, we have some demos with AI security vendors.
+
+
+137
+00:31:20.455 --> 00:31:26.455
+We read their marketing slicks, we look at their data sheets, and we see things like this.
+
+
+138
+00:31:26.455 --> 00:31:34.455
+Swarms of autonomous agents. broadest and most comprehensive.
+
+
+139
+00:31:34.455 --> 00:31:42.455
+That's a good one. 99% efficiency at sub-30 millisecond latency.
+
+
+140
+00:31:42.455 --> 00:31:49.455
+AI-powered threat detection to automatically block all the adversaries.
+
+
+141
+00:31:49.455 --> 00:31:55.455
+So, that's, like, the day-to-day reality of a VAR.
+
+
+142
+00:31:55.455 --> 00:32:06.455
+So what we needed to do is, you know, have a methodology where we could put those marketing claims and some of them may be legit, some of them may be, you know.
+
+
+143
+00:32:06.455 --> 00:32:16.455
+Maybe simple PR. and put it through some kind of a framework, through some kind of an assessment thing. So that's where this thing really started.
+
+
+144
+00:32:16.455 --> 00:32:23.455
+You know, we built, um… an agent in using Claude code.
+
+
+145
+00:32:23.455 --> 00:32:47.455
+Opus 4.5, we're at 6 now, obviously. Um… Looking at all of those claims and try to… You know, find some substantiating evidence behind those claims so, you know, our clients can make good decisions but you know this started with over 2,000 of those vendor claims that we needed to make sense of. This was in…
+
+
+146
+00:32:47.455 --> 00:33:08.455
+December, I think we're all well over, um… 3,000, um, so… when this proposal for this talk was submitted, uh, we've analyzed 62 vendors. Now we're at nearly 80. Um, so this was just six weeks later. Roughly, you know, there's four new startups that emerge.
+
+
+147
+00:33:08.455 --> 00:33:24.455
+Out of stealth that claim to do AI security or existing cybersecurity vendors, bolt-on cyber AI security features. So between those, you know, it's roughly four new companies that get added to the database.
+
+
+148
+00:33:24.455 --> 00:33:37.455
+But, assuming that we're able to translate that into something, some actionable recommendation, you know, still from the VARS perspective, the AI governance loop looks something like this.
+
+
+149
+00:33:37.455 --> 00:33:44.455
+We need AI security. They get 6 vendor data sheets.
+
+
+150
+00:33:44.455 --> 00:33:52.455
+Uh, given that there are some requirements that are known, there's some discovery that happened prior to that, to, uh, the team.
+
+
+151
+00:33:52.455 --> 00:34:12.455
+kind of build some kind of a risk register using some variation of OWASP, NISP, whatever other framework. Not a ton out there on… that focuses on AI security specifically, so most teams are building this in-house using spreadsheets and… Kind of hand-jamming it into their GRC tools.
+
+
+152
+00:34:12.455 --> 00:34:19.455
+for vendors get invited to demos, and then two of them get a POC invite.
+
+
+153
+00:34:19.455 --> 00:34:23.455
+POCs run in parallel, usually there's not very clear eval criteria.
+
+
+154
+00:34:23.455 --> 00:34:36.455
+And then POCs get put on hold because… We're building this thing in AWS Bedrock. Don't they have guardrails to do all of this stuff that we're evaluating the two vendors against?
+
+
+155
+00:34:36.455 --> 00:34:43.455
+But wait, we have DLP. They're saying that they can do this, can they do this?
+
+
+156
+00:34:43.455 --> 00:34:50.455
+And, no, by the way, there's a bunch of open source tools, so why don't we just build this in-house anyway?
+
+
+157
+00:34:50.455 --> 00:34:55.455
+So, 3 months later, we need more time to assess.
+
+
+158
+00:34:55.455 --> 00:35:04.455
+We go back to the beginning, and in between, hey, really, we just, we need to build an AI security strategy, so let's bring in one of the big fours.
+
+
+159
+00:35:04.455 --> 00:35:08.455
+Uh, and then, you know, we'll restart the process.
+
+
+160
+00:35:08.455 --> 00:35:16.455
+And in the meantime. a customer chatbot has shipped.
+
+
+161
+00:35:16.455 --> 00:35:23.455
+So quickly, how I built it so I can actually get to the demo. I already mentioned it, and using Claude Code.
+
+
+162
+00:35:23.455 --> 00:35:33.455
+It's an agentic loop orchestrated just within simply within Claude. There is a research agent and a QC agent.
+
+
+163
+00:35:33.455 --> 00:35:51.455
+A bunch of system prompts and skills files that have been refined over the last few months, but essentially their task is to go out there and find evidence for the claims that they're making. So that evidence can be contained in GitHub repos, it could be contained in API documentation.
+
+
+164
+00:35:51.455 --> 00:35:59.455
+It could even be in user forums where people talk about a certain product and their experience with it.
+
+
+165
+00:35:59.455 --> 00:36:16.455
+And then, based on the evidence available, the agent assigns it a confidence rating. So five out of five is it's able to extract code samples from GitHub repos to show how this particular capability is actually instrumented.
+
+
+166
+00:36:16.455 --> 00:36:22.455
+And then we mapped all of those capabilities to some common AI risk taxonomy.
+
+
+167
+00:36:22.455 --> 00:36:29.455
+Uh, and then all of this comes together when, uh, a specific GenAI system that.
+
+
+168
+00:36:29.455 --> 00:36:43.455
+somebody's building goes through a wizard, a series of steps that then make recommendations about what are the most appropriate set of solutions, and then correspondingly, the vendors who are able to satisfy them.
+
+
+169
+00:36:43.455 --> 00:37:00.455
+And then there's some filters that we added based on early feedback about some of those other topics. Hey, we're in Palo Alto, we're in CrowdStrike, they're doing a lot, they're making investments, let's look at our existing kind of strategic investments first before going to the marketplace.
+
+
+170
+00:37:00.455 --> 00:37:20.455
+So some of those types of preferences. And then the system produces implementation guidance for a variety of teams from GRC to cloud engineering to security architecture and engineering and dev teams, if the choice is made to build some of those capabilities in-house using open source solutions.
+
+
+171
+00:37:20.455 --> 00:37:35.455
+Etc. This is the wristoxonomy. It's, um, on GitHub, you could take a look at it, but it's, uh, essentially a synthesis of… LLM Top 10, NIST AI RMF.
+
+
+172
+00:37:35.455 --> 00:37:50.455
+and MITRE ATLAS, each of those three, I think, have really good components, but they don't tell the whole picture. So this was an attempt to kind of expand this and cover all of potential today's, uh, today's risks in this space.
+
+
+173
+00:37:50.455 --> 00:37:59.455
+So, we will… Go to… A quick demo.
+
+
+174
+00:37:59.455 --> 00:38:07.455
+So we'll put this particular system through that AI risk modeling wizard. We're calling it adjuster IQ.
+
+
+175
+00:38:07.455 --> 00:38:35.455
+It basically, claims hit the queue, the adjuster equity analyzes, it gives them complexity scores, identifies the right specialist routing, and produces some fraud indicators, and then presents this information to a human adjuster, so… Some of the patterns that are being used as being built on using 3.5 Sonnet 3.5 via AWS Bedrock.
+
+
+176
+00:38:35.455 --> 00:38:59.455
+Amazon Kendra is being used for RAG. orchestration, not very sophisticated, direct API calls. It's doing some tool calling, and the memory is session scoped. So that's kind of the key architecture patterns that are being used.
+
+
+177
+00:38:59.455 --> 00:39:14.455
+All right, let me bring up bring up the tool.
+
+
+178
+00:39:14.455 --> 00:39:32.455
+So this is the tool. For starting point, as I mentioned, was having a risk taxonomy against which vendor claims can be mapped and then evaluated against the evidence. So, you know, for example.
+
+
+179
+00:39:32.455 --> 00:39:42.455
+Let's look at data disclosure, sensitive data and AI inputs risks. And we could see kind of the breakdown then helps us, um.
+
+
+180
+00:39:42.455 --> 00:39:58.455
+map the right commercial solutions against this capability. So the sensitive data and AI inputs, that's a risk input in DLP and redaction that makes sense, right? That's the capability that we need to have to mitigate that particular risk.
+
+
+181
+00:39:58.455 --> 00:40:04.455
+You know, there's some guidance that we could use for a custom.
+
+
+182
+00:40:04.455 --> 00:40:28.455
+Uh, engineered solution to do this in-house if we wanna… if we don't wanna go to the marketplace, um, or… And by the way, on the application layer, so through things like SDKs and APIs, there are a handful of vendors who are claiming that they could do this. And if we choose to implement this in the infrastructure layer, so like some kind of a choke point in the network or an endpoint agent.
+
+
+183
+00:40:28.455 --> 00:40:34.455
+that centrally managed, you know, there are even more vendors who are, um.
+
+
+184
+00:40:34.455 --> 00:40:40.455
+able to satisfy that control.
+
+
+185
+00:40:40.455 --> 00:40:50.455
+So I'll bring up… of quickly what that research on any particular vendor looks like, and then we'll put it all together.
+
+
+186
+00:40:50.455 --> 00:41:02.455
+So, looking at the vendor card for CrowdStrike, Falcon AIDR, that was through their PANG acquisition. We're back at our risk taxonomy.
+
+
+187
+00:41:02.455 --> 00:41:08.455
+So, for data disclosure, you know, we could see that they have one capability.
+
+
+188
+00:41:08.455 --> 00:41:20.455
+And they're doing this at the application infrastructure layer, and we also know that they're able to deploy this both at the network choke point layer and on the endpoint. And let's see what the agent came up with in terms of.
+
+
+189
+00:41:20.455 --> 00:41:28.455
+evidence. So that's the kind of information that it's able to gather on these vendors.
+
+
+190
+00:41:28.455 --> 00:41:47.455
+Not flawlessly. Um, there's still, even though there's a lot, a lot… it's been refined quite a bit, there's a lot of human QC that goes into, um, kind of to manage all of the hallucinations and… context issues that we discussed earlier in the day today.
+
+
+191
+00:41:47.455 --> 00:42:01.455
+Anyway, so let me close that out, and we'll go… And do we have five minutes. Let's see if we can do a risk assessment of this adjuster IQ system in five minutes.
+
+
+192
+00:42:01.455 --> 00:42:15.455
+So, this is the wizard that I was just talking about. So there's just a handful of questions that we ask, and these are the kind of questions that we would ask that we would sit down with a client in kind of that use case and requirements discovery.
+
+
+193
+00:42:15.455 --> 00:42:25.455
+So, what does this claim adjuster think and do? It can be… what kind of data does it use? Internal confidential?
+
+
+194
+00:42:25.455 --> 00:42:30.455
+Uh, our employees are going to be using it over the internet.
+
+
+195
+00:42:30.455 --> 00:42:45.455
+And you can see on the bottom now we're kind of activating and surfacing various risks that are associated with the choices that are use case driven.
+
+
+196
+00:42:45.455 --> 00:42:51.455
+We're using AWS Bedrock, so that's going to be managed pass. It's only going to create new record.
+
+
+197
+00:42:51.455 --> 00:43:04.455
+You know, you could see, like, making an autonomous actions selection results in quite of a different inherent risk profile of this system.
+
+
+198
+00:43:04.455 --> 00:43:23.455
+And then… What is the highest level of autonomy? Uh, because coding assistants become part of the attack surface. So how are coding assistants being used by the devs team that would introduce, um, right, so any, any, anywhere from autonomous coding agents.
+
+
+199
+00:43:23.455 --> 00:43:30.455
+Uh, to suggesting only coding assistance, but let's go with interactive coding assistance.
+
+
+200
+00:43:30.455 --> 00:43:35.455
+Let's see…
+
+
+201
+00:43:35.455 --> 00:43:39.455
+Doing good. I think we'll get there in the next four minutes.
+
+
+202
+00:43:39.455 --> 00:44:05.455
+Okay, so we did our inherent risk profile. Now we're talking about architecture patterns and choices that are being made by the team that's building them, so the kind of things that get discussed at the… architecture review boards. Um, and that would kick off some kind of a security assessment that may last who knows how many months.
+
+
+203
+00:44:05.455 --> 00:44:12.455
+in large enterprises. So, we're in the AWS Bedrock again. We're using RAG and traditional databases.
+
+
+204
+00:44:12.455 --> 00:44:24.455
+Uh, direct API was in the use case. Let's say we're using server as compute, and you could see, as I'm making these selections, the risk profile is changing.
+
+
+205
+00:44:24.455 --> 00:44:35.455
+And we're using the system is gonna give us a chat interface on tool calling, and let's obviously document analysis is going to be a big part.
+
+
+206
+00:44:35.455 --> 00:44:42.455
+Okay, and now we'll get to the part where we're able to… Ask questions alike.
+
+
+207
+00:44:42.455 --> 00:44:50.455
+what security platforms have you made investment in? Let's look at those first and see what they can offer to us against those risks that we've identified.
+
+
+208
+00:44:50.455 --> 00:45:05.455
+Obviously, we're in AWS Bedrock. That's going to give us some controls. Let's say we're using, we already have CrowdStrike and Zscaler. That's going to make things a little bit easier. Zscaler has been adding.
+
+
+209
+00:45:05.455 --> 00:45:35.455
+Gen AI security capabilities. Do we, um, typically buy or build, and or do we have no preference? But let's say we have, we usually buy, uh… Versus build, um… Implementation layer preference. So a lot of the vendors are offering really two kind of implementation paths via SDKs APIs, capabilities that could be provided to the application development teams versus things that are centrally deployed and governed through.
+
+
+210
+00:45:37.455 --> 00:46:02.455
+the infrastructure. So let's say we're doing infrastructure. Um, the talk before, um… The gentleman mentioned that, yeah, most of those solutions are either at the network layer, as some kind of gateways and proxies, or they're going to be an endpoints via agents. But let's say we don't have a preference, so the system is going to surface vendors who can do both.
+
+
+211
+00:46:02.455 --> 00:46:20.455
+And let's say that we want to, um… We will prioritize vendors who provide… give us the most capabilities, so we're leaning towards platform, and let's see what shows up.
+
+
+212
+00:46:20.455 --> 00:46:36.455
+Okay, so what the system is telling us essentially that, you know, at the most critical and high levels, we have certain gaps that we need to cover. Again, that goes back to this risk profile that gets triggered through that wizard.
+
+
+213
+00:46:36.455 --> 00:46:48.455
+And out of our existing vendor relationships, we're able to cover 8 of those capabilities. So, let's grab those, and we have 15 gaps that are remaining.
+
+
+214
+00:46:48.455 --> 00:46:53.455
+So, we can drill into each of those and say that for.
+
+
+215
+00:46:53.455 --> 00:47:05.455
+Some of the governance things, you know, we don't need to… buy a solution that's, you know, we're perfectly capable of building an internal workflow.
+
+
+216
+00:47:05.455 --> 00:47:11.455
+in-house, so… Select some of those as build.
+
+
+217
+00:47:11.455 --> 00:47:18.455
+Accept the rest.
+
+
+218
+00:47:18.455 --> 00:47:37.455
+And now this is the short list of vendors that this system is recommending based on the… based on the prior, uh, kind of wizard steps that we went through. Um, so these are the capabilities and the vendors who we are confident are able to satisfy this particular capability.
+
+
+219
+00:47:37.455 --> 00:47:50.455
+Uh, there's a… we could do a combo, so for aid over the gaps. Really, the system is saying we should take a look at five vendors who are doing each of those is doing some of those things.
+
+
+220
+00:47:50.455 --> 00:48:08.455
+So we can apply… And get to a page that's really a summary of all of the things that can be printed out, provided to either the sourcing procurement teams in-house, or it could be sent to the engineering teams or the development shops with either.
+
+
+221
+00:48:08.455 --> 00:48:24.455
+configuration guidance for, you know, for example, the AWS Bedrock guardrails and some of the controls that they're able to implement, or similarly through, uh, for, um, other commercial solutions or in-house, uh, built.
+
+
+222
+00:48:24.455 --> 00:48:35.455
+Um, using open source tools and etc. So… And I… it looks like I am at time.
+
+
+223
+00:48:35.455 --> 00:48:45.455
+I appreciate your watchful eye.
+
+
+224
+00:48:45.455 --> 00:48:54.455
+And I guess we'll open it to questions for the next few minutes.
+
+
+225
+00:48:54.455 --> 00:49:04.455
+Great presentation, but I had a question about consolidating vendors versus picking something that is best in class. For example, like.
+
+
+226
+00:49:04.455 --> 00:49:11.455
+Viz is great at cloud security, but they also claim to do secret scanning and a bit of SAST and everything.
+
+
+227
+00:49:11.455 --> 00:49:41.455
+So, I mean, how does your tool or what are your thoughts on picking like a solution that is like a Swiss Army knife does everything versus picking up something that is best in class? So the system attempts to recommend a platform, if a platform choice is made, but the AI security landscape is very, very fragmented. So even the big… companies like Palo Alto's and the CrowdStrikes, Wiz is very far from that category for now. They may get there at some point, but they only have a very small handful of capabilities. But, uh, even those big platform plays are still gonna give you about 50% of the risks that are most relevant.
+
+
+228
+00:50:07.455 --> 00:50:16.455
+Hi there. Thanks for going over this. This is something you and your organization have built and you guys maintain this? Yes.
+
+
+229
+00:50:16.455 --> 00:50:43.455
+Interesting. Are you familiar with Richer Steenen and the IT harvest work that they do? No. It's like the kaleidoscope of cybersecurity vendors. Oh, I've seen it. Yeah, yeah, yeah. The encyclopedia, they publish a book. I just… this… It seems like it would be extremely valuable to them. I don't know if you guys talk or work together, but… I've seen it, but yeah, I have not had any contact with them. How do you maintain this when such a high velocity, rapidly changing landscape? So, there's a, uh…
+
+
+230
+00:50:43.455 --> 00:50:53.455
+via GitHub Actions, there's an agentic workflow that gets kicked off every evening. So overnight, you know, it's about 12 hours every day.
+
+
+231
+00:50:53.455 --> 00:51:14.455
+Some subset of these vendors go through that new research process again, so the goal is to have every vendor get revisited at least once a month, and then there's a separate workflow to identify new players or other… Uh, traditional cybersecurity vendors who are adding, uh, AI security capabilities.
+
+
+232
+00:51:14.455 --> 00:51:25.455
+Got time for one more. Or zero more. Thank you. Thank you.
+
+
+233
+00:51:25.455 --> 00:51:34.455
+I don't need to hold up to it.
+
+
+234
+00:51:34.455 --> 00:51:46.455
+Okay, thank, thank you. Good afternoon, everybody. Today, I'll be talking about physical AI and how do we secure and govern physical AI in the wild.
+
+
+235
+00:51:46.455 --> 00:52:04.455
+Um, I've been at Intel almost 3 decades, and most of my life has been spent on performance, engineering, and started with all database benchmarks, etc, back in the 90s and early 2000. And since then, I have moved on to AI and looking at AI performance, and now.
+
+
+236
+00:52:04.455 --> 00:52:11.455
+I'm busy with architecting solutions and looking at how to bring in… extracting the best performance.
+
+
+237
+00:52:11.455 --> 00:52:21.455
+On the hardware, as well as looking at how do we secure and govern physical AI.
+
+
+238
+00:52:21.455 --> 00:52:31.455
+So, of course, uh, you know, we are moving away from the digital world, and now the return of investment is in how do you deploy these AI systems physically?
+
+
+239
+00:52:31.455 --> 00:52:52.455
+Because that's where the money comes in. So digital AI is more about acting on information. Everything is on the screen, whereas physical AI, you are actually deploying it in the real world. And of course, when you go from a demo room to the real world, lots of things happen. Unprecedented things.
+
+
+240
+00:52:52.455 --> 00:52:58.455
+So, when AI's mistakes start moving into the real world, that's kinetic risk.
+
+
+241
+00:52:58.455 --> 00:53:15.455
+Right? And of course, in the digital world, we had the privilege of doing a CTRL-Z, an undo, a reset, a reboot, everything was easy, you know? It's just like funny money. You have a lot of money in stock, it's all funny money until you realize the gains and when you pay taxes.
+
+
+242
+00:53:15.455 --> 00:53:23.455
+So now, when you start doing this, now, how do these errors manifest itself in physical AI?
+
+
+243
+00:53:23.455 --> 00:53:38.455
+So, of course, it's not just the speed of errors because yes, it's all the force and the motion and the physics of the errors, but there's also timing because you need to detect these errors in time before the action takes place.
+
+
+244
+00:53:38.455 --> 00:53:51.455
+Of course, as you know, that in the physical AI space, the errors are not very reversible.
+
+
+245
+00:53:51.455 --> 00:54:00.455
+So the reason this is of importance right now is three different kinds of technologies have crossed over.
+
+
+246
+00:54:00.455 --> 00:54:15.455
+We have sensors, and sensors have matured a lot. And of course, foundational models, frontier models have become very stable, less of hallucinations. And the last part of it is edge compute. Edge compute is much more viable and feasible today.
+
+
+247
+00:54:15.455 --> 00:54:25.455
+Now, these three vectors together have made the need, increase the need for autonomous economy.
+
+
+248
+00:54:25.455 --> 00:54:33.455
+Let's talk about the building blocks of physical AI. Basically, think of it as a loop. You have sensors in the field.
+
+
+249
+00:54:33.455 --> 00:54:46.455
+Uh, then, uh, you have technology that detects the sensor information from the sensors. Then you have something called the perception layer, which is basically making sense of the sensor's data.
+
+
+250
+00:54:46.455 --> 00:54:57.455
+And then you have the thinking. Thinking is basically trying to map the data, the state of the world and the sensor data and trying to predict the next.
+
+
+251
+00:54:57.455 --> 00:55:14.455
+state of the system. And of course, you have reasoning and planning, what do I do? If I take this action, what is going to happen? And finally, it is more about controlling and actually driving the physical actions.
+
+
+252
+00:55:14.455 --> 00:55:19.455
+So, it's not a new concept. Physical AI was there.
+
+
+253
+00:55:19.455 --> 00:55:26.455
+Except that none of the technologies had matured enough for them to be deployed at scale in the field.
+
+
+254
+00:55:26.455 --> 00:55:41.455
+Okay? So in the 1950s and up to 2000, we had a lot of world models, which are basically control theory, robotics, etc. And they were able to look at the state and predict the next state of the system so they could say that if I take this action.
+
+
+255
+00:55:41.455 --> 00:55:48.455
+What is… what will happen to the world? Then, of course, came the LLMs, which are the brains, right?
+
+
+256
+00:55:48.455 --> 00:55:55.455
+The brains were, given what is a text, what action should I take?
+
+
+257
+00:55:55.455 --> 00:56:05.455
+What should be my response? And the next one is VLMs, the vision language model. Given what the text I see and the images I see.
+
+
+258
+00:56:05.455 --> 00:56:17.455
+What does this mean to me? What does this mean in the physical world? And finally, the vision language action models, which basically saying, okay, given the perception, given the state of the world.
+
+
+259
+00:56:17.455 --> 00:56:27.455
+And what action should I take? That means, what do I tell the physical system, which is the robot? How much do I move the arm of the robot or the legs of the robot, etc.
+
+
+260
+00:56:27.455 --> 00:56:36.455
+So these three… all these come into play. Now, remember our loop that we were talking about? The five layers? Now let's see how they map.
+
+
+261
+00:56:36.455 --> 00:56:45.455
+You have the sensors, you have the perceivers, right? Sensors are the standard. Sensors, the lidars, et cetera. The thinking is the world model.
+
+
+262
+00:56:45.455 --> 00:56:59.455
+And then the reasoning and the planning are the LLMs and the VLMs. And of course, the control and action are the actual robotic movements.
+
+
+263
+00:56:59.455 --> 00:57:04.455
+So now we'll go through a step where I'll take you through this physical stack.
+
+
+264
+00:57:04.455 --> 00:57:10.455
+as well as show you what happens when any of these layers fail.
+
+
+265
+00:57:10.455 --> 00:57:13.455
+Or what happens if this liver existed or not?
+
+
+266
+00:57:13.455 --> 00:57:18.455
+So the first layer at the bottom, which is the sensor, right? Now I just flipped it over, bottoms up.
+
+
+267
+00:57:18.455 --> 00:57:24.455
+So you have your sensors, very innocuous layer just gathers information.
+
+
+268
+00:57:24.455 --> 00:57:30.455
+Then you have the perceiving layer.
+
+
+269
+00:57:30.455 --> 00:57:48.455
+You can see it better here. Yeah, the perception layer is making sense of the sensors, figuring out what are all these sensors, because, of course, there could be sensors which are spoofed, sensors which are incorrect, it has to figure out which are the right sensors, and how do you… Understand the correlation between all the sensor data.
+
+
+270
+00:57:48.455 --> 00:57:57.455
+Then comes the world model. Here, in this case, if you think of — we are going to pick up a coffee cup from the table.
+
+
+271
+00:57:57.455 --> 00:58:08.455
+So, here, the cup is sitting on a table. The world models actually figures out what is the amount of, what kind of cup is it?
+
+
+272
+00:58:08.455 --> 00:58:26.455
+Where do you grasp the cup so that the coffee doesn't spill? Is the cup fragile or not? Is the desk is a soft surface or a hard surface, et cetera? That is a world model. It looks and perceives the state of the world at that time.
+
+
+273
+00:58:26.455 --> 00:58:35.455
+And that predicts what action should I take and what will be the outcome of whatever action I take. That is the world model.
+
+
+274
+00:58:35.455 --> 00:58:39.455
+And from basically the world model is now looking at.
+
+
+275
+00:58:39.455 --> 00:58:56.455
+This is, uh, basically, should I grip it? If it's a fragile cup, I need to grip it very gently. If it's a, you know, paper cups versus a ceramic cup, etc, if it has a handle or not, etc, all that is determined in this layer.
+
+
+276
+00:58:56.455 --> 00:59:10.455
+There you go. The cup gets lifted. But if the prediction is wrong in this model, the cup is… you'll spill. You'll spill the coffee cup because you're holding it wrong.
+
+
+277
+00:59:10.455 --> 00:59:21.455
+So then, of course, the LLMs and they reason and plan out the course of action so that those sequence of actions will be given to the robot.
+
+
+278
+00:59:21.455 --> 00:59:32.455
+And of course, the VLA tells, you know, what kind of robot it is and how many inches of whatever the arm has to move, etc, and at what angle, etc.
+
+
+279
+00:59:32.455 --> 00:59:37.455
+And that's when you move the coffee cup correctly. You can lift up the coffee cup.
+
+
+280
+00:59:37.455 --> 00:59:41.455
+So all of these layers have to work in conjunction.
+
+
+281
+00:59:41.455 --> 00:59:49.455
+Again, we'll talk about this as we go deeper into this talk, we'll see that, you know, where the responsibility lies.
+
+
+282
+00:59:49.455 --> 00:59:58.455
+Who is the final? Which is the final layer that controls all of this.
+
+
+283
+00:59:58.455 --> 01:00:17.455
+So, let's see what can go wrong. I think many of us have been in these situations in the older days where the GPS is telling, make a U-turn, make a U-turn, make a U-turn. It's giving you advice. It is not giving you permission, right? It doesn't know anything about the physical world. It is just saying you need to make a U-turn.
+
+
+284
+01:00:17.455 --> 01:00:35.455
+missed your exit, right? It's here, it's up to the human being to get into that loop and figure out whether it is safe to make the action. Today, of course, there are some hardware sensors which say, okay, we can't take that action and you'll delay the action, which is fine.
+
+
+285
+01:00:35.455 --> 01:00:47.455
+Then there are other ways that things can go wrong in physical AI is, of course, if somebody spoofs or has a say, if there is a security attack.
+
+
+286
+01:00:47.455 --> 01:01:03.455
+So basically, these both systems are unsafe, right? One is unsafe, it'll fail accidentally, like making a U-turn, whereas the secure injecting security vulnerability attacks, all that makes the system fail.
+
+
+287
+01:01:03.455 --> 01:01:14.455
+Intentionally. And that's why we need a fail-safe architecture. We'll get into how to build an architecture like that for physical AI systems.
+
+
+288
+01:01:14.455 --> 01:01:22.455
+Now, there's one other aspect which is there in physical AI that is not covered anywhere.
+
+
+289
+01:01:22.455 --> 01:01:39.455
+And that is latency. So far, when we see LLMs, et cetera, remember LLM started with a 7 billion model or a 10, 15 million parameter model, and they went up to 405 million billion parameters.
+
+
+290
+01:01:39.455 --> 01:01:45.455
+Similarly, the context window started at 4K, 32K, 128, and a 1 million context window.
+
+
+291
+01:01:45.455 --> 01:01:52.455
+LLMs were scaling with the size of the model. Vlas don't scale with that. For VLAs.
+
+
+292
+01:01:52.455 --> 01:01:57.455
+It is the latency and the control which is most important.
+
+
+293
+01:01:57.455 --> 01:02:03.455
+And with LLMs, because latency is such an important criteria here for physical systems.
+
+
+294
+01:02:03.455 --> 01:02:18.455
+LLMs can, you know, they order in the work in the order of few hundreds of milliseconds to seconds. I mean, I'm very familiar with optimizing for TTFT and TPOT in your LLM latency generative AI latency techniques.
+
+
+295
+01:02:18.455 --> 01:02:29.455
+I mean, think about everybody is touting tokens per second, right? Million tokens per second, or 4 million tokens per second. What is all that? It's ultimately, it is how many tokens can you process per second?
+
+
+296
+01:02:29.455 --> 01:02:34.455
+That is the latency. In VLAs.
+
+
+297
+01:02:34.455 --> 01:02:40.455
+You have your vision encoder models, you have the world models, and look at the timing there.
+
+
+298
+01:02:40.455 --> 01:02:50.455
+The latency targets for these are sub-millisecond range. The entire loop from sensing all the way to the control and the action.
+
+
+299
+01:02:50.455 --> 01:03:08.455
+is in within 100 or 200 milliseconds. So this becomes very critical that now VLAs are not evolving with, you know, the scalability of VLAs is not the size anymore. Rather, how fast can they go?
+
+
+300
+01:03:08.455 --> 01:03:16.455
+And now, instead of saying that latency is a performance KPI, we talk about it as a safety parameter.
+
+
+301
+01:03:16.455 --> 01:03:28.455
+Latency is a safety parameter, because you can be 100% right, but you can completely decide the right course of action. But if you come 10 milliseconds late, you're too late to the game.
+
+
+302
+01:03:28.455 --> 01:03:34.455
+So, think about you're driving a car, and, you know, you know that you have to stop.
+
+
+303
+01:03:34.455 --> 01:03:41.455
+at the stop sign or a pedestrian suddenly jaywalks around the thing.
+
+
+304
+01:03:41.455 --> 01:03:50.455
+You have to stop. I mean, you can be perfectly right, you have sensed it, but if your reaction time is few minutes, few seconds, or milliseconds slow.
+
+
+305
+01:03:50.455 --> 01:04:08.455
+then you actually hit the pedestrian. In that entire pipeline, right, from the sensing till the control and action, there is a certain region where you can actually step back, like the world model has predicted, okay, this is the state it's going to be. Llm says this is a plan of action.
+
+
+306
+01:04:08.455 --> 01:04:20.455
+You can still reverse your actions. But once the VLA, the action, the language action model, and the control have issued the action commands to the robot, to the physical system is too late.
+
+
+307
+01:04:20.455 --> 01:04:29.455
+You cannot reverse back. The another aspect of this is why human in the loop fails.
+
+
+308
+01:04:29.455 --> 01:04:36.455
+For physical AI, it's not going to be. The human is not in the loop anymore, or it cannot be in the loop.
+
+
+309
+01:04:36.455 --> 01:04:44.455
+Because humans cannot think in millisecond. They are mostly in seconds and minutes.
+
+
+310
+01:04:44.455 --> 01:04:50.455
+So basically, you need something in the architecture, in this entire software stack.
+
+
+311
+01:04:50.455 --> 01:04:57.455
+That will eliminate the need for humans. Does that mean humans have no control? They do.
+
+
+312
+01:04:57.455 --> 01:05:08.455
+But the control of humans is more in the strategic thinking, decision, and planning, rather than in the execution. The execution should be all autonomous.
+
+
+313
+01:05:08.455 --> 01:05:19.455
+Humans can decide, plan everything before. That means they create the intent, but they cannot actually be in the execution path.
+
+
+314
+01:05:19.455 --> 01:05:22.455
+So a lot of things can go wrong, right?
+
+
+315
+01:05:22.455 --> 01:05:30.455
+You can have, but what feels safe architecture will do is answer how, um.
+
+
+316
+01:05:30.455 --> 01:05:41.455
+How to control. How to reduce these errors, so you can have physical kill paths, right? You can have override buttons, you can degrade the performance of the system.
+
+
+317
+01:05:41.455 --> 01:05:59.455
+So that it fails more gracefully. That's very much in the reliability space that, you know, systems don't fail abruptly, but they degrade gracefully, etc. And you have deterministic control paths, you can have boundary latency, all of these techniques are there.
+
+
+318
+01:05:59.455 --> 01:06:05.455
+But that's where… this is the fail-safe architecture. So fail-safe architecture, you can put all of this.
+
+
+319
+01:06:05.455 --> 01:06:19.455
+Who decides all this? Who decides what the limits are? Who decides what are the control paths, and who decides when to override that switch, or when to pull the plug on the system?
+
+
+320
+01:06:19.455 --> 01:06:28.455
+And that is what is governance. Governance is that authority model which puts in all of these boundaries.
+
+
+321
+01:06:28.455 --> 01:06:37.455
+And that's where we need to worry about what is happening to governance here.
+
+
+322
+01:06:37.455 --> 01:06:48.455
+So basically, FieldSafe is showing how safety works, and governance is saying how to… owns it and who decides the fate of the system?
+
+
+323
+01:06:48.455 --> 01:07:02.455
+So there are some basic primitives are there for governance. Some of this like timing and latency, right? So as I said, you can be 100% right, but if you arrive late to the game, it's over.
+
+
+324
+01:07:02.455 --> 01:07:07.455
+So, timing and latency is one of the primitives.
+
+
+325
+01:07:07.455 --> 01:07:17.455
+Scope, what are the boundaries? Setting the physical boundaries for the execution path.
+
+
+326
+01:07:17.455 --> 01:07:29.455
+And when and how to override or pull the plug on the systems, whether it is you haul the system, or you degrade the system, all of that is the authority that you give.
+
+
+327
+01:07:29.455 --> 01:07:40.455
+And of course, basically, if you want to stop the system, what is the escalation path? That means, is there a different way you can transition the system into a safer state?
+
+
+328
+01:07:40.455 --> 01:08:00.455
+without actually causing physical damage. and accountability and traceability. There are two parts to accountability. The first one is evidence and traceability. And if you think of that, what you need is continuous monitoring. Not monitoring the system and saying, oh, the model is 100% correct.
+
+
+329
+01:08:00.455 --> 01:08:10.455
+I mean, we plug in a model, world model from somewhere, LLM model from somewhere else, and say, oh, the models are 100% accurate, and the data is all secure.
+
+
+330
+01:08:10.455 --> 01:08:18.455
+That doesn't mean anything. At runtime, you need to monitor. You need to be able to recreate that incident.
+
+
+331
+01:08:18.455 --> 01:08:22.455
+Think about the movie Sally, right? It landed on the Hudson.
+
+
+332
+01:08:22.455 --> 01:08:37.455
+Um, yeah. Dom Hanks, right? Tom Hanks. He landed the plane safely, but how long did that NTSB or whoever was investigating? They did 17 trials to recreate that incident.
+
+
+333
+01:08:37.455 --> 01:08:44.455
+And so that's the incident recreation is a very big challenge.
+
+
+334
+01:08:44.455 --> 01:08:49.455
+And by the way, black box, etc. Came as a part of.
+
+
+335
+01:08:49.455 --> 01:09:02.455
+Failed regulations, and they didn't decide that they would have a black box or, um, all of these, uh, or air traffic control. There was no centralized air traffic control before the 1950s.
+
+
+336
+01:09:02.455 --> 01:09:17.455
+There were air crashes. That's when they enforce air traffic control. Similarly, the black box recorders came into existence because they had to recreate incident. They didn't know what happened when planes just disappeared off the face of the earth.
+
+
+337
+01:09:17.455 --> 01:09:23.455
+So that's when all of these came between 1950 and 1970.
+
+
+338
+01:09:23.455 --> 01:09:45.455
+So that's incident creation. That means you need to be continuously monitoring and… Telemetry is important, right? And now, of course, governance cannot be sitting outside and controlling something. You can't just say everything is accurate. I have all the paperwork. It works. No, it has to be inside the system.
+
+
+339
+01:09:45.455 --> 01:09:52.455
+Governance should be inside the system and be setting the boundaries.
+
+
+340
+01:09:52.455 --> 01:10:03.455
+So I'll just go a little fast because I'm running out of time. So here, today we we can see we can have a fail-safe architecture, we can have runtime control, and then we have governance.
+
+
+341
+01:10:03.455 --> 01:10:10.455
+Think about NIST, the EU AI Act. I'll briefly touch on that. But what? They are all on paper.
+
+
+342
+01:10:10.455 --> 01:10:18.455
+And they're not… they have no way of controlling the system. That's the gap. That's a red line gap here that we have.
+
+
+343
+01:10:18.455 --> 01:10:25.455
+Right? So governance also should be embedded into the architecture.
+
+
+344
+01:10:25.455 --> 01:10:34.455
+So NIST AI framework, AI RMF, the risk management framework has four functions, govern, map, manage, and measure.
+
+
+345
+01:10:34.455 --> 01:10:45.455
+And the EU AI Act classes the systems as some risk category. It says low risk, medium risk, high risk, ultra-high risk, or whatever, right?
+
+
+346
+01:10:45.455 --> 01:10:54.455
+Again, it… The NIST AI framework does not talk about anything about physical AI at all.
+
+
+347
+01:10:54.455 --> 01:11:03.455
+Okay? It doesn't talk about physical AI at all, so it's missing the real-time monitoring. It is missing, you know, what kind of, uh.
+
+
+348
+01:11:03.455 --> 01:11:19.455
+Controls should be put in. Because it's all about model attestation, model accuracy, data purity, et cetera, but nothing related to the physical world. And EU AI Act doesn't even want to touch the physical AI systems. It says, oh.
+
+
+349
+01:11:19.455 --> 01:11:30.455
+We just classify the systems as risk, different risk categories, and we pass it on to the sectoral departments, which is basically, if you were deploying the robot in the hospital.
+
+
+350
+01:11:30.455 --> 01:11:39.455
+The medical laws come into picture to define what the boundaries are. So… It's basically like there's a gap here.
+
+
+351
+01:11:39.455 --> 01:11:47.455
+between the frameworks. The frameworks are not actually… They're not ready for physical AI, to be frank.
+
+
+352
+01:11:47.455 --> 01:12:05.455
+And not to, I think the problem is… Technology and the… real technology part is innovating very fast in all dimensions, and… The government, etc, and these policies are very, very slow to evolve.
+
+
+353
+01:12:05.455 --> 01:12:18.455
+So we have to make that enhancements to the policies to adopt a physical AI. And physical AI is a… thing that is going to scale this year.
+
+
+354
+01:12:18.455 --> 01:12:25.455
+So this one I will just skip. There's one other part that I've said, accountability.
+
+
+355
+01:12:25.455 --> 01:12:46.455
+Who is accountable? Now, think of your, I mean, how many times have you heard of the Tesla or some other car, right? I'm not just… It causes physical damage, it causes a fatality. Who is to blame? Is it the model? Is it the developer? Is it the integrator? All of these, right?
+
+
+356
+01:12:46.455 --> 01:12:55.455
+They need to come… you need to assign that liability over the entire software stack.
+
+
+357
+01:12:55.455 --> 01:13:10.455
+So basically, the sensors. Poor guys, they're just giving the data out. The sensors, they're not doing anything. Collecting the data, passing the data to the sensor layer. Sensors are not to blame. They have minimal responsibility.
+
+
+358
+01:13:10.455 --> 01:13:20.455
+The world model? To some extent, yes. But it only it can only do what it sees. It sees something, it gets the sensor data.
+
+
+359
+01:13:20.455 --> 01:13:26.455
+And it sees the world and can predict. But so it also has some partial.
+
+
+360
+01:13:26.455 --> 01:13:41.455
+a responsibility. But ultimately. This, the control, this layer, the control layer is the ultimate layer which is responsible for anything. So liability is actually flowing up the stack.
+
+
+361
+01:13:41.455 --> 01:13:51.455
+The last layer, the last actor that could have prevented that action is liable for any physical damage.
+
+
+362
+01:13:51.455 --> 01:14:02.455
+Of course, we said humans cannot be in the loop, right? There is no way that humans can be in the loop and act in the sub millisecond range. So what can humans do?
+
+
+363
+01:14:02.455 --> 01:14:07.455
+Humans can set the boundaries. So, what they have to do is.
+
+
+364
+01:14:07.455 --> 01:14:13.455
+It's not that they are not having control, but the control is outside of the execution loop.
+
+
+365
+01:14:13.455 --> 01:14:24.455
+So humans have the strategic authority. They can design the boundaries, they can decide about the architecture, etc, and the machines have to execute to that.
+
+
+366
+01:14:24.455 --> 01:14:37.455
+And of course, you have all the governance guardrails, which are rate limiters, energy caps, and geofencing, etc. And that needs to be decided by governance.
+
+
+367
+01:14:37.455 --> 01:14:41.455
+Well, there are some things that we have to accept, right?
+
+
+368
+01:14:41.455 --> 01:14:49.455
+Physical AI is going to fail. It is going to fail. You cannot have a perfect system. If somebody is trying to sell you a perfect system.
+
+
+369
+01:14:49.455 --> 01:14:56.455
+I mean, I think, I don't know what you want to call it, but it's just take it with a grain of salt, I would say.
+
+
+370
+01:14:56.455 --> 01:15:01.455
+You cannot have physical AI systems, which zero risk is impossible.
+
+
+371
+01:15:01.455 --> 01:15:24.455
+It's about damage control, not damage prevention. Okay? It can never be perfect. You have to be able to control damage, it'll never… Okay? It's not about how a system… it's not about, will the system fail? It will fail, but how will it fail? And how can you prevent that failure is important.
+
+
+372
+01:15:24.455 --> 01:15:31.455
+That's the key thing in governance and designing a fail-safe architecture.
+
+
+373
+01:15:31.455 --> 01:15:35.455
+So we need to have governance run in the runtime.
+
+
+374
+01:15:35.455 --> 01:15:52.455
+And we have to have enforce safety, etc, certifications, and now we are not talking about a model certification from OpenAI or Google or Anthropic, but we are talking about entire system-level certifications that needs to be… that needs to be certified if you want to.
+
+
+375
+01:15:52.455 --> 01:16:01.455
+have a physical AI system. So basically, if you want to have physical AI systems deployed in the world.
+
+
+376
+01:16:01.455 --> 01:16:06.455
+You need to make sure that you have enforced governance.
+
+
+377
+01:16:06.455 --> 01:16:14.455
+So if you don't design governance in, you're going to hear it in accident reports, lawsuits, and making headlines.
+
+
+378
+01:16:14.455 --> 01:16:30.455
+Okay? So that's my story here about physical AI. Thank you.
+
+
+379
+01:16:30.455 --> 01:16:39.455
+Go ahead. Hello. Oh, there we go. All right, I think we have time for one question. Does anyone have a good question? Otherwise, I have a question.
+
+
+380
+01:16:39.455 --> 01:16:50.455
+All right, here we go. I can show a demo if you want. We have done a small demo which shows how human in the loop does not work.
+
+
+381
+01:16:50.455 --> 01:16:55.455
+Pardon? How long does that take you? No, it's a very short demo.
+
+
+382
+01:16:55.455 --> 01:17:02.455
+Oh, eight seconds. Okay. Then never mind. That's okay. I thought we had five minutes here. No, ma'am.
+
+
+383
+01:17:02.455 --> 01:17:05.455
+That's the mark, that's the hard stop. That's the hardest stop, yes, ma'am.
+
+
+384
+01:17:05.455 --> 01:17:12.455
+I do have one brief question for you. It's more philosophy than maybe technical. Okay.
+
+
+385
+01:17:12.455 --> 01:17:24.455
+In the United States, I can't speak for Europe, we tend to wait until a market winner emerges, and then we write a bunch of regulation after that, right, to do that. When we're talking about car crashes, specifically my car.
+
+
+386
+01:17:24.455 --> 01:17:44.455
+Um, obviously we can't wait, but I don't think that this market is immune to what happened to everything else, banking, energy, weapons, all that stuff. Do you see any movement that says, hey, we're taking this seriously, or is it just talking? We are seeing a little bit, right, with the beautiful bill and etc, and a lot of.
+
+
+387
+01:17:44.455 --> 01:17:51.455
+Activities, but again the pace of innovation on technology side is way faster than the governance today.
+
+
+388
+01:17:51.455 --> 01:17:56.455
+Right? And I mean, just two days ago, we had the drone problem, right?
+
+
+389
+01:17:56.455 --> 01:18:01.455
+the… a good room from DHS was brought down.
+
+
+390
+01:18:01.455 --> 01:18:12.455
+Just some lack of communication, and actually, that was a human-in-the-loop problem. Why did the Department of Homeland Security have to inform the Pentagon that they were launching a drone?
+
+
+391
+01:18:12.455 --> 01:18:19.455
+You don't need to do that. You don't need a human in the loop to say, okay, you have the permission to do it. This should have happened automatically.
+
+
+392
+01:18:19.455 --> 01:18:27.455
+So this needs to happen. And I think hopefully the governance will change.
+
+
+393
+01:18:27.455 --> 01:18:57.455
+Thank you very much.
+
+
+394
+01:19:05.455 --> 01:19:14.455
+All right, 20 minutes starts now? Okay. Oh, it's gonna restart? Okay, sweet.
+
+
+395
+01:19:14.455 --> 01:19:24.455
+All right, end of day, everyone's excited, right? Okay. Trajectory where model post-training. Small language models. So hey everyone, I am Aaron.
+
+
+396
+01:19:24.455 --> 01:19:34.455
+backgrounds, some tech, some governments, open source. If you're interested in model post-training or frontier agent design, let me know.
+
+
+397
+01:19:34.455 --> 01:19:47.455
+So today, in this talk, what we're going to focus on, and maybe just as a quick show of hands, has anyone here actually worked on an… actual model training or post-training specifically, familiar with, like, Unsloth, TRL.
+
+
+398
+01:19:47.455 --> 01:19:58.455
+Awesome. Cool. Well, those that aren't, that's also perfectly fine. I'm going to walk through the next 20 minutes, effectively what is current state of the art in specifically the alignment section of Model Pose Training.
+
+
+399
+01:19:58.455 --> 01:20:03.455
+Talk a little bit about an open source project. I'm releasing today.
+
+
+400
+01:20:03.455 --> 01:20:23.455
+Um, and some results of some… a tutorial. So let's set the stage a little bit. So, when we think about large language models, decoder models, these autoregressive models, uh, we're typically, a lot of folks talk about pre-trained. That's what happens typically when you take these big corpuses of the internet, Common Crawl, etc, and proprietary sets.
+
+
+401
+01:20:23.455 --> 01:20:35.455
+Um, and you make these great models. Now, this was one of the major innovations like for the original GPT three model that came is actually this instruction alignment, actually aligning to human preference.
+
+
+402
+01:20:35.455 --> 01:20:51.455
+Uh, and this is when you're effectively optimizing, you can think of it a high level for a specific task. When I say task, that's anything from invoking function calls to question and answers and things of that nature. And then there's prompting and inference.
+
+
+403
+01:20:51.455 --> 01:21:16.455
+So when we say agents, too, as well, I think it's always for everyone just to remember what an agent is. So, an agent itself is just a mere collection of… Invoking a model that has access to, or invoking the model through effectively the application layer and giving this system access to memory for long-term, effectively persisting context in a out-of-band, effectively data store.
+
+
+404
+01:21:16.455 --> 01:21:23.455
+And then short-term, effectively, a conversation where you can do things like truncation, pruning, artifact rehydration.
+
+
+405
+01:21:23.455 --> 01:21:35.455
+And then you have tools. These are functions that you can invoke that have docstrings and names associated with them, and actions where you… action in the environment that's executing in your local machine, a remote container, etc.
+
+
+406
+01:21:35.455 --> 01:21:52.455
+So what's going on actually behind the scenes when you actually are having, you know, you're on Claude code, you're on cursor, or your own custom agent, and it's making these function calls. What you're doing is these models are stateless. So every interaction you have, it doesn't maintain prior context into that.
+
+
+407
+01:21:52.455 --> 01:22:01.455
+So, when you send that tool call, what it's really sending, if you look at what's happening in the conversation, it's sending the system prompt.
+
+
+408
+01:22:01.455 --> 01:22:14.455
+I am a great pin testing agent, and effectively the tool schemas. These are effectively the function name, the arguments, and then, importantly, the doc strings that in text describe that specific tool.
+
+
+409
+01:22:14.455 --> 01:22:19.455
+I think the conversation history that grows, and then the next action.
+
+
+410
+01:22:19.455 --> 01:22:29.455
+If we look at some of the results from effectively the frontier models, and this is, I think, last, if anyone read irregulars, I think, uh, GPT-5-2 scorecard.
+
+
+411
+01:22:29.455 --> 01:22:38.455
+Along with, uh, I know some of us were talking at Offensive AICon back in the fall. What we're finding, at least with these models applied to different scaffolding frameworks.
+
+
+412
+01:22:38.455 --> 01:22:50.455
+What they really are good at is these atomic tasks. So think in the web application, pin testing world, identifying effectively, hey, there's an LFI, there's a cross-site scripting attack, and then exploiting through that.
+
+
+413
+01:22:50.455 --> 01:23:01.455
+What they're really poor at right now, at least these general models, is these multi-stage tasks, where we require effectively conjoining different vulnerabilities together to exploit.
+
+
+414
+01:23:01.455 --> 01:23:14.455
+This is one of the reasons why we need to focus on model post-training. Again, these base models, they're optimized for everything from question-answer tasks about cats and dogs, to software code development.
+
+
+415
+01:23:14.455 --> 01:23:24.455
+to effectively the cohort of most of the people in this room, and above stairs, applying these for applications with the intent purpose of doing tasks such as pin testing, instance response, etc.
+
+
+416
+01:23:24.455 --> 01:23:33.455
+So when we talk about post-training, a lot of what we're talking about is just inference time scaling, or that's what we're talking about with agent scaffolding, I apologize.
+
+
+417
+01:23:33.455 --> 01:23:43.455
+For post-training, what we're really talking about is that RL, reinforcement learning, on trajectories, supervised fine-tuning, and then that pre-training earlier.
+
+
+418
+01:23:43.455 --> 01:23:58.455
+When we talk about agentic reinforcement learning, what we're really talking about is the ability to effectively do behavioral cloning from these expert trajectories. Again, think about taking in the open weight world, running on GLM5 or KIMI.
+
+
+419
+01:23:58.455 --> 01:24:10.455
+K2 and then effectively recording the conversation of how that performed and then going to a weaker agent with a smaller model then effectively.
+
+
+420
+01:24:10.455 --> 01:24:25.455
+teaching the model how to not just replicate, but also think like that model for that specific task. Again, tasks can be everything from invoking functions, like a shell command for invoking specific cyber tools in a shell environment.
+
+
+421
+01:24:25.455 --> 01:24:30.455
+exploit code generation, or orchestration between different agents and tools.
+
+
+422
+01:24:30.455 --> 01:24:44.455
+So, probably for the folks in here that did raise their hand that are working in this field, there's a… there's a couple of benchmarks out there within the cyberspace domain, and it's not exhaustive, and we all can complain that none of them are great, and I can agree with you, I'm part of that.
+
+
+423
+01:24:44.455 --> 01:24:59.455
+But, you know, SciBench, CVE Bench, XPAW validation, etc, these are kind of the foundations right now, especially in both these tasks, really, that are bucketed in pin testing of web applications, or vulnerability identification and code.
+
+
+424
+01:24:59.455 --> 01:25:06.455
+etc, for either web applications, crypto, etc. Dynamic and static environments.
+
+
+425
+01:25:06.455 --> 01:25:20.455
+And we talk about what it is like security pin testing from more of a philosophical perspective, and what we're really doing here, we're really focused on this frontier ML problem that we're seeing across, effectively, what they call long horizon agents.
+
+
+426
+01:25:20.455 --> 01:25:26.455
+Similar to how in web voyaging through browsers. Agents playing effectively video games?
+
+
+427
+01:25:26.455 --> 01:25:31.455
+or effectively, security pin testing. You have an agent that has to explore the world.
+
+
+428
+01:25:31.455 --> 01:25:44.455
+Understand what's surrounding. And then unify them to actually interact with the environment and invoke specific functions to complete these objectives. This is pretty complex, and even from a more general ML perspective, that's why.
+
+
+429
+01:25:44.455 --> 01:25:49.455
+doing this model post-training is such a requirement and such a cool frontier problem to work on.
+
+
+430
+01:25:49.455 --> 01:26:00.455
+So if we look at other domains and how they're solving this, again, I don't like to reinvent the wheel, I like to look at what others are doing in the space. You can look at the… I don't know if anyone's seen the work from Laud.
+
+
+431
+01:26:00.455 --> 01:26:11.455
+or from SWE bench, terminal bench. Um, but effectively in math and reasoning and coding agents, there are pretty established benchmarks and training frameworks.
+
+
+432
+01:26:11.455 --> 01:26:16.455
+and evals as well. I'd say overall in security, the one takeaway is we don't really have that.
+
+
+433
+01:26:16.455 --> 01:26:29.455
+Uh, that is fundamentally missing. That's why we hear talks, like earlier today from folks that we don't have great evals, we don't have great measures, no one believes anything. I think we need to have that, just like we have it in coding, etc.
+
+
+434
+01:26:29.455 --> 01:26:39.455
+So, if you're gonna do that, you want to build your post-training environment to train your one security agent for defense or offense, or really any long horizon task.
+
+
+435
+01:26:39.455 --> 01:26:51.455
+What do you need to do that? You need a collection of about 36 plus different libraries, SDKs to effectively conjoin them into your effectively cluster to do this distributed training RL.
+
+
+436
+01:26:51.455 --> 01:27:12.455
+infrastructure. It's always a problem of effectively what went wrong. I can tell you many horror stories after this about doing this type of work but you know tracing a problem is it the algorithm that's wrong? Is it the infrastructure, the environmental data? It's typically… Very difficult to actually do debugging.
+
+
+437
+01:27:12.455 --> 01:27:28.455
+So this is why I want to release and compile a project called Open Trajectory Gym that I just released about an hour ago. This is a collection that allows you, in effectively one loop, to apply some of the latest techniques in model post-train that are built off the backs.
+
+
+438
+01:27:28.455 --> 01:27:36.455
+of some pretty cool, awesome projects from TRL, from a really cool project out of Berkeley Sky Computing Lab called SkyRL.
+
+
+439
+01:27:36.455 --> 01:27:44.455
+Um, and a couple others that we can get into that allows, effectively more of a practitioner and machine learning engineering level, rather than effectively a PhD.
+
+
+440
+01:27:44.455 --> 01:27:54.455
+lab to effectively build and implement model post-training pipelines, because I'm not aware of any other framework that does that in the open source, let alone in security.
+
+
+441
+01:27:54.455 --> 01:27:59.455
+What does this really mean? This allows you to effectively bring your own benchmark, bring your own model.
+
+
+442
+01:27:59.455 --> 01:28:06.455
+into, effectively, this gym that allows you to, whether you're running a strands agent, a auto gen.
+
+
+443
+01:28:06.455 --> 01:28:12.455
+or you're running a LangChain agent, which is in the example I'll show you today.
+
+
+444
+01:28:12.455 --> 01:28:17.455
+Uh, you can effectively connect your tool, your containers, your reward functions.
+
+
+445
+01:28:17.455 --> 01:28:29.455
+And then your outcome will be an agent or a model more specifically, that's aligned for those function calls at test time, rather than having to learn those function calls and reasoning and trajectory.
+
+
+446
+01:28:29.455 --> 01:28:33.455
+at test time. Um, how do I do that? In the example I'll show you?
+
+
+447
+01:28:33.455 --> 01:28:41.455
+So I used a mixture of effectively my DGX Spark at home for inference, and effectively some local testing.
+
+
+448
+01:28:41.455 --> 01:28:52.455
+And then some cloud infrastructure H200s for actually the actual Ray cluster and setting up the training infrastructure.
+
+
+449
+01:28:52.455 --> 01:28:57.455
+Uh, this training loop architecture works by setting up this live environment.
+
+
+450
+01:28:57.455 --> 01:29:03.455
+Effectively, the live environment that I'll talk about here is SciBench. This is effectively 40 different.
+
+
+451
+01:29:03.455 --> 01:29:09.455
+of web application challenges and static code analysis, everything from CTF style, we're effectively.
+
+
+452
+01:29:09.455 --> 01:29:29.455
+And again, when I say CTF, every RL, maybe it's important context. Every RL… Um, every RL training program needs to have a verifiable reward at the end, so whether, again, you're doing an environment that is focused on capture the flags, where you have, effectively, a flag at the end, a hash.
+
+
+453
+01:29:29.455 --> 01:29:40.455
+or whether you're doing code analysis where you're looking for a specific CVE number, you need to have something that has a verifiable reward at the end. And I'd argue that most cyber tasks actually do have that. It might be obtuse.
+
+
+454
+01:29:40.455 --> 01:29:44.455
+But again, that's why benchmark and eval design is so important.
+
+
+455
+01:29:44.455 --> 01:29:49.455
+So we effectively have these agent trajectories we collect, we convert them to a common format.
+
+
+456
+01:29:49.455 --> 01:29:58.455
+Uh, called ChatML. And then we effectively go through this three-stage pipeline. Two stages are affecting the model weights, and the third stage is at test time.
+
+
+457
+01:29:58.455 --> 01:30:02.455
+But we're doing first instruction tuning to learn the tool format.
+
+
+458
+01:30:02.455 --> 01:30:13.455
+And then online reinforcement learning to effectively the agent to be more aligned to those trajectories. And then GEPA, which we'll talk about each three of these.
+
+
+459
+01:30:13.455 --> 01:30:27.455
+Uh, soon. So first I want to talk to you, within this project, there is a synthetic code generation module effectively you can leverage where you can effectively have a manifest of the world that you.
+
+
+460
+01:30:27.455 --> 01:30:41.455
+want effectively the agent to see. This is useful effectively if you want to generate synthetic traces for that training data, for that instruction tuning. Provide a world manifest of effectively the network topology.
+
+
+461
+01:30:41.455 --> 01:30:54.455
+The, uh, the end verifiable reward. And then having a teacher model, again, you can think about using an open source model for this distillation task, effectively GLM5, KimiK2, 5, etc.
+
+
+462
+01:30:54.455 --> 01:31:06.455
+It outputs will generate this training data. This framework and pipeline is set up in the project, and all you need to define is effectively the parameters of the scenario of the simulation you want to perform.
+
+
+463
+01:31:06.455 --> 01:31:17.455
+Effectively, the task of synthetic data generation. Once you have that data, either collected from your real-world environment, from your agent, or from your simulated environment.
+
+
+464
+01:31:17.455 --> 01:31:21.455
+You can perform this supervised learning task of instruction tuning.
+
+
+465
+01:31:21.455 --> 01:31:33.455
+Where, effectively, we are having the model learn the tool calling format and the terminology as a first layer of post-training alignment for the tasks that we're looking to perform.
+
+
+466
+01:31:33.455 --> 01:31:45.455
+In this specific example that we're talking about, we're talking about a pin testing agent that's going after these specific challenges of, again, doing web application pin testing and static code analysis.
+
+
+467
+01:31:45.455 --> 01:31:52.455
+What… how the system is really performing when we're saying online RL, it's, um, there's a couple things to it.
+
+
+468
+01:31:52.455 --> 01:32:03.455
+At a high level, what we're doing is we have effectively different GPU infrastructure that is for loading… loading the model, uh, itself.
+
+
+469
+01:32:03.455 --> 01:32:14.455
+Um, and then also a environment, too, for the… sorry, loading the model itself into an inference engine, like effectively a VLM, which is what I use in this project.
+
+
+470
+01:32:14.455 --> 01:32:22.455
+And then you have the trainer, what's actually doing that backwards pass to actually train the model weights in the model itself.
+
+
+471
+01:32:22.455 --> 01:32:37.455
+You have the agent. The agent I'm using in here is an open source Lane Chain agent called BoxPotoner. There's a couple folks in this room that might be using it. It's a simple agent that just effectively has a shell tool, Python code generation, it's optimized a little bit for security tasks.
+
+
+472
+01:32:37.455 --> 01:32:45.455
+And you're then executing it against all of these environments in this, again, world of SciBench, we're talking about 40 different containers.
+
+
+473
+01:32:45.455 --> 01:32:55.455
+Um, each with their own challenges, difficulties, etc, and the agent effectively is performing these tool calls at every tool call, it's recording its answer.
+
+
+474
+01:32:55.455 --> 01:33:04.455
+of what the input and output was, and we're effectively scoring that based on these composite, what we call reward functions, effectively. Did it complete the task, or did it not?
+
+
+475
+01:33:04.455 --> 01:33:08.455
+And we say reward function. Should be the next slide.
+
+
+476
+01:33:08.455 --> 01:33:25.455
+What we're talking about are these signals, and that's how we differentiate. These composite reward functions, where we're looking to effectively score based on different conditions. The simplest one is binary rewards. Effectively, did we complete the objective? In the world of a CTF, that's did we get the flag, do we not?
+
+
+477
+01:33:25.455 --> 01:33:34.455
+But as we all know, that's not the best way to evaluate how well a person completed an objective. That's why things like temporal decay.
+
+
+478
+01:33:34.455 --> 01:33:46.455
+Um, information sparsity, and really in generating some of these composite reward functions that are trying to really find and score in between, effectively, the start and end trajectory.
+
+
+479
+01:33:46.455 --> 01:33:55.455
+why it's important to… Look at these kind of key signals to effectively differentiate. Because again, you can get the final objective, but.
+
+
+480
+01:33:55.455 --> 01:34:04.455
+If you were super noisy. Or if you did not use the right exploration or uniqueness technique doesn't really help you in the end when you move to production.
+
+
+481
+01:34:04.455 --> 01:34:20.455
+How this works is that each of those traces, if we think, um… We look at each of these traits, it scores effectively based on these reward functions, effectively numbers between 0 and 1, effectively a formula. It then takes the group mean of these scores.
+
+
+482
+01:34:20.455 --> 01:34:38.455
+and finds which of the best actions. was most successful. Again, when we have the agent executing in this RL environment, it's not one agent just executing. It's actually eight different agents executing the same task in different perturbations and selecting the.
+
+
+483
+01:34:38.455 --> 01:34:50.455
+best trace based on that by calculating that group mean based on these reward functions, and then selecting that and then distilling that knowledge into the model weight itself.
+
+
+484
+01:34:50.455 --> 01:34:55.455
+Again, the whole reason for doing this is so that when we're actually doing this at test time.
+
+
+485
+01:34:55.455 --> 01:35:01.455
+It actually doesn't have to do all of this knowledge and lesson learning.
+
+
+486
+01:35:01.455 --> 01:35:16.455
+There is a technique called genetic Pareto prompt evolution. It's effectively this big fancy name, but effectively what this is, it's a prompt optimizer. This is some, uh, what it does is this is… this technique is not necessarily a… this doesn't actually change the model weights.
+
+
+487
+01:35:16.455 --> 01:35:31.455
+This is done at test time, so once you've trained the model, now at test time, we can actually evolve that system prompt. So again, going back to what's actually going behind the scene, that system prompt remains the same from step zero to effectively step 20.
+
+
+488
+01:35:31.455 --> 01:35:52.455
+40, 60, etc. But if your original objective is multi-stage and multi-steps, you want to evolve that prompt. And the way to do that is through effectively prompt optimization. This is one technique to do that that I've experimented with, and the benefit here is you're effectively reflecting and evolving that system prompt.
+
+
+489
+01:35:52.455 --> 01:36:03.455
+Using an out-of-band T-tra LLM that looks effectively at the past function calls and traces, and optimizes your prompt based on what it finds.
+
+
+490
+01:36:03.455 --> 01:36:21.455
+So, the so what here? So, I took, uh, Quinn 3.527B. This is a dense model. Again, I prefixed this, this is not the best performance, but in under a day, I was able to take what was baseline performance within this specific framework.
+
+
+491
+01:36:21.455 --> 01:36:27.455
+Uh, called BoxConer. Effectively, what started at about 12.5%.
+
+
+492
+01:36:27.455 --> 01:36:44.455
+Um, after doing effectively this two-stage training pipeline process of supervised fine-tuning, and then supervised fine-tuning plus reinforcement learning, able to lift it to around 35% solve rate. Now, again, this is not a talk about… this is the best model. This is a framework.
+
+
+493
+01:36:44.455 --> 01:37:02.455
+a recipe that with effectively more training data, effectively at the SFT level, and more reinforcement learning time because again, this is a side project for a conference and GPUs are expensive. I don't… Um, that ultimately, um…
+
+
+494
+01:37:02.455 --> 01:37:15.455
+This showcased a performance lift that I think is quite interesting. Again, there's still room to grow, but if we look at the next-sized open-weight models, like MiniMax 2.5.
+
+
+495
+01:37:15.455 --> 01:37:27.455
+or GLM5, etc. You're talking about model sizes that are almost 10x, or at least 5x, the size of this smaller model at 27B.
+
+
+496
+01:37:27.455 --> 01:37:41.455
+And here's just a quick case study of a specific example to showcase how this methodology works, which again is what I'm trying to showcase here. If we look on the left-hand side, we'll see an example of this expert.
+
+
+497
+01:37:41.455 --> 01:37:55.455
+Um, this expert example of a crypto challenge, where the model had this AES variant with a shuffled nonlinear layer, and the model had to reverse engineer from a cipher from source and interact with this.
+
+
+498
+01:37:55.455 --> 01:38:01.455
+Oracle over the network, and then write a solver to decrypt the flag.
+
+
+499
+01:38:01.455 --> 01:38:08.455
+Quite complex. Originally, with the base model that you can download off Hugging Face that Quinn released two days ago.
+
+
+500
+01:38:08.455 --> 01:38:15.455
+Um, it failed. After about 25 turns and expanding that not with this tuned model, it did solve it.
+
+
+501
+01:38:15.455 --> 01:38:21.455
+in less turns. I was able to actually complete that workflow.
+
+
+502
+01:38:21.455 --> 01:38:38.455
+So some lesson learned in building this. Um, I originally started, and in the description of this talk, it was actually with GLM47-30B. That's actually was originally what I wanted to showcase. Quin3.5 came out two days ago, I thought it'd be a little bit more topical than one a couple months ago.
+
+
+503
+01:38:38.455 --> 01:39:00.455
+But the other reason why is actually a mixture of expert models while going through RL, there's actually not a… There's actually not a fix in the open source way to actually do what's called, like, weight synchronization with the individual expert nodes. So bottom line up front, if you're gonna do this, I'd recommend starting with a dense model, because there's not really an open source fix to MoE models right now, and…
+
+
+504
+01:39:00.455 --> 01:39:05.455
+the lower-level frameworks. On the reward function design.
+
+
+505
+01:39:05.455 --> 01:39:22.455
+Progressive scaling is the way to go. What I mean by that is, again, just like a human, when everyone here did their first CTF or Cyber Challenge, don't immediately start at the expert challenge. Have your agents start at very easy, easy, medium, hard, et cetera, and progress.
+
+
+506
+01:39:22.455 --> 01:39:43.455
+the agent, through its reinforcement learning environment. Also, long horizons are expensive. It's a cool-sounding name, but what does that mean? It means you need a very large key-value caches in memory to effectively not just load that 27B model, but give it enough context. It's great to say you can do 1 million in context or 128K tokens.
+
+
+507
+01:39:43.455 --> 01:39:46.455
+If anyone here has actually tried loading and servicing a model at that.
+
+
+508
+01:39:46.455 --> 01:39:59.455
+You can load the model at a lower quant at 60 gigabytes of VRAM, but then actually load that with 128K in context and more, you're talking at least double or triple that.
+
+
+509
+01:39:59.455 --> 01:40:11.455
+In terms of VRAM allocation. So… Uh, and then more data. What you just saw in those results was effectively with open source, um.
+
+
+510
+01:40:11.455 --> 01:40:18.455
+Open source traces 285 open source traces from stronger models on the same task.
+
+
+511
+01:40:18.455 --> 01:40:23.455
+And with more data, which we typically do anywhere from 20 to 30,000.
+
+
+512
+01:40:23.455 --> 01:40:34.455
+Uh, traces, that's typically what you do for that supervised fine-tuning stage, and then you do more reinforcement learning with more challenges overall to better generalize.
+
+
+513
+01:40:34.455 --> 01:40:43.455
+Everything's open source, uh, there's some links to GitHub if anyone's interested. There's also a Discord community that.
+
+
+514
+01:40:43.455 --> 01:40:50.455
+Evan here manages. Back here, if anyone's interested to talk more about this.
+
+
+515
+01:40:50.455 --> 01:40:53.455
+I try to be online and help folks out.
+
+
+516
+01:40:53.455 --> 01:41:13.455
+And if anyone wants any more questions, we can talk more, or find me.
+
+
+517
+01:41:13.455 --> 01:41:18.455
+Hey, great talk. So, uh, when you do RL, right, like.
+
+
+518
+01:41:18.455 --> 01:41:44.455
+It's easy to do, easy to hill climb on CTFs, but when I wanted to actually find a bug, like in a real world application, uh… you don't know if there is a bug or not. So would a CTF kind of a modeling for an RL challenge translate to like finding bugs and like real world applications?
+
+
+519
+01:41:44.455 --> 01:42:14.455
+Yeah, I mean, ultimately, like, forget the word CTF and everything I just said. There needs to be a verifiable reward at the end. Everything we're talking about is offline training. Right. And what you're… the task you're referencing is generalization. Yeah. Now, that's a… that is a problem in any ML task. Right. Like, look at Sweebench, or look… In this world of, um, what you're describing in cyber, like, what I would say is we need to have… we do need to have better evals, effectively, and in cyber RL environments. I mean, that's why, frankly, like, there's a bunch of companies in this space that are.
+
+
+520
+01:42:16.455 --> 01:42:31.455
+The labs are paying for, effectively, for just RL environments, not necessarily just for the scaffolding and the skills to execute, but because it is skillful to build these RL frameworks that… these RL environments that will generalize effectively to other tasks outside of what.
+
+
+521
+01:42:31.455 --> 01:42:45.455
+They performed. So to answer your question, like. That's one reason why I have this in this framework, a bring-your-own environment, since if you're self, if you… and build a better environment, that is ultimately how we would help solve that problem because that's the only way.
+
+
+522
+01:42:45.455 --> 01:42:59.455
+Yeah, the thing is like the rewards don't converge, right? Like there is zero rewards and then there is like the 100% reward and like a CTF, because the environment doesn't give you a feedback that you're really close to the flag.
+
+
+523
+01:42:59.455 --> 01:43:14.455
+You see what I mean? Yeah, that's why, like, uh, there are different types of… there's composite rewards, there's, like, binary rewards, uh, typically starting with binary rewards and then working backwards to progressive rewards. Okay. That's, like, what I can recommend based on lessons learned.
+
+
+524
+01:43:14.455 --> 01:43:21.455
+Thank you. Um, yeah, yeah. All right, anybody else?
+
+
+525
+01:43:21.455 --> 01:43:27.455
+Ever go up front. You mentioned whirl and Unsloth, right?
+
+
+526
+01:43:27.455 --> 01:43:37.455
+From a… I mean, yeah, this has nothing to do with security. I'm just looking at, from a compute perspective, which do you think is better, which is going to be more scalable?
+
+
+527
+01:43:37.455 --> 01:43:43.455
+Uh, from, like, uh… you mentioned, like, Unsloth? Unsloth and wool. And what was the last one? Wool?
+
+
+528
+01:43:43.455 --> 01:43:58.455
+V-E-R-N. Volcanic. Yeah, so those are… so those are… I would say these are different things. One is RL, and the other is SFT-based. Yeah, yeah, VRL is for, like, test time scaling, and for, effectively, that prompt optimizer. Unsloth is effectively.
+
+
+529
+01:43:58.455 --> 01:44:17.455
+If you're… Unsolved only works for NVIDIA, because they're effectively these optimized Triton kernels, and Unslaw is primarily optimized for instruction tuning, so that SFT… Correct. So these are also at the SDK level. I'd say that you can use Unsloth, but there are pros and cons of that. I chose not to use Unsloth.
+
+
+530
+01:44:17.455 --> 01:44:30.455
+Because there are pros and cons. I actually use the base TRL, which is what Unsloth is built on top of. But again, maybe we can talk more after if there's a specific question. Yeah.
+
+
+531
+01:44:30.455 --> 01:44:47.455
+Yeah, I'd say, like, you can never go wrong with just using TRL, because that's what everything's built off of underneath the hood. It's just very low level. I want to do some MoE post-training. I'm trying to figure out which is a better option from a hardware perspective. Compute. How much compute is needed?
+
+
+532
+01:44:47.455 --> 01:44:57.455
+Yeah, um, yeah, I mean, on hardware, you work backwards from the model you have, and the RL environment you have to run your experiments.
+
+
+533
+01:44:57.455 --> 01:45:12.455
+In terms of framework to use, like Unsloth does not support MoE post-training, neither does any of the others you mentioned. Trl, there's like open PRs because there's backend issues and VLM. So it's not really a solved problem to my knowledge.
+
+
+534
+01:45:12.455 --> 01:45:18.455
+As of right now, specific to MOEs. Thank you.
+
+
+535
+01:45:18.455 --> 01:45:29.455
+Thanks a lot, Aaron. Thank you.
+
+
+536
+01:45:29.455 --> 01:45:34.455
+Amazing. I think we can get started here. How is the conference so far?
+
+
+537
+01:45:34.455 --> 01:45:43.455
+Amazing, yeah, I think Gary and team did a fabulous job, really.
+
+
+538
+01:45:43.455 --> 01:46:00.455
+So, um, my name is Andre. I've been in cybersecurity for actually more than three decades. I wrote one of the original antivirus engines in the 1990s, and as you can imagine, I've been to many, many security conferences.
+
+
+539
+01:46:00.455 --> 01:46:16.455
+When it comes to vulnerabilities and vulnerability research, I think the pattern has always been very familiar, very much the same. Like, a researcher would be on the stage, kind of say, here is what we found, here is the clever trick that we use to find this.
+
+
+540
+01:46:16.455 --> 01:46:31.455
+Here is what it means, and thank you very much. Round of applause and see you next year. And so this talk is going to be slightly different, even though we do have some real findings, we do have some discoveries.
+
+
+541
+01:46:31.455 --> 01:46:50.455
+Uh, but the point really is not that much about the research itself. It is about the engine that actually allowed us to make those findings. And I think that the theme, the overarching subject today and tomorrow at this conference and many conferences 2025 and surely in 2026.
+
+
+542
+01:46:50.455 --> 01:47:09.455
+are going to be how AI is changing this landscape quite dramatically, now with the ability to reason, to somehow take into account context, and to perhaps go much faster and, uh, at scale, and potentially even at the depth that humans typically didn't have.
+
+
+543
+01:47:09.455 --> 01:47:24.455
+I think it's quite amazing. But it's not just security. If you think about, you know, the 2024, I think Nobel Prizes, everyone kind of raised their eyebrows with the Nobel Prizes in both physics and chemistry being granted not to physicists or chemists.
+
+
+544
+01:47:24.455 --> 01:47:35.455
+But to AI people, to Jeff Hinton and Demes Hassabis, and so I think what we are seeing here is kind of a logical, uh, sort of, um.
+
+
+545
+01:47:35.455 --> 01:47:54.455
+A fallout of that as well, the AI engines being super, uh, super great at many of these things. So, when it comes to vulnerability research and finding vulnerabilities through AI engines, obviously this is not a new idea, so we heard from Heather herself in the morning about.
+
+
+546
+01:47:54.455 --> 01:48:10.455
+Project Nap Time at Google, which started kind of a really funny name. I'm like security researchers spending sleepless nights, uh, with, uh, all the, let's say, uh, reverse engineering and, uh, fuzzing tools, uh, and then they figured maybe.
+
+
+547
+01:48:10.455 --> 01:48:28.455
+AI could take a shift as well, and they could get some sleep, and that evolved into something that they call big sleep, which obviously was kind of much longer autonomous system that could do the same thing. Then, some of you may be familiar with AI Cyber Challenge. That was a joint project of.
+
+
+548
+01:48:28.455 --> 01:48:44.455
+of DARPA and ARPA-H that started 2023. It was a two-year program, uh, 42 teams enrolled, uh, then, you know, progressed to semifinals, and then, uh, ultimately to finals last year at DEFCON, uh, where the winning teams were announced.
+
+
+549
+01:48:44.455 --> 01:49:02.455
+To me, the most fascinating thing was the amount of the speed of change in which the teams moved through that competition. If you remember, in the semifinal round, which is DEF CON 2024, only about 35% of all the planted vulnerabilities were found.
+
+
+550
+01:49:02.455 --> 01:49:19.455
+Uh, so more than two-thirds were never identified by none of the teams. One year later, in 2025, at the final round, 87% of all the vulnerabilities were found. So it's a massive, massive improvement. These were only seven teams.
+
+
+551
+01:49:19.455 --> 01:49:48.455
+Remember, there are also a lot of restrictions as well, like, they had limited amount of tokens that they could use, etc. But really amazing thing. Then… Just 30 minutes ago, uh, firsthand from Nicholas upstairs, uh, talking about Opus and the amazing things with the release of 4.6, more than 500 vulnerabilities, things like ghost script and CGIF and OpenSC.
+
+
+552
+01:49:48.455 --> 01:50:03.455
+Now, he spoke about Linux kernel as well. So really interesting stuff. And for us, we have been sort of driving. Il has been driving kind of similar research and kind of building the scaffolding and the technology for that as well.
+
+
+553
+01:50:03.455 --> 01:50:33.455
+Even though I have to say, for us, it's been a bit of a, like a, um, almost like incidental type of thing. We are a young company, we only started about a year ago, and the original thesis was somewhat different. The original thesis is that we would build a… automatic or agentic remediation tools, so that we wouldn't do any discovery, we wouldn't do any scanning, we would ingest all the scanner outputs, and we kind of started playing with, you know, trying to benchmark the existing scanners, try to find out which scanners are actually good. So we went back.
+
+
+554
+01:50:38.455 --> 01:50:53.455
+All open source, like 100,000 historical CVEs, and started looking up the historical vulnerable pieces of code, and by running scanners, like the commercial pattern matching scanners across those.
+
+
+555
+01:50:53.455 --> 01:51:10.455
+And to our complete shock, the efficacy of those scanners were close to zero. So even the historical vulnerabilities have been known that all these signature-based scanners could have been taught on or trained on. Basically, it was low single-digit percentage.
+
+
+556
+01:51:10.455 --> 01:51:25.455
+success rates. And so we started building, experimenting with our own scanner that could find those mosquito vulnerabilities, but one thing started to happen very remarkably, that not only that our LLM-based approach could now.
+
+
+557
+01:51:25.455 --> 01:51:46.455
+find vulnerabilities that we were looking for, that is, those historical ones, the kind of gold ones, as we call them, but they actually started identifying new vulnerabilities as well. And that's really how we got into this, and we started reporting them, and of course, you know, it is just, um, I mean, the OpenSSL stuff was just tip of the iceberg.
+
+
+558
+01:51:46.455 --> 01:52:04.455
+Like, we started this program, call it August, September last year, so it's like six months ago. And to date, we have also coincidentally same number as anthropic, 500 vulnerabilities that we confirmed with the open source maintainers.
+
+
+559
+01:52:04.455 --> 01:52:19.455
+And that already resulted to about 130… 133 CVEs that got issued for us, and it's like a trailing metric, so that number is kind of continuing to increase. And again, like, very similar trajectory, I think, that we have.
+
+
+560
+01:52:19.455 --> 01:52:31.455
+Now, I would like to hand it over to Adam, who is our AI researcher, who will actually tell you a bit more about the findings themselves and also how our engine works kind of under the hood.
+
+
+561
+01:52:31.455 --> 01:52:51.455
+Yeah, thank you. Yeah. Hi, I'm Adam. I'll just walk through some of the CVs we found and why they're interesting. So, I'm gonna start with the most serious one we found in OpenSSL. This is a Stack Overflow in a component of the library that's often used in email clients.
+
+
+562
+01:52:51.455 --> 01:53:14.455
+Um, basically, the attacker can control the length of some field in a data notation and cause a stack buffer overflow. Of course, there's other protections usually against this causing remote code execution, but OpenSSL is so widely deployed in so many different contexts that.
+
+
+563
+01:53:14.455 --> 01:53:30.455
+Is it still a high severity vulnerability and pretty sophisticated one. We also have a volume in each browser engine. So Chromium, Firefox, and WebKit.
+
+
+564
+01:53:30.455 --> 01:53:46.455
+Here's an interesting one in traffic that's a configuration flag in some Kubernetes deployment where traffic steps in for Nginx as the ingress controller.
+
+
+565
+01:53:46.455 --> 01:54:09.455
+And here I have the screenshot of the vulnerability. I have it here because I think it shows why, um… a pattern matching scanner would never find this, so, um, you can look at it and maybe spot it yourself. Um, I'm gonna give you a few more hints. So, basically, the vulnerability is in some flag, uh.
+
+
+566
+01:54:09.455 --> 01:54:20.455
+meant to turn on TLS authentication of the backend behind the Kubernetes ingress controller. Um, but it actually turns it off.
+
+
+567
+01:54:20.455 --> 01:54:39.455
+Um, can you see it? I don't know, it says go code, but, like, basically this here says, like, insecure skip something, something, and then here, this part says, like, if the flag… if a flag called proxy SSL verify is on.
+
+
+568
+01:54:39.455 --> 01:54:44.455
+Then this is true, and verify is actually skipped.
+
+
+569
+01:54:44.455 --> 01:54:49.455
+So this is an interesting example of what LLMs can notice.
+
+
+570
+01:54:49.455 --> 01:55:05.455
+Um, here's something from a different bucket. We've also jumped on some new projects and started scanning OpenClaw. We've had over 34 volunteans in it, and this makes us one of the most active security contributors to it.
+
+
+571
+01:55:05.455 --> 01:55:09.455
+And stay tuned for some more news about that.
+
+
+572
+01:55:09.455 --> 01:55:20.455
+So wrapping up, we blog about these a lot. We've published almost 20 blog posts, so you can check our website and our CVE Hub with all the published vulnerabilities.
+
+
+573
+01:55:20.455 --> 01:55:37.455
+And, um, I'm gonna hand it over to Andre. One thing that we kind of are very, very sensitive about, and we learned the hard way in the beginning, is that, uh, especially with open source, there's this fine balance between, sort of, being useful.
+
+
+574
+01:55:37.455 --> 01:55:56.455
+But not really adding work to those already overworked people who, you know, do this basically in their free time, or many times, like, very, very low budget. And so really kind of this notion of AI slob that is, you know, having AI rapport that not only maybe false positive, but.
+
+
+575
+01:55:56.455 --> 01:56:15.455
+Surely, even if they are not false positives, they can add work to those people, meaning that they have to actually do the triaging, do the fixing, do somehow testing, etc. So we really always try to kind of supply the maintainers with all the contextual information and everything that they need.
+
+
+576
+01:56:15.455 --> 01:56:35.455
+Including the fix itself. And, like, one example that I would give you is that, uh, uh, this is from Curl, so Daniel Sternberg, who is the original author of CURL, very active person in the open source community, uh, has been blogging constantly about AI slop and about this terrible thing that's happening.
+
+
+577
+01:56:35.455 --> 01:56:52.455
+And, like, what I love to see is that Daniel, over the last 6 months, uh, because I think of the kind of report that he's getting from IEL, has turned from a complete kind of skeptic and naysayer to AI, uh, to a huge fan.
+
+
+578
+01:56:52.455 --> 01:57:09.455
+And to someone who kind of goes to conferences and talks about this publicly, like, he just kind of, last month, he was at FOSDEM, uh, which is a large open source conference. He spoke about, uh, you know, feeling like magic. Uh, so you kind of have these people who kind of traditional.
+
+
+579
+01:57:09.455 --> 01:57:24.455
+Hardcore engineers who have been kind of spending most of their time writing code manually or triaging vulnerabilities. Now, really, you know, preaching the capabilities of the LLMs and really jumping on that bandwagon, which I think is super, super cool.
+
+
+580
+01:57:24.455 --> 01:57:35.455
+and important. So, how do we actually achieve this? How does IL find all these vulnerabilities and achieve such a low false positive rate?
+
+
+581
+01:57:35.455 --> 01:57:50.455
+The answer is we use a kind of multi-stage progressive refinement agentic pipeline, where each stage acts as a sieve to let's through only, like, real CVE grade findings that could.
+
+
+582
+01:57:50.455 --> 01:58:06.455
+cause real damage. And the general approach could be summarized as having a breadth-first broadening phase and a second focus narrowing phase. So at the start, we let the system generate as many ideas and hypotheses as possible for.
+
+
+583
+01:58:06.455 --> 01:58:26.455
+What could be wrong in such and such code? And here we found that the intrinsic knowledge and reasoning of the state-of-the-art models, or at least in the last six months, sort of aligned with what Nicolas just said upstairs, we find that they're enough to notice quite deep and sophisticated vulnerabilities.
+
+
+584
+01:58:26.455 --> 01:58:40.455
+Um, once we have a lead, we double down and do an agentic exploration of the potential issue. So this includes trying to run the code, craft a POC, fuzzing if applicable, and so on.
+
+
+585
+01:58:40.455 --> 01:58:51.455
+And here we try to be really critical and discerning using multiple models to assess each other, come up with different explanations, look at the issue from different angles.
+
+
+586
+01:58:51.455 --> 01:59:04.455
+Um. And this essentially emulates the scenario where you would have a dedicated team of security engineers looking at the issue with different background skills and knowledge.
+
+
+587
+01:59:04.455 --> 01:59:15.455
+Um, and generating some informed consensus. And this helps us, uh, fight against hallucinations and sycophancy.
+
+
+588
+01:59:15.455 --> 01:59:30.455
+So to get this agentic pipeline to work well, you need to get many things right. And a lot of these might seem like little tricks from an engineering perspective, but it's important to realize that.
+
+
+589
+01:59:30.455 --> 01:59:51.455
+Together, they compound into a system that works much better overall. So some of these ideas are, um, heavy parallelism. Humans are mostly single-threaded. Llms or AI agents don't suffer from this limitation, so you can run lots and lots of them in parallel to investigate many, many hypotheses at the same time.
+
+
+590
+01:59:51.455 --> 02:00:10.455
+Um, careful context construction. Of course, throwing random stuff into inference doesn't usually work well, so we try to make sure that each subsequent phase, we get a better and better understanding of the codebase, and provide the LLMs with a heavily optimized context or prompt to make good judgments and decisions.
+
+
+591
+02:00:10.455 --> 02:00:26.455
+Um, we still have human in the loop, especially in the final submission phase, though more and more we find that this is kind of a formal check and the findings are almost always ready to go. When I mention this because this is still.
+
+
+592
+02:00:26.455 --> 02:00:35.455
+An important thing to do, since it lets you notice potential room for improvements and align the system to human needs.
+
+
+593
+02:00:35.455 --> 02:00:46.455
+Um, we're also experimenting with some specialized fine-tuned models and doing some research on the boundary of model interpretability, robustness, and continual learning.
+
+
+594
+02:00:46.455 --> 02:01:04.455
+And last but not least. It's important to have a good agentic platform, a good base. So this includes secure and robust sandbox runtimes, durable execution, evals, of course, evals are very important. Observability, same idea.
+
+
+595
+02:01:04.455 --> 02:01:21.455
+tests, and so on. Um, so overall, I would say we're more LLM heavy, perhaps contrary to the more verification or evals focus. We heard this morning from Google and Meta.
+
+
+596
+02:01:21.455 --> 02:01:39.455
+Uh, and we're basically making a bet that these models are gonna get better and better, and their context windows are gonna get larger and larger in the future. Though, of course, we're probably still live for some time in a world where the largest code bases don't fit into the context window of the model.
+
+
+597
+02:01:39.455 --> 02:01:51.455
+So, we think there's still a lot of alpha left in just doing context engineering really well, combined with hard and soft verifications that I mentioned earlier.
+
+
+598
+02:01:51.455 --> 02:02:09.455
+Now, most of the work that we have done so far has been really focused on the open source community, the free-end open source community, and, like, we also very much realize that, um, you know, one thing is having a super powerful engine that is, uh, especially for detection.
+
+
+599
+02:02:09.455 --> 02:02:25.455
+But ideally, for that whole kind of chain of detection, triaging, fixing, and verification. The other is like the entire, call it user interface that the human-machine interface that comes with that.
+
+
+600
+02:02:25.455 --> 02:02:41.455
+That is actually becoming, you know, many times either, like, the winning factor for these kind of solutions, or also the impediment from being deployed. So, really try to sort of work with those open source maintainers.
+
+
+601
+02:02:41.455 --> 02:02:58.455
+very closely to make sure that whatever they are getting from us is kind of fits their needs. And it kind of takes two forms. That is, uh, the number one thing is the deep kind of the existing code base, obviously. So, doing that analysis of.
+
+
+602
+02:02:58.455 --> 02:03:13.455
+historical legacy code that you're finding, kind of, vulnerabilities that have been buried, typically for many years or decades, uh, and, uh, helping to fix those. Uh, so all those CVEs that we have, the 500 findings, etc.
+
+
+603
+02:03:13.455 --> 02:03:33.455
+These would be in this category, and we obviously continue doing that. But also important or equally as important is to actually keep new code or new changes safe and secure. And so that I think, is a slightly different ball game, especially.
+
+
+604
+02:03:33.455 --> 02:03:48.455
+Now, with AI-generated code, that is the amount of code that's being added or modified in those repos is very, very large. And so being there on time before the code actually makes it into prod is super important.
+
+
+605
+02:03:48.455 --> 02:04:03.455
+Uh, so I'm happy to say that we've got this, uh, for us, the primary UX is the GitHub bot, which we have supplied and is in active usage by some of the ultra-high prominence open source projects.
+
+
+606
+02:04:03.455 --> 02:04:24.455
+Uh, such as, obviously, uh, OpenSSL itself, but also OpenClaw, as we spoke about, so OpenClaw, each and every PR that gets generated is now being checked by IEL. Also, Open EMR, which is healthcare, Apache, the stuff that, you know, not just the server, but that entire ecosystem.
+
+
+607
+02:04:24.455 --> 02:04:39.455
+etc. So that's really important, and we are getting some, you know, very strong feedback on that. Uh, so Matt Caswell is the CEO of the OpenSSL Foundation, uh, so, you know, very, very strong in this case.
+
+
+608
+02:04:39.455 --> 02:04:46.455
+Impressed by the catch, and, like, it always, obviously, is nice to see for us.
+
+
+609
+02:04:46.455 --> 02:05:04.455
+Uh, we also, besides the work with open source, we now sort of, um, you know, created a product that can be used by proprietary code as well, uh, so as of today, actually, we, uh, launched a… this bot is now available for general public, so if you'd like to just.
+
+
+610
+02:05:04.455 --> 02:05:21.455
+Had2AL.com, you can check it out yourself. So to wrap it up, I would just echo what was said multiple times today already, which is we are now at a stage where AI can really find deep security vulnerabilities.
+
+
+611
+02:05:21.455 --> 02:05:40.455
+And, uh, even in those kind of very hard-earned security audited pieces of code. But there is this very fragile equilibrium between the defensive and offensive side, because it's always good to keep in mind that the bad guys, the bad actors, have access to that same technology as well, or even more so, so they can be even more.
+
+
+612
+02:05:40.455 --> 02:06:10.455
+Token heavy, they typically, especially the nation-state actors, have almost unlimited resources when it comes to things like that. And it is already being weaponized. So, I think… The call to action for all of us who kind of operate either open source or proprietary code is to really treat this with maximal urgency, because we only prevent that, what was called the vulnerpocalypse multiple times today. It's a new word that I learned today.
+
+
+613
+02:06:11.455 --> 02:06:37.455
+Uh, if we move this urgency and move very fast to really preempt the bad guys from exploiting those vulnerabilities. So with that, I would like to open it for question and thank you for attention.
+
+
+614
+02:06:37.455 --> 02:06:54.455
+Yeah, great, great talk. Um, I've got a question. So, when you said it found 500 CVEs, were those, like, previously reported CVEs, or were those new ones that you guys found? Oh, totally new. Oh, wow. Yeah, so it's 500 vulnerabilities, out of which we have about 130.
+
+
+615
+02:06:54.455 --> 02:07:12.455
+meant that CBEs, but this is like a trailing indicator, because, as you know, CVs typically take months to be issued, and sometimes never because of the backlog. I think it was… someone said 30,000, uh, things in the backlog before you kind of.
+
+
+616
+02:07:12.455 --> 02:07:34.455
+And it's kind of first in, first out many times. Yeah, okay, cool, cool. Yeah. Sweet.
+
+
+617
+02:07:34.455 --> 02:07:54.455
+Mr. Carl. Yeah, so if you're gonna participate in finding CVEs at that scale, do you think it makes sense to actually participate as a CNA in the process? And kind of the second part of this question is, I think if you talk to most VR people.
+
+
+618
+02:07:54.455 --> 02:08:07.455
+Most of them will agree that CVSS is kind of a joke in terms of the scoring is associated mostly for, um, it's a harsh terminology, but the scoring is mostly for the defenders who have.
+
+
+619
+02:08:07.455 --> 02:08:28.455
+specific guidelines on when they need to remediate this issue, right, criticals need to be fixed in an hour, in two days, whatever. Um, so they constantly push the scores down. My real question is, like, for aisle, have you considered an additional scoring system where it's like, this is actually the most important thing, right? When you talk about 12 bugs in.
+
+
+620
+02:08:28.455 --> 02:08:40.455
+OpenSSL. Of those, I think 10 of them were low severity, mostly just crashes. So, like, does that make sense? Uh, where we need to evolve into a new form of, kind of, scoring these, and who is in charge of that?
+
+
+621
+02:08:40.455 --> 02:09:06.455
+Um, great question. So, so first of all, CNA, yes, we will likely become a CNA shortly, so we're working on that already, obviously, with this volume, it makes total sense to expedite. Your question about CVSS, I think it's a very… Explosive topic. We have CBSS 3, we have CBSS 4, I think there have been a lot of…
+
+
+622
+02:09:06.455 --> 02:09:23.455
+effort in making CVSS4 much more robust. Surely it has deficiencies, but what we like about it is that it takes into account context, which, obviously, so you can't really establish CVSS 4 as a baseline, because it kind of depends where the code's deployed, or, like.
+
+
+623
+02:09:23.455 --> 02:09:43.455
+What kind of data it's processing, etc. So, um, we do have some ideas how to sort of augment or enrich the scoring system as well. At the same time, we kind of take this as a… even though that the standard may not be the optimal standard, it is a standard still, so people understand that kind of work in their work.
+
+
+624
+02:09:43.455 --> 02:10:12.455
+Um, we'll see how that evolves, like, we've got some opinions on how these things could, like, I'm not sure whether you are also involved in that, but, like, we'd love to… Perhaps team up with other people who are somehow, you know, digging into this and hopefully we can find something like we don't want to do it ourselves, but if there is enough momentum coming out of the community, then I think is definitely worth revisiting.
+
+
+625
+02:10:12.455 --> 02:10:17.455
+All right. Thank you very much, gentlemen. Thank you. Thank you.
+
+
+626
+02:10:17.455 --> 02:10:47.455
+I think Gotti wants to do a concluder upstairs, he's promising something sweet, or at least thoughtful, I'm not sure what that means, I think I'm vaguely threatened, honestly, but… I guess I'll see y'all in a few. Thank you for coming down here.
+
+
+

@@ -1,0 +1,469 @@
+WEBVTT
+
+1
+00:13:50.030 --> 00:14:03.429
+Incoming livestream: I'm Peter Gurnis, I'm a Senior Manager on the Trendai Zero Day Initiative, team. We focus on vulnerability research, and we'll be presenting our Zero Day Vulnerability Discovery Engine that we've used over the past year.
+
+2
+00:14:04.870 --> 00:14:10.839
+Incoming livestream: And hi everybody, my name is Derek, I'm from the same team, I'm a vulnerability researcher.
+
+3
+00:14:14.140 --> 00:14:28.979
+Incoming livestream: So to understand, kind of, where Fenrir, which is our zero-day vulnerability Discovery Engine, lives, you have to understand, from a conceptual point of view, that we're building a unified platform that contains both offensive and defensive components.
+
+4
+00:14:29.010 --> 00:14:39.930
+Incoming livestream: So this talk focuses more on the zero-day discovery, but we have a different component called MIMIR, which strictly focus on end-day vulnerability research and threat research.
+
+5
+00:14:41.160 --> 00:14:45.220
+Incoming livestream: And what we're accomplishing with this is a bi-directional intelligence feedback loop.
+
+6
+00:14:45.240 --> 00:15:01.639
+Incoming livestream: So, for example, one of the vulnerabilities we discovered in our zero-day vulnerability engine is a NVIDIA command injection vulnerability in the Isaac Group framework, which is a robotics framework. When we submitted that vulnerability for triage to the NVIDIA team.
+
+7
+00:15:01.640 --> 00:15:06.519
+Incoming livestream: We immediately started tracking that as an end day, in Mimir's, repository.
+
+8
+00:15:06.820 --> 00:15:08.459
+Incoming livestream: When they released the patch.
+
+9
+00:15:08.780 --> 00:15:17.859
+Incoming livestream: 23 of our autonomous Langraph agents on Mimir went out to that advisory page, went out to that exact code commit, and then re-scanned that repo.
+
+10
+00:15:18.170 --> 00:15:26.629
+Incoming livestream: Fenrir then was able to take that, and then find two more bugs that they had one introduced, and another was a vulnerability, a patch bypass.
+
+11
+00:15:27.580 --> 00:15:35.629
+Incoming livestream: So we believe that the added value in zero-day vulnerability discovery can come significantly through traditional end-day vulnerability research.
+
+12
+00:15:38.030 --> 00:15:47.239
+Incoming livestream: Yes. So, I'm going to introduce the familiar pipeline on high level. So, the idea is quite simple. You collect signal.
+
+13
+00:15:47.240 --> 00:15:58.239
+Incoming livestream: and you denoise it, you refine it, and in the end, you classify it and present it to the human. So this is the overall pipeline. We started with static analysis, that's the traditional way of doing it.
+
+14
+00:15:58.240 --> 00:16:18.189
+Incoming livestream: We use tools like CoQL, SMGRAB, and Yara. Then we can correlate those things and finish the next stage. The next stage is what we call the L1 triage. This is the denoise and refine stage. This stage, we're not making any claims, we're not verifying anything, we're just, filtering out the obvious false positives.
+
+15
+00:16:18.360 --> 00:16:34.400
+Incoming livestream: Then the next stage is what we call the L2D verify. This is agent take. We deploy it into a isolated, secure sandbox environment. It, is equipped with POC generation. This is… this step is where we actually slow down and get serious.
+
+16
+00:16:34.400 --> 00:16:40.310
+Incoming livestream: We, turn a maybe into a clear yes or no with evidence.
+
+17
+00:16:40.440 --> 00:16:52.799
+Incoming livestream: And in the end, as human in the loop, as many of the great speakers have mentioned, we really want to keep human in the loop, and FIRA is designed to not replace human researchers, but to be a force multiplier.
+
+18
+00:16:54.710 --> 00:17:03.389
+Incoming livestream: So when we first conceptualized this system, there was a lot of academic research that was going around showing how LLMs can complement traditional static analysis.
+
+19
+00:17:03.440 --> 00:17:14.920
+Incoming livestream: So we looked at a lot of those research papers, and it was pretty interesting, because through our system, we were able to confirm those research papers, and then research papers later on actually demonstrated that, you know, we were on the right track.
+
+20
+00:17:15.250 --> 00:17:26.370
+Incoming livestream: So, the research papers we focused on were false positive reduction, so getting rid of the noise, we don't want to overwhelm human analysts. Llms, if you give it an entire repo, will…
+
+21
+00:17:26.700 --> 00:17:30.949
+Incoming livestream: Feed you back tons of noise, but most of those signals are not vulnerabilities.
+
+22
+00:17:31.090 --> 00:17:45.679
+Incoming livestream: The other thing was the discovery and deep analysis, and then the cost component. So when we first designed this system, context cost as well as LLM tool cost, was taken into consideration here.
+
+23
+00:17:50.100 --> 00:17:53.950
+Incoming livestream: So this is another angle of what we're trying to accomplish with this system.
+
+24
+00:17:54.570 --> 00:18:13.049
+Incoming livestream: So we take repos, and then we eliminate most of the false positives with a cascade architecture. So we use all of the, traditional static analysis tools, and those also exist in a cascade as well. So Yara is very good. I don't, in the sense that it can scan millions of lines of code in a matter of seconds.
+
+25
+00:18:13.200 --> 00:18:16.790
+Incoming livestream: So we use that to find a bunch of minute signals.
+
+26
+00:18:17.050 --> 00:18:27.969
+Incoming livestream: And then we filter out the candidates through SEMGREP and CodeQL, and that drops down the number of findings. So we eliminate most false positives before it ever reaches an LLM for triage.
+
+27
+00:18:29.320 --> 00:18:40.179
+Incoming livestream: Once the LLM… the fast LLM, triages, it might drop those further down, which go to the deep verify, so L2, which is our deep agenic triage.
+
+28
+00:18:40.290 --> 00:18:45.589
+Incoming livestream: And then they might refine it down and then give about 90% of those
+
+29
+00:18:45.920 --> 00:18:50.369
+Incoming livestream: Are actually true vulnerabilities, and give it over to the human for bug bounty disclosure.
+
+30
+00:18:55.970 --> 00:19:02.280
+Incoming livestream: So, one thing to consider, too, is when we first conceptualized this system around early 2025,
+
+31
+00:19:02.460 --> 00:19:18.960
+Incoming livestream: That was really when the early reasoning models started to make public appearance. Context was pretty scant. MCP servers had just been released a few months ago. Fenrir actually started as a MCP server component, and I think MCP is a natural transition from
+
+32
+00:19:19.500 --> 00:19:22.270
+Incoming livestream: Tool calling to actually building your own agents.
+
+33
+00:19:24.960 --> 00:19:30.879
+Incoming livestream: So around March 2025 is, when the first concept of Fenrir, came into be.
+
+34
+00:19:30.960 --> 00:19:47.919
+Incoming livestream: We had some constraints. One was context efficiency. So, we found that using static analysis tools made the whole context efficiency component very precise. We were able to feed the right context to the LLMs, using traditional tools.
+
+35
+00:19:48.310 --> 00:19:55.080
+Incoming livestream: I think everyone has experience maybe giving an entire repo to an LLM and trying to say, just find vulnerabilities. That doesn't work.
+
+36
+00:19:57.960 --> 00:20:05.320
+Incoming livestream: So later into the year, last year, is when the first production scale, Advanced agents entered production.
+
+37
+00:20:06.130 --> 00:20:14.639
+Incoming livestream: So this is… we're starting to see more, advanced reasoning capabilities in cybersecurity. Context windows are starting to expand past a million tokens.
+
+38
+00:20:14.800 --> 00:20:17.100
+Incoming livestream: I think Gemini was the first,
+
+39
+00:20:17.350 --> 00:20:20.370
+Incoming livestream: LLM that had a 1 million token context window.
+
+40
+00:20:23.250 --> 00:20:36.410
+Incoming livestream: And then the next frontier. So we can… we predict that the context window is going to continue expanding, and it's pretty impressive that this Fenriris system has survived many, generations of LLMs.
+
+41
+00:20:42.050 --> 00:20:46.719
+Incoming livestream: Thank you. Before we continue, I'd like to start a demo right now.
+
+42
+00:20:47.710 --> 00:21:00.549
+Incoming livestream: So, this is our… this is a local demo for our platform. We're just gonna start a scan on the… on this repository, and after 10 minutes, we will check back on it and to see what we find.
+
+43
+00:21:00.730 --> 00:21:02.720
+Incoming livestream: That should be… should be interesting.
+
+44
+00:21:06.660 --> 00:21:17.829
+Incoming livestream: Alright, so continue the presentation. Oh, sorry. As I have mentioned, the first step is static analysis. Well, this is really a toolchain, we use 4 different SaaS tools.
+
+45
+00:21:17.830 --> 00:21:37.500
+Incoming livestream: Each for a different class of signal. We start with Yara X. We used this before to find rare vulnerabilities in the wild before. It's really our fastest pre-filter. And then we move to SemGrip, which is much more precise and accurate than Yara X. It's even better if you have a large rule set. Next, we move to CodeQL.
+
+46
+00:21:37.520 --> 00:21:54.930
+Incoming livestream: It does data flow analysis, pain analysis, it's much more heavy than ERL or SemGrip, but we tend to get really good true positive case conversion out of it. And then finally, Spotbox, or FindSecBox, that's the extension. We start to deal with Java binaries when we need to.
+
+47
+00:21:55.730 --> 00:22:12.950
+Incoming livestream: So, this is really a cascade. We… what we want to do is a quick elimination up front, deep analysis later, since it will require more compute. And since we're using multiple SAS tools, tool correlation is not only natural, it's logical.
+
+48
+00:22:12.950 --> 00:22:29.370
+Incoming livestream: If different tools point to the same CWE class, approximately the same location, for some plus-minus 15 lines of code, well, that's clear signal that, that's a clear signal, that's confidence for us, and then it is, more importantly, context for the later stages.
+
+49
+00:22:29.380 --> 00:22:37.419
+Incoming livestream: At this stage, we're not spending a single dime on our, tokens. Everything is done in the traditional way, to collect signal.
+
+50
+00:22:38.230 --> 00:22:55.249
+Incoming livestream: Alright, moving on to the next stage, what we call the L1 triage. So this is where the fun begins, because we actually involve, dealing with LLMs. Here we use a fast but capable model, with pre-allocated static context. In our case, it's 50 lines of code.
+
+51
+00:22:55.250 --> 00:23:12.930
+Incoming livestream: To judge if, the finding is clearly a false positive. The goal here is not, again, is not to verify anything, it's just to reduce the noise. We use CW-specific prompt, so instead of asking it, is this false positive, we ask.
+
+52
+00:23:12.980 --> 00:23:32.799
+Incoming livestream: is… can this possibly be CW79? That gives it a much narrower… narrower target, and that performs better. This stage is also biased towards recall, so it's fine to let a few false positives go. What we cannot accept is this stage dropping true positives.
+
+53
+00:23:33.500 --> 00:23:48.890
+Incoming livestream: And, the number here, I think, really, explains why we're doing this. Over 60% of findings is being filtered out by a single sonic call instead of going into the next stage, which is much more heavier. It involves multi, multi-turn tool calling.
+
+54
+00:23:48.890 --> 00:23:56.550
+Incoming livestream: And the operational impact is massive. We're seeing a big reduction in cost and throughput.
+
+55
+00:23:56.630 --> 00:24:02.549
+Incoming livestream: 15 lines of code instead of 12 torrents of Opus, that is really a no-brainer.
+
+56
+00:24:02.660 --> 00:24:18.139
+Incoming livestream: Some lessons, model writing sizing is key. We tried 0.3, 0.6b, we saw, okay, well, it's quick, it should be a class fair, absolutely didn't work. It's constantly dropping true positives, and it's not working.
+
+57
+00:24:18.390 --> 00:24:25.819
+Incoming livestream: Moving on to Opus, well, Opus will work, but that's kind of a waste of resources, not to mention it's slower than Sonic, so that it limits throughput.
+
+58
+00:24:25.830 --> 00:24:42.540
+Incoming livestream: And as always, specific prompting works better than generic ones. Through our evaluation harness, we can confirm that this L1 triage has not dropped a single, case that would have been classified as true positive by our L2 agentic triager.
+
+59
+00:24:42.540 --> 00:24:54.239
+Incoming livestream: And this stage is… has deliberate asymmetry. This is not, again, I've seen this the third time, is not to make any decisions, it's just to prune false positives.
+
+60
+00:24:55.120 --> 00:25:04.590
+Incoming livestream: Okay, so this is, where the meat is. This is the most expensive stage, the L2 deep, agentic triage.
+
+61
+00:25:04.590 --> 00:25:19.559
+Incoming livestream: Here, we're using agent plus isolated secure sandbox. We're using Opus because we want the best security domain knowledge, we want the best reasoning capabilities, and agent capabilities, so that is, for example, function calling.
+
+62
+00:25:19.610 --> 00:25:37.279
+Incoming livestream: And we're providing it with full code contacts. We are deploying it, dropping it straight into an isolated secure sandbox, with full execution, full write, privilege. It can write, run a bash, it can write a Python script, and then execute it with Bash. Whatever it needs to do.
+
+63
+00:25:37.600 --> 00:25:48.479
+Incoming livestream: we let it do it. And we also have a built-in multi-step reasoning and built-in reflection to keep the model honest. Sometimes what we are observing is the model kind of cheats.
+
+64
+00:25:48.480 --> 00:25:58.869
+Incoming livestream: they do a really shallow reasoning and just call it the day. But this built-in reflection really reduces that, because it has to fight itself on proving this is not a false positive.
+
+65
+00:25:59.910 --> 00:26:23.810
+Incoming livestream: So, while at this stage of the cost here, we're seeing a median of 61 cents per finding, that's around 100,000 tokens in consumption. This can easily scale to, over 1 million with complex cases, for example, multi-file data flow cases in a really, really large repository. And if we are just looking at true positives, that is around $8.80 per true positives.
+
+66
+00:26:23.810 --> 00:26:28.569
+Incoming livestream: It's not cheap, but it's much, much more affordable than the traditional way of doing it.
+
+67
+00:26:29.100 --> 00:26:32.960
+Incoming livestream: Again, some lessons and, we learned.
+
+68
+00:26:32.980 --> 00:26:42.319
+Incoming livestream: Forced reflection really helped. Hallucination has always been a challenge in AI, and some way of reducing that really helps in a production system.
+
+69
+00:26:42.320 --> 00:26:57.990
+Incoming livestream: Reachability first triage is key. If that code is not interesting, right? A documentation, a test case. Not reachable… code that's not reachable is not interesting, you know, from a vulnerability haunt perspective, so we filter that out immediately.
+
+70
+00:26:58.030 --> 00:27:08.120
+Incoming livestream: And since the agents now are super good, they are intelligent, they know domain knowledge, we can just let it roam. We can, just ask it
+
+71
+00:27:08.120 --> 00:27:18.969
+Incoming livestream: and let it collect contacts on its own. It knows what more context it needs. It knows how to trace data flow. It knows how to use call graph tools to build a call graph.
+
+72
+00:27:18.970 --> 00:27:22.710
+Incoming livestream: Just let it roam. We don't need to pre-allocate context.
+
+73
+00:27:22.900 --> 00:27:42.840
+Incoming livestream: And finally, human in the loop. So, human is still involved in this, but their workflow is greatly simplified. We're reducing from 500 stats, alerts from just 10 to 20 high-confident ones, each with auto-generated vulnerability report, root cause, impact, etc, with Crafty POC.
+
+74
+00:27:42.840 --> 00:27:52.409
+Incoming livestream: And the full disclosure package. So the human can just verify, validate, verify its exploitability, review severity, and submit to the vendor.
+
+75
+00:27:53.210 --> 00:28:11.260
+Incoming livestream: And since then rare has been deployed into production, we're seeing a 2.5 times more vulnerability discovered, with 80% less false positive rates. And not to mention, we're also seeing 70% more faster disclosure rate, and an overall 3 times increase in team productivity.
+
+76
+00:28:11.590 --> 00:28:29.539
+Incoming livestream: Well, from 500 raw findings to 250 post-L1, to the final 10 to 25 true positive findings, we have submitted over 60 CVEs and counting. There's still over 100 in ZDI pre-disclosure, and 3,000 that's pending review.
+
+77
+00:28:30.290 --> 00:28:42.400
+Incoming livestream: Yeah, and those are all CVEs that are high or critical. We don't really waste our time with the medium-level severities. We can use the other, like, script kitties to find those. So, we're looking for, meaningful security impact.
+
+78
+00:28:47.150 --> 00:28:49.409
+Incoming livestream: So what makes this system unique?
+
+79
+00:28:49.530 --> 00:29:02.910
+Incoming livestream: So, the multi-scanner correlation algorithm, so the cascading of the triage process. Our kill-chain analysis system, so we do exploit path modeling to find risky attack surface faster.
+
+80
+00:29:03.190 --> 00:29:18.099
+Incoming livestream: The weighted context generation. So we have an algorithm in there that intelligently, dynamically allocates tokens, so tokens are allocated to different parts intelligently, and not just static across the entire analysis.
+
+81
+00:29:18.290 --> 00:29:28.450
+Incoming livestream: A dynamic priority scoring engine. So, we have a scoring engine that surfaces the most severe and most critical, vulnerabilities for immediate disclosure.
+
+82
+00:29:28.630 --> 00:29:33.060
+Incoming livestream: Yeah, it already went over the multi-vendor AI.
+
+83
+00:29:33.570 --> 00:29:53.079
+Incoming livestream: So that's another thing, actually. So when we built this system, there's a lot of focus on old code, so looking at different projects that have a foothold in the industry. We pointed this system at the AI ecosystem itself. So we're using AI to secure AI, because the attack surface for AI components is absolutely massive.
+
+84
+00:29:57.510 --> 00:30:05.279
+Incoming livestream: So into the future, this goes along with the advanced capabilities of some of the latest foundational models.
+
+85
+00:30:05.280 --> 00:30:24.780
+Incoming livestream: We're able to do adversarial interrogation, for example. We're able to do memory corruption bugs more efficiently. At first, we didn't even start with the memory corruption because of the context window sizes, and we really wanted to nail down the, pipeline itself, but now with the more advanced capabilities of Opus 4.6, for example.
+
+86
+00:30:24.780 --> 00:30:29.260
+Incoming livestream: we're able to use the LLM as an adversarial component.
+
+87
+00:30:30.730 --> 00:30:33.640
+Incoming livestream: So, we also have bigger goals, so…
+
+88
+00:30:33.690 --> 00:30:53.229
+Incoming livestream: We were doing mostly open source repositories, but now we're going to do vulnerability discovery across organizational levels. That gives an interesting perspective, because organizations sometimes have their own interesting quirks, they might have their own interesting security boundaries, so being able to scale across an entire organization
+
+89
+00:30:53.230 --> 00:30:54.500
+Incoming livestream: is critical.
+
+90
+00:30:58.450 --> 00:31:04.789
+Incoming livestream: So yeah, as we, as we're up here talking, we just got an alert that one of our, CVEs in Langchain got
+
+91
+00:31:05.230 --> 00:31:08.400
+Incoming livestream: So, as we're talking, we're… Fenrir's doing work for us.
+
+92
+00:31:12.830 --> 00:31:13.690
+Incoming livestream: Thank you.
+
+93
+00:31:14.240 --> 00:31:15.090
+Incoming livestream: Thank you.
+
+94
+00:31:19.980 --> 00:31:32.220
+Incoming livestream: Do we have audience questions? While we're looking for audience questions, I'll take one from the Slack, which is, have you ever done, like, any retrospective analysis to see if true positives might be filtered out, earlier in the…
+
+95
+00:31:32.340 --> 00:31:49.689
+Incoming livestream: earlier in the pipeline. Yeah, we do a reinforcement of some of the static analysis rule sets and some of the previous runs. We keep a record of all the runs. Everything that you do with an LLM, we keep as potential future context that we can use to improve the system and do some metrics and some testing.
+
+96
+00:31:50.190 --> 00:31:58.529
+Incoming livestream: Excuse me, can we, have our screen up? Because we have to do… yes, the demo. Yeah, we just wanted to show, our console. Yeah, so this is…
+
+97
+00:31:58.810 --> 00:32:16.949
+Incoming livestream: Exactly, so this is the one we just started. Is, Aeon UI. It found… the static analysis found 122 findings. Our one filtered out 37. This one is, actually not performing that well. But what's important is that it found 21 true positives.
+
+98
+00:32:17.780 --> 00:32:32.139
+Incoming livestream: We have all the information redacted, so we're not, leaking any sensitive information, but, what it is, is that it's a, for example, a pass traversal vulnerability has specific lines, and with specific reasoning,
+
+99
+00:32:32.280 --> 00:32:46.139
+Incoming livestream: What's the counterargument? What's the recommendation? What's the impact? And the whole system is set up in a way to maximize both pre-human, so that's the scanning part, and post-human. We want to maximize throughput.
+
+100
+00:32:47.270 --> 00:33:03.520
+Incoming livestream: So yeah, and we also have a window so you can actually talk to the LLM triager, so you can treat the LLM as a security researcher colleague, and bounce ideas off, try to explain the vulnerability. One thing that we've actually found very useful in pruning false positives is
+
+101
+00:33:03.980 --> 00:33:10.000
+Incoming livestream: actually having another LLM ask Or try to disprove that this is a vulnerability.
+
+102
+00:33:10.150 --> 00:33:13.449
+Incoming livestream: So, kind of like at a bug bounty program where you're…
+
+103
+00:33:13.600 --> 00:33:18.320
+Incoming livestream: scrutinizing a researcher's finding. You're trying to find why this isn't a vulnerability.
+
+104
+00:33:19.710 --> 00:33:20.860
+Incoming livestream: One over there, I think.
+
+105
+00:33:21.220 --> 00:33:38.260
+Incoming livestream: Hi, yeah, I had a question. So, you discussed how, the different generations of models have improved, and now with Opus, you're able to find a lot more stuff, and you're also having to manage context, and I was wondering if you've experimented at all with the different thinking levels for the models, because I've done some similar work
+
+106
+00:33:38.260 --> 00:33:43.489
+Incoming livestream: And, I haven't dug really far into the different thinking levels and trade-offs with that.
+
+107
+00:33:44.850 --> 00:33:55.830
+Incoming livestream: So we didn't really need to go there with this system. This system was built when all of that didn't exist, so the architecture is starting to change, so…
+
+108
+00:33:55.990 --> 00:34:00.239
+Incoming livestream: That will definitely be a consideration in FINRA 2.0.
+
+109
+00:34:00.730 --> 00:34:05.419
+Incoming livestream: Yeah, and, with this system that's live, was this music hi?
+
+110
+00:34:05.660 --> 00:34:07.290
+Incoming livestream: High async level, yes.
+
+111
+00:34:07.630 --> 00:34:08.750
+Incoming livestream: Thank you.
+
+112
+00:34:11.190 --> 00:34:13.079
+Incoming livestream: Got one more, time for one more up front here.
+
+113
+00:34:15.920 --> 00:34:16.780
+Incoming livestream: Thanks, Jason.
+
+114
+00:34:17.460 --> 00:34:24.630
+Incoming livestream: I'm just wondering, like, if you could talk, I don't know how much you can about, like, the confidence score? Like, it says medium, so what does…
+
+115
+00:34:24.870 --> 00:34:42.930
+Incoming livestream: like, a medium, mean, as opposed to a low. I'm just… So that's some secret sauce on how we score confidence levels at the LLM triage level. So the human will probably see that that's a medium confidence, ask why, it can talk with the agent itself, and figure that out. It's a dynamic scoring system that we have.
+
+116
+00:34:43.699 --> 00:34:44.540
+Incoming livestream: Yes.
+
+117
+00:34:44.850 --> 00:34:46.079
+Incoming livestream: Thank you very much.

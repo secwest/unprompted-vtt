@@ -1,0 +1,263 @@
+[00:01:00.049 - 00:01:16.759] Incoming livestream: Thank you, and, thanks for inviting me. Great to be here. The usual disclosure, so even though my company name is on… well, will be on every slide after this, they're just sponsoring me to be here, this is not an official talk.
+[00:01:19.159 - 00:01:26.549] Incoming livestream: So… I have to say, when AI came along, I was something of a skeptic.
+[00:01:27.029 - 00:01:31.888] Incoming livestream: Okay, so… I'm a hardware hacker, and I'm thinking.
+[00:01:32.559 - 00:01:36.278] Incoming livestream: How can AI really help me with hardware hacking?
+[00:01:36.419 - 00:01:45.468] Incoming livestream: You know, until, like, data can come up and start plugging things in, or Captain Kirk can break my tricorder and put it back together and make it do something.
+[00:01:45.589 - 00:01:48.069] Incoming livestream: I don't get it. How's AI gonna help me?
+[00:01:49.059 - 00:01:53.918] Incoming livestream: Because for AI, Sorry, for hardware hacking, you need a lab.
+[00:01:54.149 - 00:01:55.939] Incoming livestream: Okay, you need hardware.
+[00:01:56.039 - 00:02:03.309] Incoming livestream: You need scopes, you need components, you need, you know, electronics,
+[00:02:03.659 - 00:02:13.928] Incoming livestream: This is a particularly nice lab, by the way. I wish my lab looked like this. This is actually Joe Grand's lab. I don't know, a lot of you will have heard of him,
+[00:02:14.079 - 00:02:28.039] Incoming livestream: He's a very talented hardware hacker. If this talk in any way inspires you to do hardware hacking, he gives really great training courses, so he's your man. Look up Joe Grand. And as you can see, his lab is so nice.
+[00:02:28.089 - 00:02:36.528] Incoming livestream: he has a security guard to make sure it stays that way, right? So you go in there and try and move a wire or something, that guy's gonna pounce on you, so…
+[00:02:38.639 - 00:02:40.548] Incoming livestream: Back at my house.
+[00:02:41.439 - 00:02:49.668] Incoming livestream: it looks more like this. So, I mean, obviously at work, I have really, you know, state-of-the-art labs and so on, but this is my home,
+[00:02:49.769 - 00:02:51.679] Incoming livestream: Hacking around lab.
+[00:02:52.769 - 00:02:55.809] Incoming livestream: And yeah, you need tools. You need,
+[00:02:56.979 - 00:03:15.529] Incoming livestream: in this case, FPGAs, you need debuggers, you need power supplies, I've got a glitching platform there, which is an EM pulse generator, all kinds of crap that has to be wired together. And so, again, how the hell can AI
+[00:03:15.929 - 00:03:17.659] Incoming livestream: Help me with that.
+[00:03:20.509 - 00:03:22.498] Incoming livestream: So, what changed?
+[00:03:22.799 - 00:03:29.798] Incoming livestream: How come I'm up here talking about, you know, singing the praises of AI if I'm such a skeptic and AI can't help me?
+[00:03:30.779 - 00:03:36.038] Incoming livestream: So basically, I was on a business trip.
+[00:03:36.359 - 00:03:40.439] Incoming livestream: And actually, this is the setup from when I went on that business trip.
+[00:03:40.629 - 00:03:47.719] Incoming livestream: And I was trying to crack a specific target. So the target is there, sitting on the XY platform.
+[00:03:48.379 - 00:03:50.449] Incoming livestream: And I've got scripts running.
+[00:03:50.759 - 00:03:59.648] Incoming livestream: that are basically trying to glitch it. So people who are not familiar with glitching. Glitching is a technique where you…
+[00:03:59.899 - 00:04:02.929] Incoming livestream: Basically, try and trick the chip.
+[00:04:03.069 - 00:04:06.909] Incoming livestream: into doing something it's not supposed to do. So in this case.
+[00:04:07.149 - 00:04:10.858] Incoming livestream: I'm trying to dump the firmware from that chip, but the chip is locked.
+[00:04:11.109 - 00:04:19.339] Incoming livestream: So, to glitch it, you basically say, right, at the moment it does the check, this guy said, give me your firmware.
+[00:04:19.769 - 00:04:23.348] Incoming livestream: The chip says, am I allowed to give the firmware, is it locked?
+[00:04:23.489 - 00:04:32.208] Incoming livestream: And you hit it at that point, and try and confuse it, and it goes, okay, here's my firmware. Even though it's locked and it shouldn't have given it to you.
+[00:04:32.669 - 00:04:35.848] Incoming livestream: So anyway, I have scripts running
+[00:04:36.309 - 00:04:41.069] Incoming livestream: It's a non-deterministic process, so you may have to repeat.
+[00:04:41.209 - 00:04:46.978] Incoming livestream: your glitch, get the timing right, get the… the power of the glitch right, and so on.
+[00:04:47.619 - 00:04:51.069] Incoming livestream: Hundreds, thousands, maybe even millions of times.
+[00:04:51.549 - 00:04:55.139] Incoming livestream: So I was on this business trip, and I left the scripts running.
+[00:04:55.349 - 00:05:03.359] Incoming livestream: And for 6 weeks, it was running 24-7, just banging away on this chip, trying to get it to give up its firmware.
+[00:05:05.239 - 00:05:07.919] Incoming livestream: And it didn't. I got back from the trip.
+[00:05:08.419 - 00:05:13.688] Incoming livestream: Six weeks later, nothing. Script's still running, zero results.
+[00:05:14.409 - 00:05:21.359] Incoming livestream: Now, in the meantime, there was a guy organizing an online event.
+[00:05:22.179 - 00:05:27.408] Incoming livestream: called Prompt or Get the Fuck Out, which was, you can find it on…
+[00:05:27.599 - 00:05:33.939] Incoming livestream: YouTube, and it's basically 5-minute talks about AI, and what you're doing with AI.
+[00:05:34.719 - 00:05:40.099] Incoming livestream: And I'm not gonna say who he is, because he's kind of shy and retiring, but,
+[00:05:40.998 - 00:05:46.888] Incoming livestream: He said, he kept saying to me, when are you gonna come online and give your talk?
+[00:05:47.369 - 00:05:50.179] Incoming livestream: And I'm like, Gaddy, I don't do.
+[00:05:50.329 - 00:05:51.279] Incoming livestream: AI.
+[00:05:51.779 - 00:05:52.689] Incoming livestream: Right?
+[00:05:52.819 - 00:06:01.628] Incoming livestream: All I use it for is looking up data sheets, maybe take a picture of a component and say, what the hell is this?
+[00:06:01.869 - 00:06:07.849] Incoming livestream: And let AI figure it out for me. I'm not using it day-to-day, I've got nothing to talk about.
+[00:06:08.759 - 00:06:12.089] Incoming livestream: So he said, Excuse me.
+[00:06:12.229 - 00:06:16.598] Incoming livestream: He said, You're asking the wrong questions.
+[00:06:17.009 - 00:06:18.758] Incoming livestream: Just do me a favor.
+[00:06:19.669 - 00:06:25.188] Incoming livestream: Think of 3 questions that are relevant, really relevant to what you're trying to do.
+[00:06:25.719 - 00:06:29.249] Incoming livestream: And then ask AI, Maybe it'll help.
+[00:06:30.759 - 00:06:36.949] Incoming livestream: So, the three questions when you're glitching where to glitch.
+[00:06:37.279 - 00:06:42.759] Incoming livestream: When to glitch, and how much to glitch. Those are the three basic questions.
+[00:06:42.889 - 00:06:48.029] Incoming livestream: So if we go back to my… Set up here.
+[00:06:49.199 - 00:06:54.199] Incoming livestream: The where to glitch is, in this case… oh, maybe I can get a mouse working, hang on.
+[00:06:55.319 - 00:06:57.209] Incoming livestream: Can you see my mouse pointer?
+[00:06:58.239 - 00:07:05.209] Incoming livestream: So the where is… The chip is quite big, and this little probe is quite small.
+[00:07:05.629 - 00:07:08.469] Incoming livestream: So where do you put the probe on the chip?
+[00:07:09.289 - 00:07:17.809] Incoming livestream: The when to glitch is, you know, how many nanoseconds or microseconds from a particular event, like a reset.
+[00:07:18.169 - 00:07:22.979] Incoming livestream: And how much is… how many volts should I give the EM pulse?
+[00:07:23.279 - 00:07:24.659] Incoming livestream: In this case.
+[00:07:25.339 - 00:07:29.899] Incoming livestream: So… I asked those three questions.
+[00:07:30.639 - 00:07:43.378] Incoming livestream: And it gave me an answer. So, for the position, I just went into ChatGPT online, and I said, I'm attacking this chip. Well, I didn't say attacking, because if you say attacking, it'll say, oh, I can't help you with that.
+[00:07:43.659 - 00:07:45.379] Incoming livestream: That would be naughty.
+[00:07:45.629 - 00:07:52.199] Incoming livestream: So I just phrased it like, if I wanted to perform an EM pulse.
+[00:07:52.709 - 00:07:55.449] Incoming livestream: Fault injection on this model chip.
+[00:07:55.949 - 00:07:57.628] Incoming livestream: Where would I put the probe?
+[00:07:58.979 - 00:08:03.228] Incoming livestream: And… When would I send the pulse?
+[00:08:03.689 - 00:08:05.499] Incoming livestream: And how hard should I hit it?
+[00:08:06.699 - 00:08:11.679] Incoming livestream: So it said… Draw a diagonal line across the chip.
+[00:08:11.999 - 00:08:17.259] Incoming livestream: and I forget the exact number, but put the probe 7 mil in from
+[00:08:17.619 - 00:08:20.999] Incoming livestream: the corner. So, the diagonal line between two corners.
+[00:08:21.259 - 00:08:23.329] Incoming livestream: Put the probe 7 mils in.
+[00:08:24.319 - 00:08:28.169] Incoming livestream: When, it said, basically.
+[00:08:28.379 - 00:08:36.238] Incoming livestream: As soon as this happens, so on this event, send the glitch. And how hard it gave me a process. It said…
+[00:08:37.749 - 00:08:45.068] Incoming livestream: Start at 500 volts, which is the maximum you can give the chip charter, and when it's crashing 50% of the time.
+[00:08:45.329 - 00:08:48.099] Incoming livestream: That's the sweet spot, then we'll start running.
+[00:08:48.859 - 00:08:49.889] Incoming livestream: Okay, great.
+[00:08:50.349 - 00:08:57.839] Incoming livestream: So, I set it all going, I did the 50% test, I figured out what the voltage was.
+[00:08:58.129 - 00:09:01.528] Incoming livestream: Tet it going, went downstairs, got myself a cup of coffee.
+[00:09:02.399 - 00:09:03.569] Incoming livestream: Came back.
+[00:09:05.649 - 00:09:06.939] Incoming livestream: And it was done.
+[00:09:13.679 - 00:09:15.279] Incoming livestream: 7 minutes.
+[00:09:15.479 - 00:09:18.979] Incoming livestream: 7 minutes. So I'd spend 6 weeks
+[00:09:19.519 - 00:09:26.008] Incoming livestream: banging… well, not me, but my Python that was banging its head against a brick wall, 7 minutes.
+[00:09:28.479 - 00:09:30.508] Incoming livestream: So it's like, shock.
+[00:09:31.889 - 00:09:39.459] Incoming livestream: So now, yeah, I'm a believer. I believe this shit works, okay? So, what's next?
+[00:09:41.109 - 00:09:49.979] Incoming livestream: So, what happens if I just say to Claude, okay, don't give me instructions, I'm… you're not the boss of me, I'm the boss of you.
+[00:09:50.419 - 00:09:56.148] Incoming livestream: You do this stuff, okay? I'm not taking your advice and going and typing stuff in.
+[00:09:56.459 - 00:09:59.698] Incoming livestream: So here, here's my lab. It's yours now.
+[00:10:00.179 - 00:10:05.798] Incoming livestream: So, in the lab, we've got a debugger which has SWD JTAG.
+[00:10:05.919 - 00:10:10.639] Incoming livestream: We've got a logic analyzer which can sniff UART, SPI, ITC, whatever.
+[00:10:11.059 - 00:10:15.328] Incoming livestream: We've got the… the glitch trigger, which in this picture
+[00:10:15.899 - 00:10:20.689] Incoming livestream: There's this guy here, which is an FPGA.
+[00:10:21.679 - 00:10:26.258] Incoming livestream: Voltmeter scopes, UARTs, whatever. Power supply.
+[00:10:26.729 - 00:10:30.959] Incoming livestream: So I gave that all to Claude and said, Do your thing.
+[00:10:32.419 - 00:10:34.478] Incoming livestream: And it gave me back this.
+[00:10:35.069 - 00:10:39.539] Incoming livestream: And what this is, is a Raspberry Pi Pico.
+[00:10:40.349 - 00:10:43.769] Incoming livestream: And it has all of those things in it.
+[00:10:44.579 - 00:10:52.939] Incoming livestream: So, it talks direct to the target with SWD or JTAG, so that's a couple of pins…
+[00:10:53.729 - 00:10:55.289] Incoming livestream: Can I hear somewhere?
+[00:10:56.069 - 00:10:59.899] Incoming livestream: It sniffs UR, SPI, or ITC.
+[00:11:00.149 - 00:11:03.668] Incoming livestream: It does 5 nanosecond resolution.
+[00:11:03.819 - 00:11:05.758] Incoming livestream: Timing for glitching.
+[00:11:06.149 - 00:11:09.348] Incoming livestream: It has, peripheral control, so…
+[00:11:09.719 - 00:11:14.478] Incoming livestream: 8 hardware UARTs, and if you know what a Pico is, you'll go, hang on a minute.
+[00:11:15.189 - 00:11:17.698] Incoming livestream: Pico's only got 2 hardware ULTs.
+[00:11:18.099 - 00:11:27.508] Incoming livestream: Actually, one of the joys of using Claude to do all the donkey work is you can have crazy ideas and say.
+[00:11:27.719 - 00:11:33.109] Incoming livestream: Well, I need more than two UARTs, so how are we gonna fix that? And Claude will say, well…
+[00:11:33.669 - 00:11:38.629] Incoming livestream: Each of those two UARTs has four… Alternate PIN configurations.
+[00:11:38.879 - 00:11:42.799] Incoming livestream: So why don't we just flip the configs? You know, you wire up.
+[00:11:43.189 - 00:11:46.729] Incoming livestream: up to 8 devices, and I'll just flip the configs for you.
+[00:11:46.889 - 00:11:49.139] Incoming livestream: When you need to talk to that device.
+[00:11:49.729 - 00:11:50.698] Incoming livestream: Not a night.
+[00:11:51.049 - 00:11:54.479] Incoming livestream: Genius, okay? I now have 8 hardware yards.
+[00:11:55.029 - 00:11:56.229] Incoming livestream: Thanks, Claude.
+[00:11:56.839 - 00:12:05.389] Incoming livestream: So, yeah, that's what we did, and… Now, I can just…
+[00:12:05.909 - 00:12:10.499] Incoming livestream: Think of crazy shit and say to Claude, Hey, Claude, what if we?
+[00:12:11.009 - 00:12:17.159] Incoming livestream: And this is a screenshot of a chat I was having with a work colleague, where I'm explaining
+[00:12:17.459 - 00:12:19.959] Incoming livestream: This particular glitch to him.
+[00:12:21.059 - 00:12:24.538] Incoming livestream: And in mid-conversation with him, I'm like, hang on a minute.
+[00:12:24.989 - 00:12:27.589] Incoming livestream: Why are we messing around with timing?
+[00:12:28.079 - 00:12:32.389] Incoming livestream: To try and create a voltage drop to a particular Point.
+[00:12:33.009 - 00:12:35.679] Incoming livestream: when we have an ADC on the Pico.
+[00:12:35.889 - 00:12:37.739] Incoming livestream: We can just measure the voltage.
+[00:12:37.889 - 00:12:40.119] Incoming livestream: And when we reached that point.
+[00:12:40.699 - 00:12:46.009] Incoming livestream: So I could use the ADC to measure the timing to get to that voltage.
+[00:12:46.269 - 00:12:50.209] Incoming livestream: And actually, Claude took it one step further, I hope you couldn't read it here.
+[00:12:51.049 - 00:12:58.418] Incoming livestream: But, claude said, well… An alternative approach would be…
+[00:12:59.459 - 00:13:04.299] Incoming livestream: Instead of just measuring, we could use the ADC to actively control the timing.
+[00:13:05.239 - 00:13:14.469] Incoming livestream: So we're gonna do the glitch, I'm not gonna give it any parameters, it's gonna measure the voltage on the target, and when we hit the right point.
+[00:13:14.569 - 00:13:19.738] Incoming livestream: Then, bam, it's gonna do the glitch. It's gonna stop the glitch, bring the power back up.
+[00:13:21.289 - 00:13:25.539] Incoming livestream: So, I said to my colleague, hey, Claude likes that idea.
+[00:13:27.709 - 00:13:30.579] Incoming livestream: So Claude told me, connect one wire.
+[00:13:30.929 - 00:13:39.738] Incoming livestream: And I'll take care of the rest. So I connected up the ADC, it wrote the code, it ran it, I didn't even run it, I just came back.
+[00:13:39.899 - 00:13:46.418] Incoming livestream: And I saw this string… Now, this is all FFs, because it was a blank chip I was testing.
+[00:13:46.579 - 00:13:51.198] Incoming livestream: But it dumped. It unlocked and dumped the data on the first try.
+[00:13:51.959 - 00:13:58.168] Incoming livestream: And I'm like, holy… And that's my colleague laughing. Okay.
+[00:13:58.489 - 00:13:59.389] Incoming livestream: So…
+[00:14:04.679 - 00:14:06.819] Incoming livestream: What could possibly go wrong?
+[00:14:07.629 - 00:14:09.959] Incoming livestream: So, I have here…
+[00:14:14.629 - 00:14:15.899] Incoming livestream: The device in question?
+[00:14:17.419 - 00:14:22.579] Incoming livestream: So the whiteboard is the target, the green board is the… Pico.
+[00:14:27.939 - 00:14:29.638] Incoming livestream: Let's give it a go.
+[00:14:30.449 - 00:14:31.889] Incoming livestream: Where are we?
+[00:14:38.109 - 00:14:39.908] Incoming livestream: Sorry, I need my glasses.
+[00:14:54.649 - 00:15:02.109] Incoming livestream: So just to prove this isn't a fix, I'm using the official tool to talk to the chip.
+[00:15:02.669 - 00:15:06.408] Incoming livestream: And it's unlocked at the moment, completely blank.
+[00:15:06.659 - 00:15:09.368] Incoming livestream: So, I am gonna fill memory.
+[00:15:10.229 - 00:15:15.748] Incoming livestream: with… Someone give me a hex value.
+[00:15:18.439 - 00:15:21.658] Incoming livestream: Boobies. Are we doing boobies, then?
+[00:15:21.989 - 00:15:23.089] Incoming livestream: Okay.
+[00:15:23.509 - 00:15:29.449] Incoming livestream: I had two guesses what it was gonna be. It was gonna be dead beef or boobies, so I guess we're doing boobies.
+[00:15:34.329 - 00:15:36.538] Incoming livestream: Actually, we need one more zero.
+[00:15:39.199 - 00:15:44.039] Incoming livestream: And then we say it, like… Homer Boobies.
+[00:15:50.069 - 00:15:54.068] Incoming livestream: It's a little Indian, so it looks a bit weird.
+[00:15:54.189 - 00:15:56.729] Incoming livestream: So I'm going to change the option bytes…
+[00:15:57.459 - 00:16:01.028] Incoming livestream: Readout protection, I'm gonna protect it.
+[00:16:08.589 - 00:16:13.399] Incoming livestream: So if I disconnect… And reconnect…
+[00:16:15.649 - 00:16:20.368] Incoming livestream: So, data read failed. It can't read it back because it's now locked. Okay, so…
+[00:16:20.629 - 00:16:24.608] Incoming livestream: If I go to the read, there's no data to display.
+[00:16:25.199 - 00:16:27.798] Incoming livestream: So, let's leave this guy…
+[00:16:39.529 - 00:16:43.289] Incoming livestream: So now I'm connected to my Pico Hacker.
+[00:16:44.479 - 00:16:48.388] Incoming livestream: And it's got a menu. And by the way, this is a known…
+[00:16:48.529 - 00:16:53.318] Incoming livestream: So this is a known attack, it's called Stimpik, it's part of Picopona.
+[00:16:53.449 - 00:17:00.798] Incoming livestream: And when I publish the code, full credit to them is in there. The difference here is…
+[00:17:00.949 - 00:17:14.329] Incoming livestream: We're doing a non-deterministic, hopefully, we're turning… so I'm doing the opposite of what Gaddy said we should all be aiming for. So I'm trying to turn a non-deterministic process into a deterministic one.
+[00:17:16.199 - 00:17:26.558] Incoming livestream: And we do that by letting the controller, or letting the PICO do the whole process. So, to just explain what it's gonna do.
+[00:17:27.539 - 00:17:36.728] Incoming livestream: It's gonna connect over SWD, it's gonna load a payload into Flash, It's then gonna reboot.
+[00:17:37.169 - 00:17:42.048] Incoming livestream: It's gonna cause a brownout that basically causes the chip to reboot.
+[00:17:42.379 - 00:17:45.419] Incoming livestream: But the brownout isn't…
+[00:17:45.939 - 00:17:52.358] Incoming livestream: gonna go low enough to wipe the flash, so the code I wanna run will survive the glitch.
+[00:17:52.689 - 00:17:57.958] Incoming livestream: And then Stage 2, it will come in. It reconfigures the,
+[00:17:58.689 - 00:18:04.949] Incoming livestream: The memory mapper to think that the flash is… the SRAM.
+[00:18:05.839 - 00:18:08.178] Incoming livestream: And then it'll do another glitch.
+[00:18:08.279 - 00:18:10.509] Incoming livestream: Which will cause it to boot off.
+[00:18:11.339 - 00:18:23.628] Incoming livestream: the flash, which the chip thinks is SRAM. Sorry, other way around, SRAM, which the chip thinks is flash, and because it booted off flash, you have read access to the flash, you can dump the memory.
+[00:18:25.119 - 00:18:26.419] Incoming livestream: Here goes.
+[00:18:27.219 - 00:18:30.509] Incoming livestream: Have we sacrificed enough kittens this morning?
+[00:18:31.009 - 00:18:33.089] Incoming livestream: For the demo gods to love me.
+[00:18:42.579 - 00:18:43.799] Incoming livestream: Boobies.
+[00:18:52.159 - 00:18:55.148] Incoming livestream: I have 2 minutes left, I think that's questions, right?
+[00:18:55.279 - 00:18:58.629] Incoming livestream: Or is the question's after the… okay.
+[00:18:59.449 - 00:19:02.319] Incoming livestream: So I'll just show you one more thing.
+[00:19:03.239 - 00:19:06.549] Incoming livestream: So, basically, I told it to just give me a lot of…
+[00:19:06.869 - 00:19:10.539] Incoming livestream: tooling, so I can understand what's happening, so…
+[00:19:11.069 - 00:19:13.538] Incoming livestream: If I run the R command…
+[00:19:15.089 - 00:19:17.409] Incoming livestream: This is doing the initial sweep.
+[00:19:18.479 - 00:19:22.659] Incoming livestream: to understand at what point SRAM survives.
+[00:19:22.909 - 00:19:27.399] Incoming livestream: But the brownout trigger kicks in and causes a reset.
+[00:19:27.919 - 00:19:30.409] Incoming livestream: So it's gonna keep going down.
+[00:19:30.889 - 00:19:32.969] Incoming livestream: Until SRAM gets corrupted.
+[00:19:33.499 - 00:19:35.468] Incoming livestream: And then we'll get a nice little table.
+[00:19:47.809 - 00:19:50.228] Incoming livestream: So, yeah, talk amongst yourselves.
+[00:19:54.269 - 00:19:59.359] Incoming livestream: If anyone's got a question, you can shout it out now, because this will take about another 20 seconds.
+[00:20:01.489 - 00:20:02.829] Incoming livestream: Oh, dumb, okay.
+[00:20:04.839 - 00:20:08.028] Incoming livestream: So, yeah, as you can see, what we have now is…
+[00:20:08.669 - 00:20:14.769] Incoming livestream: the NRST is the reset flag, so it's like a reverse,
+[00:20:16.229 - 00:20:22.068] Incoming livestream: PIN that tells me that it triggered and it's now in not reset mode.
+[00:20:22.449 - 00:20:27.968] Incoming livestream: So, this window down here between 161
+[00:20:28.369 - 00:20:32.489] Incoming livestream: And 089 is a really big window.
+[00:20:32.829 - 00:20:38.109] Incoming livestream: Where I can achieve what I want. I caused a reset, but I haven't lost the contents of Flash.
+[00:20:38.639 - 00:20:44.128] Incoming livestream: And it gives you timings, so if you want to do it… The old-fashioned way, you know.
+[00:20:44.629 - 00:20:47.439] Incoming livestream: How their kids used to do it in the old days.
+[00:20:47.649 - 00:20:50.609] Incoming livestream: With timing, I mean, so yesterday.
+[00:20:50.809 - 00:20:54.348] Incoming livestream: But yeah, there you go. That's it.
+[00:21:02.689 - 00:21:05.719] Incoming livestream: Have to imagine there will be questions just after we take, like…
+[00:21:06.129 - 00:21:09.519] Incoming livestream: 3 seconds for this to integrate. Yeah, questions?
+[00:21:17.559 - 00:21:28.889] Incoming livestream: So if you're interested, take a picture of that URL. That's the framework. It's already published. It does not have this code in it yet. I need to backport it into there.
+[00:21:28.999 - 00:21:36.358] Incoming livestream: But I'll do that probably in the next week, so… But the main framework is there. It's already useful for other stuff as well, so…
+[00:21:37.349 - 00:21:43.219] Incoming livestream: Adam, I'm curious if in the first time you used it to do the glitch, and then it worked the first time.
+[00:21:43.459 - 00:21:48.758] Incoming livestream: Right away, did you actually ask it to explain why you picked those particular parameters?
+[00:21:49.329 - 00:21:53.668] Incoming livestream: Yeah, so the, which is even more amazing,
+[00:21:54.369 - 00:22:01.029] Incoming livestream: Basically, I told it in the dialogue about setting the three question answers,
+[00:22:02.319 - 00:22:05.708] Incoming livestream: I said, I've got a flash dump of the bootloader.
+[00:22:06.019 - 00:22:11.468] Incoming livestream: Because you can read out the bootloader, from static, memory.
+[00:22:12.389 - 00:22:15.319] Incoming livestream: And so it reverse-engineered it.
+[00:22:15.859 - 00:22:21.939] Incoming livestream: And counted the steps between… so it said, well, the obvious target is you send a read command.
+[00:22:22.589 - 00:22:31.658] Incoming livestream: For the memory, and it then counted the steps between receiving the carriage, or echoing the carriage return of the read.
+[00:22:32.109 - 00:22:36.888] Incoming livestream: And doing the compare to the… Lock key.
+[00:22:37.459 - 00:22:46.219] Incoming livestream: And it then said, okay, it's running on this chip at this number of megahertz, so it'll be this number of microseconds.
+[00:22:46.499 - 00:22:55.158] Incoming livestream: as it happens, the window was pretty big, so I could just do it at zero, but… I've also used the same, so I used the JTAG interface.
+[00:22:55.269 - 00:22:59.758] Incoming livestream: It's a single step, so you can get even more accurate that way.
+[00:22:59.989 - 00:23:02.299] Incoming livestream: So you put a breakpoint where you wanna…
+[00:23:02.999 - 00:23:06.848] Incoming livestream: Stop, and then you tell it to single step to that breakpoint.
+[00:23:07.269 - 00:23:18.298] Incoming livestream: We've got one more. We've got one more question back, sorry. So, you used Claude to help you that first time around, and it gave you a really good answer. Have you baked in any of your knowledge into that? Over here.
+[00:23:19.139 - 00:23:30.839] Incoming livestream: Sorry, I'm being stupid, I can't see who was… Oh, over here, it's cool. Yeah, so, have you done any more baking of your knowledge of how to do stuff into it since you've got the one good answer from it that original time?
+[00:23:31.159 - 00:23:37.098] Incoming livestream: Oh, yeah, since then, so that was in October. Since then, every…
+[00:23:37.339 - 00:23:46.479] Incoming livestream: kind of spare minute between doing my real day job and, well, actually incorporating this into our work processes is now also my real day job. Actually, my colleague
+[00:23:46.689 - 00:23:48.899] Incoming livestream: He's doing a phenomenal job.
+[00:23:49.019 - 00:23:53.959] Incoming livestream: And it's kind of embarrassing what I'm showing here compared to what he's now done with it.
+[00:23:54.309 - 00:23:59.989] Incoming livestream: But, yes, I'm constantly trying different targets, training it on processes.
+[00:24:00.219 - 00:24:08.768] Incoming livestream: that the Raiden mentioned in the name Raiden Pico, is a project me and a colleague wrote at IBM when I was at X-Force.
+[00:24:09.109 - 00:24:13.529] Incoming livestream: And it took us over a year, two of us working on it full-time.
+[00:24:14.369 - 00:24:18.369] Incoming livestream: Claude rewrote it in… Three days.
+[00:24:18.589 - 00:24:19.329] Incoming livestream: So…
+[00:24:20.139 - 00:24:33.829] Incoming livestream: I'm very curious, like, have you tried using cloud to rev some, like, other devices? And, like, not Pickle, but something else? And also, like, what do you feel like would be, like, the difference of, like, hacking Pickle and, other devices?
+[00:24:34.589 - 00:24:40.938] Incoming livestream: So to use it on another device… the reason I chose the Pico is because it's cheap.
+[00:24:41.409 - 00:24:43.968] Incoming livestream: So they're, like, 7 bucks or something.
+[00:24:44.159 - 00:24:52.639] Incoming livestream: The… the equipment in that first picture that is replaced by the Pico
+[00:24:52.909 - 00:25:01.179] Incoming livestream: is over $1,000 worth of equipment, and the Pico is performing every single function of every one of those components.
+[00:25:01.439 - 00:25:08.329] Incoming livestream: So my idea was, it becomes disposable. You can take your $7 Pico.
+[00:25:08.689 - 00:25:17.288] Incoming livestream: and wire it in. I've spoken at length, you know, in that first picture, there was all these cables and crap everywhere. I've spoken before about…
+[00:25:17.679 - 00:25:28.838] Incoming livestream: that, what I call spaghetti, is your enemy in glitching. So, with this system, you can actually solder the Pico directly into a test circuit.
+[00:25:29.089 - 00:25:43.788] Incoming livestream: And it's disposable. You don't care if you've burned a Pico, it's like 7 bucks, so… But yes, you could port it to something else if you want to start attacking megahertz or gigahertz speed platforms.
+[00:25:43.969 - 00:25:54.079] Incoming livestream: Maybe you want to go to a Raspberry Pi 5, but you can just say to Claude, port this code to there, probably in an hour max, you'll have it working, so…
+[00:25:54.509 - 00:25:56.158] Incoming livestream: Yeah, go for it.
+[00:25:56.899 - 00:26:04.398] Incoming livestream: So, I would like to step in for a couple minutes to tell you a few things this guy did not tell you. He gave me way too much credit. Trust me, he did everything on his own.
+[00:26:04.609 - 00:26:06.579] Incoming livestream: I never even touched hardware in my life.
+[00:26:07.279 - 00:26:09.919] Incoming livestream: But a couple of points that are really critical.
+[00:26:10.149 - 00:26:17.498] Incoming livestream: I think one… my fir… the first DEF CON talk I ever went to that I remember, probably DEFCON 13, I don't remember, maybe 14?
+[00:26:17.699 - 00:26:19.408] Incoming livestream: Major went on stage.
+[00:26:20.129 - 00:26:26.188] Incoming livestream: And… Told people how he played with magnetic cards.
+[00:26:26.849 - 00:26:41.198] Incoming livestream: To the degree where you got magnetic gel to try and see where the lines are, and you saw, like, 64-bit security, and then you saw that only the first 4 bits or 5 bits change, and the sixth one gives everybody muster, or whatever it is, and the…
+[00:26:41.199 - 00:26:51.798] Incoming livestream: hotel in Vegas sent their security after him for trying too many things, their IDSs played up. And he's been there for every stage of hardware hacking for, I don't know how many years, whether it's…
+[00:26:52.239 - 00:27:07.398] Incoming livestream: those keys that I started thinking about, Special Forces using, or RFID, and whenever there is something out there that is hardware hacking, you can always find a major conversation, a major, major talk somewhere before somebody publishes the big frameworks.
+[00:27:07.879 - 00:27:08.899] Incoming livestream: And…
+[00:27:10.979 - 00:27:15.938] Incoming livestream: This time is no different. It's been helping a lot of people get into hardware hacking, he has groups.
+[00:27:16.099 - 00:27:20.658] Incoming livestream: And what people need to understand, what you've just seen is not just cool.
+[00:27:20.999 - 00:27:32.659] Incoming livestream: It's just one small aspect of the world that's completely changed and we don't even see. And I would like to tell you three reasons why. I don't even know if it's really three, I was in the military, I just say 3. We'll figure it out… we'll figure it out as we go.

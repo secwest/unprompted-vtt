@@ -1,0 +1,485 @@
+WEBVTT
+
+1
+00:47:12.778 --> 00:47:23.988
+Incoming livestream: Yeah, thank you. I'm Brooks, I do work at Dropbox as a, infrastructure cloud security engineer, but this presentation is more about the agents I've been building,
+
+2
+00:47:24.258 --> 00:47:34.018
+Incoming livestream: on my own, the ones I run every day, kind of the things I've been building and breaking, and the issues I've run into, and lessons learned, and fun things like that.
+
+3
+00:47:34.198 --> 00:47:47.837
+Incoming livestream: So everything I'm gonna reference here is, open source on my GitHub. It's not really the open source that you can just download and run, it's open source, like, you can look at the code and try to figure out how to do it, but it does all run for me, so good luck if you want to go try.
+
+4
+00:47:48.888 --> 00:48:07.558
+Incoming livestream: So this is, I did update all these numbers last night, and I think it's already out of date again, but I have, like, 19 different agents. Agent is kind of a catch-all here. There's, I think, 13-ish interactive ones, a few other that are more like service agents, kind of cron jobs that call either Cloud Code or a different agent.
+
+5
+00:48:07.578 --> 00:48:12.828
+Incoming livestream: 73 different MCP tools, just on a local SDDIO,
+
+6
+00:48:13.408 --> 00:48:20.407
+Incoming livestream: MCP server, so that that has things like, email that I've been playing around with a little bit,
+
+7
+00:48:20.538 --> 00:48:25.558
+Incoming livestream: Creating files, reading from the file system, different…
+
+8
+00:48:26.028 --> 00:48:33.977
+Incoming livestream: tools around, the OS that I want to give them access to, and just anytime I want to create another tool, put it in there, and then I,
+
+9
+00:48:35.318 --> 00:48:49.317
+Incoming livestream: I'll get into the capability system in a little bit, but then I try to scope it down so that every agent doesn't have to see every MCP tool. I mean, that's just pretty much good security and also good for the functionality, so we're not polluting the context.
+
+10
+00:48:50.218 --> 00:48:53.818
+Incoming livestream: I also created several different ways to start these agents.
+
+11
+00:48:54.028 --> 00:49:05.447
+Incoming livestream: I typically do use CLI tools for a lot of this stuff, but I have thrown in, like, a web UI, voice kind of wrapper, both in the web UI and kind of a standalone app.
+
+12
+00:49:05.678 --> 00:49:16.268
+Incoming livestream: And, also have it connected just to my personal Slack, so I can add a specific agent, it kind of goes through a filtering system, sends it to the right place, and, I get a response.
+
+13
+00:49:18.448 --> 00:49:30.457
+Incoming livestream: So, through all this, I do also interact with a couple remote MCP servers that are also permissioned different ways, mainly the personal ones I've been building for myself and GitHub.
+
+14
+00:49:30.608 --> 00:49:34.558
+Incoming livestream: I'll get into some of that permissioning, in a little bit.
+
+15
+00:49:34.848 --> 00:49:43.547
+Incoming livestream: And then also, just, some of the security controls I've been putting in place, capabilities bounding, like I mentioned, making sure there's, each MCP tool has a permission.
+
+16
+00:49:43.588 --> 00:49:54.627
+Incoming livestream: scope, so read, write, admin, etc. Make sure memory's isolated and, observability. And then also, yeah, the max iterations per turn ended up being very helpful.
+
+17
+00:49:54.628 --> 00:50:03.728
+Incoming livestream: I've optimized it down to probably about 3 or 4 iterations that I'm normally hitting now, but that's a good way to kind of make sure you don't end up spending too much.
+
+18
+00:50:04.658 --> 00:50:18.257
+Incoming livestream: So I can actually go through and show some of the, workflows that I do do with it. So right now, I automate a lot of, coding processes, so I have kind of a custom task management system here, where I just pretty much have a cron job that's…
+
+19
+00:50:18.388 --> 00:50:20.628
+Incoming livestream: a claud-P,
+
+20
+00:50:20.758 --> 00:50:31.267
+Incoming livestream: command that goes through, and it will start getting, things fixed or optimized for me. So you can see, this is just kind of a report from it. You can see kind of the things it does.
+
+21
+00:50:31.748 --> 00:50:36.308
+Incoming livestream: But then, you might ask, what happens if we run out of tasks?
+
+22
+00:50:36.598 --> 00:50:40.738
+Incoming livestream: If it does that, then it runs… I have a few code review,
+
+23
+00:50:41.288 --> 00:50:52.148
+Incoming livestream: sub-agents, so, like, it'll do security auditing, testing, that's, like, test coverage, code quality, documentation, etc. And then it will, make more tasks for those.
+
+24
+00:50:52.308 --> 00:51:03.688
+Incoming livestream: So, pretty much, I have a kind of a self-sustaining code optimization ecosystem that will keep running until it maxes out my credit card and Claude cuts me off.
+
+25
+00:51:05.648 --> 00:51:16.947
+Incoming livestream: And then, through this, though, I am getting, you know, into the place where there's a lot less human in the loop for a lot of this, which is definitely a scary place to be.
+
+26
+00:51:17.098 --> 00:51:25.517
+Incoming livestream: I have been trying to put together, like, weekly PR reviews, so I'll go through and, go through all the reviews, or go through all the PRs.
+
+27
+00:51:25.578 --> 00:51:43.237
+Incoming livestream: try to analyze what might be good, what might be bad, what process I should be put in place. And then, each PR review, or each PR already has, like, CI tests, I have two Clawed review agents that go through, and I've set it up so that way the automated tasks
+
+28
+00:51:43.438 --> 00:51:53.977
+Incoming livestream: They have to keep iterating until the cloud review bots pretty much say that it's good to go. So try to have some safe checks, or safety checks to make sure LLM isn't…
+
+29
+00:51:54.108 --> 00:52:00.648
+Incoming livestream: just giving me complete garbage, and so far it has been working fairly well. Definitely, some things that I'd like to…
+
+30
+00:52:01.078 --> 00:52:04.597
+Incoming livestream: Optimize a bit more, but definitely,
+
+31
+00:52:04.948 --> 00:52:06.668
+Incoming livestream: Not a bad place to be.
+
+32
+00:52:09.578 --> 00:52:16.897
+Incoming livestream: So yeah, as I mentioned, I have a capabilities bounding, and permission control system set up, so each agent has, both,
+
+33
+00:52:17.688 --> 00:52:35.998
+Incoming livestream: both allowed tools that it's allowed to have, and also the permissions for those tools that I can use. So, the task manager agent is definitely kind of my daily driver that goes through and helps me automatically complete tasks, break things down, reschedules when I haven't updated tasks in a while.
+
+34
+00:52:36.358 --> 00:52:49.438
+Incoming livestream: So that has, you know, the permissions to go search for stuff, message me in Slack, email me, memory, obviously. Then I have some things like Security Researcher, read-only, it's just kind of, I ask it questions about, you know.
+
+35
+00:52:49.448 --> 00:53:01.148
+Incoming livestream: blog posts or, different things, and it goes through kind of the rag I've been setting up, the web, answers things there. And then I do have just a chatbot that has everything, that's kind of my, test.
+
+36
+00:53:01.438 --> 00:53:20.997
+Incoming livestream: But of course, I want to set this up to be secure by default as I add more tools to the ever-expanding MCP server, so definitely need to make sure that, tools are locked down by default. You know, you have to go specifically add tools or add permissions, everything is, gonna be locked down to admin otherwise. I have,
+
+37
+00:53:21.548 --> 00:53:24.347
+Incoming livestream: Quick, kind of, demo on how that works.
+
+38
+00:53:38.808 --> 00:53:57.187
+Incoming livestream: So it's just gonna go through, here's kind of how I can run the chatbot agent, give it specific permissions, so here, read send. So here, it has no right privileges to memory, and we're asking it to try to save memories and kind of see the denial, the agent's aware that, okay, you know, it has a, a,
+
+39
+00:53:57.328 --> 00:54:15.477
+Incoming livestream: verbose enough error message that it knows what's going on and can tell me, you know, what I might be doing wrong, what I can fix. And then if you do, you know, not restrict it, because this is the chatbot that has all the permissions, or all the MCP tools, then memory works fine. You kind of see how I've been storing the memory.
+
+40
+00:54:15.788 --> 00:54:19.098
+Incoming livestream: Which I'll go into a little bit later as well.
+
+41
+00:54:19.398 --> 00:54:22.108
+Incoming livestream: And, yeah.
+
+42
+00:54:22.588 --> 00:54:32.398
+Incoming livestream: the Wi-Fi here is definitely… leaves a little bit to be desired, just a little slow, but… here it just shows key value, sometimes it'll print out the whole JSON, which is nice, and then,
+
+43
+00:54:33.108 --> 00:54:35.078
+Incoming livestream: That will get cleaned up.
+
+44
+00:54:35.938 --> 00:54:42.527
+Incoming livestream: So one thing I've also been working on, which is kind of a preview of mistakes I'm definitely gonna make.
+
+45
+00:54:42.878 --> 00:54:52.927
+Incoming livestream: is this, MCP kind of relay… or, sorry, MCP server that's more or less a chat room for my,
+
+46
+00:54:53.778 --> 00:55:12.288
+Incoming livestream: for my LLMs. So, I originally created it just to kind of help debug server-client… or server-client interactions, because I got really tired of, copying and pasting between cloud code on the server, cloud code on the client. So here, we have…
+
+47
+00:55:12.498 --> 00:55:17.398
+Incoming livestream: The MC pers… or the plot is trying to debug, kind of, a local, client's…
+
+48
+00:55:18.458 --> 00:55:22.687
+Incoming livestream: Let's see, we can have the server session,
+
+49
+00:55:23.148 --> 00:55:33.658
+Incoming livestream: Say, like, you know, here's the source code, so the client's trying to get debugged, and then they'll start, chatting back and forth and sending messages to each other, so that way they can,
+
+50
+00:55:33.658 --> 00:55:47.158
+Incoming livestream: debug it, even though all the server code might not be accessible to the client. So it's been, you know, super helpful in making client-server connections work better, especially as a lot of this is, internet MCP traffic now.
+
+51
+00:55:47.328 --> 00:56:07.548
+Incoming livestream: But of course, this is not the most secure setup right now. It is running on my home lab, where only I interact with it, but it's definitely not production-ready. We're injecting contacts from one LLM to another. Capabilities are not being scoped down, but that's other things I'm working on there.
+
+52
+00:56:08.268 --> 00:56:24.048
+Incoming livestream: And with that, I've also just given myself a web interface, so you can kind of see the kind of discussions between them. Right now, this is all just in memory on the server. Like, right when this is over, I'm gonna start putting a Redis backend in for it as well, and continue on there.
+
+53
+00:56:24.668 --> 00:56:35.147
+Incoming livestream: But then that also leads to the question, what if I want to debug something on a server that doesn't have, like, cloud code or LLM on it? So I have also put together a remote agent
+
+54
+00:56:38.218 --> 00:56:52.668
+Incoming livestream: that can run on, like, say, one of my Proxmox LXC containers that have half a gig of RAM. So you can run it, right now I just set it up with OAuth, because that's the authentication I use for all agents.
+
+55
+00:56:53.418 --> 00:56:55.548
+Incoming livestream: Because it's set up and it works.
+
+56
+00:56:58.138 --> 00:57:03.718
+Incoming livestream: And then it will also just go to a chatroom window and pull and wait for commands.
+
+57
+00:57:03.718 --> 00:57:24.108
+Incoming livestream: So this is pretty much, for me, it's a good debugging tool. Other people might see it as a, implant. It, it, again, very insecure, don't use this right now, at least. But one of my goals is to see how I can transfer capabilities from the agent to Linux permissions, or do some sort of,
+
+58
+00:57:24.108 --> 00:57:42.068
+Incoming livestream: permissions bounding, put it up in, like, a restricted user, and go from there. And similarly, you can see, like, the LLM is debugging, it's sending commands, you can see what's getting sent here, and we're also keeping these logs on the MCP relay on the…
+
+59
+00:57:42.868 --> 00:57:44.727
+Incoming livestream: soon-to-be Redis server.
+
+60
+00:57:45.878 --> 00:57:47.378
+Incoming livestream: Let's see, I run one.
+
+61
+00:57:47.948 --> 00:57:50.887
+Incoming livestream: Yeah, so you can see the commands and everything being sent there.
+
+62
+00:57:54.498 --> 00:58:09.187
+Incoming livestream: So just some videos in case that didn't work, but thankfully, it did. So yeah, one of the issues I ran into with memory is that, I knew, obviously, for different, like, clients or different users, you want to isolate memory, but for when I was just creating agents for myself, I was like.
+
+63
+00:58:09.278 --> 00:58:13.737
+Incoming livestream: you know, just create a Postgres table, throw memories in there, and
+
+64
+00:58:13.738 --> 00:58:36.788
+Incoming livestream: it should work. Which, it does work, they do remember stuff. But I ran into a lot of, kind of, annoying functionality issues, like, the one that kind of really led to me fixing it was this first one, where I'd ask my task manager to break down tasks for me, and it would take, I also threw together a business agent that was just like, look through my GitHub, see how I can make money, and I was like.
+
+65
+00:58:36.788 --> 00:58:47.187
+Incoming livestream: telling that to optimize, try to get $1,000 a month, see what you can do. So then every time I'd ask my task manager to break stuff down, it would mention us optimizing for this $1,000 a month goal, which was…
+
+66
+00:58:47.268 --> 00:58:59.548
+Incoming livestream: very frustrating to me, because that was kind of just a side, kind of for fun, let's see what happens thing. And after a bunch of these leakages between different, agents and, you know, other agents' memories.
+
+67
+00:58:59.788 --> 00:59:03.947
+Incoming livestream: It did really lead me to kind of trying to set up a better memory isolation system.
+
+68
+00:59:04.728 --> 00:59:23.227
+Incoming livestream: So that way, each agent could have its own identity, and that identity would be mapped to a, kind of, memory namespace. So currently, identity is only pretty much set up by the… like, each, agent is just a Python subclass of my agent framework, agent class.
+
+69
+00:59:23.398 --> 00:59:35.907
+Incoming livestream: So they take that class name, and then that… when they set up their local MCP server, that class name gets sent to the MCP server and is, just translated into the namespace here. So that way, LLMs have no…
+
+70
+00:59:35.908 --> 00:59:50.877
+Incoming livestream: control over what their namespace key is, they can't, you know, try to decide they're somebody else, get memories. So that is kind of the identity setup I have. It's definitely pretty simple, and probably needs expanding fairly soon, but it has been working pretty well, off the bat.
+
+71
+00:59:51.988 --> 00:59:56.488
+Incoming livestream: So yeah, I have a quick, demo for that as well.
+
+72
+00:59:59.988 --> 01:00:00.718
+Incoming livestream: Bye.
+
+73
+01:00:01.388 --> 01:00:09.747
+Incoming livestream: So pretty much, we'll show you how you can, like, save a memory. So here we have… I just have a kind of a test memory script, which will save… oh yeah, here's the kind of memory format.
+
+74
+01:00:10.618 --> 01:00:18.477
+Incoming livestream: Right here. So you see there's a key, we have a value, you can categorize it, put importance, etc.
+
+75
+01:00:19.958 --> 01:00:21.058
+Incoming livestream: And,
+
+76
+01:00:21.498 --> 01:00:27.388
+Incoming livestream: Go through and see if it can find its own memory, and then we'll see that another agent cannot find this memory.
+
+77
+01:00:27.548 --> 01:00:38.948
+Incoming livestream: But, like, another issue I ran into at the beginning was I was injecting all the memories, which, can be helpful, but you start filling up your contacts really fast, and a lot of times, agents don't need to know everything that they've remembered.
+
+78
+01:00:39.528 --> 01:00:57.047
+Incoming livestream: So I did go through and set it up so that way only the important memories, I think, like, importance data above, gets, auto-injected. They also have search memory functions, so they can go and search for anything specific. So you can see, like, it can find it. You have some, you know, agentic response, it wants to throw emojis in there.
+
+79
+01:00:57.298 --> 01:01:08.058
+Incoming livestream: And then the security agent will go look for it, and it won't… shouldn't find anything. And actually, it's getting caught by my, LLM firewall there, which is also another issue that I'll…
+
+80
+01:01:08.468 --> 01:01:09.948
+Incoming livestream: Talk about in just a second.
+
+81
+01:01:11.198 --> 01:01:28.347
+Incoming livestream: So, as you can see there, the memory called got, blocked, which was not what I intended, and it's still, you know, prompt injection detection, not plug-and-play, still needs more tuning, and it was just kind of, I wanted to put in some prompt scanning, see…
+
+82
+01:01:28.628 --> 01:01:47.098
+Incoming livestream: you know, add some security to this as I went. But, like, the most annoying thing here is I'd have, like, this last one included a server time field in every API response. That was an actual task I wanted to do, so I was like, go create this task for me so I remember to do it. And then, like, two weeks later, I was checking through the LLM firewall logs, and I saw that was blocked.
+
+83
+01:01:47.098 --> 01:01:51.028
+Incoming livestream: Along with, like, a couple dozen other tasks, so then, all of a sudden, I'm missing out on this stuff.
+
+84
+01:01:51.448 --> 01:02:01.628
+Incoming livestream: So, out-of-the-box configuration, way too aggressive, had to go tune that down, and still trying to figure out what kind of customizations I want, like, obviously, security research.
+
+85
+01:02:01.628 --> 01:02:11.537
+Incoming livestream: Queries are gonna have more stuff, so that needs to be very insensitive, if it's there at all, and then kind of figure out where the accepted risk tolerance is for each sum.
+
+86
+01:02:11.538 --> 01:02:25.207
+Incoming livestream: setting there. Another thing that I at least think is pretty cool is I have a kind of a context-aware trimming, thing set up. This is mainly for log analysis, because the problem it solves is
+
+87
+01:02:25.288 --> 01:02:42.157
+Incoming livestream: if I have an LLM that is going through, say, security logs in this example, its context is gonna get filled up, it's gonna, trim the context, start throwing stuff away, but I don't want, like, an attacker to be able to just send an attack every 200,000 tokens, and then I only see, you know, one at a time.
+
+88
+01:02:42.368 --> 01:03:01.498
+Incoming livestream: So I've set up a way so I can, tag, different messages as different things, so that way, I can say, this is a security, like, in this case, the SSRF, server-side request forgery was blocked, permission to die, those are important security events. Let's make sure whenever the context is trimmed, we keep these around and,
+
+89
+01:03:01.978 --> 01:03:25.607
+Incoming livestream: use them for our security analysis there. So this is definitely still not, you know, 100% perfect, and as the logs increase, contacts get longer, I'm running these agents for longer times, the context can still fill up, so it's just figuring out, how to adjust that as we go is another fun challenge.
+
+90
+01:03:25.878 --> 01:03:32.118
+Incoming livestream: So I can show, kind of, yeah, how that works. It's pretty much what happens is, just with the…
+
+91
+01:03:32.798 --> 01:03:34.248
+Incoming livestream: With the,
+
+92
+01:03:35.478 --> 01:03:52.448
+Incoming livestream: the logs that come back, they get tagged with different security events. So you can see we have, like, some metadata set for, like, server-side requests forgery blocked, or permission denied. And then I'll go trim the messages, and, you know, we make sure we keep the security relevant ones there.
+
+93
+01:03:54.248 --> 01:03:55.448
+Incoming livestream: And there's that.
+
+94
+01:03:55.698 --> 01:03:57.478
+Incoming livestream: Summer reporting.
+
+95
+01:03:57.478 --> 01:04:21.287
+Incoming livestream: So, of course, observability is key. It's, very hard to do, or very hard to do thoroughly enough, but, like, right when I started up, cost tracking, I did see I was wasting tons of tokens on both, injecting all the memories all at once, which they didn't need, and was actually, hurting functionality as well. I had, like, the coding agents always try to run all the review agents all the time, because it,
+
+96
+01:04:21.288 --> 01:04:46.088
+Incoming livestream: when I was coding that, that's what the LLM thought would be helpful, which was also, like, every time you run those 5 review agents, it's like 250K tokens, so I was just running that way more often than I needed to. Right now, I have LingFuse traces, that are super helpful to kind of see which agents are doing what. I've accidentally, used Opus, where I meant to use Sonnet, in several places, and LingFuse helps kind of debug where that is.
+
+97
+01:04:46.088 --> 01:05:06.058
+Incoming livestream: Rafana dashboards for cost, daily breakdown, making sure that you do have a security audit trail, and… because a lot of this… a lot of, my agent automations are running, like, 24-7, or, at least prawn jobs every hour or two, and, I do want to know, like.
+
+98
+01:05:06.058 --> 01:05:11.367
+Incoming livestream: If I wake up and I have an extra $100 bill, why did that happen? How can I trace that down?
+
+99
+01:05:11.368 --> 01:05:27.198
+Incoming livestream: So yeah, a lot of, lessons learned. So, thankfully, being a security practitioner, I did, put a lot of security stuff in place for early on, like permission systems, tool allow lists. That was kind of, I know this is important, let's go see what I can do with it.
+
+100
+01:05:27.288 --> 01:05:29.418
+Incoming livestream: And…
+
+101
+01:05:29.418 --> 01:05:51.318
+Incoming livestream: that's, like, a great example of how improved security also improves actual functionality. Because with, like, 73MCP tools, if we're injecting that into every LLM, they're gonna have so much… both context is wasted, and they're gonna have so much extra information that's just not gonna be helpful for whatever their mission is. And then also, yeah, just making sure agents are scoped down as much as possible.
+
+102
+01:05:51.328 --> 01:05:53.588
+Incoming livestream: So that way, they do have…
+
+103
+01:05:53.628 --> 01:06:05.998
+Incoming livestream: kind of distinct things they're trying to do. You can limit, you know, MCP tools a bit more, you can kind of limit all the additional contexts that might lead them different directions, and kind of keep them focused, just like you'd want to keep a human focused.
+
+104
+01:06:06.028 --> 01:06:25.937
+Incoming livestream: And, yeah, just natural chest boundaries, context square trimming, etc. And then, a lot of things I should have done differently, cost tracking, you know, tune some of this stuff before I'm deploying. Since it is just my home lab, I just push stuff out. If I break it, then I go fix it. And then, also, just, yeah, delegation chains is something I still need to work on.
+
+105
+01:06:25.938 --> 01:06:28.878
+Incoming livestream: identity-type stuff, I'm…
+
+106
+01:06:28.908 --> 01:06:43.728
+Incoming livestream: I'm sure, like, the SANS talk later will help with that, but trying to go figure out the best way to do that and pass the same identity everywhere we can. So that's pretty much what I have. Feel free to reach out to me, LinkedIn, send me an email. I have a…
+
+107
+01:06:43.828 --> 01:06:51.267
+Incoming livestream: whatever those PowerPoint cards were called. But yeah. And, there's… the code's all on GitHub, but if you want to just go look at it.
+
+108
+01:06:58.628 --> 01:07:10.858
+Incoming livestream: I will definitely look at your code. Are you looking for, sort of, pull requests, changes, or just… this is just your project? Yeah, this is just kind of the project I've been enjoying doing, so it's kind of like…
+
+109
+01:07:10.898 --> 01:07:24.867
+Incoming livestream: I know… I enjoy having no pressure to get stuff done, and I, you know, if I break it, then I'm only affecting myself. So it's just kind of my personal project that, if you want to go see it, you can see it. Cool. Other questions?
+
+110
+01:07:31.458 --> 01:07:51.648
+Incoming livestream: Thanks for sharing that, that was great. I was curious, you mentioned the, the ever-expanding MCP server. Is it… you just have one that you're putting all the tools in, and that's your single boundary? Is that how you've designed it? Yeah, so that's just the local MCP server, so each time an agent runs, it'll spawn its own kind of local, standard I.O. server.
+
+111
+01:07:51.648 --> 01:07:54.488
+Incoming livestream: And that's just how I can define, like,
+
+112
+01:07:55.238 --> 01:08:14.588
+Incoming livestream: here's, you know, for example, for the, like, markdown file read-write, I can say, here's the directory that it's allowed to go, here are the file types that it's allowed to do, and then when it calls to try to make a, like, create a file on my file system, the MCP server will make sure those restrictions are put in place, and that's just kind of the locally running, kind of.
+
+113
+01:08:14.637 --> 01:08:17.158
+Incoming livestream: MCP sidecar, more or less, that…
+
+114
+01:08:17.218 --> 01:08:31.218
+Incoming livestream: that is scoped down to only which MCP functions the agent is allowed to use, but also lets me build in restrictions as each MCP call is done, so that way it's not just, like, clawed code with…
+
+115
+01:08:31.538 --> 01:08:32.847
+Incoming livestream: Access to everything.
+
+116
+01:08:35.498 --> 01:08:38.988
+Incoming livestream: All right. Oh, alright, one follow-up.
+
+117
+01:08:39.098 --> 01:08:57.367
+Incoming livestream: That's really interesting. You mentioned Sidecar, I mean, another way I've seen is to do this outside the bounds of the context window, through, you know, Envoy and OPA, where you can put the boundaries, so you're not consuming context through the bloated MCP. Yeah. Have you thought about that, or tried that? I don't know if that would… Yeah, so right now.
+
+118
+01:08:57.518 --> 01:09:16.698
+Incoming livestream: Infrastructure-wise, this is still fairly immature. I run a lot of these agents just on my, like, personal desktop, is kind of where they're running now. I have a web server that hosts, like, my external MTP servers. I'm gradually, right now, actually working to move that to the, like, a K3 setup, so working on just setting up containers I can actually run agents in, and then I could throw in some,
+
+119
+01:09:16.698 --> 01:09:20.007
+Incoming livestream: like, service mesh-type controls as well, and see what I can do there.
+
+120
+01:09:22.248 --> 01:09:22.988
+Incoming livestream: Right?
+
+121
+01:09:23.918 --> 01:09:25.888
+Incoming livestream: Thanks very much.

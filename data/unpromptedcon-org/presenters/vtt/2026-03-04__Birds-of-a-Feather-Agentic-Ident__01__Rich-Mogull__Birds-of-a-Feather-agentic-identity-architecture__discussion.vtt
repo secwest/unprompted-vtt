@@ -1,0 +1,641 @@
+WEBVTT
+
+1
+00:00:02.513 --> 00:00:03.533
+Rich Mogull: Alright.
+
+2
+00:00:03.783 --> 00:00:04.793
+Rich Mogull: We're live!
+
+3
+00:00:05.013 --> 00:00:13.643
+Rich Mogull: Fantastic. So, here's one thing that I'm sure you all know and feel. We never quite solve for identity.
+
+4
+00:00:13.643 --> 00:00:29.033
+Rich Mogull: Even on the workforce identity side, then we brought non-human identity into the picture, that got even tougher, but now we're looking at agentic identity, which is only going to exponentially increase the amount of folks that we're having to track with.
+
+5
+00:00:29.153 --> 00:00:48.292
+Rich Mogull: I would say, from my perspective, I've seen different numbers, but if you think about it from just the human perspective, there's, what, 8 billion or so people on the planet, and so if there are going to be 80 billion agents on the internet, which there are probably going to be more, think about that from a scale perspective.
+
+6
+00:00:48.373 --> 00:00:55.843
+Rich Mogull: And so, one of the things that I do is I work with SANS, and so my job is to basically do things like research.
+
+7
+00:00:55.843 --> 00:01:18.383
+Rich Mogull: I go around speaking to enterprises and government agencies to understand their big problems, what are they doing from a strategy perspective. So one of the things we're going to do today is we're going to go through a couple things that I've seen over the last 6 months or so, but then we're going to have a conversation, because there are people in this room that some of this research is based off of.
+
+8
+00:01:18.383 --> 00:01:23.792
+Rich Mogull: So, I kind of stand on the shoulders of giants, so to speak. And so, let's get right to it.
+
+9
+00:01:24.323 --> 00:01:49.163
+Rich Mogull: are three sort of ways that right now, I see, agentic identity. There is the directory base, right? I'm sure you've all heard about Microsoft came out with their, Entra for, agents, ID. That's in preview right now, so not a lot of folks have had, tactile experience with it, but I'm really curious to see how all
+
+10
+00:01:49.163 --> 00:02:00.083
+Rich Mogull: that unfolds. Number two is, workload native, right? So, do we, have any spiffies fire fans in the room? Raise your hand. Yeah, quite a few folks, right? It's fantastic.
+
+11
+00:02:00.083 --> 00:02:14.992
+Rich Mogull: And, even more forward-looking, and some of the folks in this room actually proposed this as an idea, but more of a sovereign identity approach to it, looking at using the blockchain in order to keep track of digital identity.
+
+12
+00:02:15.613 --> 00:02:19.533
+Rich Mogull: So, the directory base, right? You…
+
+13
+00:02:19.543 --> 00:02:42.902
+Rich Mogull: your classic OAuth, you think about things like, like the Microsoft perspective, you think about it from an Okta perspective. This is really good for those monolithic, sort of internal organizations that are solely within one ecosystem, right? If you're a complete Microsoft shop, I'm sure it's going to be really easy to leverage something like ENTRE ID for agents.
+
+14
+00:02:42.903 --> 00:02:48.432
+Rich Mogull: I think the problem becomes when you start to scan, out,
+
+15
+00:02:48.433 --> 00:02:54.702
+Rich Mogull: out of that organization, across different, types of workloads, different environments.
+
+16
+00:02:55.123 --> 00:03:11.872
+Rich Mogull: when you get down to it, some of the strengths, right? Centralized, audible, and it's mature, right? And the best thing about the thing with Microsoft is, I hear it's free, no matter what the license agreement is, so that's really good. I'm not going to go through all this, because I definitely want to get you into the conversations.
+
+17
+00:03:11.873 --> 00:03:26.533
+Rich Mogull: One of my favorites right now is Sniffy Inspire, right? For those of you that aren't familiar, right, it's your classic, X509, standard, and what it does is it's really keeping track of the workload. So we use it from a cloud perspective, but you can also.
+
+18
+00:03:26.533 --> 00:03:29.542
+Dragos Ruiu: something I'm giving up. That's correct, but there it is.
+
+19
+00:03:29.543 --> 00:03:33.852
+Rich Mogull: So, when you think about, leveraging something like a SPFI.
+
+20
+00:03:33.853 --> 00:03:34.763
+Dragos Ruiu: Give me the third person.
+
+21
+00:03:34.763 --> 00:03:42.373
+Rich Mogull: It's, from an attestation standpoint, right, it's going to be able to run in the right environment, so you're thinking about it from a runtime perspective.
+
+22
+00:03:42.373 --> 00:03:44.072
+Dragos Ruiu: When you get into something like that?
+
+23
+00:03:44.073 --> 00:03:53.123
+Rich Mogull: You're figuring out authorization, use something like OPA, Cedar, and keep track of that stuff, and then we'll get down to Sovereign identity.
+
+24
+00:03:53.123 --> 00:03:53.553
+Dragos Ruiu: I agree.
+
+25
+00:03:53.553 --> 00:04:02.822
+Rich Mogull: So, Ken Wong, Chris Hughes, John, who's here in the room, they really spoke about this idea, I think, last summer, around leveraging,
+
+26
+00:04:02.823 --> 00:04:03.673
+Dragos Ruiu: logistics.
+
+27
+00:04:03.673 --> 00:04:22.253
+Rich Mogull: in order to keep track of agents. The thing with this is, I mean, it's going… it's global, right? So you can even have this agent-to-agent ecosystem where agents from different organizations, different subgroups within your organization, be able to communicate and transact in a way that makes sense.
+
+28
+00:04:22.253 --> 00:04:23.703
+Dragos Ruiu: Wilson talking about it.
+
+29
+00:04:23.833 --> 00:04:31.452
+Rich Mogull: So, with that, I mean, this is sort of the architectural comparison. So, I mean, I'd love to hear from you all. What are you seeing.
+
+30
+00:04:31.453 --> 00:04:32.123
+Dragos Ruiu: He says it's easy.
+
+31
+00:04:32.123 --> 00:04:36.023
+Rich Mogull: the industry right now, are there things that you've been able to try?
+
+32
+00:04:36.023 --> 00:04:39.152
+Dragos Ruiu: Use during training, and not just.
+
+33
+00:04:39.153 --> 00:04:39.502
+Rich Mogull: I mean…
+
+34
+00:04:39.503 --> 00:04:41.992
+Dragos Ruiu: You know, stuck into the, the query.
+
+35
+00:04:42.813 --> 00:04:44.182
+Dragos Ruiu: Dan, what's up?
+
+36
+00:04:44.353 --> 00:04:45.723
+Dragos Ruiu: Yeah, I was just curious.
+
+37
+00:04:45.723 --> 00:04:50.082
+Rich Mogull: I haven't actually tried it myself, but I'm wondering their thoughts on…
+
+38
+00:04:50.083 --> 00:04:53.492
+Dragos Ruiu: just in time.
+
+39
+00:04:53.493 --> 00:04:54.252
+Rich Mogull: You know, as we talked.
+
+40
+00:04:54.253 --> 00:04:56.313
+Dragos Ruiu: the Indian birds, like, lockdown, or…
+
+41
+00:04:56.313 --> 00:04:58.952
+Rich Mogull: Right now, can't be bad.
+
+42
+00:04:58.953 --> 00:05:23.822
+Rich Mogull: But this idealized user state is workload says, I need these policies, we have an AI statement that says, okay, you need this, I will give it to you, or I will not grant it, then you can have it shortlist from a policy perspective, never mind just the credential perspective. Yeah, so, for the folks that are on the, on Zoom, what he asked is about, just-in-time perspective. Like, what are my thoughts? So, I have a couple thoughts around that. So, what's really
+
+43
+00:05:23.823 --> 00:05:47.822
+Rich Mogull: What's really good about the Spiffy Inspire is that is exactly what it is. So you're not having to deal with, standing credentials, like long-term credentials. So whenever you spin that agent up, it gets a Spiffy ID, which lasts for up to 60 minutes, and so you don't have that replay issue that you tend to have with long-standing credentials. But the thing is, I see a world in which you have
+
+44
+00:05:47.823 --> 00:06:00.313
+Rich Mogull: two types of identities for agents, right? You can have an agentic identity that's more long-term horizon, like an agent that maybe you built internally that's going to continue to operate, and you just have different people, leverage it.
+
+45
+00:06:00.313 --> 00:06:09.443
+Rich Mogull: But then you're gonna have, like, these sub-agents, or agents for that short-term task. And so, something like a Spiffy Inspire is perfect for that use case.
+
+46
+00:06:09.803 --> 00:06:33.523
+Rich Mogull: So on the just-in-time side, something like that would be fantastic. I don't know how they're going to do it on the Microsoft side. I think that's where things are… remain to be seen. But also, the thing that I didn't mention yet is that also that delegation piece, right? So whenever you have a user that's going to delegate to a agent, hey, I need to do X, Y, and Z,
+
+47
+00:06:33.523 --> 00:06:35.083
+Rich Mogull: And then, folks!
+
+48
+00:06:35.083 --> 00:06:53.213
+Rich Mogull: Believe it or not, the first thing they think to do is just to give their credentials to the agent, right? Oh, that makes it so easy. I heard someone say not too long ago that the opposite of security isn't insecurity, it's convenience, right? Because it's a lot easier to go through my door if it's already open.
+
+49
+00:06:53.212 --> 00:07:18.193
+Rich Mogull: But from a just-in-time perspective, I think that we're going to honestly see a hybrid of all three of those approaches over time, so you can have that long-standing identity, but then you'll be able to have that short cryptographic, short fuse, identity for shorter things for just-in-time access. Yeah. What you're describing, though, it seems like you still have to model principles involved, so is it…
+
+50
+00:07:18.193 --> 00:07:28.893
+Rich Mogull: agent acting on behalf of a human user, and you need to be able to map that. Correct. So, because of that, it seems beneficial for them to use the same system. Yeah.
+
+51
+00:07:29.023 --> 00:07:30.642
+Rich Mogull: So, yeah, thank you.
+
+52
+00:07:31.163 --> 00:07:55.032
+Rich Mogull: Could you repeat the question? Oh, yeah, I'll repeat it. So, what he was saying is that it seems that, there should be some type of matching between humans, the way that humans get their identities, and then the agents themselves. So, on the Microsoft side, that's exactly how they architected it. So, they architected it in a way where it communicates with ServiceNow, it also works with Workday, so you're actually onboarding, like, a digital
+
+53
+00:07:55.043 --> 00:07:59.343
+Rich Mogull: Identity, a digital employee into your system.
+
+54
+00:07:59.343 --> 00:08:17.002
+Rich Mogull: But I can see a couple ways in which that could be cumbersome. Let's say you're a large organization, right? Maybe you're, like, on Netflix, right? I used to work for Netflix, super high scale. Something like that, model might break at scale, right? Because now you're managing all of these agents over time.
+
+55
+00:08:17.043 --> 00:08:32.202
+Rich Mogull: I could be completely wrong in that, and maybe they've already solved for that problem, but I would say that there is some benefit to being able to map all of your identities back to one single source, but from a scale perspective, I just don't know how that's going to play out.
+
+56
+00:08:32.433 --> 00:08:39.043
+Rich Mogull: I mean, I'd be curious, has anyone been working on identities here for agents? Like, what has been your experience?
+
+57
+00:08:39.743 --> 00:08:51.983
+Rich Mogull: Just starting. The problem I've been running into with the models that assume a human's, source origin, a human origin, is so many of the environments that I'm thinking about
+
+58
+00:08:51.983 --> 00:09:14.833
+Rich Mogull: don't have humans as the origin for activity, they have services that are running independently, and so what you have to do is instantiate the service identity, give service authentication, and then you get the approval to be able to spot agents to spot permissions. Yeah, I was going to make that point as well. This is an area that we've been working on at least 10 years on the API side, so it's a continuation of that.
+
+59
+00:09:14.833 --> 00:09:39.212
+Rich Mogull: And from our perspective, it really is just, Chris, coming into a point where a tech debt is really, like… I mean, there have been a lot of organizations that, have kind of, like, well, we've got NHI, we've got, we've got human identities, now you have an NHI that is going to behave very much like a human identity.
+
+60
+00:09:39.523 --> 00:09:52.213
+Rich Mogull: And that's where… that's where the… where some of the debt that I… at least I see. So, for everybody on, the horn, what we're talking about in the room is that we're running into, like, a serious tech debt issue.
+
+61
+00:09:52.213 --> 00:10:15.983
+Rich Mogull: And this is one of the things that's been in my soapbox. So, I actually had two talks that I proposed. One of them was this, calm before the storm, but honestly, who here was, listening to Nicholas yesterday at the end of yesterday? I mean, incredible presentation, and exactly what I've been talking about for a long time. And so, I believe that in this world of autonomous attacks.
+
+62
+00:10:15.983 --> 00:10:18.762
+Rich Mogull: That, number one, we have to get our houses in Oregon.
+
+63
+00:10:18.763 --> 00:10:37.002
+Rich Mogull: We have to understand, number one, what our assets are, right? Asset management. How long has that been a problem that we've been trying to solve? Understanding what our identities are, right? We got human, we got non-human identities, we got agents, right? It's only getting more complicated, but now we have an adversary that's able to leverage
+
+64
+00:10:37.003 --> 00:11:01.992
+Rich Mogull: artificial intelligence, just like we can, so they're able to scale, they're able to go faster, they're going to be looking for holes. Now, I want you to imagine a reality where there are thousands, if not tens of thousands of agents that are either operating for a nation state, or they are agents that people can rent, right? You could be probably a 12-year-old kid in a basement and rent an agent, and then say, I want you to…
+
+65
+00:11:01.993 --> 00:11:03.513
+Rich Mogull: Look for targets.
+
+66
+00:11:03.513 --> 00:11:20.373
+Rich Mogull: that have this specific criteria, and it's going to start to look for those types of vulnerabilities, right? We've seen a lot of this research already. And so, when you think about getting our house in order, the first things I think about are things like identity, asset management, telemetry.
+
+67
+00:11:20.373 --> 00:11:37.343
+Rich Mogull: But if we are adding to the confusion by not architecting our agentic systems in the right way, we're only adding to our own confusion, we're adding to our own complexity. And so, this is the stuff that we start… have to start to get right now. You gonna say something, Toby? Yeah, I think you're,
+
+68
+00:11:38.123 --> 00:11:42.953
+Rich Mogull: And this is just speculating. I think your numbers for, agents are probably off
+
+69
+00:11:42.953 --> 00:12:00.683
+Rich Mogull: by a couple orders of magnitude, and I think probably that's a per day activity, so we're going to be expecting things like tens of thousands, hundreds of thousands of agents, instantiated on a per-day basis, and then disappearing within the next day, which goes to the other side of the problem. I think that asset management kind of…
+
+70
+00:12:00.683 --> 00:12:13.623
+Rich Mogull: Most companies are failing in asset management because of the dynamic nature of servers in the cloud. Correct. You can't keep track of a server that's going to be there for 6 hours. It was very, very careful with the volume for that. Yep. Most companies haven't.
+
+71
+00:12:13.623 --> 00:12:22.962
+Rich Mogull: If we go to a model where we now have tens of thousands of agents, hundreds of thousands of agents that are being satiated and then disappeared, you've got…
+
+72
+00:12:22.973 --> 00:12:31.293
+Rich Mogull: Any possible or not possible, and exceedingly challenging to design the criteria to be… for that, asset management problem.
+
+73
+00:12:31.293 --> 00:12:56.162
+Rich Mogull: Yeah. So, real quick, everybody in the room, he's talking about that I downplayed the potential number of agents, which, yes, I did, because I don't want to sit here and say millions and millions, because that's probably closer to the truth, but sounds a little bit, sensational. But, yeah, what were you going to say? I was just gonna say that, you know, that represents a real tension, because also the other side, whether you have any sort of dynamic, you know, instantiated agents for hours, or, you know.
+
+74
+00:12:56.163 --> 00:13:20.972
+Rich Mogull: very short term, but at the same time, we need to get somebody's privilege. You need to really scope down permissions. You just can't give it, you know, full admin on everything. So, you need some sort of, like, some aspect of identity that isn't long-lived. You need to find a role, you need to find a purpose so that you can scope out permissions for everything. And so, you know, maybe you're instantiating within a shell of another identity, or some sort of long-lived thing that lasts, but you don't have no standing permissions, and you're
+
+75
+00:13:20.973 --> 00:13:30.203
+Rich Mogull: and running it up and running it down, but there's something that lasts. Right. So, the way we have been thinking about that, the conversation, I just…
+
+76
+00:13:30.203 --> 00:13:36.153
+Rich Mogull: Don't… in our company, is each agent having their own identity? And, like, he makes them…
+
+77
+00:13:36.353 --> 00:13:50.983
+Rich Mogull: the end user's identity sort of, like, supersedes, everything. Yeah. So, essentially, let's say it's Bob, and then there are maybe two agents, or whatever agents. Right. They have their own, but, like, the Bob's identity basically supersedes
+
+78
+00:13:51.003 --> 00:14:06.803
+Rich Mogull: everything else. So, that's how we are thinking about it, so I don't know if we are… so we try that, effectively, which is the idea of a composite identity, where you have subservient machine identities, or primary component identities. Where we saw it really fall apart is when
+
+79
+00:14:06.803 --> 00:14:20.432
+Rich Mogull: agents have to collaborate, or you're working as a team. Yeah. Your agent's not being able to work with teams. I've also found problems with Spiffy and Spire, and, like, that at scale, and how that doesn't translate as well, so… Right. My, my, my positive definitely…
+
+80
+00:14:20.623 --> 00:14:39.142
+Rich Mogull: have really fixated on human concepts of identity and the way where it comes to the problem now. Right. We focus so much on the who. The what and the how are going to be far more important than a governance standpoint, as we go into more of an agentic kind of preamble. Yeah, so I'd be curious, what's gonna become a subclass of what kind?
+
+81
+00:14:39.213 --> 00:14:43.693
+Rich Mogull: And so it's going to be, you know, who has bought A today?
+
+82
+00:14:43.863 --> 00:15:03.803
+Rich Mogull: You're sort of like a key-value pair of some GUI, right? Then that's the identity that's for SLS around the environment. So it sounds like you've already done some experimentation with SPFI. So where are you at now in terms of… From Smithy and Inspire at scale.
+
+83
+00:15:03.803 --> 00:15:21.522
+Rich Mogull: Yeah. But that never translated over to the enterprise side very well. In very contained, sort of machine-centric cloud platforms, works fantastic, and that's what I recommend everyone do. Right. Then try and figure out how to do that across the board.
+
+84
+00:15:21.583 --> 00:15:26.193
+Rich Mogull: Yeah. Kind of do that. Trying to do that across different, or, like.
+
+85
+00:15:26.193 --> 00:15:44.053
+Rich Mogull: modalities of operating, and different finance moves, different tech stacks, it becomes very, very difficult for that to really transmit identity in a way that makes sense. Yeah. Similarly, even for composite identity, those things fall apart. It works right now. Right. It's not going to work a year. At scale, yeah, it's not going to. I mean, especially when you get into a world in which
+
+86
+00:15:44.053 --> 00:15:50.692
+Rich Mogull: You have people that are leveraging the same agent for doing different tasks, so then you start to run into all sorts of
+
+87
+00:15:50.893 --> 00:16:00.683
+Rich Mogull: logical issues, especially if you're doing something like incident response, you're trying to figure out who did what, where, when, and why. I mean, that's one of the things. Is John in here still?
+
+88
+00:16:02.503 --> 00:16:08.123
+Rich Mogull: Hey, John, do you want to touch on some of the blockchain stuff that you guys talked about?
+
+89
+00:16:08.633 --> 00:16:10.242
+Rich Mogull: Family times, great.
+
+90
+00:16:10.503 --> 00:16:13.742
+Rich Mogull: And I will see if I'll get examples, we've got some TED activities.
+
+91
+00:16:14.093 --> 00:16:33.122
+Rich Mogull: That sounds about right. Yeah. Yeah.
+
+92
+00:16:33.543 --> 00:16:47.432
+Rich Mogull: Obviously, it's severe, but now we actually have
+
+93
+00:16:47.673 --> 00:17:03.563
+Rich Mogull: We have a way to find out if there is a million…
+
+94
+00:17:03.713 --> 00:17:13.783
+Rich Mogull: Yeah, so for everybody, real quick, everybody online, so, John from CSA is in here. They did a report last summer around leveraging
+
+95
+00:17:13.783 --> 00:17:38.422
+Rich Mogull: blockchain for, cryptographic identity, and so he's just talking about the ephemeral nature. And, actually, Sunil Yu, you know, he has his new triad, the distributed immutable ephemeral, triad for this new world, which I think makes a lot of sense for agentic identity. But I think the problem is, how do you actually do it? Is anyone even
+
+96
+00:17:38.423 --> 00:17:43.052
+Rich Mogull: Looking at leveraging blockchain in their environment for Asianthic identity?
+
+97
+00:17:43.303 --> 00:17:44.902
+Rich Mogull: Has anyone even tried it?
+
+98
+00:17:45.523 --> 00:17:52.443
+Rich Mogull: Yeah, there aren't a lot of folks that have tried it yet. I think it's still very, very experimental.
+
+99
+00:17:52.443 --> 00:18:02.452
+Rich Mogull: different perspective part of this. So, the way up to thinking about this is, one, we're two different domains. So, the user domain, user-based database.
+
+100
+00:18:02.453 --> 00:18:19.433
+Rich Mogull: is going to be different than the autonomous agents within the enterprise. Where we have transit and trust relationships, which is different than a multi-party agent if you're dealing with between organizations. So that's, like, the…
+
+101
+00:18:19.543 --> 00:18:33.612
+Rich Mogull: I've been trying to learn lessons from some systems that we've seen for some of these transitive trust issues. I think we can handle pretty well, so if you're familiar with the internals of how, like, AWS IAM works, in terms of rules, but service roles in particular.
+
+102
+00:18:33.793 --> 00:18:36.743
+Rich Mogull: And so, like, you've got, like, automation.
+
+103
+00:18:36.833 --> 00:18:55.942
+Rich Mogull: automation products, it never exceeds the privileges given to the user, and that's managed through, you know, those traffic IAM policies are bundled together. And in recent years, they've been talking about that more. Most of those talks have to be public, they have to be inversing, because they're like Chalk Talks. But…
+
+104
+00:18:55.983 --> 00:18:59.013
+Rich Mogull: Again, P. Bolton,
+
+105
+00:18:59.393 --> 00:19:18.393
+Rich Mogull: I might go ahead and the other person you have this with me talking about, but it's really cool, because when you make those requests, it's basically how the signing mechanisms work. So it's not a blockchain approach, but it is a cryptographic enforcement of those policies, that works in these distributed environments and handles those preventable issues.
+
+106
+00:19:18.393 --> 00:19:28.163
+Rich Mogull: You combine that with your observability model, which honestly, to some degree, has to be a separate layer, because there's no way we're going to give, like, one observability for all of these identities.
+
+107
+00:19:28.393 --> 00:19:40.112
+Rich Mogull: How do I translate that into something more practical? Well, I'm thinking in terms of, if it's a user with a personalized desktop agent that should create OBO. It worked on behalf of that user.
+
+108
+00:19:40.213 --> 00:20:04.003
+Rich Mogull: all that logging happens basically in the system. Those OPO tokens will log those identities that gives you that visibility, so you're logging in wherever you need it there. The permissions, these privileges are tied to the user directly, so it will never have more privileges than what the user has. If I'm looking within the enterprise systems, that's what I'm thinking about as station-based identity, sort of state Spire comes in, where I can do that, my data center, my cloud.
+
+109
+00:20:04.173 --> 00:20:17.102
+Rich Mogull: side, if it's gonna be cloud side, just gonna apply in to manage identities, or IAM roles, or whatever Google calls their shit, because I don't know how to spell GCP. And, and tie those pieces together. So I think, like, if we…
+
+110
+00:20:17.563 --> 00:20:20.052
+Rich Mogull: Practically speaking, we just have to do this.
+
+111
+00:20:20.213 --> 00:20:21.593
+Rich Mogull: If we're able to…
+
+112
+00:20:21.883 --> 00:20:30.982
+Rich Mogull: break down the domains to the solvable prompts for the environments they're operating in, I think we've got the pieces to pull it off, and we'll see the roadmap, like.
+
+113
+00:20:31.393 --> 00:20:36.563
+Rich Mogull: AWS didn't build that because they thought they were going to be agents. They built that because they had to have synthesis working
+
+114
+00:20:36.573 --> 00:20:45.133
+Rich Mogull: with the privileges of the user, which is a big part of the core problem. And then Spiffy will handle the autonomous agents having their own autonomous ephemeral agents.
+
+115
+00:20:45.133 --> 00:21:07.442
+Rich Mogull: having their own IDP spoke to their own privileges, because they're not operating necessarily on behalf of the user. Anyway, that's one thing. Rich, in your world, does that have separate IDPs when you do with those domains, or is there a shared kind of registration IDP system across that? Any enterprise at scale, I don't think we're going to be able to have 5 IDPs, but I just don't think it works, because if I don't mind, there's not the…
+
+116
+00:21:08.273 --> 00:21:12.063
+Rich Mogull: Hey, Microsoft!
+
+117
+00:21:12.243 --> 00:21:23.473
+Rich Mogull: I mean, the… I just don't think there's gonna… you can't have that unified identity system in distributing enterprises and multiple cloud providers and SaaS providers and desktop operating things.
+
+118
+00:21:23.473 --> 00:21:39.592
+Rich Mogull: Yeah, I don't see one thing that's gonna get all that. You need some sort of correlation, you know, you gotta, you gotta tie it back to, you know, a system of record, you know. Take that.
+
+119
+00:21:39.593 --> 00:21:48.403
+Rich Mogull: Yeah, you're gonna try to, but there's… just practically speaking, we have to do this now, we can't wait until the banks can solve the problem are filled.
+
+120
+00:21:48.673 --> 00:21:52.953
+Rich Mogull: Yeah, I see, like, silos, you know, so…
+
+121
+00:21:53.243 --> 00:21:57.713
+Rich Mogull: recommendations, like, I've been making is, hey, standardize on, like, one break time.
+
+122
+00:21:58.193 --> 00:22:02.872
+Rich Mogull: as best you can. Yeah. And if you have to have multiple environments, like, pick your… your…
+
+123
+00:22:03.013 --> 00:22:14.373
+Rich Mogull: or silos, and eventually, hopefully, we can pull those together. Yeah. But worst case, I can pull those web tree, because I'll go just fucking bycode something to connect in there, and pull all those agent identities out.
+
+124
+00:22:14.373 --> 00:22:25.413
+Rich Mogull: And then we do all… we don't do the logging part of it, because it's not who is doing it, but it should, because eventually… I'm not saying any of the speed bucket, it's all… It is.
+
+125
+00:22:25.413 --> 00:22:26.612
+Rich Mogull: But it's also, like.
+
+126
+00:22:26.643 --> 00:22:44.002
+Rich Mogull: that's mechanics, versus, oh my god, what if I do? Like, how do I get stuck? Yeah, there's a guy back there, hold on, hold on, one second, there's a guy back there that wanted to say something. Go ahead. I cannot talk in the morning, actually, on, like, ability-based optimization.
+
+127
+00:22:44.133 --> 00:23:01.613
+Rich Mogull: Basically, it is hard to keep there, and they also have UFO has key players, and the location comes from the road to do the photography application. The one for this dimension there is that there's going to be two, I can implement to try to also tell you more. One is to…
+
+128
+00:23:01.743 --> 00:23:06.533
+Rich Mogull: the human approvers, right, you have to, to basically,
+
+129
+00:23:07.033 --> 00:23:29.572
+Rich Mogull: buying the real world, the good news many of tools we can talk about. Another one is to make sure that the requirements of the routine, they are taken apart, so no more, specifically chain verification. But a key element here that we are thinking along the lines of actually scoping authorization on the task itself, not necessarily on the edge, because some of the developments we have.
+
+130
+00:23:29.573 --> 00:23:33.492
+Rich Mogull: engineers get multiple missions. So we think it was…
+
+131
+00:23:33.493 --> 00:23:51.482
+Rich Mogull: tying the authorization amount of weight, the warrant. So if an agent is given a task, it's given also a warrant tying across the scope of warrant in 2 that is signed by the warrant, bound to the key there of the worker agency call. It has to be sent it for every two callbacks warranty.
+
+132
+00:23:51.503 --> 00:23:58.753
+Rich Mogull: We, open-source the raster implementation of the We're looking for…
+
+133
+00:23:58.753 --> 00:24:23.742
+Rich Mogull: Right now, some standardization and, like, putting that into different actual enterprise environments, but I'm really hoping to see more people along the same line. Well, and the more thing, you know, how IAM role session policies work? Like, when you assume the role, you can insert a policy that reduces your privileges from the maximum scope of your privileges. That's task-based auth right there. Again, none of that was built for agents, but philosophically, we've seen functional systems
+
+134
+00:24:23.743 --> 00:24:27.782
+Rich Mogull: Operating at hyperscale doing that, so we know it's the most.
+
+135
+00:24:27.783 --> 00:24:39.862
+Rich Mogull: Well, we've seen it function at large scale in terms of traffic perseverance, in terms of escalating privileges beyond the user since they had original privileges, but I've seen that less functionally done.
+
+136
+00:24:39.963 --> 00:24:54.043
+Rich Mogull: Yeah, so you're paying, like, JIT escalations? Yeah, yeah, and specifically, there's going to be, I think, extensive numbers of cases where you exponentially get the fuel running, and that is going to be significantly more privileges than you would ever have had.
+
+137
+00:24:55.083 --> 00:25:08.882
+Rich Mogull: Yeah, the closest I've seen, if you've played with any of the tooling, and basically how that has an approval process, and then you're going down to more of an attestation-based call at that point, where there requests
+
+138
+00:25:08.943 --> 00:25:24.112
+Rich Mogull: what's happening on the back end, at least, because I've built the system that did this at one point, is it basically is assumed a new role that had those higher-level privileges, that's not Azure ThinkCamp, that self works. It'll allow you to assume the new role for a given session.
+
+139
+00:25:24.113 --> 00:25:34.632
+Rich Mogull: to do that escalation, where it's not the original identity. The original identity is the ability to escalate to that hole, but if you screw that up, obviously, then you have a escalation.
+
+140
+00:25:34.633 --> 00:25:45.202
+Rich Mogull: Anyway, I'll shot the puck. There's one elephant in the room I wanted to address real quick, is that it's funny, when I got into identity a few years ago.
+
+141
+00:25:45.203 --> 00:25:50.622
+Rich Mogull: And I didn't realize that the identity proof is actually not the same as the security crew.
+
+142
+00:25:50.623 --> 00:26:15.062
+Rich Mogull: Like, I think that now we're starting to… we sort of adopted identity, but there's a whole field of identity. They have their own community. I actually ran a podcast for identity for a little while, but, so I don't know if you realize, but on the board, as you were voting, there are actually two, titles that were focused on age and identity. But, Ken, I don't know if you wanted to touch on anything that you've seen.
+
+143
+00:26:15.063 --> 00:26:17.422
+Rich Mogull: I know you're really deep in the space as well.
+
+144
+00:26:17.563 --> 00:26:23.112
+Rich Mogull: Yeah, thanks. I guess I'll just make a PSA first, too. If…
+
+145
+00:26:23.173 --> 00:26:36.743
+Rich Mogull: if this kind of stuff is interesting to you, and you're… there's a great community called the Internet Identity Workshop, that happens twice a year. They're on 42nd,
+
+146
+00:26:36.743 --> 00:26:39.033
+Rich Mogull: Thing that's coming up the week of…
+
+147
+00:26:39.033 --> 00:26:59.422
+Rich Mogull: the last week of April, you can look them up online, so I encourage you. Lots of people talking about all of these subjects, and that's where OAP came for, from BC, stuff like that. So, that's the pitch, for that. And on the Friday, there's an Agent Internet workshop being held that week.
+
+148
+00:26:59.423 --> 00:27:00.902
+Rich Mogull: What was the date on that?
+
+149
+00:27:00.903 --> 00:27:25.782
+Rich Mogull: It's the last week in April. The Agenic Internet Workshop is on May 1st, and that's Friday. Yeah. But you can spend all week talking about having, you know, having your propeller, fly, go around pretty quickly, but you can, spend the whole week there at the, at the, Computer History Museum. Yeah, but check it out. Other than that, what we're doing at Indeed.
+
+150
+00:27:25.883 --> 00:27:36.063
+Rich Mogull: here with my co-worker, Truman D. You know, we… our basic underlying hypothesis, you know, that we started at
+
+151
+00:27:36.243 --> 00:27:48.032
+Rich Mogull: We're going to be evolving, from a purely centralized environment, to a hybrid, centralized, decentralized hidden environment.
+
+152
+00:27:48.263 --> 00:28:02.792
+Rich Mogull: And, you know, this is over a couple things. You have your OAuth today, then you start, you know, bringing in some of those extensions, and so right now we have OAuth, we have total exchange, capability,
+
+153
+00:28:02.973 --> 00:28:21.572
+Rich Mogull: But getting to that next level, that's… that's… I don't see how that happens. See, we can imagine what it is, we know what it is. You know, us in the sovereign space have been talking about it for almost 10 years now. And… but, you know, and Agenic definitely…
+
+154
+00:28:22.213 --> 00:28:38.413
+Rich Mogull: allows us to overcome some of the friction that has limited self-sovereign identity going forward. But still, we have all, like somebody was saying, we have all of this, tech debt, right? And legacy information. I have a legacy situation.
+
+155
+00:28:38.553 --> 00:28:52.013
+Rich Mogull: So how do you get over that? That's the thing that I'm, you know, struggling with right now. Put you on the spot.
+
+156
+00:28:52.073 --> 00:29:09.332
+Rich Mogull: All right, so I know folks probably want to get ready for their next sessions and things like that. I'll just put my information up here in case you want to connect. I mean, I'm really deep in this space right now. I mean, we didn't even really get to the authorization side of things.
+
+157
+00:29:09.333 --> 00:29:33.823
+Rich Mogull: But, I feel like I'm working my way, sort of, through this process, you know, going from identity to authorization, all the way through, like, what are the… basically, how do you solve for the OWASP top 10 for Agentic solutions? So one of the things that I'm doing is I'm on the, the OWASP AI Exchange. I lead the Agentic Identity Task Force.
+
+158
+00:29:33.863 --> 00:29:58.522
+Rich Mogull: So, if you're someone who's, like, deep in the space, and you're looking for a way to contribute, definitely get in touch with me. I would love to bring you into the author team. There's just a little bit of an application process, but would love some help there. But yeah, I would say that we have to continue to have these conversations, because I completely believe that we are in this calm before the storm, and I feel like now is the time
+
+159
+00:29:58.523 --> 00:30:18.762
+Rich Mogull: for us to really band together, try to share as many TTPs, share as many tips, tricks, failures, as we possibly can, because this isn't an easy, problem to solve, but I think we're… if we're going to solve it, it's going to be together. With that, I appreciate the time, and have a great rest of the conference.
+
+160
+00:30:23.173 --> 00:30:28.066
+Rich Mogull: Oh, I'm so sorry.

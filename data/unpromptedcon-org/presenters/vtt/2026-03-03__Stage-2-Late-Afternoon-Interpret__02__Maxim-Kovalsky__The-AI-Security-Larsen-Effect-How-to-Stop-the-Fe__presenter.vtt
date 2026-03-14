@@ -1,0 +1,617 @@
+WEBVTT
+
+1
+00:29:03.595 --> 00:29:10.034
+Incoming livestream: I'm… I think I'm probably gonna take this a couple of layers down, but that's alright.
+
+2
+00:29:10.085 --> 00:29:29.964
+Incoming livestream: So, my name is Max, I work for a consortium. We are a VAR, so, this is my announcement. I VAR. I'm new to the VAR space. I started my career in, the federal intelligence community doing cybercrime investigations. I've been with early-stage startups in cyber. I…
+
+3
+00:29:29.965 --> 00:29:39.925
+Incoming livestream: Big Four, haddled a few industry roles, they're a practitioner, and on leadership teams in industry, and…
+
+4
+00:29:40.185 --> 00:29:52.914
+Incoming livestream: I've been varring for the last 5-6 months or so. So, one of the things that I focus in in my day-to-day is, you know, it's the classic matchmaking.
+
+5
+00:29:54.385 --> 00:29:59.644
+Incoming livestream: Our clients come to us with problems, and we try to identify the right solutions in the marketplace for them.
+
+6
+00:30:00.135 --> 00:30:12.955
+Incoming livestream: And I built a tool to help me and my team do this better, using some of the tools that we've been talking about. So, I'll introduce it, and then I'll show the tool in action, what that looks like.
+
+7
+00:30:13.135 --> 00:30:15.845
+Incoming livestream: So… What is my…
+
+8
+00:30:16.365 --> 00:30:25.865
+Incoming livestream: kind of regular day-to-day, what does that look like? I get a call from a client, and they say, we need some AI security, we think. Who do you recommend?
+
+9
+00:30:26.165 --> 00:30:27.785
+Incoming livestream: Well, hold on.
+
+10
+00:30:28.425 --> 00:30:30.244
+Incoming livestream: That's not enough information.
+
+11
+00:30:31.225 --> 00:30:33.354
+Incoming livestream: What are your use cases?
+
+12
+00:30:33.875 --> 00:30:38.715
+Incoming livestream: Like, what's your risk tolerance within the organization? Are you concerned about…
+
+13
+00:30:38.865 --> 00:30:45.804
+Incoming livestream: Having an incident, or are you more concerned about filing that incident with the SEC? Because that tells me two different things.
+
+14
+00:30:47.335 --> 00:30:53.904
+Incoming livestream: And they go, usually, well, but who's good? Just tell me who's good. You know, don't worry about it.
+
+15
+00:30:54.225 --> 00:31:01.175
+Incoming livestream: And, hey man, I'm not trying to be annoying, I'm just trying to bring, you know, VA back to the VAR.
+
+16
+00:31:01.485 --> 00:31:11.184
+Incoming livestream: So, assuming we have that conversation, and we get a list of requirements, and we understand what the use case and what the system is being built, and what controls are required.
+
+17
+00:31:11.805 --> 00:31:15.084
+Incoming livestream: You know, then we start the research.
+
+18
+00:31:15.415 --> 00:31:18.784
+Incoming livestream: We go and we have some demos with AI security vendors.
+
+19
+00:31:20.045 --> 00:31:26.025
+Incoming livestream: We read their marketing slicks, we look at their data sheets, and we see things like this.
+
+20
+00:31:26.785 --> 00:31:29.205
+Incoming livestream: Swarms of autonomous agents.
+
+21
+00:31:30.475 --> 00:31:32.655
+Incoming livestream: Broadest and most comprehensive.
+
+22
+00:31:34.755 --> 00:31:40.374
+Incoming livestream: That's a good one. 99% efficiency at sub-30 millisecond latency.
+
+23
+00:31:42.335 --> 00:31:47.865
+Incoming livestream: AI-powered thread detection to automatically block all the adversaries.
+
+24
+00:31:49.285 --> 00:31:54.504
+Incoming livestream: So, that's, like, the day-to-day reality of a VAR.
+
+25
+00:31:56.085 --> 00:32:09.024
+Incoming livestream: So what we needed to do is, you know, have a methodology where we could put those marketing claims, and some of them may be legit, some of them may be, you know, maybe simple PR.
+
+26
+00:32:09.375 --> 00:32:16.424
+Incoming livestream: and put it through some kind of a framework, through some kind of an assessment thing. So that's where this thing really started.
+
+27
+00:32:16.575 --> 00:32:22.135
+Incoming livestream: You know, we built, an agent and using cloud code.
+
+28
+00:32:23.085 --> 00:32:29.225
+Incoming livestream: Opus 4.5, we're at 6 now, obviously.
+
+29
+00:32:29.765 --> 00:32:32.434
+Incoming livestream: Looking at all of those claims and tried to
+
+30
+00:32:32.645 --> 00:32:40.575
+Incoming livestream: You know, find some substantiating evidence behind those claims so, you know, our clients can make good decisions, but…
+
+31
+00:32:40.685 --> 00:32:46.965
+Incoming livestream: You know, this started with over 2,000 of those vendor claims that we needed to make sense of. This was in…
+
+32
+00:32:47.475 --> 00:32:53.815
+Incoming livestream: December, I think we're all well over, 3,000, so…
+
+33
+00:32:54.485 --> 00:33:02.204
+Incoming livestream: When this proposal for this talk was submitted, we've analyzed 62 vendors, now we're at nearly 80.
+
+34
+00:33:02.335 --> 00:33:22.184
+Incoming livestream: So this is just 6 weeks later. Roughly, you know, there's 4 new startups that emerge out of stealth that claim to do AI security, or existing cybersecurity vendors bolt on cyber AI security features. So between those, you know, it's roughly 4 new companies that get added to the database.
+
+35
+00:33:24.865 --> 00:33:37.294
+Incoming livestream: But, assuming that we're able to translate that into something, some actionable recommendation, you know, still from the VARS perspective, the AI governance loop looks something like this.
+
+36
+00:33:37.655 --> 00:33:39.804
+Incoming livestream: We need AI security.
+
+37
+00:33:41.325 --> 00:33:44.245
+Incoming livestream: They get 6 vendor data sheets.
+
+38
+00:33:44.635 --> 00:33:52.605
+Incoming livestream: Given that there are some requirements that are known, there's some discovery that happened prior to that, to, the team.
+
+39
+00:33:52.845 --> 00:34:08.025
+Incoming livestream: kind of build some kind of a risk register using some variation of OWASP, NISP, whatever other framework. Not a ton out there on… that focuses on AI security specifically, so most teams are building this in-house using spreadsheets and…
+
+40
+00:34:08.155 --> 00:34:11.114
+Incoming livestream: kind of hand-jamming it into their GRC tools.
+
+41
+00:34:12.705 --> 00:34:18.084
+Incoming livestream: Four vendors get invited to demos, and then two of them get a POC invite.
+
+42
+00:34:18.465 --> 00:34:23.305
+Incoming livestream: POCs run in parallel, usually there's not very clear eval criteria.
+
+43
+00:34:23.525 --> 00:34:26.495
+Incoming livestream: And then POCs get put on hold, because…
+
+44
+00:34:27.375 --> 00:34:35.785
+Incoming livestream: We're building this thing in AW's bedrock, don't they have guardrails to do all of this stuff that we're evaluating the two vendors against?
+
+45
+00:34:36.595 --> 00:34:39.165
+Incoming livestream: But wait, we have DLP.
+
+46
+00:34:40.325 --> 00:34:42.995
+Incoming livestream: They're saying that they can do this? Can they do this?
+
+47
+00:34:43.825 --> 00:34:49.015
+Incoming livestream: And, no, by the way, there's a bunch of open source tools, so why don't we just build this in-house anyway?
+
+48
+00:34:50.755 --> 00:34:54.724
+Incoming livestream: So, 3 months later, we need more time to assess.
+
+49
+00:34:55.485 --> 00:35:04.484
+Incoming livestream: We go back to the beginning, and in between, really, we just… we need to build an AI security strategy, so let's bring in one of the big fours.
+
+50
+00:35:04.715 --> 00:35:08.034
+Incoming livestream: And then, you know, we'll restart the process.
+
+51
+00:35:08.735 --> 00:35:12.945
+Incoming livestream: And in the meantime, The customer chatbot has shipped.
+
+52
+00:35:16.045 --> 00:35:23.024
+Incoming livestream: So, quickly, how I built this, so I can actually get to the demo. Already mentioned it in using Cloud Code.
+
+53
+00:35:25.035 --> 00:35:33.985
+Incoming livestream: it's an agentic loop, orchestrated, just within… simply within Claude. There's a research agent and a QC agent,
+
+54
+00:35:34.665 --> 00:35:50.364
+Incoming livestream: bunch of system prompts and skills files that have been refined over the last few months, but, you know, essentially, their task is to go out there and find evidence for the claims that they're making. So, and that evidence can be contained in GitHub repos, it could be contained in API documentation.
+
+55
+00:35:50.365 --> 00:35:58.314
+Incoming livestream: It could even be in, user forums, where people talk about a certain product and their experience with it.
+
+56
+00:35:59.175 --> 00:36:15.155
+Incoming livestream: And then, based on the evidence available, the agent assigns that a confidence rating. So, you know, 5 out of 5 is it's able to extract code samples from GitHub repos to show how this particular capability is actually instrumented.
+
+57
+00:36:16.665 --> 00:36:22.114
+Incoming livestream: Then we mapped all of those capabilities to some common, common AI risk taxonomy.
+
+58
+00:36:22.425 --> 00:36:28.785
+Incoming livestream: And then all of this comes together when, a specific Gen AI system that
+
+59
+00:36:29.025 --> 00:36:42.145
+Incoming livestream: Somebody's building goes through a wizard, a series of steps that then make recommendations about what are the most appropriate set of solutions, and then, correspondingly, the vendors who are able to satisfy them.
+
+60
+00:36:43.405 --> 00:37:02.274
+Incoming livestream: And then there's some filters that we added based on early feedback about some of those other topics. Hey, we're in Palo Alto, we're in CrowdStrike, they're doing a lot, they're making investments, let's look at our existing, kind of, strategic investments first before going to the marketplace. So some of those types of preferences.
+
+61
+00:37:03.615 --> 00:37:21.355
+Incoming livestream: And then the system produces implementation guidance for, a variety of teams, from GRC to cloud engineering, to security architecture and engineering, and dev teams, if the choice is made to build some of those capabilities in-house using, open source solutions, etc.
+
+62
+00:37:23.265 --> 00:37:31.405
+Incoming livestream: This is the wrist taxonomy. It's, on GitHub, you could take a look at it, but it's, essentially a synthesis of
+
+63
+00:37:31.545 --> 00:37:34.754
+Incoming livestream: LLM Top 10, NIST AIRMF,
+
+64
+00:37:34.975 --> 00:37:49.574
+Incoming livestream: and MITRE Atlas. Each of those three, I think, have really good components, but, they don't tell the whole picture, so this was an attempt to kind of expand this and cover, all of potential today's risks in this space.
+
+65
+00:37:50.365 --> 00:37:58.065
+Incoming livestream: So, we will… Go to… a quick demo.
+
+66
+00:37:59.525 --> 00:38:07.674
+Incoming livestream: So we'll put this particular system through that AI risk modeling wizard, now we're calling it AdjusterIQ.
+
+67
+00:38:07.835 --> 00:38:23.835
+Incoming livestream: Basically, claims hit the queue, the adjuster actually analyzes, gives them complexity scores, identifies the right specialist routing, and produces some, fraud indicators, and then presents this information to a human adjuster, so…
+
+68
+00:38:25.245 --> 00:38:34.235
+Incoming livestream: some of the patterns that are being used, it's being built on, using 3.5, Sonnet 3.5 via AWS Bedrock.
+
+69
+00:38:34.995 --> 00:38:39.325
+Incoming livestream: Amazon Canvra is being used for RAG,
+
+70
+00:38:39.775 --> 00:38:54.465
+Incoming livestream: our orchestration, not very sophisticated, direct API calls, it's thanks to doing some tool calling, and memory is session scoped. So that's, kind of the key architecture patterns that are being used.
+
+71
+00:38:58.975 --> 00:39:02.114
+Incoming livestream: Alright, let me bring up… Bring up the tool.
+
+72
+00:39:14.195 --> 00:39:15.664
+Incoming livestream: So this is the tool.
+
+73
+00:39:16.865 --> 00:39:34.765
+Incoming livestream: you know, the starting point, as I mentioned, was having a risk taxonomy against which vendor claims can be, can be mapped, and then evaluated, against the evidence. So, you know, for example, let's look at data disclosure.
+
+74
+00:39:34.765 --> 00:39:41.905
+Incoming livestream: sensitive data and the AI inputs, risks, and we could see, kind of, the breakdown, and that helps us,
+
+75
+00:39:42.195 --> 00:39:46.364
+Incoming livestream: Map the right commercial solutions against this capability.
+
+76
+00:39:47.955 --> 00:39:48.885
+Incoming livestream: So…
+
+77
+00:39:49.135 --> 00:39:57.875
+Incoming livestream: you know, sensitive data and AI inputs, that's a risk. Input and DLP and redaction, that makes sense, right? That's a capability that we need to have to mitigate that particular risk.
+
+78
+00:39:58.245 --> 00:40:03.835
+Incoming livestream: You know, there's some guidance that we could use for a custom…
+
+79
+00:40:03.975 --> 00:40:10.304
+Incoming livestream: Engineered solution to do this in-house if we wanna… if we don't want to go to the marketplace, or…
+
+80
+00:40:11.045 --> 00:40:31.004
+Incoming livestream: And by the way, on the application layer, so through things like SDKs and APIs, there are a handful of vendors who are claiming, that they could do this, and if we choose to implement this as the infrastructure layer, so, like, some kind of a choke point in the network, or an endpoint agent that's centrally managed, you know, there are even…
+
+81
+00:40:31.135 --> 00:40:36.594
+Incoming livestream: More, vendors who are, able to satisfy that, that control.
+
+82
+00:40:40.255 --> 00:40:43.545
+Incoming livestream: So, bring up… Kind of quickly, what…
+
+83
+00:40:43.675 --> 00:40:48.785
+Incoming livestream: What that research on any particular vendor looks like, and then we'll put it all together.
+
+84
+00:40:49.995 --> 00:41:01.604
+Incoming livestream: So, looking at the vendor card for CrowdStrike, Falcon AIDR, that was through their PANG acquisition, you know, this is… we're back at our, risk taxonomy.
+
+85
+00:41:01.975 --> 00:41:07.545
+Incoming livestream: So, for data disclosure, you know, we could see that they have One capability.
+
+86
+00:41:08.035 --> 00:41:22.404
+Incoming livestream: And they're doing this at the application infrastructure layer, and we also know that they're able to deploy this both at the network chokepoint layer and on the endpoint. And let's see what the agent came up with in terms of evidence.
+
+87
+00:41:22.565 --> 00:41:27.725
+Incoming livestream: So, that's the kind of information that it's able to gather on these vendors.
+
+88
+00:41:28.625 --> 00:41:42.894
+Incoming livestream: Not flawlessly, there's still, even though there's a lot… it's been refined quite a bit, there's a lot of human QC that goes into, kind of to manage all of the hallucinations and…
+
+89
+00:41:43.045 --> 00:41:47.405
+Incoming livestream: Context issues that we discussed earlier in the day today.
+
+90
+00:41:47.815 --> 00:41:51.165
+Incoming livestream: Anyway, so let me close that out, and we'll go…
+
+91
+00:41:53.445 --> 00:42:00.024
+Incoming livestream: And do… we have 5 minutes. Let's see if we can do a risk assessment of this adjuster IQ system in 5 minutes.
+
+92
+00:42:01.725 --> 00:42:15.235
+Incoming livestream: So, this is the wizard that I was just talking about, right? So there's just a handful of questions that we ask, and these are the kind of questions that we would ask, that we would sit down with a client in, kind of that use case and requirements discovery.
+
+93
+00:42:15.535 --> 00:42:24.394
+Incoming livestream: So, what does this claim adjuster thing can do? It can be… what kind of data, does it use? Internal confidential?
+
+94
+00:42:25.775 --> 00:42:29.855
+Incoming livestream: Our employees are going to be using it over the internet.
+
+95
+00:42:30.095 --> 00:42:40.254
+Incoming livestream: And you can see on the bottom now, we're kind of activating and surfacing, various risks that are associated with the choices that are use case driven.
+
+96
+00:42:45.315 --> 00:42:51.495
+Incoming livestream: We're using AWS Bedrock, so that's gonna be managed pass. It's only gonna create new records.
+
+97
+00:42:51.895 --> 00:43:01.414
+Incoming livestream: You know, you could see, like, making an autonomous actions, selection results in quite a different, inherent risk profile of this system.
+
+98
+00:43:03.935 --> 00:43:05.065
+Incoming livestream: And then…
+
+99
+00:43:07.415 --> 00:43:23.015
+Incoming livestream: what is the highest level of autonomy, because coding assistants become part of the attack surface, so what are, how are coding assistants being used by the devs team? That would introduce, right, so any, any, anywhere from autonomous coding agents.
+
+100
+00:43:23.015 --> 00:43:29.275
+Incoming livestream: To suggest that… to suggesting only coding assistance, but let's go with interactive coding assistance.
+
+101
+00:43:30.495 --> 00:43:32.065
+Incoming livestream: Let's see…
+
+102
+00:43:35.125 --> 00:43:38.425
+Incoming livestream: Doing good, I think we'll get there in the next 4 minutes.
+
+103
+00:43:39.835 --> 00:43:55.144
+Incoming livestream: Okay, so we did our inherent risk profile, now we're talking about architecture patterns and choices that are being used, being made by the team that's building them, so the kind of things that get discussed at the…
+
+104
+00:43:55.145 --> 00:44:03.664
+Incoming livestream: Architecture review boards, and that would kick off some kind of a security assessment that may last, who knows, how many months.
+
+105
+00:44:03.795 --> 00:44:05.685
+Incoming livestream: And large enterprises.
+
+106
+00:44:06.375 --> 00:44:09.154
+Incoming livestream: So, we're in the AWS bedrock again.
+
+107
+00:44:09.335 --> 00:44:12.405
+Incoming livestream: We're using RAG and traditional databases.
+
+108
+00:44:12.715 --> 00:44:16.695
+Incoming livestream: Direct API was in the use case.
+
+109
+00:44:17.125 --> 00:44:24.455
+Incoming livestream: Let's say we're using server as compute, and you can see, as I'm making these selections, the risk profile is changing.
+
+110
+00:44:24.705 --> 00:44:32.534
+Incoming livestream: And we're using… the system is gonna give us a chat interface, some tool calling, and let's… obviously, document analysis is gonna be a big part.
+
+111
+00:44:35.295 --> 00:44:41.775
+Incoming livestream: Okay, and now we'll get to the part where, we're able to… Ask questions alike.
+
+112
+00:44:41.985 --> 00:44:49.745
+Incoming livestream: what security platforms have you made investment in? Let's look at those first, and see what they can offer to us against those risks that we've identified.
+
+113
+00:44:49.985 --> 00:45:07.395
+Incoming livestream: Obviously, we're in, AWS Bedrock, that's gonna give us some… some controls. Let's say we're using… we already have CrowdStrike and Zscaler, that's gonna make things a little bit easier. Zscaler has been adding GenAI security capabilities.
+
+114
+00:45:08.365 --> 00:45:17.494
+Incoming livestream: Do we, typically buy or build, and… or do we have no preference? But let's say we have… we usually buy,
+
+115
+00:45:18.725 --> 00:45:20.595
+Incoming livestream: Versus build,
+
+116
+00:45:20.855 --> 00:45:40.775
+Incoming livestream: implementation layer preference, so, you know, a lot of the vendors are offering really two kind of implementation paths via SDKs, APIs, capabilities that could be provided to the application development teams versus things that are centrally deployed and governed, through, the infrastructure. So let's say we're doing infrastructure.
+
+117
+00:45:41.245 --> 00:45:44.025
+Incoming livestream: The talk before,
+
+118
+00:45:44.235 --> 00:45:59.995
+Incoming livestream: the gentleman mentioned that, yeah, most of those solutions are either at the network layer, as some kind of gateways and proxies, or they're going to be in endpoints via agents. But let's say we don't have a preference, so the system is going to surface vendors who can do both.
+
+119
+00:46:02.245 --> 00:46:04.875
+Incoming livestream: And let's say that we wanna,
+
+120
+00:46:05.465 --> 00:46:12.334
+Incoming livestream: We will prioritize vendors who provide… give us the most capability, so we're leaning towards platform, and let's see what shows up.
+
+121
+00:46:20.865 --> 00:46:21.965
+Incoming livestream: Okay, so…
+
+122
+00:46:22.155 --> 00:46:36.285
+Incoming livestream: what the system is telling us, essentially, that, you know, at the most critical and high levels, we have certain gaps that we need to cover. Again, that goes back to this risk profile that gets triggered through, through that wizard.
+
+123
+00:46:36.445 --> 00:46:47.505
+Incoming livestream: And out of our existing vendor relationships, we're able to cover 8 of those capabilities. So, let's grab those, and we have 15 gaps that are remaining.
+
+124
+00:46:48.025 --> 00:46:54.705
+Incoming livestream: So… We can drill into each of those and say that for Some of the…
+
+125
+00:46:54.815 --> 00:46:57.794
+Incoming livestream: governance things, you know, we don't need to…
+
+126
+00:46:58.255 --> 00:47:04.734
+Incoming livestream: Buy a solution. That's, you know, we're perfectly capable of building an internal workflow.
+
+127
+00:47:04.875 --> 00:47:09.095
+Incoming livestream: In-house, so… Select some of those as billed.
+
+128
+00:47:11.445 --> 00:47:13.075
+Incoming livestream: Accept the rest.
+
+129
+00:47:18.425 --> 00:47:36.785
+Incoming livestream: And now this is the short list of, vendors that the system is recommending based on the prior, kind of wizard steps that we went through. So, these are the capabilities and the vendors who we are confident are able to satisfy this particular capability.
+
+130
+00:47:37.105 --> 00:47:42.354
+Incoming livestream: There's a… We could do a combo, so for 8 over the gaps.
+
+131
+00:47:42.465 --> 00:47:49.074
+Incoming livestream: Really, the system is saying we should take a look at 5 vendors who are doing… each of those is doing some of those things.
+
+132
+00:47:50.665 --> 00:47:54.055
+Incoming livestream: So, we can apply… And…
+
+133
+00:47:54.555 --> 00:48:14.135
+Incoming livestream: get to a page that's really a summary of all of the things that can be printed out, provided to either the sourcing procurement teams in-house, or can be sent to the engineering teams, or, the development shops, with, you know, either configuration, guidance for, you know, for example, the AWS
+
+134
+00:48:14.135 --> 00:48:24.505
+Incoming livestream: Bedrock guardrails and some of the controls that they're able to implement, or similarly through, for, other commercial solutions or in-house, built.
+
+135
+00:48:24.725 --> 00:48:28.265
+Incoming livestream: Using open source, tools.
+
+136
+00:48:28.465 --> 00:48:34.674
+Incoming livestream: And etc. So… And I… looks like I am at time.
+
+137
+00:48:35.365 --> 00:48:38.755
+Incoming livestream: I appreciate your watchful… your watchful eye?
+
+138
+00:48:45.335 --> 00:48:48.874
+Incoming livestream: And I guess we'll open it to questions for the next few minutes.
+
+139
+00:48:54.885 --> 00:48:59.045
+Incoming livestream: Great presentation, but I had a question about…
+
+140
+00:48:59.225 --> 00:49:03.765
+Incoming livestream: consolidating vendors versus picking something that is best in class. For example, like.
+
+141
+00:49:03.915 --> 00:49:11.205
+Incoming livestream: Viz is great at cloud security, but they also claim to do secret scanning and a bit of SaaS and everything.
+
+142
+00:49:11.345 --> 00:49:12.165
+Incoming livestream: So…
+
+143
+00:49:12.465 --> 00:49:18.014
+Incoming livestream: I mean, how does your tool, or, like, I mean, or what are your thoughts on picking, like, a solution that
+
+144
+00:49:18.015 --> 00:49:34.255
+Incoming livestream: It's like a Swiss Army knife does everything versus picking up something that is best in class. So, the system attempts to recommend a platform, if a platform choice is made, but the AI security landscape is very, very fragmented. Right. So even the big…
+
+145
+00:49:34.505 --> 00:49:51.005
+Incoming livestream: companies like Palo Alto's and the CrowdStrikes. Wiz is very far from that category for now. They may get there at some point, but they only have a very small handful of capabilities. But, even those big platform plays are still gonna give you about 50% of the risks that are most relevant.
+
+146
+00:50:07.895 --> 00:50:15.955
+Incoming livestream: Hi there, thanks for going over this. This is something you and your organization have built, and you guys maintain this? Yes.
+
+147
+00:50:16.165 --> 00:50:29.725
+Incoming livestream: Interesting. Are you familiar with Richard Steenan and the IT Harvest work that they do? No. It's like the kaleidoscope of cybersecurity vendors. Oh, I've seen it, yeah, yeah, yeah. The encyclopedia, they publish a book every year.
+
+148
+00:50:29.865 --> 00:50:43.104
+Incoming livestream: Seems like it would be extremely valuable to them. I don't know if you guys talk or work together, but… I've seen it, but yeah, I have not had any contacts with them. How do you maintain this when such a high-velocity, rapidly changing landscape? So, there is a,
+
+149
+00:50:43.455 --> 00:50:53.024
+Incoming livestream: via GitHub Actions, there's an agentic workflow that gets kicked off every evening. So overnight, you know, it's about 12 hours every day.
+
+150
+00:50:53.135 --> 00:51:07.224
+Incoming livestream: Some subset of these vendors go through that new research process again, so every… the goal is to have every vendor get revisited at least once a month, and then there's a separate workflow to identify new players or other…
+
+151
+00:51:07.355 --> 00:51:12.475
+Incoming livestream: traditional cybersecurity vendors who are adding, AI security capabilities.
+
+152
+00:51:14.115 --> 00:51:15.485
+Incoming livestream: We've got time for one more.
+
+153
+00:51:18.595 --> 00:51:20.315
+Incoming livestream: Or zero more. Thank you.
+
+154
+00:51:20.425 --> 00:51:21.815
+Incoming livestream: Aaron. Thank you.

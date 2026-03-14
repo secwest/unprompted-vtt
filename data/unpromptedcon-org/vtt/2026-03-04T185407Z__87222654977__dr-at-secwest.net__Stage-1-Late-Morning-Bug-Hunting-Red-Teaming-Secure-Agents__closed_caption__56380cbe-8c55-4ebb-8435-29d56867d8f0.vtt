@@ -1,0 +1,1467 @@
+WEBVTT
+
+1
+00:00:08.698 --> 00:00:10.698
+Let's see if we can get these people quieted down.
+
+
+2
+00:00:10.698 --> 00:00:20.698
+Welcome back, everyone. I know the food line was long, but it has gone down, dwindled to nothing.
+
+
+3
+00:00:20.698 --> 00:00:37.698
+conversations are just getting interesting, and here I am asking everyone to be… quiet so that we can kick off our next speaker. I will remind you that there are great places to talk in the Hibernia. We have two side rooms.
+
+
+4
+00:00:37.698 --> 00:00:44.698
+Uh, which is where people are often taking post conversations, uh, post-talk conversations. We have the downstairs overflow room!
+
+
+5
+00:00:44.698 --> 00:01:07.698
+What is not a great place to talk is up here. So if you are in the back of the room right now, and you are having a conversation, my ask is that you end it. And please come back to the chairs. Our next speaker… It's gonna be talking about some pretty cool stuff, as they all are.
+
+
+6
+00:01:07.698 --> 00:01:11.698
+Getting closer… A little bit quieter.
+
+
+7
+00:01:11.698 --> 00:01:18.698
+Little bit quieter.
+
+
+8
+00:01:18.698 --> 00:01:25.698
+Ah, amazing. Thank you. All right, please welcome Georgie Geshev from DuPone.
+
+
+9
+00:01:25.698 --> 00:01:41.698
+Hello? Right. Oh, shit. Hello. Right. I'm a little bit slow today. Well, past couple of days I'm jet lagged out of my mind, so I apologize if I make even less sense than usual.
+
+
+10
+00:01:41.698 --> 00:01:58.698
+My name's Georgie, and I hack things for a company based out of the UK called Interrupt Labs. And today, I'm gonna talk about my journey into AI and how I ended up using.
+
+
+11
+00:01:58.698 --> 00:02:17.698
+AI for, um, what essentially was a successful entry at the last mobile Pontorn edition. Is it safe to assume everyone's heard of Pontoon? Um… If you have no idea what ponton is, can you please raise your hand?
+
+
+12
+00:02:17.698 --> 00:02:38.698
+Okay, so Pontron is a contest, happens once. Nowadays, twice or whatever, a year, where a company called Trend AI, well, ZDI, the Zero Day Initiative, will bring out some real world targets like phones, routers, printers, NAS, whatever.
+
+
+13
+00:02:38.698 --> 00:02:57.698
+And they invite people to demonstrate and exploit using zero days. So that's essentially what Pawn21 is. I've been doing Pontoon for maybe over 10 years now, and I've mostly been focused on Android targets.
+
+
+14
+00:02:57.698 --> 00:03:14.698
+Over the years and I'm getting really bored. Um, nothing's really changed for a couple of the vendors I've been targeting over the years. It's essentially the same bugs over and over again.
+
+
+15
+00:03:14.698 --> 00:03:32.698
+The only issue is it's getting a bit more difficult to find these bugs, because they're buried in a huge amount of applications, and some of the bug bounties out there are wiping the low-hanging, more obvious bugs. Um, so I decided, okay, well, that's a great excuse to teach myself.
+
+
+16
+00:03:32.698 --> 00:03:43.698
+AI. Android applications, the Dalvik executable file format decompiles nicely to human-readable Java.
+
+
+17
+00:03:43.698 --> 00:04:05.698
+So, you know, human-readable Java is potentially a great input for LLM, and so many of these bugs that I'm talking about, they're very obvious patterns that might not necessarily be the easiest one for a static analyzer to pick up, but when you see one, you know instantly.
+
+
+18
+00:04:05.698 --> 00:04:24.698
+There's something wrong going on. So this kind of pattern matching is probably another great problem for an LLM to work on, obviously. And last but not least, there's absolutely no privacy concerns. In my day-to-day job.
+
+
+19
+00:04:24.698 --> 00:04:40.698
+As, uh, one researcher. Unfortunately, we've not really found a way to use LLMs, uh, at the minute. But Ponton was a great excuse, because we obviously don't care about these bugs.
+
+
+20
+00:04:40.698 --> 00:05:01.698
+These bugs will eventually end up with the Pontzone organizers. Right, so before I actually dig into the agentic solution, which is the focus of this talk, I obviously decided to, well, make sure there's actually something out there. I actually was a bit of a skeptic.
+
+
+21
+00:05:01.698 --> 00:05:10.698
+I didn't really know if I should buy into this hype. So I'm like, okay, well, let's copy paste some output from.
+
+
+22
+00:05:10.698 --> 00:05:27.698
+a tool like JEB or Jadex, basically a tool that will decompile an Android application to Java, and, like, paste some of this input into a chatbot, and see what comes back, and, you know, surprisingly, like, some of these bugs instantly picked up.
+
+
+23
+00:05:27.698 --> 00:05:39.698
+like, okay, well, there's something there. Um, unfortunately, there wasn't really a decent plugin for JEB or Jadex to use to, like, use a chatbot as an assistant.
+
+
+24
+00:05:39.698 --> 00:06:03.698
+So, I kind of focused a little bit for a short period of time on Android Studio, because it's supposedly what real developers use, so hopefully better support for some of these assistants out there. So you can use Jarex to decompile the app and then export it as a Gradle project and then import it into Android Studio and then take advantage of some of these like.
+
+
+25
+00:06:03.698 --> 00:06:21.698
+JetBrain's AI Assistant or Copilot plugins or whatever to ask questions about the app, ask the model to clean up the app, tidy up some of the partially obfuscated source, etc. Well, long story short, I wasn't so happy with the integration.
+
+
+26
+00:06:21.698 --> 00:06:47.698
+But I was, um, surprised by the output, using… Again, chat-style bots ad hoc. Um, I was like, okay, well, let's see what the agentic stuff is all about. And there isn't, actually… I'm talking about August last year, so maybe there's something nowadays, but August last year, I'm like, is there something I can use Agent-based that will.
+
+
+27
+00:06:47.698 --> 00:06:58.698
+Just consume an Android application, go and find bugs in it. Well, couldn't find anything at the time, so I'm like, right. I mean, that's another good excuse to, like, try and learn something new for once.
+
+
+28
+00:06:58.698 --> 00:07:16.698
+And this is what the really high-level design of the solution looks like. So I use LangChain for the agent or the set of agents that I have nowadays. I've got Jadex.
+
+
+29
+00:07:16.698 --> 00:07:32.698
+Again, the application used to decompile Android applications to Java. The agent Light LLM just to help with the management for some of these models. All of these models run on Azure Foundry, and they've got length.
+
+
+30
+00:07:32.698 --> 00:07:50.698
+useful for introspection and observability. So, again, I have no idea what AI is at this point, or how I'm supposed to actually be using this. So I'm extremely naive.
+
+
+31
+00:07:50.698 --> 00:08:05.698
+And I decided to go with a two-agent setup, one agent to identify what's the valid attack surface in the target application, then produce some list of entry points into the application and then hand this list over to.
+
+
+32
+00:08:05.698 --> 00:08:27.698
+agent. And the bug hunter agent is supposed to, like, go and find bugs for me. And this whole setup Jadex via these Jadex MCP. Couple of words on the Jadex MCP, the… it was heavily based on an open source implementation.
+
+
+33
+00:08:27.698 --> 00:08:51.698
+by this, uh, guy. It's… it wasn't ideal, but it was pretty much the only available option at the time, so it's the Jaddix, it's implemented as a Jaddix plugin that essentially runs an HTTP server embedded into the plugin and exposes some jadex internal API that you can interact with.
+
+
+34
+00:08:51.698 --> 00:09:06.698
+from the outside, and the actual MCP part is just the Python, like, fast MCP implementation that wraps the REST-style endpoints from the embedded server. And you've got tools like.
+
+
+35
+00:09:06.698 --> 00:09:21.698
+Fetch MIDI Android manifest. This is a description of what the app does, all of the components of the app. There's a tool to retrieve source code for a particular method, same one for a class, true to actually.
+
+
+36
+00:09:21.698 --> 00:09:33.698
+Search through a list of classes defined in the appetite, etc. Like, all of the stuff you would imagine as a reverse engineer, you might want to ask questions about.
+
+
+37
+00:09:33.698 --> 00:09:59.698
+Some really obvious mistakes early on. So, I was literally like, right, I'm looking for bugs. This is the app, go and find bugs. Well, that's clearly not how it works. The agent didn't really know what's going on. It didn't really know what I'm asking. It gets really confusing and it gets easily lost.
+
+
+38
+00:09:59.698 --> 00:10:23.698
+And just runs out of tokens, runs out of coal, like tool coal limits, et cetera, et cetera. And again, so very, extremely vague objective, and very fuzzy success criteria, like the agent doesn't know what kind of bugs I'm looking for, it doesn't know exactly where to look for these bugs.
+
+
+39
+00:10:23.698 --> 00:10:53.698
+It was just a nightmare. I was like, okay, well, this agentic stuff is kind of BS. Then again, chatting to a few people that are like, well, you're absolutely misusing this. This is not how you use AI. I'm like, okay, interesting. Then the first and most obvious issue was to, like… Tell the agent, like, in a more structured manner, where to look for bugs, and then iterate over the entry points defined, well, discovered by the attack surface analysis agent. So instead of just looking for bugs in the app in general, you say.
+
+
+40
+00:10:56.698 --> 00:11:11.698
+start looking for bugs in this one particular component. You get way further into the call graph, and then if you even break this down further and say, well, start looking for bugs in this component.
+
+
+41
+00:11:11.698 --> 00:11:22.698
+reachable exactly through an intent filter defining this data format, etc. So you give some extra guidance to keep it on track for longer.
+
+
+42
+00:11:22.698 --> 00:11:40.698
+Uh, some more mistakes? Well, the MTP server was an ideal, um, the tool descriptions were a bit vague and messed up, maybe. Um, the code search was extremely slow, the error messages were extremely unhelpful, um, basically, whenever you encounter a problem, you just return a message saying.
+
+
+43
+00:11:40.698 --> 00:12:01.698
+Oh, there's been an error. So it's not really helpful to the agent, and, like, you're not really guiding the agent how to use the tool if it fails to use it properly. So a lot of these are easily, like, solvable. You just implement some additional tools if necessary, to, like, expose more granular tools.
+
+
+44
+00:12:01.698 --> 00:12:24.698
+And I think what made a lot of difference in this case was just… returning some actionable error messages so the agent can actually retry based on retry some sort of idea what may have gone wrong, and, like, try and tweak the input for the tool based on the error message.
+
+
+45
+00:12:24.698 --> 00:12:54.698
+Um, system prompt improvements, uh, basically, like, I had to be extremely… I realized at this point, I'm dealing with an intern. Like, if I had an intern for the summer, and I want this intern to find bugs on, I need to be very… Look, it's literally, like, describing the process that I have deeply ingrained in… deep in my brain, like, what I actually look for and what primitives I'm aware of that I need to chain together to have a successful exploit. So I had to be very explicit about all of these.
+
+
+46
+00:12:59.698 --> 00:13:15.698
+Um, I need to specify some… Priorities in terms of the actual book classes I'm looking for, etc, and the agent was always, always, always trying to suggest some fixes and mitigations. I'm like, shut up, stop wasting my tokens, I don't care about any of this.
+
+
+47
+00:13:15.698 --> 00:13:31.698
+Okay, so this is probably the least interesting part of the talk. These are the two bugs that we ended up chaining for Pont2O. So the initial agent implementation is still, like, extremely basic. There's, like, no verification.
+
+
+48
+00:13:31.698 --> 00:13:53.698
+Very little guardrails, like, it's shite, but it still found stuff, like, it found a lot of stuff, actually, surprisingly. It found probably over a dozen bugs that had to be manually verified at this point. Um, and again, we chained two of these bugs, uh, together. So, and the agent wasn't able to figure out these two bugs can actually be.
+
+
+49
+00:13:53.698 --> 00:14:08.698
+used in some sort of chain. So the first bug, it was in an application called Smart Touch Coal, which is some sort of interactive customer service app for Sammy customers. And it's a, like.
+
+
+50
+00:14:08.698 --> 00:14:33.698
+really traditional, obvious. URL validation problem, so you send the URI to the app, essentially, and they extract some parameters out of the URI, treat one of the parameters as a, um… As a URL, and then load this URL into a web view, which is just an embedded browser that runs in the app.
+
+
+51
+00:14:33.698 --> 00:15:03.698
+Um, the interesting bit about this web view was the fact that it's got a very custom web Chrome client implementation, which is basically the bit of the web view that dictates how permissions are managed in this web view. And… This particular webcam plan basically gives you access to your microphone, camera, geolocation, and a couple of other bits and bobs. Normally, when you ask for this in a browser or in any other web view, you get a notification, you get a prompt, and you need to confirm all of these one by one.
+
+
+52
+00:15:03.698 --> 00:15:10.698
+based on the origin or whatever, but this one was just like, okay, go ahead, like, you've got access to any of these.
+
+
+53
+00:15:10.698 --> 00:15:24.698
+Um, this is what the entry point looks like. You've got the name of the activity, it's called WebViewActivity, nice. Uh, it's got a scheme and a host, which basically tells you how to reach this application, so when you click on a link.
+
+
+54
+00:15:24.698 --> 00:15:54.698
+sdc.schain://sdc slash whatever from a browser or from an instant message or whatever, the Android operating system will know exactly how to route this message to the… to the target application, to the target activity. So they retrieve some details out of what's called an intent. The intent is just a bit of data that goes from the browser, let's say, to the application and you can bundle some.
+
+
+55
+00:15:56.698 --> 00:16:13.698
+intent extras, and you can bundle some URI parameters, so they extract a lot of these. And, um, I mean, it's really hard to tell exactly what they were aiming for, but there were some, like, really sloppy checks to try and make sure they load the correct.
+
+
+56
+00:16:13.698 --> 00:16:28.698
+Uh, URL, and they do some validation on the URL, and they make sure the URL matches what they've tried to hardcode into the application. It doesn't matter, like, probably safe to disregard all of this. The end result is you reach this.
+
+
+57
+00:16:28.698 --> 00:16:39.698
+webview.posturl sync with a URL that you control fully. So you get to execute JavaScript in this web.
+
+
+58
+00:16:39.698 --> 00:17:09.698
+And once you execute JavaScript in this web view, obviously you get access to all of these, like, nice things, like a camera, microphone, et cetera, et cetera, et cetera. So this is a report from the Bughunter. It's obviously trimmed down significantly, but it tells you, oh, there's… Uh, this, like, web view that you can reach. You need to, like, it actually provides some sort of trigger for me to actually try and reproduce the bug, and it tells me this is the sync, this is where you end up executing JavaScript in this web view, etc, etc.
+
+
+59
+00:17:09.698 --> 00:17:30.698
+Um, there was a bit of a problem, actually. The agent didn't highlight the custom web Chrome client, so it didn't tell me I get access to all of these nice bits. Um, and it also missed an important, like, crucial part. Uh, there was a check in the application. Literally, the first thing it does is.
+
+
+60
+00:17:30.698 --> 00:17:47.698
+Check if you're on a phone call. Like, if there's an ongoing phone call, proceed and load this into a web view. If you're not on a phone call, just drop the entire, like, request or whatever. So, nothing really happens. And that's a very strange prerequisite for your exploit to work.
+
+
+61
+00:17:47.698 --> 00:18:17.698
+But it's also what makes it the perfect meme exploit for the contest. So second bug to the rescue. The agent found a bug in Bixby, which is Samsung's AI assistant, which is really, really nice and funny and ironic, and… Again, very, like, sort of similar bug, you end up executing JavaScript in a web view in the BigView application, and once you're in the Bixby application, you can speak to components from the Bixby application that are not exposed to.
+
+
+62
+00:18:22.698 --> 00:18:43.698
+other applications on the phone directly. Um, this is what it looks like again. They take some data, they extract some bits and bobs of the URI, and then they try to validate the URI, and basically, long story short, any subdomain of MCSVC.samsung.com.
+
+
+63
+00:18:43.698 --> 00:19:02.698
+can be loaded into this web view. Well, the issue is there's, like, plenty and plenty of subdomains and sub-sub-subdomains of this domain, and some of them have cross-site scripting, so you just, um, run your JavaScript in them. Uh, well, um, in this origin, and you execute JavaScript in that webview.
+
+
+64
+00:19:02.698 --> 00:19:19.698
+This is what the bug report looks like for, like, it's captured two bugs in this scenario, so it says, oh, the host validation's really relaxed. They're loading, essentially, any subdomain or sub sub subdomain or whatever for this.
+
+
+65
+00:19:19.698 --> 00:19:35.698
+very broad Samsung domain, so you might want to look out for this one, and see if there's any interesting, like, uh, JavaScript executing already on these domains that you can leverage for cross-site scripting or whatever.
+
+
+66
+00:19:35.698 --> 00:19:44.698
+And then it tells me, oh yeah, by the way, there's, like, a very privileged JavaScript interface that you can reach once you're executing in this web view.
+
+
+67
+00:19:44.698 --> 00:20:05.698
+This is the demo from the contest. So basically you have the phone, target phone on the left and you click a link. This is what happens at Pont like you click one link and that's it. What happens is you go to this Bixby web view.
+
+
+68
+00:20:05.698 --> 00:20:23.698
+Once you're into Bixby web view, you ask Bixby to make a phone call to whatever number. Once you make a phone call, you're able to bypass the phone call check in the other application, so you end up in the other application and you get access to the camera feed, et cetera, et cetera.
+
+
+69
+00:20:23.698 --> 00:20:39.698
+Okay, um, a bit on the agent evolution, uh, implemented an APK harvesting tool, basically just some scripts put together to retrieve APKs from app stores to, like, start scanning for bugs at scale.
+
+
+70
+00:20:39.698 --> 00:20:55.698
+decouple the Android manifest analysis logic, well, the attack surface analysis logic. There's a, like, a standalone script, because I realized there's no point using an LLM for something that's extremely deterministic. I know exactly what I'm looking for.
+
+
+71
+00:20:55.698 --> 00:21:17.698
+Um, and further refined the bug hunting scope. So… Previously, I would ask the app to start looking for bugs reachable via this intend filter. This is, like, entry point number 1, then you've got another intend filter, this is entry point number two, and then I realize there's intent filters with, like, very obvious.
+
+
+72
+00:21:17.698 --> 00:21:33.698
+paths, um, like, sub-entry points into the intent filter, essentially. So you can reach multiple features via any of these, uh, which makes sense to, like, start treating this as unique entry points into the app.
+
+
+73
+00:21:33.698 --> 00:21:42.698
+Um, I also realized some of the apps, um, comes as no surprise, are slightly obfuscated, and the agent up, like.
+
+
+74
+00:21:42.698 --> 00:22:03.698
+works a lot better on a cold, like, base that's been slightly deobfuscated. I noticed this when I was manually doing it, and I'm like, well, I can just hook the, uh, buckhunter agent, and whenever it makes a request for source code, it will go via the code… the obfuscator and the obfuscator will.
+
+
+75
+00:22:03.698 --> 00:22:06.698
+Speak to the JADEX MCP and, like, fetch the source.
+
+
+76
+00:22:06.698 --> 00:22:25.698
+Clean it up a bit, and then return the source back to the bug hunter, and this was… this made quite a difference. Like, you can see 1, 2, 3 letter method names and class names get very meaningful names that really help the agent.
+
+
+77
+00:22:25.698 --> 00:22:49.698
+Gauge exactly what's going on. Some more improvements, um… I realized I run the agent once, I get a set of results. I run the agent a second time on the second, on the same entry point, and I get a different sale results. And obviously this makes sense to everyone who's worked with AI. So I'm like, okay, well, just start running it like between one and five times, depending on.
+
+
+78
+00:22:49.698 --> 00:23:05.698
+how interested I am in this entry point and start aggregating bugs, bug reports, and then run the bug reports through a deduplicator agent that basically takes a list of bug reports and tries to extract the unique.
+
+
+79
+00:23:05.698 --> 00:23:21.698
+But reports, the bug reports capturing unique bugs. Um, and another agent to, like, start converting bug reports to JSON. Uh, I don't know if that's a thing, but I noticed whenever I try and enforce a strict schema on the output.
+
+
+80
+00:23:21.698 --> 00:23:33.698
+The output will sometimes, like, degrade in quality. So I had to, like… like, do it as a secondary, like, post-processing step.
+
+
+81
+00:23:33.698 --> 00:23:48.698
+And I also realized I've got many agents at this point, and they all share bits and bobs of the system prompts. So I started managing the system prompts using Ginger 2 to pick different snippets of.
+
+
+82
+00:23:48.698 --> 00:23:59.698
+system prompts and use them across the set of agents. Finally, introduce the bug verifying agent, so whenever I find something with the bug hunter, I pass it on to the verifying agent.
+
+
+83
+00:23:59.698 --> 00:24:16.698
+uh, made life so much easier, and needless to say, and I also added a source-to-sync reachability tool based on Suits Up, uh, which is a framework for processing Java bytecode and creating call graphs out of this bytecode, so you can then start looking for paths from.
+
+
+84
+00:24:16.698 --> 00:24:44.698
+One part of the call graph to another part. This is just a snippet from the bug verifier run on one of the bugs that was reported by the bug hunter. And it basically tells me this is not a valid bug actually, because… You won't be able to reach this based on the circumstances you described in the system prompt, because this is only reachable when you're on an active call. If you're not on a call, you won't be able to see this.
+
+
+85
+00:24:44.698 --> 00:25:07.698
+Um, it's a double-edged sword, because if the agent decided this is not reachable, I would have never seen it, probably. Anyway, so this is the current design. We've got a set of scripts doing all the deterministic bits and bobs, and we've got a bug hunter looking for bugs. We've got, uh, bug deduplicator, deduplicating the bugs, we've got the obfuscator cleaning up the code. We've got another agent to.
+
+
+86
+00:25:07.698 --> 00:25:17.698
+like reformat the reports to JSON, and we've got a bug verifier, and then we've got, obviously, on the MCP side, JADEX and SuitUp.
+
+
+87
+00:25:17.698 --> 00:25:37.698
+Um, roadmap, uh, maybe some sort of static analysis integration, um, start running static analyzers and let the agent triage the bugs coming out of the static analyzer. Uh, maybe some sort of way to start tracking bugs across different apps, because at the minute the agent can only see.
+
+
+88
+00:25:37.698 --> 00:25:51.698
+bugs within one app, and, like, there's no… like, very often you need to start chaining things together across multiple apps in order to get a useful primitive out of them, and a useful exploit. So maybe some sort of database where the agent can see all of the bugs we've got at the minute.
+
+
+89
+00:25:51.698 --> 00:26:08.698
+Um, and last but not least, and actually something we've been working on, uh, introduced some POG generation and runtime proof of vulnerability, so you plug your phone into your laptop, you run ADP MCP, you run Frida MCP, and you let the agent test the trigger.
+
+
+90
+00:26:08.698 --> 00:26:20.698
+produced by the bug report, uh, by the bug hunter, and then refined the POC while collecting some events using Frida Hooks and ADP LockCat events.
+
+
+91
+00:26:20.698 --> 00:26:31.698
+And… that is it. Thank you. Thank you.
+
+
+92
+00:26:31.698 --> 00:26:36.698
+Questions for Georgie?
+
+
+93
+00:26:36.698 --> 00:26:46.698
+All right. Want to come? Thank you. Thanks.
+
+
+94
+00:26:46.698 --> 00:27:01.698
+We're moving on from sort of the more offensive focus to, uh, agentic defense. So, next four or so talks are going to be in that space. In this case, we're going to be starting off with Stripe's response. Stripe's perspective on this.
+
+
+95
+00:27:01.698 --> 00:27:31.698
+Uh, breaking the lethal trifecta. So please welcome Andrew.
+
+
+96
+00:27:34.698 --> 00:27:48.698
+Hello? Uh, oh, yes.
+
+
+97
+00:27:48.698 --> 00:28:11.698
+Great. So, hey, everyone, it's great to see you all. I'm Andrew. I'm the head of the AI security team at Stripe. And I've been at Stripe for about 10 years now. And I guess a lot of people ask me why I'm still here. Unfortunately, I'm a nerd who loves solving problems and I've yet to find another way to keep my ADHD brain entertained.
+
+
+98
+00:28:11.698 --> 00:28:34.698
+But in these 10 years, I've lived through, you know, many product launches, many reorgs, um… you know, the slow, dignified graying of Patrick's hair. Um, and I can honestly say that this moment, um, sort of this work in security, um, in this age of AI is some of the most exciting work that, you know, I've experienced in my entire career.
+
+
+99
+00:28:34.698 --> 00:28:49.698
+I am here to talk to you about the possibly most exciting and also most terrifying aspect of being in this new AI age, which is prompt injection. And sort of the approaches that we're taking at Stripe to mitigating the risk there.
+
+
+100
+00:28:49.698 --> 00:29:14.698
+Um, so, we have an elephant in the room. Um, you know, I think in this community, we spend a lot of time thinking and talking about prompt injection, but I find that most people working in AI are sort of scrupulously avoiding it. Um, you know, given the AI hype cycle, all the focus on building things really, really fast, there's not a lot of consideration of risk. We're very much back in a move fast and break things era.
+
+
+101
+00:29:14.698 --> 00:29:31.698
+And it's just easier for a lot of companies to pretend prompt injection doesn't exist and hope there won't be a problem, which ultimately means just letting the user, you know, beware the risk to them, you know, see open claw, of course.
+
+
+102
+00:29:31.698 --> 00:29:47.698
+Um, and so while I'm sure everyone here, uh, you know, understands prompt injection quite well, I've actually been very surprised at how many other, you know, people in AI, you know, experienced AI developers, you know, startup founders, tech executives that I talk to.
+
+
+103
+00:29:47.698 --> 00:30:02.698
+only have a really vague understanding of what prompt injection is. Um… Because ultimately, prompt injection is a really inconvenient risk. Um, and that's why I think we as a security, uh, you know, as security practitioners have a really important.
+
+
+104
+00:30:02.698 --> 00:30:14.698
+responsibility to show to the industry that not only is it, uh, um, you know, a real risk, but it does not actually, um, mean that we can't move fast on AI. We need to help.
+
+
+105
+00:30:14.698 --> 00:30:21.698
+you know, all of our companies, you know, the people building AI move fast while not YOLO-ing security.
+
+
+106
+00:30:21.698 --> 00:30:39.698
+So, you know, I'm sure a lot of you have, um, seen this graph from last year about, uh, failure rates in resisting prompt ejection attacks. Um, you know, models are getting better, but I think in security, you know, even a 1%, even a 0.1% failure chance to attack is not enough.
+
+
+107
+00:30:39.698 --> 00:30:44.698
+So we need something better. We need something better than just relying on the models.
+
+
+108
+00:30:44.698 --> 00:31:02.698
+And also, this is not a future problem. Another elephant that is hiding behind the first elephant is that we don't really know, especially with consumers, how prevalent prompt ejection attacks are, and we don't know how prevalent that they are going to be in the future, but I personally believe that.
+
+
+109
+00:31:02.698 --> 00:31:11.698
+Um, you know, once again, looking at things like OpenClaw, things are going to get a lot worse before they get better.
+
+
+110
+00:31:11.698 --> 00:31:18.698
+Um, so what do we do? Um, you know, how do we protect our companies from the risks of prompt injection?
+
+
+111
+00:31:18.698 --> 00:31:27.698
+Um, well, I have a confession to make. I am not here to announce a magical technical solution that allows us to solve. Prompt injection without any risk.
+
+
+112
+00:31:27.698 --> 00:31:35.698
+I'm gonna tell you something that you probably already know, which is that we basically have to assume prompt injections will happen.
+
+
+113
+00:31:35.698 --> 00:31:42.698
+and prevent compromised agents from causing harms, uh, compromised agents from causing harm when they do happen.
+
+
+114
+00:31:42.698 --> 00:31:53.698
+Um, but I will share with you a set of architectural controls that we have built at Stripe that serve as guardrails to prevent those bad things from happening when prompt injection does happen.
+
+
+115
+00:31:53.698 --> 00:32:07.698
+But the guardrails are really only a small part of the story. Um… What happens when you put these guardrails in place is that there are negative impacts on, sort of, what agents can do. There's friction for users.
+
+
+116
+00:32:07.698 --> 00:32:25.698
+Addressing those problems is really what takes, um, sort of a technical solution into a workable solution for your business. Um, and, you know, that's sort of the real work, I think, in many cases of security practitioners.
+
+
+117
+00:32:25.698 --> 00:32:42.698
+This is sort of ultimately a security leadership talk. When practicing security engineering, you know, step one is the threat model, step two is the mitigation, but importantly, step three is figuring out how to put in place the mitigation in a way that the business still can achieve its goal.
+
+
+118
+00:32:42.698 --> 00:32:57.698
+Um, and so with prompt injection, the interesting part is what happens after we put in place the guardrails? How do we enforce it? And, you know, what do we do to make it so that agents can still be powerful?
+
+
+119
+00:32:57.698 --> 00:33:09.698
+Um, and so I'm gonna tell you a little bit about how we've tried to navigate this sort of frothy, FOMO-driven world, um, uh, while still remaining secure.
+
+
+120
+00:33:09.698 --> 00:33:24.698
+Um, cool. So, what are the controls? Okay. Well, first let's start with data exfiltration, one of the two bad things that can happen when you get prompt injected. Um, I'm sure you're all familiar with the lethal trifecta, you know, this term coined by Simon Willison.
+
+
+121
+00:33:24.698 --> 00:33:37.698
+You know, there are three things that a agent needs in order to, um… exfiltrate data if it gets prompt injected. Um, one is untrusted content.
+
+
+122
+00:33:37.698 --> 00:33:55.698
+Untrusted content is really not feasible. In most cases, I think, for us to remove as a guardrail. First of all, a big part of why LLMs are useful in the first place is you can just throw a bunch of stuff at them and they will figure out what to do.
+
+
+123
+00:33:55.698 --> 00:34:07.698
+And beyond that, um, you know, attackers have been very, very creative in figuring out ways to sneak prompt injections into places you wouldn't think to look for untrusted content.
+
+
+124
+00:34:07.698 --> 00:34:32.698
+Um, similarly, there's private data, and while there are totally many applications that don't need private data to work, uh, there are a lot that do, and certainly at Stripe, we have a lot, you know, whether it's support tickets, emails, etc, many, many agents need private data, which means there's really only one leg of the legal trifecta that we can focus on for mitigating prompt injection risk, which is.
+
+
+125
+00:34:32.698 --> 00:34:49.698
+egress. So, um, our focus has been from a guardrail perspective, very much on preventing egress, which one is egress to the public internet, just making general web requests. And then there's another sneaky one, which is being really careful about how you talk to third parties.
+
+
+126
+00:34:49.698 --> 00:34:55.698
+Um, you know, a very easy way to exfiltrate data would be writing it to a public Google Doc with a Google Doc tool.
+
+
+127
+00:34:55.698 --> 00:35:16.698
+Um, so that's Guardwheel one, preventing egress. Second, unfortunately, there isn't a, uh, you know, term officially for, uh, the things that you need in order to have prompt injection, um, deal damage by taking a sensitive action, but I guess lacking something better, I will call this the lethal bifecta.
+
+
+128
+00:35:16.698 --> 00:35:35.698
+And essentially, we're in the same boat where, um… Preventing untrusted content is not really that feasible for most agents. So instead, we focus on preventing agents from unilaterally taking sensitive actions. Sensitive is very load-bearing here.
+
+
+129
+00:35:35.698 --> 00:35:49.698
+Generally, the rule of thumb that I say is that anything that is a production right or extra broad communication or sending a message are the big things that we think of as sensitive actions.
+
+
+130
+00:35:49.698 --> 00:36:10.698
+So, uh, great, problem solved. We have our guardrails. Um… Unfortunately, these guardrails cause problems. They cause agents to be less useful, and worse, they cause agents to be very annoying. I'm sure everyone here has had a very similar experience using Claude Code for the first time, where, um…
+
+
+131
+00:36:10.698 --> 00:36:26.698
+you know, Claude is constantly asking, can I do this, can I do this, can I do this? And it really is a bad user experience. You just start trying to, you know, find where in the settings you can enable dangerously skip permissions. So we really need to address these pain points if we want.
+
+
+132
+00:36:26.698 --> 00:36:46.698
+these guardrails to be adoptable. So let's start with egress controls. Um, you know, the common thing that I heard a lot of when I was like, hey, we need to make it so our agents can't egress to the public internet, is like, wait, you know, we need to be able to do research, we need access to public internet data. Um, the key thing here is that what these agents generally need is not.
+
+
+133
+00:36:46.698 --> 00:37:02.698
+the ability to make an arbitrary HTTP request, what they need is the ability to get data from the internet. So the solution that we came to here is to offer a safe search. We build this on OpenAI's search, um, but, you know, there are other ways to do this.
+
+
+134
+00:37:02.698 --> 00:37:19.698
+Um, but the key thing here is you need to make it so that the search does not itself trigger egress. So there's a setting in OpenAI web search, external web access false that you set so that you can make a request for a search, and it'll just serve results to you out of the cache, and it won't.
+
+
+135
+00:37:19.698 --> 00:37:31.698
+um, you know, you prevent the data from being egressed by your agent, and instead it just gets egressed by OpenAI. That's not, like… really making anything any safer.
+
+
+136
+00:37:31.698 --> 00:37:47.698
+So second is how you handle SaaS. So, you know, we say, hey, we have to be careful about egress, and then people are like, well, I have an MCP for my SaaS app, can I just hook up the MCP? That's fine, right? We trust our SaaS.
+
+
+137
+00:37:47.698 --> 00:38:10.698
+And that's sort of true. but also sort of not true. Um… the way that we have approached, you know, preventing SaaS from being a data exfiltration vector is through proxying. Um, we have a central MCP server at Stripe called Toolshed. Basically, when we want to hook up a third-party SaaS, we will proxy, basically, the connection through that central.
+
+
+138
+00:38:10.698 --> 00:38:23.698
+server, and then that gives us a place where we can write rules, like, don't allow connections to tenants that are not Stripe, um, when you're, uh, writing data to Google Docs or Figma or whatever.
+
+
+139
+00:38:23.698 --> 00:38:31.698
+And ultimately, this actually offers a better experience for the user, because then they only need to worry about connecting to one MCP server with their app.
+
+
+140
+00:38:31.698 --> 00:38:47.698
+And so second, we have the human confirmation friction. This is an area I think that they're really needs to be a lot more user experience research, but at a high level, I think of there being three main problems.
+
+
+141
+00:38:47.698 --> 00:39:02.698
+Um, when you're doing human conformation flow. One is that, like, especially in this sort of Claude code, um, esque world that we are in now, the fact that the confirmation dialogue stops the agent in its tracks is a major problem. You really want to be able to start an agent doing its work and let it.
+
+
+142
+00:39:02.698 --> 00:39:18.698
+You know, churn along until it's done, and then come back to it. Second is review fatigue. See Claude code asking you to run find. And third is rubber stamping. With enough review fatigue, people are just going to mash.
+
+
+143
+00:39:18.698 --> 00:39:44.698
+confirm on any confirmation dialogues. So, as we've been looking at the UX for this, I think that, um, probably the core of how we can make this a lot better for users is batching confirmations. Um, there are a lot of, like, writes and commands that you might want to do that don't really actually need to happen instantaneously for the agent to continue making forward progress, so we can just let these stack up on the side and let the user come back to these later.
+
+
+144
+00:39:44.698 --> 00:40:00.698
+Um, secondly, there are a lot of, uh, rights where you can just do the right and then offer the user the opportunity to revert it later. And that's, like, a perfectly reasonable, uh, compromise to make sure that the agent can't, um, you know, do some irreversible harm.
+
+
+145
+00:40:00.698 --> 00:40:16.698
+And then also as we sort of continue to get into more sophisticated policy, there are a lot of options around having an LLM as a second reviewer to make sure that people aren't rubber stamping things to, you know, uh, uh.
+
+
+146
+00:40:16.698 --> 00:40:24.698
+quickly tell the agent that it's trying to do something bad, um, you know, without needing to involve the human.
+
+
+147
+00:40:24.698 --> 00:40:36.698
+So, lastly, how do we enforce this all? This is, like, very challenging when you have many, many people, um, writing agents in, uh, different frameworks, um, across, um, your ecosystem.
+
+
+148
+00:40:36.698 --> 00:40:55.698
+Um, for egress, uh, fortunately, we're in really good shape here at Stripe because we have a strong egress control program that predated, sort of, the world of AI agents. We have an open-source repository called Smokescreen that we use for a lot of this. Essentially, the approach here is, one, tag any service that is an AI agent.
+
+
+149
+00:40:55.698 --> 00:41:12.698
+This is actually not very hard, because we know that to be an agent, you need to talk to foundation models. We have a proxy for this, but you could use, you know, whether your service talks to Bedrock or whatever as a way of doing this. And then once you have a tag on the services that are agents, you know.
+
+
+150
+00:41:12.698 --> 00:41:29.698
+where your egress proxy service is, or you know how your firewall is configured, you can just write CI checks that say, if this is an agent, you can't configure egress without some, you know, escalated review process to make sure it's following sort of the.
+
+
+151
+00:41:29.698 --> 00:41:35.698
+principles of, you know, preventing data exfiltration. So that's essentially what we do at Stripe.
+
+
+152
+00:41:35.698 --> 00:42:00.698
+So, for guardrails, things are a little bit more complicated. Um, at Stripe, we have sort of two main places that people are writing tools. Um, either you're writing inline tools in the agent framework, or you're writing tools that are in our central MCP service. And our approach here is that we require annotations on every tool with, you know, nice human-readable properties like production impacting write or broadcast data internally. And then based on these.
+
+
+153
+00:42:00.698 --> 00:42:19.698
+annotations, you can determine whether the tool needs to have some sort of human-in-the-loop review. And by sort of centralizing this through a framework, you can have a central UX framework that is used for doing those reviews and sort of improving the experience on it over time.
+
+
+154
+00:42:19.698 --> 00:42:33.698
+Um, things are getting more complicated here, though, because, um, you know, I've heard it said by certain people that MCP is dead. Maybe not true, but increasingly, agents don't need special tools, they'll just write their own code and hit their own.
+
+
+155
+00:42:33.698 --> 00:42:54.698
+Um, you know, hit random APIs on your existing services. So what do we do here? Um, this is, like, work that is in progress right now, but the approach that we're looking at here is essentially proxying the connections coming out of agents, out of their sandboxes, and then using that as a choke point where you can similarly have annotations on the API endpoints that the.
+
+
+156
+00:42:54.698 --> 00:43:03.698
+agents are talking to and determine which ones are sensitive, which ones need, um, additional, uh, uh, review by the operator.
+
+
+157
+00:43:03.698 --> 00:43:21.698
+So yeah, to wrap up, we basically de-risk prompt injection by assuming it will happen in preventing damage, um, you know, two risks, data exfiltration and harmful actions, data exfiltration, the key control is preventing egress, and making sure that SaaS isn't a sneaky way to do egress.
+
+
+158
+00:43:21.698 --> 00:43:46.698
+We solve pain points here with, uh, safe web search and proxying of SaaS. And we use CI time controls on egress settings as our enforcement mechanism for preventing harmful actions. Human review is the key constraint. We use annotations in order to ensure things have human review and trigger automatic human in the loop, but we need to work hard to ensure that.
+
+
+159
+00:43:46.698 --> 00:44:04.698
+user experience of the human in-the-loop flow is good. And things like batching reverts, you know, software and LLM-driven checks that can happen without the human being involved all can be applied to make this better.
+
+
+160
+00:44:04.698 --> 00:44:29.698
+Um, so that's it. That's what we built. Um, but at some level, what I really want you to take away from this is that security isn't just about figuring out the secure way to do things, it's about helping your organization figure out how to accomplish their goals in a secure way. And, you know, it is slightly terrifying to see all the offensive talks of ways that.
+
+
+161
+00:44:29.698 --> 00:44:46.698
+Uh, you know, AI is making it easier to attack things, but it's also been really exciting to see the ways in which I think we can expect security to be much better in the near future once we have agents really doing all of this detailed analysis of our code on an ongoing basis.
+
+
+162
+00:44:46.698 --> 00:45:07.698
+But in order to get there, we need to make it past this sort of turbulent, high-risk era that we're in. And basically, uh, uh, all of us in this room are the ones that need to help our organizations do it. So, thank you.
+
+
+163
+00:45:07.698 --> 00:45:31.698
+Questions? We've got one back there. While I'm walking back, I'll start with one. You put a lot of effort into improving the pain points around sort of human in the loop reviews. Do you find that there's any value in sort of aggregating any of that at the group or team level or teams, like, typically running into the same sorts of problems or is it sort of like person or?
+
+
+164
+00:45:31.698 --> 00:45:50.698
+or no review at all? I think we're probably going to get there. We're pretty early in this. A lot of the UX experimentation is, like, very, um, you know, very early on, we're early on in the experimentation process, but I think in general, trying to find ways to, um.
+
+
+165
+00:45:50.698 --> 00:46:02.698
+you know, make it so that people need to stop less. Fewer checks, fewer reviews need to be made, while ensuring that human judgment is applied at the right time is going to be sort of the North Star here.
+
+
+166
+00:46:02.698 --> 00:46:18.698
+Awesome. Thank you. Quick question. Do you still find the value in doing, like, threat matlining to stop, like, prompt ejections, at least partially, as you design systems? Yeah, I think that there is 100% a place for, you know, detective and, um.
+
+
+167
+00:46:18.698 --> 00:46:36.698
+sort of other types of controls that, uh, sort of are not, um, you know, guarantees. Um, I think especially for, sort of, customer-facing products and stuff like that, that's gonna be important, but, like, ultimately, I guess, because we're not at the point where we can fully trust that.
+
+
+168
+00:46:36.698 --> 00:46:46.698
+We really want to lean on these more deterministic architectural controls.
+
+
+169
+00:46:46.698 --> 00:46:53.698
+Thank you.
+
+
+170
+00:46:53.698 --> 00:47:01.698
+All right, we will continue with securing agents at large digital native companies.
+
+
+171
+00:47:01.698 --> 00:47:12.698
+You know, it's a theme. Uh, please welcome Brooke from… Brooks from Dropbox.
+
+
+172
+00:47:12.698 --> 00:47:23.698
+Uh, yeah, yeah, thank you. Um, I'm Brooks, I do work at Dropbox as a, um, infrastructure cloud security engineer. This presentation is more about the agents I've been building, um.
+
+
+173
+00:47:23.698 --> 00:47:33.698
+On my own, the ones I run every day, um, kind of the things I've been building and breaking and, uh, the issues I've run into and lessons learned, and, uh, fun things like that.
+
+
+174
+00:47:33.698 --> 00:47:48.698
+So everything I'm going to reference here is open source on my GitHub. It's not really the open source that you can just download and run. It's open source, like, you can look at the code and try to figure out how to do it, but it does all run for me, so good luck if you want to go try.
+
+
+175
+00:47:48.698 --> 00:48:08.698
+So this is, uh, I did update all these numbers last night, and I think it's already out of date again, um, but I have, like, 19 different agents. Agent is kind of a catch-all here. There's, I think, 13-ish interactive ones, a few other that are more like service agents, kind of cron jobs that call either Claude code or a different agent.
+
+
+176
+00:48:08.698 --> 00:48:13.698
+Um, 73 different MCP tools, uh, just on a local SDDIO.
+
+
+177
+00:48:13.698 --> 00:48:34.698
+MCP server, so that that has things like, um, email that I've been playing around with a little bit, um… Creating files, reading from the file system… uh, different… tools around the OS that I want to give them access to, and just anytime I want to create another tool, put it in there, and then I, uh…
+
+
+178
+00:48:34.698 --> 00:48:49.698
+I'll get into the capability system in a little bit, but then I try to scope it down so that every agent doesn't have to see every MCP tool. I mean, that's just pretty much good security and also good for the functionality, so we're not polluting the context.
+
+
+179
+00:48:49.698 --> 00:48:53.698
+I also created several different ways to start these agents.
+
+
+180
+00:48:53.698 --> 00:48:57.698
+I typically do use CLI tools for a lot of this stuff.
+
+
+181
+00:48:57.698 --> 00:49:05.698
+But I have thrown in, like, a web UI, voice kind of wrapper, both in the web UI and kind of a standalone app.
+
+
+182
+00:49:05.698 --> 00:49:18.698
+And, um, also have it connected just to my personal Slack, so I can add a specific agent, it kind of goes through a filtering system, sends it to the right place, and I get a response.
+
+
+183
+00:49:18.698 --> 00:49:30.698
+So through all this, I do also interact with a couple of remote MCP servers that are also permissioned different ways, mainly the personal ones I've been building for myself and GitHub.
+
+
+184
+00:49:30.698 --> 00:49:34.698
+I'll get into some of that permissioning in a little bit.
+
+
+185
+00:49:34.698 --> 00:49:43.698
+And then also just some of the security controls I've been putting in place, capabilities bounding, like I mentioned, making sure there's, um, each MCP tool has a permission.
+
+
+186
+00:49:43.698 --> 00:49:54.698
+Scope, so read, write, admin, et cetera. Make sure memory's isolated and observability. And then also, yeah, the max iterations per turn ended up being very helpful.
+
+
+187
+00:49:54.698 --> 00:50:04.698
+I've optimized it down to probably about 3 or 4 iterations that I'm normally hitting now, but that's a good way to kind of make sure you don't end up spending too much.
+
+
+188
+00:50:04.698 --> 00:50:31.698
+Uh, so I can actually go through and show some of the, um, workflows that I do do with it. So right now, I automate a lot of coding processes, so I have kind of a custom task management system here, where I just pretty much have a cron job that's… A cloud-p command that goes through, and it will start getting things fixed or optimized for me. So you can see this is just kind of a report from it. You can see kind of the things it does.
+
+
+189
+00:50:31.698 --> 00:50:36.698
+But then, um… You might ask what happens if we run out of tasks?
+
+
+190
+00:50:36.698 --> 00:50:51.698
+If it does that, then it runs. I have a few code review, um… Sub-agents, so, like, it'll do security auditing, testing, that's, like, test coverage, code quality, documentation, etc. And then it will, uh, make more tasks for those.
+
+
+191
+00:50:51.698 --> 00:51:05.698
+So pretty much I have a kind of a self-sustaining code optimization ecosystem that will keep running until it maxes out my credit card and Claude cuts me off.
+
+
+192
+00:51:05.698 --> 00:51:16.698
+And then, um, through this, though, I am getting, you know, into the place where there's a lot less human in the loop for a lot of this, which is definitely a scary place to be.
+
+
+193
+00:51:16.698 --> 00:51:43.698
+I have been trying to put together, like, weekly PR reviews, so I'll go through and, um, go through all the reviews, or go through all the PRs, uh, try to analyze what might be good, what might be bad, what process I should be put in place, and then, um… SPR review or SPR already has CI tests. I have two Claude review agents that go through, and I've set it up so that way the automated tasks.
+
+
+194
+00:51:43.698 --> 00:52:00.698
+Um, they have to keep iterating until the Claude review bots pretty much say that it's good to go. So let's try to have some safe checks, or safety checks to make sure LLM isn't… Uh, just giving me complete garbage, and so far it has been working fairly well, definitely, um, some things that I'd like to…
+
+
+195
+00:52:00.698 --> 00:52:07.698
+Optimize it a bit more, but definitely, uh… Not a bad place to be.
+
+
+196
+00:52:07.698 --> 00:52:32.698
+So yeah, as I mentioned, I have a capabilities bounding and permission control system set up, so each agent has both… Both allowed tools that it's allowed to have, and also the permissions for those tools that I can use. So, the Task Manager agent is definitely kind of my daily driver that goes through and helps me automatically complete tasks, break things down.
+
+
+197
+00:52:32.698 --> 00:52:35.698
+reschedules when I have an updated tasks in a while.
+
+
+198
+00:52:35.698 --> 00:52:55.698
+So that has, uh, you know, the permissions to go search for stuff, message me in Slack, email me. Memory, obviously. Then I have some things like security researcher, read-only, it's just kind of, I ask it questions about, you know, blog posts or, um, different things, and it goes through kind of the rag I've been setting up the web, answers things there.
+
+
+199
+00:52:55.698 --> 00:53:01.698
+And then I do have just a chat bot that has everything. That's kind of my test.
+
+
+200
+00:53:01.698 --> 00:53:19.698
+Um, but of course, I want to set this up to be secure by default as I add more tools to the ever-expanding MCP server. So I definitely need to make sure that tools are locked down by default. You know, you have to go specifically add tools or add permissions, everything is gonna be locked down to admin otherwise.
+
+
+201
+00:53:19.698 --> 00:53:37.698
+I have a. Quick kind of demo on how that works.
+
+
+202
+00:53:37.698 --> 00:53:53.698
+Um, so I was just going to go through, here's kind of how I can run the chatbot agent, give us specific permission. So here, read, send. Uh, so here it has no write privileges to memory, and we're asking it to try to save memories and kind of see the denial.
+
+
+203
+00:53:53.698 --> 00:54:09.698
+The agent's aware that, okay, you know, it has a verbose enough error message that it knows what's going on and can tell me, you know, what I might be doing wrong, what I can fix. And then if you do, you know, not restrict it, because this is the chatbot that has all the permissions, or all the MCP tools.
+
+
+204
+00:54:09.698 --> 00:54:15.698
+Then, memory works fine. You kind of see how I've been storing the memory.
+
+
+205
+00:54:15.698 --> 00:54:19.698
+Which I'll go into a little bit later as well.
+
+
+206
+00:54:19.698 --> 00:54:32.698
+And, um… Yeah. The Wi-Fi here definitely leaves a little bit to be desired, just a little slow. But here it just shows key value. Sometimes it'll print out the whole JSON, which is nice, and then, um…
+
+
+207
+00:54:32.698 --> 00:54:42.698
+That will get cleaned up. So one thing I've also been working on, which is kind of a preview of mistakes I'm definitely gonna make.
+
+
+208
+00:54:42.698 --> 00:55:03.698
+is this, uh, MCP kind of relay, or sorry, MCP server that's more or less a chat room for my, um… for my LLMs. So, I originally created it just to kind of help debug server-client clients, uh, interactions.
+
+
+209
+00:55:03.698 --> 00:55:18.698
+Because I got really tired of copying and pasting between Claude code on the server, Claude code on the client. So here, we have… or the plot is trying to debug kind of a local client.
+
+
+210
+00:55:18.698 --> 00:55:40.698
+Uh, let's see, we can have the server session, uh… say, like, you know, here's the source code, the client's trying to get debugged, and then they'll start, uh, chatting back and forth and sending messages just to each other, so that way they can, uh, debug it even though all the server code might not be accessible to the client. So it's been, you know, super helpful in, uh.
+
+
+211
+00:55:40.698 --> 00:55:47.698
+Making client-server connections work better, especially as a lot of this is internet MCP traffic now.
+
+
+212
+00:55:47.698 --> 00:56:07.698
+But of course, this is, uh, not the most secure setup right now. It is running on my home lab where only I interact with it, but it's definitely not production ready. We're injecting context from one LLM to another. Capabilities are not… being scoped down, but that's other things I'm working on there.
+
+
+213
+00:56:07.698 --> 00:56:24.698
+And with that, I've also just given myself a web interface so you can kind of see the kind of discussions between them. Right now, this is all just in memory on the server. Like, right when this is over, I'm going to start putting a Redis backend in for it as well, and continue on there.
+
+
+214
+00:56:24.698 --> 00:56:37.698
+But then that also leads to the question, what if I want to debug something on a server that doesn't have, like, Claude code or LLM on it? So I have also put together a remote agent.
+
+
+215
+00:56:37.698 --> 00:56:53.698
+That can run on, like, say, or my Proxmox LXC containers that have half a gig of RAM. So you can run it, uh, right now I just set it up with OAuth, because that's the authentication I use for all agents.
+
+
+216
+00:56:53.698 --> 00:57:15.698
+Because it's set up and it works. And then it will also just go to a chat room window and pull and wait for commands. So this is pretty much, uh, for me, it's a good debugging tool. Other people might see it as a, um, implant. Again, very insecure, don't use this.
+
+
+217
+00:57:15.698 --> 00:57:30.698
+Right now, at least, but one of my goals is to see how I can transfer capabilities from the agent to Linux permissions, or do some sort of, uh, permissions bounding, put it up in, like, a restricted user, and go from there. And similarly, you can see, like.
+
+
+218
+00:57:30.698 --> 00:57:45.698
+the LLM is debugging, it's sending commands, you can see what's getting sent here. And we're also keeping these logs on the MCP relay on the… soon-to-be Redis server.
+
+
+219
+00:57:45.698 --> 00:57:54.698
+Let's see around one. Yeah, so you can see the commands and everything being sent there.
+
+
+220
+00:57:54.698 --> 00:58:09.698
+So just some videos in case that didn't work, but thankfully it did. So yeah, one of the issues I ran into with memory is that I knew, obviously, for different, like, clients or different users, you want to isolate memory, but for when I was just creating agents for myself, I was like.
+
+
+221
+00:58:09.698 --> 00:58:32.698
+You know, just create a Postgres table, throw memories in there, and uh… this should work. Which, it does work, they do remember stuff. But I ran into a lot of, kind of, uh, annoying functionality issues, like, uh, the one that kind of really led to me fixing it was this first one, where I asked my task manager to break down tasks for me, and it would take, I also threw together a business agent that was just like.
+
+
+222
+00:58:32.698 --> 00:58:59.698
+Look through my GitHub, see how I can make money, and I was, like, telling that to Optimize to try to get $1,000 a month, see what we can do. So then every time I'd ask my task manager to break stuff down, it would mention that it's optimizing for this $1,000 a month goal, which was… Very frustrating to me, because that was kind of just a side, kind of for fun, let's see what happens thing. And after a bunch of these leakages between different agents and, you know, other agents' memories.
+
+
+223
+00:58:59.698 --> 00:59:04.698
+It did really lead me to kind of trying to set up a better memory isolation system.
+
+
+224
+00:59:04.698 --> 00:59:20.698
+So that way each agent could have its own identity, and that identity would be mapped to a kind of memory namespace. So currently, identity is only pretty much set up by each agent is just a Python subclass of my agent framework.
+
+
+225
+00:59:20.698 --> 00:59:41.698
+agent class. So they take that class name, and then that… when they, uh, set up their local MCP server, that class name gets sent to the MCP server and is, uh, just translated into the namespace here, so that way LLMs have no control over what their namespace key is. They can't, you know, try to decide they're somebody else get memories.
+
+
+226
+00:59:41.698 --> 00:59:51.698
+So that is kind of the identity setup I have. It's definitely pretty simple and probably needs expanding fairly soon, but it has been working pretty well off the bat.
+
+
+227
+00:59:51.698 --> 00:59:59.698
+So yeah, I have a quick, uh… Demo for that as well.
+
+
+228
+00:59:59.698 --> 01:00:10.698
+So pretty much we'll show you how you can, like, save a memory. So here we have… I just have a kind of a test memory script, which will save — oh yeah, here's the kind of memory format.
+
+
+229
+01:00:10.698 --> 01:00:17.698
+Right here. So you see there's a key, we have a value, you can't categorize it, put importance.
+
+
+230
+01:00:17.698 --> 01:00:39.698
+etc. And, um, go through and see if it can find its own memory, and then we'll see that another agent cannot find this memory. Another issue I ran into at the beginning was I was injecting all the memories, which can be helpful, but you start filling up your context really fast, and a lot of times, agents don't need to know everything that they've remembered.
+
+
+231
+01:00:39.698 --> 01:00:56.698
+So I did go through and set it up so that way only the important memories, I think, like, the importance data or above gets auto-injected. They also have search memory functions that can go and search for anything specific. So you can see, like, it can find it. You have some agentic response that wants to throw emojis in there.
+
+
+232
+01:00:56.698 --> 01:01:10.698
+Um, and then the security agent will go look for it, and it won't… shouldn't find anything. And actually, it's getting caught by my LLM firewall there, which is also another issue that I'll… talk about in just a second.
+
+
+233
+01:01:10.698 --> 01:01:40.698
+So, as you can see there, the memory call got blocked, which was not what I intended, and it's still, you know, prompt injection detection, not plug and play, uh, still needs more tuning. And, uh, it was just kind of, I wanted to put in some prompt scanning, see… you know, add some security to this as I went. But, uh, like, the most annoying thing here is I'd have, uh, like, this last one include a server time field in every API response. That was an actual task I wanted to do, so I was like, go create this task for me so I remember to do it. And then, like, two weeks later, I was checking through the LLM firewall logs, and I saw that it was blocked.
+
+
+234
+01:01:46.698 --> 01:01:51.698
+Along with, like, a couple dozen other tasks, so then, all of a sudden, I'm missing out on this stuff.
+
+
+235
+01:01:51.698 --> 01:02:11.698
+So out-of-the-box configuration, way too aggressive, had to go tune that down and still trying to figure out what kind of customizations I want, like obviously security research queries are going to have more stuff, so that needs to be very insensitive if it's there at all, and then kind of figure out where the accepted risk tolerance is for each, um.
+
+
+236
+01:02:11.698 --> 01:02:29.698
+Setting there. Another thing that I, at least think is pretty cool is I have a kind of context-aware trimming thing set up. This is mainly for log analysis, because the, um, problem it solves is if I have an LLM that is going through, say, security logs in this example.
+
+
+237
+01:02:29.698 --> 01:02:42.698
+This context is going to get filled up, it's gonna, uh, trim the context, start throwing stuff away, but I don't want, uh, like, an attacker to be able to just send an attack every 200,000 tokens, and then I only see, you know, one at a time.
+
+
+238
+01:02:42.698 --> 01:03:12.698
+So I've set up a way so I can tag different messages as different things, so that way I can say, this is a security, like, in this case, the SSRF server-side request forgery was blocked, permission to die, those are important security events. Let's make sure whenever the context is trimmed, we keep these around, and… Use them for our security analysis there. So this is definitely still not, you know, 100% perfect. Um, and as the logs increase, contacts get longer, I'm running these agents for longer times.
+
+
+239
+01:03:15.698 --> 01:03:35.698
+the contacts can still fill up, so it's just figuring out, uh, how to adjust that as we go is another fun challenge. So I can show kind of how that works. It's pretty much what happens is just with the… With the, um…
+
+
+240
+01:03:35.698 --> 01:03:53.698
+The logs that come back, they get tagged with different security events. So you can see we have, like, uh, some metadata set for, like, server-side request forgery blocked or permission denied. Um, and then I'll go trim the messages, and, you know, we make sure we keep the security one, relevant ones there.
+
+
+241
+01:03:53.698 --> 01:04:18.698
+There's, uh, some reporting. So, of course, observability is key. It's very hard to do, or very hard to do thoroughly enough, but, like, right when I started up cost tracking, I did see I was wasting tons of tokens on both injecting all the memories all at once, which they didn't need and was actually hurting functionality as well. I had like the coding agents, it was trying to run all the.
+
+
+242
+01:04:18.698 --> 01:04:43.698
+review agents all the time because when I was coding that, that's what the LLM thought would be helpful, which was also, like, every time you run those five review agents, it's like 250k tokens, so I was just running that way more often than I needed to. Right now, I have Langfuse traces that are super helpful to kind of see which agents are doing what. I've accidentally used Opus where I meant to use Sonnet in several places and linked.
+
+
+243
+01:04:43.698 --> 01:05:01.698
+which helps kind of debug where that is. Grafana dashboards for cost daily breakdown, making sure that you do have a security audit trail. Because a lot of this, a lot of my automations are running like 24/7 or at least prawn jobs.
+
+
+244
+01:05:01.698 --> 01:05:26.698
+every hour or two. And, uh, I do want to know, like, if I wake up and I have an extra $100 bill, why did that happen? How can I trace that down? So yeah, a lot of lessons learned. So, thankfully, being a security practitioner, I did, uh, put a lot of security stuff in place for… early on, like permission systems tool allow lists. That was kind of a I know this is important, let's go see what I can do with it.
+
+
+245
+01:05:26.698 --> 01:05:47.698
+And that's, like, a great example of how improved security also improves actual functionality. Because with, like, 73 MCP tools, if we're injecting that into every LLM, they're gonna have so much both context that's wasted, and they're gonna have so much extra information that's just not gonna be helpful for whatever their mission is.
+
+
+246
+01:05:47.698 --> 01:06:02.698
+And then also, yeah, just making sure agents are scoped down as much as possible. So that way they do have kind of distinct things they're trying to do. You can limit, you know, MCP tools a bit more. You can kind of limit all the additional context that might lead them different directions.
+
+
+247
+01:06:02.698 --> 01:06:20.698
+kind of keep them focused, just like you'd want to keep a human focused. And, uh, yeah, just natural chess roundies, context-aware trimming, etc. And then, um, a lot of things I should have done differently, uh, cost tracking, you know, tune some of this stuff before I'm deploying it, since it is just my home lab, I just push stuff out.
+
+
+248
+01:06:20.698 --> 01:06:36.698
+Uh, if I break it, then I go fix it. And then, also, just, yeah, delegation chains is something I still need to work on. Identity-type stuff. I'm sure, like, the Sans talked later will help with that, but trying to go figure out the best way to do that and pass the same identity everywhere we can.
+
+
+249
+01:06:36.698 --> 01:06:58.698
+Um, so that's pretty much what I have. Feel free to reach out to me, LinkedIn, uh, send me an email. I have whatever those PowerPoint cards are called. But yeah. And the code's all on GitHub if you want to just go look at it.
+
+
+250
+01:06:58.698 --> 01:07:22.698
+I will definitely look at your code. Um, are you looking for, sort of, pull requests, changes, or just this is just your project? Yeah, this is just kind of the project I've been enjoying doing, so it's kind of like, uh, no… I enjoy having no pressure to get stuff done, and I'm, you know, if I break it, then I'm only affecting myself. So it's just kind of my personal project that if you want to go see it, you can see it.
+
+
+251
+01:07:22.698 --> 01:07:31.698
+Cool. Uh, other questions?
+
+
+252
+01:07:31.698 --> 01:07:51.698
+Thanks for sharing that. That was great. I was curious, you mentioned the, uh, the ever-expanding MCP server. Is it… you just have one that you're putting all the tools in, and that's your single boundary? Is that how you've designed it? Yeah, so that's just the local MCP server, so each time an agent runs, it'll spawn its own kind of local standard I/O server.
+
+
+253
+01:07:51.698 --> 01:08:15.698
+And that's just how I can define, um… Here's, you know, for example, for the, like, markdown file read-write, I can say, here's the directory that it's allowed to go, here are the file types that it's allowed to do, and then when it calls to try to make a, like, create a file on my file system, the MCP server will make sure those restrictions are put in place, and that's just kind of the locally running, kind of.
+
+
+254
+01:08:15.698 --> 01:08:31.698
+MCP sidecar, more or less, that… that is scoped down to only which MCP functions the agent is allowed to use, but also lets me build in restrictions as each MCP call is done, so that way it's not just, like, Claude code with.
+
+
+255
+01:08:31.698 --> 01:08:52.698
+access to everything. All right. Oh, all right, one follow-up. That's really interesting. You mentioned sidecar. I mean, another way I've seen is to do this outside the bounds of the context window through Envoy and OPA, where you can put the boundaries so you're not consuming context through the.
+
+
+256
+01:08:52.698 --> 01:09:12.698
+The bloated MCP. Yeah. Have you thought about that, or tried that? I don't know if that would… Yeah, so right now… Uh, infrastructure-wise, this is still fairly immature. I run a lot of these agents just on my, like, personal desktop as kind of where they're running now. I have a web server that hosts, like, my external MCP servers. Um, I'm gradually, right now, actually working to move that to the, like, a K3 setup, so working on just setting up.
+
+
+257
+01:09:12.698 --> 01:09:21.698
+containers that I can actually run agents in, and then I could throw in some, um, like, service mesh-type controls as well, and see what I can do there.
+
+
+258
+01:09:21.698 --> 01:09:29.698
+Right? Thanks very much.
+
+
+259
+01:09:29.698 --> 01:09:50.698
+All right, last talk before lunch, before Birds of a Feather, before, like, a brief break to go say hello to all of our, uh, of all of our colleagues. Uh, and we move from writing agents, securing agents, to evaluating security agents. Uh, so please welcome from Airbnb, Muta.
+
+
+260
+01:09:50.698 --> 01:09:59.698
+Awesome. Thank you for joining. This is welcome to my lightning talk. And today, as mentioned, I'll talk about evals.
+
+
+261
+01:09:59.698 --> 01:10:17.698
+Um, so I want to start with a thought. I think at some point in life, we've all met someone when we ask them a question, they give the right answer. But when you kind of poke for the explanation, you sort of guess… you sort of see that they were either guessing the answer, you know, they have maybe memorized it, or they were just copying from somewhere.
+
+
+262
+01:10:17.698 --> 01:10:29.698
+Right? And that's not, like, trust is not the issue, that's another topic, right? But the idea is that you cannot predict if you ask them the question again, if you will get the same right answer.
+
+
+263
+01:10:29.698 --> 01:10:43.698
+Also, if you want to give them feedback and try and improve their answer, there's no underlying skill to give feedback on. And the same idea goes with agents, which were graded on brittle, outcome-focused benchmarks.
+
+
+264
+01:10:43.698 --> 01:10:58.698
+So that brings me to my motivation for today, which is agent evaluation today is rooted in very narrow, outcome-only scoring, which essentially hides explainability and reliability. So if you have an agent, it achieves 80% success on a benchmark.
+
+
+265
+01:10:58.698 --> 01:11:23.698
+That doesn't tell you much, right? That doesn't tell you why it worked 80% of the time. It doesn't tell you why it failed the other 20% of the time. It also does not tell you how do you improve that 80% number to be 90, 95, and closer to 100. And then lastly, it doesn't tell you that if you bring that agent to your infrastructure, to your environment, will the results also follow, right? And if you change things in your infrastructure, what would really happen?
+
+
+266
+01:11:23.698 --> 01:11:46.698
+stay stable or not. At least not without some significant cost and brute forcing. So let's look at an example just to get the point across, right? Uh, so on the left side, we see some code which might be vulnerable. If this was a benchmark, you know, an agent might output something that looks like this. And if you only care about the outcome, you're like, OK.
+
+
+267
+01:11:46.698 --> 01:12:11.698
+It found SQL. So this is a pass, right? We move on. But if you were to look at the trace of the agent, you might see that it followed very shallow heuristics to get to this answer, right? But what the agent did not do was it did not trace the taint flowing into the method. It did not check for exploitability, right? Was this data actually sanitized downstream? It also did not come up with any evidence.
+
+
+268
+01:12:11.698 --> 01:12:29.698
+of how it found the bug, right, other than the patent matching that it did. And that is where the problem is, right? The problem is that the agent did a very superficial analysis, and it did not reason through the taint flow to get to the bottom of the bug, and it did not share with you the different scenarios in which it could be exploited.
+
+
+269
+01:12:29.698 --> 01:12:53.698
+So this information is very critical, especially for security, because I think most of us will agree, security is not an isolated task, right? It is almost always a workflow, and for the most part, it is something that closes in a loop, right? You find a bug, you exploit it, you want to patch it, and then you want to validate that the bug and all of its variants do not exist in your environment anymore.
+
+
+270
+01:12:53.698 --> 01:13:13.698
+Let's go back to the SQL example we saw, right? If we only cared about the outcome of that particular stage, in which case it would be, like, the find stage, we would say, okay, this is a success, but does that mean it's an end-to-end success? Maybe not, because the agent did not carry the context over, right? It did not tell you the different exploit scenarios, the evidence.
+
+
+271
+01:13:13.698 --> 01:13:31.698
+And what it might end up doing is that we might end up creating incomplete or incorrect patches for this particular bug. So our end-to-end workflow just breaks, right? And we do not get the success for the full workflow, we only got it for one stage. On the other hand, if the agent did pass that information on.
+
+
+272
+01:13:31.698 --> 01:13:47.698
+Then we would have had a higher chances of end-to-end workflow success. So… That's why we believe, looking at agents' capabilities is just as important. So things like reasoning, memory, planning, uh, over and above looking at just the outcome.
+
+
+273
+01:13:47.698 --> 01:14:05.698
+And to solve for that, we built Clasp. So Clasp is a capability-centric evaluation framework. The idea is very simple. It gives you six rubrics for six different agentic capabilities. And the idea is that if the agent has a very brittle capability, then you get a lower score.
+
+
+274
+01:14:05.698 --> 01:14:35.698
+If it has a very adaptive execution of the same capability, you get a higher score. And what this does is the framework pushes you to ask the question, how did we achieve this success? Over and above, did we achieve this success? Um… And if you look at this six, you might be asking, but do all of them matter for all of the security different tasks? And that's the question I also wanted to answer. So we applied CLASP to some existing agents, and we found that there are indeed some capabilities that matter more for some specific security task than others. So I'll give you a fun example. We found that for.
+
+
+275
+01:14:45.698 --> 01:15:05.698
+very enumeration-heavy task, so like any recon agent, breadth matter much more than depth. So any agent that planned really well, which tools to use, and then use those tools extensively to enumerate everything it can about a target, it had a better outcome success.
+
+
+276
+01:15:05.698 --> 01:15:20.698
+Then agents that reasoned about what they found and just keep going deep for such an enumerative task. So that is one of the key highlights we saw. And then there's others as well, which are there in our paper. You can check it out and see for yourself.
+
+
+277
+01:15:20.698 --> 01:15:41.698
+But why we did this was to just get a skill attribution for each security step. And this knowledge can really, really help in answering the question, hey, I have an agent. I want to improve it, but I don't know where to start. So if you know what kind of agent it is, you know which capabilities you should start with. It gives you a good starting point.
+
+
+278
+01:15:41.698 --> 01:15:48.698
+From that perspective, and the rubrics I showed on the previous slide tell you how to get better.
+
+
+279
+01:15:48.698 --> 01:16:07.698
+So let's bring all of that together, and let's help you use Clasp, right? How can you use it in practice? It's a three-step approach. First, observability. Bake it into your workflows, make sure you have access to everything your agent touches, you know, be it the context retrieved, be it the reasoning trace, be it the tool calls it made, etc, etc.
+
+
+280
+01:16:07.698 --> 01:16:26.698
+Second, you evaluate the agent. And I'll come back to evaluation in a second. From the evaluation, you might find ways to improve your agent, and then, like I said, use the table I showed before as a good starting point on what to improve. And now let's come back to evaluation, right? Evaluation can happen in two ways.
+
+
+281
+01:16:26.698 --> 01:16:47.698
+The first one, which is like an easier lift, is build an LLM as a judge pipeline. Give it the class rubric, give it your agent's trace, and say, great. You know, tell me how am I doing for planning? Tell me how my agent is doing for tool call. And if you get a 2, you know what to do using our rubrics to get to a four. And then rerun again and see if that also includes improves your outcome.
+
+
+282
+01:16:47.698 --> 01:17:02.698
+The other way to evaluate, which is slightly more heavier lift, is to build test scenarios. So this idea is actually taken from something called as evidence-centered benchmark design. So you build test scenarios for each of the capabilities at varying complexities.
+
+
+283
+01:17:02.698 --> 01:17:18.698
+Uh, and I'll give you an example for tool use for a more lower score would be an agent that has a default tools that it always goes through those tools, maybe in the same order. It does not get a lot of feedback from the environment and just statically goes and executes them.
+
+
+284
+01:17:18.698 --> 01:17:44.698
+Whereas a more higher score would be, it has, it dynamically chooses the tool, it listens to the environmental feedback, it listens to the errors, it chains the tools together, and then creates its exploit flow, or whatever it's trying to get at. But regardless of which evaluation technique you choose, the idea is you get a number back, you try and understand where you stand, and then you have a clear path on how to move forward using our rubrics.
+
+
+285
+01:17:44.698 --> 01:18:01.698
+That's it from my side, just wrapping up. Don't evaluate on isolated, narrow outcomes. Dig deeper into the how of these agents, and a capability-centric grading system like Class can help you create more reliable, more explainable, and more parsimony-aware systems.
+
+
+286
+01:18:01.698 --> 01:18:26.698
+Uh, thank you so much for listening to me. This is the full paper if someone's interested. Uh, this was my personal work, nothing related to Airbnb, and this 10-minute presentation was just a very slight, uh, more industry-forward, uh, takeaway from my paper. But if you're interested, that's my academic paper, and that's my LinkedIn. Thank you.
+
+
+287
+01:18:26.698 --> 01:18:38.698
+Questions? Uh, so I love the, like, the table evaluative class, but it's, like, so… So applicable.
+
+
+288
+01:18:38.698 --> 01:18:54.698
+in operationalizing it, you kind of said, like, yeah, you can use LLM as a judge to start classifying these things. Uh, you know, do you feel like you have a set of prompts or a way of structuring the data that maybe is described in the paper, but, like, we should open source or get started on? Yes.
+
+
+289
+01:18:54.698 --> 01:19:12.698
+Yes. So we do want to also try and do a benchmark. So if you read the paper, we do mention like a blueprint of the benchmark that we're working on, and that's the more like test scenario. So it is easily available. You don't even have to create an LLM as a judge, because we both know that's not the perfect way to do it. It's a lighter lift, sure.
+
+
+290
+01:19:12.698 --> 01:19:37.698
+But the idea would be that you just run your agent on that benchmark, and that benchmark will not just looking at the outcome, it will also look at the actual behavioral trail. So it will see what your reasoning trace was, whether you followed, you know, a more brittle approach or a more adaptive and autonomous approach, where you actually reflected on what you were doing, you perceived the environmental signals, and then went to the next stage. So we are working on the benchmark. And then for LLM.
+
+
+291
+01:19:37.698 --> 01:19:46.698
+That's a good point. I do have it. Maybe I should look into open sourcing it. So yeah, yeah, but thank you. Anything to save the rest of us time?
+
+
+292
+01:19:46.698 --> 01:19:56.698
+Uh, any other questions? All right. Thank you so much. Thank you.
+
+
+293
+01:19:56.698 --> 01:20:02.204
+I have good news and bad news. The good news is we managed to squeeze in some extra talks this morning, but we're back on time.
+
+

@@ -1,0 +1,35 @@
+[00:19:36.054 - 00:19:40.564] Incoming livestream: So yeah, as… so as mentioned, was not prepared for this at all.
+[00:19:40.804 - 00:19:43.544] Incoming livestream: But it's fun to wake up to a surprise message for…
+[00:19:44.004 - 00:19:46.733] Incoming livestream: Oh, I'm Glenn Thorpe, with Gray Noise.
+[00:19:47.104 - 00:19:52.613] Incoming livestream: Yeah, so, woke up, opened Slack, saw a message from Gotti saying, hey, you wanna…
+[00:19:52.704 - 00:19:55.783] Incoming livestream: Jump on stage for a few minutes and show a thing that you made, so that's cool.
+[00:19:55.834 - 00:20:12.964] Incoming livestream: It's not really a great story, except for the side quest that it created. Sunday night, I was getting ready for the conference, and kind of like, they shared a G-Sheet, I'm OCD, I wanted, like, a personalized agenda, so went to Cloud Code, as we all do.
+[00:20:13.104 - 00:20:19.043] Incoming livestream: And Vibe Coded, what's a pretty cool interface, like your talks…
+[00:20:19.214 - 00:20:26.254] Incoming livestream: Right? You can take some notes, gives you a customized agenda, you can export it, share it, whatever.
+[00:20:26.864 - 00:20:30.833] Incoming livestream: So that's not really the fun part, though, because I think we can all do that here by now.
+[00:20:31.314 - 00:20:36.483] Incoming livestream: What was funny is I made it, I was really excited about it, I shared it with my boss.
+[00:20:36.884 - 00:20:38.324] Incoming livestream: And I was all proud.
+[00:20:38.614 - 00:20:40.504] Incoming livestream: And then I started looking at it.
+[00:20:40.624 - 00:20:42.874] Incoming livestream: after I had posted it online.
+[00:20:43.274 - 00:20:55.103] Incoming livestream: And the LLM had confused some of the talks, and so it caught my surprise when I saw that there was a talk with another, speaker here, and the very end of the talk said.
+[00:20:55.524 - 00:21:01.014] Incoming livestream: And we will display, or show how we integrated this into grid noise intelligence.
+[00:21:02.654 - 00:21:04.243] Incoming livestream: That was news.
+[00:21:04.444 - 00:21:10.463] Incoming livestream: And I was actually pretty interested with it, but I was like, I don't think that's right. So I went back to the actual Google Sheet. Obviously, it was wrong.
+[00:21:10.564 - 00:21:30.173] Incoming livestream: I was like, oh, man… So, I went through, got the, you know, just basically re-verified it, and shared it, and gave it more explicit instructions, as we've learned this week, to verify, validate, whatever, share. So then it corrected it, so if you look in the PR for this, it's pretty funny. Also, Wi-Fi is not…
+[00:21:31.094 - 00:21:43.334] Incoming livestream: Being super… BD… Anyway, so, in the end, 25% of the talk descriptions were correct. 75% were wrong.
+[00:21:43.514 - 00:21:50.583] Incoming livestream: So it's kind of a funny story for a vibe-coded AI, thing, but it worked out in the end, and
+[00:21:50.924 - 00:22:03.183] Incoming livestream: You'll see on our talk later, the irony will come when we talk about what we're presenting and how my focus of that project was on the validation skill. So, you know, a little humbling, but it's pretty cool.
+[00:22:32.164 - 00:22:36.234] Incoming livestream: Sorry, Wi-Fi's not… fast today.
+[00:22:38.274 - 00:22:41.274] Incoming livestream: Alright, so yesterday,
+[00:22:41.544 - 00:22:47.924] Incoming livestream: I was trying to find, kind of, all the comments on social media, from the conference.
+[00:22:48.194 - 00:22:52.564] Incoming livestream: And, which is not super easy to do across all the platforms.
+[00:22:53.024 - 00:22:54.783] Incoming livestream: Is this coming up yet?
+[00:22:56.084 - 00:23:00.624] Incoming livestream: There we go. And,
+[00:23:02.174 - 00:23:08.224] Incoming livestream: It will make this a little simpler. And, so…
+[00:23:08.614 - 00:23:12.284] Incoming livestream: because it was hard to find… why can't do I just scroll down?
+[00:23:12.394 - 00:23:24.283] Incoming livestream: I just vibe-coded up a little thing that scrolls all the comments from all the major social media networks, and you can actually go and give kudos to the presenters and add comments.
+[00:23:24.364 - 00:23:39.103] Incoming livestream: But the real, kind of, I guess, more fascinating thing from a security perspective is I looked up the actual amount of code that it created. This took, like, 8 minutes, and it was 6,800 lines of code that was created in 8 minutes to do this.
+[00:23:39.224 - 00:23:58.163] Incoming livestream: And, I think there was, something like 17 different dependencies, that were part of it. But because this is a security conference, I also thought, well, wow, what if… oh, by the way, this crawled the website and mimicked the exact website as unprompted. As you can see, it looks a lot like it.
+[00:23:58.164 - 00:24:05.184] Incoming livestream: But I thought, well, wouldn't it be fun to actually see how many people actually registered for next year's event?
+[00:24:05.324 - 00:24:25.143] Incoming livestream: So you actually can go on, and, add your password, your credit card, and your details for next year's, which is $7.99, not, $179, if you're interested. So you can think about how easy it is to do this across your favorite other site on the internet and make this happen.
+[00:24:25.144 - 00:24:40.674] Incoming livestream: So, that's the demo. It was made with Lovable, I'll put the prompt in the, in the chat notes, and the good thing about Lovable is at the very bottom right, you can actually, edit somebody else's Lovable, and 4 can create your own really easily if you want to do that. So, thank you.

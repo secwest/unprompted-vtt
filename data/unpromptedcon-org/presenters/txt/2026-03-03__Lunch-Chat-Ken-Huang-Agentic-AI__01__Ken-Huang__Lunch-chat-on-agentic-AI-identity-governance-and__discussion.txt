@@ -1,0 +1,418 @@
+[00:02:43.660 - 00:02:45.100] Ken Huang: Hello, everyone.
+[00:02:46.220 - 00:02:48.759] Ken Huang: Wow, only they said they want people here.
+[00:02:49.280 - 00:02:50.740] Ken Huang: Everybody expect us.
+[00:02:52.430 - 00:02:53.730] Ken Huang: so many people.
+[00:02:54.060 - 00:02:55.140] Ken Huang: How's everyone?
+[00:02:59.020 - 00:03:00.730] Hila Shmuel: Good, how are you?
+[00:03:00.730 - 00:03:02.140] Ken Huang: Hey! Very good.
+[00:03:03.780 - 00:03:04.480] Ken Huang: Yeah.
+[00:03:04.870 - 00:03:08.459] Ken Huang: I think maybe we will start, maybe everyone…
+[00:03:08.890 - 00:03:14.209] Ken Huang: Introduce yourself, maybe, if we have time, maybe just one or two minutes.
+[00:03:14.330 - 00:03:24.940] Ken Huang: And, so I'm hosting… This, lunch, So…
+[00:03:25.710 - 00:03:29.040] Ken Huang: I think my topic is really agent AI,
+[00:03:29.160 - 00:03:35.930] Ken Huang: identity and access management, right? That's really the very important topic.
+[00:03:36.530 - 00:03:44.390] Ken Huang: And we did publish some white papers at the cloud circular lines, but
+[00:03:44.550 - 00:03:52.160] Ken Huang: It's not for me to really present, it's more for everyone to talk about that. It's a discussion.
+[00:03:53.090 - 00:03:54.840] Ken Huang: And so on, okay.
+[00:03:55.030 - 00:03:58.279] Ken Huang: Let me see. Can you guys hear me, or no?
+[00:04:00.420 - 00:04:01.440] Dan Hamilton: Can't hear you, it's just…
+[00:04:01.440 - 00:04:01.800] Hila Shmuel: Yes.
+[00:04:01.800 - 00:04:02.910] Dan Hamilton: very far away.
+[00:04:03.250 - 00:04:05.840] Dan Hamilton: microphone's picked up from somewhere else.
+[00:04:07.180 - 00:04:09.119] Ken Huang: Oh, geez, you get some neat.
+[00:04:09.120 - 00:04:10.269] Dan Hamilton: Maybe that's just me.
+[00:04:12.100 - 00:04:15.040] Akshata Rao: No, I do hear him.
+[00:04:15.040 - 00:04:15.420] Ken Huang: Can you use.
+[00:04:15.420 - 00:04:18.200] Akshata Rao: Like, the volume is low. It feels low.
+[00:04:18.370 - 00:04:20.319] Akshata Rao: But I can hear everybody else.
+[00:04:20.890 - 00:04:21.560] Akshata Rao: Well…
+[00:04:29.000 - 00:04:29.730] Ken Huang: unit.
+[00:04:36.420 - 00:04:40.549] Ken Huang: just this week, I'm in Europe, otherwise I… Oh, this is great.
+[00:04:41.060 - 00:04:47.119] Ken Huang: East Coast. Can you hear me now, or I just disabled the, Bluetooth?
+[00:04:47.510 - 00:04:48.670] Akshata Rao: Yeah, this is great.
+[00:04:49.170 - 00:04:54.460] Ken Huang: Okay, so… That's… that's great. So, how about that?
+[00:04:54.470 - 00:05:06.770] Ken Huang: A little bit about myself, I'm a research fellow at the Colorado Security Alliance. We did publish a few white papers on the aging AI.
+[00:05:06.770 - 00:05:18.789] Ken Huang: I'm the… in the committee for this conference, in the review committee. I don't have time, actually, to, be in person there, because I have the
+[00:05:18.880 - 00:05:22.270] Ken Huang: event at the Barcelona.
+[00:05:22.580 - 00:05:39.289] Ken Huang: Yeah, so that's why I volunteered for this particular event, during the lunch time. So, thanks, everyone. I didn't expect we have so many people. So, every people to join, it just, has the doorbell. So.
+[00:05:39.290 - 00:05:45.739] Ken Huang: Okay, it's fine. Yeah, how, by the way, maybe just very fast know each other,
+[00:05:45.830 - 00:05:54.959] Ken Huang: So I will start with Dan, since what I see is here. So Dan, can you introduce yourself a little bit?
+[00:05:55.760 - 00:06:05.840] Dan Stocker: Hi, Ken, thank you. It's nice to see you, and looking forward to seeing you very soon. I'm… I work at JPMorgan Chase. I'm in AI security, and…
+[00:06:06.140 - 00:06:11.389] Dan Stocker: There's a lot of stuff going on. I think about it all the time, think about it on the bus home.
+[00:06:11.690 - 00:06:13.490] Dan Stocker: And, I'm here to learn more.
+[00:06:14.040 - 00:06:20.780] Ken Huang: Yeah, thanks, Dan. Good to see you again. Yeah, I hope to see you soon again, yeah. So, I have,
+[00:06:21.130 - 00:06:23.830] Ken Huang: Hilah… Shamuer?
+[00:06:23.830 - 00:06:24.150] Hila Shmuel: Yay!
+[00:06:24.480 - 00:06:25.170] Hila Shmuel: Yeah, hi.
+[00:06:25.170 - 00:06:26.639] Ken Huang: Can I ask the name?
+[00:06:26.640 - 00:06:30.809] Hila Shmuel: Yeah, my name is Hila, it means Halo in Hebrew.
+[00:06:30.940 - 00:06:39.129] Hila Shmuel: I was engineering manager at Apple, AI and data infrastructures, I delivered…
+[00:06:39.240 - 00:06:48.500] Hila Shmuel: Cinematic video, portrait night mode, so basically a lot of vision, machine learning models you have in your… iPhones.
+[00:06:50.210 - 00:06:55.450] Hila Shmuel: I hope you have iPhones. So yeah, that's me. Yeah.
+[00:06:55.450 - 00:06:59.079] Ken Huang: Yeah, thank you. Then I see Dan Hamilton.
+[00:06:59.370 - 00:07:04.449] Ken Huang: Yeah, I think you are walking, like…
+[00:07:04.450 - 00:07:18.990] Dan Hamilton: Yeah, if I'm gonna be, stuck on Zoom, I gotta get some exercise somehow, so, yeah. Dan Hamilton, I am heading up the InfoSec program at a startup in Utah, called, Tava Health.
+[00:07:19.140 - 00:07:25.199] Dan Hamilton: Recently just joined there. Been at a variety of different startups for most of my career in security.
+[00:07:25.550 - 00:07:28.450] Dan Hamilton: Most recently left, JPMorgan Chase.
+[00:07:28.570 - 00:07:33.489] Dan Hamilton: After our company was acquired. But, yeah, that's me.
+[00:07:33.930 - 00:07:37.930] Ken Huang: Cool, cool. Thank you. I see Akash… Akashita.
+[00:07:37.930 - 00:07:53.420] Akshata Rao: Sorry, I pronounced name… That's okay, it's okay, it's not very common. Hi, I'm Akshata. I am a research lead at Palo Alto Networks for Generative AI Red Teaming. I've been in the cybersecurity industry
+[00:07:53.540 - 00:08:09.590] Akshata Rao: for a while, and I moved over from other research to this, and right now, my focus and interest is figuring out, HNTKI, red teaming, how can we make it stronger? So I'm… I'm very happy to be here and learn from all of you.
+[00:08:10.490 - 00:08:15.470] Ken Huang: Cool, yeah, I know Protect AI now is a part of your team.
+[00:08:15.470 - 00:08:20.059] Akshata Rao: Yeah. Which is good, yeah, I work with them a lot. Oh, that's nice, yeah.
+[00:08:20.060 - 00:08:22.949] Ken Huang: Here, I see Ja… Jagos.
+[00:08:25.710 - 00:08:28.520] Ken Huang: Jagus, R-U-I-U.
+[00:08:30.390 - 00:08:31.809] Ken Huang: Are you able to talk?
+[00:08:32.080 - 00:08:36.190] Ken Huang: I think you're on mute, I come back to you. Michael, you're the next.
+[00:08:37.299 - 00:08:41.269] Michael Machado: Everyone, great to meet you all, and Ken, thank you for hosting us.
+[00:08:41.349 - 00:08:57.499] Michael Machado: I might, I'd say, you know, one part CISO, one part strategic security advisor, one part, beginning, investor, and, just one part, you know, student, trying to, to learn all the things.
+[00:08:58.060 - 00:09:04.019] Ken Huang: Yeah, everyone's a student here. So, that's why it's exciting, right?
+[00:09:04.020 - 00:09:04.380] Michael Machado: Yup.
+[00:09:04.380 - 00:09:08.189] Ken Huang: So, yeah, Vanessa, yeah.
+[00:09:08.300 - 00:09:10.250] Ken Huang: I see you as a next…
+[00:09:11.360 - 00:09:21.550] Vanessa Chan: Hi, I work in security at the Federal Reserve. I also consider myself part student, but yeah, really interested in hearing conversations from everyone at this conference.
+[00:09:22.130 - 00:09:24.459] Ken Huang: Great, thank you. Scott?
+[00:09:26.130 - 00:09:28.010] Ken Huang: Scott, robots.
+[00:09:32.090 - 00:09:33.780] Ken Huang: Okay,
+[00:09:33.930 - 00:09:41.129] Ken Huang: So, yeah, I just waited for 3 seconds. If you are not on mute, maybe I go to next one. God bless you.
+[00:09:44.600 - 00:09:45.710] Ken Huang: Low hit?
+[00:09:48.870 - 00:09:49.670] Ken Huang: Huh.
+[00:09:50.410 - 00:09:53.509] Ken Huang: You guys are… yeah. Hi, folks. Go ahead, continue.
+[00:09:53.510 - 00:10:06.660] Rohit Bansal: This is Rohit here. I'm sorry I'm in the car, so I'm not on camera. My name is Rohit, I am part of a company called Superhuman in the security team, been with other financial players in the past, like Robinhood and PayPal.
+[00:10:06.660 - 00:10:14.320] Rohit Bansal: Interest is how can we use AI for both security and also improving product innovation, but do it in safe manner.
+[00:10:15.140 - 00:10:15.840] Ken Huang: Right.
+[00:10:16.320 - 00:10:31.450] Ken Huang: So, I think we… because we have so many people, I don't think we can go to each of this. Unless you want to introduce yourself, go ahead. Otherwise, I think we will start
+[00:10:31.770 - 00:10:39.410] Ken Huang: Talking about the… Agent AI identity. I have a few questions, people can jump in.
+[00:10:39.800 - 00:10:50.709] Ken Huang: I may have a little bit of presentation if needed, but, yeah, if you want to introduce yourself, that's time to jump in.
+[00:10:55.160 - 00:10:59.729] Ken Huang: Okay, since, no one want to…
+[00:11:00.120 - 00:11:11.019] Ken Huang: Okay, yeah, you can also form, yeah, right to the chat. So, I have some of icebreaker questions,
+[00:11:11.220 - 00:11:17.020] Ken Huang: that, potentially, we can talk about it. I put in the chat
+[00:11:17.360 - 00:11:24.070] Ken Huang: And, maybe we start with, like, ask us, some questions… Wow.
+[00:11:24.480 - 00:11:39.690] Ken Huang: people can just jump in. There's no perfect solution yet, right? So, the first question I put in the chat as well, right? So, when agents act on behalf of humans, where should the accountability reside?
+[00:11:39.730 - 00:11:46.749] Ken Huang: Is the developer, deployer, or the system owner? Who will be responsible for the agent?
+[00:11:48.290 - 00:11:53.020] Ken Huang: someone want to jump… jump in? That's all, like, brainstorming, right?
+[00:11:55.820 - 00:12:07.680] Michael Machado: I mean, I think it's always the system owner, right? It's the organization that's using an agent is accountable for whatever they're doing, whether they're doing it with humans or doing it with agents, at least.
+[00:12:08.450 - 00:12:12.759] Michael Machado: That's my opinion, and I think that's kind of where legislation is heading as well.
+[00:12:14.080 - 00:12:23.359] Ken Huang: So, how do you define system owner? So, if developer developed the agentic AI system, And, configure it.
+[00:12:24.780 - 00:12:29.340] Ken Huang: Would the developer be part of the… Sister Muna?
+[00:12:29.800 - 00:12:42.069] Michael Machado: No, I would say, the… the organization consuming the agent, right? So, at the end of the day, an entity, an organization is responsible for
+[00:12:42.740 - 00:12:56.929] Michael Machado: the decisions they make and the output that comes out of the organization, whether those… that output or those decisions are made, you know, from AI or from humans. So, you know, we might call this organization the customer.
+[00:12:57.530 - 00:13:02.370] Michael Machado: Or, you know, the buyer, but essentially, it's not…
+[00:13:02.560 - 00:13:07.750] Michael Machado: You know, I mean, the builders have liability for building something that is…
+[00:13:08.330 - 00:13:18.790] Michael Machado: Like, you know, defensible and credible, so they might have liability, but the organization using something has accountability for what it's doing.
+[00:13:20.130 - 00:13:20.940] Ken Huang: Right.
+[00:13:21.140 - 00:13:27.270] Ken Huang: Yeah, I see people raising their hand. Dan Hamilton, you… You go next.
+[00:13:28.290 - 00:13:29.080] Dan Hamilton: Yeah.
+[00:13:29.370 - 00:13:35.849] Dan Hamilton: Yeah, I think that's a really interesting point, and it's going to be interesting to see kind of how this breaks down in the courts.
+[00:13:36.030 - 00:13:40.629] Dan Hamilton: Michael, I think your assumption there, and as you kind of bring about it, it's…
+[00:13:40.740 - 00:13:49.320] Dan Hamilton: the company that's consuming the model, or, you know, using the AI model and then its outputs as part of their company workflow.
+[00:13:49.450 - 00:14:00.819] Dan Hamilton: I guess that traditionally makes sense of, like, you know, nobody's holding Microsoft accountable for, you know, issues with its systems. But I do wonder…
+[00:14:01.740 - 00:14:05.119] Dan Hamilton: You know, is there a shift in the responsibility model?
+[00:14:05.250 - 00:14:09.290] Dan Hamilton: From these agents, as… and, as they come from
+[00:14:09.660 - 00:14:12.869] Dan Hamilton: You know, different… different sources, different places.
+[00:14:13.270 - 00:14:24.569] Dan Hamilton: is there a shift in the platform? Do they own more of this? Because they have the training sets, they build the models, or is it all just kind of more like, this is a platform, use it as you will?
+[00:14:25.600 - 00:14:31.399] Dan Hamilton: Just curious what people are seeing, on that front.
+[00:14:31.820 - 00:14:46.440] Ken Huang: Yeah, so maybe, take a kind of example, like, like FST car, right? So the… this is actually the agent is driving the car for you, so if it's getting to the accident.
+[00:14:46.840 - 00:15:03.749] Ken Huang: who's responsible. Maybe this can be one of… Right. Like, yeah, I think there's no answer. Also, like you said, there's no kind of legal, thing yet, who is liable for what.
+[00:15:03.750 - 00:15:08.580] Ken Huang: Yeah, I see Hila, you raising the hand as well.
+[00:15:09.120 - 00:15:26.019] Hila Shmuel: Yeah, I feel like we're entering, really, the era of, liability era of tech, you know, because now I'm producing code that I can't verify. Like, if when I was, for example, engineering manager, I could actually
+[00:15:26.250 - 00:15:30.030] Hila Shmuel: actually read the entire codebase, now I can do it, because…
+[00:15:30.540 - 00:15:49.140] Hila Shmuel: I don't know, I create, like, a thousand lines of code in a second, so I do feel like now, and I'm frankly afraid of it, that we're becoming the scapegoats of our LLMs, and eventually, we will be held accountable. I feel like it's the developer
+[00:15:49.140 - 00:15:57.770] Hila Shmuel: He's the owner of the code, he's responsible for it, even though the legal entity is the company,
+[00:15:58.150 - 00:16:08.170] Hila Shmuel: still, I believe it will be… basically, we will just need to sign the signature and,
+[00:16:08.450 - 00:16:19.169] Hila Shmuel: it's like, instead of human in the loop, we will have the human in the cell. I mean, I will be in charge of everything that goes wrong, so…
+[00:16:19.930 - 00:16:29.240] Hila Shmuel: I don't know, it's really interesting what legal mechanism they will create to address this problem, because it's a huge problem, in my opinion.
+[00:16:29.540 - 00:16:51.280] Ken Huang: Yeah, and the legal framework is not there yet, but the problem itself is really complicated. Like, you can vibracode it, like, you take an example, open claw, it's a good framework, but the majority of code is viper-coded, and that's why there's a lot of security vulnerability, and team is actually trying to fix it, but
+[00:16:51.280 - 00:16:59.230] Ken Huang: If open call, right, it happened, right? It deleted the email, it has the API key leak.
+[00:16:59.230 - 00:17:16.920] Ken Huang: So, all this, who is responsible for what? So, maybe the user, the customer, maybe the developer. Yeah, so I think this is a good question. I see 6 people raising handles. Chris, you are next. I want everyone has a chance to talk. So, Chris.
+[00:17:20.420 - 00:17:23.949] Ken Huang: Chris, can you… can you… Oh, you… you are on mute?
+[00:17:24.069 - 00:17:25.560] Ken Huang: Maybe…
+[00:17:25.560 - 00:17:26.830] Chris Koontz: Sorry, don't double mute.
+[00:17:26.890 - 00:17:28.170] Ken Huang: Can you hear me now?
+[00:17:28.170 - 00:17:44.160] Chris Koontz: Okay, yeah. Yeah, so, my, my big concern is how large this question is going to become as, things like OpenCloud become easier and easier for people to use. Like, we have the… the Facebook,
+[00:17:44.260 - 00:17:56.690] Chris Koontz: Not Facebook, yeah, we're the Facebook, security guy, was using, OpenClaw, and it just started deleting their, their email. So someone that, that.
+[00:17:57.010 - 00:18:08.610] Chris Koontz: Specifically, their job is AI, can have these kind of crises. As people start adopting these personal assistants where they don't fully understand
+[00:18:08.770 - 00:18:22.670] Chris Koontz: like, what they're capable of, and the liabilities of the thing that their… their agent may end up doing. And you start doing that at a larger and larger scale as OpenClaw becomes easier and easier and easier for…
+[00:18:22.840 - 00:18:27.780] Chris Koontz: less technically-minded people to use it.
+[00:18:28.200 - 00:18:33.120] Chris Koontz: I, I think we're entering a new age of, of,
+[00:18:34.320 - 00:18:42.079] Chris Koontz: where we're gonna… trying to hold anyone accountable is gonna be next to impossible, because OpenCloud is designed to not really
+[00:18:42.420 - 00:18:52.639] Chris Koontz: be, leashed or whatever, and it's designed to solve your problem any way it can, those ways may be, very detrimental, so…
+[00:18:53.270 - 00:18:55.089] Chris Koontz: Yeah, I think, I think it's a good question.
+[00:18:56.370 - 00:19:04.810] Ken Huang: Yeah, so the agentic AI is here. Certainly, people use it, but the whole, security…
+[00:19:04.840 - 00:19:23.720] Ken Huang: framework and governance framework, the legal framework, is not there yet. I think that will be kind of an obstacle for the real deployment. That's… but I think, collectively, the community is working on that. So, Chris, it's a good comments you have.
+[00:19:23.720 - 00:19:28.340] Ken Huang: I see… next one is, Shaheem Beck.
+[00:19:29.480 - 00:19:42.960] Shaheen Beg: Hey, how's it going? We've sort of zoomed up to a super high legal level, so I want to zoom in to a super detailed level and sort of say a lot of us are coming from
+[00:19:42.960 - 00:19:52.800] Shaheen Beg: large companies, or have previously been at large companies, so I'd be curious how folks look at governance around their workload identities.
+[00:19:52.800 - 00:19:56.230] Shaheen Beg: And whether there's a process to say, hey.
+[00:19:56.230 - 00:19:58.919] Shaheen Beg: You're gonna be running this agent.
+[00:19:58.960 - 00:20:04.920] Shaheen Beg: How do you get an identity tied to that agent, rather than your productivity account?
+[00:20:04.970 - 00:20:14.600] Shaheen Beg: or your typical API key. And coming up with internal solutions for that governance is probably the immediate
+[00:20:14.680 - 00:20:29.789] Shaheen Beg: next step to be able to say, oh, well, we know that developer over here did that. And it didn't… that OpenClaude instance didn't even have access to their email, because it was a separate, privileged account, let's say.
+[00:20:30.600 - 00:20:47.680] Ken Huang: Yeah, I think it's just a good comment. I think maybe industry laser channel goes this way, right? So, each employee, manage a team of agents, or a team of a digital employee, and, decide which employee has which access. Maybe this
+[00:20:47.680 - 00:20:55.549] Ken Huang: a digital employee has access to one box. Another employee to have access to the Outlook.
+[00:20:55.610 - 00:20:59.880] Ken Huang: Then another one has the Slack, or maybe one of the…
+[00:20:59.880 - 00:21:16.530] Ken Huang: employee, digital employee, has, multiple access, so it really depends on its capability and also reputation. Like, you do… you need onboarding it, like, it's not like you just have day one. Actually, I was before.
+[00:21:16.530 - 00:21:23.980] Ken Huang: I come to Barcelona, I was in Baltimore, attending a cybersecurity conference, and
+[00:21:24.290 - 00:21:29.019] Ken Huang: One of, actually, the leading frontier
+[00:21:29.090 - 00:21:44.659] Ken Huang: company, CISO, said that, you do not deploy agent day one. You have to, like, kind of, like, you deploy, a, kind of your co-worker. You don't say, okay, day one, you do
+[00:21:44.990 - 00:22:04.479] Ken Huang: the very important work. You have to gradually ramp it up, right? So, build the reputation. So that's… this, I think, is a good comment. It also goes back to Dan Hamilton originally said, it's really the, user who really say, you have… have an organizational chart.
+[00:22:04.480 - 00:22:06.130] Ken Huang: you… every…
+[00:22:06.310 - 00:22:17.870] Ken Huang: employee has to manage a team, right? So, and also you're gradually onboarding it, so that's a good comment. So, let's see, next one I see…
+[00:22:18.360 - 00:22:22.060] Ken Huang: Kachata, you… Hey. Yeah.
+[00:22:22.060 - 00:22:32.679] Akshata Rao: So for me, it feels like shared responsibility, like, you know how you go in a car accident and you're, like, 75, 25, you do this sort of math.
+[00:22:32.830 - 00:22:43.079] Akshata Rao: But, see, from what I see before LLMs, the system owner always did have some responsibility in ensuring the code was deployed well. They did have processes.
+[00:22:43.150 - 00:22:54.520] Akshata Rao: We cannot say, just because now I don't understand, or I don't know what's the code underneath, that we didn't have the responsibility. We still own it, because we are now exposing what we have, and
+[00:22:54.520 - 00:23:05.600] Akshata Rao: reaping the benefits of the system by exposing it to others. So we do have that. At the same time, if I think about LLM developers, yes, they own responsibility. The way I see it.
+[00:23:05.620 - 00:23:10.750] Akshata Rao: playing out is via class action suits. Like, it becomes bigger because the number of
+[00:23:10.750 - 00:23:27.740] Akshata Rao: customers using that are higher, the number of people using this is higher. So I see it as a more widespread, even though for this owner system, this owner, they take 80%, but if you add it up, 10% across many agents used for different use cases, then it all adds up and becomes
+[00:23:28.050 - 00:23:34.500] Akshata Rao: financially punitive enough for them to put attention in. But there's the last case, which is
+[00:23:34.610 - 00:23:50.269] Akshata Rao: what about the open source models that are not owned in the US? They are not legally responsible for anything. Then you… you're… like, it… then it is completely on you to figure out that you have to use a US-based,
+[00:23:50.360 - 00:24:01.459] Akshata Rao: you know, AI, company, because you need that shared responsibility. So I think there are multiple… it's not a one-size-you-or-me, it is all of us.
+[00:24:01.920 - 00:24:12.369] Ken Huang: Yes, I would say just a really good comment. It's, one effort that Cloud Security Alliance, is doing. I'm part of their effort.
+[00:24:12.370 - 00:24:25.490] Ken Huang: is really focused on shared responsibility, right? So we have the AI control matrix, and then we define who is responsible for what. There's lots of discussion. I don't think we…
+[00:24:25.490 - 00:24:31.930] Ken Huang: kind of really, finalized it yet. That's only the version one, right? So…
+[00:24:31.930 - 00:24:44.499] Ken Huang: Yes, so this applies to the identity, it's also applied to the whole, like, model security, the data security, and the agent AI applications built on top of…
+[00:24:44.710 - 00:24:49.220] Ken Huang: Yes, so yeah, thanks for the comments. Ash… Ashley.
+[00:24:49.600 - 00:25:02.669] Ashleigh Steelman: Hi, yeah, I think… I think I really agree with what everybody's saying, I just kind of want to tack on… I think this comes down to the problem of if… if everybody has some degree of ownership, then there is no true owner, and somebody…
+[00:25:02.670 - 00:25:22.060] Ashleigh Steelman: very, accurately pointed out, when you end up, like, in an incident situation, it's pretty much the 1-2-3-not-it scenario. So, if somebody's able to point to the person to their right or left, they do not want to be accountable. And so, at the end of the day, I think that kind of goes back to the first gentleman I heard speaking on this, that
+[00:25:22.440 - 00:25:47.400] Ashleigh Steelman: the number one point person. I'm just not sure that agendic Solutions, I think in this one particular area, I don't think we're deviating too much from the same way that we handle application security incidents at, like, an incident level. So, when it comes to responsibility. So the business owner, the person who owns the budget for that program, who oversees the team.
+[00:25:47.400 - 00:25:50.620] Ashleigh Steelman: who are responsible for administering it.
+[00:25:50.620 - 00:25:52.170] Ashleigh Steelman: They own it, yes.
+[00:25:52.170 - 00:26:16.700] Ashleigh Steelman: And they're responsible for making sure that their developers are using the best practices, that they're coordinating with their cybersecurity team, that they have logging and monitoring in place, that they're staying up to date with the, you know, the best practices and new vulnerabilities as they become known. So ultimately, you know, they're responsible for making sure that their teams are abiding by that. But certainly, you know, if there are developers that are found to not be
+[00:26:17.130 - 00:26:28.860] Ashleigh Steelman: following by their policies, or using best practices, or just not otherwise, you know, staying up to date with, with best practices, then, yeah, that, you know, it may be,
+[00:26:28.860 - 00:26:38.429] Ashleigh Steelman: that they're finding out that they are accountable as well, but yeah, I think it's important to have, you know, a point person for accountability, otherwise there isn't accountability.
+[00:26:39.730 - 00:27:03.029] Ken Huang: Yeah, I think you summarized what we discussed very well, yes. So, the first of all, shared responsibility is important, but you do need someone, really responsible for that. It's kind of like a lazy model, right? Who's responsible, who's accountable, who can be the, consulted, who can be informed. So, lazy model.
+[00:27:03.030 - 00:27:06.119] Ken Huang: It's important, and so the…
+[00:27:06.120 - 00:27:20.460] Ken Huang: business owner leverages the traditional kind of responsibility model. It's also important, or whoever decided to pay the budget for that, and you have organization chat.
+[00:27:20.460 - 00:27:28.420] Ken Huang: And then you have to go through the, process to validate the agent
+[00:27:28.550 - 00:27:41.540] Ken Huang: ID, so the only difference is, like, the agent ID itself, it's, it's, non-deterministic. It's really different from traditional,
+[00:27:41.570 - 00:28:00.049] Ken Huang: deterministic, identity and software, so that's maybe the difference, and that's where the question coming from. But yeah, it's, it's, I think it's a good discussion. There's a, I think some level of consensus here, I would say, right? But still, there's,
+[00:28:00.140 - 00:28:17.360] Ken Huang: still there is some, like, open questions here. Yeah, so let's see. Yeah, we don't have to go through all 10 questions here, right? But, we can just go maybe a few. So, the second question.
+[00:28:17.640 - 00:28:30.790] Ken Huang: is how should identity be defined for an agent that continuously updates its internal state? Like, memory, right? The agent has memory, has the context.
+[00:28:30.890 - 00:28:32.869] Ken Huang: And his skill.
+[00:28:33.240 - 00:28:47.390] Ken Huang: And also, it has on its decision logic over the time, like, I think people heard of a so-called recursive self-improvement. It can improve self, right?
+[00:28:47.680 - 00:28:58.720] Ken Huang: So, how do you define the, the identity in this particular scope? If you give the agent, and then it changes over time.
+[00:29:04.000 - 00:29:09.939] Ken Huang: So, yeah, you can jump in. It's just for open discussion.
+[00:29:12.480 - 00:29:30.970] Michael Machado: You know, I've got some thoughts. I don't know that this is feasible in the current technology, but ideally, we'd have some form of version control, right, associated with identity, so that we're not only understanding that, you know, agent number one
+[00:29:31.070 - 00:29:34.410] Michael Machado: Did a, you know, made a decision or took an action or something.
+[00:29:34.510 - 00:29:46.259] Michael Machado: we understand when it took the action, and it was version, you know, A.5 or whatever, because at times, you know, we may need to go back, we may need to see
+[00:29:46.640 - 00:30:05.169] Michael Machado: what was the context of that agent at the time it did a thing, and not just the agent did the thing. And so we'll want to understand, you know, the particulars about the point in time. So my thought is, since an agent's updating itself.
+[00:30:05.260 - 00:30:15.960] Michael Machado: Right? It would be good, whether we call that version control or some mechanism to understand at which state an agent acted, is my opinion.
+[00:30:17.100 - 00:30:36.279] Ken Huang: Yeah, I think that's a good point. Maybe go to a more basic question than this question, is what should be the agent? Like, what should be included in the agent? Should it be the model, the skills, the memory, which is MD file?
+[00:30:36.750 - 00:30:41.630] Ken Huang: What it can be doing? Like, what should it be?
+[00:30:42.280 - 00:30:55.340] Ken Huang: included as attribute of the agent identity. Maybe it's just a basic question. Then also the version, right? The version is also the attribute. Marcus.
+[00:30:57.400 - 00:31:09.390] Marcus Viertel: Yeah, I want to tie in on that one, actually, because I think this is a very programmatic way of looking at agents, without taking account that they have what the name implies, agency.
+[00:31:09.390 - 00:31:28.600] Marcus Viertel: And when I looked at the last release of the OWASP Top 10 for Agentic AI, I was well surprised Category 10 is rogue agents. And we need to face the fact that it's not just something programmatic in terms of the memory, the knowledge, etc, that's assigned to an agent. There can be drift that's outside
+[00:31:28.600 - 00:31:45.139] Marcus Viertel: what we are normally used to from an SDLC sort of framework, which I can't really get my hands around yet, still. It still sounds like sci-fi, but it clearly is a reality, that there have been a number of use cases now where there has been drift.
+[00:31:45.160 - 00:31:50.579] Marcus Viertel: And I don't think any versioning or so will help on that. This is a different framework.
+[00:31:51.530 - 00:31:59.949] Ken Huang: Marcus, like, if this is the first time you talk, and you have not introduced yourself, maybe just introduce yourself, yeah.
+[00:31:59.950 - 00:32:15.050] Marcus Viertel: Yeah, sure, of course. My name is Marcus Nortel, I am calling from Ireland, although you might hear by the accent I'm German. I work for one of the leading vulnerability companies, so I am involved with AI from a perspective of skepticism, not development.
+[00:32:16.030 - 00:32:21.469] Ken Huang: Okay, thank you. Yeah, I think it's a… you make a very good point.
+[00:32:21.640 - 00:32:24.779] Ken Huang: Who, who else want to jump in?
+[00:32:28.930 - 00:32:38.939] Ken Huang: And so we move to the next question, but for this, I think if we can identify what constituent as an agent.
+[00:32:39.220 - 00:32:52.969] Ken Huang: identity, right? So, it may be… maybe even… should… yeah, maybe the question is, should training data be part of the agent identity or not? Akash… Akshata, yeah.
+[00:32:53.160 - 00:32:56.600] Akshata Rao: Sorry, I was not going to answer that, but
+[00:32:57.080 - 00:33:03.139] Akshata Rao: I haven't thought about the training data question. I had a different point to make. Which is the…
+[00:33:03.490 - 00:33:07.310] Akshata Rao: It's not only the agent, but also who is using that agent.
+[00:33:07.450 - 00:33:14.119] Akshata Rao: So we do expose the usage of agents through API keys or some… some void form of,
+[00:33:14.790 - 00:33:23.460] Akshata Rao: Hopefully, there is some… some exposure of this concept of users for it. And it also matters who is the user using this agent, which
+[00:33:23.720 - 00:33:28.789] Akshata Rao: ties into the agent identity. The reason I say this, depending on
+[00:33:28.950 - 00:33:34.919] Akshata Rao: That user… maybe what the agent is supposed to do is different from another user.
+[00:33:35.530 - 00:33:39.260] Akshata Rao: music. So I… I think that…
+[00:33:39.670 - 00:33:49.139] Akshata Rao: It's not just the agent's identity. There is the usage, which the particular user of this agent also matters, or comes in.
+[00:33:49.250 - 00:33:50.940] Akshata Rao: Right.
+[00:33:51.650 - 00:33:53.500] Akshata Rao: That should translate what it does.
+[00:33:53.980 - 00:34:03.530] Ken Huang: Yeah, I think they're just good comments, like, it's more like as an agent, you give it to job description, what did it do? And in job descriptions, say, who…
+[00:34:03.530 - 00:34:15.529] Ken Huang: who will use you, right? So the use is important, but it should be, really should be agent's job description, like, you are the, agent for
+[00:34:15.550 - 00:34:19.729] Ken Huang: Scan the resume database.
+[00:34:20.020 - 00:34:35.089] Ken Huang: And that's what all you… so you… who use it? Your HR person. But you only scan the resume database. You will not do the call. Do the call is in the call center, right? So… so this may be…
+[00:34:35.090 - 00:34:41.439] Ken Huang: a very good attribute, like, what do you do, who will be you…
+[00:34:41.440 - 00:34:52.049] Akshata Rao: What is your intended purpose? Because the decision logic is very dependent on LLMs, what they do, but the intended purpose decides what you should be.
+[00:34:52.630 - 00:34:53.340] Ken Huang: Right.
+[00:34:53.780 - 00:34:57.789] Ken Huang: Yeah, I think that's a really good comments. So, what else?
+[00:34:58.380 - 00:35:05.169] Ken Huang: what else should be included in the identity? I think the job description or intent.
+[00:35:05.220 - 00:35:16.189] Ken Huang: Intended use is a good one. I think people also say the intent, right? What is the agent intent? Like, that's also…
+[00:35:16.190 - 00:35:31.649] Ken Huang: And should it be training data? Should it be included? And also the model behind it, right? And, what else? Like, how do you make sure it's secure? Do we need to have a digital signature somehow?
+[00:35:31.790 - 00:35:42.619] Ken Huang: So the paper that we have published through Cloud Security Alliance is we said that you need a verifiable credential
+[00:35:42.830 - 00:35:47.340] Ken Huang: to validate you…
+[00:35:48.070 - 00:35:56.970] Ken Huang: capabilities. What capabilities? So, we define this as a capability. Maybe it's a similar thing, right? So, you have this particular
+[00:35:57.070 - 00:36:05.140] Ken Huang: translation, like, you can translate from English to Spanish, and you have… you basically
+[00:36:05.150 - 00:36:19.640] Ken Huang: sign it. Sign it through some third-party authority, say, we validate it, we use it, we test it, it can do this kind of translation, right? So this part of your verifiable credential saying that
+[00:36:20.490 - 00:36:26.409] Ken Huang: third party, validated for you. Yeah, so that's maybe… yeah.
+[00:36:26.880 - 00:36:28.870] Ken Huang: I go to the point.
+[00:36:29.090 - 00:36:37.379] Ken Huang: So… If we do not have any other people answer this question, let's go to the third question.
+[00:36:38.070 - 00:36:48.529] Ken Huang: Consent is important, so… It's talking about delegated or solitary, when… especially in multiple aging system.
+[00:36:49.260 - 00:36:52.600] Ken Huang: Like, if one agent
+[00:36:53.400 - 00:37:01.410] Ken Huang: delegated authority. So, initially, it's the human delegate authority to agent A, and then agent
+[00:37:01.840 - 00:37:06.240] Ken Huang: delicate authority to Agent B, so what is consent?
+[00:37:07.480 - 00:37:08.420] Ken Huang: works.
+[00:37:08.740 - 00:37:19.170] Ken Huang: Right? Because it's not made an initial, It's scope, or the instructions.
+[00:37:19.580 - 00:37:28.659] Ken Huang: example, like, again, go to the resume database thing. It's, these… the…
+[00:37:28.820 - 00:37:40.239] Ken Huang: Resume database scanner, find a good resume, and then you have the call agent to the call, and then some interview happen.
+[00:37:40.320 - 00:37:53.610] Ken Huang: Right? And… and then, if hired, there's another agent, say, how much we need to give as a salary, then there's another agent. So there is a delegation happening in this multiple agent system.
+[00:37:53.950 - 00:38:01.329] Ken Huang: And, so if your initial intent is just to scan the resume database.
+[00:38:01.670 - 00:38:13.480] Ken Huang: then it really should not do the calling, or even find the salary database, trying to find, right? So this is really how this consent should work.
+[00:38:13.670 - 00:38:22.090] Ken Huang: also the chain of evidence, right? How it should work. Yeah, I just posed a question, so if we…
+[00:38:23.250 - 00:38:26.730] Ken Huang: Anyone want to jump in? Go ahead.
+[00:38:30.650 - 00:38:45.089] Dan Hamilton: Just a point of clarification on that, Ken, is that… is… you're basically saying, like, and if everyone's familiar with the confused deputy problem, that's essentially kind of what we're… we're seeing here with agents, is how do we… how do we defend against a confused deputy problem?
+[00:38:45.220 - 00:38:49.269] Dan Hamilton: Yeah, I don't know. It's doing it in IAM policies and
+[00:38:49.750 - 00:38:55.259] Dan Hamilton: in cloud oper… in cloud systems is pretty straightforward. Yeah, I don't know how that works in…
+[00:38:55.540 - 00:38:56.150] Dan Hamilton: With agents.
+[00:38:56.150 - 00:39:13.349] Ken Huang: Part of it, part of it's, it's the confused deputy problem. The agent don't know, what is, he should be supposed to do in terms of the privileges, so he did something, beyond his, assigned, scope.
+[00:39:13.350 - 00:39:33.290] Ken Huang: So that's part of that. Part of this, go back to the consent, right? Consent is actually related to the, policy. So the policy say this particular agent can only do A, and it do A plus B, so that's maybe the problem, yeah.
+[00:39:33.310 - 00:39:38.639] Ken Huang: Yeah, I think it's tied back to what you said, the confusion deputy.
+[00:39:38.760 - 00:39:43.379] Ken Huang: Let's see, I have 3 people listening, who is the first one?
+[00:39:43.820 - 00:39:48.980] Ken Huang: I cannot see it from here.
+[00:39:49.660 - 00:39:57.250] Ken Huang: Yeah, so if you… you are the next one, I think it's, Marcus, right?
+[00:39:57.690 - 00:39:59.960] Marcus Viertel: From what I see, it's democracy,
+[00:40:00.480 - 00:40:08.149] Marcus Viertel: Then, just to jump in on this, excellent point in the chat regarding deterministic versus non-deterministic.
+[00:40:08.150 - 00:40:32.529] Marcus Viertel: And this issue with regards to consent also falls into this. I think what… this isn't something we just set out at design stage. This needs to be just as much as a question of visibility, especially when you have agent-to-agent communication. And that's gonna be another aspect. To safeguard or to actually get some governance around the issue of consents.
+[00:40:32.530 - 00:40:36.930] Marcus Viertel: Or stage, or layered consents, or, or, you know, handed on.
+[00:40:36.930 - 00:40:52.840] Marcus Viertel: you're gonna have to have visibility at a scale and speed that is probably not gonna be human governance. So there's gonna be another agent, most likely, some form of security agent, that will try police the communication in a sort of an A-to-A communication profile.
+[00:40:52.840 - 00:41:11.970] Marcus Viertel: Which opens a whole other can of worms again to make sure that that… yeah, I know, exactly. I don't know which of the speakers said that today again, maybe it was this season from Google or so, like, that we were, you know, we're gonna look back on this year as the year where things were simple. I'm starting to get a handle on this. Like, it definitely doesn't seem…
+[00:41:12.160 - 00:41:15.610] Marcus Viertel: easy to… there's no easy answers, I think I'm saying.
+[00:41:16.580 - 00:41:20.710] Ken Huang: So, if you can imagine one answer, What do would it be?
+[00:41:21.200 - 00:41:31.329] Marcus Viertel: But I think visibility is, like, with most things in security, the visibility is gonna be the first thing, yeah? You can do so much at design stage, in terms of…
+[00:41:31.330 - 00:41:50.139] Marcus Viertel: making sure that the guardrails are right, that your framework is right, but I think once you let it loose, visibility is going to be the first criterion. How you then do governance and enforcement is going to be a second point, but visibility will be the first one, and actually doing that in an A2A context is really, really difficult.
+[00:41:50.900 - 00:41:51.550] Ken Huang: Yeah.
+[00:41:51.780 - 00:41:56.040] Ken Huang: That's a group. So, how do you do visibility?
+[00:41:56.040 - 00:42:14.429] Marcus Viertel: Maybe I can't do just a jury you down, sorry. I'm not deep enough in what some of our engineers are cooking up on this point, yeah? Obviously, having MCP as a standard framework to start with is probably the first point, but…
+[00:42:14.430 - 00:42:16.310] Marcus Viertel: It's gonna be a constant…
+[00:42:16.340 - 00:42:33.420] Marcus Viertel: struggle between getting the needed visibility to actually put some safeguards around it, and at the same time not affecting runtime and performance, so that you don't drag the performance… the efficiencies that you want to gain with Agentic AI back down again to something that's human-observable, or…
+[00:42:33.420 - 00:42:37.049] Marcus Viertel: I don't know why that balance will lie, if that makes any sense.
+[00:42:38.830 - 00:42:50.169] Ken Huang: Yeah, there's all… this is all really very hard to make a balance, but certainly visibility is important, and latency and performance is also important.
+[00:42:50.170 - 00:43:01.060] Ken Huang: It's really hard, yeah. But I think, gradually we should be able to figure this out. I'm optimistic. So, I see Akash Shatta, you're raising the hand, yeah.
+[00:43:01.270 - 00:43:07.080] Akshata Rao: Hi, so what I was thinking is that If you're going to…
+[00:43:07.200 - 00:43:23.730] Akshata Rao: let a non-deterministic agent talk to another non-deterministic agent. It's ripe for all sorts of combinatorial space problems, right? We can't guide it. But if we can put a deterministic layer in between.
+[00:43:23.820 - 00:43:31.589] Akshata Rao: Where one agent can convert its thought process, or what it wants the other agent to do, into a deterministic policy.
+[00:43:31.740 - 00:43:34.079] Akshata Rao: Like a fixed policy format.
+[00:43:34.240 - 00:43:44.649] Akshata Rao: And then there is always… we can… we know we have templates, predefined templates, so this is only allowed to do between these kind of policy formats. If it doesn't fall anywhere in that
+[00:43:45.260 - 00:43:49.660] Akshata Rao: don't… don't even bother. So, I feel like converting it
+[00:43:50.000 - 00:44:08.049] Akshata Rao: Like, always having the mechanism for communication to be non-deterministic to deterministic, then deterministic goes to the input to another non-deterministic, that might break this… the number of combinations that is possible by, for all sorts of
+[00:44:08.360 - 00:44:15.549] Akshata Rao: Yeah, then the confused jeopardy, sort of reduces, because now we are… we are curtailing what kind of
+[00:44:15.760 - 00:44:17.819] Akshata Rao: Actions can be taken.
+[00:44:18.750 - 00:44:22.259] Ken Huang: Yeah, that's a good point, good point. So…
+[00:44:22.430 - 00:44:34.179] Ken Huang: This reminds me of, the agent payment protocol called Design by Google, right? It basically say, when you're trying to make a payment, you…
+[00:44:34.180 - 00:44:44.720] Ken Huang: have the intent mandate. It leveraged digital signature. And then when you check out, you sign the cut mandate. So this is the deterministic,
+[00:44:44.720 - 00:44:53.920] Ken Huang: concure through digital signature, to govern the non-deterministic behavior of agent.
+[00:44:53.960 - 00:45:02.139] Ken Huang: The key thing here is, really, you do have the human in the loop to check it, okay, right? So check it,
+[00:45:02.330 - 00:45:05.210] Ken Huang: Then it has a digital signature kickoff.
+[00:45:05.390 - 00:45:23.380] Ken Huang: So in the agent-to-agent system, the issue here is the agent may misunderstand the intent, or there may be the prompt injection there, so even you have a deterministic layer of policy or control playing.
+[00:45:23.470 - 00:45:38.249] Ken Huang: with a non-deterministic agent, especially with indirect prompt injection, that may be not as effective. So… so maybe you still have to have kind of a human in the room.
+[00:45:38.670 - 00:45:51.300] Ken Huang: there depends on the, level, like, or severity of the transaction, or amount of transaction, right? So if it's,
+[00:45:51.750 - 00:45:56.790] Ken Huang: small amount of transaction, it's okay, but you can let it,
+[00:45:57.240 - 00:46:14.090] Ken Huang: do this kind of, agent-to-agent without, human to make the deterministic control. But, for some high-valued transaction, you do need this, kind of thing. So…
+[00:46:14.390 - 00:46:23.409] Ken Huang: This may be one potential solution, right? There's no standard solution yet, but that's good comments.
+[00:46:24.130 - 00:46:31.180] Ken Huang: Okay, anyone else want to add the comments here?
+[00:46:31.180 - 00:46:42.460] Hila Shmuel: I would like to respond to Marcus from before. I think what you said is really smart, and actually, I sent it in a private message to Dan before, that
+[00:46:42.700 - 00:47:00.000] Hila Shmuel: We will have, eventually, agents running… writing code for you, and then you'll also have an agent who is, who needs to verify the code, and, you know, like, a lawyer agent to inspect your output, and I feel like,
+[00:47:00.120 - 00:47:10.929] Hila Shmuel: Another point I would like to raise is someone said, and it actually clicked for me, that agents come from agency, but we don't have agency, because, I mean.
+[00:47:10.930 - 00:47:25.470] Hila Shmuel: I start Cloud Code, and it writes something, and then it dies. I mean, it never… it doesn't stay persistent, you know, because I always start, like, mini, mini, mini, mini agents, and they all.
+[00:47:25.470 - 00:47:27.499] Ken Huang: Did you use him for a certain task?
+[00:47:27.500 - 00:47:28.300] Hila Shmuel: Big day.
+[00:47:29.410 - 00:47:29.950] Ken Huang: Right.
+[00:47:29.950 - 00:47:33.019] Hila Shmuel: Yeah, I actually really like Ralph Luke.
+[00:47:33.780 - 00:47:42.309] Hila Shmuel: Yeah, and it's a rough loop, what it is. It's basically just a bash loop that people gave it a fancier name in the AI.
+[00:47:42.800 - 00:47:55.100] Hila Shmuel: And I'm sure that we will see Task Orchestrator, and someone will give them a more fancy AI name to some old mechanism that software engineers used for 20, 30 years.
+[00:47:55.370 - 00:47:58.590] Hila Shmuel: Anyway, I feel like it's,
+[00:47:58.970 - 00:48:13.879] Hila Shmuel: It's still… the point is that the agent doesn't really have agency, and it lives from task to task, and the task can take 1 minute, 2 minutes, and how can you hold someone accountable for doing only that job?
+[00:48:14.270 - 00:48:18.700] Hila Shmuel: So that's, I feel like we need to…
+[00:48:19.170 - 00:48:25.560] Hila Shmuel: it's mind-blowing, I'm not sure how even you can look at it, and I'm very glad we're having this discussion here.
+[00:48:26.600 - 00:48:28.890] Ken Huang: Yeah, so… so I think…
+[00:48:28.890 - 00:48:29.230] Hila Shmuel: messy.
+[00:48:29.230 - 00:48:48.309] Ken Huang: Interesting, right? The agency itself is really the model, like, the long learning task, especially the long horizon agent, it's really not the agent framework, like, even rough loop, like you said, it could, also stop, depends on how you use it.
+[00:48:48.310 - 00:48:55.080] Ken Huang: That's why, like, eventually it's the model, like… Like, the…
+[00:48:55.430 - 00:49:13.060] Ken Huang: Opus 4.6, support more long horizon tasks than the previous version. Codex 5.4, now just coming out, has more support in terms of long horizon tasks than the previous 5.302.
+[00:49:13.110 - 00:49:25.300] Ken Huang: So, yeah, so that's the good comments. So, but, one thing is, I don't quite agree with you, is associate or conflict just with agency.
+[00:49:25.730 - 00:49:34.720] Ken Huang: Even you have a really short duration of the task to implement or to do, it still has agency, right?
+[00:49:34.720 - 00:49:48.109] Ken Huang: But it's an agency, it's a short, shorter agency, maybe, you can call it, right? But, yeah, I think it's, it's good comments. I see Dan Hamilton, you're raising hand, yes.
+[00:49:50.280 - 00:49:55.589] Dan Hamilton: Yeah, I think I just want to continue off on, kind of, Hila's talking about this, because I do think that this is…
+[00:49:56.730 - 00:50:03.240] Dan Hamilton: I mean, not to jump back high level, I can't remember who it was that kind of brought us back down to more implementation details, which I do…
+[00:50:03.340 - 00:50:05.190] Dan Hamilton: enjoy, but I kind of just…
+[00:50:05.430 - 00:50:12.210] Dan Hamilton: trying to paint the trajectory of the importance of talking about that, I kind of think about, as Gila's talking about, is how do we capture
+[00:50:12.410 - 00:50:32.180] Dan Hamilton: the, you know, it's kind of like a checksum of the reasoning of the model at the time, and then go back and review it to be able to understand what was its reasoning, how is it getting there? Because these things will eventually get to the level, as I see it, as making really critical, you know, life or death decisions, right? You know, if we get, you know.
+[00:50:32.190 - 00:50:43.590] Dan Hamilton: this idea of a lawyer agent, do we have a judge agent? Do we have, you know, people being sentenced to crimes based off of how an agent reasoned they should be sentenced?
+[00:50:43.660 - 00:50:47.799] Dan Hamilton: Or, you know, lower-level decisions even. But,
+[00:50:47.880 - 00:51:00.059] Dan Hamilton: Yeah, I'm curious, what is the degree of statistical significance that we have to get to before we trust these models, right? A good… a good example would be, like, autonomous driving, right? Full self-driving, Waymo.
+[00:51:00.890 - 00:51:04.970] Dan Hamilton: Technology's been around for 12 or 15 years,
+[00:51:06.040 - 00:51:22.700] Dan Hamilton: But we don't see, you know, Waymo is still very, very nascent in trying to roll… rolling it out, and kind of where does that responsibility lie? Obviously, these things are already better than humans at driving, yet we still don't trust them. So, how does that extend into other spaces?
+[00:51:24.400 - 00:51:26.250] Ken Huang: Yeah, it's,
+[00:51:26.610 - 00:51:39.360] Ken Huang: In terms of autonomous driving, I think, I have a different view. I actually trust it. I use the FSD. Oh, I'm with you.
+[00:51:39.360 - 00:51:41.019] Dan Hamilton: Full, yeah, full traffic away.
+[00:51:41.020 - 00:51:41.800] Hila Shmuel: Me too.
+[00:51:42.140 - 00:51:43.540] Dan Hamilton: Waymo's way better than any human.
+[00:51:43.540 - 00:51:50.700] Ken Huang: Yeah, it's better than me in terms of making tongues, like, apart from this is good.
+[00:51:50.700 - 00:51:51.330] Dan Hamilton: Total agreement.
+[00:51:51.780 - 00:51:59.700] Ken Huang: Right. So, so, but this is a good comment. I think this is also in the kind of dispute between Entropic and the
+[00:51:59.720 - 00:52:13.870] Ken Huang: department war, right? In terms of… so the argument from Dalio Amode is the model is not really at the point that it can do the,
+[00:52:14.690 - 00:52:15.770] Ken Huang: FISA…
+[00:52:15.890 - 00:52:27.249] Ken Huang: kind of weapon, automatically, right? So, so that's currently certainly not. So that's… you should not use it to… without human in the loop, to…
+[00:52:27.390 - 00:52:43.819] Ken Huang: to shoot people. So that's maybe, so… but with autonomous job, we can trust it. With some of really high stakes, like, in the war, or in financial transactions, you need to have to
+[00:52:43.930 - 00:52:48.690] Ken Huang: have the human in the group. So that's, yeah, I think that's good comments.
+[00:52:48.870 - 00:52:50.170] Ken Huang: Ashley, yes.
+[00:52:50.550 - 00:52:55.799] Ashleigh Steelman: Yeah, I just wanted to say, yeah, I think… I think Dan is spot on in terms of, like.
+[00:52:56.110 - 00:53:07.210] Ashleigh Steelman: aspirationally, we should be shooting for fully understanding the models, making sure that they're trained so that we can have the highest trust in them. But I also think…
+[00:53:07.700 - 00:53:18.700] Ashleigh Steelman: we'll probably never get to a point where we can really fully, implicitly trust a model. I think, you know, similar to how we have laws and methods to enforce them for humans.
+[00:53:18.700 - 00:53:29.390] Ashleigh Steelman: I think we're kind of always going to need some deterministic guardrails, especially in high-risk scenarios like the ones that you just presented. Even if we end up at a point where we don't have
+[00:53:29.390 - 00:53:35.820] Ashleigh Steelman: Humans in the loop, deterministic guardrails are probably, you know, going to always be necessary.
+[00:53:36.870 - 00:53:43.820] Ken Huang: Yeah, I do have an interesting discussion with one CISO,
+[00:53:44.180 - 00:53:54.189] Ken Huang: During the, Linux Foundation meeting in Napa Valley, just a few days ago. So, one thing is,
+[00:53:54.310 - 00:54:04.540] Ken Huang: We always talk that agent AI is non-deterministic. We need to build a deterministic control plane on top of it.
+[00:54:04.670 - 00:54:09.019] Ken Huang: Right? So… but there is one kind of…
+[00:54:10.580 - 00:54:30.369] Ken Huang: school of thought. Say, actually, you can, not really enforce it. It's really hard. So, in the reality, in the real world, it's also non-deterministic. So, if you really want your agent to do things, you do need to tolerate
+[00:54:30.520 - 00:54:35.040] Ken Huang: Certain level of non-determinism.
+[00:54:35.200 - 00:54:44.649] Ken Huang: Right? Into, this aging AI system, and that's why you need a kind of knob to say, for certain
+[00:54:44.710 - 00:54:54.349] Ken Huang: activity or certain transactions, you can have, non-determinism. And for some important transactions, certainly in the
+[00:54:54.350 - 00:55:05.359] Ken Huang: war, like, you should not really have the weapon fire itself, or June, just the attack, right? You have to have some people remote control.
+[00:55:05.360 - 00:55:17.259] Ken Huang: So yeah, but this is a very interesting topic, I would say, but what I see is really our world itself, the real world, is non-deterministic.
+[00:55:17.290 - 00:55:22.210] Ken Huang: And for AI to really
+[00:55:23.420 - 00:55:27.560] Ken Huang: Resolve the real-world solution of problems.
+[00:55:27.970 - 00:55:38.349] Ken Huang: it do… you do need some level of determinism into it, but yeah, that's still up to discussion, but I think it's…
+[00:55:38.520 - 00:55:40.040] Ken Huang: Good comments, everyone.
+[00:55:41.970 - 00:55:54.490] Ken Huang: Okay, let's move to next question, right? How can we preserve audibility? This is the, we talked before, right? When multiple agents collaborate, negotiate.
+[00:55:54.660 - 00:55:57.750] Ken Huang: And Dynamic Creator Sub-Agent.
+[00:55:58.150 - 00:56:17.930] Ken Huang: So this is more like a complex multiple agent system. You have the agent, they collaborate with each other, and also they negotiate, say, what capability you have. We actually published a research paper called Agent
+[00:56:18.340 - 00:56:36.460] Ken Huang: capability negotiation and abandon political. So you… basically, the idea is we use agent naming service, so you find the agent through agent naming service, and you may find a list of agents who can do the work, like translation work.
+[00:56:36.480 - 00:56:45.890] Ken Huang: For you. And then you negotiate, say, what is your service level agreement, right? What is your security compliance?
+[00:56:45.890 - 00:56:56.779] Ken Huang: All this is through the kind of protocol layer to do discussion, do negotiation, and then you're binding through a digital signature, then you can start work.
+[00:56:57.120 - 00:57:05.550] Ken Huang: This is the future, so… but how audibility works, right? So that's maybe the question.
+[00:57:06.520 - 00:57:08.619] Ken Huang: Anyone want to take on this?
+[00:57:13.070 - 00:57:25.099] Ken Huang: It's just too far in the future, maybe. We don't know yet, right? We're trying to actually go through the IETF, to discuss this, and we have proposals there.
+[00:57:26.480 - 00:57:34.769] Ken Huang: Maybe, anyone knows about agent naming service? We published this paper last year.
+[00:57:35.050 - 00:57:48.370] Ken Huang: And, GoDaddy implemented, right? It's basically say, well, domain naming service. You resolve the a domain.
+[00:57:49.470 - 00:57:56.359] Ken Huang: to the IP address. So in age… so in the future, it's all agent to agent.
+[00:57:56.610 - 00:57:59.240] Ken Huang: The majority of traffic will be agent.
+[00:57:59.570 - 00:58:08.340] Ken Huang: So how do you find this agent? DNS is not sufficient, right? So we said that you may have to extend the DNS
+[00:58:08.550 - 00:58:26.219] Ken Huang: to the agent naming service. So, giving the agent a name, you resolve to its capability, or eventually we propose a URL which has metadata about this agent capabilities, and also its SALA. And then we work, actually, with
+[00:58:26.660 - 00:58:28.270] Ken Huang: MIT,
+[00:58:28.500 - 00:58:40.160] Ken Huang: they have the NADA architecture, so we basically say, okay, we combine this with NADA and publish their paper, but that's still all in the discussion.
+[00:58:40.670 - 00:58:44.340] Ken Huang: But the hottest audibility will work.
+[00:58:45.360 - 00:58:51.990] Ken Huang: Right, this may be, go back to the… Previous discussion we have.
+[00:58:52.170 - 00:59:01.039] Ken Huang: And, also, like, a hall… Impact your performance, right?
+[00:59:02.050 - 00:59:07.170] Ken Huang: Yeah, anyway, if you want to jump in, go ahead.
+[00:59:07.590 - 00:59:11.480] Ken Huang: Otherwise, I see lots of… yeah, Marcus, go ahead.
+[00:59:11.920 - 00:59:27.160] Marcus Viertel: I think… and again, I was in the chat earlier on, the human in the loop will not scale here. Also, for… when you have agent-to-agent, like, you will… the moment you bring a lumen in… yeah, lumen… human in the loop.
+[00:59:27.180 - 00:59:44.209] Marcus Viertel: you're gonna sacrifice that scale. So the… the only thing that… the suggestion… I can't remember if it was Akshata or if it was Hila who brought it up with regards to the deterministic system in between, or rule-based system in between. Yeah, being… being one.
+[00:59:44.210 - 00:59:51.749] Marcus Viertel: And the other one may be that, as I suggested before, there may be some form of security agent watching
+[00:59:51.750 - 01:00:12.799] Marcus Viertel: that communication path, so it won't be a one-to-one communication, but it will be a proxied communicat… well, the proxy's the wrong term, I suppose, because that still implies that it is handed off to another agent authority before being forwarded on. But there may be a watcher, a police agent, for all intents and purposes, if you like.
+[01:00:12.800 - 01:00:27.990] Marcus Viertel: that will look for drift, that will look for noncompliance, that will look for, based on a rule-based system for breaches of those rules, to then intervene, if that makes any sense. But that's kind of my thinking now.
+[01:00:29.390 - 01:00:30.470] Ken Huang: Yeah, so…
+[01:00:30.470 - 01:00:53.930] Ken Huang: So, I think this is a good comment, like, even in Entropic, that, we had a discussion with Entropic, they basically have the, like, multiple agents, right? So, like, if you… you need to deliver some code, you have the code which do the penetration testing, you have a code agent to do the code review.
+[01:00:53.930 - 01:00:57.100] Ken Huang: You have the agent really do all this,
+[01:00:57.890 - 01:01:03.370] Ken Huang: different, like, checks, and eventually it's 5 agents to decide.
+[01:01:04.040 - 01:01:19.930] Ken Huang: But the model itself, it's not to the level that you still can fully trust it. One thing is, like, through Entropic perspective, they are optimistic that eventually it will get there, but hopefully it will.
+[01:01:20.980 - 01:01:30.299] Ken Huang: And You do have to, using the AI, secures AI, because human…
+[01:01:30.330 - 01:01:38.950] Ken Huang: has… it's slow, right? Humans think deep, but it's slow. So, if you just need a human in the loop.
+[01:01:38.980 - 01:01:57.639] Ken Huang: the whole agent AI system certainly will not scale, so then you only have really limited use, right? But if you really want to have a wide deployment, certainly you need a multiple agent. Yeah, I think it's late. I'm 10.30 in Barcelona.
+[01:01:57.760 - 01:02:15.279] Ken Huang: Let's see, who want to conclude the discussion? Yeah, let's conclude, and thanks, everyone. Yeah, I didn't expect so many people to join. I saw that only 3 or 4 people were discussed, so… but thanks, everyone, yeah. Max, since you are here, I'll let you conclude.
+[01:02:18.870 - 01:02:27.290] Marcus Viertel: Oh, me to conclude! I didn't… I didn't touch the beginning, I didn't get the first questions, like, but I… I would say this, though,
+[01:02:27.290 - 01:02:44.329] Marcus Viertel: maybe not on topic, but in terms of the format. I do like this type of conference, to be perfectly honest, because the kind of conversations we've had now, outside of the talks, have been far more valuable than I've had at any DEF CON, any Black Hat, or whatever. So this was very good.
+[01:02:45.300 - 01:03:00.860] Ken Huang: Yeah, cool. Thank you, everyone. Yeah, you concluded very well. It's fascinating. So, in the future, agent will be talked to agent. So, we're in a decade of agent. Last year is Genesis. This year, people talking about deployment.
+[01:03:00.860 - 01:03:08.079] Ken Huang: But deployment and security is very important, evaluation is important, identity is the key.
+[01:03:08.080 - 01:03:17.390] Ken Huang: And we still have not a perfect solution to solve it. So this is a good discussion we have, and everyone can just think about that.
+[01:03:17.520 - 01:03:31.519] Ken Huang: Yeah, we are in a really fascinating area. It's called the Agent Area. It's a decade. So we… I think eventually we'll figure this out. The model will improve, from all these frontier models companies.
+[01:03:31.520 - 01:03:43.629] Ken Huang: open source, community as well. So, let's keep, working, keep, learning, keep a curiosity. Everyone's student, again. So, thanks, everyone. Take care.
+[01:03:43.630 - 01:03:44.650] Ken Huang: Bye-bye.
+[01:03:44.650 - 01:03:47.760] Hila Shmuel: Thank you so much, Ken, for this wonderful discussion.
+[01:03:48.130 - 01:03:51.240] Ken Huang: Yeah, yeah, so certainly, thanks to everyone.
+[01:03:51.400 - 01:03:53.819] Ken Huang: Take care, then. Okay, bye-bye.

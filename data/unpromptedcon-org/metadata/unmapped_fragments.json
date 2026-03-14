@@ -1,0 +1,42 @@
+[
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-02T213946Z__88638588165__dr-at-secwest.net__Webinar-session__audio_transcript__6df5fd5e-ea53-4ce8-9e1d-3a164d997529.vtt",
+    "reason": "Tiny backstage/setup fragment",
+    "notes": "Tammy Coxen says the room should have a lobby and should not be streaming. No actual webinar content is present."
+  },
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-04T004414Z__89437548757__dr-at-secwest.net__Happy-Hour-Manish-Gupta-Director-Expedia-Group-AI-Agent-Authentication-and-Autho__audio_transcript__f3739808-cc15-434e-8f5e-dbbc4ca407b8.vtt",
+    "reason": "Tiny backstage/setup fragment",
+    "notes": "Tammy Coxen and Manish Gupta discuss host permissions and turning off recording; no actual happy-hour discussion is captured."
+  },
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-04T005034Z__86340201112__dr-at-secwest.net__Happy-Hour-Silas-Cutler-Researcher-Censys-Self-Hosted-AI__audio_transcript__e0c8e0c0-1794-4ea3-846f-a1abe2276ff4.vtt",
+    "reason": "Tiny backstage/setup fragment",
+    "notes": "Dragos Ruiu discusses Zoom host handoff; Silas Cutler's actual discussion is not present."
+  },
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-04T195130Z__87957364582__dr-at-secwest.net__Lunch-Chat-Bruce-Schneier-Lecturer-Harvard-University-of-Toronto-AI-Integrity__audio_transcript__5f575c36-f62a-47d0-8567-b778343bba43.vtt",
+    "reason": "Wrong-session fragment",
+    "notes": "This file contains a short fragment from Brooks McMillin's stage talk rather than Bruce Schneier's lunch chat."
+  },
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-04T195224Z__89794507079__dr-at-secwest.net__Lunch-Chat-Dani-Z-IR-for-an-Airline-Secure-AI-Usage-in-Enterprise__audio_transcript__cccb8f64-c7c6-48df-89d0-009b2e0674bc.vtt",
+    "reason": "Wrong-session fragment",
+    "notes": "This file is a tiny continuation of the same Brooks McMillin stage-talk fragment, not Dani Z's lunch chat."
+  },
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-04T195242Z__85853094870__dr-at-secwest.net__Lunch-Chat-Marc-Rogers-CTO-nbhd.ai-open-discussion__audio_transcript__4d34ecb6-94d6-47d7-a1b8-5c49bd4168a4.vtt",
+    "reason": "Wrong-session fragment",
+    "notes": "This file is only a few seconds of the same stray Brooks McMillin stage-talk fragment."
+  },
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-04T195313Z__83121111824__dr-at-secwest.net__Lunch-Chat-Philippe-Langlois-CEO-P1-Security-Defense-and-Offense-of-Critical-Inf__audio_transcript__40efa128-2fdc-4ae9-bc39-c5466261f617.vtt",
+    "reason": "Wrong-session fragment",
+    "notes": "This file is an extremely short continuation of the same stray stage-talk fragment rather than Philippe Langlois's discussion."
+  },
+  {
+    "source_file": "data\\unpromptedcon-org\\vtt\\2026-03-04T235254Z__86365274778__dr-at-secwest.net__Happy-Hour-Elie-Bursztein-Research-Scientist-Google-open-discussion__audio_transcript__50dc0ec1-c376-4334-b9a0-67c184af5fe3.vtt",
+    "reason": "Tiny backstage/setup fragment",
+    "notes": "Only a brief Tammy Coxen setup line is present; Elie Bursztein's discussion is not captured."
+  }
+]

@@ -1,0 +1,657 @@
+WEBVTT
+
+1
+00:29:32.243 --> 00:29:33.223
+Incoming livestream: Alright.
+
+2
+00:29:33.473 --> 00:29:41.862
+Incoming livestream: So, welcome to this, the, unprompted, it's gone basement, basement version. Sorry if the screens are a little bit small, you should be able to see everything.
+
+3
+00:29:42.033 --> 00:29:51.843
+Incoming livestream: So yeah, thanks for having us, we're really excited to be here at First Unprompted Con. A lot of familiar faces and people doing AI security now who've been doing security forever.
+
+4
+00:29:52.883 --> 00:30:00.193
+Incoming livestream: So, it's probably not shocking to this room, but AI can find vulnerabilities now, and it's getting pretty good.
+
+5
+00:30:00.333 --> 00:30:14.892
+Incoming livestream: There's, you know, another track just right up here, covering the same subject. And for many of us who have been paying attention to this space, or testing this kind of capability, right, it's been getting better and better for almost a year at this point.
+
+6
+00:30:14.893 --> 00:30:22.352
+Incoming livestream: You know, both internal, internal research, as well as academic papers, you know, trusted researchers and everybody have been saying this as well.
+
+7
+00:30:22.733 --> 00:30:33.483
+Incoming livestream: And without talking about, you know, specific vendors or specific startups, there's a lot of potential open source solutions, from, you know, more robust projects to, you know, what I'm now calling slopkitties.
+
+8
+00:30:34.423 --> 00:30:50.852
+Incoming livestream: And you know, it's no longer just startups, right? There's, you know, solutions from Anthropic, there's solutions from OpenAI, these volunte systems, you know, Big Sleep was mentioned this morning, have been, making good progress within these companies, as well as now offering those solutions to open source.
+
+9
+00:30:51.913 --> 00:30:58.533
+Incoming livestream: So LLMs can find vulns, but we really wondered, you know, about 6 months ago, can I also inject volumes?
+
+10
+00:30:58.853 --> 00:31:01.023
+Incoming livestream: Enter. Perfect. Marinate.
+
+11
+00:31:02.733 --> 00:31:12.073
+Incoming livestream: So as we say in security, right, POC, or, you know, get the fuck out, evals are critical. And, you know, you've heard this a bunch already today, evals, evals, evals.
+
+12
+00:31:12.183 --> 00:31:31.933
+Incoming livestream: And really thought, you know, hey, this ability to use LLM agents to, you know, write code, or find vulnerabilities, you know, could we inject them synthetically into a codebase of a given project, and then either test on finding those bones, or test other products that we already have with some ground truth?
+
+13
+00:31:32.753 --> 00:31:47.683
+Incoming livestream: And you, of course, can inject to almost any kind of code, right? It doesn't… it can be Python, it can be C, it can be an internal project, it can be a third-party project that you're worried about. And, you know, you can make these vulnerabilities very surface-level and easy to find, or you can make them harder to find.
+
+14
+00:31:49.393 --> 00:31:59.332
+Incoming livestream: And so, as a company or a researcher, you know, you might want to… if you're evaluating a certain product or a new solution that's fancy, right, you might want to say, hey, does this…
+
+15
+00:31:59.333 --> 00:32:19.092
+Incoming livestream: find vulnerabilities in my codebase. Is it reliable? Is it cheaper? Is it faster? What's the signal-to-noise ratio for what I know are ground truth vulnerabilities now in this codebase? And you can rewind and try older historical, you know, commits or something like that, but that only works for a certain amount of things, or you may only only have a certain amount of code that has that
+
+16
+00:32:20.263 --> 00:32:25.973
+Incoming livestream: So let's back up a second. So, I'm Aaron, this is Skylar, we both work at NVIDIA.
+
+17
+00:32:26.533 --> 00:32:47.433
+Incoming livestream: And I want to be clear, too, this is building on the shoulders of giants, right? AIACC did a lot of work injecting synthetic vulnerabilities into codebases and part of their cyber challenge, cyber reasoning challenge that, you know, finished this last year at DEF CON. And I don't know if they did that by hand, but we thought, hey, maybe we can be lazy.
+
+18
+00:32:47.983 --> 00:33:06.942
+Incoming livestream: So about 6 months ago, right, AI coding agents are getting a lot better, they're getting able to reason about code, and reason about large amounts of code. So we figured, hey, maybe we could just say, insert a few vulnerabilities, and it just would work, right? We just get cloud code, or we get cursor, or we get agent, thing of the week, and, you know, GPUs to the rescue.
+
+19
+00:33:07.513 --> 00:33:10.163
+Incoming livestream: But, you know, in sort of a record scratch.
+
+20
+00:33:10.163 --> 00:33:30.973
+Incoming livestream: sound. The latest models actually will refuse this quite a bit. And, you know, cyber is dual use, right? I get that that's a hard problem to solve. You know, the OpenAI's Trusted Access is actually, like, a good move in this direction, in letting researchers be able to, have a bit less refusals to do, you know, defensive security research, or approved defensive security research.
+
+21
+00:33:31.023 --> 00:33:37.413
+Incoming livestream: And so, that's certainly, you know, a good development. But we also, you'll see that
+
+22
+00:33:37.413 --> 00:33:45.673
+Incoming livestream: This isn't something that will work. You can't just say, hey, in search of vulnerability, you know, be better. It'll, you know.
+
+23
+00:33:45.673 --> 00:34:08.322
+Incoming livestream: Here, you know, it's adding a very, very simplistic vulnerability, which is, you know, classic string overflow in a, you know, configuration file parsing, which is not really a realistic risk. If you can reload a configuration file, usually you already have control of that machine, or that service, or whatever it would be. So, you know, even with state-of-the-art models, it didn't really go so well.
+
+24
+00:34:08.783 --> 00:34:24.903
+Incoming livestream: So, we wrote a bunch of instructions, right, that said, hey, how to do this, what are the attack surfaces, how do you consider, you know, what kind of historical vulnerabilities would be common in this codebase, or with this programming language, or, you know, maybe do some research about open CVEs for this.
+
+25
+00:34:24.973 --> 00:34:41.713
+Incoming livestream: And, you know, these instructions, or I mean, sorry, skills, these skills can call other skills, and, you know, these skills end up using… as kind of working as their own form of a jailbreak. So if you have a defined set of skills, and you say, hey, go use these skills.
+
+26
+00:34:41.713 --> 00:34:48.263
+Incoming livestream: Instead of putting your prompt, you know, right in the thing, they'll go ahead and they'll follow that, and it works pretty well.
+
+27
+00:34:49.653 --> 00:34:55.892
+Incoming livestream: So, we have these skills, they can call tools. It's saving us a lot of time.
+
+28
+00:34:56.303 --> 00:35:07.783
+Incoming livestream: And it seems a little bit silly in some ways, to write down your, you know, your process, or whatever it could be into just some Markdown files. But honestly, it works pretty well, and English is, you know, the new coding language.
+
+29
+00:35:08.743 --> 00:35:14.913
+Incoming livestream: What's also cool about these state-of-the-art skills and state-of-the-art coding agents is that they can ask questions, right?
+
+30
+00:35:14.913 --> 00:35:29.332
+Incoming livestream: you can have a human in the loop and say, yeah, you know, that vulnerability is not quite that realistic. Or, you know, I really want you to change how the difficulty of this is really easy for a scanner to find. I want it to be hard for a scanner to find, to really make sure I'm measuring things correctly.
+
+31
+00:35:30.593 --> 00:35:42.063
+Incoming livestream: But the general idea, right, is similar to the progress that you… similar to the process that you might follow, right? Review the application, review the codebase, come up with some way to build it, make sure that it works.
+
+32
+00:35:42.063 --> 00:35:53.872
+Incoming livestream: Then go and look at what the programming language is, what kind of typical vulnerabilities are common in that, kind of program age, or is this a client-server architecture, or is this a, you know, SQL engine, or whatever it could be.
+
+33
+00:35:54.743 --> 00:36:00.182
+Incoming livestream: And then, of course, you create plans for those things, you follow that process, and you go from there.
+
+34
+00:36:00.633 --> 00:36:16.853
+Incoming livestream: Then, we often will have the skill, one of the skills is, you know, creating a diff, for each change that you make, creating a branch for all the modifications and documentation that the coding agent will add to this process, so you can go back to potentially, you know, like, the middle of the process.
+
+35
+00:36:18.453 --> 00:36:27.972
+Incoming livestream: And then, of course, each vulnerability, because we can't just believe that these things are going to work, or it'll end up reward hacking, you want to have some kind of verification.
+
+36
+00:36:29.193 --> 00:36:32.763
+Incoming livestream: And this process will iterate and loop, and you can go from there.
+
+37
+00:36:33.603 --> 00:36:42.733
+Incoming livestream: And then at the end, of course, you have documentation and a report of all the things that were changed, and why they were changed, and it lets you go back and change, you know, if you want to modify something.
+
+38
+00:36:43.243 --> 00:37:06.482
+Incoming livestream: But of course, you know, you can't really prompt yourself to perfection, and so there are problems with this kind of architecture, even if we, you know, have spent some time on it, right? Models have bias, there's a lot of lack of ingenuity, you know, there's old information and training data-related things that the models will try to introduce. You saw in that earlier example, right, even with, like, you know, Opus 4.6 or something.
+
+39
+00:37:06.483 --> 00:37:11.393
+Incoming livestream: it'll just say, oh, you know, stir copy, we're done, right? It's… no, no.
+
+40
+00:37:11.393 --> 00:37:19.382
+Incoming livestream: And you know, they will sometimes refuse, even with the skills, when you get to certain types of vulnerabilities, or certain types of…
+
+41
+00:37:19.383 --> 00:37:23.363
+Incoming livestream: You know, proof of concept exploitation and things like that.
+
+42
+00:37:23.363 --> 00:37:43.623
+Incoming livestream: So, some of the solutions for those are somewhat obvious, right? Somewhat better prompting, somewhat ways of trying to ground things to reality, and you'll also, find some success in swapping models around, so you might get stuck with one model, switch to a different one, and then, kind of, you can switch back and say, hey, continue on with this, and it'll just keep going.
+
+43
+00:37:44.453 --> 00:37:54.822
+Incoming livestream: Reward hacking will also be a problem, right? Here's an example where in an earlier version where, it introduced an XSE vulnerability by just disabling the XSE protection, like, that's…
+
+44
+00:37:55.243 --> 00:37:56.873
+Incoming livestream: Not exactly what we meant.
+
+45
+00:37:57.193 --> 00:38:09.473
+Incoming livestream: And of course, you know, similar recommendations for this kind of thing, right? Better mo… better models, better planning, and, you know, in some cases, human verification, but that will slow things down.
+
+46
+00:38:10.093 --> 00:38:15.603
+Incoming livestream: Another thing you'll often run into is, like, maybe your code has to be compiled in order to assess things.
+
+47
+00:38:15.603 --> 00:38:40.333
+Incoming livestream: Or maybe it needs to run in a Docker container to make it easy to get portable. The models, you know, even 6 months ago, would have potentially had problems with this, or got lost, or forget to compile once they made changes. And so this is something that you might run into. However, you know, the latest models are really getting a lot better here. Sub-agents will speed things up a lot, you can do things in parallel, and then, you know, better planning, better setup, generally.
+
+48
+00:38:40.423 --> 00:38:41.753
+Incoming livestream: We'll save you.
+
+49
+00:38:42.743 --> 00:38:59.313
+Incoming livestream: You'll also sometimes find problems with applications that need some kind of setup, right? Maybe it needs to be, you know, you can modify the codebase, but then you need to click through a bunch of configuration steps, or you need configuration files that need to be generated. The good thing is, you know, AI can just generate all that for us.
+
+50
+00:38:59.313 --> 00:39:04.442
+Incoming livestream: Or you can use things like Playwright to automate, you know, browser clicking if you have to kind of go down that path.
+
+51
+00:39:06.003 --> 00:39:27.142
+Incoming livestream: You'll also run into, you know, if you're just creating Python scripts for replicating vulnerabilities or something, in some cases, especially on the website, you'll run into cases where, you know, there's a CRSF token that needs to get refreshed for every single time, or there's a different authorization you need to handle, and the model has to keep track of all that, but again, that's something that you can, you know.
+
+52
+00:39:27.253 --> 00:39:32.103
+Incoming livestream: document your way into improving, or use things like Playwright browser automation.
+
+53
+00:39:32.863 --> 00:39:49.832
+Incoming livestream: And then, you know, one of the core things is just where are the decisions-wise of things, right? So, you know, should you expose some vulnerable attack surface that's already in the app? Because again, for a lot of this, we don't want to be modifying the app to introduce vulnerable behavior, we just want to tweak, like, the smallest amount of code
+
+54
+00:39:49.833 --> 00:39:53.382
+Incoming livestream: To keep things as, as, as,
+
+55
+00:39:53.383 --> 00:40:07.763
+Incoming livestream: similar to the, like, real app as possible, right? Or should you do things like, maybe we will, you know, modify the surface-level code so it's easy to find, instead of modifying some really deep-down, hard-to-find thing? If you're gonna be evaluating
+
+56
+00:40:07.763 --> 00:40:22.432
+Incoming livestream: You know, just a scanner versus, like, a, you know, a human, or a pen test team, or whatever you have. And the nice thing is, you know, with AI, you can just do both, or you can make two, or you can make three, right? Just like the OpenAI, you know, presentation earlier this morning, like, you can just do things.
+
+57
+00:40:22.863 --> 00:40:45.873
+Incoming livestream: So in general, from some of the, you know, solutions that make things better, right, you cannot just prompt a few times with cloud code and just get a good result here. You really need the structure, you need various skills to go through and be able to do these things. You will also need to use the latest and greatest models, just because, you know, as we know, right, they're getting better. You'll get better results.
+
+58
+00:40:45.993 --> 00:40:58.963
+Incoming livestream: And, yeah, swapping around models, or using, you know, using codecs to do one thing and then creating it again, and using, you know, Opus 4.6 to do another one, you'll get some results. But I'll hand it over to Skylar now.
+
+59
+00:41:00.233 --> 00:41:01.242
+Incoming livestream: Thank you.
+
+60
+00:41:01.383 --> 00:41:18.033
+Incoming livestream: So I'm gonna go over some of the results that we ran into. A lot of it is just artifacts that are created by this process that inform the agent on how to move forward. We've had good success with a number of different, application architectures, programming languages.
+
+61
+00:41:18.143 --> 00:41:24.732
+Incoming livestream: Internal apps, as well as, obviously, open source apps. Those are what we spend most of our time on here.
+
+62
+00:41:26.833 --> 00:41:35.253
+Incoming livestream: So, one of the first things that we ended up doing is kind of, on this kind of reiteration, was creating modes that helped us address specific use cases, right?
+
+63
+00:41:35.363 --> 00:41:49.933
+Incoming livestream: So obviously there's an interactive mode that's like your human-in-the-loop approach, where you get to direct it and to, prove every single vulnerability that's planned, and its approach, on how it's implemented.
+
+64
+00:41:50.353 --> 00:41:57.112
+Incoming livestream: Next you have, like, an OWASP top 10, where it just takes an app and it tries to create a vulnerability from each one of these classes.
+
+65
+00:41:57.343 --> 00:42:08.353
+Incoming livestream: And this is basically a way to make your own web goat, if you're familiar with that project. So that's handy for training, but obviously it's, also handy for…
+
+66
+00:42:08.743 --> 00:42:15.713
+Incoming livestream: evaluations. Cwes, if you, if you know the specific types of vulnerability classes that you want to target.
+
+67
+00:42:15.843 --> 00:42:21.553
+Incoming livestream: Give it the CWE, and it will find an appropriate spot in that code base.
+
+68
+00:42:21.673 --> 00:42:24.923
+Incoming livestream: To inject a vulnerability of that class.
+
+69
+00:42:25.433 --> 00:42:42.783
+Incoming livestream: And if you want to get more specific, you can give it a CVE and say, emulate this specific vulnerability implementation. And it will go and find, provided it's available source code, it'll go and find it and emulate the structure of that as closely as it can within the target application.
+
+70
+00:42:43.363 --> 00:42:48.803
+Incoming livestream: And finally, we have an auto RCE, which is just a way for us to say.
+
+71
+00:42:48.953 --> 00:42:58.013
+Incoming livestream: Build a bunch of different vulnerabilities that independently aren't very useful, but can be chained together to ultimately achieve remote code execution.
+
+72
+00:42:59.483 --> 00:43:03.112
+Incoming livestream: We also support, like, a number, you can specify the difficulty level.
+
+73
+00:43:03.233 --> 00:43:19.243
+Incoming livestream: Easy, medium, hard. Easy, like Aaron mentioned, is something that we don't care if it gets caught by a scanner. Medium, we don't want to be caught by a scanner. So if we do get caught, we'll reiterate over that loop until we can get it passed. And hard…
+
+74
+00:43:19.723 --> 00:43:26.342
+Incoming livestream: Try and make it difficult for humans to be able to reason about, using various techniques that make it really hard to find these things.
+
+75
+00:43:28.763 --> 00:43:36.032
+Incoming livestream: Alright, so next, we have our build process, that kind of… what kicks off… once we've defined our configuration, we kick off the build.
+
+76
+00:43:36.253 --> 00:43:41.523
+Incoming livestream: And we produce some artifacts here that are useful for the rest of the process. We create
+
+77
+00:43:41.713 --> 00:43:51.093
+Incoming livestream: I know this is really hard to read, but on the side, you see some scripts that are used to start and stop our application, to run our build tests.
+
+78
+00:43:51.203 --> 00:43:56.882
+Incoming livestream: So we run our build test initially to make sure that the build is sound, and that we're working
+
+79
+00:43:56.983 --> 00:44:06.913
+Incoming livestream: With a good application. And we use that test later, after each vulnerability injection, to confirm that the functionality is not broken somehow.
+
+80
+00:44:09.523 --> 00:44:18.922
+Incoming livestream: And then on the… in the middle, you can see the document that it prepares that describes the build process in detail. It'll refer back to this as it needs to rebuild.
+
+81
+00:44:19.023 --> 00:44:20.353
+Incoming livestream: After each injection.
+
+82
+00:44:24.763 --> 00:44:43.463
+Incoming livestream: All right, finally, nope. So after we've completed the build process, actually, these can be run in parallel. The next process is an analysis, where we deep dive into the application, try to understand everything we can about it, to make it easier to inject realistic vulnerabilities.
+
+83
+00:44:44.063 --> 00:44:58.203
+Incoming livestream: You can see here, or maybe you can't, but I'll describe it. The, executive summary kind of just describes the main components. It goes through all of the plan vulnerabilities, and describes some…
+
+84
+00:44:58.553 --> 00:45:02.032
+Incoming livestream: Potential entry points to inject that vulnerability.
+
+85
+00:45:05.893 --> 00:45:15.233
+Incoming livestream: It goes, through, and it identifies all of the technology stack, which components are being used, which libraries, which versions. It also tries to group
+
+86
+00:45:15.233 --> 00:45:26.682
+Incoming livestream: Functionality into, different categories. So if it's trying to find a place to inject a specific vulnerability, you can use these categories to identify code that might be susceptible to those types of vulnerabilities.
+
+87
+00:45:29.733 --> 00:45:33.563
+Incoming livestream: Additionally, it goes through all of the architectural
+
+88
+00:45:34.593 --> 00:45:36.423
+Incoming livestream: I feel like we just covered that one.
+
+89
+00:45:36.603 --> 00:45:42.883
+Incoming livestream: So then it also describes, like, the main components, and this will change, obviously, to all in your architecture.
+
+90
+00:45:43.053 --> 00:45:47.012
+Incoming livestream: But it lays it out, describing each one, how it works.
+
+91
+00:45:47.193 --> 00:45:50.303
+Incoming livestream: Enumerates all the endpoints.
+
+92
+00:45:50.483 --> 00:45:52.873
+Incoming livestream: And…
+
+93
+00:45:53.993 --> 00:46:09.473
+Incoming livestream: data flow patterns. So it'll try it and say, alright, here's how this workflow works when you're trying to fill a database or browse keys in the database. So you can have… so the agent has this information as it's going through, trying to find the best place
+
+94
+00:46:09.643 --> 00:46:10.762
+Incoming livestream: To inject these.
+
+95
+00:46:13.403 --> 00:46:28.973
+Incoming livestream: More security-related, so it basically just looks for specific security implementation details, authentication, authorization, cryptography, all the different security mechanisms that are present in the application, tries to identify them,
+
+96
+00:46:29.083 --> 00:46:30.463
+Incoming livestream: And enumerate it.
+
+97
+00:46:31.113 --> 00:46:34.743
+Incoming livestream: And finally, we have, like… well, actually, not finally, but we have some…
+
+98
+00:46:35.613 --> 00:46:41.792
+Incoming livestream: external integration. So these are where we… our app integrates elsewhere, which is a fun place.
+
+99
+00:46:42.183 --> 00:46:43.553
+Incoming livestream: To inject vulnerabilities.
+
+100
+00:46:44.533 --> 00:46:52.002
+Incoming livestream: And then we do a baseline scan, so before we start injecting any vulnerabilities, do a baseline scan to understand what is actually there.
+
+101
+00:46:52.123 --> 00:46:54.262
+Incoming livestream: So that we can compare after we…
+
+102
+00:46:54.363 --> 00:46:56.832
+Incoming livestream: Inject our vulnerability to make sure it's not detected.
+
+103
+00:47:01.583 --> 00:47:20.973
+Incoming livestream: Okay, after that, we build a bunch of functional tests. So we understand the app, we understand the architecture, the components, we understand functionality, what are the common workflows, and we build functional tests, to test this, dynamically, so that we can get confidence that after we inject something, we're not breaking existing functionality.
+
+104
+00:47:23.993 --> 00:47:27.202
+Incoming livestream: And there's a… just a specific,
+
+105
+00:47:27.583 --> 00:47:32.162
+Incoming livestream: Functionalities documented, key pass to specific source files, that might be interesting.
+
+106
+00:47:32.553 --> 00:47:34.802
+Incoming livestream: It also does, like, an architecture diagram.
+
+107
+00:47:35.363 --> 00:47:48.652
+Incoming livestream: It's really not that great at it yet, but if you look at it, it's actually fairly accurate, and these are created in Mermaid, so it has a textual representation that it can use to understand relationships between various components.
+
+108
+00:47:48.793 --> 00:47:51.252
+Incoming livestream: Without trying to understand.
+
+109
+00:47:51.793 --> 00:47:52.912
+Incoming livestream: this diagram.
+
+110
+00:47:54.593 --> 00:47:58.722
+Incoming livestream: And then finally, we're ready to… inject some flaws, right? We…
+
+111
+00:47:58.873 --> 00:48:02.973
+Incoming livestream: We've done our analysis, we have ideas of what we want to inject, how difficult it should be.
+
+112
+00:48:03.073 --> 00:48:09.032
+Incoming livestream: And where we want to try injecting these. You can see here, we have a plan.
+
+113
+00:48:09.183 --> 00:48:13.742
+Incoming livestream: To create a chained vulnerability that ends up in our CE.
+
+114
+00:48:16.353 --> 00:48:24.333
+Incoming livestream: This is an example of one of the prompts. This is specifically a vulnerability injection prompt, which gives guidance on how to do it, how to make it realistic.
+
+115
+00:48:24.443 --> 00:48:31.042
+Incoming livestream: And gives guidelines around Our idea of realistic, like, not touching the tests.
+
+116
+00:48:31.223 --> 00:48:37.323
+Incoming livestream: Unit tests, for example. To hide our injected vulnerability?
+
+117
+00:48:39.983 --> 00:48:44.533
+Incoming livestream: And once we… Inject the vulnerability?
+
+118
+00:48:45.073 --> 00:48:46.123
+Incoming livestream: Sorry.
+
+119
+00:48:46.363 --> 00:48:47.583
+Incoming livestream: We,
+
+120
+00:48:48.923 --> 00:48:56.782
+Incoming livestream: we document… or sorry, we… we… this is part of the planning phase, sorry, I kind of skipped over it, but you'll notice here, like, we asked for a WASPOP10.
+
+121
+00:48:56.873 --> 00:49:10.032
+Incoming livestream: It says, no, only 8 of those categories make sense for this application. I'm only going to move forward and try and inject these 8. The other would be unrealistic, or would require adding additional functionality that wasn't already present.
+
+122
+00:49:10.313 --> 00:49:14.633
+Incoming livestream: Now, obviously, you can add additional tack surface, but…
+
+123
+00:49:15.043 --> 00:49:18.322
+Incoming livestream: In this case, we don't want it to. We want it to use the existing functionality.
+
+124
+00:49:20.093 --> 00:49:26.772
+Incoming livestream: And then once it's defined the implementation, it can do additional things like generate sequence diagrams.
+
+125
+00:49:27.293 --> 00:49:33.233
+Incoming livestream: To describe that vulnerability in detail, so that a human can understand exactly how it works once it's injected.
+
+126
+00:49:35.973 --> 00:49:46.262
+Incoming livestream: And obviously, injecting these vulnerabilities, is great, but we need to know that this is not a false positive, so we need to validate that that exploit… sorry, that vulnerability is exploitable.
+
+127
+00:49:46.503 --> 00:49:51.522
+Incoming livestream: So we generate validation scripts that We'll do that.
+
+128
+00:49:51.983 --> 00:49:58.323
+Incoming livestream: We have a critique, sorry, a critic that will critique a vulnerability plan, as well as an implementation.
+
+129
+00:49:58.783 --> 00:50:01.503
+Incoming livestream: To make sure that it's aligned with
+
+130
+00:50:01.623 --> 00:50:06.453
+Incoming livestream: What we're looking for, and reward… sorry, avoid, kind of, reward hacking.
+
+131
+00:50:07.883 --> 00:50:12.682
+Incoming livestream: And once we've done all this, we've confirmed that the injections
+
+132
+00:50:12.863 --> 00:50:19.202
+Incoming livestream: are validated, they work properly. We run a vulnerability scan again to identify what we missed.
+
+133
+00:50:19.643 --> 00:50:21.372
+Incoming livestream: I'm sorry, what it missed.
+
+134
+00:50:22.863 --> 00:50:30.433
+Incoming livestream: And at this point, like I said, if we were setting it to hard or medium, it might have to go back and try again using some of the information about how it was caught.
+
+135
+00:50:30.843 --> 00:50:33.082
+Incoming livestream: To do additional evasions.
+
+136
+00:50:34.713 --> 00:50:35.383
+Incoming livestream: Alright.
+
+137
+00:50:36.643 --> 00:50:39.073
+Incoming livestream: Cool. So let's talk about where else they can go.
+
+138
+00:50:39.533 --> 00:50:51.153
+Incoming livestream: So, obviously, this works on source code, but, of course, you can also take it further and have compiled binaries. So you could take your source code, introduce vulnerabilities, compile those binaries, and then test
+
+139
+00:50:51.153 --> 00:51:05.803
+Incoming livestream: about, you know, patch diff analysis, or end days, or whatever you're worried about, right? You could test that in this situation as well. You can also marinate more than just source code, right? You could inject into configuration files if you have some kind of security process that's checking those.
+
+140
+00:51:05.803 --> 00:51:28.472
+Incoming livestream: you could insert into log files if you want to check for, you know, some detection thing to fire, right? You don't actually necessarily even have to do a red team. You could just synthetically generate one, and then test your system, or test your SOC, or whatever it could be. So that's pretty cool. And then, with a lot of this, right, you enter a world where you have more verifiable rewards, and so you could potentially generate a whole bunch of synthetic training data
+
+141
+00:51:28.473 --> 00:51:33.422
+Incoming livestream: from a corpus like this, and then make a better model, so on and so forth.
+
+142
+00:51:33.633 --> 00:51:44.102
+Incoming livestream: you know, this system, as we've been using it, is certainly not perfect, right? There are lots of times where it will reward hack, or where we'll have to go back and be more in the loop on a certain type of vulnerability that you want.
+
+143
+00:51:44.103 --> 00:51:54.092
+Incoming livestream: And so, obviously, you know, it's getting better. We're playing around with also, like, having layers of reviewers or critics or things like that in order to get things better.
+
+144
+00:51:54.093 --> 00:52:00.252
+Incoming livestream: Being able to kick off some kind of deep research as part of an agent would be pretty cool, and so on.
+
+145
+00:52:00.933 --> 00:52:15.743
+Incoming livestream: And, you know, I think we want to end on just this fact that, like, right now, right, we're not in cyber Kansas anymore, right? It's very interesting times for the security industry, for the AI industry, and, you know, there's a lot of exciting stuff happening, and yeah, go build things.
+
+146
+00:52:24.423 --> 00:52:28.112
+Incoming livestream: I think we have a couple minutes for questions. Absolutely.
+
+147
+00:52:28.253 --> 00:52:30.982
+Incoming livestream: Put your hand up if you've got a question. We'll go right here.
+
+148
+00:52:35.803 --> 00:52:48.392
+Incoming livestream: Hey, I know you mentioned, about using the newer models because the capabilities are better, but do you think that the problem you were running into earlier around won't generate vulnerable code, like, that'll start to catch up?
+
+149
+00:52:48.393 --> 00:53:07.883
+Incoming livestream: on the skills and other newer… Yeah, definitely, that's a good concern. I think that's hope… where I hope, like, maybe some of the, like, OpenAI Trusted Access, right? Where certain companies can get, like, you know, if you, you know, can get potentially approved to have some of the things turned down, right? Or, like, classifiers or whatever, so you don't get an angry email.
+
+150
+00:53:07.883 --> 00:53:11.733
+Incoming livestream: And things, but yeah, it'll always be a race of being able to do that.
+
+151
+00:53:12.053 --> 00:53:13.473
+Incoming livestream: That's a good question, though, thanks.
+
+152
+00:53:17.933 --> 00:53:33.812
+Incoming livestream: Hey, thanks. You talked about realism during the evaluations. How central to, the evaluation metrics are realism? And anecdotally, where on the sliding scale of CTF challenge to, like, real vulnerabilities do you think the phones wound up landing?
+
+153
+00:53:33.993 --> 00:53:36.483
+Incoming livestream: Yeah, that's a really good question. So…
+
+154
+00:53:36.503 --> 00:53:44.763
+Incoming livestream: I do think, you know, you could do a whole talk, I think, on why we need to go away from CTF-style evaluations and things, and like.
+
+155
+00:53:44.763 --> 00:54:07.963
+Incoming livestream: getting away from, you know, damn vulnerable Linux and Juice Jop and all these things, right? So, we focused a lot on trying to make it as real as possible. I think the problem is, yeah, we have our own bias about, like, what's real, or, you know, whatever. I think that's where some of the modes come into play of, like, if you had maybe, you know, we know programmers make similar mistakes again and again, or companies, or frameworks, right? So, you might be able to have a system where you
+
+156
+00:54:07.963 --> 00:54:12.343
+Incoming livestream: Say, like, hey, here's the last, like, 4 vulnerabilities in this product.
+
+157
+00:54:12.343 --> 00:54:23.252
+Incoming livestream: make a fifth one that's very similar to these, right? So, it's certainly, like, it's something we've been playing with, but it's not super easy, because, you know, LLMs
+
+158
+00:54:23.283 --> 00:54:24.483
+Incoming livestream: Only know so much.
+
+159
+00:54:25.173 --> 00:54:39.482
+Incoming livestream: Thanks. I guess the next question's from me, which is related to that, like, companies write a lot of the same software over and over and over again. Do you find over time you guys spend more time dealing with separate prompts, separate context on anti-reward hacking, making sure it's not just saying, hey, I did a great job?
+
+160
+00:54:39.873 --> 00:54:51.973
+Incoming livestream: It's gotten a lot better. Like, 6 months ago, you had to babysit and be, like, human in the loop a lot. Now, especially for, you know, like, certain types of codebases or certain types of problems that you're introducing.
+
+161
+00:54:51.973 --> 00:55:09.973
+Incoming livestream: It'll, you know, it can really go on its own. The one where it still sometimes will do nonsensical stuff, especially, like, the, the, like, chaining, vulnerability chaining, you're like, this is, this, I would not exploit this and then exploit that, like, that doesn't really make sense. But some of the other more, like, simple modes are pretty, pretty reliable.
+
+162
+00:55:12.683 --> 00:55:14.373
+Incoming livestream: I think we can probably take one more.
+
+163
+00:55:15.033 --> 00:55:26.272
+Incoming livestream: It seems like you've built the perfect tool for inserting backdoors into existing codebases through malicious pull requests. Have you tried leveraging this in an offensive capacity? No comment.
+
+164
+00:55:27.093 --> 00:55:28.343
+Incoming livestream: Thanks a lot, guys.

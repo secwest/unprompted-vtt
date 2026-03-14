@@ -1,0 +1,425 @@
+WEBVTT
+
+1
+00:03:10.818 --> 00:03:22.708
+Incoming livestream: Cool, yeah, I hope everyone had a nice coffee break. So today we'll be talking about the very interesting topic of how we ship security agents in production, and how we leverage guardrails along the way.
+
+2
+00:03:22.708 --> 00:03:30.637
+Incoming livestream: So specifically, we're gonna focus on two agents, a threat modeling agent and a security routing agent.
+
+3
+00:03:30.638 --> 00:03:49.047
+Incoming livestream: So, you know, we could probably use a little bit more creativity in those names, but the core problem we're trying to solve with our security team, and maybe, you know, you've seen this in your security org as well, is, you know, too many security reviews, and not enough human time, and also getting our users the answers to the questions they need efficiently.
+
+4
+00:03:50.988 --> 00:04:02.228
+Incoming livestream: So, here's our agenda for today, but very concretely, we're going to dive into, you know, the architecture of these agents, how we approach quality and measured accuracy.
+
+5
+00:04:02.418 --> 00:04:07.778
+Incoming livestream: How we met users where they were throughout the process, and finally finish off with some learnings.
+
+6
+00:04:08.618 --> 00:04:13.098
+Incoming livestream: And as mentioned before, Sid and I are software and security engineers at Stripe.
+
+7
+00:04:14.258 --> 00:04:38.987
+Incoming livestream: Yeah, so there are two main problems we tried to attack using AI for security at Stripe. One of them being security routing, and what I mean by that is, how do we get users, given so many different security teams, to the right one, while minimizing development time and friction for security engineers? Another problem we were trying to solve is with threat modeling, and what I mean by that is with the rise of use of AI in the software development lifecycle, how are we attacking this increased demand for security guidance?
+
+8
+00:04:39.048 --> 00:04:54.817
+Incoming livestream: And of course, there are a bunch of different challenges associated with creating agents for the two, but one of the main challenges we focused on was hallucinations. As we've all come to know and love, AIs can and will hallucinate. And these hallucinations can actually end up recreating the problem we're trying to solve in the first place. For example.
+
+9
+00:04:55.097 --> 00:04:55.788
+Incoming livestream: with…
+
+10
+00:04:59.178 --> 00:05:00.168
+Incoming livestream: Folks.
+
+11
+00:05:00.418 --> 00:05:09.517
+Incoming livestream: I don't like disturbing talks in the middle, and for those online, I'm sorry. Everybody in the back, please be very, very quiet, or I'll kick you out. This room has a bad echo.
+
+12
+00:05:09.718 --> 00:05:12.447
+Incoming livestream: If you want to talk, get out. Love ya.
+
+13
+00:05:12.698 --> 00:05:16.837
+Incoming livestream: Okay, folks, in the back, sorry. Everybody please shut up.
+
+14
+00:05:17.408 --> 00:05:22.577
+Incoming livestream: Thank you so much. Appreciate your time today. Thank you for listening. Please continue to talk.
+
+15
+00:05:26.258 --> 00:05:37.637
+Incoming livestream: For example, with security routing, if we're routing people to the wrong team, then we're having to get security engineers and developers re-involved in this whole process of getting them back on track, recreating the problem.
+
+16
+00:05:39.658 --> 00:05:56.717
+Incoming livestream: Cool, so with that context in mind, we're gonna dive into how we approach the design, starting with our threat model agent. So one important consideration we had to make in the beginning was, will this agent be more of a long-running, right, async process in the background, or do we need to be more conversational and faster in its response time?
+
+17
+00:05:56.718 --> 00:06:04.817
+Incoming livestream: And that way, we could look at the, you know, trade-offs between, hey, do we want to focus on accuracy and processing, rather than having to get a very fast response?
+
+18
+00:06:04.848 --> 00:06:16.028
+Incoming livestream: And so in our case, we actually opted for the latter. You can imagine we have a security review ticket come into our queue, and our agent can take the time and processing time that it needs to get back a response.
+
+19
+00:06:16.088 --> 00:06:27.948
+Incoming livestream: So this led us to take a modular multi-agent structure. So on the right, you can see that we have an orchestrator agent, which has a couple parameters it takes in, based on our intake form. For example, our security review category.
+
+20
+00:06:27.948 --> 00:06:47.127
+Incoming livestream: It then feeds it into input agents, relevant security agents, and then lastly, our output agents. So our input agents, the main goal is to get the relevant additional input contacts that come, you know, in your tickets. Sometimes there are Google Doc links, you know, Slack threads, additional information that's relevant that we want to include for our security agents.
+
+21
+00:06:47.338 --> 00:07:07.087
+Incoming livestream: And with our security agents, we tried to take a very specialized, targeted approach. And so what I mean by that is, you know, imagine we have a third party, you know, security view agent. We wanted to make sure that it was specific to that category, and when we were balancing determinism versus non-determinism, we believe that there was a core baseline of required questions.
+
+22
+00:07:07.088 --> 00:07:11.607
+Incoming livestream: That was required to, you know, make any third-party security review complete.
+
+23
+00:07:11.608 --> 00:07:27.328
+Incoming livestream: Things such as, you know, what's the data sensitivity involved, what's the data transport protocols, right? What's the auth story there? And so, this doesn't necessarily limit what the agent could, you know, review, but it had to at least include information on these points to get a complete, you know, successful threat model.
+
+24
+00:07:27.648 --> 00:07:42.458
+Incoming livestream: The other decision that we made was to be very intentional with the tools that we used, and so one that I'll explicitly call out is having great internal guidance tools. You know, LLMs are good at giving more generic security context, but what's really powerful is having
+
+25
+00:07:42.458 --> 00:07:48.797
+Incoming livestream: You know, company-specific guidance that aims to, you know, provide risks and mitigations that can be actionable
+
+26
+00:07:49.638 --> 00:07:58.467
+Incoming livestream: And then lastly, these are fed to our output agents, and you can… we'll talk about this a bit more later on, but you can imagine there's different audiences that want different formats.
+
+27
+00:07:58.468 --> 00:08:14.178
+Incoming livestream: Now, why did we take this more, you know, sequential agent approach? And the reason behind that is we wanted more predictable behavior for certain areas. We always want the input agent to run first, security agents, you know, to do analysis in parallel, and then lastly, our output agents to run.
+
+28
+00:08:14.178 --> 00:08:23.087
+Incoming livestream: We found that when we gave, you know, our orchestrator agents too much agency, it wouldn't always run the relevant specialized agent that we wanted it to.
+
+29
+00:08:23.288 --> 00:08:36.567
+Incoming livestream: Now, this doesn't mean we're stuck, you know, with this sequential approach. We're thinking of doing a more hybrid one, where, similar to how we approach the core baseline, you know, maybe we have a core baseline of security agents we need to run based on human input, right?
+
+30
+00:08:36.668 --> 00:08:45.667
+Incoming livestream: But, if it's a very vague category, we want to layer on top agency from the orchestrator agent to say, hey, maybe, you know, a web-specialized agent is applicable here.
+
+31
+00:08:47.798 --> 00:09:10.388
+Incoming livestream: Yeah, so for the security routing agent, we decided to take a different approach instead of the sequential agent structure, especially given the fact that any question, could be dealt with for security routing. So, instead of using a more sequential structure, we used a… initially, we started with a one-step LLM call. Give it no access to tools, no access to the internet or anything local at Stripe. Instead, we just started with
+
+32
+00:09:10.388 --> 00:09:15.257
+Incoming livestream: A simple prompt that had a bunch of pre-contextual information about the various security teams at Stripe.
+
+33
+00:09:15.328 --> 00:09:40.077
+Incoming livestream: And, while this ran really fast, you can see that it probably didn't work for a lot of reasons. One of the main ones being that it's not going to know about any internal terms or documentation used at Stripe. So if the user's question was relating to any software development that was using any of those internal tools, terms, etc, the AI would often hallucinate. We then decided to shift to a more agentic structure, giving it access to tools to compile its own set of information.
+
+34
+00:09:40.078 --> 00:09:47.588
+Incoming livestream: So we took this one-step prompt, took out all this contextual information about the various security teams, and instead encouraged it to research on its own.
+
+35
+00:09:47.588 --> 00:09:57.058
+Incoming livestream: At the beginning, we provided it with as many tools as we could to just get a complete picture. And this worked great for accuracy reasons, but for performance reasons, the agent took around 10 minutes to run.
+
+36
+00:09:57.058 --> 00:09:58.938
+Incoming livestream: Hardly conversational at all.
+
+37
+00:09:58.938 --> 00:10:22.337
+Incoming livestream: So, to get it down further, what we decided to do is try to get the tool set down, specifically, to be as minimum and concise as possible. Through a slow and iterative process of just taking a set of baseline questions we knew the answer to, testing the agent, plucking tools one by one, retesting the accuracy, and ensuring it's not changing too much, we were able to get down to about two tools and a runtime of around 30 seconds.
+
+38
+00:10:23.638 --> 00:10:39.858
+Incoming livestream: Great, so, you know, with all this discussion around our agent architecture, how did we know that was the right choice, and if it was the right choice, that when we make changes, that they're actually improving the agent? So, starting with threat modeling, as many of you may know, threat modeling is often more of an art than a science.
+
+39
+00:10:39.858 --> 00:10:43.757
+Incoming livestream: And there's not a single right answer, right? There's not a single right threat model.
+
+40
+00:10:43.758 --> 00:10:51.698
+Incoming livestream: So when we were looking into different ways to score the threat modeling, we were first approached with, hey, can we do deterministic matching?
+
+41
+00:10:51.698 --> 00:11:09.687
+Incoming livestream: And this didn't really, you know, fit the bill. When we tried to compare miter categories, we found that there would sometimes be wrong labeling. The agent would have the correct risk, but in two different runs, it would label them as, you know, one category, and another time in another category, even though the risk itself was being communicated correctly.
+
+42
+00:11:09.768 --> 00:11:14.598
+Incoming livestream: Other more simpler methods like, you know, keyword matching didn't fit right as well.
+
+43
+00:11:14.848 --> 00:11:24.538
+Incoming livestream: So this made us turn to, you know, what really matters. And what really mattered was the semantics and meaning behind the risk being conveyed. And so we turned to LLM as a judge.
+
+44
+00:11:24.768 --> 00:11:32.768
+Incoming livestream: Now, one question that comes up with LLM as a judge is, you know, do we trust the LLM to evaluate the threat model in isolation?
+
+45
+00:11:32.768 --> 00:11:46.768
+Incoming livestream: And it's a bit of a cyclical dependency, because, you know, the whole reason why we're doing this evaluation is because we don't trust the LLM to give us a 100% correct threat model, right? So why are we gonna allow the LLM to evaluate and trust that it'll give us 100% correct evaluation?
+
+46
+00:11:46.768 --> 00:11:56.457
+Incoming livestream: So, to address this and take a more balanced approach, we wanted to have humans involved and take advantage of what humans are good at, in creating golden standard based…
+
+47
+00:11:56.458 --> 00:12:02.677
+Incoming livestream: test cases, right, based on past security reviews, and also what LLMs are good at, which is semantic reasoning.
+
+48
+00:12:02.678 --> 00:12:22.667
+Incoming livestream: And so, in this flow, what we tasked the LLM with doing is, hey, given this expected output on our golden standard test case, what are the semantic equivalences between that and our actual output from our agent, right? So looking at the risk, the mitigations, based on semantic equivalence. And we felt like this was the right approach to get to the right meaning behind the risk.
+
+49
+00:12:22.668 --> 00:12:42.608
+Incoming livestream: And so at the bottom, you can see how that sort of, you know, looks in our iteration model, where we have a golden standard test case with its corresponding, actual agent output, and we would iterate on that based on the scoring accuracy to get to, you know, an accuracy that we were happy with that improved the agent, before sending out, right, our pull request, in the offline mode.
+
+50
+00:12:43.898 --> 00:12:55.177
+Incoming livestream: Yeah, so with this evaluation pipeline in place, how exactly did we take advantage of it? Well, we first started and looked at our base prompt and found that there were a few test cases within our golden set that were particularly low.
+
+51
+00:12:55.178 --> 00:13:10.227
+Incoming livestream: We used these test cases to guide improvements in our prompt, not specifically by overfitting it, but just by encouraging the prompt to act more like a security engineer. For example, one of the specific things we did was by giving the prompt specific security domains to always consider, such as authorization and single sign-on.
+
+52
+00:13:10.228 --> 00:13:14.868
+Incoming livestream: This guided improvements to get us about 10% increase in accuracy.
+
+53
+00:13:14.868 --> 00:13:36.027
+Incoming livestream: One of the other things we used the eval pipeline for was to select the best flagship LLM model for our threat modeling agent. Specifically, we did this by creating a mega dataset using copies, individual copies, of our golden set standard cases. The reason we duplicated our test cases was to really eliminate the non-deterministic nature of AI between runs.
+
+54
+00:13:36.028 --> 00:13:44.678
+Incoming livestream: By using the simple process, we were able to test and automate, testing each baseline LLM model and swap it with the one that performed the highest.
+
+55
+00:13:44.678 --> 00:14:02.808
+Incoming livestream: This led to another increase of about 10% in accuracy. But finally, one of the most… one of the largest impacts from this evaluation pipeline is the fact that it really gave us confidence in the changes we made to our prompt. For example, take a look at the prompt you see on your right, where it says you're a security engineer, and then describes how to properly format a JSON.
+
+56
+00:14:02.808 --> 00:14:10.847
+Incoming livestream: On an individual run without the evaluation pipeline, things might look great. We're outputting a correctly formatted JSON threat model, and we're also giving security advice.
+
+57
+00:14:10.848 --> 00:14:25.667
+Incoming livestream: But what the eval pipeline is actually showing us is that overall accuracy has gone down 10%, because the agent is focusing more on how to properly output a JSON, and less on actually providing accurate security guidance. So this eval pipeline really gives us confidence in the changes that we make to our prompt.
+
+58
+00:14:25.668 --> 00:14:29.378
+Incoming livestream: In the sense that they're applying, generally speaking, rather than just in minute cases.
+
+59
+00:14:30.698 --> 00:14:53.467
+Incoming livestream: Yeah, so the EVOL pipeline for security routing was a bit different. It relied more on user-provided feedback, given the open-ended nature of the situation. Instead, we relied on releasing to a small bubble of users, iterating on user feedback, increasing that bubble, and so forth. Specifically, we started by releasing the agent just to be accessible via a web page, just so that our team members and anyone across Stripe internally could access it.
+
+60
+00:14:53.468 --> 00:15:02.427
+Incoming livestream: Then, taking this feedback and getting more confidence in it, we wanted to test how it handles user situations. So we made it invocable in Slack to really test, context dependence.
+
+61
+00:15:02.428 --> 00:15:20.497
+Incoming livestream: Finally, after iterating on that phase, getting confidence in it, we released it to all developers across Stripe in the internal chat UI for agents at Stripe. This was really to meet developers where they are. And then, of course, we also relied on demos and outreach to, again, just get as much feedback as possible from direct users, again, given the open-ended nature of security routing.
+
+62
+00:15:21.568 --> 00:15:31.268
+Incoming livestream: Cool, so speaking about meeting users where they are, we wanted to highlight a couple of key actions that we took as a team to make sure that users were, you know, kept involved in the process.
+
+63
+00:15:31.268 --> 00:15:53.417
+Incoming livestream: So the first one is phase rollout. So, this one we'll be talking about in the threat modeling context, where we chose a specific subcategory of security reviews that we believed agents would be able to perform well at. And what that means is choosing security reviews that had very similar risks and very similar mitigations. And we believe this more constrained domain made it better for an automation setting.
+
+64
+00:15:53.508 --> 00:16:06.787
+Incoming livestream: Once we had our established subcategories of security reviews, you know, we built out our agent architecture and ran this all in shadow mode. During this process, we continually iterated using our evaluation pipeline discussed before to get to an accuracy that we were confident in.
+
+65
+00:16:06.958 --> 00:16:14.327
+Incoming livestream: Now, you might ask, you know, how do we determine what accuracy threshold? And I think this really depends on the behavior of your agent.
+
+66
+00:16:14.328 --> 00:16:29.787
+Incoming livestream: You can imagine if your agent is directly sending these threat models, these risks, and making super noisy, you know, integrations into your engineering teams, if you don't have a very high accuracy, you know, you're gonna get a lot of slack. Those engineering teams are not gonna be happy.
+
+67
+00:16:30.068 --> 00:16:53.138
+Incoming livestream: Versus, if we add in a human in the loop, where maybe the agent gets you 90% of the way there, right? But you still have that one last step of a human confirming those threats and mitigations are applicable, we can go for, you know, slightly less accuracy. So we ended up with the latter approach, aiming for around 80% in the beginning, and then continuing to iterate on it once it became visible to our users.
+
+68
+00:16:53.268 --> 00:17:01.977
+Incoming livestream: Now, speaking about our, you know, consumption methods, while the semantics first, you know, risk representation was great for our evaluation model.
+
+69
+00:17:01.978 --> 00:17:15.707
+Incoming livestream: We found that, you know, other audiences wanted different formats. For example, humans wanted a more summarized format, while we had threat modeling tool that wanted more structured format for metrics. So we opted for a MITRE framework there.
+
+70
+00:17:15.818 --> 00:17:28.918
+Incoming livestream: And then lastly, we recognize that the threat modeling agent doesn't always, you know, output something that's fully complete, right? Especially for more vague categories, we want to have the option to continue the conversation in our conversational agent.
+
+71
+00:17:28.918 --> 00:17:37.987
+Incoming livestream: And the focus here was making sure that the input going to the conversational agent had the necessary context and almost proof of work from our threat modeling agent to make it successful.
+
+72
+00:17:38.288 --> 00:17:57.647
+Incoming livestream: Then lastly, we recognize that, you know, we're not always operating with perfect information, and when we're missing information, we shouldn't have the expectation that threat model should be 100% complete, right? The threat model agent should call out where the missing information is, that the status is unknown, and set the security engineers up to, you know.
+
+73
+00:17:57.648 --> 00:18:04.457
+Incoming livestream: Bring up to the next step, which is, hey, based on this question, if we can answer it, we can tell if this risk is mitigated, or it's not.
+
+74
+00:18:06.058 --> 00:18:30.557
+Incoming livestream: Yeah, so there are a lot of great learnings we took away from this whole process, one of them being about Alpha Evolve. If you don't know what Alpha Evolve is, it's this Google AI DeepMind LLM tool that essentially evolves algorithms, or in this case, prompts, using a process similar to natural evolution. So, in this case, let's work on an example. We take our base prompt, we make a bunch of different variations to it, adding a few words here, maybe changing the wording here, and then take the one that performs the best.
+
+75
+00:18:30.638 --> 00:18:37.928
+Incoming livestream: a score through our evaluation pipeline, and take it to the next round. We repeat this process until we get the truly most evolved form of the prompt.
+
+76
+00:18:37.928 --> 00:19:01.708
+Incoming livestream: While this sounds great in theory, and works great in a lot of computational and mathematical cases where there are only so many permutations of things you can try, in the case of language, because of how open-ended it is, we found that it didn't really work great, especially within the realms of the cost we were able to handle. For example, in this case, all it did in variation 1 was add two words, not really semantically changing the prompt at all. In the second variation, it just paraphrased the entire prompt, again, not
+
+77
+00:19:01.708 --> 00:19:09.398
+Incoming livestream: adding any semantic changes that would actually, hopefully, guide improvements. So in this case, we found out that Alpha Evolve didn't really work great.
+
+78
+00:19:09.858 --> 00:19:31.668
+Incoming livestream: Another learning we had is that we found out that humans in the loop aren't optional, and this really goes great with what Duffy's been talking about, in the sense that we have all these LLM-generated threat models, and a relative amount of confidence in it, but because we don't have that full confidence, we don't want to actually act on these results. We want a security engineer to still review these AI-generated threat models, and push forward threats that are actually relevant, and of course, deny those that aren't.
+
+79
+00:19:32.008 --> 00:19:56.098
+Incoming livestream: Another learning we had goes back to the JSON example, which is investing in your eval pipeline early. And what I mean by that specifically is that if we had just not invested in our eval pipeline early and instead guided… focused on just getting those edge cases correct, etc, we would have ended up with some big garbage mess of a prompt that maybe scores great in some very weird cases, but generally speaking, focuses too heavily on specifics and
+
+80
+00:19:56.178 --> 00:20:12.947
+Incoming livestream: Generally, performance will go down. Another learning we had is that agent architecture really depends on the task. We saw that a multi-step child agent architecture worked great for the threat modeling agent, but for the security routing agent, a more simplistic, undetermined structure really worked. There's not really a one-size-fits-all here.
+
+81
+00:20:13.698 --> 00:20:29.988
+Incoming livestream: And then finally, one of the most important learnings we had is that garbage input really means garbage output. And of course, we don't want our threat model agent to produce garbage output. We want it to handle all threat models, like a security engineer would. Take this example, garbage input ticket, where there's not many specifics at all.
+
+82
+00:20:29.988 --> 00:20:36.368
+Incoming livestream: Initially, our LLM would end up hallucinating information, saying things like encryption and rotation, things that aren't mentioned in the ticket at all.
+
+83
+00:20:36.368 --> 00:20:45.788
+Incoming livestream: We have to teach it to act more like a security engineer, be okay with saying, I don't know, and that there's not enough information, rather than, of course, hallucinating this information to produce good output.
+
+84
+00:20:48.558 --> 00:20:51.898
+Incoming livestream: Great, yeah, that's the end of our talk. Thank you guys for listening.
+
+85
+00:21:00.018 --> 00:21:01.417
+Incoming livestream: Let's do some questions.
+
+86
+00:21:01.628 --> 00:21:02.847
+Incoming livestream: I see Shruti.
+
+87
+00:21:09.518 --> 00:21:18.127
+Incoming livestream: Hi, thanks for the talk. I was curious if accuracy was the only metric that you used in your evals, or did you try other metrics as well?
+
+88
+00:21:18.468 --> 00:21:25.578
+Incoming livestream: Sorry, you said if accuracy was the only metric? Or did you try other metrics for scoring in your evals as well?
+
+89
+00:21:25.998 --> 00:21:43.047
+Incoming livestream: Yeah, I think… so, specifically, we used the offline accuracy one, where it was, you know, before the threat model or changes to the threat model agent were released, we would base off of that. In the next iteration, and this is something we're trying to build out, is to give more online
+
+90
+00:21:43.048 --> 00:22:00.487
+Incoming livestream: evaluation, right? So when a threat model is done on a new security review, how would it perform? And the way we're thinking of approaching this is, you know, traditionally, if it's a human, sort of, you know, grading it, that's great and all, but that involves, like, more security process, like, you would need all the humans to do it,
+
+91
+00:22:00.487 --> 00:22:09.237
+Incoming livestream: And that's not always guaranteed. So what we're trying to integrate is to have our security, threat model tool that we mentioned earlier as sort of the source of truth.
+
+92
+00:22:09.237 --> 00:22:25.388
+Incoming livestream: And our threat model agent would generate, hey, these are the threats that we found, and users would use that as a source of truth to click approve, sort of deny, and utilize those metrics to give more of an online-like feedback loop, and that would provide more accuracy.
+
+93
+00:22:25.387 --> 00:22:28.287
+Incoming livestream: So, we're looking at, you know, from both approaches.
+
+94
+00:22:36.467 --> 00:22:42.918
+Incoming livestream: One question I had was, have you guys looked into, like, Maestro framework and leveraging that as well as part of
+
+95
+00:22:44.058 --> 00:22:52.018
+Incoming livestream: Because I think it's… the Maestro framework is… Like, Specifically for AI, scenarios?
+
+96
+00:22:52.878 --> 00:22:54.827
+Incoming livestream: It's a threat modeling framework.
+
+97
+00:22:55.498 --> 00:23:04.268
+Incoming livestream: Maestro. Sorry, can you repeat that one more time? I'm wondering, like, if you took into account, or are thinking about Maestro threat modeling framework into account?
+
+98
+00:23:04.748 --> 00:23:07.218
+Incoming livestream: So the Maestro threat modeling framework.
+
+99
+00:23:07.488 --> 00:23:24.258
+Incoming livestream: I think that could be something we build out in the future. I think for now, just building on our existing processes, most of it has been in the MITRE format, but I think that format could go well based on, you know, what sort of, like, risk and security views we're seeing, where it could be more applicable.
+
+100
+00:23:28.868 --> 00:23:36.848
+Incoming livestream: You said that you saw a 10% reduction in accuracy in the threat models coming out of that. Did I understand that correctly?
+
+101
+00:23:37.578 --> 00:23:46.797
+Incoming livestream: Could you repeat the question? Sorry. You said that… you said that you saw a 10% reduction in accuracy in the threat models that were being generated through this. Did I hear that correctly?
+
+102
+00:23:47.628 --> 00:23:51.648
+Incoming livestream: the threat models that were being generated through… Through the… through this path.
+
+103
+00:23:52.218 --> 00:24:01.158
+Incoming livestream: You said I saw a 10% reduction in accuracy. I'm curious, what level of accuracy are you actually looking to achieve before you put it into production?
+
+104
+00:24:05.868 --> 00:24:11.997
+Incoming livestream: Oh, I thought they were talking about the JSON formatting that led to the 10% reduction.
+
+105
+00:24:12.338 --> 00:24:16.878
+Incoming livestream: Okay, I misunderstood. Thank you. Okay, maybe we'll come back afterwards and see if we can answer that.
+
+106
+00:24:19.438 --> 00:24:23.107
+Incoming livestream: So I think that's gonna… gonna wrap up the questions, so, thank you very much.

@@ -1,0 +1,41 @@
+[01:16:24.255 - 01:16:29.375] Incoming livestream: So I'm calling this talk, Are You Thinking What I'm Thinking? because you can actually force models to think
+[01:16:29.455 - 01:16:41.455] Incoming livestream: more or less what you want them to think. Models continue to grow in their capabilities, which is very cool. We have these reasoning models now that emit these special thinking blocks, both in Anthropic and in OpenAI,
+[01:16:41.475 - 01:16:50.334] Incoming livestream: They release a block of specific thinking tokens, and that enriches the context of the prompt you've actually given the model, and so the model can provide a much better response to you, which is really cool.
+[01:16:50.485 - 01:17:07.815] Incoming livestream: And because it's really important that it's, you know, the model's thoughts that then enriches its context and provides its answer, this is cryptographically protected by model providers. Gemini has their own approach, Anthropic and OpenAI have sort of a similar approach they both take, which is that they provide either the block as an encrypted blob.
+[01:17:08.115 - 01:17:21.534] Incoming livestream: Or they provide, like, a hash, an HMAC signature for the block. So you can try to tamper, but the API will say, no, no, no, this is not a valid message. So, we'll try now. I'm gonna send a message to Haiku, just asking, what's the capital of the Ile de France region.
+[01:17:21.885 - 01:17:28.345] Incoming livestream: We get back a response, and you can see here the little reasoning blocks, and if I follow up and just say, tell me more…
+[01:17:30.335 - 01:17:32.635] Incoming livestream: And now we look at the raw message.
+[01:17:32.745 - 01:17:34.344] Incoming livestream: You can actually see…
+[01:17:35.075 - 01:17:50.264] Incoming livestream: here's the reasoning block itself, and the encrypted signature from… or the crypto signature from Anthropic. Can you guys see this? You got, like, the plain text thinking, and then you got the signature. And you can't… you can't tamper with that, because it fails a crypto check, and it doesn't work.
+[01:17:50.825 - 01:17:58.285] Incoming livestream: But all that OpenAI and Anthropic check is, did a model from our provider actually think this?
+[01:17:58.445 - 01:17:59.275] Incoming livestream: Ever.
+[01:17:59.645 - 01:18:05.425] Incoming livestream: And you can actually replay not just across conversations, but even across API keys for some of the providers.
+[01:18:05.535 - 01:18:13.435] Incoming livestream: So we'll look now, we're gonna inject reasoning in. So I'm gonna duplicate and edit. Instead of asking about Yule de France, I'm gonna ask about a region I can't pronounce.
+[01:18:13.565 - 01:18:14.934] Incoming livestream: We're gonna use Opus.
+[01:18:15.195 - 01:18:17.214] Incoming livestream: And we will send this message.
+[01:18:18.585 - 01:18:23.264] Incoming livestream: And now we get a new response of, Toulouse is the capital of the Osseteni region.
+[01:18:23.435 - 01:18:30.784] Incoming livestream: Which is, of course, correct. What we're now gonna do is we're going to steal the reasoning block from the question about Paris, so we'll copy this.
+[01:18:32.265 - 01:18:34.195] Incoming livestream: And we're now gonna inject it.
+[01:18:34.455 - 01:18:42.724] Incoming livestream: into this conversation and deactivate the original thinking about Toulouse. And now, I'm gonna ask… let me just grab my little snippet here so we can be quick.
+[01:18:44.035 - 01:18:46.645] Incoming livestream: I'll just ask the model, what were you thinking about
+[01:18:46.755 - 01:18:48.605] Incoming livestream: Prior to giving me your answer.
+[01:18:48.885 - 01:18:52.154] Incoming livestream: I will ask that, and it will now respond and say…
+[01:18:58.935 - 01:19:14.855] Incoming livestream: It says, hey, oops, I was wrong. I briefly started thinking about Paris before I gave you the right answer. This is a weird mistake, my bad. So you've actually injected the reasoning that you want the model to have that you've harvested, in this case just from two conversations, but you can have it across API keys for across different accounts.
+[01:19:14.855 - 01:19:25.165] Incoming livestream: you injected. It's kind of cool with Anthropic. I've set up my tool to work well with Anthropic. I haven't yet set up the harness for OpenAI. The steering is actually more effective and more concerning from OpenAI than it is on Anthropic.
+[01:19:25.445 - 01:19:28.584] Incoming livestream: But this is a quick overview. Any questions on this at this point?
+[01:19:32.745 - 01:19:33.475] Incoming livestream: Alright?
+[01:19:39.825 - 01:19:53.594] Incoming livestream: Do you know why they don't pin the thought to the conversation and let you… I don't know. I will tell you my views, and apologies to OpenAI or Anthropic if I am wrong. I'm gonna release a blog post on this, in the next week.
+[01:19:53.845 - 01:20:13.634] Incoming livestream: My interpretation of this is, I think it was just, like, kind of missed in threat modeling. OpenAI, Anthropic, and Gemini, none of them really lock to context. Gemini has sort of, like, incidentally fixed this, because the way that they manage the signatures, it's, like, a completely different approach from OpenAI and Anthropic. But I think both of them, the focus is just, like, we need to make sure that this is verified as from the model.
+[01:20:13.725 - 01:20:18.395] Incoming livestream: And they didn't actually lock it to something more than merely, did this come from our provider?
+[01:20:18.505 - 01:20:34.864] Incoming livestream: That's my theory, I don't know, but I would guess it's simply that. They, like, put in the check, and then didn't do more. It might have even never been a security control at all, it might have just been, like, a, we want to prevent, sort of like, if a reasoning block is malformed, we want to prevent it from totally dorking the model. I don't know, but…
+[01:20:35.085 - 01:20:36.965] Incoming livestream: It's my… my assessment.
+[01:20:37.265 - 01:20:38.625] Incoming livestream: Thanks. Any other questions?
+[01:20:39.865 - 01:20:41.445] Incoming livestream: Now, raise your hand if you've got a question.
+[01:20:45.065 - 01:20:46.505] Incoming livestream: Alright, thanks all. Jackson.
+[01:20:52.985 - 01:20:53.745] Incoming livestream: Alright.
+[01:20:54.755 - 01:20:56.795] Incoming livestream: If you guys will permit me, one second.
+[01:21:00.845 - 01:21:03.885] Incoming livestream: We have another person accepting our challenger, Xenia.
+[01:21:22.045 - 01:21:22.795] Incoming livestream: Yeah.
+[01:21:27.505 - 01:21:28.715] Incoming livestream: Do you need to do anything?
+[01:21:28.855 - 01:21:29.974] Incoming livestream: Just gotta make sure that it's
+[01:21:45.045 - 01:21:45.975] Incoming livestream: Gonna start?

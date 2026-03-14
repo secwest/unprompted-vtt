@@ -1,0 +1,2212 @@
+WEBVTT
+
+1
+00:00:13.502 --> 00:00:25.502
+Or here's the QR code for the Slack. Here's the Wi-Fi if you want to get on as well. Please take a picture and share the picture with your neighbor so that they will know how to get on as well.
+
+
+2
+00:00:25.502 --> 00:00:55.502
+Also, I'm going to be walking around… I think most people have name tags, but if you don't have a name tag, I have name tags. And Steve here, wave your hand, Steve will probably help hand out name tags too. All right. With that, I'm going to turn it over to Chase.
+
+
+3
+00:01:00.502 --> 00:01:01.502
+Too many mutes. I've got so much audio going on going on over here.
+
+
+4
+00:01:01.502 --> 00:01:06.502
+To kick it off with his talk on three phases of AI Enterprise adoption. Over to you, Chase. Hey, good morning, everybody. I'm Lieutenant Colonel Chase Hasbrook from U.S. Army Cyber Command. I'm going to talk to you today about three phases of enterprise AI adoption, or the subtitle, which I should have made the main title, which is… Now, how I, for two years, tried to drag government, cybersecurity personnel into using chatbots, and largely failed. So, we'll talk about that today.
+
+
+5
+00:01:06.502 --> 00:01:08.502
+I said, hey, Luis before, but I guess was unmuted, so…
+
+
+6
+00:01:08.502 --> 00:01:14.502
+Uh, so, disclaimer right up front, um, I'm here on my own personal dime. The views expressed in this presentation are my own personal observations. Uh, they do not represent any official positions of the U.S. Army, Army Cyber Command, or the Department of War.
+
+
+7
+00:01:14.502 --> 00:01:28.502
+And I wasn't know. I've got… I've got 12… I've got 12 screens here, so it gets a little bit, uh, a little bit messy.
+
+
+8
+00:01:28.502 --> 00:01:29.502
+And I've got… I've got 3 copies of the audio streams babbling away at me at any one point either, so…
+
+
+9
+00:01:29.502 --> 00:01:41.502
+So I wrote this presentation and turned it in long before the events of last week. So please, please, I have no special insight or understanding into the events of last week. If you want to use your 30 seconds to ask me a question on the events of last week.
+
+
+10
+00:01:41.502 --> 00:01:42.502
+Yeah. But it's going smoothly so far. Let's see, do we have, do we have the stream for the other video. Still no stream.
+
+
+11
+00:01:42.502 --> 00:01:52.502
+I will give you an answer, uh, that may not be to your liking. So, if you want to have a better discussion on that topic, maybe come find me after, and we can talk about it after. Okay.
+
+
+12
+00:01:52.502 --> 00:01:58.502
+All right, so who's this guy who's standing in front of you? Why should you listen to him today? I find this is relevant context to share with people. Um, so I joined the Army 2006, did a bunch of IT management stuff. I went to Iraq and helped set up a bunch of network management, IT management.
+
+
+13
+00:01:58.502 --> 00:02:14.502
+I'm doing the online part of it, along with Tammy and a couple other people, so I got, uh… Gaddy called me on Friday and said, hey, can you make an online conference in a weekend? And I, you know, I'm a sucker for, uh…
+
+
+14
+00:02:14.502 --> 00:02:15.502
+or high visibility of failure, low ridiculous timeline projects. So we did, yes.
+
+
+15
+00:02:15.502 --> 00:02:20.502
+Uh, calling people when satellite communication systems are down, that kind of thing. Um, was going to get out, and then, oh, hey, the Army is deciding to stand up cyber as a actual operational branch. This is… this sounds interesting and relevant, so I interviewed, and I joined in.
+
+
+16
+00:02:20.502 --> 00:02:35.502
+So, uh, a team of Tammy, Bruce Schneider's wife and a couple of other folks kind of worked all weekend to pull all this together for currently 1300 people.
+
+
+17
+00:02:35.502 --> 00:02:36.502
+And it's really annoying, it's 1,338. I'm gonna go delete an attendee so it's gonna be 1337.
+
+
+18
+00:02:36.502 --> 00:02:47.502
+2014, and essentially helped stand up Army's cyber branch from the ground up. We can talk about that later if you want to talk about that, that's not what this presentation's about. Did a lot of things there, mostly tactical level incident response, going up to enterprise-level incident response.
+
+
+19
+00:02:47.502 --> 00:03:09.502
+Yeah, there's something something bogus there. So the actual number is lower, so… But right now, I've gotta… I'm gonna… I gotta pause a second, because I gotta go chase the AV guys, the stage one stream isn't, uh, switched over to the new key, so… I'll be back.
+
+
+20
+00:03:09.502 --> 00:03:12.502
+Oh, they would love to figure out how to.
+
+
+21
+00:03:12.502 --> 00:03:13.502
+I think Ragos has to meet the bell that we just… I'm I'm working on it.
+
+
+22
+00:03:13.502 --> 00:03:22.502
+kind of culminated where I ran the Army's SolarWinds Orion incident response, and RUN has kind of a vague context, so let's just leave it at RAN and or assisted, and or the technical direction and or briefed a lot of people, and or… talk to a lot of senior representatives about what did and did not happen. Moved on from that, wanted to expand and do other things. Um, the Army very graciously allowed me to spend some time doing other stuff, so I spent three months at DARPA as a DARPA fellow as part of their Service Chiefs fellows program in 2022.
+
+
+23
+00:03:22.502 --> 00:03:27.502
+share my screen.
+
+
+24
+00:03:27.502 --> 00:03:28.502
+Please, yes, save me some time here. I'll listen in the background.
+
+
+25
+00:03:28.502 --> 00:03:35.502
+Where I had a very, very small part in the AI Cyber Challenge, and by means, by small part, I mean I got coffee for the people who are doing the actual work while they did most of the work. Um, I also did a little bit of consulting with Task Force Lima, which, if those of you who don't know, was CDAO's initial attempt to get their hands around what is this thing called ChatGPT and why does everybody care about it?
+
+
+26
+00:03:35.502 --> 00:03:46.502
+This bucket. Yeah, yeah. Then on the account level right on the account level. Yes. Yeah. So I sent you that link earlier.
+
+
+27
+00:03:46.502 --> 00:03:47.502
+I have it on my queue list at the top.
+
+
+28
+00:03:47.502 --> 00:04:00.502
+Um, and then from there, I came back to Army Cyber, and I'm kind of in a dual role now. My day job, I run forensics and malware analysis for the Army. That's my role at Army Cyber Command. Um, but I also continue to work with DARPA, and I advise on emerging technologies and things, and periodically, I run.
+
+
+29
+00:04:00.502 --> 00:04:06.502
+Okay, Mike. Yeah.
+
+
+30
+00:04:06.502 --> 00:04:07.502
+They could not make.
+
+
+31
+00:04:07.502 --> 00:04:10.502
+on workshops and other discussion forums about emerging tech. So last year we did some stuff looking at digital identity and the LLM scaling, and then this year we are specifically doing something very similar to this conference where we're looking at AI security.
+
+
+32
+00:04:10.502 --> 00:04:18.502
+I agree. I think it's…
+
+
+33
+00:04:18.502 --> 00:04:20.502
+I'll look at it as soon as I fix this string key for stage one.
+
+
+34
+00:04:20.502 --> 00:04:37.502
+Okay, so what? So, yeah, I could come up here, I could demo the new MCP server for Ghidra and the 10 different forks of it, and we could have a really good and interesting talk about, uh, what it means when you have.
+
+
+35
+00:04:37.502 --> 00:04:56.502
+And I just fixed it, so now that's top of stack. Let me go look at it.
+
+
+36
+00:04:56.502 --> 00:04:57.502
+The problem is, if I share this slide.
+
+
+37
+00:04:57.502 --> 00:05:06.502
+unlimited tokens and compute, and you can throw them as a reverse engineering workflow against a bunch of stuff. That would be a really fun talk. Um, unfortunately, I can't give you that talk today, because a lot of what we've learned from that, I'm not certain whether I'm even allowed to tell you about it, so… Instead, I'm just going to talk to you kind of my past two years about what I've done, the pain points I've had in trying to get both my internal technical team adopting various AI chatbot agents and things.
+
+
+38
+00:05:06.502 --> 00:05:07.502
+DM.
+
+
+39
+00:05:07.502 --> 00:05:30.502
+And also, broadly, because I was kind of like the power user who got drafted into, hey, you're really smart at this stuff, so why don't you come and, like, help on the enterprise side with enterprise adoption, because we've rolled out this new tool, and nobody's using it, help us. Um, so I can also talk a little bit about… that and, uh, some of the things we've learned, um, from AI adoption from the Army cyber perspective.
+
+
+40
+00:05:30.502 --> 00:05:49.502
+Right, so, but before I get started, let me set the stage a little bit. So, the Army is big. Really, really big. Very, very large. We have over a million people. When you count active duty, uniformed, as well as National Guard and Army Reserve.
+
+
+41
+00:05:49.502 --> 00:05:53.502
+as well as all of the civilians, we are comfortably over a million.
+
+
+42
+00:05:53.502 --> 00:06:08.502
+And also those Garden Reserve people are also part-timers. So if you work in an enterprise where a third of your million-plus workforce is part-timers and doing security controls of that, please come talk to me. I'd be interested to know how you're handling that challenge.
+
+
+43
+00:06:08.502 --> 00:06:25.502
+Second point, this is a extremely specialized workforce. We don't have members of technical staff, right? We we have lots and lots of people who are drafted into very specialized, discrete roles.
+
+
+44
+00:06:25.502 --> 00:06:42.502
+where everything is drafted up according to a plan, and everybody's expected to follow the plan, and you will follow this ascending timeline of you will do this at this point in your career, and this point in your career, and so on. So, it's just very specialized, and I'll talk a little more about this later, about.
+
+
+45
+00:06:42.502 --> 00:07:02.502
+you know, where do LLMs, where does that fit in that story? And then most importantly, getting new stuff is really, really hard. So I'm going to broadly characterize the Silicon Valley community as in many cases, you just get an API key and you spin it up and like you're good to go and you're using it now in your enterprise. Good, go.
+
+
+46
+00:07:02.502 --> 00:07:19.502
+Uh, that is absolutely not how it works for us. So, uh, we have this thing called the authority to operate, um, but before the authority to operate is the procurement. So, multi-year enterprise procurement cycle, those of you working in large enterprises are very familiar with the multi-year enterprise procurement cycle.
+
+
+47
+00:07:19.502 --> 00:07:42.502
+Um, what we have, which is a little different, is our enterprise security workflow actually doesn't really execute till after the procurement workflow. Um, and sometimes they can disagree. So, we have definitely had security products where two years of procurement, then two years of accreditation, and then after that, everybody has changed out and the new people are like.
+
+
+48
+00:07:42.502 --> 00:08:10.502
+Yeah, we don't think that's safe anymore, so you don't get to have that thing. So, four years down the drain. Just keep that in mind. One thing I'm not going to talk about today is classification requirements, so… All of this stuff is fractal, because everything I'm talking about is just for using them on unclassified systems, or unclassified, uh, up to what we currently call CUI, which is controlled unclassified information, which is still unclassified, but sensitive.
+
+
+49
+00:08:10.502 --> 00:08:27.502
+Once you start getting into classification, secret and above, then everything multiplies by an order of magnitude, but I can't even talk about what that entails, so just understand I am leaving classification stuff out of this today.
+
+
+50
+00:08:27.502 --> 00:08:40.502
+Okay, so I will call phase one broadly the research preview stage. So this was 2023. I was just coming back from DARPA at home.
+
+
+51
+00:08:40.502 --> 00:09:10.502
+I am sitting, playing around with, um, and I'm sure everybody else in the room is probably doing the same, messing around with ChatGPT, and, like, writing really cool notes on LinkedIn about, oh, hey, there's this cool thing called Code Interpreter that just came out, and it can do all your data analysis for you, mostly, kind of, if you don't care about accuracy, yeah. So it was really good, so… I'm messing around doing that at home, and then at work, I'm seeing all the memos, so Space Force was first with the official memo that came out that said there will be no enterprise use of AI, period. Do not use any AI tools.
+
+
+52
+00:09:16.502 --> 00:09:33.502
+Um, most of the other services, uh, informally or formally went along with that. So what did that mean? So in practice, you had 95% of your workforce who already didn't care about AI or thought it was going to take their jobs or just hated it on general principles.
+
+
+53
+00:09:33.502 --> 00:09:48.502
+And so they were very happy to not use AI. And then you had the 5% of power users like myself, like my team, who were very interested in seeing, you know, testing what it could do from nascent states. And so, you had a lot of this.
+
+
+54
+00:09:48.502 --> 00:10:04.502
+shadow security work going on where people would be like, yeah, okay, I'm gonna run home so I can go throw this into AI Studio and see what I get and then come back. No actual sensitive information was passed.
+
+
+55
+00:10:04.502 --> 00:10:20.502
+If you're just asking questions about a capability, you can get a lot of good information to relate back to things. So, we were absolutely doing a lot of that. So that's mid 2023, going into late 2023, we got a new capability called Camo GPT.
+
+
+56
+00:10:20.502 --> 00:10:32.502
+Those of you who are Air Force may have heard of Nipper GPT. That got a little bit more press. Um, not gonna talk about that today, because I'm not as familiar with that. We were primarily using CAMA, which was the Army's version.
+
+
+57
+00:10:32.502 --> 00:10:44.502
+Uh, so this was accredited for use. It went through the whole ATO cycle in record time. In late 2023. This was amazing. So, now we no longer had to do the dance of.
+
+
+58
+00:10:44.502 --> 00:11:07.502
+go to the unapproved tool that we're not supposed to use and ask it questions, and then come back, and then translate that into CUI. Uh, now we can just go to this tool and actually ask it questions with CUI-relevant data and get answers back. Um… However, this was insufficient. Why was this insufficient? Well, three reasons. One, the models were just not…
+
+
+59
+00:11:07.502 --> 00:11:25.502
+Good. For those of you who have used Llama 2 70, uh, it is… it was good for its time. It still remains, you know, a good LLM. But when you're at home and your people are using GPT for Turbo, or I think Gemini Pro had just come out at that point, um.
+
+
+60
+00:11:25.502 --> 00:11:54.502
+going… stepping back from that to the limitations of Llama 2 are a lot. So that's mostly for your power users who are just turning up their nose at the thing. Um… For your more general users, the bigger issue we had was on the front end. So, uh, often not thought about, but there's probably just as much work that goes into the models on the back end for the AI developing companies, as goes into the front end of how you're operating with those models and operating around them.
+
+
+61
+00:11:54.502 --> 00:12:10.502
+So the two big things that, you know, ChatGPT had, Gemini had, others had were document parsing and web browsing. So the tool we had did not have those tools.
+
+
+62
+00:12:10.502 --> 00:12:40.502
+Explaining to a general user, okay, so you want to extract information from a PDF? That's a great use case. But first, you need to open it up, and you need to copy and paste all of the stuff out of it into a text file, and then upload the text file, because, oh, you can't also paste into the clipboard, because the little box only accepts, you know, 400-something characters, so… You have to actually upload a text file, and by this point, you have lost 95% of the general user community. Also, web browsing, like that was not a thing. So there was no way to say, hey, go search the internet and get context on this. It was just limited to.
+
+
+63
+00:12:46.502 --> 00:12:53.502
+general knowledge retrieval. So, again, two things made it largely unusable for anything but a research breed.
+
+
+64
+00:12:53.502 --> 00:13:14.502
+And then finally, availability. All of this stuff was best effort. Uh, these… there was lots of resources that were put into it, but fundamentally, it was still a bunch of GPUs that were running in somebody's server farm somewhere in the world. It was not being hosted with cloud-hosted data centers, or at least if it was, it wasn't…
+
+
+65
+00:13:14.502 --> 00:13:32.502
+you know, there wasn't a lot of resources being put to that. So in many cases, you would hit availability timeouts, or if you were trying to do anything big, especially once we started experimenting with RAG-type stuff, we were getting query responses back in hours versus minutes, which clearly.
+
+
+66
+00:13:32.502 --> 00:13:39.502
+Didn't help very much. So… so yeah, that's where things stood for us in 2023.
+
+
+67
+00:13:39.502 --> 00:13:49.502
+Okay. 2024. Hey, you got a new platform. It's using commercial APIs. It's reliable. It's got all the frontier models. Problem solved, right?
+
+
+68
+00:13:49.502 --> 00:14:14.502
+Yeah, no, tokens. So, uh, hey, guess what? You put a premium IAP shop in my enterprise platform, and I'm so excited about this. Thank you. Um, so, we all got a bunch of tokens to use, and for bureaucratic political reasons, there was… No designation of power users versus normal users, so everybody got one allocation of tokens, and…
+
+
+69
+00:14:14.502 --> 00:14:30.502
+Without naming the provider, um, the provider basically took the generalized API cost that you could get through your AWSs or your Azures, and they just multiplied that by a factor of 10 to get their profit margin, and they sold that back to us.
+
+
+70
+00:14:30.502 --> 00:14:45.502
+So equivalently, what happens is for general use office use case, you know, mostly fine for the average user who's asking, you know, summarize this two-page document, Vine, help me draft this three paragraph email, fine.
+
+
+71
+00:14:45.502 --> 00:15:03.502
+But for my forensics guys who are like, okay, I've got a 20-page log file, and I want you to… I'm gonna put that in there, and then I want you to compare it to this other 20-page log file from 3 days ago, and I want you to diff it and look for, you know, not just diffs, but actual, like, meaningful differences.
+
+
+72
+00:15:03.502 --> 00:15:18.502
+Um, yeah, you do that once, and okay, half your quota's gone for the month. So we brought this up as a problem. And they said, oh, we acknowledge this is a problem, and here is the process for how you fix it. You ask for more tokens, and this requires seven signatures.
+
+
+73
+00:15:18.502 --> 00:15:31.502
+And seven justifications for very high-ranking people who don't understand what an LLM is. So, yeah, in practice, the process was, uh, let's call it effectively impossible.
+
+
+74
+00:15:31.502 --> 00:15:45.502
+So, fundamentally, we were still using camo GPT for what we could. We were burning our tokens by, like, day one or two, and then everybody was still going and using AI Studio, though we don't talk about that.
+
+
+75
+00:15:45.502 --> 00:16:00.502
+All right, so we're caught up to today, right? Phase three, fancy enterprise agreements. Those of you may know GenAI.mil just rolled out. It's the DOD-wide AI platform. Several major AI enterprise platforms are connecting to it, so now.
+
+
+76
+00:16:00.502 --> 00:16:17.502
+If you're a worker within the department, you can just go to genai.mil and you can hit what's there and use the enterprise versions, so not somebody's like self-wrapped, self-hosted, you know, hey, we're just wrapping the API with our own custom web front end, but the actual.
+
+
+77
+00:16:17.502 --> 00:16:36.502
+halves the good UI front end that these tools have developed. So… That's what's coming. Um, so now we're into culture challenges, right? So one of the problems we have in the Army is this thing called what I call the silo reflex, which is whenever a new technology comes out, we put it in a box.
+
+
+78
+00:16:36.502 --> 00:16:50.502
+And we say, okay, Joe, you're really smart at this new tech, so you're the box guy. Anytime any questions come up about the box, any generals want to have questions about the box, I'm going to say Joe's the smart guy in the box, and he's gonna answer all your questions for you.
+
+
+79
+00:16:50.502 --> 00:17:03.502
+And that's fine. Like, that's a starting point that you have to do that. Back in the day, there was the computer guy. And anytime anybody had any questions about computers, it was like, go talk to Joe, he's a computer guy. He'll answer your computer box questions.
+
+
+80
+00:17:03.502 --> 00:17:33.502
+I was the cyber guy for a long time. I was the guy who owned the Cyber box, and people would ask me questions about the Cyberbox, and I would say, yes, I can tell you lots of cool things about the Cyber box. Um… Is this a good idea? Uh, it's always a good idea to start. The question is, do you need to progress past that? In many cases, maybe you don't. Like, so, you know, space or VR, um, these are technologies that it's okay that you probably leave it in a box, and you just have a specialist who comes and talks to you about it. Obviously, if you're in the Space Force, not so much space, but if you're in the Army, we don't do too much with space.
+
+
+81
+00:17:36.502 --> 00:17:51.502
+as affecting the whole enterprise, so you can probably safely leave that in a box. Um, things like GPS and computers, those clearly should not have been in the box and those should have been generalized as soon as possible. So the faster we can get those out there, the better.
+
+
+82
+00:17:51.502 --> 00:18:01.502
+Um, cyber, still kind of figuring out how much the whole enterprise needs to be part of that versus just a specialized-in-the-box thing. Drones is a little newer of a tech.
+
+
+83
+00:18:01.502 --> 00:18:17.502
+Same battle, we're battling that right now, where do we have a drone corps that is the people who do just the drones, and they're the drone experts for everybody? Or do we push drones out to all of our fighting forces and say, you guys are all going to be drone experts now because that's the future of war fighting?
+
+
+84
+00:18:17.502 --> 00:18:35.502
+Uh, again, still figuring that out. So, you know, the takeaway is AI, is this going to look more like VR, or more like PCs? I would say last year, it's definitely tipping more in the PC direction. Before that, you can make a case for either side. Um, but that's interesting. I'm not sure how it's going to play out.
+
+
+85
+00:18:35.502 --> 00:18:45.502
+Right, so overall, what I've talked about today is this is the pattern, right? You have an access problem, we solved the access problem, we solved that by centralization.
+
+
+86
+00:18:45.502 --> 00:18:52.502
+Uh, then we moved on to cost problems. We solved that by enterprise agreements.
+
+
+87
+00:18:52.502 --> 00:19:18.502
+And now we're on phase three, which is a culture problem. What is going to solve this? Like… What are we going to learn? How are we going to figure out that a lot of the requirements documents, you know, going back to that original four-year requirement discussion we had before, a lot of our requirements documents right now, they exist as people's chat histories on various LLM platforms, so…
+
+
+88
+00:19:18.502 --> 00:19:35.502
+How do we extract the knowledge out of those chat histories and actually get it from the operators down at the lower technical levels and get it to the enterprise procurement folks so they can understand? These are the types of questions people are asking, and we need to take those questions, and we need to wrap them in some kind of tool.
+
+
+89
+00:19:35.502 --> 00:19:39.502
+that the rest of the enterprise can broadly be familiar with.
+
+
+90
+00:19:39.502 --> 00:19:54.502
+Alright, that's my talk. So I'm retiring October 26th, and I'm exploring what's next, so please feel free to come out and talk to me about any of that today. Thank you. Alright, first of all, I don't think your slides are up, uh, shared, right? What's that? You haven't shared your slides.
+
+
+91
+00:19:54.502 --> 00:20:07.502
+I will share I will share the slides in the Slack. Okay. Great. There's a thread for that. All right, questions? Any questions? Okay. Any other questions before?
+
+
+92
+00:20:07.502 --> 00:20:14.502
+Is our cyber thinking about extending those capabilities to the reserve component? Because we're not on Nipper.
+
+
+93
+00:20:14.502 --> 00:20:34.502
+Our GenAI.mil, or what? Yeah, so genai.mil is available to everybody in the DoD. Now, the problem of getting people onto Nipper so that they can access that tool, which only lives on Nipper, is still absolutely a challenge.
+
+
+94
+00:20:34.502 --> 00:20:55.502
+I completely understand that. Um, there are tools for this. We do have… Azure Virtual Desktop, uh, we have some mobile tools that are coming out, we have some BYOD tools coming out. I am not the program manager for those tools. It is something that is thought about, but fully acknowledge that there are absolutely challenges for.
+
+
+95
+00:20:55.502 --> 00:21:01.502
+Garden Reserve that are probably not being met as well as they could.
+
+
+96
+00:21:01.502 --> 00:21:07.502
+Hey, it's John Verlich. I teach, uh, I'm over here. Yep. Chase. Okay.
+
+
+97
+00:21:07.502 --> 00:21:17.502
+I teach at a local university malware analysis, so from your perspective, and including AI, so any advice on what you're looking for in future?
+
+
+98
+00:21:17.502 --> 00:21:24.502
+uh, military folks when it comes to the malware and AI.
+
+
+99
+00:21:24.502 --> 00:21:39.502
+So, I would say, uh, what we're looking for primarily is people who are not just solving challenges in a vacuum, but understand how to take those technical challenges and relate them back to.
+
+
+100
+00:21:39.502 --> 00:22:03.502
+key problems that people are having, right? This isn't a thing that's new to AI in general. Um, this is a problem that's… Okay, you wrote a technical report, you solved some things, great, but why is that useful? What is the so what of that? Um, and AI could potentially help you with that with some degree, but you have to have enough of the level of understanding to be able to.
+
+
+101
+00:22:03.502 --> 00:22:19.502
+Go back to the chatbot and say, okay, help me boil this down for a non-technical stakeholder who doesn't need 7 pages of, here's all the methods I decompiled, and here's what they do, and here's the hooks they have, and here's what the processes it affects, they just need to know, like.
+
+
+102
+00:22:19.502 --> 00:22:37.502
+Can I turn the thing back on, or do I have to wait for two more days before I can turn the thing back on? So, as long as you can, you know, think about how you can translate it in that perspective, obviously this depends on if you're looking more at senior roles or at junior roles, but yes, that's kind of where I would go with that.
+
+
+103
+00:22:37.502 --> 00:22:51.502
+Um, with regard to the AI being sort of centralized, can you talk a little bit more, uh, how you handle fine-tuning or specialized model for individual departments and specialized teams?
+
+
+104
+00:22:51.502 --> 00:22:55.502
+Do those get housed in the same centralized location?
+
+
+105
+00:22:55.502 --> 00:23:10.502
+So, we haven't seen a lot of benefit to fine-tuning models or specializing models yet. Our procurement cycles are so long that, um, by the time you successfully fine-tune or specialize a model, the general model has advanced long enough that you're not getting the advantages from.
+
+
+106
+00:23:10.502 --> 00:23:24.502
+The fine-tuned or specialized models. That might change in the future, but right now, I would say more of the value comes not from providing the fine-tuned or specialized model, but from providing an actual bespoke.
+
+
+107
+00:23:24.502 --> 00:23:37.502
+workflow and task that is relevant and legible to procurement. So, I'm not giving you a fancy model, I'm completing this task for you, and it's done, and you don't have to worry about asking chatbots how to do it.
+
+
+108
+00:23:37.502 --> 00:23:42.502
+Any other questions?
+
+
+109
+00:23:42.502 --> 00:24:03.502
+All right, very good. Chase, thanks very much. And, uh, thank you for your service. I'm sure you hear that all the time, so… All right, thanks for again. All right, up next, we have the infamous, although there's many famous, Rob Lee's out there. So here's one of three.
+
+
+110
+00:24:03.502 --> 00:24:18.502
+In the world. And cybersecurity specifically, right? Rob leaves, yeah. Anyway, um, I actually had the opportunity to learn, uh, digital forensics under his tutelage and see where that took me, right? So, anyway.
+
+
+111
+00:24:18.502 --> 00:24:26.502
+I'm learning from you. All right, again, for those who aren't on the Slack coordinate Wi-Fi, here's the information.
+
+
+112
+00:24:26.502 --> 00:24:30.502
+And, uh, I'm gonna turn it over to Rob.
+
+
+113
+00:24:30.502 --> 00:24:37.502
+To take it from here. All right, thanks. Do I actually get more time?
+
+
+114
+00:24:37.502 --> 00:24:44.502
+All right. Yes. I don't know, people are gonna be upset if I start 3 minutes earlier, they're rolling in.
+
+
+115
+00:24:44.502 --> 00:25:03.502
+No, start? All right. Everyone, so my name is Rob Lee, one of the 18,000 Robleys that are running around in cybersecurity at this point. I'm going to get the, uh… volume of this thing down, whether it's gonna kill me or not. So…
+
+
+116
+00:25:03.502 --> 00:25:21.502
+Three years ago, maybe 2 years ago, I started, you know, being asked a lot of questions about AI, and I have to admit, I don't know that much about AI. I'm still learning. I am, uh, like many of you, struggling on a daily basis, and I think it's important to call out the fact that not everyone rolling around here is, in fact.
+
+
+117
+00:25:21.502 --> 00:25:38.502
+An expert. I basically dabble a heck of a lot at this point. I am learning on a daily basis, and I find when you end up starting to really focus in on this stuff, the more you feel overwhelmed. The more you feel like you're sinking on a daily basis.
+
+
+118
+00:25:38.502 --> 00:25:54.502
+So, having developed the SIFT workstation starting in 2008, so this is almost an 18-year project at this point of a massive amount of digital forensic sensory response tools.
+
+
+119
+00:25:54.502 --> 00:26:09.502
+That initially started as an education capability that most started using on their back end on being able to do digital forensics into response on a daily basis inside their own organizations. So the premise of this talk is.
+
+
+120
+00:26:09.502 --> 00:26:24.502
+What if you take an extremely vetted, beat-to-streds tool, and you combine it with a little bit of AI reasoning, and let's see what happens? This is entirely an experiment. I decided to do.
+
+
+121
+00:26:24.502 --> 00:26:41.502
+Based off of, and again, you'll laugh at this, Sands Marketing came to me and said, hey, Rob, we need you to do something digital forensics, which you're known for, and combine AI into it. And we have you scheduled for a talk in November 15th, and this date's gonna come key here in a second.
+
+
+122
+00:26:41.502 --> 00:26:58.502
+November 15th, on a Sunday, to discuss your findings. I'm like, cool. So about 6 weeks prior to that, it occurred to me, because I'm playing around with Claude code a lot, what if I installed Claude code on the ZIF workstation and see what it can do? So that was the premise of the talk. I did some experimentation.
+
+
+123
+00:26:58.502 --> 00:27:09.502
+And my mind was blown. So, let's talk about this. Sadly, not really sadly, two days before my discussion in the talk I was giving.
+
+
+124
+00:27:09.502 --> 00:27:24.502
+Anthropic released their report using Claude Code on offensive operations, and I was a little bit bummed about this because apparently the Chinese had the same idea I did, which is combining Claudeco with a bunch of operational tools, and to let it go.
+
+
+125
+00:27:24.502 --> 00:27:36.502
+And that's essentially what we are doing here with Claude Code. Now, what we ended up finding here is that when you accelerate offensive operations.
+
+
+126
+00:27:36.502 --> 00:27:54.502
+using automated AI reasoning, you're able to achieve a speed that goes from… it goes from things that used to take days, if not weeks, to seconds and minutes. And again, if you've started playing around with this, or started taking a look at the speed of what is documented by Anthropic.
+
+
+127
+00:27:54.502 --> 00:28:11.502
+On what they observed, it is… mind-numbing. So in order for us to be able to figure this out on the defensive side, we need to say, hey, you know, the idea is matching AI speed with AI speed. So…
+
+
+128
+00:28:11.502 --> 00:28:18.502
+Moving to the next slide. When you end up taking a look at what we are supposed to need to accomplish.
+
+
+129
+00:28:18.502 --> 00:28:32.502
+Being able to do manual, hands-on typing to do digital forensics response work, to discover what is in the AM cache. Let's do prefetch analysis, let's do event log analysis. Let's combine that into a timeline using Plaza. Let's do memory analysis.
+
+
+130
+00:28:32.502 --> 00:28:39.502
+All of these things combined take a lot of time. So kind of curious poll for the audience.
+
+
+131
+00:28:39.502 --> 00:28:46.502
+In order for you to analyze completely a single system during incident response.
+
+
+132
+00:28:46.502 --> 00:28:54.502
+From start to initial touching of the system, whether it's a deployed agent, you're imaging it at post-image, by the way, you have the C drive image.
+
+
+133
+00:28:54.502 --> 00:28:59.502
+How long does it take you from start to finish to create.
+
+
+134
+00:28:59.502 --> 00:29:08.502
+a report final report timeframes, throw out numbers. What's that? Three days. Three days.
+
+
+135
+00:29:08.502 --> 00:29:14.502
+Two to three days. What's that? Maybe a week sometimes!
+
+
+136
+00:29:14.502 --> 00:29:31.502
+Any other… anyone could do it faster. A day? I chose a day because otherwise the numbers just look unbelievable. What if I said you could do a full day of manual forensics to report in 14 minutes?
+
+
+137
+00:29:31.502 --> 00:29:42.502
+Okay, we'll come back to this. All right. Everyone's going to be a little bit scared what I'm about to show you, but at the same time, you're going to be like, wait, that's a game changer.
+
+
+138
+00:29:42.502 --> 00:29:57.502
+And only someone who knows digital forensics into response can comprehend the report. So I don't want to say this is the end of human existence when it comes to digital forensics. There's no way, if you look at the output, I've put a bunch of resources in the Slack, if you look at the report.
+
+
+139
+00:29:57.502 --> 00:30:15.502
+If you just say, figure that out, it is not… you need to have a formal understanding of what this looks like. So, when you take anthropic code, the reasoning side, you add an MCP, and you add it to the SIFT workstation. The peanut butter and the chocolate here, we're sitting on top of something that does natural language processing.
+
+
+140
+00:30:15.502 --> 00:30:23.502
+Basically, in your Claude prompt, you basically ask it a question, and that question could be, do memory analysis.
+
+
+141
+00:30:23.502 --> 00:30:32.502
+So here's essentially what you would do. You would ask a question. Do you have the memory image there? I'd like you to analyze this memory image and find anything malicious.
+
+
+142
+00:30:32.502 --> 00:30:43.502
+It automatically knows, based off of the context that you provided, just… and I redid this yesterday, just as a test, a little bit of training, giving it.
+
+
+143
+00:30:43.502 --> 00:30:48.502
+Contextual analysis of the different tools that are on the SIFT workstation.
+
+
+144
+00:30:48.502 --> 00:30:58.502
+telling it how it works, maybe even just using public guides. I even had it go, look at the man pages, run the commands, pull out the flags.
+
+
+145
+00:30:58.502 --> 00:31:12.502
+Understand what the command line interface is, and then it built the Claude MD file and the skills.md files that are sitting underneath each of the different tasks that you wanted to accomplish. So to give you an idea of what this looks like.
+
+
+146
+00:31:12.502 --> 00:31:22.502
+I like demos. Essentially, I have multiple images in here, and I basically say, oh, that's the wrong one.
+
+
+147
+00:31:22.502 --> 00:31:27.502
+You ask it to basically find evil in the memory image.
+
+
+148
+00:31:27.502 --> 00:31:35.502
+It goes through… And you can see here, pay close attention to the minutes it takes for the overall processing.
+
+
+149
+00:31:35.502 --> 00:31:38.502
+And again, I might just go and skip to the end here.
+
+
+150
+00:31:38.502 --> 00:31:42.502
+It's because it's more fun to be able to see what the output is.
+
+
+151
+00:31:42.502 --> 00:31:52.502
+Again, 18 minutes to do this image. And what we end up having here is a final report for the memory forensics, and this automatically creates this, by the way, it's because you asked it to.
+
+
+152
+00:31:52.502 --> 00:31:57.502
+You end up seeing in here, the adversary achieved initial execution using WMI.
+
+
+153
+00:31:57.502 --> 00:32:09.502
+And you can see me scroll through the overall report here. Fine Z, malicious binary, p.exe, into masquerading temp directory. You get a system profile. All this stuff is automatically determined for you.
+
+
+154
+00:32:09.502 --> 00:32:20.502
+Threat actor context, attack chain. Malware deployment, persistence is kind of going fast here because I have a limited amount of time. Code injection analysis.
+
+
+155
+00:32:20.502 --> 00:32:37.502
+Network connections, command and control. Full malicious process tree, chronological activity. I didn't even tell it to do this. It just did it because I gave it context surrounding the tools, what this looks like. It probably went online saying, here's what an official report looks like.
+
+
+156
+00:32:37.502 --> 00:32:46.502
+And… false positives, it found F response for the imaging capability for the agent. It recommends remediation tactics.
+
+
+157
+00:32:46.502 --> 00:32:50.502
+And then it has the output reports that it has created here.
+
+
+158
+00:32:50.502 --> 00:32:56.502
+All that took a single memory image, about 18 minutes. The only reason it took that long is because I had to press yes.
+
+
+159
+00:32:56.502 --> 00:33:12.502
+continue, continue, continue, continue, continue. Now, I've gotten around that, but from initial build yesterday, I just did test the theory one more time, an hour and a half of skill building, and I gave it a memory image, and then I hit go. Now, the resources I'm distributing at the end of the week, or end of today, sorry, end of week.
+
+
+160
+00:33:12.502 --> 00:33:17.502
+I'm, like, thinking teaching here again. At the end of the day.
+
+
+161
+00:33:17.502 --> 00:33:23.502
+I'm gonna give you access to all the memory images and C drive images, so you want to replicate this, by all means, do it.
+
+
+162
+00:33:23.502 --> 00:33:41.502
+Now, you need to test this stuff, too. So… The brain behind this all is a Claude MD file. It basically is the prime directive, the orchestrator that's sitting behind the scenes. It is allowing you to do deterministic boundaries. You could hardcore code the toolpaths. You don't need to let it guess.
+
+
+163
+00:33:41.502 --> 00:33:58.502
+It is allowing you to say, run this capability, do not run this one. I also could give it some rules. Like, I had to figure this one out, too. Questions asked during a test. Run end-to-end. Don't ask for directions. Just move through the overall aspect of what I'm trying to get it to do.
+
+
+164
+00:33:58.502 --> 00:34:13.502
+Then we need to build its skills. With so many capabilities built into ZIFT workstation, we need to have some familiarization here that is going to hopefully reduce the overall context rot, be able to give it a path to success.
+
+
+165
+00:34:13.502 --> 00:34:28.502
+And I'm not even building full skill-based MCP servers, I'm just basically giving MD Markdown files for what the skills are. Here's your goals, here's what they do, here's how you potentially execute this, so if I say I'd like you to do memory analysis, it's automatically going to be able to go do this.
+
+
+166
+00:34:28.502 --> 00:34:45.502
+Now, again, as a part of this resources, I have all the skill files, all the Cloud MD files, the overall one and the subdirectory one all created. You could go back and replicate this. I have instructions. I have a notebook LM. You could ask it, I would like to go through and do this.
+
+
+167
+00:34:45.502 --> 00:35:11.502
+It is all sitting there in front of you. Feel free, go about your business. So what about errors? This is where… You could ask it and build into the contextual analysis, and have something continually running behind the scenes that says, if you receive an error, I would like you to start performing self-correction. This also helps with the overall context rot that is achieved essentially.
+
+
+168
+00:35:11.502 --> 00:35:27.502
+If you continue running the case again and again and again, it'll slowly, over time, forget the context earlier in the case. The other thing that's really fascinating here about this is that once you go through a single image in a single case, it'll remember aspects of that initial.
+
+
+169
+00:35:27.502 --> 00:35:42.502
+intrusion, especially if you're hitting other systems. So if you find a malicious code on one system, it's assuming it's looking for something contextually related on System 2, System 3, System 4, so the speed naturally increases as you're working through the different exercise.
+
+
+170
+00:35:42.502 --> 00:35:46.502
+So, because people don't like me talking about things, let me just show.
+
+
+171
+00:35:46.502 --> 00:36:05.502
+how this works. So, demo time number one. Here's the threat group. Here's what happened. We end up having Stark Research Labs for anyone who's taken 508 at Sands, you'll definitively remember this network. We have a catalyst, lead researcher Tim Dungan inadvertently signaled project completion on Twitter.
+
+
+172
+00:36:05.502 --> 00:36:16.502
+What a dork. What is he thinking here? Our carbon lab just consumed nine gigawatts of energy and could likely power a small city overnight. What was I thinking?
+
+
+173
+00:36:16.502 --> 00:36:30.502
+going to be fired. Uh, the breach, Adversary, Crimson Osprey, leveraging historical tactics of APT Hydra and APT Hammer. Yes, they're totally fake, by the way. Impact critical infrastructure exchange mail server and web server forced offline.
+
+
+174
+00:36:30.502 --> 00:36:38.502
+compromise vectors, perimeter defenses bypass, key administrative accounts, compromise, deep system persistent, established.
+
+
+175
+00:36:38.502 --> 00:36:42.502
+Local defense status, you're overwhelmed because you're using hands on keyboard.
+
+
+176
+00:36:42.502 --> 00:37:03.502
+So what you need to see scope of the compromise, the hunt for persistence, the track lateral movement, and assess exfiltration. So once I have all this built, you have all of your disk images, memory images in here, the single command that I type.
+
+
+177
+00:37:03.502 --> 00:37:07.502
+Find evil. N.
+
+
+178
+00:37:07.502 --> 00:37:13.502
+And I type this one out because it's fun to just watch… Look how slow humans are.
+
+
+179
+00:37:13.502 --> 00:37:31.502
+Type, type, type, and… This is the only command that I gave it for writing that comprehensive report, write comprehensive report. And then, of course, I had to think about, well, what does that mean? And I'm like, I needed even more simple. Comprehensive report. I'm like, my brain's on melt here.
+
+
+180
+00:37:31.502 --> 00:37:39.502
+Backspace, backspace, back. in PDF. Good English there, Rob. All right.
+
+
+181
+00:37:39.502 --> 00:37:44.502
+And we go.
+
+
+182
+00:37:44.502 --> 00:37:51.502
+And when you end up watching this, you can see it's actually executing a lot of cool things. I'll just let this run for a little bit so you can see.
+
+
+183
+00:37:51.502 --> 00:38:01.502
+What this looks like behind this means. Now, this is on 16X. Of course, if you're watching the minutes, you know, scroll by, you could tell that is not reality.
+
+
+184
+00:38:01.502 --> 00:38:10.502
+It's finding things, finding things, finding things. In total, at the end here.
+
+
+185
+00:38:10.502 --> 00:38:17.502
+We are at 14 minutes 27 seconds for the analysis of that C drive.
+
+
+186
+00:38:17.502 --> 00:38:24.502
+Pretty cool. Let's take a look. Just to re-emphasize the length of time that this took.
+
+
+187
+00:38:24.502 --> 00:38:33.502
+This is the report that it automatically generated without any additional input.
+
+
+188
+00:38:33.502 --> 00:38:47.502
+You can see the executive summary. And by the way, in terms of accuracy, since I compromised the system, I definitely know everything that's on here. This is 100% accurate for what it's finding here. It creates a timeline, initial access.
+
+
+189
+00:38:47.502 --> 00:38:52.502
+And again, I'm releasing this report so you could go through it and examine it on yourself. Malware inventory.
+
+
+190
+00:38:52.502 --> 00:38:57.502
+Persistent mechanisms.
+
+
+191
+00:38:57.502 --> 00:39:03.502
+PowerShell transcript evidence. Did not miss anything.
+
+
+192
+00:39:03.502 --> 00:39:12.502
+Network indicators of compromise. And actually, by the way, it kind of skipped by it, is the MITRE ATT&CK.
+
+
+193
+00:39:12.502 --> 00:39:17.502
+overlays on top of this, too. And then went through remediation recommendations and steps.
+
+
+194
+00:39:17.502 --> 00:39:28.502
+Um… When you end up taking a look at this report offline, you're going to notice that this is earth-shattering, fun, what the heck?
+
+
+195
+00:39:28.502 --> 00:39:45.502
+an hour and a half configuration, there's got to be a catch. As far as I can tell right now, the catch is… AI weaknesses, context rot, self-correction. It works out of the box, just like everything else in AI, but the more you repeat it and repeat it, repeat it, repeat it.
+
+
+196
+00:39:45.502 --> 00:40:04.502
+over time, it is going to slowly. become more dumb, just because of the fact how that, you know, functionality works. The more you're running it against the same type of intrusion, uh, that you're taking a look at. So, and again, when we end up taking a look at this, I have some additional stuff at the end here I'm going to cover.
+
+
+197
+00:40:04.502 --> 00:40:15.502
+We need to increase the speed of our instant response capabilities to match the speed of the offensive teams leveraging the same capabilities.
+
+
+198
+00:40:15.502 --> 00:40:22.502
+This is amazing. Great proof of concept here. But, one more thing I'm gonna cover. One more thing.
+
+
+199
+00:40:22.502 --> 00:40:30.502
+So in order for us, and I'm going to be talking about this at the RSA talk as well, and I'm going to be giving in about two weeks.
+
+
+200
+00:40:30.502 --> 00:40:40.502
+When we are starting to think about leveraging what we have as a community over what the adversaries in the threat groups and the criminal organizations don't have.
+
+
+201
+00:40:40.502 --> 00:40:46.502
+is we have a lot of us. And they have a small development team.
+
+
+202
+00:40:46.502 --> 00:40:51.502
+And they usually work in secret. They usually don't like to share their toys with one another.
+
+
+203
+00:40:51.502 --> 00:40:54.502
+On the opposite side, we have the open source community.
+
+
+204
+00:40:54.502 --> 00:41:06.502
+All of the things I'm showing you here, the SIFT workstation, all the tools, all the capabilities, is open source. Now, if you notice, it's a small little project that started on a weekend in someone's basement.
+
+
+205
+00:41:06.502 --> 00:41:11.502
+In November, by the way, I kind of use this as a gestation.
+
+
+206
+00:41:11.502 --> 00:41:19.502
+But ClaudeBot. was created over a weekend at the end of November.
+
+
+207
+00:41:19.502 --> 00:41:33.502
+It really became popular at the beginning of January, in which the news started to really accelerate on it, and logarithmically accelerated from that point. Part of the reason is, you have a lot of eyeballs hitting it, a lot of developers simultaneously hitting that one point in time.
+
+
+208
+00:41:33.502 --> 00:41:41.502
+And it explodes into a significant revolutionary AI capability.
+
+
+209
+00:41:41.502 --> 00:41:57.502
+Despite your skill level, despite if you're an AI developer, if you're really good at forensics, if this is your first foray into AI, what if we bring… the army of cyber defenders together and saying, let's start working on this as a whole.
+
+
+210
+00:41:57.502 --> 00:42:06.502
+Now, the other thing I noticed over the past couple years, and I've become fascinated with it, is that these concepts that the AI community is doing.
+
+
+211
+00:42:06.502 --> 00:42:25.502
+It's called hackathons. Hackathons are designed to take an initial proof of concept and accelerate it into a worthy, true candidate capable of being deployed at enterprise environments that will reduce the overall capabilities or reduce the overall mistakes.
+
+
+212
+00:42:25.502 --> 00:42:33.502
+and increase the trust of these capabilities inside the organizations. So what the offensive teams don't have is a thousand of us.
+
+
+213
+00:42:33.502 --> 00:42:45.502
+And what if SANS, because we're giving this away for free anyways, we sponsor a hackathon trying to get the entire cybersecurity community working on this together. So the idea here is we have two tracks.
+
+
+214
+00:42:45.502 --> 00:42:53.502
+that we're going to have a bunch of cool prizes for. I'll give you a hint at one. For first prize, $10,000.
+
+
+215
+00:42:53.502 --> 00:43:00.502
+For the team or individual that has the most significant development, and $7,500 for the second team.
+
+
+216
+00:43:00.502 --> 00:43:16.502
+Those two tracks we're going to be looking at is, number one is the forensic MCP Engineering. We have a bunch of tools. Claude doesn't know how the parameters, outputs, and failure modes natively. I'd like you to take my proof of concept and accelerate it to 10 to 100x.
+
+
+217
+00:43:16.502 --> 00:43:20.502
+So by the end of the hackathon, starting 1 April through.
+
+
+218
+00:43:20.502 --> 00:43:31.502
+May 15th, we're going to be able to develop as a community something that you be able to have trust, capability and potentially counter the offensive teams that are starting to leverage cloud code.
+
+
+219
+00:43:31.502 --> 00:43:38.502
+Track two is to cure the context rot issue. How would we potentially go about doing that?
+
+
+220
+00:43:38.502 --> 00:43:53.502
+In the end, what I'm hoping for is having a total of $22,000 of total prize pool. I've reached out to Anthropic because I'm very interested in seeing if they're going to be able to give tokens, uh, you know, so you don't have to spend a lot of cost developing this behind the scenes.
+
+
+221
+00:43:53.502 --> 00:44:11.502
+So that they'd be able to work with us and be able to give resources to the community. I'm gonna have disk images, I'm gonna have memory images, I have the SIFT workstation, I have an example exemplar case that someone's turned in, Steve Anson from SANS has developed his own backend, so you can look at that and saying that would be a pretty good implementation.
+
+
+222
+00:44:11.502 --> 00:44:24.502
+You could build off of that, but the idea here is we want to work together as a community because there's a there there that I'm looking at. And the question is, can we create a very solid response AI capability?
+
+
+223
+00:44:24.502 --> 00:44:35.502
+by 1 June. That's my challenge to the community and I think we could do it. This is my contact information. The resources have been posted in the Slack channels.
+
+
+224
+00:44:35.502 --> 00:44:51.502
+And more of those resources, I'm putting up a website. I was hoping to get it done tonight, but just like everything else, I can now say, hey, I get something done in a day. And that day is going to be protocol, sift.ai. It's going to have all the resources, all the images, this presentation.
+
+
+225
+00:44:51.502 --> 00:44:57.502
+A description of what it is, everything else. I'm gonna build this probably up in about a day or two, just register the domain yesterday.
+
+
+226
+00:44:57.502 --> 00:45:06.502
+contact information, everything else, resources online, and questions. that was fantastic. Okay, questions?
+
+
+227
+00:45:06.502 --> 00:45:24.502
+First, okay. Uh, hi. I was curious about the context route problem and how you sort of navigated it. You mentioned that you didn't give Claude code, like, all of the SIFT manuals at once. How did you go about, like, the, I guess, like, the lazy loading of it?
+
+
+228
+00:45:24.502 --> 00:45:29.502
+Was there an orchestrator agent, or did you just tell Claude Code to, like, figure it out?
+
+
+229
+00:45:29.502 --> 00:45:45.502
+Um, I use Claude Codes as an orchestrator agent basically just start, hey, go through, look at the man pages, look at all the tools on this app, I had an entire list of them, and run the man page, and I said, if there's no man page, run the tool, make sure it runs accurately, and see the command line flags, and then look it up online.
+
+
+230
+00:45:45.502 --> 00:46:02.502
+To see if there's any documentation. It literally is using Claude code, and then I said, red team it, make sure it works. I actually asked the question, like, you just gave it. I'm like, you know, because I'm learning, too. I don't know how to solve this issue. If I did, I want to do a hackathon. Um, so I'm trying to figure it out. But again, when I rebuilt it, it literally is.
+
+
+231
+00:46:02.502 --> 00:46:15.502
+Natural language into Claude, asking the same questions you just did, and just continually fighting with it. And I fought with it for about an hour and a half before I said, okay, are we probably good enough? Let's go ahead and start running it through analysis.
+
+
+232
+00:46:15.502 --> 00:46:28.502
+Great question. I had my question is similar about context rot. I think, and some latest research just found even with these million context windows in the first turn it gets dumb. I mean, you've got a larger window.
+
+
+233
+00:46:28.502 --> 00:46:45.502
+But it still gets done really quick, and I found this myself with OpenCloud. I tried to use the million window, I have to crank it down to compact it, like, 100,000 tokens. Right. For what you're doing, isn't it as easy as just start a new session to get rid of the context rot? I mean, that's what we're doing, right? You could. Anything that you're doing?
+
+
+234
+00:46:45.502 --> 00:47:00.502
+Did you find a better way? There's not a better way right now, but I'm looking at if you wanted to expand upon this in an enterprise setting and have it run across multiple systems at one time, doing, like, let's use prefish analysis, looking for p.exe on a thousand systems.
+
+
+235
+00:47:00.502 --> 00:47:03.502
+That scale is going to create context rot pretty quickly.
+
+
+236
+00:47:03.502 --> 00:47:21.502
+Um, so on a single system, like standard forensics, no problem, just start, restart just like you do on, you know, Claude will say, hey, we ran out of context, start a new chat. Here it's a little bit different because if we really want something enterprise worthy, it's gonna have to be able to maintain its current data set across a longer period of time.
+
+
+237
+00:47:21.502 --> 00:47:26.502
+threat, you know, threat intelligence, all these other feeds that you could see where this thing could go.
+
+
+238
+00:47:26.502 --> 00:47:44.502
+Yeah. Yeah, I had a question on… you mentioned that it had 100% accuracy on the… My report, yeah, exactly. My question exactly on that is, is that part of your SANS class? Did you do any assessment on, is Claude code cheating, looking up answers online comparatively to actually running?
+
+
+239
+00:47:44.502 --> 00:47:59.502
+The fair point, but the amount of detail that's in there, it would be, um, shocking. Now I could probably disconnect it from, you know, certain things to be able to say, do not look up online, you know, and to be able to do those checks, but great question. I assume no.
+
+
+240
+00:47:59.502 --> 00:48:19.502
+But, uh, based on the amount of detail that's in there, it would be shocking that it didn't pull it from directly tool-based output. The other thing in there we do have is a log of every single command that had run, and the output files, every single thing that it built a report off of. So you do know that it's actually grabbing it locally, but… Is it inferring things online? Oh, good question.
+
+
+241
+00:48:19.502 --> 00:48:24.502
+Okay, give a hand for Rob. That was excellent.
+
+
+242
+00:48:24.502 --> 00:48:35.502
+Okay. By the way, I would love to see if it can forensicate OpenClaw or itself, right? So anyway, all right. Next up, Mika.
+
+
+243
+00:48:35.502 --> 00:48:43.502
+From Elastic. I actually saw your presentation, and I'm looking forward to this one, too, so… I have an update, too. Huh?
+
+
+244
+00:48:43.502 --> 00:48:48.502
+Okay, well, I'm still looking forward to it. All right, over to Mika. Thanks very much.
+
+
+245
+00:48:48.502 --> 00:48:56.502
+All right, if you're here to listen about detection rules and endpoint for detection engineers, you're in the right place.
+
+
+246
+00:48:56.502 --> 00:49:03.502
+Yeah, my name is Mike. I'm the team lead for the Threat Research and Detection Engineering team at Elastic.
+
+
+247
+00:49:03.502 --> 00:49:18.502
+All right, let's get to it. So you know the landscape? It's growing busy. There's new tools, there's new agents, there's new SDKs, there's a lot of things going on by the day. People are trying out new different tools.
+
+
+248
+00:49:18.502 --> 00:49:21.502
+all the time, and so, um, that's part of the problem, right?
+
+
+249
+00:49:21.502 --> 00:49:32.502
+I saw this on Reddit in case you guys missed it the other day, someone said, hey, uh, I have this extension that I downloaded, and it's trying to connect silently to livefootballtickets.com, and this was kind of the scary part.
+
+
+250
+00:49:32.502 --> 00:49:48.502
+They said, uh, very simply, I have no idea what extension it could be, and uh… That's like the issue, right? For us, users, they're installing a bunch of things online all the time, and it's hard for us to audit them, especially as people are dropping.
+
+
+251
+00:49:48.502 --> 00:49:57.502
+Can you hear me? Is that better? Okay. Yeah, so user insurance installing tools faster, and it's making it harder for them.
+
+
+252
+00:49:57.502 --> 00:50:11.502
+to be audited. So, yeah. Yep, your devs are running. These are right now, so that's, again, the problem. They're installing these things, their tools, they're running the different MCP servers, they're trying different IDEs, and so, yeah.
+
+
+253
+00:50:11.502 --> 00:50:23.502
+They're all the endpoints. These tools are spawning shells, they're writing files, they're making network calls, and the idea is that your EDR really has no clear visibility on what's driving it.
+
+
+254
+00:50:23.502 --> 00:50:38.502
+So I have a couple stats here about, you know, how devs are using them. A lot of code is being merged by these different tools, Cursor, Claude, so on and so forth. A lot of heavy users these days, and it's going to continue to grow, obviously. People are using this stuff.
+
+
+255
+00:50:38.502 --> 00:51:01.502
+So where do you start? That's, like, the big question. You have a bunch of different data that's coming in, so where do you start, especially from a detection engineer? How do you… How do you try to triage this, right? And so the first thing that, uh, you know, we recommend is by looking at endpoints by host count, and looking at where all of the DNS information is going to. So at the top, we have, based on some of our telemetry, a lot of data is going to.
+
+
+256
+00:51:01.502 --> 00:51:12.502
+Anthropic, ChatGPT, Claude, so on and so forth. These things make sense, they seem normal, and that's going to be part of the problem that we talk about in just a minute here.
+
+
+257
+00:51:12.502 --> 00:51:21.502
+The next thing is, if you're looking at the endpoints of the binaries, you can start looking at code signatures. Based on some R telemetry.
+
+
+258
+00:51:21.502 --> 00:51:40.502
+Um, over a small window, for all intents and purposes, we didn't see many unsigned code signature binaries. So, effectively, as a detection engineering perspective, you could try to write a simple rule that says, hey, if there is a process, then the code signature doesn't exist, or it's false, then you can flag.
+
+
+259
+00:51:40.502 --> 00:51:51.502
+But that's kind of it's going to be weak, especially as you see many of the types of activity that we've seen is signed and trusted. Obviously, that stuff makes sense, right?
+
+
+260
+00:51:51.502 --> 00:52:06.502
+Um, you can start looking at process ancestry. So, top processes, sponge soils, you can start looking there. But then you start to see more and more of the same kind of problem. We've seen different tools, like, uh.
+
+
+261
+00:52:06.502 --> 00:52:33.502
+Claude and Cursor, uh, spawning Git in GH and Node, and Bash, and so on and so forth, and uh… A lot of the unsigned ones are buried in that noise. You have to really sift through the data to find these different things. It gets a little bit even more complicated when you have these long command lines, right? When you have these gen AI tools which are chaining different multi-pipe commands together.
+
+
+262
+00:52:33.502 --> 00:52:43.502
+Right? So it's harder for us as detection engineers to spot these things.
+
+
+263
+00:52:43.502 --> 00:53:09.502
+Okay, keep close. Um, file modification, right? So that's the next thing you can start looking at, uh, whether GenAI tools are writing any file activity. But again, it kind of gets into the same theme where we see some Gen AI tools, or they're touching, um, maybe config files, you see other things that are being spawned that looks like they're touching just regular Py files that make sense. Developers are using tools to create code.
+
+
+264
+00:53:09.502 --> 00:53:25.502
+So a lot of that stuff is. you know, business as usual, if you will, right? Where we're concerned about is whether we have these gen AI tools touching sensitive files or config files and rewriting and establishing persistence and defensive invasion techniques.
+
+
+265
+00:53:25.502 --> 00:53:40.502
+Those things are all hidden under all this noise of activity that's being written, right? So, from a detection engineering perspective, you could try to say, we're going to monitor file rights to AI config paths by unexpected processes. That's one idea you can try to do.
+
+
+266
+00:53:40.502 --> 00:54:00.502
+Uh, from there. Yeah, so you can take these ideas. So it's taking just kind of a step back, right? You can look at network data, you can look at processes, ancestry, you can look at file rights, you can look at a bunch of endpoint telemetry. We're not talking about the model provider artifacts that can be ingested, like guardrails and so on and so forth, that you might get from.
+
+
+267
+00:54:00.502 --> 00:54:07.502
+you know, Azure or AWS Bedrock or, you know, so on and so forth. But we're talking purely from an endpoint perspective.
+
+
+268
+00:54:07.502 --> 00:54:17.502
+So, at Elastic, we do… we have shipped a couple rolls towards the end. I'm going to show you a couple links that you can find where we have the stuff. We're open, so we do provide these things availability.
+
+
+269
+00:54:17.502 --> 00:54:29.502
+available today. But we have some, uh, rules for credential access via GenAI. We have, uh, ideas around persistence for generative AI tools, unusual DNS calls, suspicious URLs.
+
+
+270
+00:54:29.502 --> 00:54:37.502
+When you start looking at some of the data and some of the alerts that come from those things, you start to allow us to, like, go digger and start pulling and prodding.
+
+
+271
+00:54:37.502 --> 00:54:53.502
+And we can ask some more targeted questions, like, why is a gen AI tool touching a plist or why is a gen AI tool touching some login.json or some cookies file or credentials file?
+
+
+272
+00:54:53.502 --> 00:55:03.502
+So again, that is the problem, right? The alert fired a suspicious process ran. Good luck finding out if it is a human or an LLM did it, right?
+
+
+273
+00:55:03.502 --> 00:55:16.502
+Um, looking, again, at the presentation we just saw 5 minutes ago, this is the problem. We have people who are running Claude, running their tools, and they're just executing things on the command line, and it makes it really hard for us, right?
+
+
+274
+00:55:16.502 --> 00:55:27.502
+So we… guys like Rob, they give me heartaches, so… Talk about the intent attribution, it's broken, right? We have the developer, we have an AI agent.
+
+
+275
+00:55:27.502 --> 00:55:45.502
+They're executing some shell, some bash command, and for us, it looks identical, nearly identical. The telemetry looks the same. You have a process paid, we have a user, they're running a command, right? Same PID, same user, same command line, nearly identical telemetry.
+
+
+276
+00:55:45.502 --> 00:55:55.502
+To make things worse, then there's that bigger threat model, there's prompt injection techniques, there's malicious MCP servers, there's Trojan AI tools.
+
+
+277
+00:55:55.502 --> 00:56:08.502
+Sorry, brother. I might be my watch. There's many different tools out there that are essentially trying to, um, be downloaded and solved. Let's switch mice. Hello, hello, test, test. Okay, try this one.
+
+
+278
+00:56:08.502 --> 00:56:14.502
+This is a human problem.
+
+
+279
+00:56:14.502 --> 00:56:24.502
+How's that? Sounds better? Hold on.
+
+
+280
+00:56:24.502 --> 00:56:28.502
+All right. Yes, but I actually had that thought.
+
+
+281
+00:56:28.502 --> 00:56:52.502
+Okay. Sounds better. Okay. Going from a threat model, again, there's many different threat models, just to kind of speed through this. All these things are hitting AI agents, and let's just take a step back. We don't know if someone YOLO to click the button and said, go do a thing, and it downloaded a file, hit the web, hit a website, downloaded a file, executed it, established persistence.
+
+
+282
+00:56:52.502 --> 00:57:09.502
+And then told it to run some shell command. From our perspective, we don't see the intent, we don't see that from… So, yeah, the big problem, right? So an attacking position, again, I kind of just alluded to this, but imagine there's some poisoned repo file that tricks the AI agent to exfiltrating some data.
+
+
+283
+00:57:09.502 --> 00:57:26.502
+Um, all through legitimate-looking processes. Again, imagine the developer that's just yellowing, they're clicking the button, just go, go, go. I did hear the call came out with, uh, like, a remote, uh, capability, too, where Imagine you're on your phone, just hit and go, right? And so this is, this is what we're gonna have to start facing again.
+
+
+284
+00:57:26.502 --> 00:57:31.502
+From an EDR perspective, we see cursor helper, it's a helper tool. We see that saying.
+
+
+285
+00:57:31.502 --> 00:57:41.502
+ZSH or some bash command, executing curl. There's no link back to that poison file. We don't see that context, we don't see the prompts, we don't see that natively.
+
+
+286
+00:57:41.502 --> 00:57:45.502
+So, again, the entire chain looks like some developer running some.
+
+
+287
+00:57:45.502 --> 00:57:52.502
+malicious thing, which, again, you need detection rules for, but again, tying it back to some gen AI tools, it makes it even harder.
+
+
+288
+00:57:52.502 --> 00:58:08.502
+So, current telemetry, so what we see, we see process bonds, file events, network events, user context, we can tell, like, hey, if something, if a root is running this, maybe it's suspicious, we see some runtime activity. But moving forward, there's other opportunities, right? We can look at what is the prompt?
+
+
+289
+00:58:08.502 --> 00:58:22.502
+What was the prompt? What was the model reasoning behind it? Were there some shell built-ins? Let's look at the MCTP tools, or the skills, or the, um, tools that were all embedded into the chain.
+
+
+290
+00:58:22.502 --> 00:58:28.502
+Um, to really try to find out, was it a human versus an AI?
+
+
+291
+00:58:28.502 --> 00:58:46.502
+So this is where detection starts to break down a little bit. I'll kind of speed through this a little bit. There's a couple topics here, I won't go into all of them, but essentially, here's a couple ones just to think about. Think about from a developer perspective, people have different sandboxes as developers in one chat, you might have an agent do another thing. In another chat, you might have it doing something else in one workspace or another.
+
+
+292
+00:58:46.502 --> 00:58:56.502
+How do we start stitching the context between these different sessions where an adversary might try to abuse cross sessions to achieve their end goal?
+
+
+293
+00:58:56.502 --> 00:59:09.502
+It's kind of one of the problems that we are running into today, that cross session loss and then sandboxing, right? Some sessions, you know, depending on what you're asking these tools to do, they may ask you for permission. So the next question is.
+
+
+294
+00:59:09.502 --> 00:59:17.502
+How do we detect when an AI agent self-escalated versus a user saying, go, go do a thing?
+
+
+295
+00:59:17.502 --> 00:59:34.502
+Um, so we've seen this a little bit here, this process ancestry tree here. This is what it looks like to us, or this is what it should look like. Cursor, running cursor help, running some ZSH shell running curl, just that this is what it should look… this is what it should look like.
+
+
+296
+00:59:34.502 --> 00:59:43.502
+Um, so you can see at the very top, we see curl CSH, the helper, the user with the developer, but we don't see which prompt triggered it.
+
+
+297
+00:59:43.502 --> 01:00:02.502
+So getting into some opportunities here, I want to talk a little bit briefly about why just a parent process name is not enough, right? So if you just go with the parent, right, it's going to catch just that one level. You're going to miss the grandchildren, you're going to miss that ancestry tree, especially when it's chaining multiple commands.
+
+
+298
+01:00:02.502 --> 01:00:11.502
+miss the intent. So the idea is maybe you might want to start walking the full ancestry tree and hopefully it doesn't get too far down the path.
+
+
+299
+01:00:11.502 --> 01:00:17.502
+Um, you can look at entity ID intersections, where you're basically trying to correlate.
+
+
+300
+01:00:17.502 --> 01:00:30.502
+down the chain again between different entities. So you can try to identify whether it's a generative tool or in the Ancestry or not. Again, it's just another idea to try to.
+
+
+301
+01:00:30.502 --> 01:00:37.502
+uh, stitch their children back up to the parent, uh, back up to the grandparent.
+
+
+302
+01:00:37.502 --> 01:01:05.502
+MCP server detection, just another idea you can start looking at, right? And so, it's, uh, in some ways, you can, today, you can say, hey, there's a command line that looks like MCP server. If you're a detection engineer, you can… understand how brutal this could be, right? And so we're gonna talk about some ideas that we'd like to see moving forward. But just imagine you can say, hey, this is an MCP server because under this hood, it's all running like Node and some other.
+
+
+303
+01:01:05.502 --> 01:01:23.502
+You know, shell command, right? So you can start trying to write some MCP server-like detections, but what's still missing is here, we don't know what MCP tool was invoked. We don't know the identity trust level, you know, and so again, it's just… It's just not the full picture.
+
+
+304
+01:01:23.502 --> 01:01:44.502
+Uh, credential access, I kind of talked about that earlier. We can do this open creation modification anytime a… GenAI tool process touches a sensitive file. You can try to start looking at this, you can try to alert and say, hey, is this normal? Why are these, uh, you know, why is Ollama touching your credentials?
+
+
+305
+01:01:44.502 --> 01:02:01.502
+So, um, at a snapshot, we have some rules, we do ship them today. Again, I'm gonna get back to that towards the end, but we have some execution, some C2 stuff, we have some credential access, persistence, deficientation techniques. We can start somewhere, and that's, like, the bottom line here is that.
+
+
+306
+01:02:01.502 --> 01:02:05.502
+You can start, you don't have to wait until.
+
+
+307
+01:02:05.502 --> 01:02:25.502
+It's all instrumented. Um, obviously, we might want to start with, you know, detection rules versus just hunting. So, you know, uh, the idea is to obviously use both, but, um, start by establishing some hunting queries, use that telemetry to help build out some building blocks for you, and then from there.
+
+
+308
+01:02:25.502 --> 01:02:31.502
+use your detection rules to build out more high-fidelity signals.
+
+
+309
+01:02:31.502 --> 01:02:44.502
+So, where the industry needs to go, right? So today's best option is that process parent name that those heuristics really give us a fighting chance, if you will, but it's not good enough.
+
+
+310
+01:02:44.502 --> 01:03:00.502
+So here are some gaps, right? And this is where, uh, you know, I'm hoping the industry starts to lean in forward and go towards, um… Being able to provide data about the tool use and decision reasoning natively, making that more native and more consistent across the different tools, right? So that's the key.
+
+
+311
+01:03:00.502 --> 01:03:15.502
+Model refusal events, when it said, hey, I'm not gonna do a thing because of X, Y, and Z. We want to ingest that as well, token level, uh, tool call attribution, tying that back in, right? We already can pull things in from, um, the endpoint, like.
+
+
+312
+01:03:15.502 --> 01:03:28.502
+What prompt triggered, and I'm going to talk about that in just a second with hooks. But yeah, there are some opportunities and every production role is quite frankly, a workaround for telemetry that should be built in natively.
+
+
+313
+01:03:28.502 --> 01:03:41.502
+And then there's a couple different risks here, obviously, you know, as the more data that you pull in, then you have to worry about other things. The compliance and forensics. I'm a detection engineer, so it comes in the back of my mind, but these are things that we still have to.
+
+
+314
+01:03:41.502 --> 01:03:48.502
+take into account as we… as we keep acting as detection engineers for more data.
+
+
+315
+01:03:48.502 --> 01:04:05.502
+There are agent hooks, right? To no surprise. Agent Hooks is a powerful tool for us where we can look at pre-tool calls or session starts when users submitted prompts. We can hook into those signals and find the best way for us to pull out contextual information.
+
+
+316
+01:04:05.502 --> 01:04:19.502
+to enrich our data, right? If an AI tool did a thing, we hook into it, we ingest that into OpenTelemetry, and then we push that back to our seminar EDR. That's the big picture.
+
+
+317
+01:04:19.502 --> 01:04:38.502
+Um, if you're not familiar with OTEL, um, it is, uh, just imagine a common lexicon, a way that, uh, the industry should continue to adopt so we can speak the same language. That way, I don't have to write a rule for one vendor and another… or another tool, just because they named.
+
+
+318
+01:04:38.502 --> 01:04:53.502
+their tool called a different field, and it makes it really hard as a detection engineer to manage all these different rules, so consistency, semantics, same lexicon is important for us. Upstream, that, we have started that process, at least at Elastic. We've worked with the OpenTel community to establish some.
+
+
+319
+01:04:53.502 --> 01:05:15.502
+Gen AI semantics, some base fields, and we're going to continue adding there. We've merged in a couple PRs, we're trying to shape and shift this, but again, the more we see people adopting these things, the better for us. So that's the vision. Hooks go into OTEL, it's native fills at any EDR, any… security solution could ingest.
+
+
+320
+01:05:15.502 --> 01:05:30.502
+So we talked a little bit about this. If you do use Claude Code, it's one that already shapes OTel natively. It's a perk, right? So, um… Whether it's gen AI fields or there are cloud code fields, those are things that are, um.
+
+
+321
+01:05:30.502 --> 01:05:37.502
+are great enablers if these tools are already adopting them, right? Some other ones, they're still coming along.
+
+
+322
+01:05:37.502 --> 01:05:44.502
+Um, and, if we get there, then what do we get, right? So again, we have this beautiful, you know.
+
+
+323
+01:05:44.502 --> 01:06:05.502
+you know, language here, or a set of fields where we know, hey, this… process parent, the tool name was Cursor, and this cursor is the thing that spawns shell. We know that it was approved because the user submitted it, and here is the provider, right? We have all this information that we can attribute back down to whether this was something that was.
+
+
+324
+01:06:05.502 --> 01:06:28.502
+permitted, suspicious, anomalous, you get the idea. And then, uh, with it all, we get the prompt, we can ingest, obviously, guardrails and the things that those things provide, pull in the model, pulling the tool, and then pull all that information down into one cohesive story.
+
+
+325
+01:06:28.502 --> 01:06:32.502
+And I already mentioned the clock code. It's kind of the exception here.
+
+
+326
+01:06:32.502 --> 01:06:57.502
+So just some quick takeaways here. The idea is to reduce the attack surface, right? So, before writing rules, reduce what you need to detect. That's kind of like the… One of the bigger problems here is assessing, um, you know, your inventory first. Know which tools your org should be using, right? You know, scrutinize runtimes, should GenAI tools be running as root, right? So there be some network controls.
+
+
+327
+01:06:57.502 --> 01:07:11.502
+There's this other approach that I don't hear talked about enough about deciding on whether your org should just be browser-focused or native focused. It would make things a lot easier. But obviously that's not going to work for many developers.
+
+
+328
+01:07:11.502 --> 01:07:29.502
+But having some separation of powers is a topic that should be continually explored. Obviously, DNS network first. We already have seen in our telemetry how some firewalls and gateways are starting to tag data with gen AI fields and whatnot. So we know they have the capability to do that.
+
+
+329
+01:07:29.502 --> 01:07:36.502
+We just want to speak the same language when we're ingesting that data and bake that into our rules.
+
+
+330
+01:07:36.502 --> 01:07:47.502
+So, just to recap, right, it's like a maturity process. We're going to continue to grow. Start where you are, build towards full observability. You start with the visibility, those are some things we can do today.
+
+
+331
+01:07:47.502 --> 01:08:00.502
+Start bringing in things like guardrails, you know, network controls on LM rules, scrutinize root node, and then the long-term game is that full observability. That's the thing that we're trying to get to.
+
+
+332
+01:08:00.502 --> 01:08:15.502
+Yeah, and uh, finally, uh, if you want to see some of these roles in more detail, just take a look at these two different, uh, repos here. You can go to GitHub, you can search for these things here, and it should give you everything you need to know. You can see some of our endpoint and our SIM-based detections.
+
+
+333
+01:08:15.502 --> 01:08:21.502
+Um, and how we do this. Again, we're open, so you can check it out immediately.
+
+
+334
+01:08:21.502 --> 01:08:26.502
+And that's it.
+
+
+335
+01:08:26.502 --> 01:08:42.502
+Okay. All right. I have a question. What slide wear did you use? Because scrolling within the slide is pretty cool. What are you using here? Yeah, it's like Notion and some other questions.
+
+
+336
+01:08:42.502 --> 01:08:53.502
+Okay, I got one here. I got a lot of questions. Okay, so I'll start here, walk my way over there and go over there. All right.
+
+
+337
+01:08:53.502 --> 01:09:01.502
+Yeah, in a… sorry. In an enterprise, how do you get your devs to actually do the agent hooks in the various tooling?
+
+
+338
+01:09:01.502 --> 01:09:17.502
+Yeah, it depends on how well your endpoint. If you have an endpoint, is mature. They can roll out a policy that establishes hooks, then that would be the number one way. I've seen some folks who are starting to share, um.
+
+
+339
+01:09:17.502 --> 01:09:24.502
+internally in their org skills, repos, hooks, you can share that and say download, you can kind of do that, but if you're going for enforcement.
+
+
+340
+01:09:24.502 --> 01:09:31.502
+And yeah, you definitely want to go the endpoint route.
+
+
+341
+01:09:31.502 --> 01:09:46.502
+So if you have an endpoint and it's hooked into your agent, it's installed on people's agents, enforcement is like a second nature. Just have it installed directly into your ADR. That's the idea.
+
+
+342
+01:09:46.502 --> 01:10:01.502
+Oh, okay. Yeah, you mentioned next generation firewalls as a potential source to get more visibility. Do you have a preference on build versus buy? And are there any things out there that you would recommend beyond the next-generation firewalls? Like, any inference of or proxy level?
+
+
+343
+01:10:01.502 --> 01:10:13.502
+Data. Yeah, that's a… it's a good question. So, I'm not in the network and firewall landscape, so I can't speak, you know, too much on that. Um… Yeah.
+
+
+344
+01:10:13.502 --> 01:10:32.502
+Hi, if it's possible, could you quantify the amount of, I guess, organizational resources that you use to, I guess, roll this out and, uh, build and develop this? Like, maybe the amount of teams or people, um, along with, like, maybe the amount of months, if you're allowed to disclose? From the rules perspective, or which part?
+
+
+345
+01:10:32.502 --> 01:10:45.502
+Um, more just, like, getting, uh, the telemetry from all of these agents on all your endpoints to be observable, like how you got that to be seen.
+
+
+346
+01:10:45.502 --> 01:11:05.502
+Yeah, so fortunately at Elastic, we do have an EDR, and so there's not much that we have to do there. You know, it's out of the box, right? You download and install it. So, um, you know, natively, regardless of whether we have these new gen AI fields available, we have always been able to get data around our processes, networks, and files, and so that was a great place for us to start.
+
+
+347
+01:11:05.502 --> 01:11:11.502
+Getting to that next level is the challenge.
+
+
+348
+01:11:11.502 --> 01:11:26.502
+Hey, Micah. Great presentation. As a fellow detection engineer, I have a bit of a spicy question. If I already have observability into network activity, process activity, endpoint telemetry, et cetera, do I really care if it was an agent or a human?
+
+
+349
+01:11:26.502 --> 01:11:47.502
+If you already have an observability on all the data, yeah, of course. It's, uh… It is the it's the same architecture in a different way. If someone uses GenAI to put out AI slop, is that any different than if they manually put out some slop? Like you really would want to know.
+
+
+350
+01:11:47.502 --> 01:12:03.502
+what is behind this? Like, is it your developer who's doing something or making decisions because they made a bad decision, or is it because they… Just click the button and yellowed it. In my opinion, I think it's the ones a little bit more riskier than the other.
+
+
+351
+01:12:03.502 --> 01:12:08.502
+I think that's a standard attribution question. Do you care if it's a North Korean or if it's quava?
+
+
+352
+01:12:08.502 --> 01:12:14.502
+Right? Okay, other questions?
+
+
+353
+01:12:14.502 --> 01:12:20.502
+Okay, all right. Well, thank you, Micah. That was really great.
+
+
+354
+01:12:20.502 --> 01:12:43.502
+All right, next up, we have Muhammad. And, uh, maybe the firewall question that we got earlier will fit in with this one, so… Alright, over to you. All right. All right. Good afternoon, everyone. It's great to be here. So today, I'll be talking about our learning and experience of hunting for Gen AI threats at scale.
+
+
+355
+01:12:43.502 --> 01:12:56.502
+Using our signatures. Since the previous talk was about rules, I'm assuming you guys are familiar with it. Just to be sure, can you please raise your hand if you have heard about YARA or used YARA?
+
+
+356
+01:12:56.502 --> 01:13:12.502
+All right, awesome. So that's good. So I am with the right audience here. So, as you probably know, Yara is the gold standard for identifying malware binaries and JavaScript-like scripts, and it's been used everywhere, including Palo.
+
+
+357
+01:13:12.502 --> 01:13:19.502
+We detect millions of samples every day using Yara rules.
+
+
+358
+01:13:19.502 --> 01:13:25.502
+But with all the agents doing the work and GenAI being the mainstream now.
+
+
+359
+01:13:25.502 --> 01:13:34.502
+The new binary is natural language. It's no longer PEs or scripts.
+
+
+360
+01:13:34.502 --> 01:13:43.502
+Even though Jara is great, they are not good at detecting Gen AI threats.
+
+
+361
+01:13:43.502 --> 01:13:48.502
+That's where Superior comes in. We built our library.
+
+
+362
+01:13:48.502 --> 01:13:58.502
+Getting inspiration from Yara, just like Yara, so that you have very minimal learning curve, but it can work to detect GenAI threats.
+
+
+363
+01:13:58.502 --> 01:14:10.502
+So I'm going to walk you through what I mean by gen AI threats and show you some examples. The best way to learn something is through examples. So I'll be tossing in few examples and showing you how it works.
+
+
+364
+01:14:10.502 --> 01:14:20.502
+And first, the number one threat in GenAI is prompt injection. And you guys are probably familiar with that.
+
+
+365
+01:14:20.502 --> 01:14:50.502
+It can happen from multiple ways. Since I work in the web space, I'm going to focus on the examples which I see day to day from the overall internet web space. And these prompts can be delivered through query parameters or they could be… delivered through hashes, or it could be even through dynamically detonated into the browse itself, and none of the firewall solution will not see it, because it get to the browser, and the browser itself calls the LLM.
+
+
+366
+01:14:53.502 --> 01:15:00.502
+and gets the obfuscated JavaScript and does the bad stuff.
+
+
+367
+01:15:00.502 --> 01:15:17.502
+So now enter into the new startup called SafeIntel.ai. It's the rising new startup, which takes any LLM and instantly convert into a safe LLM to use. And they provide API access, and their lead engineer Ada.
+
+
+368
+01:15:17.502 --> 01:15:33.502
+decided that we need to have some solution to make sure that users do not misuse their query parameter-based API. So, she came up with this solution, she iterated multiple times, and she developed this Yara role.
+
+
+369
+01:15:33.502 --> 01:15:48.502
+And as you can see, she figured out it quickly get out of her hand the number of O parameters started increasing, and it became complicated. It became difficult to maintain, to catch all the variants of.
+
+
+370
+01:15:48.502 --> 01:15:56.502
+prompt injections. And worse yet, it is prone to FP and FPN as well.
+
+
+371
+01:15:56.502 --> 01:16:15.502
+So, she was scratching her head, and she was… Then came across this awesome library called Superiora, and she was able to write the same rule with just these two lines of code, where you specify what you want to catch in natural language, and the library does the magic.
+
+
+372
+01:16:15.502 --> 01:16:31.502
+By doing the semantic match internally. And you don't need to iterate all the varieties or all the types of injections here, because it can understand the semantics and identify very similar ones. For example, don't execute.
+
+
+373
+01:16:31.502 --> 01:16:35.502
+previous rules, it will understand, even though it is not specifically mentioned.
+
+
+374
+01:16:35.502 --> 01:16:51.502
+Now, the test of time. So, now she converted into this one, she put it into Shadow prod. Now, she wanted to make sure that it works, meaning it can detect more threats than it was able to detect before. So as you can see.
+
+
+375
+01:16:51.502 --> 01:17:02.502
+clearly, compared to the traditional Yarra rule, the semantic YARA rules, the superyara rule was able to detect more. So, she was happy about that.
+
+
+376
+01:17:02.502 --> 01:17:20.502
+And at the little expense of a little bit of a high expense, because it need to do semantic matching, but it's still cheaper compared to doing some kind of LLM, because we have the habit of throwing the LLM to every problem. The problem is, when you want to detect threats at scale.
+
+
+377
+01:17:20.502 --> 01:17:43.502
+When you have to iterate through millions of pages, they don't work. That's why you need to have solutions which works intermediate. And… So one thing she realized though, there is still room to improve. As you can see, they were not able to identify robo, right? So that's a valid limitation. And she's right about it. That's where we introduce.
+
+
+378
+01:17:43.502 --> 01:17:48.502
+various other construct, which will make sure that you can even.
+
+
+379
+01:17:48.502 --> 01:17:56.502
+Uh, they take much harder injections. So, specifically, we support four types of.
+
+
+380
+01:17:56.502 --> 01:18:01.502
+construct the string is very similar to the Yara rules that we already have seen.
+
+
+381
+01:18:01.502 --> 01:18:08.502
+And similarity is the one that I showed you in the previous slide, where you can do semantic similarity with any text.
+
+
+382
+01:18:08.502 --> 01:18:15.502
+And then you can throw in any classifier which has either binary or multi-class classification.
+
+
+383
+01:18:15.502 --> 01:18:21.502
+and ask it to use it as the rule.
+
+
+384
+01:18:21.502 --> 01:18:29.502
+condition. And also, you can write your own LLM prompt and ask it to use it as a detection engine.
+
+
+385
+01:18:29.502 --> 01:18:44.502
+And as you can see, the detection efficacy increases as you use these different models down the line, but at the same time, it also increases your time and cost. So just like in security, we use defense in depth.
+
+
+386
+01:18:44.502 --> 01:19:02.502
+Our recommendation here is to use a mix of these techniques so that you balance the efficacy and the detection cost and time so that you cover as many as thread possible, but without breaking your wallet.
+
+
+387
+01:19:02.502 --> 01:19:19.502
+All right, now I'm going to demonstrate another example where we can use a layered approach, the difference in depth approach, where you have multiple conditions hit to detect this popular click fix attack. Clickfix is not specifically GenAI thread.
+
+
+388
+01:19:19.502 --> 01:19:35.502
+But we have seen certain social engineering aspect to it, and also we recently saw a few examples where they are using QlikFix to deliver agent skills to your computer, managers agent skills.
+
+
+389
+01:19:35.502 --> 01:20:05.502
+So in this rule, the superhero rule, I have three, at a high level, three conditions here. So at a high level does is it will check whether a string is matching. If it matches, it will say… This is a click setup, and if not, it will go to the similarity check, which is slightly higher cost of doing it. And if it doesn't match, it'll fall back to the classifier. So in this case, we have fine tuned a diverter model and put it into the system.
+
+
+390
+01:20:07.502 --> 01:20:20.502
+So that it can detect these pump injections. So three layers together and these experimental results show how it works. As you can see, 50% of the threads are detected by the simple YARA rule.
+
+
+391
+01:20:20.502 --> 01:20:32.502
+And the remaining roughly 45 to 48% of the threats are detected by the more expensive similarity and the classifier threads. So, as you can see.
+
+
+392
+01:20:32.502 --> 01:20:50.502
+I mean, one could, if you use only the Yara rule, you will be missing 50% of it. But if you used only, for example, the classifier, you will be detecting most of them, but it will be more expensive. You can reduce the cost almost by 50% by doing a defense in depth layer.
+
+
+393
+01:20:50.502 --> 01:21:07.502
+All right. Another important pattern we all most of the time use is what is called this pre-filtering pattern. Instead of always going for the expensive approach where you can throw in an LLM, as I mentioned before, you can pair the LLM with a more cheaper operation like string matching.
+
+
+394
+01:21:07.502 --> 01:21:23.502
+Or even a semantic similarity. So, the idea here is, whenever you build rules, you come up with a string rule and match together with a classifier, or similarity with LLM, something similar to that. Bend the cheaper rule.
+
+
+395
+01:21:23.502 --> 01:21:33.502
+With the more expensive one, so that you, uh… trying to balance the detection after pre-filtering it.
+
+
+396
+01:21:33.502 --> 01:21:45.502
+And this way, like in our experiments, we saw actually it was almost 99% reduction in cost when you do that instead of just blindly throwing the most expensive construct.
+
+
+397
+01:21:45.502 --> 01:22:02.502
+So I'm going to demonstrate that using this real thread which we see increasingly with gen AI impersonating brand has never been easier. So now with agents communicating with each other, I'm sure we will see more.
+
+
+398
+01:22:02.502 --> 01:22:08.502
+Attacks where agents will be impersonating the other agents.
+
+
+399
+01:22:08.502 --> 01:22:25.502
+Alright, so in this case, we only have two rules. The first one is the classifier rule. It acts as the pre-filter. And the second rule is the LLM rule. The classifier is built from one of the openly available Hugging Face phishing detector.
+
+
+400
+01:22:25.502 --> 01:22:38.502
+So we just download that and plug it in. It works, boom, there. And once… It… I mean, the problem with the classifier, as I will be showing in the next slide, is its false positive prone.
+
+
+401
+01:22:38.502 --> 01:22:56.502
+So you can't… Use the classifier alone to detect it, because it will be a lot of false positive, and the customers will not be happy. And you can still use it as a pre-filter, because it's okay to get few false positives as long as it has high recall. And once you get those ones.
+
+
+402
+01:22:56.502 --> 01:23:11.502
+You can pass it to the second condition, LLM. Llm is more expensive and time-consuming, as you can see, each LLM operation on average, took about 4.5 seconds compared to the classifier, which is few milliseconds, like half a second.
+
+
+403
+01:23:11.502 --> 01:23:29.502
+And. The numbers tell you the story here. Like using this pre-filtering approach, we went from hours to minutes to do it, and this is only 10,000. Think about like usually at Palo scale, we process millions of URLs each day.
+
+
+404
+01:23:29.502 --> 01:23:43.502
+This will be a huge bottleneck if we just throw in the most expensive operation. And similarly, the cost. I calculated the cost for the Gemini 2.5 Pro for 10K request, and it went from 750 to.
+
+
+405
+01:23:43.502 --> 01:23:52.502
+13.5 by doing the pre-filtering. So always do the pre-filtering before you do detections.
+
+
+406
+01:23:52.502 --> 01:24:01.502
+And I barely scratched the surface of what this library does. It actually has this flexible philosophy where.
+
+
+407
+01:24:01.502 --> 01:24:17.502
+Every component in the library is pluggable, and it follows the factory pattern, and I didn't talk about these special boxes like cleaners and chunkers. When you are dealing with, like, messy data, like HTML, you don't want to feed.
+
+
+408
+01:24:17.502 --> 01:24:33.502
+The whole data, because it has a lot of fluff which agent doesn't want to see, or any classifier or a semantic model want to see. So you need to clean it. There are… we have provided some standard cleaners, which will take the HTML, remove all the decorations, and get all the meat from it.
+
+
+409
+01:24:33.502 --> 01:24:50.502
+And then chunkers, because when you are working with especially Gen AI kind of matching, if you try to match the whole document with one phrase, it's going to give you a very low score. So you probably need to chunk it or chunk it by sentences, chunk it by paragraphs.
+
+
+410
+01:24:50.502 --> 01:25:05.502
+Or do overlapping chunking. There are so many other chunking techniques you can use. The good thing about the library is you can plug in your own chunkers and cleaners and get it working the way you want, and you don't need to change a thing in the rule.
+
+
+411
+01:25:05.502 --> 01:25:08.502
+You just need to specify which chunker you used.
+
+
+412
+01:25:08.502 --> 01:25:17.502
+And then the rule engine will take care of it, and at the moment, out of the box, it supports these four kind of rules, as I mentioned before. And even for these.
+
+
+413
+01:25:17.502 --> 01:25:33.502
+LLMs, you can use any publicly available Gemini, OpenAI kind of model, or even you can host it locally on Ollama and call it as well. As long as you follow the same interface, the contract, you can plug in any LLM.
+
+
+414
+01:25:33.502 --> 01:25:40.502
+Similar for the classifier, and similar for the similarity as well.
+
+
+415
+01:25:40.502 --> 01:25:56.502
+All right, the best part of all is it's all open source. It's available in GitHub, and you just need to go do pip install Serra, you will get it in your laptop or whatever device you are using with. And I have a website created here, all vibe coded.
+
+
+416
+01:25:56.502 --> 01:26:14.502
+And this website has all the information there. If you go to ciara.org, you will see not only the GitHub lib, but also some cool examples and demos of different kind of things, because I only demonstrated a very small part of the whole library.
+
+
+417
+01:26:14.502 --> 01:26:21.502
+All right, that's it from me. If you have any questions, I would be happy to answer.
+
+
+418
+01:26:21.502 --> 01:26:31.502
+All right, any questions? Okay, I'm gonna start with Moon over here, and then we'll walk away over here.
+
+
+419
+01:26:31.502 --> 01:26:40.502
+Hey, dude, I love Yara. I've shared rules for two decades. This is fantastic. Um, I had a question. You're onto something in terms of, like.
+
+
+420
+01:26:40.502 --> 01:26:56.502
+Create a preprocessor, lower the cost, lower the cost up front, in terms of how many tokens I'm doing, the cost on the back in terms of my analyst time. Are you doing any, like, reverse validation of new classifiers or new rules to go, this is a good rule, let's deploy it before you spend 1300 bucks to find that answer.
+
+
+421
+01:26:56.502 --> 01:27:16.502
+Reverse means, could you elaborate more? Excuse me, I can't hear you. Yeah, could you elaborate more on that one? What do you mean by reversing? So if my analysts are deploying a new YAR rules a countermeasure, before it goes through that part of my CI/CD platform is it's going to go look at all the malware we've ever looked at, plus a whole collection of stuff that's like never block this.
+
+
+422
+01:27:16.502 --> 01:27:34.502
+Um, I would imagine that's a lot harder to do with classifiers, thus you're saying, hey, use an off-the-shelf one. But are you doing any custom ones? Yeah, I mean, there is probably, I didn't explain it here. There is a part where you need to do some kind of fine tuning.
+
+
+423
+01:27:34.502 --> 01:27:39.502
+Probably you can see in the classifier, there is a threshold part.
+
+
+424
+01:27:39.502 --> 01:28:06.502
+That threshold is decided based on the ground truth you have in the CI/CD. You need to use some amount of known benign and known malicious to fine tune it. And yeah, I would put it in shadow before, just like any Yara rule. That's what we do. We put usually in… Uh, for about one week in Shadow Prod, because you never know what you get from the real feed, and if it's all good, we enable it in prod. Absolutely, thank you.
+
+
+425
+01:28:06.502 --> 01:28:13.502
+All right.
+
+
+426
+01:28:13.502 --> 01:28:17.502
+I'll do Carl first, and then over to you.
+
+
+427
+01:28:17.502 --> 01:28:36.502
+Yeah, I just had a quick question. Architecturally, can you explain why you decided to make a new format with SuperRot instead of extending the modularity that you already has? Like, Yara has PE analysis that's an imported module. Would that work here, or is this fundamentally changing something about Yara?
+
+
+428
+01:28:36.502 --> 01:28:59.502
+I mean, it follows the same philosophy. I mean, in principle, we should be able to extend it as well, but the friction is high, and… In principle, we should be able to do it, but yeah, we didn't go in that avenue. But we follow the same footstep of VRA, making it all open source, no string at edge. Anyone should be able to use it.
+
+
+429
+01:28:59.502 --> 01:29:14.502
+Um, so that's pretty cool, I didn't know about this, uh, Super Yara. I'm a data scientist, so I'm gonna ask him more data science-y question. Um, so what do you use for routing? Like, how do you decide when.
+
+
+430
+01:29:14.502 --> 01:29:31.502
+Uh, to use the ML versus the language model? Can you customize that? Is it, like, thresholds, or is it other stuff? Yeah, that's a very good question, actually. I forgot to mention the… the engine is optimized to execute the cheapest possible rule first.
+
+
+431
+01:29:31.502 --> 01:29:48.502
+If it is an old condition, and if it is an condition, of course, you will have to execute both rules, and for LLMs, specifically, it's all customizable. You can have any type of LLM. You just need to wrap around your LLM call inside the interface provided.
+
+
+432
+01:29:48.502 --> 01:30:04.502
+As long as you meet the contract, you should be able to use any LLM. And the way I usually decide is I start with the most powerful one because I want to get it working, and then I lower the version and try to get it working for the lowest version I can use, so that it will be cheaper to deploy.
+
+
+433
+01:30:04.502 --> 01:30:12.502
+at scale. Okay. Oh, one more question.
+
+
+434
+01:30:12.502 --> 01:30:20.502
+There you go, Toby. Following on that question, I'm really curious.
+
+
+435
+01:30:20.502 --> 01:30:31.502
+Does your, uh, matcher stop once it's found an initial pattern match, or does it continue going and comparing all of the values that you've got in this, uh, the pattern?
+
+
+436
+01:30:31.502 --> 01:30:41.502
+Uh, we can… right now, it goes through, like, especially if you do the chunking and use it, it'll go through all the chunks and get the value.
+
+
+437
+01:30:41.502 --> 01:30:57.502
+How is it selecting which is the correct match at that point, or is it just giving you the results of all of the matches? It'll get the best match out of all. Like if it match multiple ones, it will identify the multiple ones. It identifies the chunks and return it.
+
+
+438
+01:30:57.502 --> 01:31:10.502
+Yeah, and it's very similar to YRI. In Yara as well, it'll go through everything, like, when you even have a Yara rule, it'll go through the whole document and identify all the matches. Similarly, it'll be the same here.
+
+
+439
+01:31:10.502 --> 01:31:16.502
+All right. One more? Okay. So you're saying that you are generating all the.
+
+
+440
+01:31:16.502 --> 01:31:32.502
+condition after it? Yeah. Okay. Yeah. Sorry. I was asking if he is running the AHO chorusic. Basically, is he generating all the atoms and then having those be submitted to the conditionals? Yeah.
+
+
+441
+01:31:32.502 --> 01:31:50.502
+And also these models and LLMs are preloaded so that it doesn't get loaded every time you run the Lara. It would be very expensive to do it. So you initialize it, and it will be in the global memory, and the YAR rule referring to those ones in the memory.
+
+
+442
+01:31:50.502 --> 01:32:20.502
+Okay. All right. So now we're on lunch break and we'll reconvene. All the talks will reconvene at 1:30, promptly, prompt? Anyway, so 1:30, come back. We're going to get the track started. Lunch is upstairs, I believe.
+
+

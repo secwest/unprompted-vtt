@@ -1,0 +1,2643 @@
+WEBVTT
+
+1
+00:00:05.943 --> 00:00:06.813
+Incoming livestream: Hey.
+
+
+2
+00:00:07.153 --> 00:00:09.283
+Incoming livestream: Hello, hello. Alright.
+
+
+3
+00:00:09.523 --> 00:00:12.842
+Incoming livestream: Hmm, my partner in crime is not a hero.
+
+
+4
+00:00:13.913 --> 00:00:16.693
+Incoming livestream: Oh, there you are! Okay.
+
+
+5
+00:00:16.983 --> 00:00:25.793
+Incoming livestream: I am gonna exit stage right, because I need to go to Toronto, like, today. And so, my…
+
+
+6
+00:00:26.013 --> 00:00:34.213
+Incoming livestream: Oh, no, no. I just, I just intro'd everyone, but not anymore. It's now Ryan's turn to do that. So, bye! Enjoy the rest of the conference.
+
+
+7
+00:00:37.213 --> 00:00:42.322
+Incoming livestream: Hi, I'm Ryan Moon, if you watch Prompt or GTFO, you probably know who I am.
+
+
+8
+00:00:43.133 --> 00:00:48.522
+Incoming livestream: Clearly, I use microphones very often. Anyway, I guess I'm running in the afternoon. You ready to go?
+
+
+9
+00:00:49.043 --> 00:00:51.423
+Incoming livestream: I'm ready to go. It's all yours, sir.
+
+
+10
+00:00:52.223 --> 00:00:53.473
+Incoming livestream: Good afternoon.
+
+
+11
+00:00:54.453 --> 00:00:55.533
+Incoming livestream: Lunch was good?
+
+
+12
+00:00:56.993 --> 00:01:01.513
+Incoming livestream: All right. Hey, my name's Raghu Yeluri, and I'm from Intel Corporation.
+
+
+13
+00:01:02.153 --> 00:01:06.083
+Incoming livestream: And I have, two parts for my day job.
+
+
+14
+00:01:06.823 --> 00:01:10.153
+Incoming livestream: One, I work on security for AI.
+
+
+15
+00:01:11.433 --> 00:01:16.893
+Incoming livestream: Which is a big part of my day job. The second part of my job is AI for security, which is…
+
+
+16
+00:01:18.753 --> 00:01:26.132
+Incoming livestream: what do we need to do to make sure that security is… security assurance is better with AI, okay?
+
+
+17
+00:01:26.293 --> 00:01:28.782
+Incoming livestream: This session is about
+
+
+18
+00:01:29.253 --> 00:01:33.572
+Incoming livestream: Securing AI. That's my big chunk of my time, so that's what I'm going to talk about.
+
+
+19
+00:01:33.952 --> 00:01:36.603
+Incoming livestream: How many of you heard about confidential computing?
+
+
+20
+00:01:38.133 --> 00:01:40.643
+Incoming livestream: How many of you heard about confidential AI?
+
+
+21
+00:01:42.133 --> 00:01:48.473
+Incoming livestream: You know, the joke always about confidential AI is it's so confidential that it stays in this room, okay?
+
+
+22
+00:01:49.963 --> 00:01:54.183
+Incoming livestream: Alright, so, I'm gonna tell you what confidential AI is.
+
+
+23
+00:01:54.423 --> 00:01:56.343
+Incoming livestream: How it works at a high level?
+
+
+24
+00:01:56.693 --> 00:02:02.353
+Incoming livestream: And more importantly, I'm going to tell you why you guys should deploy it. I'm going to show you 3 examples.
+
+
+25
+00:02:03.003 --> 00:02:06.083
+Incoming livestream: One, which is a Google example, Google Cloud.
+
+
+26
+00:02:06.532 --> 00:02:16.462
+Incoming livestream: The other one is, an AI fine-tuning example with, Talus, end-to-end with, confidential compute.
+
+
+27
+00:02:16.723 --> 00:02:19.743
+Incoming livestream: And then I'm sure the one everybody wants to know is.
+
+
+28
+00:02:19.853 --> 00:02:23.043
+Incoming livestream: Where does confidential computing come with agentic AI?
+
+
+29
+00:02:23.863 --> 00:02:24.613
+Incoming livestream: Okay.
+
+
+30
+00:02:25.273 --> 00:02:30.152
+Incoming livestream: If there are questions that can't wait till the end, please ask me through the session.
+
+
+31
+00:02:30.372 --> 00:02:35.703
+Incoming livestream: Okay, so this is the industry definition for confidential AI.
+
+
+32
+00:02:35.983 --> 00:02:44.862
+Incoming livestream: It is the overlay of AI on confidential computing, or if you think about it the other way, using confidential computing for protecting AI.
+
+
+33
+00:02:45.213 --> 00:03:02.053
+Incoming livestream: So what's confidential computing? Very quickly, it has three pieces to it. Number one, you provide data in use protection by running your applications, your workloads, in hardware-protected environments called trusted execution environments.
+
+
+34
+00:03:02.913 --> 00:03:03.633
+Incoming livestream: Okay?
+
+
+35
+00:03:03.803 --> 00:03:05.923
+Incoming livestream: Everything that runs in there.
+
+
+36
+00:03:06.503 --> 00:03:13.942
+Incoming livestream: Is encrypted, and it's in the control of the owner of that application workload data, whichever it is.
+
+
+37
+00:03:14.143 --> 00:03:18.923
+Incoming livestream: Okay? And the third important property of confidential computing is
+
+
+38
+00:03:19.423 --> 00:03:27.072
+Incoming livestream: You're gonna get what is called an attestation, which says, this is exactly what the environment in which you are running it.
+
+
+39
+00:03:27.363 --> 00:03:30.973
+Incoming livestream: It's gonna tell you The hardware it is in.
+
+
+40
+00:03:31.473 --> 00:03:35.723
+Incoming livestream: What's the firmware that's running there? What's the software that's running there?
+
+
+41
+00:03:35.863 --> 00:03:42.533
+Incoming livestream: And if you are happy with it, that's when you interact with it, give it secrets, give it keys, all kinds of things.
+
+
+42
+00:03:43.073 --> 00:03:46.783
+Incoming livestream: And why are we so interested in confidential computing?
+
+
+43
+00:03:47.333 --> 00:03:53.252
+Incoming livestream: You can see on the right side of the picture there, it gives you some good protections.
+
+
+44
+00:03:53.373 --> 00:04:01.203
+Incoming livestream: Okay? It gives you protections from day zeros to some degree, It protects you from the…
+
+
+45
+00:04:01.563 --> 00:04:06.133
+Incoming livestream: Administrators of your infrastructure, whether it's on-prem or in the cloud.
+
+
+46
+00:04:07.183 --> 00:04:12.523
+Incoming livestream: It gives you protection from other tenants that are running on the same infrastructure.
+
+
+47
+00:04:14.203 --> 00:04:18.022
+Incoming livestream: Okay? So confidential computing that way gives you
+
+
+48
+00:04:18.063 --> 00:04:36.063
+Incoming livestream: the protection from the infrastructure on which your workloads are running. You don't need to worry about, hey, this cloud operator could get access to what I'm doing, this cloud operator could have a rogue administrator that takes a snapshot of your virtual machine or your container, and they got all your secrets.
+
+
+49
+00:04:36.063 --> 00:04:41.382
+Incoming livestream: All of those threat vectors, Disappear for the most part with confidential computing.
+
+
+50
+00:04:41.853 --> 00:04:45.823
+Incoming livestream: And for AI workloads, that's why it's very important.
+
+
+51
+00:04:45.933 --> 00:04:54.263
+Incoming livestream: Okay, it protects your models, it protects your data. If you're doing Gen AI stuff, it protects your prompts, your context windows, all of that stuff.
+
+
+52
+00:04:54.673 --> 00:04:56.603
+Incoming livestream: Ken, I'm gonna show you how, okay?
+
+
+53
+00:04:58.373 --> 00:05:01.982
+Incoming livestream: there are two models for confidential AI, okay? One is…
+
+
+54
+00:05:03.093 --> 00:05:11.053
+Incoming livestream: running everything in confidential computing on CPUs, okay? I'm an Intel guy, so I have to talk about this use case, okay?
+
+
+55
+00:05:11.683 --> 00:05:15.642
+Incoming livestream: It's good for inferencing, it's good for certain model sizes.
+
+
+56
+00:05:15.873 --> 00:05:18.833
+Incoming livestream: Okay, 10 billion model, 10 billion parameters.
+
+
+57
+00:05:19.383 --> 00:05:24.812
+Incoming livestream: CPUs with, you know, matrix extensions in the infrastructure.
+
+
+58
+00:05:25.203 --> 00:05:26.323
+Incoming livestream: do pretty good.
+
+
+59
+00:05:26.783 --> 00:05:28.492
+Incoming livestream: Okay? But…
+
+
+60
+00:05:28.823 --> 00:05:37.943
+Incoming livestream: that's not enough. We know that. So that's why there is this second model, which is called the hybrid model, or the accelerated computing model, where
+
+
+61
+00:05:38.073 --> 00:05:41.382
+Incoming livestream: you work in a combination of CPUs and GPUs.
+
+
+62
+00:05:42.043 --> 00:05:45.293
+Incoming livestream: Okay? Intel CPUs have confidential computing.
+
+
+63
+00:05:45.753 --> 00:05:48.543
+Incoming livestream: NVIDIA GPUs have confidential computing.
+
+
+64
+00:05:49.033 --> 00:05:51.283
+Incoming livestream: So you can get them together.
+
+
+65
+00:05:51.513 --> 00:06:05.332
+Incoming livestream: And you can have a good end-to-end story of confidential computing going from CPUs into GPUs. So, essentially, it is one extended trusted execution environment between CPUs and GPUs.
+
+
+66
+00:06:06.013 --> 00:06:09.453
+Incoming livestream: Okay? There are two models for doing it.
+
+
+67
+00:06:09.783 --> 00:06:14.083
+Incoming livestream: In the near term, you know, it's called a software-based model.
+
+
+68
+00:06:14.263 --> 00:06:18.983
+Incoming livestream: You know, for folks who are familiar, they call it the bounce buffer solution, where
+
+
+69
+00:06:19.173 --> 00:06:23.113
+Incoming livestream: the CPU writes into a buffer, it's an encrypted form.
+
+
+70
+00:06:23.393 --> 00:06:28.703
+Incoming livestream: The GPU picks it up from the buffer, and the CPU and the GPU share the secret.
+
+
+71
+00:06:28.843 --> 00:06:37.983
+Incoming livestream: So, things are encrypted, put on the buffer, GPUs pick up from there. In the encrypted form, they have the secret, so they decrypt it, and they run it in the GPUs.
+
+
+72
+00:06:38.253 --> 00:06:41.803
+Incoming livestream: But in the longer term, year and a half, two years out.
+
+
+73
+00:06:42.413 --> 00:06:45.783
+Incoming livestream: You don't need this software solution, it's all done in hardware.
+
+
+74
+00:06:46.213 --> 00:06:48.783
+Incoming livestream: The PCIe bus gets encrypted.
+
+
+75
+00:06:48.983 --> 00:07:03.773
+Incoming livestream: And then there is a negotiation between the CPUs and the GPUs on how they trust each other, and the proofs for trust, and then they pass that information in a very, very efficient way between the CPUs and the GPUs.
+
+
+76
+00:07:04.163 --> 00:07:06.072
+Incoming livestream: By the way, you guys can hear me okay, right?
+
+
+77
+00:07:06.353 --> 00:07:07.242
+Incoming livestream: Okay, thank you.
+
+
+78
+00:07:07.953 --> 00:07:09.973
+Incoming livestream: Alright, that's a good answer, man.
+
+
+79
+00:07:11.593 --> 00:07:16.043
+Incoming livestream: Alright, why do we care about confidential AI so much?
+
+
+80
+00:07:17.823 --> 00:07:34.083
+Incoming livestream: it meets regulations very well, okay? Whether you look at DORA, whether you look at the new executive order from the US, or you look at the European Union AI Act, there are clear nuggets in all of them which point towards the use of confidential computing.
+
+
+81
+00:07:35.723 --> 00:07:36.963
+Incoming livestream: That's why
+
+
+82
+00:07:37.093 --> 00:07:48.262
+Incoming livestream: A lot of enterprises, a lot of cloud providers, everybody seemed to want to use confidential computing because it's a big checkmark item from a regulation side.
+
+
+83
+00:07:51.593 --> 00:07:59.792
+Incoming livestream: You know, Intel has been doing confidential computing for a very long time, okay? I'm sure many of you are familiar with Intel SGX.
+
+
+84
+00:07:59.953 --> 00:08:03.302
+Incoming livestream: Which was our first foray into confidential computing.
+
+
+85
+00:08:03.653 --> 00:08:06.983
+Incoming livestream: It was not for the faint-hearted, Okay.
+
+
+86
+00:08:07.643 --> 00:08:12.472
+Incoming livestream: It required quite a lot of hand-holding to make sure that
+
+
+87
+00:08:12.703 --> 00:08:17.022
+Incoming livestream: You really know what you want to run inside confidential computing.
+
+
+88
+00:08:17.183 --> 00:08:20.523
+Incoming livestream: But the positive side of that was.
+
+
+89
+00:08:20.793 --> 00:08:24.603
+Incoming livestream: It was a very well-controlled security environment.
+
+
+90
+00:08:25.123 --> 00:08:28.402
+Incoming livestream: with no access for anybody other than the CPU.
+
+
+91
+00:08:29.233 --> 00:08:34.133
+Incoming livestream: Okay? But obviously, you know, everybody wants this concept called lift and shift.
+
+
+92
+00:08:34.533 --> 00:08:39.793
+Incoming livestream: Where they can, take their containers, they can take their workloads.
+
+
+93
+00:08:39.963 --> 00:08:44.943
+Incoming livestream: Run it in a regular environment, and then move it into a confidential computing environment.
+
+
+94
+00:08:45.083 --> 00:08:47.023
+Incoming livestream: With the easy button, pretty much.
+
+
+95
+00:08:47.673 --> 00:08:52.732
+Incoming livestream: That's where Intel TDX comes in, Trusted Domain Extensions, which is the second one.
+
+
+96
+00:08:53.043 --> 00:09:09.803
+Incoming livestream: which guarantees you that you can take your virtual machines as they are today, the VM images, or your containers, and then run them in an environment which is confidential computing. And the way it manifests is following. You go to your cloud provider, Azure, GCP,
+
+
+97
+00:09:10.033 --> 00:09:13.672
+Incoming livestream: IBM, Oracle in preview today.
+
+
+98
+00:09:14.673 --> 00:09:23.972
+Incoming livestream: you say, hey, you get a VM instance, you know, whatever instance you have, 26 vCPUs with 128 gigabit RAM, right?
+
+
+99
+00:09:24.263 --> 00:09:30.062
+Incoming livestream: you can go pick another instance which says confidential compute instance. Same properties.
+
+
+100
+00:09:30.623 --> 00:09:38.852
+Incoming livestream: 68 GPU, CPUs, 128 gigabit RAM, and you can say, oh, by the way, I want one or two NVIDIA GPUs with it.
+
+
+101
+00:09:39.633 --> 00:09:41.932
+Incoming livestream: It is a confidential computing instance.
+
+
+102
+00:09:42.043 --> 00:09:46.432
+Incoming livestream: You can run your virtual machine images, your containers, exactly the same way.
+
+
+103
+00:09:46.543 --> 00:09:55.653
+Incoming livestream: The management plane is the same, the control plane is the same, the operation model is exactly identical to regular virtual machines. No change.
+
+
+104
+00:09:56.013 --> 00:10:01.503
+Incoming livestream: Okay? The added benefit? Now you are protected in use, okay?
+
+
+105
+00:10:01.643 --> 00:10:07.223
+Incoming livestream: The rogue… an administrator at the cloud provider cannot look into what your virtual machine is.
+
+
+106
+00:10:08.093 --> 00:10:11.203
+Incoming livestream: They can take as many snapshots as they want.
+
+
+107
+00:10:11.303 --> 00:10:13.142
+Incoming livestream: But it's all gonna be cipher.
+
+
+108
+00:10:13.373 --> 00:10:16.663
+Incoming livestream: the key for that one is in the CPU, so nobody else can see it.
+
+
+109
+00:10:17.833 --> 00:10:20.473
+Incoming livestream: Or the GPUs, in case you're running it in GPUs.
+
+
+110
+00:10:20.733 --> 00:10:36.023
+Incoming livestream: Okay? So that's the benefit of confidential computing, okay? Remember I talked to you about attestation, okay? Without attestation, confidential computing doesn't mean anything, okay? Your cloud provider told you, hey, I'm giving you an instance of confidential compute.
+
+
+111
+00:10:36.353 --> 00:10:38.353
+Incoming livestream: But do you know for sure? You got it?
+
+
+112
+00:10:38.943 --> 00:10:40.803
+Incoming livestream: That's where attestation comes in.
+
+
+113
+00:10:41.093 --> 00:10:45.492
+Incoming livestream: Okay? Attestation is gonna give you a cryptographic proof that
+
+
+114
+00:10:45.763 --> 00:10:49.753
+Incoming livestream: You are, in fact, running in a confidential computing environment.
+
+
+115
+00:10:50.333 --> 00:10:57.252
+Incoming livestream: that is genuine to the provider of it. It could be Intel, it could be AMD, it could be NVIDIA GPUs.
+
+
+116
+00:10:57.413 --> 00:11:02.053
+Incoming livestream: You have proof that you are running in a legitimate, confidential computing environment.
+
+
+117
+00:11:02.583 --> 00:11:05.113
+Incoming livestream: It is patched, Correctly?
+
+
+118
+00:11:05.443 --> 00:11:08.172
+Incoming livestream: To the level that you are satisfied with?
+
+
+119
+00:11:08.603 --> 00:11:14.493
+Incoming livestream: And then, more importantly, your workloads that are running in are exactly what you expected them to be.
+
+
+120
+00:11:14.663 --> 00:11:21.572
+Incoming livestream: If you're running a container, you would have a measurement of it, and you can verify that measurement to be what it needs to be.
+
+
+121
+00:11:22.223 --> 00:11:24.362
+Incoming livestream: That's what attestation provides.
+
+
+122
+00:11:24.873 --> 00:11:28.182
+Incoming livestream: Okay? There are multiple ways of doing attestation again.
+
+
+123
+00:11:28.423 --> 00:11:34.423
+Incoming livestream: You can, I'm gonna come back to that previous one.
+
+
+124
+00:11:34.693 --> 00:11:36.962
+Incoming livestream: Who provides the attestation systems?
+
+
+125
+00:11:38.073 --> 00:11:39.883
+Incoming livestream: Is it the cloud provider?
+
+
+126
+00:11:40.313 --> 00:11:42.022
+Incoming livestream: Or is it a third party?
+
+
+127
+00:11:42.373 --> 00:11:51.033
+Incoming livestream: Or is do-it-yourself, okay? The question that you need to ask yourself is, Will you be comfortable?
+
+
+128
+00:11:51.243 --> 00:11:55.692
+Incoming livestream: If the cloud provider who's giving you confidential computing environment
+
+
+129
+00:11:56.103 --> 00:12:00.523
+Incoming livestream: is also telling you that, yeah, it's trusted, I'm giving you proof of it.
+
+
+130
+00:12:00.923 --> 00:12:04.533
+Incoming livestream: For some workloads, it's okay. For some customers, it's perfectly fine.
+
+
+131
+00:12:04.683 --> 00:12:08.312
+Incoming livestream: Okay? They trust the cloud provider for a lot of other things.
+
+
+132
+00:12:08.813 --> 00:12:11.603
+Incoming livestream: So they trust on this as well, which is perfectly fine.
+
+
+133
+00:12:11.883 --> 00:12:18.632
+Incoming livestream: But, there are a class of customers in the business segments, like regulated industries especially.
+
+
+134
+00:12:19.583 --> 00:12:25.963
+Incoming livestream: you need that separation of duties. What, you know, in some securities domains, they call the four eyes principle.
+
+
+135
+00:12:26.303 --> 00:12:30.493
+Incoming livestream: The provider of the infrastructure, should be different.
+
+
+136
+00:12:30.653 --> 00:12:35.333
+Incoming livestream: Then the person who says, it's a trustworthy infrastructure that you got.
+
+
+137
+00:12:36.003 --> 00:12:39.063
+Incoming livestream: So that's why you look at a third-party attestation system.
+
+
+138
+00:12:39.623 --> 00:12:47.983
+Incoming livestream: Okay? Intel is one of those providers which has that independent third-party attestation system called Intel Trust Authority.
+
+
+139
+00:12:48.363 --> 00:12:54.303
+Incoming livestream: Doesn't matter if your workloads are in Google, Azure, IBM,
+
+
+140
+00:12:54.793 --> 00:13:00.383
+Incoming livestream: in China, whether it's Alibaba, whether it is on-prem for you.
+
+
+141
+00:13:00.533 --> 00:13:05.603
+Incoming livestream: Intel Trust Authority has the ability to provide that verification, that attestation for you.
+
+
+142
+00:13:07.203 --> 00:13:11.122
+Incoming livestream: Okay? So, again, I'm not saying use this versus that.
+
+
+143
+00:13:11.263 --> 00:13:17.592
+Incoming livestream: It depends on your business, it depends on your security requirements. You have options for attestation as well.
+
+
+144
+00:13:18.113 --> 00:13:24.852
+Incoming livestream: Okay? Now, the question somebody asked me before the session started is, Is TDX available today?
+
+
+145
+00:13:25.193 --> 00:13:28.742
+Incoming livestream: Here is the one slider you want to take a picture of, Alex.
+
+
+146
+00:13:30.933 --> 00:13:37.933
+Incoming livestream: So, it is available across many cloud providers. You can see the list there.
+
+
+147
+00:13:39.023 --> 00:13:46.962
+Incoming livestream: Azure launched it a couple of days ago, you know? When I wrote this slide, it had preview next to it, which I took out today.
+
+
+148
+00:13:48.173 --> 00:13:51.453
+Incoming livestream: You can tell it's available in many places.
+
+
+149
+00:13:51.643 --> 00:14:06.353
+Incoming livestream: Okay? It is also available in… as part of the operating systems, so if you're doing something on-prem, you have your own AI cluster, for example, you have the ability to get it from the various OS vendors as well.
+
+
+150
+00:14:08.183 --> 00:14:08.853
+Incoming livestream: Okay.
+
+
+151
+00:14:10.293 --> 00:14:10.953
+Incoming livestream: No.
+
+
+152
+00:14:12.193 --> 00:14:15.922
+Incoming livestream: a quick slide on intertrust authority before I go to the examples, right?
+
+
+153
+00:14:16.833 --> 00:14:20.413
+Incoming livestream: I said Intel Trust Authority is that independent attestation system.
+
+
+154
+00:14:21.093 --> 00:14:25.583
+Incoming livestream: Okay? It's available at a SaaS, it's available for on-prem deployments.
+
+
+155
+00:14:25.903 --> 00:14:31.392
+Incoming livestream: And… Through one API, you can get attestation of your CPUs.
+
+
+156
+00:14:31.503 --> 00:14:40.372
+Incoming livestream: and your GPUs as well. It could be one NVIDIA H100, one NVIDIA Blackwell, or it could be 8 Blackwells on the system.
+
+
+157
+00:14:41.103 --> 00:14:43.493
+Incoming livestream: You get unified manifestation of all of that.
+
+
+158
+00:14:44.633 --> 00:15:01.532
+Incoming livestream: Okay? And why is that important? As an application person, you don't want to deal with multiple workflows. I don't want to deal with a workflow for Intel CPUs. I don't want to deal for a workflow for NVIDIA GPUs. That's why we work together, the two companies, and we have this
+
+
+159
+00:15:01.783 --> 00:15:11.603
+Incoming livestream: unified API, where you make one call, it figures out, hey, I am connected to two GPUs, so I need to make sure the attestation happens for both of those.
+
+
+160
+00:15:12.733 --> 00:15:24.952
+Incoming livestream: Okay? Alright, so much for theory. Now, let me show you examples of this, okay? This is a release from Google called Google Confidential Space. How many of you heard of Confidential Space from Google?
+
+
+161
+00:15:26.103 --> 00:15:28.893
+Incoming livestream: Maybe a few, okay. So very quickly…
+
+
+162
+00:15:29.193 --> 00:15:37.412
+Incoming livestream: Google Confidential Space is like a data clean room for AI, okay? What it is, is you can take your containers.
+
+
+163
+00:15:38.163 --> 00:15:44.593
+Incoming livestream: You run it in a confidential computing environment, the…
+
+
+164
+00:15:44.943 --> 00:15:47.783
+Incoming livestream: OS that runs inside that VM,
+
+
+165
+00:15:48.183 --> 00:15:53.672
+Incoming livestream: Your application, which is your container, Everything is measured
+
+
+166
+00:15:53.873 --> 00:15:57.163
+Incoming livestream: And that measurements are available for verification.
+
+
+167
+00:15:58.503 --> 00:16:04.012
+Incoming livestream: And the confidential space environment, as part of launching your container.
+
+
+168
+00:16:04.413 --> 00:16:07.112
+Incoming livestream: will attest to Intel Trust Authority.
+
+
+169
+00:16:07.653 --> 00:16:16.272
+Incoming livestream: And the trust authority verifies all the policies that need to be verified, and it's gonna give a token, which is called an attestation token.
+
+
+170
+00:16:17.063 --> 00:16:22.573
+Incoming livestream: This token is now given to all the data sources.
+
+
+171
+00:16:23.113 --> 00:16:26.463
+Incoming livestream: Whether it is a data source in Google Cloud.
+
+
+172
+00:16:26.573 --> 00:16:31.392
+Incoming livestream: whether it's a data source in Amazon, or whether it's on-prem for you.
+
+
+173
+00:16:31.823 --> 00:16:34.903
+Incoming livestream: That… that token is like your…
+
+
+174
+00:16:35.073 --> 00:16:38.562
+Incoming livestream: Proof to the identity of identity.
+
+
+175
+00:16:38.733 --> 00:16:48.713
+Incoming livestream: That your access control and management systems will verify, and based on that verification, they give access to the data to that workload.
+
+
+176
+00:16:49.313 --> 00:16:55.293
+Incoming livestream: So, in the example that you see here, the AI workload is that green box that is there.
+
+
+177
+00:16:55.753 --> 00:17:03.642
+Incoming livestream: The entire red box is the DDX environment. Everything inside that is measured, and it is verified.
+
+
+178
+00:17:03.923 --> 00:17:15.683
+Incoming livestream: And that verification token is what is provided to the Google Cloud and the Amazon AWS protected resources. These are databases, keys, things like that.
+
+
+179
+00:17:15.883 --> 00:17:19.333
+Incoming livestream: Only when those resources verify that token.
+
+
+180
+00:17:19.903 --> 00:17:23.533
+Incoming livestream: They give the resource access token to that workload.
+
+
+181
+00:17:24.523 --> 00:17:34.872
+Incoming livestream: And I'm sure folks who work on Google and AWS understand this very well. Without that resource access token, your workloads cannot access anything in those resources.
+
+
+182
+00:17:36.723 --> 00:17:41.853
+Incoming livestream: Okay? The… the commitment, the security promise this gives you is
+
+
+183
+00:17:42.683 --> 00:17:46.893
+Incoming livestream: Nobody knows what's inside that workload other than the workload owner.
+
+
+184
+00:17:47.703 --> 00:17:52.843
+Incoming livestream: and the CPU. When it's running in the CPU, that's the only time it's in the clear.
+
+
+185
+00:17:53.753 --> 00:17:57.993
+Incoming livestream: The data comes encrypted into that box, that red box that you see.
+
+
+186
+00:17:58.523 --> 00:18:03.453
+Incoming livestream: the data is decrypted inside that red box. Nobody else sees it.
+
+
+187
+00:18:05.813 --> 00:18:24.372
+Incoming livestream: Okay? This is available from Google today. They are, available on Google Cloud, and I don't know if it's available on the Google Distributed Cloud, which is their on-prem version, but it's definitely available on their Google Public Cloud. You can get a confidential space instance on a click.
+
+
+188
+00:18:24.393 --> 00:18:28.262
+Incoming livestream: And then you can get your container workloads, and you can deploy them.
+
+
+189
+00:18:30.083 --> 00:18:36.133
+Incoming livestream: Okay? The next example is probably something more interesting for people who are AI practitioners.
+
+
+190
+00:18:36.623 --> 00:18:42.533
+Incoming livestream: This example is with Talus, which is a pretty well-known security company.
+
+
+191
+00:18:43.683 --> 00:18:48.742
+Incoming livestream: there is an ISP who has an imaging model.
+
+
+192
+00:18:49.523 --> 00:18:54.473
+Incoming livestream: And this model… Hospitals need to use this imaging model.
+
+
+193
+00:18:54.813 --> 00:18:57.043
+Incoming livestream: So that they can fine-tune it.
+
+
+194
+00:18:57.243 --> 00:19:00.682
+Incoming livestream: So that it's very… the efficacy of the model gets better.
+
+
+195
+00:19:01.343 --> 00:19:07.782
+Incoming livestream: But the problem is, One hospital's data is not enough.
+
+
+196
+00:19:08.483 --> 00:19:10.722
+Incoming livestream: To improve the efficacy of the model.
+
+
+197
+00:19:10.903 --> 00:19:26.592
+Incoming livestream: you need the data from multiple hospitals, and we all know how important PII is, and, you know, all the HIPAA regulations and all of that. So, you have a bunch of mutually untrusting parties, or distrusting parties.
+
+
+198
+00:19:26.983 --> 00:19:29.483
+Incoming livestream: That need to cooperate with each other.
+
+
+199
+00:19:29.983 --> 00:19:32.153
+Incoming livestream: To improve the efficacy of the model.
+
+
+200
+00:19:33.603 --> 00:19:39.093
+Incoming livestream: The model owner is worried that if they put the model somewhere.
+
+
+201
+00:19:39.363 --> 00:19:48.023
+Incoming livestream: their intellectual property is… could be lost. So, they become another untrusted party as well, distrusted party in this case.
+
+
+202
+00:19:48.423 --> 00:19:57.042
+Incoming livestream: So what do they do? They encrypt everything with the Talus CypherTrust key management system.
+
+
+203
+00:19:58.543 --> 00:20:08.342
+Incoming livestream: So everybody, Hospital A, B, C, before they bring the data, they provision a key in the CypherTrust platform.
+
+
+204
+00:20:08.853 --> 00:20:14.213
+Incoming livestream: They get their encryption key, and they encrypt the model, and encrypt the data sets.
+
+
+205
+00:20:14.983 --> 00:20:18.123
+Incoming livestream: The model owner does exactly the same thing as well.
+
+
+206
+00:20:18.723 --> 00:20:21.642
+Incoming livestream: They get the key from the CypherTrust platform.
+
+
+207
+00:20:21.813 --> 00:20:26.983
+Incoming livestream: They encrypt their… the fine… whatever that image diagnostic model is.
+
+
+208
+00:20:27.353 --> 00:20:33.623
+Incoming livestream: And they bring all this encrypted collateral into a confidential computing environment.
+
+
+209
+00:20:35.523 --> 00:20:42.033
+Incoming livestream: And once the CypherTrust platform talks to an attestation system like Intel Trust Authority.
+
+
+210
+00:20:42.493 --> 00:20:55.332
+Incoming livestream: it verifies them, and based on the individual policies, it releases the decryption keys into that trusted execution environment, the middle box that you see with CPUs and GPUs.
+
+
+211
+00:20:56.123 --> 00:21:04.553
+Incoming livestream: The datasets get decrypted there, the model gets decrypted there, the model gets fine-tuned there for whatever period of time.
+
+
+212
+00:21:04.743 --> 00:21:09.173
+Incoming livestream: The datasets get deleted, The model gets re-encrypted.
+
+
+213
+00:21:09.493 --> 00:21:11.682
+Incoming livestream: Sent back to the model owner.
+
+
+214
+00:21:12.033 --> 00:21:18.122
+Incoming livestream: Now, the model has been fully fine-tuned, With multiple hospital data.
+
+
+215
+00:21:19.193 --> 00:21:26.703
+Incoming livestream: And it is encrypted back to the model owner, and they deliver it to the individual hospitals.
+
+
+216
+00:21:27.493 --> 00:21:34.123
+Incoming livestream: So what did we get with this thing? The model owner's IP is protected. There is guarantee that nobody
+
+
+217
+00:21:34.273 --> 00:21:37.183
+Incoming livestream: Saw what's in the model, nobody can steal the model.
+
+
+218
+00:21:37.763 --> 00:21:40.952
+Incoming livestream: The data sets that are coming from the various hospitals.
+
+
+219
+00:21:42.033 --> 00:21:45.613
+Incoming livestream: Nobody sees the data except the model training process.
+
+
+220
+00:21:46.523 --> 00:21:49.883
+Incoming livestream: So, their security requirements are met as well.
+
+
+221
+00:21:50.123 --> 00:21:57.043
+Incoming livestream: And then the ultimate benefit is the efficacy of the model got better, because it got trained on multiple hospital data sets.
+
+
+222
+00:21:58.323 --> 00:22:10.562
+Incoming livestream: Okay? The last example I'm going to show you is agentic AI and confidential computing, okay? I'm sure everybody has their own picture of what an agent is and what it does. This is my picture.
+
+
+223
+00:22:10.923 --> 00:22:16.363
+Incoming livestream: Okay? Has a bunch of, MCP servers, not surprisingly.
+
+
+224
+00:22:16.543 --> 00:22:18.362
+Incoming livestream: Talking to different tools.
+
+
+225
+00:22:18.633 --> 00:22:27.173
+Incoming livestream: There's a reasoning engine with a language model, a big language model, so that I know what my plans are, all the reasoning stuff happens there.
+
+
+226
+00:22:27.543 --> 00:22:33.243
+Incoming livestream: But I also have domain models, okay? This is where Agentic AI is going, in my view.
+
+
+227
+00:22:33.423 --> 00:22:36.193
+Incoming livestream: It's not one large model doing everything.
+
+
+228
+00:22:36.293 --> 00:22:42.452
+Incoming livestream: Enterprises are gonna have a lot of localized domain models, which are very efficient.
+
+
+229
+00:22:42.473 --> 00:22:58.692
+Incoming livestream: very effective, and then the security guarantees are there. So, you're gonna have a bunch of local domain models, you have rags feeding them, all of that stuff. But, the important thing is MCP servers will run in confidential computing. That's what the red box is.
+
+
+230
+00:22:58.833 --> 00:23:05.243
+Incoming livestream: There are various flavors for that one. You can just run the MCP server itself in confidential computing.
+
+
+231
+00:23:05.343 --> 00:23:09.622
+Incoming livestream: You can run the MCP server with the tool in confidential computing.
+
+
+232
+00:23:10.463 --> 00:23:17.612
+Incoming livestream: These small lang… these small domain models, the SLMs and RAGs, can absolutely run in confidential computing as well.
+
+
+233
+00:23:18.783 --> 00:23:22.742
+Incoming livestream: Okay? So this is where the industry is going for agentic AI.
+
+
+234
+00:23:22.893 --> 00:23:29.242
+Incoming livestream: Okay? There is an organization called COSI, Coalition for Secure AI,
+
+
+235
+00:23:29.373 --> 00:23:38.273
+Incoming livestream: Most of the big, security companies, cloud providers, hardware providers, all of them are part of COSI.
+
+
+236
+00:23:38.443 --> 00:23:44.183
+Incoming livestream: And COSI recently published a MCP security positioning paper.
+
+
+237
+00:23:44.723 --> 00:23:48.473
+Incoming livestream: It documents the 12 categories of threats for MCP.
+
+
+238
+00:23:48.793 --> 00:23:52.172
+Incoming livestream: And it also talks about the various controls.
+
+
+239
+00:23:52.313 --> 00:23:54.112
+Incoming livestream: To mitigate the threats.
+
+
+240
+00:23:54.843 --> 00:24:02.623
+Incoming livestream: Confidential computing is called out as a important security control for multiple security threats. So.
+
+
+241
+00:24:02.633 --> 00:24:17.303
+Incoming livestream: If you have interest in this, I would say look for COSI, look for their MCP paper. It is public, it's available, there is no cost for it. I would strongly, urge you to take a look at that paper, because it's a very well-written paper.
+
+
+242
+00:24:18.233 --> 00:24:19.063
+Incoming livestream: Okay?
+
+
+243
+00:24:19.473 --> 00:24:23.273
+Incoming livestream: With that, I'm gonna summarize, and hopefully we'll have some time for questions.
+
+
+244
+00:24:23.523 --> 00:24:31.423
+Incoming livestream: So please look at confidential computing and confidential AI. You know, this addresses a bunch of security concerns that…
+
+
+245
+00:24:32.223 --> 00:24:38.213
+Incoming livestream: You're gonna have, whether you're deploying on-prem, or whether you're deploying in the cloud, or in a hybrid environment.
+
+
+246
+00:24:38.383 --> 00:24:52.143
+Incoming livestream: Okay? It's real, it's not… it's not theory, PowerPoints anymore. It's available from cloud providers, it's available from, OSVs, it's available from hardware manufacturers.
+
+
+247
+00:24:52.823 --> 00:25:03.502
+Incoming livestream: Okay? Google Confidential Space is a good example if you want to go do single container-based or multi-container-based AI workloads in Google Cloud.
+
+
+248
+00:25:03.543 --> 00:25:17.982
+Incoming livestream: Look at Talus solution, end-to-end crypto, CypherTrust platform for data protection, and start looking at confidential computing for agentic AI, because it's gonna happen, I guarantee you, next couple of years.
+
+
+249
+00:25:18.553 --> 00:25:21.972
+Incoming livestream: Confidential computing becomes the default for running agents.
+
+
+250
+00:25:22.123 --> 00:25:33.452
+Incoming livestream: Because it gives you those benefits that you would expect. Okay? With that, I'm gonna stop and see… I don't know where we are on time, but I think I have a few more minutes here, 5 minutes for Q&A.
+
+
+251
+00:25:36.393 --> 00:25:40.612
+Incoming livestream: Questions? Oh, there we go. Alright, hey, let's see if we got some questions. I know we got one right here.
+
+
+252
+00:25:41.813 --> 00:25:50.262
+Incoming livestream: On one of your very early slides, you mentioned zero days, and you have an asterisk next to zero days. What does the asterisk represent, please?
+
+
+253
+00:25:50.643 --> 00:25:52.922
+Incoming livestream: I don't know what's gonna come tomorrow, man.
+
+
+254
+00:25:53.623 --> 00:25:58.442
+Incoming livestream: I can… my legal guys will not let me not put the star there, okay?
+
+
+255
+00:26:01.553 --> 00:26:03.143
+Incoming livestream: Hands up, anybody else?
+
+
+256
+00:26:06.643 --> 00:26:25.393
+Incoming livestream: Rogu, can you talk a little bit about using confidential computing for AI in a multi-cloud, not a hybrid, but say Google and Azure, or Google and IBM? How would that work? Good question, okay? From the attestation side, it's very simple, okay? The reason Intel Trust Authority was built was, hey, as a customer.
+
+
+257
+00:26:25.773 --> 00:26:40.702
+Incoming livestream: I'm not going to be logged into one cloud provider. I'll run some in Azure, some in Google, but I don't want to modify my workloads for attestation. So that's the easy one, okay? Today, you have to have both the CPUs and the GPUs
+
+
+258
+00:26:41.033 --> 00:26:42.483
+Incoming livestream: In the same cloud.
+
+
+259
+00:26:42.983 --> 00:26:43.803
+Incoming livestream: Okay.
+
+
+260
+00:26:44.243 --> 00:26:46.953
+Incoming livestream: I can envision a future where
+
+
+261
+00:26:47.663 --> 00:26:50.463
+Incoming livestream: The cheapest cloud provider gives you the CPUs.
+
+
+262
+00:26:50.813 --> 00:26:59.892
+Incoming livestream: The cheapest cloud provider will give you GPUs, but it may not be the same one, okay? So I would be able to distribute and federate between different clouds.
+
+
+263
+00:27:01.223 --> 00:27:01.983
+Incoming livestream: Yes.
+
+
+264
+00:27:02.143 --> 00:27:04.592
+Incoming livestream: We got time for one more? I'm gonna go right here.
+
+
+265
+00:27:06.283 --> 00:27:09.002
+Incoming livestream: In Natalie's example you gave.
+
+
+266
+00:27:09.383 --> 00:27:18.853
+Incoming livestream: Is it safe to assume that the security offered by confidential computing is only during the model training?
+
+
+267
+00:27:18.993 --> 00:27:24.823
+Incoming livestream: And the reason I ask that is, once this model gets to the hospitals that actually have them.
+
+
+268
+00:27:24.933 --> 00:27:41.682
+Incoming livestream: you know, in the age of model theft and distillation attack, where a teacher model can be used to train a student model, the data can still be stolen, right? You know, I showed you an example of fine-tuning the model, which is kind of training to some degree, right?
+
+
+269
+00:27:42.053 --> 00:27:45.113
+Incoming livestream: There is nothing preventing you to run
+
+
+270
+00:27:45.503 --> 00:27:52.843
+Incoming livestream: a complete inferencing model, inferencing of a model inside a confidential computing environment. So in the case of a hospital.
+
+
+271
+00:27:53.413 --> 00:27:58.153
+Incoming livestream: The model provider will send the fully tuned model to the hospital.
+
+
+272
+00:27:58.423 --> 00:28:02.313
+Incoming livestream: And the hospital can run it in a confidential environment.
+
+
+273
+00:28:02.783 --> 00:28:10.402
+Incoming livestream: wherever they are. They could be on their own private cloud, somewhere else, they can run it in confidential computing. There's nothing stopping you from doing that.
+
+
+274
+00:28:12.553 --> 00:28:15.183
+Incoming livestream: Thanks, everybody. Hopefully that was useful.
+
+
+275
+00:28:23.123 --> 00:28:33.843
+Incoming livestream: If you guys are a speaker coming up, you'll notice as he went over time, I started getting closer and closer to him, so if I get to a point where I touch you, I am gonna interrupt you, alright?
+
+
+276
+00:28:34.373 --> 00:28:35.052
+Incoming livestream: Switch it over.
+
+
+277
+00:29:32.243 --> 00:29:33.223
+Incoming livestream: Alright.
+
+
+278
+00:29:33.473 --> 00:29:41.862
+Incoming livestream: So, welcome to this, the, unprompted, it's gone basement, basement version. Sorry if the screens are a little bit small, you should be able to see everything.
+
+
+279
+00:29:42.033 --> 00:29:51.843
+Incoming livestream: So yeah, thanks for having us, we're really excited to be here at First Unprompted Con. A lot of familiar faces and people doing AI security now who've been doing security forever.
+
+
+280
+00:29:52.883 --> 00:30:00.193
+Incoming livestream: So, it's probably not shocking to this room, but AI can find vulnerabilities now, and it's getting pretty good.
+
+
+281
+00:30:00.333 --> 00:30:14.892
+Incoming livestream: There's, you know, another track just right up here, covering the same subject. And for many of us who have been paying attention to this space, or testing this kind of capability, right, it's been getting better and better for almost a year at this point.
+
+
+282
+00:30:14.893 --> 00:30:22.352
+Incoming livestream: You know, both internal, internal research, as well as academic papers, you know, trusted researchers and everybody have been saying this as well.
+
+
+283
+00:30:22.733 --> 00:30:33.483
+Incoming livestream: And without talking about, you know, specific vendors or specific startups, there's a lot of potential open source solutions, from, you know, more robust projects to, you know, what I'm now calling slopkitties.
+
+
+284
+00:30:34.423 --> 00:30:50.852
+Incoming livestream: And you know, it's no longer just startups, right? There's, you know, solutions from Anthropic, there's solutions from OpenAI, these volunte systems, you know, Big Sleep was mentioned this morning, have been, making good progress within these companies, as well as now offering those solutions to open source.
+
+
+285
+00:30:51.913 --> 00:30:58.533
+Incoming livestream: So LLMs can find vulns, but we really wondered, you know, about 6 months ago, can I also inject volumes?
+
+
+286
+00:30:58.853 --> 00:31:01.023
+Incoming livestream: Enter. Perfect. Marinate.
+
+
+287
+00:31:02.733 --> 00:31:12.073
+Incoming livestream: So as we say in security, right, POC, or, you know, get the fuck out, evals are critical. And, you know, you've heard this a bunch already today, evals, evals, evals.
+
+
+288
+00:31:12.183 --> 00:31:31.933
+Incoming livestream: And really thought, you know, hey, this ability to use LLM agents to, you know, write code, or find vulnerabilities, you know, could we inject them synthetically into a codebase of a given project, and then either test on finding those bones, or test other products that we already have with some ground truth?
+
+
+289
+00:31:32.753 --> 00:31:47.683
+Incoming livestream: And you, of course, can inject to almost any kind of code, right? It doesn't… it can be Python, it can be C, it can be an internal project, it can be a third-party project that you're worried about. And, you know, you can make these vulnerabilities very surface-level and easy to find, or you can make them harder to find.
+
+
+290
+00:31:49.393 --> 00:31:59.332
+Incoming livestream: And so, as a company or a researcher, you know, you might want to… if you're evaluating a certain product or a new solution that's fancy, right, you might want to say, hey, does this…
+
+
+291
+00:31:59.333 --> 00:32:19.092
+Incoming livestream: find vulnerabilities in my codebase. Is it reliable? Is it cheaper? Is it faster? What's the signal-to-noise ratio for what I know are ground truth vulnerabilities now in this codebase? And you can rewind and try older historical, you know, commits or something like that, but that only works for a certain amount of things, or you may only only have a certain amount of code that has that
+
+
+292
+00:32:20.263 --> 00:32:25.973
+Incoming livestream: So let's back up a second. So, I'm Aaron, this is Skylar, we both work at NVIDIA.
+
+
+293
+00:32:26.533 --> 00:32:47.433
+Incoming livestream: And I want to be clear, too, this is building on the shoulders of giants, right? AIACC did a lot of work injecting synthetic vulnerabilities into codebases and part of their cyber challenge, cyber reasoning challenge that, you know, finished this last year at DEF CON. And I don't know if they did that by hand, but we thought, hey, maybe we can be lazy.
+
+
+294
+00:32:47.983 --> 00:33:06.942
+Incoming livestream: So about 6 months ago, right, AI coding agents are getting a lot better, they're getting able to reason about code, and reason about large amounts of code. So we figured, hey, maybe we could just say, insert a few vulnerabilities, and it just would work, right? We just get cloud code, or we get cursor, or we get agent, thing of the week, and, you know, GPUs to the rescue.
+
+
+295
+00:33:07.513 --> 00:33:10.163
+Incoming livestream: But, you know, in sort of a record scratch.
+
+
+296
+00:33:10.163 --> 00:33:30.973
+Incoming livestream: sound. The latest models actually will refuse this quite a bit. And, you know, cyber is dual use, right? I get that that's a hard problem to solve. You know, the OpenAI's Trusted Access is actually, like, a good move in this direction, in letting researchers be able to, have a bit less refusals to do, you know, defensive security research, or approved defensive security research.
+
+
+297
+00:33:31.023 --> 00:33:37.413
+Incoming livestream: And so, that's certainly, you know, a good development. But we also, you'll see that
+
+
+298
+00:33:37.413 --> 00:33:45.673
+Incoming livestream: This isn't something that will work. You can't just say, hey, in search of vulnerability, you know, be better. It'll, you know.
+
+
+299
+00:33:45.673 --> 00:34:08.322
+Incoming livestream: Here, you know, it's adding a very, very simplistic vulnerability, which is, you know, classic string overflow in a, you know, configuration file parsing, which is not really a realistic risk. If you can reload a configuration file, usually you already have control of that machine, or that service, or whatever it would be. So, you know, even with state-of-the-art models, it didn't really go so well.
+
+
+300
+00:34:08.783 --> 00:34:24.903
+Incoming livestream: So, we wrote a bunch of instructions, right, that said, hey, how to do this, what are the attack surfaces, how do you consider, you know, what kind of historical vulnerabilities would be common in this codebase, or with this programming language, or, you know, maybe do some research about open CVEs for this.
+
+
+301
+00:34:24.973 --> 00:34:41.713
+Incoming livestream: And, you know, these instructions, or I mean, sorry, skills, these skills can call other skills, and, you know, these skills end up using… as kind of working as their own form of a jailbreak. So if you have a defined set of skills, and you say, hey, go use these skills.
+
+
+302
+00:34:41.713 --> 00:34:48.263
+Incoming livestream: Instead of putting your prompt, you know, right in the thing, they'll go ahead and they'll follow that, and it works pretty well.
+
+
+303
+00:34:49.653 --> 00:34:55.892
+Incoming livestream: So, we have these skills, they can call tools. It's saving us a lot of time.
+
+
+304
+00:34:56.303 --> 00:35:07.783
+Incoming livestream: And it seems a little bit silly in some ways, to write down your, you know, your process, or whatever it could be into just some Markdown files. But honestly, it works pretty well, and English is, you know, the new coding language.
+
+
+305
+00:35:08.743 --> 00:35:14.913
+Incoming livestream: What's also cool about these state-of-the-art skills and state-of-the-art coding agents is that they can ask questions, right?
+
+
+306
+00:35:14.913 --> 00:35:29.332
+Incoming livestream: you can have a human in the loop and say, yeah, you know, that vulnerability is not quite that realistic. Or, you know, I really want you to change how the difficulty of this is really easy for a scanner to find. I want it to be hard for a scanner to find, to really make sure I'm measuring things correctly.
+
+
+307
+00:35:30.593 --> 00:35:42.063
+Incoming livestream: But the general idea, right, is similar to the progress that you… similar to the process that you might follow, right? Review the application, review the codebase, come up with some way to build it, make sure that it works.
+
+
+308
+00:35:42.063 --> 00:35:53.872
+Incoming livestream: Then go and look at what the programming language is, what kind of typical vulnerabilities are common in that, kind of program age, or is this a client-server architecture, or is this a, you know, SQL engine, or whatever it could be.
+
+
+309
+00:35:54.743 --> 00:36:00.182
+Incoming livestream: And then, of course, you create plans for those things, you follow that process, and you go from there.
+
+
+310
+00:36:00.633 --> 00:36:16.853
+Incoming livestream: Then, we often will have the skill, one of the skills is, you know, creating a diff, for each change that you make, creating a branch for all the modifications and documentation that the coding agent will add to this process, so you can go back to potentially, you know, like, the middle of the process.
+
+
+311
+00:36:18.453 --> 00:36:27.972
+Incoming livestream: And then, of course, each vulnerability, because we can't just believe that these things are going to work, or it'll end up reward hacking, you want to have some kind of verification.
+
+
+312
+00:36:29.193 --> 00:36:32.763
+Incoming livestream: And this process will iterate and loop, and you can go from there.
+
+
+313
+00:36:33.603 --> 00:36:42.733
+Incoming livestream: And then at the end, of course, you have documentation and a report of all the things that were changed, and why they were changed, and it lets you go back and change, you know, if you want to modify something.
+
+
+314
+00:36:43.243 --> 00:37:06.482
+Incoming livestream: But of course, you know, you can't really prompt yourself to perfection, and so there are problems with this kind of architecture, even if we, you know, have spent some time on it, right? Models have bias, there's a lot of lack of ingenuity, you know, there's old information and training data-related things that the models will try to introduce. You saw in that earlier example, right, even with, like, you know, Opus 4.6 or something.
+
+
+315
+00:37:06.483 --> 00:37:11.393
+Incoming livestream: it'll just say, oh, you know, stir copy, we're done, right? It's… no, no.
+
+
+316
+00:37:11.393 --> 00:37:19.382
+Incoming livestream: And you know, they will sometimes refuse, even with the skills, when you get to certain types of vulnerabilities, or certain types of…
+
+
+317
+00:37:19.383 --> 00:37:23.363
+Incoming livestream: You know, proof of concept exploitation and things like that.
+
+
+318
+00:37:23.363 --> 00:37:43.623
+Incoming livestream: So, some of the solutions for those are somewhat obvious, right? Somewhat better prompting, somewhat ways of trying to ground things to reality, and you'll also, find some success in swapping models around, so you might get stuck with one model, switch to a different one, and then, kind of, you can switch back and say, hey, continue on with this, and it'll just keep going.
+
+
+319
+00:37:44.453 --> 00:37:54.822
+Incoming livestream: Reward hacking will also be a problem, right? Here's an example where in an earlier version where, it introduced an XSE vulnerability by just disabling the XSE protection, like, that's…
+
+
+320
+00:37:55.243 --> 00:37:56.873
+Incoming livestream: Not exactly what we meant.
+
+
+321
+00:37:57.193 --> 00:38:09.473
+Incoming livestream: And of course, you know, similar recommendations for this kind of thing, right? Better mo… better models, better planning, and, you know, in some cases, human verification, but that will slow things down.
+
+
+322
+00:38:10.093 --> 00:38:15.603
+Incoming livestream: Another thing you'll often run into is, like, maybe your code has to be compiled in order to assess things.
+
+
+323
+00:38:15.603 --> 00:38:40.333
+Incoming livestream: Or maybe it needs to run in a Docker container to make it easy to get portable. The models, you know, even 6 months ago, would have potentially had problems with this, or got lost, or forget to compile once they made changes. And so this is something that you might run into. However, you know, the latest models are really getting a lot better here. Sub-agents will speed things up a lot, you can do things in parallel, and then, you know, better planning, better setup, generally.
+
+
+324
+00:38:40.423 --> 00:38:41.753
+Incoming livestream: We'll save you.
+
+
+325
+00:38:42.743 --> 00:38:59.313
+Incoming livestream: You'll also sometimes find problems with applications that need some kind of setup, right? Maybe it needs to be, you know, you can modify the codebase, but then you need to click through a bunch of configuration steps, or you need configuration files that need to be generated. The good thing is, you know, AI can just generate all that for us.
+
+
+326
+00:38:59.313 --> 00:39:04.442
+Incoming livestream: Or you can use things like Playwright to automate, you know, browser clicking if you have to kind of go down that path.
+
+
+327
+00:39:06.003 --> 00:39:27.142
+Incoming livestream: You'll also run into, you know, if you're just creating Python scripts for replicating vulnerabilities or something, in some cases, especially on the website, you'll run into cases where, you know, there's a CRSF token that needs to get refreshed for every single time, or there's a different authorization you need to handle, and the model has to keep track of all that, but again, that's something that you can, you know.
+
+
+328
+00:39:27.253 --> 00:39:32.103
+Incoming livestream: document your way into improving, or use things like Playwright browser automation.
+
+
+329
+00:39:32.863 --> 00:39:49.832
+Incoming livestream: And then, you know, one of the core things is just where are the decisions-wise of things, right? So, you know, should you expose some vulnerable attack surface that's already in the app? Because again, for a lot of this, we don't want to be modifying the app to introduce vulnerable behavior, we just want to tweak, like, the smallest amount of code
+
+
+330
+00:39:49.833 --> 00:39:53.382
+Incoming livestream: To keep things as, as, as,
+
+
+331
+00:39:53.383 --> 00:40:07.763
+Incoming livestream: similar to the, like, real app as possible, right? Or should you do things like, maybe we will, you know, modify the surface-level code so it's easy to find, instead of modifying some really deep-down, hard-to-find thing? If you're gonna be evaluating
+
+
+332
+00:40:07.763 --> 00:40:22.432
+Incoming livestream: You know, just a scanner versus, like, a, you know, a human, or a pen test team, or whatever you have. And the nice thing is, you know, with AI, you can just do both, or you can make two, or you can make three, right? Just like the OpenAI, you know, presentation earlier this morning, like, you can just do things.
+
+
+333
+00:40:22.863 --> 00:40:45.873
+Incoming livestream: So in general, from some of the, you know, solutions that make things better, right, you cannot just prompt a few times with cloud code and just get a good result here. You really need the structure, you need various skills to go through and be able to do these things. You will also need to use the latest and greatest models, just because, you know, as we know, right, they're getting better. You'll get better results.
+
+
+334
+00:40:45.993 --> 00:40:58.963
+Incoming livestream: And, yeah, swapping around models, or using, you know, using codecs to do one thing and then creating it again, and using, you know, Opus 4.6 to do another one, you'll get some results. But I'll hand it over to Skylar now.
+
+
+335
+00:41:00.233 --> 00:41:01.242
+Incoming livestream: Thank you.
+
+
+336
+00:41:01.383 --> 00:41:18.033
+Incoming livestream: So I'm gonna go over some of the results that we ran into. A lot of it is just artifacts that are created by this process that inform the agent on how to move forward. We've had good success with a number of different, application architectures, programming languages.
+
+
+337
+00:41:18.143 --> 00:41:24.732
+Incoming livestream: Internal apps, as well as, obviously, open source apps. Those are what we spend most of our time on here.
+
+
+338
+00:41:26.833 --> 00:41:35.253
+Incoming livestream: So, one of the first things that we ended up doing is kind of, on this kind of reiteration, was creating modes that helped us address specific use cases, right?
+
+
+339
+00:41:35.363 --> 00:41:49.933
+Incoming livestream: So obviously there's an interactive mode that's like your human-in-the-loop approach, where you get to direct it and to, prove every single vulnerability that's planned, and its approach, on how it's implemented.
+
+
+340
+00:41:50.353 --> 00:41:57.112
+Incoming livestream: Next you have, like, an OWASP top 10, where it just takes an app and it tries to create a vulnerability from each one of these classes.
+
+
+341
+00:41:57.343 --> 00:42:08.353
+Incoming livestream: And this is basically a way to make your own web goat, if you're familiar with that project. So that's handy for training, but obviously it's, also handy for…
+
+
+342
+00:42:08.743 --> 00:42:15.713
+Incoming livestream: evaluations. Cwes, if you, if you know the specific types of vulnerability classes that you want to target.
+
+
+343
+00:42:15.843 --> 00:42:21.553
+Incoming livestream: Give it the CWE, and it will find an appropriate spot in that code base.
+
+
+344
+00:42:21.673 --> 00:42:24.923
+Incoming livestream: To inject a vulnerability of that class.
+
+
+345
+00:42:25.433 --> 00:42:42.783
+Incoming livestream: And if you want to get more specific, you can give it a CVE and say, emulate this specific vulnerability implementation. And it will go and find, provided it's available source code, it'll go and find it and emulate the structure of that as closely as it can within the target application.
+
+
+346
+00:42:43.363 --> 00:42:48.803
+Incoming livestream: And finally, we have an auto RCE, which is just a way for us to say.
+
+
+347
+00:42:48.953 --> 00:42:58.013
+Incoming livestream: Build a bunch of different vulnerabilities that independently aren't very useful, but can be chained together to ultimately achieve remote code execution.
+
+
+348
+00:42:59.483 --> 00:43:03.112
+Incoming livestream: We also support, like, a number, you can specify the difficulty level.
+
+
+349
+00:43:03.233 --> 00:43:19.243
+Incoming livestream: Easy, medium, hard. Easy, like Aaron mentioned, is something that we don't care if it gets caught by a scanner. Medium, we don't want to be caught by a scanner. So if we do get caught, we'll reiterate over that loop until we can get it passed. And hard…
+
+
+350
+00:43:19.723 --> 00:43:26.342
+Incoming livestream: Try and make it difficult for humans to be able to reason about, using various techniques that make it really hard to find these things.
+
+
+351
+00:43:28.763 --> 00:43:36.032
+Incoming livestream: Alright, so next, we have our build process, that kind of… what kicks off… once we've defined our configuration, we kick off the build.
+
+
+352
+00:43:36.253 --> 00:43:41.523
+Incoming livestream: And we produce some artifacts here that are useful for the rest of the process. We create
+
+
+353
+00:43:41.713 --> 00:43:51.093
+Incoming livestream: I know this is really hard to read, but on the side, you see some scripts that are used to start and stop our application, to run our build tests.
+
+
+354
+00:43:51.203 --> 00:43:56.882
+Incoming livestream: So we run our build test initially to make sure that the build is sound, and that we're working
+
+
+355
+00:43:56.983 --> 00:44:06.913
+Incoming livestream: With a good application. And we use that test later, after each vulnerability injection, to confirm that the functionality is not broken somehow.
+
+
+356
+00:44:09.523 --> 00:44:18.922
+Incoming livestream: And then on the… in the middle, you can see the document that it prepares that describes the build process in detail. It'll refer back to this as it needs to rebuild.
+
+
+357
+00:44:19.023 --> 00:44:20.353
+Incoming livestream: After each injection.
+
+
+358
+00:44:24.763 --> 00:44:43.463
+Incoming livestream: All right, finally, nope. So after we've completed the build process, actually, these can be run in parallel. The next process is an analysis, where we deep dive into the application, try to understand everything we can about it, to make it easier to inject realistic vulnerabilities.
+
+
+359
+00:44:44.063 --> 00:44:58.203
+Incoming livestream: You can see here, or maybe you can't, but I'll describe it. The, executive summary kind of just describes the main components. It goes through all of the plan vulnerabilities, and describes some…
+
+
+360
+00:44:58.553 --> 00:45:02.032
+Incoming livestream: Potential entry points to inject that vulnerability.
+
+
+361
+00:45:05.893 --> 00:45:15.233
+Incoming livestream: It goes, through, and it identifies all of the technology stack, which components are being used, which libraries, which versions. It also tries to group
+
+
+362
+00:45:15.233 --> 00:45:26.682
+Incoming livestream: Functionality into, different categories. So if it's trying to find a place to inject a specific vulnerability, you can use these categories to identify code that might be susceptible to those types of vulnerabilities.
+
+
+363
+00:45:29.733 --> 00:45:33.563
+Incoming livestream: Additionally, it goes through all of the architectural
+
+
+364
+00:45:34.593 --> 00:45:36.423
+Incoming livestream: I feel like we just covered that one.
+
+
+365
+00:45:36.603 --> 00:45:42.883
+Incoming livestream: So then it also describes, like, the main components, and this will change, obviously, to all in your architecture.
+
+
+366
+00:45:43.053 --> 00:45:47.012
+Incoming livestream: But it lays it out, describing each one, how it works.
+
+
+367
+00:45:47.193 --> 00:45:50.303
+Incoming livestream: Enumerates all the endpoints.
+
+
+368
+00:45:50.483 --> 00:45:52.873
+Incoming livestream: And…
+
+
+369
+00:45:53.993 --> 00:46:09.473
+Incoming livestream: data flow patterns. So it'll try it and say, alright, here's how this workflow works when you're trying to fill a database or browse keys in the database. So you can have… so the agent has this information as it's going through, trying to find the best place
+
+
+370
+00:46:09.643 --> 00:46:10.762
+Incoming livestream: To inject these.
+
+
+371
+00:46:13.403 --> 00:46:28.973
+Incoming livestream: More security-related, so it basically just looks for specific security implementation details, authentication, authorization, cryptography, all the different security mechanisms that are present in the application, tries to identify them,
+
+
+372
+00:46:29.083 --> 00:46:30.463
+Incoming livestream: And enumerate it.
+
+
+373
+00:46:31.113 --> 00:46:34.743
+Incoming livestream: And finally, we have, like… well, actually, not finally, but we have some…
+
+
+374
+00:46:35.613 --> 00:46:41.792
+Incoming livestream: external integration. So these are where we… our app integrates elsewhere, which is a fun place.
+
+
+375
+00:46:42.183 --> 00:46:43.553
+Incoming livestream: To inject vulnerabilities.
+
+
+376
+00:46:44.533 --> 00:46:52.002
+Incoming livestream: And then we do a baseline scan, so before we start injecting any vulnerabilities, do a baseline scan to understand what is actually there.
+
+
+377
+00:46:52.123 --> 00:46:54.262
+Incoming livestream: So that we can compare after we…
+
+
+378
+00:46:54.363 --> 00:46:56.832
+Incoming livestream: Inject our vulnerability to make sure it's not detected.
+
+
+379
+00:47:01.583 --> 00:47:20.973
+Incoming livestream: Okay, after that, we build a bunch of functional tests. So we understand the app, we understand the architecture, the components, we understand functionality, what are the common workflows, and we build functional tests, to test this, dynamically, so that we can get confidence that after we inject something, we're not breaking existing functionality.
+
+
+380
+00:47:23.993 --> 00:47:27.202
+Incoming livestream: And there's a… just a specific,
+
+
+381
+00:47:27.583 --> 00:47:32.162
+Incoming livestream: Functionalities documented, key pass to specific source files, that might be interesting.
+
+
+382
+00:47:32.553 --> 00:47:34.802
+Incoming livestream: It also does, like, an architecture diagram.
+
+
+383
+00:47:35.363 --> 00:47:48.652
+Incoming livestream: It's really not that great at it yet, but if you look at it, it's actually fairly accurate, and these are created in Mermaid, so it has a textual representation that it can use to understand relationships between various components.
+
+
+384
+00:47:48.793 --> 00:47:51.252
+Incoming livestream: Without trying to understand.
+
+
+385
+00:47:51.793 --> 00:47:52.912
+Incoming livestream: this diagram.
+
+
+386
+00:47:54.593 --> 00:47:58.722
+Incoming livestream: And then finally, we're ready to… inject some flaws, right? We…
+
+
+387
+00:47:58.873 --> 00:48:02.973
+Incoming livestream: We've done our analysis, we have ideas of what we want to inject, how difficult it should be.
+
+
+388
+00:48:03.073 --> 00:48:09.032
+Incoming livestream: And where we want to try injecting these. You can see here, we have a plan.
+
+
+389
+00:48:09.183 --> 00:48:13.742
+Incoming livestream: To create a chained vulnerability that ends up in our CE.
+
+
+390
+00:48:16.353 --> 00:48:24.333
+Incoming livestream: This is an example of one of the prompts. This is specifically a vulnerability injection prompt, which gives guidance on how to do it, how to make it realistic.
+
+
+391
+00:48:24.443 --> 00:48:31.042
+Incoming livestream: And gives guidelines around Our idea of realistic, like, not touching the tests.
+
+
+392
+00:48:31.223 --> 00:48:37.323
+Incoming livestream: Unit tests, for example. To hide our injected vulnerability?
+
+
+393
+00:48:39.983 --> 00:48:44.533
+Incoming livestream: And once we… Inject the vulnerability?
+
+
+394
+00:48:45.073 --> 00:48:46.123
+Incoming livestream: Sorry.
+
+
+395
+00:48:46.363 --> 00:48:47.583
+Incoming livestream: We,
+
+
+396
+00:48:48.923 --> 00:48:56.782
+Incoming livestream: we document… or sorry, we… we… this is part of the planning phase, sorry, I kind of skipped over it, but you'll notice here, like, we asked for a WASPOP10.
+
+
+397
+00:48:56.873 --> 00:49:10.032
+Incoming livestream: It says, no, only 8 of those categories make sense for this application. I'm only going to move forward and try and inject these 8. The other would be unrealistic, or would require adding additional functionality that wasn't already present.
+
+
+398
+00:49:10.313 --> 00:49:14.633
+Incoming livestream: Now, obviously, you can add additional tack surface, but…
+
+
+399
+00:49:15.043 --> 00:49:18.322
+Incoming livestream: In this case, we don't want it to. We want it to use the existing functionality.
+
+
+400
+00:49:20.093 --> 00:49:26.772
+Incoming livestream: And then once it's defined the implementation, it can do additional things like generate sequence diagrams.
+
+
+401
+00:49:27.293 --> 00:49:33.233
+Incoming livestream: To describe that vulnerability in detail, so that a human can understand exactly how it works once it's injected.
+
+
+402
+00:49:35.973 --> 00:49:46.262
+Incoming livestream: And obviously, injecting these vulnerabilities, is great, but we need to know that this is not a false positive, so we need to validate that that exploit… sorry, that vulnerability is exploitable.
+
+
+403
+00:49:46.503 --> 00:49:51.522
+Incoming livestream: So we generate validation scripts that We'll do that.
+
+
+404
+00:49:51.983 --> 00:49:58.323
+Incoming livestream: We have a critique, sorry, a critic that will critique a vulnerability plan, as well as an implementation.
+
+
+405
+00:49:58.783 --> 00:50:01.503
+Incoming livestream: To make sure that it's aligned with
+
+
+406
+00:50:01.623 --> 00:50:06.453
+Incoming livestream: What we're looking for, and reward… sorry, avoid, kind of, reward hacking.
+
+
+407
+00:50:07.883 --> 00:50:12.682
+Incoming livestream: And once we've done all this, we've confirmed that the injections
+
+
+408
+00:50:12.863 --> 00:50:19.202
+Incoming livestream: are validated, they work properly. We run a vulnerability scan again to identify what we missed.
+
+
+409
+00:50:19.643 --> 00:50:21.372
+Incoming livestream: I'm sorry, what it missed.
+
+
+410
+00:50:22.863 --> 00:50:30.433
+Incoming livestream: And at this point, like I said, if we were setting it to hard or medium, it might have to go back and try again using some of the information about how it was caught.
+
+
+411
+00:50:30.843 --> 00:50:33.082
+Incoming livestream: To do additional evasions.
+
+
+412
+00:50:34.713 --> 00:50:35.383
+Incoming livestream: Alright.
+
+
+413
+00:50:36.643 --> 00:50:39.073
+Incoming livestream: Cool. So let's talk about where else they can go.
+
+
+414
+00:50:39.533 --> 00:50:51.153
+Incoming livestream: So, obviously, this works on source code, but, of course, you can also take it further and have compiled binaries. So you could take your source code, introduce vulnerabilities, compile those binaries, and then test
+
+
+415
+00:50:51.153 --> 00:51:05.803
+Incoming livestream: about, you know, patch diff analysis, or end days, or whatever you're worried about, right? You could test that in this situation as well. You can also marinate more than just source code, right? You could inject into configuration files if you have some kind of security process that's checking those.
+
+
+416
+00:51:05.803 --> 00:51:28.472
+Incoming livestream: you could insert into log files if you want to check for, you know, some detection thing to fire, right? You don't actually necessarily even have to do a red team. You could just synthetically generate one, and then test your system, or test your SOC, or whatever it could be. So that's pretty cool. And then, with a lot of this, right, you enter a world where you have more verifiable rewards, and so you could potentially generate a whole bunch of synthetic training data
+
+
+417
+00:51:28.473 --> 00:51:33.422
+Incoming livestream: from a corpus like this, and then make a better model, so on and so forth.
+
+
+418
+00:51:33.633 --> 00:51:44.102
+Incoming livestream: you know, this system, as we've been using it, is certainly not perfect, right? There are lots of times where it will reward hack, or where we'll have to go back and be more in the loop on a certain type of vulnerability that you want.
+
+
+419
+00:51:44.103 --> 00:51:54.092
+Incoming livestream: And so, obviously, you know, it's getting better. We're playing around with also, like, having layers of reviewers or critics or things like that in order to get things better.
+
+
+420
+00:51:54.093 --> 00:52:00.252
+Incoming livestream: Being able to kick off some kind of deep research as part of an agent would be pretty cool, and so on.
+
+
+421
+00:52:00.933 --> 00:52:15.743
+Incoming livestream: And, you know, I think we want to end on just this fact that, like, right now, right, we're not in cyber Kansas anymore, right? It's very interesting times for the security industry, for the AI industry, and, you know, there's a lot of exciting stuff happening, and yeah, go build things.
+
+
+422
+00:52:24.423 --> 00:52:28.112
+Incoming livestream: I think we have a couple minutes for questions. Absolutely.
+
+
+423
+00:52:28.253 --> 00:52:30.982
+Incoming livestream: Put your hand up if you've got a question. We'll go right here.
+
+
+424
+00:52:35.803 --> 00:52:48.392
+Incoming livestream: Hey, I know you mentioned, about using the newer models because the capabilities are better, but do you think that the problem you were running into earlier around won't generate vulnerable code, like, that'll start to catch up?
+
+
+425
+00:52:48.393 --> 00:53:07.883
+Incoming livestream: on the skills and other newer… Yeah, definitely, that's a good concern. I think that's hope… where I hope, like, maybe some of the, like, OpenAI Trusted Access, right? Where certain companies can get, like, you know, if you, you know, can get potentially approved to have some of the things turned down, right? Or, like, classifiers or whatever, so you don't get an angry email.
+
+
+426
+00:53:07.883 --> 00:53:11.733
+Incoming livestream: And things, but yeah, it'll always be a race of being able to do that.
+
+
+427
+00:53:12.053 --> 00:53:13.473
+Incoming livestream: That's a good question, though, thanks.
+
+
+428
+00:53:17.933 --> 00:53:33.812
+Incoming livestream: Hey, thanks. You talked about realism during the evaluations. How central to, the evaluation metrics are realism? And anecdotally, where on the sliding scale of CTF challenge to, like, real vulnerabilities do you think the phones wound up landing?
+
+
+429
+00:53:33.993 --> 00:53:36.483
+Incoming livestream: Yeah, that's a really good question. So…
+
+
+430
+00:53:36.503 --> 00:53:44.763
+Incoming livestream: I do think, you know, you could do a whole talk, I think, on why we need to go away from CTF-style evaluations and things, and like.
+
+
+431
+00:53:44.763 --> 00:54:07.963
+Incoming livestream: getting away from, you know, damn vulnerable Linux and Juice Jop and all these things, right? So, we focused a lot on trying to make it as real as possible. I think the problem is, yeah, we have our own bias about, like, what's real, or, you know, whatever. I think that's where some of the modes come into play of, like, if you had maybe, you know, we know programmers make similar mistakes again and again, or companies, or frameworks, right? So, you might be able to have a system where you
+
+
+432
+00:54:07.963 --> 00:54:12.343
+Incoming livestream: Say, like, hey, here's the last, like, 4 vulnerabilities in this product.
+
+
+433
+00:54:12.343 --> 00:54:23.252
+Incoming livestream: make a fifth one that's very similar to these, right? So, it's certainly, like, it's something we've been playing with, but it's not super easy, because, you know, LLMs
+
+
+434
+00:54:23.283 --> 00:54:24.483
+Incoming livestream: Only know so much.
+
+
+435
+00:54:25.173 --> 00:54:39.482
+Incoming livestream: Thanks. I guess the next question's from me, which is related to that, like, companies write a lot of the same software over and over and over again. Do you find over time you guys spend more time dealing with separate prompts, separate context on anti-reward hacking, making sure it's not just saying, hey, I did a great job?
+
+
+436
+00:54:39.873 --> 00:54:51.973
+Incoming livestream: It's gotten a lot better. Like, 6 months ago, you had to babysit and be, like, human in the loop a lot. Now, especially for, you know, like, certain types of codebases or certain types of problems that you're introducing.
+
+
+437
+00:54:51.973 --> 00:55:09.973
+Incoming livestream: It'll, you know, it can really go on its own. The one where it still sometimes will do nonsensical stuff, especially, like, the, the, like, chaining, vulnerability chaining, you're like, this is, this, I would not exploit this and then exploit that, like, that doesn't really make sense. But some of the other more, like, simple modes are pretty, pretty reliable.
+
+
+438
+00:55:12.683 --> 00:55:14.373
+Incoming livestream: I think we can probably take one more.
+
+
+439
+00:55:15.033 --> 00:55:26.272
+Incoming livestream: It seems like you've built the perfect tool for inserting backdoors into existing codebases through malicious pull requests. Have you tried leveraging this in an offensive capacity? No comment.
+
+
+440
+00:55:27.093 --> 00:55:28.343
+Incoming livestream: Thanks a lot, guys.
+
+
+441
+00:57:27.613 --> 00:57:35.452
+Incoming livestream: Hello? Hello? Oh, there we go. I will say, hey guys, I love the conversation, but if you are gonna talk, I would ask you go around the corner.
+
+
+442
+00:57:36.013 --> 00:57:38.372
+Incoming livestream: We got a coffee break coming up after this talk.
+
+
+443
+00:57:39.393 --> 00:57:41.352
+Incoming livestream: We can just flood this room after that.
+
+
+444
+00:57:43.763 --> 00:57:45.432
+Incoming livestream: Technical difficulty here.
+
+
+445
+00:59:05.123 --> 00:59:08.593
+Incoming livestream: There's, no way to make that slightly bigger, or, full screen? No?
+
+
+446
+00:59:13.153 --> 00:59:20.933
+Incoming livestream: Alright, thanks everyone for, the technical difficulties. I really appreciate the AV staff here. I'll just get started, and we'll just, we'll just work with what we got.
+
+
+447
+00:59:20.933 --> 00:59:35.152
+Incoming livestream: Hey everyone, thanks for coming to my talk. I'm Matt Maisel, I'm CTO and co-founder of Sendera. We're building trustworthy, agent partners. And I've spent the last 15 years at the intersection of machine learning, security, and software engineering.
+
+
+448
+00:59:37.273 --> 00:59:44.353
+Incoming livestream: Today, I'm going to be showing you how we can hook coding agents and adjudicate their actions using the CDER policy language.
+
+
+449
+00:59:44.993 --> 01:00:02.382
+Incoming livestream: And if you're in this, track today, there's a lot of good background material. This is a lightning talk, so we're gonna move really fast. We're actually gonna unroll the coding agent loop and build a policy harness all within the next 10 minutes. So, coding agent scaffolds, plan, generate, execute code, and run tools in loops.
+
+
+450
+01:00:02.423 --> 01:00:11.423
+Incoming livestream: We can map this action space into the trajectory event model that consists of, five, four, event types, actions, observations, control, and state.
+
+
+451
+01:00:11.523 --> 01:00:19.932
+Incoming livestream: Let's say an agent's maybe already working on some coding task, it's had a plan, it's going and generating code, triggering actions. So starting at the bottom left.
+
+
+452
+01:00:19.933 --> 01:00:32.112
+Incoming livestream: We have, the agent initiating actions, such as writing or modifying files, running shell commands, executing code, and these actions are all, mutating the environment that that agent's operating in.
+
+
+453
+01:00:32.123 --> 01:00:37.883
+Incoming livestream: The environment then emits an observation, back to the agent, providing feedback to the next model inference call.
+
+
+454
+01:00:39.493 --> 01:00:55.003
+Incoming livestream: Meanwhile, we also have control events, right, that handle user prompts, permission requests, sub-agent, agent orchestration, and then we have state events that handle, mechanics like memory compaction, pruning, environment snapshots, and so forth.
+
+
+455
+01:00:55.613 --> 01:01:14.203
+Incoming livestream: So, with this event model, we can actually take our now-canonical lethal trifecta threat model and map it to these trajectory events, and we can see that this just becomes, untrusted input, right, coming from things like skills, which might be fetched, you know, over web fetch, coming from a marketplace, and returned as an observation, right, as untrusted data, which might have injections.
+
+
+456
+01:01:14.223 --> 01:01:31.102
+Incoming livestream: We might already have sensitive data, like source code or internal docs, in the agent context or retrieved from memory. And then, through state changes, right, to make this complete lethal trifecta, we would have, like, shell commands or code execution, right, that would, would lead to exfill of that data.
+
+
+457
+01:01:31.103 --> 01:01:47.373
+Incoming livestream: But this is just one narrow threat model, data exfil, and with this trajectory model, we can do, we can do more complex, even multi, multi-step attacks, right, that are, going to have observations and actions over multiple turns of the loop that might involve, control events and state events.
+
+
+458
+01:01:47.683 --> 01:02:04.102
+Incoming livestream: And we can also map other threat and risk models, like OWASPOP10 for Agentic applications to this. And this is really just looking, helping us really map where we want to have control over the exact boundaries around these events and where they're produced. And this is where, reference monitors, come in.
+
+
+459
+01:02:04.223 --> 01:02:23.812
+Incoming livestream: So, we want a reference monitor sitting outside the agent and the model, right, to mediate every event. Ideally, this monitor is always invoked, it's tamper-proof and verifiable, so it acts as our hard security boundary between the agent control, observation, action, and state events, and where they're, you know, produced by the agent and by the system and the environment.
+
+
+460
+01:02:23.833 --> 01:02:35.442
+Incoming livestream: But a reference monitor by itself, it's only as good as the policy enforcement, points that it supports, right, where we can exert our control and where we can hook in. And that's, again, that's where, where agent coding hooks come into play.
+
+
+461
+01:02:36.013 --> 01:02:49.972
+Incoming livestream: So hooks allow us to intercept these trajectory events, process them, decide whether to allow, modify, or stop the agent's loop, so we're changing the agent's behavior. And this is invoked at different lifecycle stages of the agent loop.
+
+
+462
+01:02:49.973 --> 01:03:01.082
+Incoming livestream: And each coding agent implementation has its own details. Gemini CLI, for example, has before and after model hooks, which lets you stream individual tokens and do processing on them.
+
+
+463
+01:03:01.083 --> 01:03:20.962
+Incoming livestream: Cloud Code doesn't, actually have any model hooks at all, other than the final agent response, that's returned as a notification event type. And then Cursor has, pretty granular hook types for MCP, shell commands, as well as more generic tool calls. So with these hook lifecycle events, again, at each of these key event types.
+
+
+464
+01:03:20.963 --> 01:03:27.262
+Incoming livestream: We now have a policy, enforcement point. Now we need a way to express policies around this model.
+
+
+465
+01:03:28.033 --> 01:03:40.123
+Incoming livestream: So, we're choosing Cedar, in this implementation, to authorize these trajectory events and really the actions of the agent, and we're invoking that, processing and authorizing, whenever each hook event's triggered.
+
+
+466
+01:03:40.123 --> 01:03:58.522
+Incoming livestream: So CEDAR is a policy language that's expressive, fast, and analyzable, thanks to its formal properties and use of the lean symbolic compiler. Unlike other policy languages like Rego, CEDAR policies can be analyzed through these formal methods to check for contradictory, vacuous, or other shadow policy subsets.
+
+
+467
+01:03:58.583 --> 01:04:17.952
+Incoming livestream: And Cedar also has a nice, support for permission models, like attribute-based access control, which maps nicely, nicely to this domain. So you can see an example of this by looking at this, shell command action and context type in the middle, where we can see different schemas, for the entities, like agent and user and trajectory.
+
+
+468
+01:04:17.953 --> 01:04:33.063
+Incoming livestream: And this is where we can add attributes with signature tags, or data sensitivity classifications, and other attributes that might come from safety models or other guardrails that we're using, right, to compute values and compute attributes for these policies.
+
+
+469
+01:04:33.973 --> 01:04:48.063
+Incoming livestream: And policies don't just need to be security-oriented, they can also be, for agent behavior. So this is, it turns out, in fact, that Claude Code lets you write files while in plan mode. So we can have policies that look for this type of behavior.
+
+
+470
+01:04:48.063 --> 01:04:56.452
+Incoming livestream: And when permission mode is set to plan, in which this is coming that's specific to Claude Code actions, we can check to see if it's planned, we can forbid the right.
+
+
+471
+01:04:56.453 --> 01:05:04.632
+Incoming livestream: Unless that it's the actual plan file that it's writing to. So at Sendera, we covered this, actually, in detail in some research that we released yesterday.
+
+
+472
+01:05:04.923 --> 01:05:20.133
+Incoming livestream: Finally, we can also source policy content from our agent context itself, so, like, CloudMD or Cursor Rules files, and we can take, some of the, security and permissions intent, right, in these files, and formalize them as Cedar policies.
+
+
+473
+01:05:20.133 --> 01:05:37.712
+Incoming livestream: And in this example, we're forbidding the agent from performing shell executions based off of pattern matching on certain commands, destructive commands, or retrieving of certain environment files. So this one, we have our policies. The next step is setting up policy decision points to have our hook events trigger.
+
+
+474
+01:05:37.773 --> 01:05:53.432
+Incoming livestream: So let's build up now, part by part, a hook-based harness. So, we have our local adapters, which are commands that are run by the coding agents. They intercept these hook events, over standard in, they transform them into a trajectory event model, and then send them to a local harness service.
+
+
+475
+01:05:53.453 --> 01:06:11.552
+Incoming livestream: Inside the harness service, we have our policy, a CDER policy engine that extracts the entities, processes them against, you know, any guardrail, so it's kind of meant to be bring your own guardrail. But currently, we have YARA signatures, information flow control models, and a safety model. And then, from these results, we also update the entity and trajectory stores.
+
+
+476
+01:06:11.553 --> 01:06:15.612
+Incoming livestream: For Staple Bookkeeping about information about the entities that we're observing.
+
+
+477
+01:06:16.323 --> 01:06:32.772
+Incoming livestream: Writing Cedar policies can be tedious, but again, thanks to its formal properties, we can generate them with models and then verify and analyze them with built-in language tools. So, we can have a policy agent, that helps us author and validate when given policy features and context over MCP tools.
+
+
+478
+01:06:32.983 --> 01:06:40.163
+Incoming livestream: So finally now, we have this complete, harness, that's, hook-based. So let's, let's kind of go through a few examples of this.
+
+
+479
+01:06:40.953 --> 01:06:42.303
+Incoming livestream: So…
+
+
+480
+01:06:44.203 --> 01:06:56.042
+Incoming livestream: First, we'll look at, some, policy generation. So we have a skill that's shipped with this that just has the procedural knowledge about Cedar, and some instructions on how to call these different tools that are exposed.
+
+
+481
+01:06:56.113 --> 01:07:08.392
+Incoming livestream: So, first we have the agent actually fetch the available context and values, right, that are available for these entities, and maybe we're just gonna start writing a policy, and we'll tell it to go write some policies for shell injection.
+
+
+482
+01:07:08.393 --> 01:07:16.152
+Incoming livestream: We can see some examples that are returned around the entity types that are available from the schema. We can see different, context types.
+
+
+483
+01:07:16.153 --> 01:07:28.492
+Incoming livestream: And, if we keep going up here, too, we can also see different entities, actually, for the… these are label values for information flow control, so the sensitivity labels that we'll be looking at, as well as the categories from our policy model that we expose.
+
+
+484
+01:07:28.493 --> 01:07:36.912
+Incoming livestream: In this case, it's policies around secure code generation, and then, the various YARA signature categories that we have in our YARA rule set.
+
+
+485
+01:07:37.613 --> 01:07:54.353
+Incoming livestream: So let's look at, some more examples of this. So here's a, a blocking of a destructive, command, a destructive action, so maybe we have some Cedar policies that, you know, look for SQL mutations that don't have any constraints, so in this case, like a delete from users without a where clause.
+
+
+486
+01:07:54.403 --> 01:08:05.203
+Incoming livestream: So we can tell Claude to go run this. We can stop this and bring back, bring back the policy violation and context, for the agent then to use to either steer, or for a review by the user.
+
+
+487
+01:08:05.383 --> 01:08:22.212
+Incoming livestream: We can also do, again, more sophisticated multi-turn things here with the stateful bookkeeping. We have, we can do information flow control, where maybe in this, in this case, we're using Gemini CLI. Maybe Gemini, we have, like, a name, a date of birth, and an address, right, some PII.
+
+
+488
+01:08:22.213 --> 01:08:34.902
+Incoming livestream: we can track that type of highly confidential PII and taint the trajectory, so that way on subsequent turns of the agent, when maybe it's gonna go do a web fetch or run some network command.
+
+
+489
+01:08:34.903 --> 01:08:47.602
+Incoming livestream: and we know that that trajectory has sensitive information in the context, we can dynamically restrict access to those tool calls. So we'll see here very shortly this web fetch, to Google, here fail, and…
+
+
+490
+01:08:47.803 --> 01:08:52.062
+Incoming livestream: We'll, we'll turn back, return back a context again, in a similar way.
+
+
+491
+01:08:52.173 --> 01:08:58.792
+Incoming livestream: And again, these are just the policy examples here on the side, where the actions web fetch, and we see the trajectory resource label.
+
+
+492
+01:09:00.433 --> 01:09:15.773
+Incoming livestream: Finally, we'll look at this last demo with Cursor. So, this is demonstrating an instance of Lethal Trifecta, where, let's say we have a skill from a public marketplace that helps us generate code metrics to tell us how good of coders we are.
+
+
+493
+01:09:15.772 --> 01:09:25.582
+Incoming livestream: Unbeknownst to us, there's this metrics.python script in here that does some environment variable harvesting, and then, does some, does some requests to send that data out.
+
+
+494
+01:09:25.583 --> 01:09:35.833
+Incoming livestream: So we can actually, analyze that, command, event, the shell command event, and process the metrics.py file, and run it against all of our guardrails, our signatures.
+
+
+495
+01:09:35.833 --> 01:09:40.212
+Incoming livestream: And again, have that context available to us in our policy to block it.
+
+
+496
+01:09:40.563 --> 01:09:45.552
+Incoming livestream: So, wrapping us up, because again, this is a rapid tour.
+
+
+497
+01:09:45.563 --> 01:10:01.373
+Incoming livestream: First, I'm leaving you today with an open source Cedar policy engine that's integrated with these various coding agent hooks. This is a deterministic policy engine that's outside the model, so, you know, we don't have to simply rely on safeguards or instructions and prompts.
+
+
+498
+01:10:01.423 --> 01:10:17.453
+Incoming livestream: This complements, other defense-in-depth systems, like sandboxes or permission systems. Right? Permission systems can induce consent fatigue and have missing context. Sandbox systems might be overly restrictive, and we can get, the trajectory context here in our policy engine.
+
+
+499
+01:10:17.453 --> 01:10:37.252
+Incoming livestream: Some challenges, there is a, of course, sort of this Goldilocks policy zone, where we still have to optimize our policies, you know, depending on the context of the agent. So we don't want overly restrictive policies that cripple the utility, and then we also don't want brittle pattern matching on certain signature, certain, destructive commands, as an example, that could invite policy hacking.
+
+
+500
+01:10:37.253 --> 01:10:43.592
+Incoming livestream: So this is an area where we have some ongoing research with optimization and, guardrail latency benchmarking.
+
+
+501
+01:10:43.643 --> 01:10:55.213
+Incoming livestream: So we also have, policy scalability, right? The policy agent can help us, with the formal tools provided over MCP, with the ability to, do agent-assisted policy generation.
+
+
+502
+01:10:55.213 --> 01:11:11.312
+Incoming livestream: And then finally, just touching on, you know, more, the next, kind of future of, like, maybe multi-turn, stateful policies, you know, Cedar is inherently stateless, but because of the, entity and trajectory store, we can do bookkeeping about the entities that we observe and the trajectory over time.
+
+
+503
+01:11:11.313 --> 01:11:23.832
+Incoming livestream: And allow us to expose those attributes as dynamic attributes, but there's other logic systems, like temporal, linear logic, and others that, have more support for those types of operations over time, over trajectories.
+
+
+504
+01:11:23.932 --> 01:11:33.533
+Incoming livestream: So with that, thanks for your time. Here's the QR code to the, the GitHub repo with this work. Happy to take questions and, and talk afterward as well, too.
+
+
+505
+01:11:41.403 --> 01:11:43.153
+Incoming livestream: Anyone have questions?
+
+
+506
+01:11:46.063 --> 01:11:52.752
+Incoming livestream: Regarding the IFC model, are you tagging the datas, or the labels of the data, using AI?
+
+
+507
+01:11:52.793 --> 01:12:12.352
+Incoming livestream: Yeah, so this is a, a safety model. This is the GPT Safeguards, 20 billion model that has, like, a policy, like, basically policies that you provided as examples for your sensitivity labels. So that's how that classification's done. It could be from another DLP system, from another data classification system, for that, for that label, for that information.
+
+
+508
+01:12:12.553 --> 01:12:24.183
+Incoming livestream: Okay, and this is labeling on the entire data instead of, like, some segment of… So this is labeling on the events themselves, with whatever data is retrieved, or whatever event is present in the events themselves.
+
+
+509
+01:12:31.033 --> 01:12:41.223
+Incoming livestream: Great talk, thank you very much. So, quick questions, you… you write these policies, in some language, that's fine, but,
+
+
+510
+01:12:41.223 --> 01:12:55.462
+Incoming livestream: who decides what should the policy be for a given agent? The authors of the agents decide it, and in terms of the implementation, not the model as much as the implementation of the agents, do you put them in the pre-post hooks of the…
+
+
+511
+01:12:55.463 --> 01:13:01.612
+Incoming livestream: Of the tool calls, and the agent, LLM calls, and that sort of stuff.
+
+
+512
+01:13:01.743 --> 01:13:13.583
+Incoming livestream: If you can get some under-the-hood details. Yeah, so I kind of alluded to it a little bit, but this is where I think context from your CloudMD or your cursor rules files, like, we're already putting a lot of, sort of permission and security intent in there.
+
+
+513
+01:13:13.583 --> 01:13:28.523
+Incoming livestream: You know, so you might be on an engineering team where there's certain files or certain operations on infrastructure, and again, we're… again, we're making this trade-off of giving the agent more access, and giving more utility to do useful things for us, and then trying to dynamically determine when to revoke that access, right? It's the whole least privileges thing.
+
+
+514
+01:13:28.523 --> 01:13:40.663
+Incoming livestream: But yeah, like that, the idea there would be, it would be per team, that could be in your Markdown files, or it could come from your policy documents, you know, for your engineering best practices or operating practices in your environment.
+
+
+515
+01:13:44.683 --> 01:13:46.972
+Incoming livestream: I'm sorry, sorry, I couldn't hear, hear the question.
+
+
+516
+01:13:49.823 --> 01:14:02.512
+Incoming livestream: Identity, yeah, so identity is not, covered in here, but, any IDP could be added in here, like, this is, like, Cedar's sort of bread and butter, so that also could be used as well, too. We focus on the attribute-based, access control, in this, in this work.
+
+
+517
+01:14:14.803 --> 01:14:24.822
+Incoming livestream: Hey Matt, great talk. I'm curious, how does Cedar Policy Engine work with first-party agents? Whether it's based on Langchain.
+
+
+518
+01:14:24.823 --> 01:14:39.553
+Incoming livestream: Copilot Studio, stuff like that. Yeah, so, we also open source, a Cedar Policy Engine for, like, any, right now supported Python libraries, like Lang Chain, Strands, ADK, and others. But yeah, so it could also be embedded within those first-party agents as well, too.
+
+
+519
+01:14:39.993 --> 01:14:40.673
+Incoming livestream: Right.
+
+
+520
+01:14:43.753 --> 01:14:44.683
+Incoming livestream: Anybody else?
+
+
+521
+01:14:47.753 --> 01:14:50.183
+Incoming livestream: Matt had a lot of time, he finished up early.
+
+
+522
+01:14:50.993 --> 01:15:09.763
+Incoming livestream: Hey, Matt, thanks for the talk. You mentioned kind of towards the end how this is complementary with, like, a permission system. Could you just talk about that a little more? Yeah, so I think a good example would be, like, in Cloud Code permissions, right? You might, have Bash, and you might, again, similar to maybe what some of those Cedar policies where you're wildcarding on certain commands.
+
+
+523
+01:15:10.013 --> 01:15:22.032
+Incoming livestream: Great, you can still do that, but with Cedar, you can have more, context, you can have more, you can allow permissions, but only when the trajectory's not tainted with, some information flow control, label. So, that would be one example.
+
+
+524
+01:15:22.433 --> 01:15:23.283
+Incoming livestream: Thanks.
+
+
+525
+01:15:24.873 --> 01:15:27.063
+Incoming livestream: Anybody else? Oh, there we go, down front.
+
+
+526
+01:15:34.513 --> 01:15:59.063
+Incoming livestream: You mentioned, using this bookkeeping across multi-turn conversations. Have you experimented with multi-agent architectures, where you have, like, convergence and divergence of trajectories? So, I think this is where it gets, kind of… this is a single agent, like, focused on single agents right now, but the, the sort of control event types is that place where you can see when another agent's spawned, like a sub-agent's created, or maybe there's more, like, agent-to-agent communications.
+
+
+527
+01:15:59.253 --> 01:16:16.493
+Incoming livestream: So, as far as, like, thinking of this as a, another, another, like, agent-to-agent sort of, boundary, policies that may be, again, more, like, contextual integrity, like, sort of use cases of an agent that knows one secret, you can't let other agents in the environment know that secret. This could be another, another mechanism, but, that work is not to be done yet in this work.
+
+
+528
+01:16:21.373 --> 01:16:23.163
+Incoming livestream: Alright, thank you very much, Matt.
+
+
+

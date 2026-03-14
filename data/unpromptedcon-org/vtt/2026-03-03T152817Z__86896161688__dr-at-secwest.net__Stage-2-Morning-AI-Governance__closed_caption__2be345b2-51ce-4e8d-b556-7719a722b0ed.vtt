@@ -1,0 +1,1238 @@
+WEBVTT
+
+1
+00:02:14.245 --> 00:02:21.245
+Testing, testing, no audio, can't hear anything. Hello, hello.
+
+
+2
+00:02:21.245 --> 00:02:46.245
+Audio? Great, thank you. Yes, please. Hello, hello. Testing, audio, audio, nothing on this one. Hi.
+
+
+3
+00:02:46.245 --> 00:03:03.245
+Okay, great. All right, well, we're already behind schedule. Gotti didn't mention this, but I do want to point out, this is a community conference. What does that mean? It's a volunteer organized conference. There are designated volunteers, you'll see those with this, okay?
+
+
+4
+00:03:03.245 --> 00:03:20.245
+Um, but, this is a community conference. What does that mean? You're all part of the community. If you see something that needs, uh, help or whatever, please, just jump in. It's… we're all part of this community, we're all trying to learn, we're all trying to make this as a successful event, and you are a part of that.
+
+
+5
+00:03:20.245 --> 00:03:25.245
+As well. So please, you know, if you feel like you need to jump in and help.
+
+
+6
+00:03:25.245 --> 00:03:40.245
+Yes, okay. So actually, thank you very much. I just asked the group, the volunteer group, hey, can I just get — if anyone is in the Slack channel already, try to generate an invite and just share it with one another.
+
+
+7
+00:03:40.245 --> 00:03:56.245
+No, he speaks. I'm gonna try to do that too, and then I'll just walk around and give people the QR code. Uh, but if you are already in, just show your neighbor the QR code to get in, and that will be helpful, too. Okay, I don't want to take up too much more time, I'm going to turn it over to Millie for him to share.
+
+
+8
+00:03:56.245 --> 00:04:09.245
+Uh, establishing AI governance. Over to you. All right. Do you guys want to switch over to my laptop?
+
+
+9
+00:04:09.245 --> 00:04:24.245
+All right. So, welcome to the basement. Um, you know, it was interesting first walking down here after it's so big and beautiful up there. Coming down here, I'm like, I'm going to the right place. But the acoustics are better.
+
+
+10
+00:04:24.245 --> 00:04:43.245
+So anyways, um, I'm gonna talk a little bit today about establishing AI governance without stifling innovation. I'm going to have to kind of give a little bit of a background about it, because I work for a company called Triple F Enterprises, which most probably no one's ever heard of. And so I'm going to kind of explain what we do, which kind of not software development, right?
+
+
+11
+00:04:43.245 --> 00:05:02.245
+Um, as well as, you know, kind of our method kind of went through how we originally met with the different executive teams, met with outside consultants, and started to develop an AI roadmap, and then realizing we needed governance, and thought we were handling it well, and then kind of ran into some issues where we're like, okay, this is what we would have done differently, and hopefully those lessons learned are helpful for you guys.
+
+
+12
+00:05:02.245 --> 00:05:21.245
+So… A bit about FFF Enterprises. Uh, we're basically like a baby McKesson, where a $5 billion, like, pharmaceutical distribution company, but we also have IoT mini-fridge devices, kind of like a Vegas mini-fridge, but with drugs in them.
+
+
+13
+00:05:21.245 --> 00:05:31.245
+At pharmacies and hospitals. We have a couple different software divisions. We actually have an online pharmacy. We have nurses that go do, um.
+
+
+14
+00:05:31.245 --> 00:05:42.245
+Like, IV drugs and things like that, but we focus on specialty drugs, which is a whole area of pharmacy, so we don't compete that much directly with, uh, you know.
+
+
+15
+00:05:42.245 --> 00:05:58.245
+the big three. Um, but that kind of giving you a background of kind of our size, and us not being software-forward, right? Because we were not really tech-forward, we're just distributing things, taking orders by fax and things like that back in the day, but we're trying to really move to have tech, kind of.
+
+
+16
+00:05:58.245 --> 00:06:05.245
+Really kind of help us out in the future and where we want to go.
+
+
+17
+00:06:05.245 --> 00:06:12.245
+Did you guys… is there a… hey, guys in the back, is there a way to start the clock?
+
+
+18
+00:06:12.245 --> 00:06:36.245
+Oh, it just popped up. Perfect. Thank you. No, it's going now. I just want to make sure I don't talk too much, which I like to do, so… Alright, so, but now we're kind of using tech to our advantage. Myself, I started very tech-forward. You know, my first IT job was helping people connect to dial-up, and it just kind of cascaded from there, uh, where I was a network engineer, network administrator, managed IT departments, got into cybersecurity.
+
+
+19
+00:06:36.245 --> 00:06:51.245
+swung over to GRC for a while, and then… but everything kind of really came back, maybe except… maybe not dial-up, but, you know, to help me out as the CISO over here at Triple F Enterprises, and I've been there for a little over 5 years.
+
+
+20
+00:06:51.245 --> 00:07:21.245
+So our original roadmap. So my boss is the CIO, and he went out, you know, with… Grab a consulting firm, like, let's AI, you know? And he came in and worked with these people, they sat down with different VPs and different folks, not me. And they came up with, like, we have these 40 AI projects, and PMO was like, we'll release them in five waves, and we'll have everything, this is in 2025, we'll have everything done by 2027.
+
+
+21
+00:07:21.245 --> 00:07:39.245
+Um, so, I mean, we had use cases across the board, like, within HR, with our pharmacy distribution, within our pharmacy itself, where I can explain one of them's pretty cool later, um, but that's dealing with PHI. We had sales, finance, so a lot of different types of data, and, you know, I was kind of like, you know.
+
+
+22
+00:07:39.245 --> 00:07:49.245
+I come and see the presentation, you know, at the end of the… from what the consultants did, and I'm like, uh, we got a problem, guys. Like, we haven't really thought this out.
+
+
+23
+00:07:49.245 --> 00:08:05.245
+So, kind of first way I kind of started doing this was, like, okay, well, let's get, like, proposed kind of a tiered governance platform, right? So we kind of have the head of the governance committee, which is myself, the CIO, our general counsel, our chief compliance officer.
+
+
+24
+00:08:05.245 --> 00:08:21.245
+And these are the kind of, like, the top level. You know, we're out there pushing down policies, we're talking about ethics, we're really trying to focus on regulatory, you know, obviously me on the security side, but we kind of wanted to shrink that down a bit farther, and so we created kind of an AI center of excellence there.
+
+
+25
+00:08:21.245 --> 00:08:41.245
+And that's kind of more VPs and director levels, some special managers, uh, those are the guys in charge of data science are sitting on that board, people inside the infrastructure that are building it, um, you know, we have HR sitting there as well, because they've been really helpful for us on enablement and training, right? Because not everybody is excited about hearing about.
+
+
+26
+00:08:41.245 --> 00:08:54.245
+AI is taking your jobs, because that's what it says everywhere, right? So they're like, no, it's not going to do that. So we're like, we're trying to, like, show people on kind of ways that we kind of do it around to, like, make them excited about it. Um, so HR has been very helpful for that.
+
+
+27
+00:08:54.245 --> 00:09:04.245
+Um, and then they were kind of working in that area on standardized practices, shared services, um, you know, working along with me of controls, but getting more and more specific as we go down.
+
+
+28
+00:09:04.245 --> 00:09:23.245
+And, you know, in the future, what we're hoping to is kind of have a catalog of, you know, different use cases that we kind of shift between the departments and stuff like that, and kind of have an AI review board, like an agent checkout, so to speak, right? And so the smaller level area where a manager might just be able to go reach out.
+
+
+29
+00:09:23.245 --> 00:09:38.245
+to somebody on the AI Center of Excellence, and just check out that use case, and there's not a lot of stuff doing it there. So if you think about it, too, another way to look at that is kind of on the risk level, right? So, anything that's looking very risky.
+
+
+30
+00:09:38.245 --> 00:09:56.245
+Like we're touching PHI, if there's a lot of PII, it starts getting pushed up to the higher committees. And my security architect, who's on the Center of Excellence board should be pushing things, helping to push things to me, VP of pharmacy work with PHI.
+
+
+31
+00:09:56.245 --> 00:10:09.245
+ethical stuff with HR, all those kind of… so the further the risk, the higher up it goes. That's the idea, and so that's what we try to start putting together, um, because the goal of AI governance is to balance the value and the risk.
+
+
+32
+00:10:09.245 --> 00:10:17.245
+Some of the other things we kind of looked at there is we saw those 40 use cases, and we're like, this is a lot.
+
+
+33
+00:10:17.245 --> 00:10:30.245
+you know, like, and how do we even know what's gonna be good, what's gonna be, you know, really, in whose case where we're gonna find that value? Or are we just wasting time and money and putting ourselves at risk?
+
+
+34
+00:10:30.245 --> 00:10:49.245
+Sorry. All right. Alright, how about the wall? Now I can't read, so… I'm sorry, you know what?
+
+
+35
+00:10:49.245 --> 00:10:59.245
+Alright, we'll see. We'll figure it out. I'll keep moving around. I might be standing underneath something, who knows?
+
+
+36
+00:10:59.245 --> 00:11:29.245
+All right, I got you. All right. Yeah. It's the basement thing, and then, you know, you gotta be the first guy to kind of test out everything, so, um… Yeah, I stand, right. Alright, so… you know, maybe just to stand right where the mic stand is, you know, like, where it's supposed to stand. But so we first decided like, well, we need to create intake forms, you know, include different things to look at, you know, expect we wanted to make sure that people would like have an idea what their process is now.
+
+
+37
+00:11:29.245 --> 00:11:42.245
+What the metrics they wanted to be in their future. We didn't kind of get that far in depth the first time around, we're just like, oh, we'll have some risk assessments, you can just tell us how… we'll kind of judge on how much technical work it's gonna be. Uh, you know, you tell us what you're expecting.
+
+
+38
+00:11:42.245 --> 00:12:08.245
+You know, and we also, you know, we provided training for folks, you know, that we didn't realize how depth it would have to go. You know, we wanted to have controls, embedded controls and system design, so… Access controls is one thing that we want to make sure that the agents or the people have, like, just the right amount of access, and how are we going to do that? We went with, like, how we're gonna monitor everything, let's put that together, can we kind of see what's going on?
+
+
+39
+00:12:08.245 --> 00:12:13.245
+Um, and then, you know, we wanted to be able to eventually, and this is kind of.
+
+
+40
+00:12:13.245 --> 00:12:18.245
+you know, we're running. At the same time, we're still already moving forward with a couple use cases.
+
+
+41
+00:12:18.245 --> 00:12:24.245
+And, you know, we want to understand how to audit them later, and how to alert on any issues that we're running into.
+
+
+42
+00:12:24.245 --> 00:12:40.245
+Um, and so, initially, we're like, what we need to do is kind of focus on, one, control plane, you know, of what we want to do, you know, you know, we didn't, you know, go build an MCP server or anything, but we have Databricks. So, they're like, we're gonna funnel almost everything we can.
+
+
+43
+00:12:40.245 --> 00:13:06.245
+Through Databricks, right? Outside of, you know, if people want to use, you know, a chat bot, we're gonna put all that aside with Copilot and Microsoft, because… Again, $5 billion company. We have the money for fancy software, and we're a Microsoft shop. So kind of forced into that there. So we kind of set these things up thinking, okay, this should be enough, right? This should really help us to go forward. We've thought about it.
+
+
+44
+00:13:06.245 --> 00:13:14.245
+You know, and, you know, I've already held my boss back for two months on this, you know, because it was a… initially, our CEO was like, no AI.
+
+
+45
+00:13:14.245 --> 00:13:36.245
+Uh, let's not do that. And then my boss finally convinced him, and then he was like, I want it now. And it was like, it was the end of, you know, like I said, it was 2025, I hadn't had budget for it, because I was told no, so we had to, like, pull a little bit of emergency budget and stuff like that, but, uh, it's been a hurry-up-and-go thing ever since.
+
+
+46
+00:13:36.245 --> 00:13:54.245
+Alright, so… you know, everything obviously didn't have 100% success, like the little happy robot on the bottom of that last picture. We really figured out we needed to do a lot more. We had created an AI usage policy that said, hey, check with IT before you use AI.
+
+
+47
+00:13:54.245 --> 00:14:09.245
+You know, that was… that was what we put on… that's compliance and Legal put that together. I'm like, seems good, seems legit. Uh, we needed something way more specific, right? We needed to be able to list, specifically, these are approved tooling.
+
+
+48
+00:14:09.245 --> 00:14:27.245
+tools you could use. These are specifically prohibited technologies, but use cases as well. So when people were like, uh, we have some software that does work for medical trials, for instance, you know, like, that's very, very touchy. So it's like, that's prohibited. So someone has to make a really good reason and come around.
+
+
+49
+00:14:27.245 --> 00:14:33.245
+through with us, and yes, we're going to be doing something there. But, you know, that has to be brought through the governance committee.
+
+
+50
+00:14:33.245 --> 00:14:42.245
+But the general policy is like, please don't do that. You know, we want to make sure the policy shows that everyone who's using it.
+
+
+51
+00:14:42.245 --> 00:14:57.245
+required to go through AI awareness training, and they gotta sign off. We took that… our normal acceptable use policy, you know, where it's like, hey, you know, we're gonna be watching you, don't do bad things on the internet, don't post on social media, and we got really a little bit more in-depth with things you can do with AI, um, and.
+
+
+52
+00:14:57.245 --> 00:15:02.245
+If you want examples, I can share some of those later. Outside of this.
+
+
+53
+00:15:02.245 --> 00:15:18.245
+Uh, but I think that was something that really helped. We also, to help adoption, we started getting people in, you know, we had a co-pilot adoption thing, so they're doing that. And so people would be like, these are the use cases I'm using.
+
+
+54
+00:15:18.245 --> 00:15:36.245
+But having people within departments kind of really championing it. I was glad to see it work, because I had been trying very hard to always get a security champion in each department or a risk management champion in each department. Ai seemed to be a little bit better. They seemed to enjoy that.
+
+
+55
+00:15:36.245 --> 00:16:03.245
+you know, some of the other pieces on there as well was, where does it require human oversight? Again, speaking of the medical trial piece, uh, one of our use cases that we're currently using, one of the first use cases we deployed was medical pre-authorization. So, we do… a lot of work with immune drugs, and what happens is some of our patients, well, they just automatically get denied because it's expensive. That's really kind of what the healthcare companies do. So, we…
+
+
+56
+00:16:03.245 --> 00:16:15.245
+created an agent, go through and pull all… read the letters on why they're denied, it'd pull all the proper documentation, wrap it up in a pretty bow, and then a doctor would review it and approve that or not.
+
+
+57
+00:16:15.245 --> 00:16:25.245
+Um, that's the $250,000 use case. My boss is like, yeah, we're saving $250,000 a year on this thing. It's pretty cool. Um, and it's really great to help people out.
+
+
+58
+00:16:25.245 --> 00:16:55.245
+Um, so we… that was like, this requires human oversight. We've also understood in another use case, because I think use cases are kind of exciting, so I should probably bring them up, right? Another use case we're using is using multiple agents, and this is for… or a distribution company for, you know, overages, shortages, damages in shipping goods. So people can log a complaint on our SAP e-commerce site, which then throws a notice over to Salesforce. The salesperson knows what's going on.
+
+
+59
+00:16:56.245 --> 00:17:06.245
+And then that reached, you know, and then we reached… this is all being orchestrated within different agents within Databricks, which reaches out to SAP, pulls ship date, all this other information.
+
+
+60
+00:17:06.245 --> 00:17:24.245
+Pulls all these documents together, you know, passes it to this orchestrator agent that builds everything around it and then hands this long document, including any images that the customer might upload, and eventually we have video, like over where people are packing things.
+
+
+61
+00:17:24.245 --> 00:17:39.245
+So, I mean, we have, like, you know, $13,000 vials of drugs that go out sometimes, so we gotta make sure people don't… you know, harm them, you know, make sure to put it in. Um, but then it pieces all that together for someone to review and get back with the customer. And it saves a lot of time, so…
+
+
+62
+00:17:39.245 --> 00:17:48.245
+you know, where do you put the human review in the loop? We're still very much on the risk-averse side, so we're kind of leaning that direction. The more we can do, the better.
+
+
+63
+00:17:48.245 --> 00:18:06.245
+Yeah, I mentioned the sign off. Definitely unacceptable use policy. The training more and more sign off are my legal team is… Very signature happy. I don't know, you know, we're in the state of California, I'm not sure how much it's gonna protect you, uh, but, you know, they're happy that people do sign off.
+
+
+64
+00:18:06.245 --> 00:18:17.245
+Um, stricter AI intake. I mentioned earlier kind of having, you know, what's the benefit of this, so why should we do it? And now we're kind of really, what is your process currently?
+
+
+65
+00:18:17.245 --> 00:18:30.245
+Like, does it take you… how long does this process take? How much do you think this will make an improvement? And if you want to work with our data team, or whomever to talk through, how is this going to actually… you think it's gonna work better, let's do that.
+
+
+66
+00:18:30.245 --> 00:18:45.245
+And so we have an intake form, you know, and then as we're evaluating use cases, we have a risk form, and they fill out, does this touch PHI? How's this, you know, like, does this affect a critical process? And we go through quite a few different areas there so that we can really start looking at prioritizing use cases.
+
+
+67
+00:18:45.245 --> 00:19:08.245
+And it turns out a lot of those sporty initial use cases, some of them are just… They just want a nice report pulled from two different things. This is something they can do, like, it's a small task, you know, it's not what they… it's not building this magic AI thing, it's really just, okay, I'm taking some numbers from Salesforce and SAP and putting them together. So, we're, you know, we're working through that still, as we go forward.
+
+
+68
+00:19:08.245 --> 00:19:18.245
+Um, but, you know, creating those scorecards for use cases to understand the prioritization has really helped us kind of try to streamline this and understand kind of where we're going forward, because otherwise every business division wants it at the same time.
+
+
+69
+00:19:18.245 --> 00:19:37.245
+Um, usually governance committee will be able to kind of make that call. But I do not sit on the executive team formally, but everyone else in the governance committee does. So sometimes it gets bumped up, you know, to my CEO and others and the CFO that might, you know, pull the strings. But usually we get to make those decisions, which is nice.
+
+
+70
+00:19:37.245 --> 00:19:54.245
+Um, but having those success measures and benchmarking ahead of time, based on all this stuff, is really helpful, because, you know, in the end, we do want to show that it is saving us $250,000, or this is how much time it's saved. I think it's really important that, you know, people will be able to do that.
+
+
+71
+00:19:54.245 --> 00:20:10.245
+And maybe, you know, with some better control planning on access controls, we have kind of a… I like to call it security OU spaghetti. And sometimes it's hard to figure out who's got control where, and kind of cleaning some of that up and, you know.
+
+
+72
+00:20:10.245 --> 00:20:27.245
+Right now, while we're focusing heavy on Copilot and Databricks, it's a little easier. But as we expand, we want to have different divisions to be able to build their own agents, whether it's through AI, we have one division right now that's on the software side of things that is building their own.
+
+
+73
+00:20:27.245 --> 00:20:43.245
+AI stuff, but that's kind of like in demo mode, we're kind of testing with them, getting all the best practices before we launch it out for everybody else. But that's kind of what we need to do. And then, obviously, Shadow AI, that's definitely going to be a big one for me chasing down later this year.
+
+
+74
+00:20:43.245 --> 00:20:59.245
+Um, is ridiculous as it sounds, you know, I'm, you know, my procurement team is, like, my best friend there, because then, you know, I'm working with legal and procurement on getting everything into contracts, so we know if there's AI in use, if we know if there's private, you know, if there's nothing in PII.
+
+
+75
+00:20:59.245 --> 00:21:27.245
+But, you know, do they have AI too? Like, where is data being kept? What models are they using? So we're starting to kind of work that with the procurement for third-party risk. So we're slowly getting there. I asked, uh… you know, ask Copilot, I was like, hey, what's something like, you know, we're designing this thing, but it grew legs. And I was like, but make it sound kind of nerdy. And they were like, you know, we were aiming for controlled execution, but it spawned child processes.
+
+
+76
+00:21:27.245 --> 00:21:32.245
+But that's me. And that's kind of, I hope that was kind of helpful.
+
+
+77
+00:21:32.245 --> 00:21:37.245
+And, uh, I just wanted to kind of throw out a couple of use cases, but if you have questions.
+
+
+78
+00:21:37.245 --> 00:21:48.245
+Go right ahead. Next presenter, I told her to come up here afterwards. I think you'll go ahead. Yes, that's great. Okay, so a couple things.
+
+
+79
+00:21:48.245 --> 00:22:14.245
+Hello. That's loud. Okay. All right. Um, first thing is ice cream. This is like ice cream. Put the microphone as if you're licking ice cream. Sounds kind of gross, but it will definitely speak like this, then that means you'll get a lot more feedback, so please… Okay, question. Hey. Hello again. What are you doing about prompt injection?
+
+
+80
+00:22:14.245 --> 00:22:29.245
+We're… so, most things right now on… for end users, we're going secure browsers for the method of kind of blocking as much as we can there. Even if they try to go to ChatGPT, it just forces them over to our instance of Copilot.
+
+
+81
+00:22:29.245 --> 00:22:36.245
+Um, and if people start, you know, if you're cutting and pasting within, you know.
+
+
+82
+00:22:36.245 --> 00:22:53.245
+Like, code to have something to go review your code, it'll rip out keys and stuff like that, so secure browsers have been good for us, um, in that area. On the other side, we're hoping the controls within Databricks are solving for our agents there. I mean, and I'm not, you know, selling Databricks, but it's some cool stuff they can do in the monitoring.
+
+
+83
+00:22:53.245 --> 00:23:15.245
+for, like, hallucinations and things like that, where we can set baselines, this is what we're expecting if it's out of there, it alerts us. Um, but I still think we need to go through and build a better audit program to come back to see if there's been, like, a slow movement, and I don't know where we need the norm that we want to go. And if somebody just signs up with their credit card for… you know, pro version of some new platform that's shadow AI.
+
+
+84
+00:23:15.245 --> 00:23:33.245
+How do you detect that? We're… we've, you know, I know you guys released some stuff, uh, that we tie back into CrowdStrike when OpenClaw came out, that whole stuff this year, so we actually worked up that one after the Cloud Security Alliance kind of posted that. Um, and so that was kind of helpful.
+
+
+85
+00:23:33.245 --> 00:23:44.245
+We're… again, you know, I can kind of see where people are going some with secure browser, but I don't think we're going to catch all of it, you know, especially when it's like, okay, well, I can say Claude, but how does it detect if it's an AI piece?
+
+
+86
+00:23:44.245 --> 00:23:52.245
+There's still improvements needed to do. I'm not sure who was next. I'll go.
+
+
+87
+00:23:52.245 --> 00:24:02.245
+Hi, uh, the stricter AI intake, what phase is that happening at? Because we have people delivering code so fast, right? Like, we don't have a tiered blueprint.
+
+
+88
+00:24:02.245 --> 00:24:21.245
+Two follow-up questions, which is, I love the scorecard idea. How are you dimensioning risk? Like, risk is… could be risk of them training on my data, they could be, like, almost anything. So if you could talk about the risk dimensions, that'd be awesome. Yeah, yeah, so, um, on the coding software side, that's definitely harder to slow down.
+
+
+89
+00:24:21.245 --> 00:24:38.245
+When it's the business coming to us and asking us to build something for them, that's kind of where we're doing that better job of it. Um… we… the risk intake form has been modified like, I don't know, almost every new use case because something comes up, which means, you know, of course.
+
+
+90
+00:24:38.245 --> 00:24:54.245
+you know, the vision of the governance board only coming in when there's high risk? No, no, that means I'm hands-on on a lot of stuff initially. Um, but, I mean, we've kind of covered a lot of stuff with usage of data. Um, patient data makes it easy. I mean, we're a business-to-business pharmaceutical distribution company.
+
+
+91
+00:24:54.245 --> 00:25:10.245
+So, like, most of the stuff we're doing is not secret, not we're not worried about that data. There's not much IP there. But, you know, and then patient data, obviously. So for us, like a lot of times it is very black and white. You know, if we need more.
+
+
+92
+00:25:10.245 --> 00:25:24.245
+Um, but some of the use cases… usually when more access is needed than should be for certain people. Like, well, you know, you're kind of combining this process that has a lot of, you know, financial data that.
+
+
+93
+00:25:24.245 --> 00:25:31.245
+shouldn't be exposed to everybody. And that's where we're seeing some of the stuff where we kind of rehab to ask those risk questions.
+
+
+94
+00:25:31.245 --> 00:25:36.245
+I had a quick question on the same… the intake form.
+
+
+95
+00:25:36.245 --> 00:25:49.245
+Can you share any successes on making that friction-free and the path of least resistance being the safest path versus them circumventing it because it's overhead and they just want to go? Any wins there you can share?
+
+
+96
+00:25:49.245 --> 00:26:05.245
+Yeah, I mean, and I think a lot of it is because… we're controlling the keys and forcing everybody through Databricks. Again, we only know what we're trying to do, right? And so they can't get too far of anywhere without our help currently.
+
+
+97
+00:26:05.245 --> 00:26:09.245
+Um, but, you know, I think it's been tough for people.
+
+
+98
+00:26:09.245 --> 00:26:25.245
+We've… we have a pretty strong, like, project intake PMO process, so people are kind of used to that. Um, you know, when you're getting your funding, you're signing the resources. I mean, it's $5 billion. We're kind of a little slower there, so I think that helps. It wasn't, like, out of the blue we needed that.
+
+
+99
+00:26:25.245 --> 00:26:30.245
+But, thank you. We still catch things during the change management phases that I wasn't told about.
+
+
+100
+00:26:30.245 --> 00:26:37.245
+Okay, we're just, uh… I think we have one more question while we still get AB up, so… You had a question?
+
+
+101
+00:26:37.245 --> 00:26:47.245
+So you're using, uh, Databricks as your authorization platform. Everything's going through that particular service. It's not integrating anywhere else.
+
+
+102
+00:26:47.245 --> 00:27:10.245
+Correct. So that's… I mean, it's talking, but, you know, a Databricks Salesforce AI agent is talking to the Salesforce AI agent within Salesforce. And same thing with Joule within. So you've got great authorization on all of that. Well… as much as we're doing, and I'm still learning more about labeling within Databricks to, you know, make sure and shrink the controls back to.
+
+
+103
+00:27:10.245 --> 00:27:23.245
+Especially when it comes to users and Active Directory groups, like I said, the spaghetti groups have too much security. So you're thinking about integrating it somewhere else within those maybe Active Directory owned, maybe Microsoft product sets?
+
+
+104
+00:27:23.245 --> 00:27:36.245
+And I know it's not gonna stay in there, so we're… we were trying to keep going on, but I told my boss, let's start here. You didn't give me budget to buy, you know, AI-specific security tool set, but I would love to look.
+
+
+105
+00:27:36.245 --> 00:27:45.245
+Okay, how are we doing on AV? Okay, well, I have a question for you. You mentioned, um, so there's this whole notion of SaaS.
+
+
+106
+00:27:45.245 --> 00:27:57.245
+being disrupted, and this notion of being a system of context, rather than a system of record. Do you understand what that concept means, or how have you embraced that sort of concept within.
+
+
+107
+00:27:57.245 --> 00:28:22.245
+FFF. If you can explain a little bit more what do you mean by system context? Well, so you were talking about some of the services that you're using, like ServiceNow, Salesforce, whatever, and each company is trying to be what they call the system of context. Not system of record, but system of context, which is… To be the center point for… Everything. Everything. Right. So now you have… but you have two products who are vying to be a system of context.
+
+
+108
+00:28:22.245 --> 00:28:37.245
+So, how are you trying to reconcile that? We're in… I think that's where we're kind of leaving things within Databricks, because we have… our two main systems of context really are Salesforce and SAP, but we're shoving it all into Databricks and making that.
+
+
+109
+00:28:37.245 --> 00:28:50.245
+our main system. You're creating your own system of context, effectively. Yeah. Okay. Right, and, you know, just being able to, like, you know, bronze, silver, gold, theta standards within it's been helpful. Okay, very good.
+
+
+110
+00:28:50.245 --> 00:29:00.245
+Again, we're just waiting for AB, um… Maybe trouble. Okay, anyone who had trouble getting in? No issues? Good. All right.
+
+
+111
+00:29:00.245 --> 00:29:09.245
+Here we go. For anyone that needs it. And again, if, um, feel free to share this with your neighbor. Take a picture, and then show it to other people so that they can join if they need to.
+
+
+112
+00:29:09.245 --> 00:29:24.245
+All right, again, my name is Billy. I'll put my sticker back on. It kept falling off my jacket, and I didn't want to wear it up here because it would have drove me crazy. Um, feel free, I'm here for the next couple days, so just let me know if you guys have any questions. Okay.
+
+
+113
+00:29:24.245 --> 00:29:30.245
+Thanks, Billy. Okay, so no… no dice.
+
+
+114
+00:29:30.245 --> 00:29:34.245
+You want to just start mirroring? Will that help?
+
+
+115
+00:29:34.245 --> 00:29:38.245
+I don't know why I'm speaking to the mic.
+
+
+116
+00:29:38.245 --> 00:29:44.245
+There we go.
+
+
+117
+00:29:44.245 --> 00:30:02.245
+And again, feel free to take the picture, just so that you can share it with others who need it.
+
+
+118
+00:30:02.245 --> 00:30:08.245
+Yeah, why don't we go… you can start. No. All right, we'll get started.
+
+
+119
+00:30:08.245 --> 00:30:14.245
+Good morning, everyone. I'm Ragini Ramalingam, and I lead the Enterprise security team at Snowflake.
+
+
+120
+00:30:14.245 --> 00:30:25.245
+I wanted to thank Gary and the team at Gnostic for putting this conference together, and all of you for this great community that has come together to discuss the challenges that we have.
+
+
+121
+00:30:25.245 --> 00:30:33.245
+in AI security. I want to start off by making a quick observation.
+
+
+122
+00:30:33.245 --> 00:30:44.245
+Enterprise security for decades assumed that the execution in the enterprise is predefined or deterministic.
+
+
+123
+00:30:44.245 --> 00:30:53.245
+So, we had identities authenticating, we had… you know, systems and workflows executing predefined logic.
+
+
+124
+00:30:53.245 --> 00:31:00.245
+And automation existed, but that was based on what humans defined, and systems just executed it.
+
+
+125
+00:31:00.245 --> 00:31:10.245
+And today, AI, it's fundamentally different. We are deploying systems that now make decisions at runtime.
+
+
+126
+00:31:10.245 --> 00:31:15.245
+and invoke actions from the endpoint to the cloud to SaaS.
+
+
+127
+00:31:15.245 --> 00:31:22.245
+and blurring boundaries. And this is basically moved from.
+
+
+128
+00:31:22.245 --> 00:31:31.245
+Deterministic action to making context-aware actions in real time that are not controlled by humans.
+
+
+129
+00:31:31.245 --> 00:31:38.245
+So how do we govern? This new ecosystem.
+
+
+130
+00:31:38.245 --> 00:31:46.245
+The traditional governance models don't work anymore, and governance has to become dynamic and evolve.
+
+
+131
+00:31:46.245 --> 00:32:00.245
+I'd like to quote our CISO, Brad Jones, who said, governing AI at a company like Snowflake, we are the AI data cloud, is like laying tracks in front of a running train.
+
+
+132
+00:32:00.245 --> 00:32:09.245
+And our challenge was to lay those tracks. And not slow down the running train.
+
+
+133
+00:32:09.245 --> 00:32:14.245
+How do you achieve that? So we had to come up with a governance model that.
+
+
+134
+00:32:14.245 --> 00:32:29.245
+you know, helped us to make decisions really quickly and enable innovation but safely and securely. So I'll walk you through the governance model we adopted to enable this.
+
+
+135
+00:32:29.245 --> 00:32:42.245
+So why is AI governance fundamentally different? First, AI tool adoption does not wait for review cycles, and it does not follow the pace that.
+
+
+136
+00:32:42.245 --> 00:32:57.245
+you know, that we see in the traditional enterprises. It begins with engineers experimenting with product teams trying to integrate with solution engineers trying to showcase and business teams trying to.
+
+
+137
+00:32:57.245 --> 00:33:06.245
+increase their productivity using AI. So we had to come up with processes that evolved at that speed.
+
+
+138
+00:33:06.245 --> 00:33:16.245
+Feature velocity and second feature velocity outpaces any kind of feature releases. Ai vendors are releasing features.
+
+
+139
+00:33:16.245 --> 00:33:23.245
+weekly, and sometimes few times a week. And therefore, our security processes had to become dynamic.
+
+
+140
+00:33:23.245 --> 00:33:38.245
+Third, most importantly, AI blurs the boundary. We used to have, you know, control planes that was strictly dedicated to endpoint or network or cloud or SaaS. And today, with AI, one prompt.
+
+
+141
+00:33:38.245 --> 00:33:57.245
+Can trigger an action at an endpoint. It can read… make system calls, read or write files on the endpoint. It can make outbound network egress, or it can invoke APIs reaching out to SaaS platforms. And therefore, the control plane has to.
+
+
+142
+00:33:57.245 --> 00:34:03.245
+be across all of these domains, and cannot be just static control planes.
+
+
+143
+00:34:03.245 --> 00:34:08.245
+The risk, again, once again, is no longer static, because the execution model has now.
+
+
+144
+00:34:08.245 --> 00:34:29.245
+turned from one of deterministic to non-deterministic. And it had the execution boundary has significantly expanded. And therefore, in order to be able to govern this AI, we need to evolve our governance model at the same velocity at which the technology.
+
+
+145
+00:34:29.245 --> 00:34:37.245
+is evolving. So we realized early that in order to make.
+
+
+146
+00:34:37.245 --> 00:34:45.245
+Uh, you know, in order to be our governance model to be dynamic, we needed to have a structure that.
+
+
+147
+00:34:45.245 --> 00:35:00.245
+Allowed us to make quick decisions. So we formed an enterprise steering committee with members from security, IT, legal, privacy, AI, ML, data engineering, and procurement teams.
+
+
+148
+00:35:00.245 --> 00:35:23.245
+And all of these members came together because they had the ability to see the AI adoption across the enterprise and AI usage patterns. And so with those, we… Identify the risks that we saw across this usage patterns and adoption, and we came up with mitigation controls.
+
+
+149
+00:35:23.245 --> 00:35:29.245
+And whether it be technical controls, process controls, or contractual protections.
+
+
+150
+00:35:29.245 --> 00:35:35.245
+And then, as a next step, we bubbled that up to our executive leadership teams.
+
+
+151
+00:35:35.245 --> 00:35:47.245
+And in engineering, product management, sales, customer experience, IT, etc. And these are the teams that we're innovating at speed with the AI technology.
+
+
+152
+00:35:47.245 --> 00:36:02.245
+And so this helped us to surface the risk up to the executive leadership and make risk-informed decisions that align with our leadership's risk appetite. Because at Snowflake.
+
+
+153
+00:36:02.245 --> 00:36:10.245
+In our engineering innovation is an engineering at speed is in our DNA.
+
+
+154
+00:36:10.245 --> 00:36:17.245
+And enabling or disabling AI was not a security decision.
+
+
+155
+00:36:17.245 --> 00:36:33.245
+It is actually a business decision and it's not a security trade-off, it's a business trade-off. So having our executive leadership weigh in and making decisions aligned with the risk appetite of the business.
+
+
+156
+00:36:33.245 --> 00:36:42.245
+helped us actually get that alignment as well as any cultural change that was required in the environment.
+
+
+157
+00:36:42.245 --> 00:36:55.245
+So we shifted from reactive approvals to proactive risk ownership. And truly, this structure was the one that helped us make decisions much faster.
+
+
+158
+00:36:55.245 --> 00:37:14.245
+You cannot govern what you cannot see, so it's… Getting visibility into enterprise AI usage and adoption is critical in order to be able to govern. So, we looked at four pathways in order to get visibility. First is our procurement process, and we already had a…
+
+
+159
+00:37:14.245 --> 00:37:28.245
+pretty mature process, and we built AI oversight into that, and we looked at we rationalized the products, not based on features.
+
+
+160
+00:37:28.245 --> 00:37:39.245
+And we not only did a security risk review, but we also looked at whether the tool had redundant capabilities. So what that helped us do is eliminate.
+
+
+161
+00:37:39.245 --> 00:37:53.245
+schools which had overlapping capabilities and which were not only just reduced our operational overhead, but also helped us eliminate unnecessary attack surfaces.
+
+
+162
+00:37:53.245 --> 00:38:12.245
+Next, we, um, we all know that AI does not come just in a new product. It is turning on AI features in existing products. So we gated those turning on new features through security reviews. We required people to go through security reviews in order to enable AI features in existing tools and platforms.
+
+
+163
+00:38:12.245 --> 00:38:21.245
+And third, most importantly, we actually did an active discovery for AI artifacts and interactions across the enterprise.
+
+
+164
+00:38:21.245 --> 00:38:33.245
+And being the AI Data Cloud, our security lake lives in our own platform, and with the AI capabilities that we have on our platform, we were able to quickly get insights.
+
+
+165
+00:38:33.245 --> 00:38:49.245
+Um, based on the telemetry that we had on the endpoint data network, cloud and SaaS environments, we were able to identify AI artifacts such as MCP components, models, agents.
+
+
+166
+00:38:49.245 --> 00:39:10.245
+And those interactions. Uh, last but not the least, we… constantly partnered and had discussions with our peers in the business units. And this is critical. You need to have security partners in all business units that you keep in touch with so you're aware of.
+
+
+167
+00:39:10.245 --> 00:39:22.245
+Get early insights into AI adoption in those business units, and that helps us make informed decisions.
+
+
+168
+00:39:22.245 --> 00:39:33.245
+So with that visibility and that governance structure, we were actually able to effect a cultural change when we were able to enable AI adoption responsibly.
+
+
+169
+00:39:33.245 --> 00:39:46.245
+So first we establish enterprise guardrails. So we, you know, deployed endpoint network and DLP controls that were aligned to AI usage patterns.
+
+
+170
+00:39:46.245 --> 00:39:55.245
+And the goal here was simple, just allowed approved use cases and approved tools and then maintain consistent enforcement.
+
+
+171
+00:39:55.245 --> 00:40:12.245
+Then we, with the visibility that we had, we basically identified tools that were broadly used in the organization and made a conscious decision to procure some of those tools so that we can manage them effectively.
+
+
+172
+00:40:12.245 --> 00:40:17.245
+And in some cases, we decided that some of the tools were risky, and.
+
+
+173
+00:40:17.245 --> 00:40:24.245
+And, um, you know, guided our users towards approved alternatives in the enterprise.
+
+
+174
+00:40:24.245 --> 00:40:36.245
+And lastly, we had, and again, Snowflake is a place where there is a lot of AI experimentation happening.
+
+
+175
+00:40:36.245 --> 00:40:53.245
+And so when we needed to provide, when AI experimentation needed to happen, we resorted our core operating principle was provide isolated environments with test tenants and synthetic data, and where that was not possible.
+
+
+176
+00:40:53.245 --> 00:41:03.245
+And, you know, some use cases where they needed to have production adjacent environments, we came up with what is called a responsible AI experimentation framework.
+
+
+177
+00:41:03.245 --> 00:41:18.245
+Which is setting clear accountability for the experimentation teams and security and IT. And additional review processes and preventive and detective controls.
+
+
+178
+00:41:18.245 --> 00:41:34.245
+So I'll, you know, that was our governance structure and how we set about doing, you know, respond securely enabling AI in the enterprise. I want to talk a little bit more into how we actually.
+
+
+179
+00:41:34.245 --> 00:41:48.245
+deployed Gen AI tools in our enterprise. So we all know that the gen AI tools evolve quickly and there are features releasing.
+
+
+180
+00:41:48.245 --> 00:41:54.245
+You know, weekly or a few times a week, but the enterprise-level controls in those tools.
+
+
+181
+00:41:54.245 --> 00:42:03.245
+are… do not evolve at the same speed as features. So we had to do, um, feature-based risk assessment rather than broad.
+
+
+182
+00:42:03.245 --> 00:42:19.245
+enablement of a tool with all its features. So, when we looked at the features, we looked at what capabilities were there in the enterprise plane, control plane, to be able to effectively control, um, data exfiltration or limit.
+
+
+183
+00:42:19.245 --> 00:42:25.245
+The, um, limit the risk from integration surround that platform.
+
+
+184
+00:42:25.245 --> 00:42:43.245
+So this would include things like, did we have the ability to manage allow lists or deny lists within the platform for MCP or tools or web fetches or web search and things like that?
+
+
+185
+00:42:43.245 --> 00:42:49.245
+So, what we did was we enabled the features that were less risky.
+
+
+186
+00:42:49.245 --> 00:43:00.245
+And we… that we felt comfortable enabling with the controls that were already available in the enterprise, and we gated the features, which.
+
+
+187
+00:43:00.245 --> 00:43:16.245
+We didn't have, which we felt were not, um, did not have sufficient controls natively in the product. So this began a conversation with our vendors. So we engaged actively with the AI tool vendors.
+
+
+188
+00:43:16.245 --> 00:43:24.245
+And, uh, made feature requests to make those enhancements.
+
+
+189
+00:43:24.245 --> 00:43:29.245
+Coding agents. And I know all of us here in the room.
+
+
+190
+00:43:29.245 --> 00:43:42.245
+you know, encountered this in our enterprises. Coding agents potentially shift the, you know, significantly shift the threat model in the enterprise. And this is the perfect example of.
+
+
+191
+00:43:42.245 --> 00:43:59.245
+how the attack surface in the enterprise expands. with AI, and how, you know, the whole execution model has shifted from predetermined action to.
+
+
+192
+00:43:59.245 --> 00:44:11.245
+real-time execution, context-based execution with expanded boundaries. And this coding agent is a perfect example for that. So we have the risk from autonomous code execution.
+
+
+193
+00:44:11.245 --> 00:44:25.245
+That can happen… you know, these coding agents don't just write code, right? They execute system-level calls, they make file system reads, or they're integrating with APIs.
+
+
+194
+00:44:25.245 --> 00:44:31.245
+And which all of which amplifies the remote code execution risk.
+
+
+195
+00:44:31.245 --> 00:44:52.245
+And there are… most of these come with embedded browser components, which are bypassing standard controls. So we had to come up with… We had to come up with… solutions in order to restrict and in order to address that risk.
+
+
+196
+00:44:52.245 --> 00:45:08.245
+And again, the same problem as the gen AI tools. We don't have enterprise grade controls that in most of these coding agents today and are they still in the process of maturing, and there is rapid.
+
+
+197
+00:45:08.245 --> 00:45:29.245
+A release velocity. So this is… The coding agent is not just another development tool, and we had to work closely again with the vendor to get the features released that we required.
+
+
+198
+00:45:29.245 --> 00:45:45.245
+We had a structured… Um, assessment for the agentic tools, they follow the same pattern as what we did for the GenAI tools. We assessed all of the execution surfaces, whether it was a command line or desktop.
+
+
+199
+00:45:45.245 --> 00:45:58.245
+And we did the same feature-based risk impact. And most importantly, one of the most important things at an engineering company like Snowflake is we needed to make sure that.
+
+
+200
+00:45:58.245 --> 00:46:19.245
+We did not develop the work developer productivity. And therefore, we had to come up, when we made these risk assessments and came up with mitigation, we had to keep that in mind front and center and aligned with the risk appetite of our executive leadership. So it was, we had to come up with a set of controls.
+
+
+201
+00:46:19.245 --> 00:46:26.245
+that worked for us, that did not impact developer productivity, while enabling us to use the features.
+
+
+202
+00:46:26.245 --> 00:46:31.245
+securely.
+
+
+203
+00:46:31.245 --> 00:46:41.245
+So what we did is we enabled enterprise Guardrails. We tried to constrain the tools within our enterprise tenant.
+
+
+204
+00:46:41.245 --> 00:47:02.245
+We established hardened configuration. for this, and most of you know that coding the enterprise control plane in these coding agents do not provide a very secure set of… a robust set of controls in order to be effectively enforce.
+
+
+205
+00:47:02.245 --> 00:47:22.245
+Immutable configuration at the endpoint. So we had to devise endpoint… we had to come up with controls using our existing IT and security toolset to constrain the… to try and maintain this immutable configuration at the endpoints.
+
+
+206
+00:47:22.245 --> 00:47:37.245
+And we had to come up with, again, we used our existing IT and security tool set to secure both the manual as well as the automated browser pathways, which are huge risk.
+
+
+207
+00:47:37.245 --> 00:47:44.245
+Um, in terms of, um, you know, data exfiltration or prompt injection.
+
+
+208
+00:47:44.245 --> 00:47:57.245
+And when it came to restriction of higher autonomy modes, we approached it really carefully. Again, trying to do what we could and limiting the limiting this to.
+
+
+209
+00:47:57.245 --> 00:48:06.245
+We looked at the user groups and risk profiles, and we kind of enabled those features.
+
+
+210
+00:48:06.245 --> 00:48:20.245
+based on the risk profile of the users, and we are still… we are continuing to work with vendors, because it is… a lot of these enterprise control planes for these coding agents do not have, like, SCIM-based.
+
+
+211
+00:48:20.245 --> 00:48:34.245
+Uh, enablement of features. So, um, you know, those were requests that we put into the vendors in order to help us be able to selectively deploy certain features for certain groups of users.
+
+
+212
+00:48:34.245 --> 00:48:43.245
+Or constrain the high-risk features just to select groups of users, and to even be able to test them before deployment.
+
+
+213
+00:48:43.245 --> 00:49:00.245
+Um, and again, approved integrations and capabilities surfaces when you come to, uh, like, being able to allow MCP tool, MCP servers or tools, um, or being able to restrain the web search to certain domains.
+
+
+214
+00:49:00.245 --> 00:49:09.245
+allowed domains and maintained the same configuration as the enterprise, um, that's in place in the rest of the enterprise.
+
+
+215
+00:49:09.245 --> 00:49:22.245
+we had to come up with very, you know, we had to come up with innovative ways of using our existing toolset.
+
+
+216
+00:49:22.245 --> 00:49:37.245
+And where we were stretched, we constantly worked with our vendors for feature enhancements in the product. And we've seen the vendors actually respond to these feature requests. And we've seen significant.
+
+
+217
+00:49:37.245 --> 00:49:43.245
+improvements in the last few months.
+
+
+218
+00:49:43.245 --> 00:49:59.245
+So what enables AI to scale responsibly? I think fundamental thing, and then these are the lessons learned from our journey. It is fundamentally executive sponsorship drives alignment. So it is a really important.
+
+
+219
+00:49:59.245 --> 00:50:22.245
+for, um, you know, to be able to. Update your leadership about the risks with data, like you… with the visibility you get, you provide an update to your leadership, and you need to be able to make informed decisions with that sponsorship.
+
+
+220
+00:50:22.245 --> 00:50:35.245
+And shared ownership scales better than central control. So we, um, it's really important to have that cross-functional alignment and the AI steering committee really helped us there.
+
+
+221
+00:50:35.245 --> 00:50:45.245
+We, um… what is critical is that. Cross-functional alignment as well as a top-down, um, you know, alignment on risk.
+
+
+222
+00:50:45.245 --> 00:50:51.245
+is what helped us. Keep our governance model dynamic.
+
+
+223
+00:50:51.245 --> 00:51:06.245
+Visibility is crucial in order to be able to govern, so whatever pathways you have in your environment to get that visibility, make sure that, you know, you are leveraging that in order to get the data that.
+
+
+224
+00:51:06.245 --> 00:51:15.245
+You need to be able to share that with your cross-functional teams and executive teams.
+
+
+225
+00:51:15.245 --> 00:51:28.245
+And the most important thing is, last, you know, I would say that it's really important to focus on constraining the execution authority, because you cannot stop the innovation.
+
+
+226
+00:51:28.245 --> 00:51:45.245
+You cannot stop AI adoption in the enterprise because if you did, it'll go around you. And the other thing is it is going to impact your business. So it is really important to focus on constraining.
+
+
+227
+00:51:45.245 --> 00:51:50.245
+What the execution authority of the AI, not restraining AI completely.
+
+
+228
+00:51:50.245 --> 00:52:08.245
+And governance must evolve at the same velocity as AI, and you need to make sure that your processes, whether it is review processes or your decision processes are dynamic and evolving at the same pace of the technology.
+
+
+229
+00:52:08.245 --> 00:52:19.245
+So AI governance is not a roadblock to innovation. It really is the foundation to enable innovation securely and responsibly. Thank you. Okay, thanks very much.
+
+
+230
+00:52:19.245 --> 00:52:26.245
+Let's get some questions. Chase, go ahead, come on up.
+
+
+231
+00:52:26.245 --> 00:52:33.245
+Uh, thank you very much for a good talk. A couple of questions. So when you talk about these, um, enterprise governance.
+
+
+232
+00:52:33.245 --> 00:52:54.245
+Code agents, I'm thinking in terms of some agents that could potentially place trades for in 45 minutes, they can lose half a million bucks or $500 billion, depending on what happened with Knight. Are those the kind of things that you are trying to avoid? Because that could be a lot more.
+
+
+233
+00:52:54.245 --> 00:52:58.245
+And if so, how exactly are you controlling it?
+
+
+234
+00:52:58.245 --> 00:53:06.245
+So, um, as I said, we, you know, based on our discovery, we see what coding agents are deployed across our enterprise.
+
+
+235
+00:53:06.245 --> 00:53:15.245
+And we, um… ensure that we only allow the coding agents that are approved in the enterprise.
+
+
+236
+00:53:15.245 --> 00:53:31.245
+And we performed risk assessment for those coding agents that are approved in the enterprise. And so we steer our users towards the approved platforms. But that's manual, right? That's going to be somewhat slower than.
+
+
+237
+00:53:31.245 --> 00:53:53.245
+The speed of AI. So it is not. So it is… It is something that is AI risk is dynamic and it is continuously evolving, right? So you need to, the pace at which you perform your discovery, the pace at which you, you know, surface up.
+
+
+238
+00:53:53.245 --> 00:54:10.245
+Any anomalies or risks to your cross-functional team and your leadership needs to be dynamic. So you need to be having these conversations on a weekly or sometimes on a daily basis about what you see across the enterprise.
+
+
+239
+00:54:10.245 --> 00:54:21.245
+and make those decisions. If you need to shut something down, you need to be able to get, you know, quick alignment and shut it down.
+
+
+240
+00:54:21.245 --> 00:54:26.245
+Sure.
+
+
+241
+00:54:26.245 --> 00:54:32.245
+Hi. Thank you. What technical controls have you put in place to actually.
+
+
+242
+00:54:32.245 --> 00:54:37.245
+constrain that execution authority that you mentioned on the last slide.
+
+
+243
+00:54:37.245 --> 00:54:42.245
+So, it depends really on the tool, on the coding agent.
+
+
+244
+00:54:42.245 --> 00:55:00.245
+And what controls are available within the agent's control plane itself. So like, for example, what we did for the browser execution pathways, so there could be automated or they could be manual.
+
+
+245
+00:55:00.245 --> 00:55:27.245
+Execution, so for the automated ones, we actually restrained them just to our internal domains. And for the… For the, uh… Manual browser pathways, we basically ensure using our other EDR tools, we constrain them to just to match what we had for the rest of the enterprise.
+
+
+246
+00:55:27.245 --> 00:55:37.245
+So that's just one example, yeah. Okay, unfortunately, we're actually past time, but we're at a break time, um, for the… and the interest are just trying to catch up. If you want to take a break, you can, but we're going to reconvene in, like, 5 minutes to get Chase up and running. If there's any questions, there's some really good questions that I think make some more unpacking, so if Regina, if you guys can just.
+
+
+247
+00:55:37.245 --> 00:55:57.245
+follow up directly, that'd be great
+
+
+

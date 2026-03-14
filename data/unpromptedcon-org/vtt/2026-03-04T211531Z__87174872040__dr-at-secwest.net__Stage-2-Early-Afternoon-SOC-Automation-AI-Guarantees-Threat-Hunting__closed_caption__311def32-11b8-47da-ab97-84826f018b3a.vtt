@@ -1,0 +1,1468 @@
+WEBVTT
+
+1
+00:03:25.541 --> 00:03:42.541
+target attacks. So this involves attackers finding cracks in your implementation of this platform. So maybe that's a misconfigured permission set or a flaw in a custom APEX skills are exposed to the reasoning engine. And then we have bucket two.
+
+
+2
+00:03:42.541 --> 00:04:00.541
+Uh, which we call abuse of a legitimate agency. So these are threat actors using the agent's legitimate built-in capabilities to perform actions that are valid, but malicious in context. Um, the bottom line here is, we aren't just defending against bad words here, we're defending a massive multi-tenant execution engine.
+
+
+3
+00:04:00.541 --> 00:04:22.541
+were your legitimate logic is constantly evolving. Um, a little bit on HM4s. Uh, we do have a set of guardrails, which we call the trust layer. Not going to go into details, um, but you've seen this across industry, um, pretty common to have this content moderation layer that focuses on the reasoning layer, right? So that's your dialogue between the user.
+
+
+4
+00:04:22.541 --> 00:04:33.541
+and the LLM. While that is critical for filtering and screening for things like toxicity and prompt injection, the content moderation alone is not enough for the following reasons.
+
+
+5
+00:04:33.541 --> 00:04:49.541
+First, we touched upon a little bit earlier is reasoning versus execution. So while you do have the content moderation layer that polices the reason layer, which is your thought process, it cannot see the execution layer, right? So that's the actual system calls.
+
+
+6
+00:04:49.541 --> 00:05:05.541
+You also need guardrails that police the specific actions and invocations triggered by the agent. And then we also have the blocking dilemma. Because your content moderation layer often captures malicious intent.
+
+
+7
+00:05:05.541 --> 00:05:20.541
+but lacks the high fidelity signal required to do things like automated inline blocking in an enterprise context. So what we developed here, this detection model provides the behavioral context necessary to move from.
+
+
+8
+00:05:20.541 --> 00:05:38.541
+Just flagging to confident, automated response. And then lastly, we have what we call the post-generation blindness. So, even if in a scenario where your prompt is deemed as safe, the resulting agentic plan might involve an authorized data access.
+
+
+9
+00:05:38.541 --> 00:05:44.541
+or privilege escalation that traditional content filters just can't not observe, hence act on.
+
+
+10
+00:05:44.541 --> 00:06:00.541
+Um, so with that, um, we walked through the challenges. What do we do? And how do we deal with that? I'll hand it off to Matt, and he'll walk you through our solution for that. Yeah, so now that we have this agentic ecosystem in place, um, building detections around it really comes down to.
+
+
+11
+00:06:00.541 --> 00:06:20.541
+How do you go about detecting anomalies? And historically, I think detection engineers have looked to anomaly detection as a pretty big part of the toolkit, but typically at the user level or around specific tables or entities, one of the things that I really want to highlight is changing in the GenAI era here is that.
+
+
+12
+00:06:20.541 --> 00:06:35.541
+We no longer have to just be constrained to the user level. Uh, you can actually also consider the context of the agent itself as a new axis for anomaly detection, especially when you do this in the context of the organization that's building and deploying those agents.
+
+
+13
+00:06:35.541 --> 00:06:52.541
+Uh, you essentially end up with three levels of context that you could use for anomaly detection. If you have a data science background, this lends itself extremely well to something called an ensemble model, uh, where you can start to really pair these different levels of context together.
+
+
+14
+00:06:52.541 --> 00:07:06.541
+Uh, to minimize noise. I think anyone that's done anomaly detection knows that it can be very noisy, uh, especially if kind of deployed quickly. So, uh, combining these three streams together, and then using them to kind of reduce noise.
+
+
+15
+00:07:06.541 --> 00:07:14.541
+Sorry, across all three really helps make this a meaningful and impactful model.
+
+
+16
+00:07:14.541 --> 00:07:29.541
+Yeah, so, uh, we started by trying to quantify intent, and we did that with a simple and well-scoped hypothesis, which was just that looking for agents accessing things that they normally don't would be a good way to find anomalies in the ecosystem.
+
+
+17
+00:07:29.541 --> 00:07:46.541
+When we had that hypothesis in place, we then started to look at what features could we actually put in place to measure those kinds of anomalies. So we started looking at how frequently were agentic sessions accessing data? What types of access were they doing?
+
+
+18
+00:07:46.541 --> 00:07:55.541
+Are the agents just selecting data? Are they updating it? Are they deleting it? Can we build filters or features around that?
+
+
+19
+00:07:55.541 --> 00:08:05.541
+And so by keeping those feature sets simple, and the hypothesis simple, we started being able to investigate where does our coverage work versus where does it not work?
+
+
+20
+00:08:05.541 --> 00:08:14.541
+we started to find out, um, what are the legitimate edge cases, what are the issues with what we're measuring? Uh, is it effective or is it not?
+
+
+21
+00:08:14.541 --> 00:08:31.541
+Uh, I want to talk through some of the features that we did look at that were pretty essential to how the model operated. Uh, so we really tried to consider data access from both kind of a depth standpoint and a breadth standpoint. So, we were looking at things like the frequency of calls to our databases.
+
+
+22
+00:08:31.541 --> 00:08:46.541
+Uh, what proportion of data was actually being accessed by these agents, uh, which gives you a good standpoint of depth, uh, especially if you are looking for data exfiltration. Is somebody pulling the entire database? Are they just accessing one customer's records?
+
+
+23
+00:08:46.541 --> 00:08:52.541
+uh, really trying to understand, kind of, those ratios was pretty key for us.
+
+
+24
+00:08:52.541 --> 00:09:18.541
+Another good thing that we looked at was we started to quantify the sensitivity or the rarity of the data being accessed, so… Uh, in the Salesforce database as you are kind of building these out, we have feature flags for things like fields that might contain PII or sensitive data. Uh, we also try and do profiling to understand how frequently are agents touching certain columns or fields.
+
+
+25
+00:09:18.541 --> 00:09:29.541
+Uh, and really understand what data is being accessed, how frequently, uh, those kind of help to build out the features.
+
+
+26
+00:09:29.541 --> 00:09:41.541
+So, as you kind of combine these things, we really looked to incremental historical profiling. So, every day, we would actually build a profile of all of the sessions that had occurred in a given day.
+
+
+27
+00:09:41.541 --> 00:10:04.541
+Uh, this led us quickly assemble a historical context and a baseline. And then we were able to quickly identify anything that was actually out of character based on the historical baseline, so… Uh, as we continue to aggregate kind of a rolling history, uh, it was really easy to look at standard deviations or anomalies kind of from that historical baseline.
+
+
+28
+00:10:04.541 --> 00:10:20.541
+One of the benefits of this is that as new sessions occurred, we could really score them quickly after the session occurred or even as it was ongoing to identify our outliers and proactively respond. This kind of deviation based or standard deviation based scoring.
+
+
+29
+00:10:20.541 --> 00:10:28.541
+Also helps kind of build alert prioritization into the system as well.
+
+
+30
+00:10:28.541 --> 00:10:45.541
+I want to also cover some of the things that didn't work for us. And again, this is one of the major downsides to consider when building these ensemble models, is if you start to consider features across these multiple layers of identity, the number of features that you're going to be building into your models will explode very quickly.
+
+
+31
+00:10:45.541 --> 00:11:02.541
+Every new data rarity or data frequency feature that you add, if you were looking at it in the context of the user, the agent, the org, you're building out multiple layers of these features, and it can create noise and complexity very quickly.
+
+
+32
+00:11:02.541 --> 00:11:32.541
+I do also want to call out one of the things we built that didn't work, which was we built a pretty large query complexity calculator early on. It was custom-built, it took a lot of code. One of the… reasons that it didn't work for us, um, was just that it kind of confused layers of identity. So we thought that malicious actors would essentially be looking to run these complicated queries or that it would be a good way to identify anomalous queries. What we were finding was that the agents themselves were constructing the queries, so…
+
+
+33
+00:11:33.541 --> 00:11:41.541
+Uh, just make sure that your features are measuring what you think they are measuring. Uh, it's a good way to find the edge cases that are important here.
+
+
+34
+00:11:41.541 --> 00:11:59.541
+Uh, we also found a pain point in… joining data in from multiple tables, so we had to reach out to get contextual information from metadata tables around the queries being executed. This built in a number of really expensive computational joins for us, so…
+
+
+35
+00:11:59.541 --> 00:12:12.541
+Uh, later on, we were able to actually refactor the model to essentially operate on just one table, remove the expensive joins, and have the model train in a third of the time.
+
+
+36
+00:12:12.541 --> 00:12:32.541
+At the end of the day, the results, um, speak for themselves. We had a nearly 2 million daily prompts, which we were able to filter down slightly through the trust layer. But through the behavioral anomaly detection model, at the end of the day, we had fewer than 30 active alerts that needed investigation.
+
+
+37
+00:12:32.541 --> 00:12:44.541
+One of the things that we also did was we tried to lean into an agentic paradigm where we now expect that agents are also going to be involved in the investigation and triage of the alerts.
+
+
+38
+00:12:44.541 --> 00:12:49.541
+So, what you see on screen here is an actual example of an alert, but.
+
+
+39
+00:12:49.541 --> 00:12:57.541
+what we're doing is creating a structured JSON payload that is then ingested by an additional agent that helps make sense of that payload.
+
+
+40
+00:12:57.541 --> 00:13:14.541
+And so, the agent is able to very quickly take the features that we provided and synthesize a summary of why the alert is anomalous. Typically in plain English, and one of the advantages of that is it's very customer-facing, very friendly. We don't necessarily have to assume.
+
+
+41
+00:13:14.541 --> 00:13:34.541
+That the investigator has a security background. Thank you, Matt. So we talked about the state of the world that we built this tool into. Let's talk a little bit about the road ahead. So the ultimate goal for really any security practitioner is moving from.
+
+
+42
+00:13:34.541 --> 00:13:50.541
+Knowing what happened yesterday to stopping what is happening now. Um, so in our current pilot version of this model, we accept a 12 to 24-hour detection latency as both the training and inference pieces are running in batch jobs.
+
+
+43
+00:13:50.541 --> 00:14:04.541
+However, our architecture is built for the hot path. So by taking the behavioral baseline we learned during our daily batch processing and eventually pushing them to a high-speed cache, we could eventually perform the inference piece in flight.
+
+
+44
+00:14:04.541 --> 00:14:20.541
+Um, so if a session hits our critical threshold, meaning it's essentially statistically impossible for this to be normal behavior, we don't wait for SOC analyst to triage the alert or notify the customer hours or sometimes days later.
+
+
+45
+00:14:20.541 --> 00:14:33.541
+We moved to auto containment. We can kill the session, revoke the token, or trigger a bot-level lockdown immediately. This is how we'll eventually close the loop at the execution layer of an agentic system.
+
+
+46
+00:14:33.541 --> 00:14:50.541
+Um, let's talk about some of the lessons we learned along the way. First one, our major hurdle was the observability gap. So in the beginning, we had these engineering logs that told us what happened, but the security telemetry didn't really tell us who or which agent was responsible for what in a way that.
+
+
+47
+00:14:50.541 --> 00:15:05.541
+supported what we wanted to do, which was high fidelity detection. So, your mission here really is what we call identity multiplasking. You have to partner with your engineering and product teams early on to ensure that your agentic logs aren't just debug strings.
+
+
+48
+00:15:05.541 --> 00:15:18.541
+They need to be structured events that link the invoking user ID to the agent ID, because without this context, you're blind to the abuse of a legitimate agency case, where.
+
+
+49
+00:15:18.541 --> 00:15:25.541
+You just cannot distinguish between what a power user is and what a compromised agent might look like.
+
+
+50
+00:15:25.541 --> 00:15:41.541
+Um, secondly, don't wait for a known attack to build your defense. So, in the environment we operate in, where there's 12,000 plus unique daily active agents, a signature-based approach is essentially just a black box failure. You need to start profiling what normal.
+
+
+51
+00:15:41.541 --> 00:15:56.541
+looks like today, especially for as a rarity, features like those that Matt has just walked you through. So then you have the statistical mean ready when the deviation does occur, and then you can act on it immediately.
+
+
+52
+00:15:56.541 --> 00:16:12.541
+Uh, lesson number three, practitioners, ourselves included, often fall into the trap of building the perfect feature. We spend a significant amount of time and resources on this so-called parser and query complexity model that.
+
+
+53
+00:16:12.541 --> 00:16:32.541
+Ultimately, just introduced too much complexity and latency for what we eventually wanted to do, which is near time or real-time action. We found that simple telemetry, like invocation count or sensitive asset frequency produced way higher fidelity signals without having to blow up our SLAs.
+
+
+54
+00:16:32.541 --> 00:16:48.541
+And finally, remember that your funnel is only as good as your baseline. Do expect noise for the first 14 days of a new agent's life? Build that warm-up period into your SOX playbook so you don't burn out your analysts on day one.
+
+
+55
+00:16:48.541 --> 00:17:08.541
+And with that, um, it's a wrap. We will open up to questions. Thank you so much for being here.
+
+
+56
+00:17:08.541 --> 00:17:29.541
+This is great work, Millie and Matt. So I have 100 questions, I'm only going to ask one. The curse of dimensionality, how did you get over all of this over-engineering the features and all that? Can you give us some more details? Yeah, so I think for me, the main thing was to kind of just start with a pretty open canvas and be able to brainstorm.
+
+
+57
+00:17:29.541 --> 00:17:45.541
+I kind of took some inspiration from something like PCA, where it was, like, really just how can we actually look at which features are contributing the most signal? So we had several rounds of kind of creating features, running some analysis on how predictive were they actually in predicting abuse.
+
+
+58
+00:17:45.541 --> 00:18:02.541
+And then we use that to kind of cull the feature set down to the most minimal set that we could that would actually have the predictive power that we needed. But, yeah. And I can go into, like, a just tiny little bit of implementation detail. So, you could actually think of this as, like, hyperparameter tuning in, like, a traditional ML model, right?
+
+
+59
+00:18:02.541 --> 00:18:16.541
+Given that this is the set of features, this is what outcome look like. You can essentially run a simulation, and you can map that out, and you can actually tune your detection logic and the resulting detection volume output that way. So, like.
+
+
+60
+00:18:16.541 --> 00:18:23.541
+Um, we actually built this kind of programmatically, too, so there's a lot of, like, uh, kind of feedback loop.
+
+
+61
+00:18:23.541 --> 00:18:32.541
+architecture or design you can leverage here, just, you know, like, traditionally how we did, like, ML already.
+
+
+62
+00:18:32.541 --> 00:18:40.541
+Two questions about, um… How about, like, uh, so the final output of a set of 50-odd, whatever.
+
+
+63
+00:18:40.541 --> 00:18:54.541
+Uh, will you guys also… have you guys also thought about, like, some sort of, like, confidence score on those alerts? And how about, like, annotation piece as well, to say, hey, whether this was right or wrong for it to act as a feedback loop?
+
+
+64
+00:18:54.541 --> 00:19:14.541
+Yeah, so I think, um, one of the things is, again, we use that deviation-based scoring, so for every axis that we're actually looking at, we get some indication, similar to a confidence interval, of just how far out of character is this for the normal user's behavior. So, you know, maybe a support agent shouldn't be pulling the entire database, it would be extremely out of character. So that gives some.
+
+
+65
+00:19:14.541 --> 00:19:30.541
+telling of confidence. I think we're still kind of working to tune that a little bit better as we proceed. Um, and then we're continuing to work with some, uh, teams internally to kind of work on scoring the alerts that we have now, but yeah.
+
+
+66
+00:19:30.541 --> 00:19:42.541
+Hey, awesome presentation. Um, I really loved also the slides on the auto containment, like, ideas and explanations that you're given to SOC analysts just make it easy to reproduce.
+
+
+67
+00:19:42.541 --> 00:19:49.541
+What are you hearing from the incident responders at SOC analysts on?
+
+
+68
+00:19:49.541 --> 00:20:19.541
+The signals that they're receiving, and then what they want to actually do about it, I'm really curious about this auto-containment that might happen in the future with AI agents. And then what actions they might want to take. Like, what are you hearing from them? Yeah, I can speak to that. So… That's a multi-layered question. Well, first of all, our first stab at how do you make the result, one, more human-readable and interpretable? Because we always see in ML, there's this trade-off, intrinsic trade-off between your accuracy and interpretability.
+
+
+69
+00:20:22.541 --> 00:20:41.541
+Um, our first step by that, well, twofold. One is we… specifically designed the algorithm to be simple, to be able to trade out for that interpretability. So you have to remember in, like, an enterprise SaaS kind of context, we talk about Salesforce, we give this alert to customers, where we give this alert to a SOC analyst.
+
+
+70
+00:20:41.541 --> 00:20:58.541
+They need to be able to actually understand it and then be able to act on it. So our first design choice was choose a pretty simple distance-based algorithm. Number two, the slide that we went through, where we give you a sample alert, um, using, essentially using LLM to help you interpret.
+
+
+71
+00:20:58.541 --> 00:21:15.541
+the result. That's, like, our second step at making this more human-readable and more actionable, and what you might want to do with this. So that's the first layer of just making the alert itself useful. Now, moving to the inline, or blocking, or auto-containment.
+
+
+72
+00:21:15.541 --> 00:21:39.541
+extremely hard for problem space, because you're talking about… you're basically letting your algorithm not only make decisions for the user, but also act on their behalf. So our approach to that, the model just pilot really… it's just pilot releasing to customers this month, actually. Um, but our approach is we're having a purple team exercise, where.
+
+
+73
+00:21:39.541 --> 00:21:47.541
+We have a red team, essentially generating bad, and we're gonna have the model catch it in the wild, and then that's how we're going to be tuning efficiency.
+
+
+74
+00:21:47.541 --> 00:22:17.541
+Thank you. Thank you. We have, uh, Ilya up next. All right.
+
+
+75
+00:22:18.541 --> 00:22:48.541
+Is the only one I know.
+
+
+76
+00:22:58.541 --> 00:23:20.541
+So as soon as the questions start, go… Thank you so much.
+
+
+77
+00:23:20.541 --> 00:23:28.541
+Okay.
+
+
+78
+00:23:28.541 --> 00:23:49.541
+Hello. Okay. Success. Okay, so should I start? Yes? No? Yeah? Okay, cool. Right. So following on from the previous talk where you were told that complexity kills stuff internally, I'm an academic. I overcomplicate systems.
+
+
+79
+00:23:49.541 --> 00:24:05.541
+try to build mechanisms and sort of… Oh, is this not loud enough? Yeah, sorry. Let's okay. What about now? Does this work? Okay, cool. Yeah, so an academic, just heads up about this.
+
+
+80
+00:24:05.541 --> 00:24:11.541
+Whoops. Sorry.
+
+
+81
+00:24:11.541 --> 00:24:31.541
+# ! And yes, so I'm going to talk about quite a bit of complexity. I'll try to sort of keep it as sort of low effort as possible. Just give me a second. My computer is going crazy.
+
+
+82
+00:24:31.541 --> 00:24:36.541
+Okay, let me start off by asking a question to the audience.
+
+
+83
+00:24:36.541 --> 00:24:48.541
+What do you think is going to happen in the near future? Sort of like a quick elephant in the room moment. What do you think? As AI is getting better, you know, everyone is talking about exponentials.
+
+
+84
+00:24:48.541 --> 00:25:05.541
+Uh, do you think AI is going to solve its own security problems? Like, and more specifically, like, there are kind of two realities in the world, and what I'm talking about security problems, I'm talking about security problems of AI itself, right? Like, prompt injections, jailbreaks, that sort of thing.
+
+
+85
+00:25:05.541 --> 00:25:18.541
+So, maybe we can start by sort of show of hands. How many people here think that as AI gets better, it's going to get better at solving its own security problems, like prompt injection style?
+
+
+86
+00:25:18.541 --> 00:25:37.541
+So less… less than half of the room. Okay, cool. So I guess many people are quite pessimistic. But actually, if you look at what's happening in reality, like, if you go and try and do sort of, like, jailbreaks attacks against your current models, it's significantly harder to do than it was a couple of years back.
+
+
+87
+00:25:37.541 --> 00:25:49.541
+But nonetheless, it's still possible. And if you do this automated, uh, sort of retiming, uh, what people call today, then you'll find that, uh, it's actually quite easy nowadays.
+
+
+88
+00:25:49.541 --> 00:26:09.541
+And if you look at academic literature, there are sort of two strains of literature that kind of say relatively opposing things. So there is this famous paper from OpenAI that basically says, ooh, we have reasoning. The more reasoning we give to the models, the better they get at robustness.
+
+
+89
+00:26:09.541 --> 00:26:24.541
+And then, there is some other work coming out more from an academic angle, which basically shows that actually this sort of improvement in robustness is misplaced because the attacks people were using are just not very good.
+
+
+90
+00:26:24.541 --> 00:26:42.541
+And kind of today, if you ask the most informed individuals studying at these kinds of problems for decades, because of the subtle example literature is sort of a decade old, you'll find that nobody has an answer. Like, we have no idea. We definitely know for simple, small models.
+
+
+91
+00:26:42.541 --> 00:26:57.541
+We do not know how to even define what robustness means properly, and on a more practical setting, what happens when you sort of start scaling up the models and capabilities increase? It's still unclear what happens.
+
+
+92
+00:26:57.541 --> 00:27:14.541
+At the same time, we've been falling into this weird fallacy again and again of my model is great. It's clearly protected against all of these attacks that I've just tested. And most of the time it's this fallacy of.
+
+
+93
+00:27:14.541 --> 00:27:30.541
+Your system does not understand half of your instructions, and as a result, like, it can't follow them, and as a result, your attacks don't work. So, you get this weird balance where, well, today, if you actually run relatively big analysis, as we did, uh.
+
+
+94
+00:27:30.541 --> 00:27:44.541
+Like, early during my time at Google, where we were doing attacks against Gemini, and then later on, we released some more attacks, uh, like what today in academia would call state-of-the-art, uh, red teaming attacks. We see this again and again.
+
+
+95
+00:27:44.541 --> 00:27:56.541
+a relatively weak model, it appears quite nice in your robustness evaluations, and then turns out you're just using too strong of attacks against it, it just could not understand half of the things you were throwing at it.
+
+
+96
+00:27:56.541 --> 00:28:12.541
+And then as a result, in your metrics, it appears quite nice. And then the model improves tomorrow. And then suddenly it's a lot more vulnerable, because for you to police in all of these new dimensions, you actually have to spend significantly more effort. So it's kind of interesting.
+
+
+97
+00:28:12.541 --> 00:28:27.541
+However, if we sort of take a step back and ask, so what is the current status quo? Do we know how to sort of protect our models, how well are they performing? There is a whole bunch of literature related to, like.
+
+
+98
+00:28:27.541 --> 00:28:38.541
+Try, try to make it secure and to be frank, we're kind of failing in every way. And it gives you very nice sort of feeling that.
+
+
+99
+00:28:38.541 --> 00:28:55.541
+you know, like, you're doing well, you did your static tests, you evaluated this in whatever held-out datasets you have internally, and then, great, and then you push it out, and people break your systems in a couple of hours, as it recently happened with a bunch of competitions run by relatively big labs.
+
+
+100
+00:28:55.541 --> 00:29:11.541
+So, in this paper, what we did was we took basically every single defense you can find out there that was evaluated on relatively standard benchmarks, static benchmarks, and then you run stronger attacks, not even the craziest of things for a very small, like, under a dollar budget.
+
+
+101
+00:29:11.541 --> 00:29:22.541
+And you basically discover that all of them break, regardless. And this attack is general, it doesn't do anything sophisticated. If you've ever seen, like, think about this as, like, genetic algorithms on steroids.
+
+
+102
+00:29:22.541 --> 00:29:34.541
+So long story short, none of these methods work. We have no idea how to make stuff work, and we are kind of stuck in this weird minima where we can't build defenses because we don't have good attacks.
+
+
+103
+00:29:34.541 --> 00:29:52.541
+We don't have good attacks because we don't know how good the attacks are, because we don't have good defenses. And this vicious loop is obviously quite horrible for every single individual involved, because we're all experiencing the ramifications of running systems like this. In about a month after releasing this paper, and it blew up a bit on Twitter.
+
+
+104
+00:29:52.541 --> 00:30:09.541
+Where there is another paper with another defense inside, which performed a lot better, and I'm telling you, it's like a cadence of a month, right? Which performed a lot better. The results appear nicer. It's very simple to follow. It just calls another model in a funky way.
+
+
+105
+00:30:09.541 --> 00:30:26.541
+We get much better performance, query count required to attack it is higher, and you may think that this is a success. I would actually call it a bit of a failure, because it's yet again a sign that the attacks we've built that broke all of this 12 other defenses are not working for our current thing.
+
+
+106
+00:30:26.541 --> 00:30:43.541
+Clearly, the current attack success against our thing is not zero, right? Thus, it's likely we just haven't sort of put enough prior of how to break systems like this. And I think the cycle will continue. I'm pretty sure I give it another month, somebody will put in a bit more time.
+
+
+107
+00:30:43.541 --> 00:31:00.541
+Ask Claude code, I don't know, do some meta-optimization, and this stuff will break. So this constant vicious cycle of, we have some sort of unprincipled defenses that don't have guarantees, that don't come with anything inside of it, they will eventually fall, and we will experience the bad parts because.
+
+
+108
+00:31:00.541 --> 00:31:17.541
+AI is everywhere. We're using it everywhere. Today, we're approaching this as like an anomaly problem, right? But ideally, we move away from this world of anomaly detection and move into the way of actually deploying AI in a principled manner with guarantees of different kinds. In the same way we deploy software today, right?
+
+
+109
+00:31:17.541 --> 00:31:34.541
+Like, we do have probabilistic security in place, like, if you think about ASLR as an example, right, it's probabilistic security, but on top of ASLR, we have a ton of other mechanisms which are not probabilistic in nature. And think about control flow integrity, or CFI as being one of those examples.
+
+
+110
+00:31:34.541 --> 00:31:40.541
+Examples. Yeah, so we really want to escape the cat and mouse because this cat and mouse thing is going to haunt us.
+
+
+111
+00:31:40.541 --> 00:31:57.541
+So, what does it mean for security of AI of tomorrow? So what are we supposed to see? And if you ask me the best case for us is if we somehow manage to build mechanisms and sort of do some methodological innovation, which allows us to build systems where.
+
+
+112
+00:31:57.541 --> 00:32:13.541
+Your security utility scales with the utility of the model. So think about this as, like, my model gets better, and suddenly security posture I experience is significantly better. And that would be the best-case scenario, right? If we eventually end in this world.
+
+
+113
+00:32:13.541 --> 00:32:24.541
+Turns out, actually, for a large fraction of problems we're experiencing with the prompt injections, you can actually do it. You can actually get sorts of guarantees.
+
+
+114
+00:32:24.541 --> 00:32:39.541
+We released this paper, I think, a year ago now, and that was the very first example of a paper describing a mechanism that comes with some guarantees under the hood. Those guarantees are a little bit weird.
+
+
+115
+00:32:39.541 --> 00:32:46.541
+But nonetheless, they come with guarantees. So they work regardless, regardless of the attacks you have in place.
+
+
+116
+00:32:46.541 --> 00:33:01.541
+Uh, the way Camel worked under the hood was it was basically, if you will, an implementation of the dual LLM pattern that Simon Willison coined a while back ago, but actually we started doing this way before he was writing about this.
+
+
+117
+00:33:01.541 --> 00:33:19.541
+What we do here is we kind of separate the way data and instructions quite fundamentally in the whole deployment loop of the model. So, we take user queries, we rewrite a user query in a formal language without ever giving it any access to the data at all. So it does not see your untrusted content.
+
+
+118
+00:33:19.541 --> 00:33:34.541
+It cannot be poisoned by things, it cannot be prompt injected by things that it can't see. And once we take the user query and rewrite in a formal language, we kind of freeze this at this point, and then we just execute this frozen program. And inside of this frozen program.
+
+
+119
+00:33:34.541 --> 00:33:58.541
+We basically refer to another model to be able to process untrusted data. And in this setup, you basically have instructions, and this is what you get in the user query, separated the way fully, like, in its path from the untrusted data. And clearly for indirect prompt injection, so anything that other people are injecting into you, they will not be able to deviate the control flow you possess.
+
+
+120
+00:33:58.541 --> 00:34:14.541
+Right? So you get a control flow integrity out of this thing. But you can still steer the actual sort of decision-making. So here, the QLLM called this processing of untrusted data model can output you an address that is incorrect.
+
+
+121
+00:34:14.541 --> 00:34:26.541
+So, the blast radius itself of any sort of indirect prompt injections is severely restricted. It's impossible for this thing to now go and drop your tables or anything. Like, it's fixed in its execution flows.
+
+
+122
+00:34:26.541 --> 00:34:41.541
+And the best way to think about this is literally like you just fix the reasoning of the model, you fix what it's capable of doing, and then you use the other model to process any unstructured data into structured state such that it's processable by your planner.
+
+
+123
+00:34:41.541 --> 00:34:55.541
+planning model. If you want to see what it looks like in practice, this is an example from Tautu. This is like a classic customer support data set where you benchmark. Usually it kind of looks like this. So the query here was.
+
+
+124
+00:34:55.541 --> 00:35:11.541
+Here is my reservation ID. I want to know if I'm eligible for a refund, and then what your model would produce is, it would fix your variables inside, it would try and get the reservation ID, it puts a bunch of flags, and then for each one of them, it would perform.
+
+
+125
+00:35:11.541 --> 00:35:32.541
+Like a call to this… another unstructured LLM that is capable of outputting a Boolean value, so nothing but a Boolean value. So, after running basically those checks, you get booleans, whether the eligibility for a given criterion, this criteria is formally defined, is expressed, and then your model is capable of maximum just navigating through.
+
+
+126
+00:35:32.541 --> 00:35:47.541
+Like, uh, a bunch of static statements. And at that point, you as an adversary, if you wanted to manipulate this thing, you will discover you can't really do much beyond just, you know, forcing it to believe that some eligibility is there or not there.
+
+
+127
+00:35:47.541 --> 00:35:58.541
+Uh, in the first place. So, clearly, if you were attacking this thing, you'll struggle quite a bit, because none of your attacks will transfer, they're gonna be quite specific for whatever checks the user is actually asking.
+
+
+128
+00:35:58.541 --> 00:36:18.541
+So, when we run this thing, I think those benchmarks are, like, from 6 months ago for a variety of different agentic tasks, I'm just putting some stuff out of the paper. We actually run a lot more at this point. And what you will discover is that it broadly works. You don't lose performance. You lose performance in some very specific tasks.
+
+
+129
+00:36:18.541 --> 00:36:27.541
+And this by itself is enough to give you this control flow integrity with a bunch of asterisks. We can talk a bit about asterisks. And in this setup.
+
+
+130
+00:36:27.541 --> 00:36:32.541
+you basically know that no matter what the adversary do, they are kind of restricted inside.
+
+
+131
+00:36:32.541 --> 00:36:52.541
+And this kind of made me contextualize a little bit. What does this controlled data flow separation that we're kind of used to in software actually means in AI? And I think it's better to rephrase this as task data independence. So, if the task that you are actually asking the model can be solved without ever seeing the data, why even show it the data?
+
+
+132
+00:36:52.541 --> 00:37:14.541
+And if you assume this Rubik's Cube scenario, right, you have a robot that you're tasking to solve a Rubik's Cube. We know a general algorithm how to solve a Rubik's Cube. There is no point in giving it anything beyond the initial condition, because once you know the initial condition, this is the minimum amount of data that you need to release to the model, out of which it becomes a completely independent task.
+
+
+133
+00:37:14.541 --> 00:37:30.541
+So, the crux of the whole problem is data dependence. If the tasks that you're asking your agent to solve are data-dependent, you do not need to show it anything, then, like, prompt injections don't exist, like, at all. And for data-dependent tasks.
+
+
+134
+00:37:30.541 --> 00:37:46.541
+The question you should really be asking is, how do I minimize the amount of data that I release to my model, or perhaps make it, like, provably reliable, such that the task becomes predictable? And at that point, we know how to solve it and get some guarantees out of this whole situation.
+
+
+135
+00:37:46.541 --> 00:38:06.541
+And in this paradigm, it quickly becomes apparent that not all tasks are solvable, because many of them are, like, find my boss's email, and, like, find the execution steps inside of it. This is a strictly, like, extremely data-dependent task. Like, what happens when you try running this task, your model implements an interpreter loop in its plan. It basically goes through all possible actions, the.
+
+
+136
+00:38:06.541 --> 00:38:14.541
+The boss could have asked, and obviously at that point, you lost control flow integrity, because the whole thing, like, all possible flows are allowed.
+
+
+137
+00:38:14.541 --> 00:38:31.541
+But fundamentally, it's the same as load external code run it. The best thing we can do for this is some static analysis, maybe a bit of dynamic analysis, maybe on top of it, we can sandbox this, but this is as good as it gets. For these kinds of problems where resolving the data dependency is nearly impossible.
+
+
+138
+00:38:31.541 --> 00:38:50.541
+Yeah. And it may seem that this setup — actually, the paper was released a year ago. Everyone talks about this as like a de facto standard of how to think about security, but nobody implements this. And that is a little bit mind boggling to me. I understand why because I've now done quite a lot like I run a company of my own now.
+
+
+139
+00:38:50.541 --> 00:39:04.541
+Where we sell systems much better than what we describe here, but nonetheless, similar in principle. And… The answer is it's so hard to engineer these things. And we've been… it's been six months of us going.
+
+
+140
+00:39:04.541 --> 00:39:23.541
+five quotary migration, we have millions of lines of code now. Stuff is quite robust at this point, famous last words. But nonetheless, it's quite hard to scale. And the other thing I receive a lot is that a lot of tasks are data-dependent, so you should not be able to do this, right? Especially if you start looking at more complex instantiations of this. For example.
+
+
+141
+00:39:23.541 --> 00:39:41.541
+Computer use agents. So I wanted to briefly sort of challenge this idea. This is unfortunately wrong. You can actually discover that a bigger proportion of all of the benchmarks we are currently running are completely data independent. You do not need to show it the data. The model can solve those tasks without ever interacting with any data.
+
+
+142
+00:39:41.541 --> 00:39:56.541
+With an example of computer use agents. So, for those who are not familiar, computers agents are agents where you click on the screen, like, your tools are literally click or send the key commands, and this is like notoriously difficult to think about. So now imagine.
+
+
+143
+00:39:56.541 --> 00:40:01.541
+You needed to explain to someone how to order a PS5 controller on Amazon.
+
+
+144
+00:40:01.541 --> 00:40:16.541
+Can you plan this thing in advance without ever interacting with the internet? And guess what? So it turns out the models are super good at this. You really don't need to show it any of the internet, because it knows by heart the steps it requires to actually perform a task like this.
+
+
+145
+00:40:16.541 --> 00:40:37.541
+So here's an example of a plan. I don't know if you can see it very well, but basically it says, oh, I need to check whether I'm currently on the website. If I'm currently on the website, I need to find some parts inside of it. If I've managed to find them, then I need to perform the following set of actions. And it's a programming flow. For most of the tasks you find on a computer use benchmarks, and we use the most standard computer use benchmarks.
+
+
+146
+00:40:37.541 --> 00:40:47.541
+Uh, you'll find you can plan these things out fully. You end up with plans about 3,000 to 4,000 lines of code, and then they run. Like, you don't need to change anything.
+
+
+147
+00:40:47.541 --> 00:41:09.541
+And if you were to look at sort of distributions of tasks that are solvable, they're very much… correlated with how data-dependent the tasks are, but on average, by the seventh attempt, and no attempt here is a little bit fake, because it's not the same, because you can sample many plans and combine them together, like, you can basically build massive…
+
+
+148
+00:41:09.541 --> 00:41:16.541
+Massive attempt trees. Uh, you basically solve about 70, 80% of the tasks.
+
+
+149
+00:41:16.541 --> 00:41:33.541
+like, on par to a model that actually interacts with the data. So, like, if you take X amount of tasks is solved by the model that can interact with the internet and see the internet, in our case, we can solve 80% of these tasks without ever looking at the internet. The only thing you get is a user query at the very beginning.
+
+
+150
+00:41:33.541 --> 00:41:49.541
+Right? So completely data independent. You don't need to show the data. You don't need to get prompt injected by running the data, because you can just run without it for a big majority of the tasks. And mind you, we have much better schemes internally in a company that our performance is much better than what you see here.
+
+
+151
+00:41:49.541 --> 00:42:11.541
+Like, you can push this significantly. Let's just jump over this. So, as I said, we talk about CFI. This thing gives you CFI, this control flow integrity, so you can't really force the agent to perform things that otherwise it wouldn't be asked to perform by the user, but can you still manipulate it? And turns out it's actually quite easy to do in a computer-use setting. It was quite funny for us.
+
+
+152
+00:42:11.541 --> 00:42:27.541
+I live in Europe, well, I live in London, and the thing is, like, whenever you open a website, the first thing you see is a cookie prompt. And what you will get out of the model every time it opens a website or any website-related thing, it builds like a whole chunk.
+
+
+153
+00:42:27.541 --> 00:42:37.541
+related to detecting whether it sees a cookie prompt inside of it. Like, the first thing in every single plan that the agent produces is, is there a cookie prompt? Because then I need to click out of it.
+
+
+154
+00:42:37.541 --> 00:42:48.541
+Okay? Every single one. So you know what's going to happen in the plan. What can you do? So what we did was we grabbed the ads that you can find basically on any website and we plug in cookie prompts inside.
+
+
+155
+00:42:48.541 --> 00:43:02.541
+Right? And in this way, even though the model never sees the interaction, like, it doesn't know the interaction, it's only allowed to sort of plan ahead of time and say, is there a cookie prompt? And the first thing, of course, there is a cookie prompt. It's in your ad space.
+
+
+156
+00:43:02.541 --> 00:43:05.541
+And the first thing it does in its planes, at least accept.
+
+
+157
+00:43:05.541 --> 00:43:21.541
+And then what we basically show is, as long as you can buy those cookie prompt advertisements, you can basically force the agents to sort of click through this. And this is an example of a prompt injection that is not control flow prompt injection. It's not like ignore my previous instructions, do something else.
+
+
+158
+00:43:21.541 --> 00:43:39.541
+I know that my execution flow is fixed, I want to deviate into some other flow. Can I do this? Obviously, the amount of stuff you can do is quite restricted in this setup, but nonetheless, like, it works. And you… it becomes obvious that, like, data flow class of attacks is still a thing.
+
+
+159
+00:43:39.541 --> 00:43:55.541
+So what I want to say is today we actually know how to solve a big chunk of this agentic security problems. Some papers are public, some of the work is not public yet, but eventually we will push it out. And you still need quite a lot of methodological innovation.
+
+
+160
+00:43:55.541 --> 00:44:12.541
+You still need a lot more sort of integration with an example of this website, cookie prompt style of attacks, but I have no idea why people don't do it. Like, I genuinely don't. I think it can have a much better state of the world. The other thing I wanted to mention is that, like.
+
+
+161
+00:44:12.541 --> 00:44:26.541
+Since we see that Dataflow attacks are a thing, it's clear that those kinds of problems are not going to be solved inside of the model. This sort of robustness has to come from the outside. For example, in a web space, it's quite clear what you need to do. You can, as an agent, say.
+
+
+162
+00:44:26.541 --> 00:44:44.541
+I'm expected, when I click on a cookie prompt, to stay on the same website, right? Like, it's quite clear what you need to actually be checking, but unless the agent has a way to interact and deeply integrate into the ecosystem in which it exists, it will not be able to do this. So we've been running a bunch of efforts with some colleagues in UCSD.
+
+
+163
+00:44:44.541 --> 00:45:02.541
+On trying to build proper sandboxes and a proper communication layer between the agent plus the environment in which it interacts, in this case, we really sillmate, where you as an agent or you as an owner of a website, or you as a user of a website, you can express your expectations around what the website should do.
+
+
+164
+00:45:02.541 --> 00:45:12.541
+as you perform actions with it. So think about access control, policy enforcement inside of the browser. So all this stuff works, fully open source. It's easy to use, and.
+
+
+165
+00:45:12.541 --> 00:45:23.541
+If you go and try breaking camel together with cellmate, I promise you, you will fail. Like, it's so hard to do in this setup as the adversary. I've tried.
+
+
+166
+00:45:23.541 --> 00:45:30.541
+It's like… you will solve 99.999% of all of the issues you can experience.
+
+
+167
+00:45:30.541 --> 00:45:42.541
+Um, yeah, so I think this is the end of my talk. I don't know. Have I used enough time? Yeah. Uh, this is the end of my talk. Happy to take questions or broadly talk about this. I also have.
+
+
+168
+00:45:42.541 --> 00:45:56.541
+A couple of hundred of pages of papers, we can talk about stuff if you're interested.
+
+
+169
+00:45:56.541 --> 00:46:02.541
+Questions?
+
+
+170
+00:46:02.541 --> 00:46:19.541
+So I know when you mentioned CAMEL and kind of the research that went along with that, I guess the question that I pose is, why don't you think we see more adoption of those standards? Is it because, I guess, should the academic papers be pushing more on the operationalization side of this, or is it okay to just.
+
+
+171
+00:46:19.541 --> 00:46:41.541
+pose that framework out there. Okay, as an academic, sorry, I'm not going to touch your computer. As an academic, I will say we should definitely share methodological research. I think security is a shared commodity, we all benefit from this. We all use tooling from everyone. At the same time, I have to say, like, building the first prototype was trivial.
+
+
+172
+00:46:41.541 --> 00:46:57.541
+personalizing this and building, like, a proper production system is hard, right? And in this particular case, the amount of methodological innovation we had to do inside of the model, not just outside, basically means you have a small set of people who understand the AI, who understand security, and can sort of, like.
+
+
+173
+00:46:57.541 --> 00:47:12.541
+iteratively improve systems. So, it's a very hard task, right? So, as I said, six months in, a lot of code migrations. Our current scheme is significantly better. You can adopt it with one line of code change in every single agentic setup you have. Like, give it a try.
+
+
+174
+00:47:12.541 --> 00:47:20.541
+And then, I promise you, the first action is gonna be, hmm, I'm gonna try and implement it internally, and you will discover it's so notoriously hard to do.
+
+
+175
+00:47:20.541 --> 00:47:29.541
+Right? But nonetheless, if you're interested, if you want to try using this, we have, like, an openly available API. You can poke at it, and you get the full control of your systems.
+
+
+176
+00:47:29.541 --> 00:47:47.541
+And those things are also, like, model agnostic. Tomorrow, you want to switch your provider, and it works. And it also scales with your model improvement. So, the other thing I kind of skipped over, just for the sake of time, is that you're planning capabilities directly correlated with your performance, so the better the model is, the better the planning is.
+
+
+177
+00:47:47.541 --> 00:47:53.541
+And the better security performance is, right? Because, like, you can actually do those tasks.
+
+
+178
+00:47:53.541 --> 00:48:06.541
+Um, I hope that answers. Is there any other questions? One more question. Sure. Would you mind explaining what would be the security challenges for the computer usage agents?
+
+
+179
+00:48:06.541 --> 00:48:30.541
+Like, when it comes to VNC, or how do you secure? I know my question is twofold. One is, what would be the most… difficult challenge when it comes to securing those computer use agents? Or have you seen any attacks coming through them? Oh yeah, plenty. I mean, if you Google for this, you'll find people losing emails, access codes, API keys, everything. Like, computer use agents are horrible.
+
+
+180
+00:48:30.541 --> 00:48:47.541
+Because you have no semantics. Your input is a screenshot, your action is, I click somewhere. You can't even do semantic censorship of this thing. Like, in case of email, you can at least say, like, I'm only sending emails to my at Google addresses, right?
+
+
+181
+00:48:47.541 --> 00:48:57.541
+But when your action is a click. How do you police this thing?
+
+
+182
+00:48:57.541 --> 00:49:02.541
+How do you secure it? What are your thoughts?
+
+
+183
+00:49:02.541 --> 00:49:19.541
+How do we secure? Like, I'm telling you, Brandes and Camel, together with Selmate, this thing will solve 99.9999% of your issues already, like, out of the box, right? There is a lot of heuristic solutions people are using, or you can use the SIC defense that we released. This thing appears to be quite robust for.
+
+
+184
+00:49:19.541 --> 00:49:25.541
+Basically, anything you can find out there except for relatively sophisticated adversaries.
+
+
+185
+00:49:25.541 --> 00:49:42.541
+Thank you so much.
+
+
+186
+00:49:42.541 --> 00:49:57.541
+Hi, everyone. I'm Down Dong from Palo Alto Networks. I'm a machine learning engineer working on threat intelligence. So, today of the talk, I'll just talk about how we build a threat intelligence from getting open source intelligence data.
+
+
+187
+00:49:57.541 --> 00:50:15.541
+Um, I think many of you are working with open source intelligence data, um, has used some of it. Um, the best thing about open source intelligence data is free. Um, but is it really free? Um, it's out there in the wild, but you have to gather it into a structured format that you can use it.
+
+
+188
+00:50:15.541 --> 00:50:35.541
+Uh, for downstream tasks easily. So for people using open source intelligence data, a lot of things are just like threat reports published by different vendors. You can read them, you know, occasionally trying to look out for things that might relate it to your company, protect the threats that you're looking for. But reading reports take a lot of time.
+
+
+189
+00:50:35.541 --> 00:50:51.541
+So some people just, okay, we can maybe have a subscription to an intel feed, and just give you a bunch of stuff. But those things are usually, like, indicator fees. Indicator fees are good if you just plug and chug maybe to your EDR, and just check for these things.
+
+
+190
+00:50:51.541 --> 00:51:03.541
+Um, but what the really thing lacks is the contextual clue of what this indicator is about. And that's just the butter of the open source intelligence data lies in the unstructured data out there.
+
+
+191
+00:51:03.541 --> 00:51:33.541
+So there, we're talking about over 200 different valid sources across the internet, and this thing can crowd maybe like 10,000 reports each week. And this is not for… possible for anybody to consume. And there are, uh… Different same events talk about by different vendors, but they are overlapping things they talk about and the things this vendor talks about, the other vendor didn't talk about. So it's very important to look at this open source data holistically to get a better picture of what's going on out there.
+
+
+192
+00:51:38.541 --> 00:51:53.541
+So the problem really is, um, you can't possibly look at everything out there. It is timely intel. You want to read it at the time it's first published, so you get the best up-to-date information, but you can't keep track of that kind of stuff every day.
+
+
+193
+00:51:53.541 --> 00:52:10.541
+Um, so what we think is, uh, why don't we make this thing, uh, reverse the problem a little bit, uh, we think about, okay, what people use, uh, Threat Intel for, and, uh, maybe we take a proactive approach, let the user, uh, think about, um, how they want to use it.
+
+
+194
+00:52:10.541 --> 00:52:28.541
+So, we want to make it, like, sort of a question-answering type of scenario. Let's say I want to know about the different malware used by APD29, and I just want to get an answer out of it. Or other cases, I have seen these kind of indicators join up in my logs.
+
+
+195
+00:52:28.541 --> 00:52:46.541
+Um, I want to see if anybody in the open source community has done any research on these things, and give me a better picture of what's really going on out there. But the problem is you can't possibly feed all these reports in the LM and LM sometimes doesn't have update information.
+
+
+196
+00:52:46.541 --> 00:52:56.541
+Um, so you need some sort of a structure to contain all these kind of threat reports into a structured format, and that also fit into your threat modeling.
+
+
+197
+00:52:56.541 --> 00:53:11.541
+So something that naturally comes into the structure is basically a knowledge graph transformation. Cybersecurity data are in nature interconnected with each other. There's different entities, you can trace them how threat actor uses them.
+
+
+198
+00:53:11.541 --> 00:53:19.541
+how they use the malware, what are kind of indicators are you seeing in your logs, uh, and what, you know, what victims are being attacked?
+
+
+199
+00:53:19.541 --> 00:53:38.541
+Um, so, so, so now we basically need to think about how we kind of extract this information, um, out of this, uh, reports. And when you think about threat intel, uh, ontology or structure, first thing, uh, sticks, uh, how many of you guys have used sticks and love it?
+
+
+200
+00:53:38.541 --> 00:53:54.541
+All right, I mean, we have one here, that's good. I heard a lot of different stories, obviously. So we… the problem with sticks is, like, very machine-readable. It's not really for human to ingest, and can get really long.
+
+
+201
+00:53:54.541 --> 00:54:10.541
+very quick. Um, so what is lacking is, I think, the, uh, we don't want something that's entirely structured. Um, that's not very good for human to read. Neither does it good for actually AI to read. Ai likes, like, unstructured text, um, but you can't really give it too much.
+
+
+202
+00:54:10.541 --> 00:54:27.541
+So this ontology, essentially, of knowledge art gave us a what's called, like, a semi-structured data format, where you have some constraint on what kind of information you want, but you still retain the unstructured data to give it context and clue to explain this easily.
+
+
+203
+00:54:27.541 --> 00:54:46.541
+Uh, now we're at it, uh, actually, let's take a look at an example, um, here from this threat report published a couple weeks ago about this beyond trust critical vulnerability. This report, it takes about 11 minutes to read. It talks about the malware VSHAL.
+
+
+204
+00:54:46.541 --> 00:55:03.541
+SparkRT, different, uh, different details about the vulnerability. It talks about the scope of attack, uh, talked about the live shell activity malware here. Um, it also talks about, uh, the historic context of previous beyond-shield vulnerability.
+
+
+205
+00:55:03.541 --> 00:55:08.541
+And at the end, um, it has just a list of indicators related to this attack.
+
+
+206
+00:55:08.541 --> 00:55:21.541
+Um, for humans to read this report, and then also just extract the intelligence out of it, um, can take a lot of time. Reading 10 minutes, extracting it out, putting it somewhere, um, maybe another 40 minutes.
+
+
+207
+00:55:21.541 --> 00:55:28.541
+So there's actually a lot of work that we don't want our threat researchers to do. We want their time to spend on something more useful.
+
+
+208
+00:55:28.541 --> 00:55:45.541
+Um, so let's take a look at an example of what the kind of graph look like if you just track everything out of it. So, in this medium, I guess, report, uh, we're able to get, like, over 100 different entities out of it, and also over 100 different, uh.
+
+
+209
+00:55:45.541 --> 00:55:50.541
+relationships out of it. We can zoom in a little bit in the graph.
+
+
+210
+00:55:50.541 --> 00:56:12.541
+Um, let's just take a look at the, like, the V-shell, uh, malware here. Um, it has, like, different infection vectors, things related to this malware extracted from the report. Um, it also… It also has, uh, talk about, like, a previous campaign that, uh, related to this.
+
+
+211
+00:56:12.541 --> 00:56:28.541
+Here is, like, extracted vulnerability, and… Here, you can also see a previous threat actor also exploiting beyond shell vulnerability in 2024.
+
+
+212
+00:56:28.541 --> 00:56:44.541
+Uh, now let's zoom out of this, uh, graph and look at how it possibly related to a larger picture in the graph. Uh, so now we're just, like, expanding, uh, on relationship, uh, from nodes extracted from the report, and then trying to see what are some other entities.
+
+
+213
+00:56:44.541 --> 00:57:07.541
+Also, um, related to this thing. So for example, this, like, an attack pattern mentioned here is about ingress tool transfer. We see this being used across various different campaigns, various different threat actor uses this. So this gives you a much granular picture of what's going on out there.
+
+
+214
+00:57:07.541 --> 00:57:26.541
+Now, uh, let's actually switch back. So how do we really extract this kind of information? It's really dense, in essence, I have, like, over 100 different entities. Llm has been very good at doing stuff, but then doing stuff reliable is, uh, you can't just, like, one-shot this thing.
+
+
+215
+00:57:26.541 --> 00:57:43.541
+from the get-go. So basically we kind of just split it up over multiple steps, trying to make LLM extract this. What we first start is like basically having a skeleton extractor essentially acting as a router to look the report, see if there's anything worthwhile to extract.
+
+
+216
+00:57:43.541 --> 00:57:53.541
+Um, if you see something worse spell, essentially just routes to different, uh, extraction component, and then it basically tracks detailed information for each entity types.
+
+
+217
+00:57:53.541 --> 00:58:10.541
+Um, for most of the things, we're trying to grind it just to extract exactly how it's phrased in the report. Um, but for things like a tag pattern, usually they don't have the Mitair ID in the report, so you have to just try to look at the attack behaviors there and try to induce.
+
+
+218
+00:58:10.541 --> 00:58:21.541
+What might her attack pattern is. Uh, turns out, actually, LLM has a pretty good knowledge of the entire MITRE base, but if you're just asking it, uh, okay, what, you know.
+
+
+219
+00:58:21.541 --> 00:58:39.541
+attack pattern insight is actually giving… it's like a fuzzy recall. Um, a lot of tech patterns may be similar, so it actually produces a lot of noise. Um, so what we kind of did here is, um, like how you think about things, let LM extract the behavior, let extract a couple of candidate, uh, potential.
+
+
+220
+00:58:39.541 --> 00:58:52.541
+attack pattern, and let LM read related, um, attack patterns, uh, from a knowledge base, and it will basically correct itself to land on a final attack pattern for that behavior.
+
+
+221
+00:58:52.541 --> 00:59:09.541
+And lastly, it's about relationship extraction. We have, like, 100 different entities, the relationship basically just explodes. Um, so what we did is we just basically constrained to a set of triplets of entities and relationship mapping stair.
+
+
+222
+00:59:09.541 --> 00:59:25.541
+and let LN basically wrote which relationship it can establish. And like I was just showing, uh, in the graph here, it actually gives a description for what type of, uh, relationship it is, instead of, like, constraining just to a verb uses.
+
+
+223
+00:59:25.541 --> 00:59:32.541
+This discretion is able to give you a contextual clue if this is how it's actually being used.
+
+
+224
+00:59:32.541 --> 00:59:47.541
+Um, so next steps, we're talking about, like, how, okay, we lend this architecture. The most important thing about this, all this AI, uh, application is how you do your evaluation. And this is the only indicator of quality of your data, especially for threat intelligence.
+
+
+225
+00:59:47.541 --> 01:00:04.541
+Um, like a lot of things, for this project, we didn't really have a benchmark to start with. There wasn't really any good benchmark on just extracting threat entities and relationships out of long, lengthy threat reports, so this is something we kind of have to start build from the ground up.
+
+
+226
+01:00:04.541 --> 01:00:34.541
+Um, at the beginning, we were just doing back-checking, trying to see if LM gives something makes sense, something's, you know, crazy wrong, and just also validate with external sources, uh, that are out there. The problem was just, uh, building LLM Evaluator and external sources is, um… You're constrained to the knowledge that's out there. If you know something that's wrong, you can build an LME validator trying to watch for that. If you know there's, like, malware out there, you can cross-check. But something, if it's missing in the report, or it's like an attack pattern from behavior, you don't really have this information readily available.
+
+
+227
+01:00:35.541 --> 01:00:51.541
+So, you still have to use some sort of human knowledge to curate this dataset. So, basically, we try to, you know, make the best time of our threat researchers, so we really make a quick iteration in terms of how we scale the data set.
+
+
+228
+01:00:51.541 --> 01:01:08.541
+Uh, we started with a small data set curated by threat researcher, and we want the model to try to memorize it as much as possible, and we do an inference on another batch of data, and with maybe 2 or 3 iterations, uh, the model is able to get 90% correct.
+
+
+229
+01:01:08.541 --> 01:01:18.541
+Most of things is N for 30 short, they really just have to look at it, uh, and just check. So, very minimal effort in just really annotating the data from here.
+
+
+230
+01:01:18.541 --> 01:01:35.541
+Um, so, as you get to, you know, hundreds and thousands of entities, like, you can't possibly look at the reports and try to see what's wrong with it, so we're just trying to using LLM to curate and then conclude, uh, the… through automatic prompt optimization process.
+
+
+231
+01:01:35.541 --> 01:01:52.541
+So, there's, like, a lot of works on this, but actually, uh, it doesn't quite exactly work here is a lot of things LM might change in this iteration. Say they've seen this false positive. They generate a hypothesis of why this is wrong, and they added something to prompt.
+
+
+232
+01:01:52.541 --> 01:02:11.541
+And automatically distancing is changing the previous prompt, and is causing… it's actually like a loop that you couldn't get out of. You fix something, you got something wrong, you fix something, got something wrong. So you're in this loop. So, basically, what we did is we constrained in the prompt in an area where only LLM can change, and there's some sections where human can change.
+
+
+233
+01:02:11.541 --> 01:02:28.541
+Um, so this actually reduced a lot of things where, essentially, you pick up this thing and you drop another thing. It's able to improve upon here. Um, another interesting thing we noticed from this is, uh, basically during the, uh, reflection aggregators is basically summarizing.
+
+
+234
+01:02:28.541 --> 01:02:45.541
+multiple reasons why this is wrong, and trying to get a new proposal out of it. Um, actually, I'll find a lot of things. We have an inconsistency verdict, uh, from the annotators. Uh, so a cross-report, maybe this thing was, this thing is a malware, they think this is a tool.
+
+
+235
+01:02:45.541 --> 01:03:03.541
+or to extract this campaign is now. So, actually, automatically discovered inconsistencies within human researchers. If you ask somebody to look at this report, they may look up different things. So, we had this thing, another loop basically have LLM list out a lot of, uh.
+
+
+236
+01:03:03.541 --> 01:03:12.541
+Interesting conflicts that is observing, and just we send it, like, to the, uh, service registers and let them fight this out.
+
+
+237
+01:03:12.541 --> 01:03:29.541
+Um… So basically we covered how we go from unstructured data and to construct this knowledge graph. Now we can talk about how we go from the knowledge graph to some answers that you really care about.
+
+
+238
+01:03:29.541 --> 01:03:44.541
+Um, so basically we started something simple. We just want to let the agent capability to interact with the knowledge graph like some human would. Um, so basically, you would just start from a pivot point, uh, either from, like, searching for a node.
+
+
+239
+01:03:44.541 --> 01:03:50.541
+And then you just basically work the graph from that node, trying to find related information.
+
+
+240
+01:03:50.541 --> 01:04:07.541
+Um, and now, actually, let's take a look at the report on BeyondTrust that we just looked at. Uh, I just want to ask a question about, okay, uh, can you just look up the most recent, uh, Beyond Trust Vulnerability? How has this been exploited? Uh, give me a texture of this, uh, exploitation.
+
+
+241
+01:04:07.541 --> 01:04:23.541
+So, basically, the LLM agent is able to just search for indies in BeyondTrust. It found the vulnerability, and it find the most recent one. Then they basically just get the subgraph from this node to get a full story of what's going on with this vulnerability.
+
+
+242
+01:04:23.541 --> 01:04:38.541
+Uh, database basically get the details about the vulnerability, uh, is able to get related threat actor to this vulnerability, is able to get other campaigns that are related to this vulnerability, and here it gives out an attack chain that's happened.
+
+
+243
+01:04:38.541 --> 01:04:54.541
+how to exploit this vulnerability. Um, also, it's worth noting is just that it also gives you, uh, sources of which node this is able to find, uh, this information, which this gives a lot of trust to LLM not to…
+
+
+244
+01:04:54.541 --> 01:05:01.541
+rely on its model knowledge, whereas relying on curated information from threat reports.
+
+
+245
+01:05:01.541 --> 01:05:11.541
+And at the end, it essentially gives you an investigation graph, just show you what step it looked at, and what entities it looked at, uh, to arrive at this answer.
+
+
+246
+01:05:11.541 --> 01:05:27.541
+Now, let's actually look at another example, uh, taking a look at the Thinsys capability of this knowledge graph. So, if I want to look at things from a higher level, look at, okay, what malware does AP28 uses, um, it's able to look at the APT28.
+
+
+247
+01:05:27.541 --> 01:05:39.541
+Actually, you look up multiple threat actors here because for AP28, it has multiple aliases. And for different reports, they may mention this alias and this alias, but essentially it's talking about the same threat actor.
+
+
+248
+01:05:39.541 --> 01:05:55.541
+Um, and it's basically looking for, uh, basically multi-hoffs of how this threat actor correlates to different malwares. Um, it's doing, like, semantic search. And now here it's basically doing lookup a bunch of related, uh, malware to this threat actor.
+
+
+249
+01:05:55.541 --> 01:06:00.541
+And also getting a subgraph of the stridector aliases.
+
+
+250
+01:06:00.541 --> 01:06:12.541
+Uh, and here at the end, it basically arrives at a bunch of different recent malwares that's used by this threat actor and different sort of tools that use it.
+
+
+251
+01:06:12.541 --> 01:06:26.541
+Now, let's take a look at a more multi-hop question. Basically, what vulnerability does APD28 exploit, and is there any other threat actor group exploit this vulnerability as well?
+
+
+252
+01:06:26.541 --> 01:06:42.541
+Um, so now it already has the presumed the previous information, so it's only trying to get the neighbors that have exploit the relationship, um, it looking for… from the exploit relationship from, uh, different aliases, threat actors, uh, and doing semantic search.
+
+
+253
+01:06:42.541 --> 01:06:54.541
+Um, here, base… now you have find pivot from the threat actor to the vulnerability, exploit. Now you just take another hop, trying to see what threat actors are related to this vulnerabilities.
+
+
+254
+01:06:54.541 --> 01:07:12.541
+And at the end, it basically finds a bunch of lists of vulnerabilities, and also tons of different threat actors also exploiting the same vulnerability.
+
+
+255
+01:07:12.541 --> 01:07:19.541
+And this one basically lands, like, a much longer investigation graph, because you have to look for a lot more entities.
+
+
+256
+01:07:19.541 --> 01:07:36.541
+Let's also look up another question. Maybe you want to find, is there any relationships between two threat actor groups, maybe different malwares? So here we're asking, oh, um, is there any relationship or connection between ADP28 and ATP29?
+
+
+257
+01:07:36.541 --> 01:07:49.541
+Uh, now it's basically… already has enough information about 28, now it's looking up in these APT29. It's trying to find a path that's connecting between the two thread vectors in the graph.
+
+
+258
+01:07:49.541 --> 01:08:04.541
+is looking for co-occurrences. Co-occurrences, essentially, um, they want to look for entities that mention the same report. So this gives LLM a chance to look for things that are not in the ontology, but from the report.
+
+
+259
+01:08:04.541 --> 01:08:16.541
+And basically, it gets the stop graph from the threat actor 28. Notice there's, like, doing two different calls, because there are multiple aliases of threat actor 2029.
+
+
+260
+01:08:16.541 --> 01:08:40.541
+Uh, now here, it basically gets the answer to talk about their common tooling, common infrastructure uses, um, and there's shared strategic targeting, um, basically type of victims they like to target, and then also national attribution on their… Both attributed to our Russian GRU, that one is Russian, uh…
+
+
+261
+01:08:40.541 --> 01:08:45.541
+For intelligence services, so they… from the same geographical location.
+
+
+262
+01:08:45.541 --> 01:08:50.541
+Um, and at the end, it has a list of investigation graph.
+
+
+263
+01:08:50.541 --> 01:09:03.541
+Um, that's the end of our presentation.
+
+
+264
+01:09:03.541 --> 01:09:20.541
+Hey, uh, firstly, thanks for your presentation, uh, appreciate it. Um, I think it's really impressive that you all have someone like yourself on staff as a very senior, experienced data scientist to help build tools like this, so props to Pan for that. Uh, question.
+
+
+265
+01:09:20.541 --> 01:09:29.541
+How do you qualify the outputs, uh, and, like, the corollary, the obvious corollary is, like, what are your failure rates for responses, like, being incorrect analyses?
+
+
+266
+01:09:29.541 --> 01:09:59.541
+Um, so I guess there are two things, right? So I think the most important evaluation that we're doing, essentially, is making sure the graph extracted is correct. So, if… if your agents are relying on this graph and this graph is… trash, then it's like trash out. You really can't fix anything from that point. So, basically, we do a very, like, rigorous evaluation. Um, like, we have, uh, hundreds of thread reports in our dataset, and we're just making sure LM's able to get it reliably each time. Um, basically, for…
+
+
+267
+01:09:59.541 --> 01:10:12.541
+Also, there's, like, an iterative, uh, decoding. Essentially, if there's something… we tested with a report with, like, hundreds of indicators, and our extraction is able to, um, iteratively get the indicators out of the report.
+
+
+268
+01:10:12.541 --> 01:10:42.541
+Um, so basically just invest heavily in evaluation. I would say, like, more than 50% of time, I spend on just building evaluation. Uh, just fighting with threat researchers, A, if researchers B, okay, you guys disagree, you know, get in a room, let's fight this out. So, a lot of this is also just massaging the data and the art of just making a… you know, a comprehensive evaluation. Also, another thing is this is ultimately decided by the user of the data. So we have talked about with multiple teams inside Paolo, like, uh, you know, URL team, different threat researchers, malware team.
+
+
+269
+01:10:48.541 --> 01:11:14.541
+So we want them to use data and it correlate with their data to see if it makes sense. And obviously checking, we have our internal data sources. So this is OSINT. We also have internal data sources that are doing cross-checking.
+
+
+270
+01:11:14.541 --> 01:11:21.541
+So you spoke about the, uh, sorry, you asked the question around APD28 and APD29, right?
+
+
+271
+01:11:21.541 --> 01:11:27.541
+But at least I didn't see in the report anywhere where it said both are named bear.
+
+
+272
+01:11:27.541 --> 01:11:43.541
+Right? Like, I mean, like, if you ask an LLM something, I mean, like, without giving the knowledge, if you ask it, the least it would say is, oh, both are named where, maybe they're related, right? But you… I didn't see that in your report. So did you do anything specific to make sure that those kind of conditions.
+
+
+273
+01:11:43.541 --> 01:11:59.541
+Or, well, technically, in this case, it's kind of a hallucination, honestly. Like, did you do something to avoid such a hallucination? Sir, what kind of a hallucination are you talking about? So, like, when you asked about the APT28 versus APD29, is there any connection?
+
+
+274
+01:11:59.541 --> 01:12:08.541
+Right? When you just run it across a normal LLM, which doesn't have any information about the knowledge graph.
+
+
+275
+01:12:08.541 --> 01:12:12.541
+the least it would say is both are named bear.
+
+
+276
+01:12:12.541 --> 01:12:24.541
+Both have the name bear in it. Fancy Bear, and the other one is some other bear. So, maybe they are both related, is what it would say. Yeah. But in your report, it is not there.
+
+
+277
+01:12:24.541 --> 01:12:46.541
+So I'm asking, like, did you do anything specific to achieve that? Like, where it doesn't hallucinate in that aspect? Oh, I see. Yeah, sorry, I didn't get the first time. You were saying, like, they might just say something similar to their alias names, right? Like, something I guess nobody really cares about from that. So, I think it's just really having a knowledge base where your LLM can constantly get access to, so that's why we're building this knowledge graph.
+
+
+278
+01:12:46.541 --> 01:13:01.541
+We want the model just really ground on the knowledge graph itself instead of relying on model knowledge, which can be wrong. Also, another thing is, like, when just, like, basically outputting this, um, it is giving, like, things like this, right?
+
+
+279
+01:13:01.541 --> 01:13:15.541
+Like, okay, it's not, it's not showing in the part, basically, for each statement, it has a bracket at the end. It says basically where it gets the information. So, basically, we just ground the LLM to the sources of the knowledge graph.
+
+
+280
+01:13:15.541 --> 01:13:27.541
+Great talk. I wanted to ask about, uh, for the eval system and the framework you put in, what kind of monitoring are in place to feed that back into the feedback loop?
+
+
+281
+01:13:27.541 --> 01:13:42.541
+Uh, monitoring, do you mean like during training stage or during, like, inferencing stage? Uh, actually both. Both, okay. So, I guess, like, for trainings, like, kind of, like, what I mentioned there, uh, we have, like, just building an automatic prompt optimization process that's, like, constantly monitoring this.
+
+
+282
+01:13:42.541 --> 01:14:09.541
+Um, we actually, just an interesting fact out of that, like, newer model actually doesn't necessarily produce better, you know, benchmark. Yeah, maybe I think you were… Yeah, actually, also another interesting curve is, like, thinking model actually doesn't do better than non-thinking model. That's like a weird observation, is a thinking model is to think too much, mostly rely on model knowledge, where actually the task we're doing is like.
+
+
+283
+01:14:09.541 --> 01:14:15.541
+Okay, we try to reduce the model bias as little as possible, just rely on the sources at hand.
+
+
+284
+01:14:15.541 --> 01:14:27.541
+Um, but for inferencing, I would say, like, we… We have, like, LM as a judge, you know, running in production, but those things, I guess, is secondary to the evaluation dataset.
+
+
+285
+01:14:27.541 --> 01:14:49.541
+Hi, uh, great talk, thank you. So, how do you… are you looking at the overall metadata of your… processes in place. So, for example, the community in general is not putting in attribution. For example, Notepad++. They come out and they blog, it was the Chinese, but they don't have any indicators, it hits computer.
+
+
+286
+01:14:49.541 --> 01:15:10.541
+And now everybody believes that it was the Chinese, right? So are you looking at overall data as to like the attribution and how the in general, the community is not… Publishing quality reporting, and how that's skewed over time.
+
+
+287
+01:15:10.541 --> 01:15:26.541
+Does it make sense? So, I guess, like, another question, two questions, I think you asked, like, how is the quality of the open source intelligence? And other questions, like, uh, what kind of attribution are we doing? Yeah, like, is there… my theory is, the hypothesis is that.
+
+
+288
+01:15:26.541 --> 01:15:41.541
+The community is just not producing quality reports now, right? So, over the years. So, again, I gave his case example, notepad++. All of a sudden, it hits the news, bleeping computer, and everybody believes it's the Chinese. Meanwhile, we don't have indicators.
+
+
+289
+01:15:41.541 --> 01:15:52.541
+from the source zero patient, right? So, are you seeing in your metadata this kind of shift, where we're not getting quality reporting from the community?
+
+
+290
+01:15:52.541 --> 01:16:06.541
+Yeah, I see. So this is actually an interesting question. I guess we haven't looked too deeply into, but just thinking on the spot, so if you're making an, uh, I guess, like, a threat actor attribution, you know, or a counterattribution in your report.
+
+
+291
+01:16:06.541 --> 01:16:31.541
+If you are doing a good reporting, you would have a lot of evidence on it. If you're just, like, making a claim at a news report, like you said, and you're not having a lot of evidence to back it up, in a graphic, what kind of shows, essentially, if you make this claim, how many no's are there? This gives you some sort of cal… Evidence calibration. And also, we have, like, internal, um, thread intel that's also doing fact checking.
+
+
+292
+01:16:31.541 --> 01:16:37.541
+Thank you so much.
+
+
+293
+01:16:37.541 --> 01:17:07.541
+We'll have coffee break, and we'll reconvene at 3.05.
+
+
+

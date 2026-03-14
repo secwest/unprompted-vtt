@@ -1,0 +1,633 @@
+WEBVTT
+
+1
+00:39:48.864 --> 00:39:50.184
+Incoming livestream: So…
+
+2
+00:39:50.734 --> 00:40:01.894
+Incoming livestream: Again, thank you for the introduction. I am Dan Guido, I'm the CEO and co-founder of TrailerBits, and I'm here to talk about how we made Trail of Bits AI native so far. It's a journey, we're not there yet.
+
+3
+00:40:01.984 --> 00:40:12.274
+Incoming livestream: So, just to start out, this article came out about 2 weeks ago. There were thousands of CEOs surveyed, and the result was that AI had no measurable impact on employment or productivity for them.
+
+4
+00:40:12.574 --> 00:40:16.434
+Incoming livestream: Economists are starting to call this the solo paradox, which is a…
+
+5
+00:40:16.504 --> 00:40:33.374
+Incoming livestream: phrase that was coined in the 80s, saying… this economist called, Robert Solo, that said, you can see the computer age everywhere, but in the productivity statistics. So the same thing is sort of happening with AI right now, that a lot of people think they're using it, and they find out that it doesn't work, and the projects get dropped.
+
+6
+00:40:33.574 --> 00:40:38.083
+Incoming livestream: So obviously, I don't think AI doesn't work. I just think most companies are doing it wrong.
+
+7
+00:40:38.194 --> 00:40:46.994
+Incoming livestream: They give people tools without changing the system. So everyone gets a chat GPT license, and then leadership waits for the productivity numbers to move, and they don't.
+
+8
+00:40:47.374 --> 00:40:59.104
+Incoming livestream: So, that's the gap between AI-assisted and AI-native. One is a tool, the other is an operating system. And the rest of this talk is about how I'm building the operating system at Trail of Bits.
+
+9
+00:41:00.584 --> 00:41:02.404
+Incoming livestream: So before I go on.
+
+10
+00:41:02.984 --> 00:41:13.013
+Incoming livestream: I want to define what we're even aiming for. So, AI native gets thrown around a lot, it means a lot of different things to different people, and the way I think about it is that there are basically three levels. Most companies are at level 1.
+
+11
+00:41:13.254 --> 00:41:24.103
+Incoming livestream: AI-assisted is where everyone starts. You give people ChatGPT, they draft emails, generate boilerplate, you know, the organization doesn't change, the workflows don't change, you just do the same things a little faster.
+
+12
+00:41:24.194 --> 00:41:36.164
+Incoming livestream: Ai augmented is where things start to get interesting. That's where you start slowly, incrementally redesigning workflows. You're not just using AI as a tool, but you're putting agents in the loop. You're changing how work actually flows.
+
+13
+00:41:36.204 --> 00:41:49.614
+Incoming livestream: And maybe the AI does the first pass on your code review, and then the human does the second. So the process is slightly different. And then finally, AI Native is where you get to a structural shift. This is where you've designed the organization from the ground up.
+
+14
+00:41:49.614 --> 00:42:02.863
+Incoming livestream: Assuming AI is a co-participant in the work. It's not a tool, it's a teammate. And that's your knowledge management, your delivery model, your expertise, all of them have to be designed to be consumed and amplified by agents.
+
+15
+00:42:02.924 --> 00:42:07.733
+Incoming livestream: So at Trail of Bits, what this means is that our security expertise should compound
+
+16
+00:42:07.794 --> 00:42:25.074
+Incoming livestream: with code. Every engagement we do, all the skills, all the workflows we build make the next engagement faster. Every engineer operates with an arsenal of specialized agents built from our 14 years of audit knowledge. That's not we use AI, that's AI is on the team.
+
+17
+00:42:26.974 --> 00:42:41.473
+Incoming livestream: So, candidly, I had a lot of trouble getting here. When I first launched this initiative inside Trail of Bits, there was an incredible amount of pushback. Like you would not believe. I think that I had about 5% of the company with me, about 95% against.
+
+18
+00:42:41.634 --> 00:42:52.193
+Incoming livestream: At least 50% were passively resisting. There were probably a good quarter that were actively resisting. I'm sure people thought about quitting. Just totally, like, cars on the table here.
+
+19
+00:42:52.224 --> 00:43:01.594
+Incoming livestream: And this isn't really an uncommon issue. Whenever new technology comes around, people resist adopting it, and it can be the most senior, most expert people that resist the most.
+
+20
+00:43:01.594 --> 00:43:12.374
+Incoming livestream: So I had to work through a couple of common psychological barriers that are well documented in research, and build systems that worked within those psychological conditions to get to success.
+
+21
+00:43:12.564 --> 00:43:17.164
+Incoming livestream: The core insight here is the problem's not the technology, it's the people.
+
+22
+00:43:17.554 --> 00:43:22.234
+Incoming livestream: So, these are four, psychological barriers.
+
+23
+00:43:22.464 --> 00:43:36.113
+Incoming livestream: that, that are, I think, key among all the other ones in getting people to adopt new technology inside of a company like Trailabits. First was self-enhancing bias. This is the tendency to perceive oneself in an overly favorable manner.
+
+24
+00:43:36.114 --> 00:43:44.303
+Incoming livestream: So you obviously want to maintain your own self-esteem, and this bias means that you take credit for your success, and you blame external factors on failures.
+
+25
+00:43:44.414 --> 00:43:57.284
+Incoming livestream: Now there are some funny interactions with this, like, in some research by Paul Meehl and Robin Dawes, you can take the variables an expert says they use and build a crude, linear model, and the model outperforms the expert.
+
+26
+00:43:57.634 --> 00:44:08.614
+Incoming livestream: Almost always. And it's not because the model is smarter, it's because it's consistent. Humans don't operate the same every day. Some of you are very hungover right now, and I'm sure you could agree with me on this.
+
+27
+00:44:09.114 --> 00:44:16.644
+Incoming livestream: And this gets worse with seniority. The more that you are an expert, the more that you believe that your intuition is what got you there.
+
+28
+00:44:16.844 --> 00:44:27.783
+Incoming livestream: There's also an identity threat. This really attacks the core of who we are, that, like, I spent 20 years doing this, a machine can't… can't do 20 years of experience and, like, get to be me.
+
+29
+00:44:28.034 --> 00:44:44.443
+Incoming livestream: And this shows up in things like, there was… Stanford ran a cooking study. They used this device, some cooking system, and they advertised it two different ways. One way is it does the cooking for you. The other way is it helps you cook better. And, it's the same device.
+
+30
+00:44:44.584 --> 00:44:50.503
+Incoming livestream: But for people who identify as cooks, they reject the device if it's advertised the first way.
+
+31
+00:44:50.644 --> 00:44:52.883
+Incoming livestream: There's another dimension to this as well.
+
+32
+00:44:52.914 --> 00:45:12.173
+Incoming livestream: based on the symbolism of what the activity represents. So, for instance, if you had a tattoo robot, people do not want tattoo… do not want robots to give them tattoos, because it's symbolic. There's a human craft to it. But they're fine with a tattoo removing one, because that's an instrumental process, there's no symbolism there.
+
+33
+00:45:12.174 --> 00:45:15.814
+Incoming livestream: So for us, security auditing is deeply symbolic work.
+
+34
+00:45:15.964 --> 00:45:22.694
+Incoming livestream: And it's important to frame the AI as making you a more dangerous auditor, not something that does the audit.
+
+35
+00:45:23.614 --> 00:45:40.794
+Incoming livestream: There's also challenges in opacity. So in this case, the subjective understanding of human judgment is high, and AI judgment is low, but objectively, you actually understand neither. Like when a doctor tries to communicate to you that you might have some medical condition or cancer or something.
+
+36
+00:45:41.124 --> 00:45:46.554
+Incoming livestream: You might think you understand the words that are coming out of their mouth, but you absolutely do not.
+
+37
+00:45:47.014 --> 00:46:01.844
+Incoming livestream: But the level of trust you have with the doctor is way higher than if a machine just prints out a receipt and says, here's what you got. So the way you typically fix this is, you could modify the same AI to show you, well, why is this not a benign…
+
+38
+00:46:01.864 --> 00:46:26.843
+Incoming livestream: skin condition. And if you give a visual comparison to a benign mole, then trust starts to equalize. So we had to think about how to build this into our process as well. And then finally, humans have an intolerance for imperfection. So again, well-known academic study, participants watch an algorithm outperform a human forecaster, the algorithm is better. But the second that the algorithm makes a single error, humans switch back
+
+39
+00:46:26.844 --> 00:46:28.194
+Incoming livestream: Back to preferring the human.
+
+40
+00:46:28.724 --> 00:46:37.114
+Incoming livestream: The fix, in this case, is generally to let people modify the algorithm. If they have the perception of control, then they start to trust the process again.
+
+41
+00:46:38.064 --> 00:46:39.854
+Incoming livestream: So what did we do?
+
+42
+00:46:40.484 --> 00:46:59.213
+Incoming livestream: So for the self-enhancing bias, we built a maturity matrix. This was controversial internally, nobody likes being told they're at level 1, but that's the point. You can't argue with something that you're… you can't argue that you're good enough when there's a visible ladder, and it also makes the conversation concrete instead of, I don't think AI is useful.
+
+43
+00:46:59.604 --> 00:47:07.543
+Incoming livestream: It also creates social proof. When you see your peers escalating up the ladder, the passive 50% of the company starts to move with them.
+
+44
+00:47:07.754 --> 00:47:10.333
+Incoming livestream: The identity threat was extremely difficult.
+
+45
+00:47:10.694 --> 00:47:27.344
+Incoming livestream: You had to get people to accept skill-allowing automations and reject skill-replacing automation. Same tool, different framing. So we never really asked anyone… well, not never really… we didn't ever ask anyone to stop being a security expert, but we gave them a different way to express that identity.
+
+46
+00:47:27.344 --> 00:47:39.153
+Incoming livestream: So the skills repos that I hope you all are familiar with are the clearest example of that. When we have a senior consultant on the team write a constant time analysis skill.
+
+47
+00:47:39.154 --> 00:47:50.653
+Incoming livestream: They're not being replaced, they're becoming permanent inside the company. And that means their expertise is encoded and reusable by the whole team. That's an identity upgrade, not a threat.
+
+48
+00:47:51.024 --> 00:48:05.134
+Incoming livestream: So, the maturity matrix reinforces this. Level 3 isn't who uses AI the most, it's who invents new ways and builds new tools. So the identity shifts from, I don't need AI, to, I'm the one who makes AI dangerous.
+
+49
+00:48:05.544 --> 00:48:12.883
+Incoming livestream: We also did hackathons instead of mandates. I never forced anyone to adopt these tools, but we created a space where people could experiment on their own terms.
+
+50
+00:48:14.194 --> 00:48:15.973
+Incoming livestream: I'm not doing that. There we go.
+
+51
+00:48:17.824 --> 00:48:24.123
+Incoming livestream: For the intolerance for imperfection, everyone… if somebody's first experience with AI is bad, you've lost them for months.
+
+52
+00:48:24.174 --> 00:48:40.363
+Incoming livestream: So, one error, and people just abandoned the system. So we invested a lot in ways to reduce the ways that AI can fail, embarrassingly. We curated a marketplace so that people weren't getting random plugins. We created sandboxing tools so clawed Code didn't accidentally delete your work.
+
+53
+00:48:40.414 --> 00:48:50.754
+Incoming livestream: We put guardrails and foot gun reduction systems in place so that there were a lot less of, like, you know, AI did something stupid stories circulating in Slack.
+
+54
+00:48:51.424 --> 00:49:04.103
+Incoming livestream: For opacity, we clearly articulated what tools were allowed and which ones were not, and under what conditions. We described those conditions and why we decided to, adopt those risk levels.
+
+55
+00:49:04.294 --> 00:49:14.714
+Incoming livestream: And then we made adoption fast and visible. So this really underpins everything else. If the setup takes an hour, and the first result is mediocre, then you've confirmed everyone's priors.
+
+56
+00:49:15.154 --> 00:49:24.544
+Incoming livestream: So we have copy-pasteable configurations, one-command setup, we have a standardized toolchain, and the first experience is fast and good. And then I think, finally.
+
+57
+00:49:25.024 --> 00:49:41.784
+Incoming livestream: I matter to this more than most people think. The passive 50% of the company is gonna watch what leadership actually does, not what it says. So, if I'm using these tools visibly every single day, it signals that it's not a fad. We're actually all in.
+
+58
+00:49:42.794 --> 00:49:49.584
+Incoming livestream: So that's the problem and the approach. Here's the actual system we built. So, five parts, each one addresses barriers we just talked about.
+
+59
+00:49:49.654 --> 00:49:58.644
+Incoming livestream: I'm gonna walk through each of these in detail with screenshots and examples, but this is the overview. You could think of it like a checklist, but you need all five for it to compound.
+
+60
+00:49:58.644 --> 00:50:17.344
+Incoming livestream: And, importantly, this isn't, like, some strategy deck that, like, I'm presenting here. This is everything that we built ourselves, and most of it has been open-sourced so that all of you can use it right now. This is what I use for a 140-person company doing real client work. So let's go through each one.
+
+61
+00:50:18.454 --> 00:50:29.813
+Incoming livestream: First one, super boring. We had to standardize. We got everybody on Clawed code, and we treat it like any other enterprise tool. We have supported configs, no good defaults, and a clear path to, this is how we do it here.
+
+62
+00:50:29.814 --> 00:50:38.763
+Incoming livestream: If you skip this step, you can't build anything else, because you end up with 40 different workflows and zero leverage on it. So, for better or for worse, we settled on Clawed code.
+
+63
+00:50:39.414 --> 00:50:41.824
+Incoming livestream: I think it was for better.
+
+64
+00:50:42.114 --> 00:50:54.014
+Incoming livestream: Next thing, we wrote an AI handbook. And this wasn't to teach people how to prompt, but it was to remove ambiguity. What tools are approved and what isn't, especially for sensitive data, where we have a lot of that.
+
+65
+00:50:54.104 --> 00:51:02.574
+Incoming livestream: So we explicitly call things out, like where a tool can't be used on client code, where meeting recorders are disallowed depending on engagement type.
+
+66
+00:51:02.574 --> 00:51:26.204
+Incoming livestream: Where we want people to use a specific alternative, and that stops the endless Slack debates. It gives project managers and engineers a shared answer, and it makes client conversations consistent. When we have highly sensitive clients ask us questions about, hey, what are you using on the code that I've given you? I can give them a clear answer that everybody knows. So once you have a policy, you can push harder on adoption.
+
+67
+00:51:27.454 --> 00:51:31.474
+Incoming livestream: Then, I will… I will post this on Twitter, because no one can read it.
+
+68
+00:51:31.594 --> 00:51:43.464
+Incoming livestream: But we built an AI maturity matrix. This makes AI a first-class professional capability. It's just the same as you can use Git, or you can write tests, or you can audit C.
+
+69
+00:51:43.474 --> 00:51:51.653
+Incoming livestream: It's not a vibe, it's a ladder. So there are clear levels, there are expectations for getting one… for, escalating.
+
+70
+00:51:51.664 --> 00:52:01.903
+Incoming livestream: And there are consequences for staying stuck. It starts at level 0, and if you're stuck at level zero, and you're not engaged in this process, then there may be…
+
+71
+00:52:02.044 --> 00:52:04.274
+Incoming livestream: Transition out of the company.
+
+72
+00:52:04.754 --> 00:52:23.563
+Incoming livestream: And this is how you avoid two different failure modes. You don't want leadership to, like, wish adoption into existence, and you don't want the organization splitting into AI people versus everybody else. This is a whole company need. Everybody needs to be on board. So this turns it into a normal part of performance, growth, resource allocation.
+
+73
+00:52:23.644 --> 00:52:25.493
+Incoming livestream: And, and bonuses.
+
+74
+00:52:27.814 --> 00:52:33.034
+Incoming livestream: Now the fun part. So, hackathons. Hackathons became a management system for us.
+
+75
+00:52:33.174 --> 00:52:45.664
+Incoming livestream: We run short, focused sprints, 2-3 days, with a specific objective, one objective, and that's how we keep pace when the ecosystem changes every single week. So here's one of the kickoffs for one of them,
+
+76
+00:52:45.754 --> 00:52:54.014
+Incoming livestream: We did this one, or actually, well, these are both… these are the last two, I think. Which one? I think the one on the right.
+
+77
+00:52:54.344 --> 00:53:13.474
+Incoming livestream: is, our autonomy-focused one. The most important thing is that we put a constraint on the hackathon. You had to run clawed code and bypass permissions mode. This was to break the barrier on people's hesitance to giving full control over the tools and build systems that allow it to work under those constraints.
+
+78
+00:53:13.574 --> 00:53:21.864
+Incoming livestream: So that was intentional. It forces everyone to learn how to use sandboxing, guardrails, and how to structure their work so that the agents can succeed on their own.
+
+79
+00:53:23.154 --> 00:53:30.433
+Incoming livestream: Other design choices that we made, we focus on public repositories so that we can move fast and show real outcomes.
+
+80
+00:53:31.084 --> 00:53:41.223
+Incoming livestream: We measured success on activity. I wanted people to put in the reps. So, we're talking about issues fixed and filed, PRs reviewed and merged, branches created and deleted.
+
+81
+00:53:41.354 --> 00:53:48.264
+Incoming livestream: We're not so worried about, like, the meaning behind all that code. I just want activities that they put in the reps.
+
+82
+00:53:48.584 --> 00:53:52.474
+Incoming livestream: And then we had people work in pairs. Every change gets reviewed by a buddy.
+
+83
+00:53:52.844 --> 00:54:04.704
+Incoming livestream: So even with the move fast, sort of sprint-style work, we had some quality control built in. So the hackathons create motion, but the motion doesn't compound unless you capture it.
+
+84
+00:54:05.634 --> 00:54:10.133
+Incoming livestream: And that's where we started collecting these artifacts as skills.
+
+85
+00:54:10.544 --> 00:54:24.023
+Incoming livestream: So a skill, most of you know, is a reusable structured workflow, usually with examples, constraints, and a way to verify the output. So we maintain 3 separate skills repos, two of which you all have access to.
+
+86
+00:54:24.024 --> 00:54:32.774
+Incoming livestream: We have an internal one that has a lot of company-specific workflows and a lot of our most sensitive vulnerability research-related skills, but we also have an external one.
+
+87
+00:54:32.774 --> 00:54:38.843
+Incoming livestream: So that the broader community can validate and improve on the work that we're doing.
+
+88
+00:54:38.854 --> 00:54:43.784
+Incoming livestream: The third one is we have a curated marketplace, which I think I'm talking about next, yeah?
+
+89
+00:54:44.064 --> 00:55:02.874
+Incoming livestream: So for a firm like ours, I appreciate the external validation. It keeps us honest, and it forces us to write things that other people can actually use. That's a core value of Trail of Bits. I don't want to just release a black hat talk that gets me a wired article or whatever and disappear the next day. We measure success based on
+
+90
+00:55:03.124 --> 00:55:09.573
+Incoming livestream: downloads of a specific tool, or stars of a specific tool. I want continued usage,
+
+91
+00:55:09.764 --> 00:55:11.534
+Incoming livestream: And, and enhancement.
+
+92
+00:55:13.054 --> 00:55:27.044
+Incoming livestream: So then, we have another problem. You know, you tell people to go use skills and plugins, and they go use skills and plugins, and they get a whole bunch of random stuff that's, like, AI slop, filled with emojis, and, you know, steals your cryptocurrency.
+
+93
+00:55:27.274 --> 00:55:47.093
+Incoming livestream: So we created a curated marketplace, and this is just standard, you know, enterprise stuff, right? We made a known good place for third-party skills. You want a third-party skill? There's a command built into the curated marketplace that goes out and grabs it from somewhere else, filters it, and then puts it into ours. So if you want adoption, you need a safe supply chain.
+
+94
+00:55:48.094 --> 00:55:49.683
+Incoming livestream: Basic enterprise thinking.
+
+95
+00:55:51.054 --> 00:56:09.594
+Incoming livestream: Then we made the defaults dead simple. So after we went through a couple of rounds of this, we started to get to, really, like, known-good, Trail-A-Bits-style Cloud Code installation. So we publish a repository that has our recommended Cloud Code configuration. I want to eliminate tribal knowledge.
+
+96
+00:56:09.594 --> 00:56:24.084
+Incoming livestream: We want to have specifics around, this is how we do Claude code at Trail of Bits. So we put known good settings, a known good claud.md, and anything else that we want to standardize for how people use it. We also included some usage instructions there.
+
+97
+00:56:24.294 --> 00:56:38.033
+Incoming livestream: Now, this is freely available, but there is a whole separate section that describes how to use it for bug hunting that we're keeping internal, so if you're wondering where that part is, that's why it's missing. So it's very developer-focused.
+
+98
+00:56:39.764 --> 00:56:44.324
+Incoming livestream: Then the real constraint, obviously. The more control that you give to these agents.
+
+99
+00:56:44.574 --> 00:56:53.913
+Incoming livestream: You're gonna want a sandbox. So we give people choices. We don't just tell people to do one thing, or enforce the Claude built-in sandbox, which is quite good.
+
+100
+00:56:53.944 --> 00:57:07.623
+Incoming livestream: But we give people choices, and we invested in building some of our own. We built a dev container option. We made, another one that, automatically interacts with DigitalOcean to create single-use virtual machines in the cloud.
+
+101
+00:57:07.684 --> 00:57:17.654
+Incoming livestream: And then we documented the native macOS sandboxing option. So the point wasn't that everybody uses the same sandbox, the point is that everyone has a safe sandbox to use.
+
+102
+00:57:17.654 --> 00:57:29.203
+Incoming livestream: You know, we have a variety of different things going under one roof at Trail of Bits. We have engineering engagements, research engagements, audits, we have non-technical staff, operations staff, and they all need different solutions. I can't mandate one.
+
+103
+00:57:30.994 --> 00:57:41.334
+Incoming livestream: Then, as you give people more autonomy, these agents start to go haywire in different ways. They start to pull in third-party dependencies that have security issues.
+
+104
+00:57:41.334 --> 00:57:54.563
+Incoming livestream: So, the one step that we took that I think, is extraordinarily effective, besides the ignore scripts in NPM, was implement a mandatory developer, mandatory package cool-down policy.
+
+105
+00:57:54.564 --> 00:58:02.624
+Incoming livestream: So nobody installs packages that are less than 7 days old. For any package manager across the company, we have it enforced with MDM.
+
+106
+00:58:03.884 --> 00:58:20.524
+Incoming livestream: That's the, I think, the easiest way to reduce risk and make the safe path the default path. There's more that we've done here, but this is something that I'm preparing to release. We're gonna start open sourcing our entire, Jamf configuration stack for how we secure some of these agents with MDM.
+
+107
+00:58:22.004 --> 00:58:32.644
+Incoming livestream: And then finally, once you have the policies, the guardrails, the sandboxes, the skills, you can connect agents to real tools. So one example that we've already wrapped inside of an MCP server is Slither.
+
+108
+00:58:32.644 --> 00:58:44.403
+Incoming livestream: And if you don't care about Slither, which is a static analyzer for Ethereum smart contracts, the point is that MCP turns your internal tools into something that agents can use reliably, and that your org can govern.
+
+109
+00:58:45.254 --> 00:58:50.084
+Incoming livestream: So this is another way that we can inject policy into how these tools get used.
+
+110
+00:58:51.344 --> 00:59:09.354
+Incoming livestream: So now the results. So, you know, you've seen some of our open source work, but internally, I can share that we have 94 separate plugins accumulating 201 skills, with 84 specialized agents and 400 reference files, encoding all of our domain expertise.
+
+111
+00:59:09.544 --> 00:59:16.263
+Incoming livestream: And that's the compounding effect. So every single engagement, every auditor, every experiment adds to that arsenal.
+
+112
+00:59:16.394 --> 00:59:26.904
+Incoming livestream: And what's important is the breadth, right? We're not just talking about an auditing toolkit. I have skills for writing sales proposals, tracking project hours, onboarding new hires, prepping conference blog posts.
+
+113
+00:59:27.114 --> 00:59:44.494
+Incoming livestream: We have 20-plus plugin… plugins targeting specific vulnerability classes, but, you know, each… the important thing is each package, each one packages expertise that used to live in somebody's head, and it turns into something that every auditor on the team can now invoke.
+
+114
+00:59:44.794 --> 00:59:46.353
+Incoming livestream: On the delivery side.
+
+115
+00:59:46.514 --> 00:59:55.494
+Incoming livestream: We have certain clients where the codebase and the scope allow it. We've gone from finding 15 bugs a week to finding 200 bugs per week.
+
+116
+00:59:55.874 --> 01:00:06.593
+Incoming livestream: And that's not a faster human. That's an auditor running a fleet of specialized engagements that do targeted analysis across the codebase in parallel, and then validate the results.
+
+117
+01:00:06.934 --> 01:00:17.724
+Incoming livestream: So, across most of our engagements at Trail of Bits, the number that we're about at is that 20% of all the bugs we report to our clients were initially discovered by AI.
+
+118
+01:00:18.384 --> 01:00:28.124
+Incoming livestream: On the business side, we also have our sales team averaging about $8 million in revenue per representative, which is about double what the industry averages for,
+
+119
+01:00:28.344 --> 01:00:30.523
+Incoming livestream: For sales, for sales consulting.
+
+120
+01:00:30.864 --> 01:00:44.113
+Incoming livestream: So, yeah, so AI doesn't just help our engineers, it also helps with proposal drafting, competitive positioning, conference prep, lead enrichment, same system, same repositories, same compounding effect.
+
+121
+01:00:45.024 --> 01:00:52.984
+Incoming livestream: And this is maybe, you know, a year into building this system seriously. Cloud Code came out, what was it, about a year ago.
+
+122
+01:00:53.194 --> 01:00:59.903
+Incoming livestream: The models get better every month, the skills grow every week, and a year from now, these numbers are gonna look very different.
+
+123
+01:01:03.994 --> 01:01:18.614
+Incoming livestream: So, let me close with some of the essential starter path. This is the minimum viable AI-native org design. This is what we've done so far, and it's changed how fast we can ship and how quickly we adapt. If you want to copy this, you have to copy the system, not the tools.
+
+124
+01:01:19.363 --> 01:01:23.404
+Incoming livestream: We do have some open questions, you know, there's obviously some things we're still working on.
+
+125
+01:01:24.774 --> 01:01:33.093
+Incoming livestream: Obviously, Gotti made an allusion to a conversation I had with him about private inference. You know, we don't want to always send our…
+
+126
+01:01:33.134 --> 01:01:49.993
+Incoming livestream: queries to the cloud. Sometimes we want to do them on a machine that we control. But, these local models, they're good, but they're not amazing. There's definitely this big model smell where you can tell the difference between, you know, Opus 4.6 and a Haiku 4.6, no matter what day it is.
+
+127
+01:01:50.174 --> 01:02:06.584
+Incoming livestream: So right now, we're investigating a couple of paths here, and I'm sort of reticent to spend money on a local server, because a lot of the private inference systems are getting really good. We've been evaluating tinfoil.sh, but there's a huge variety of other private inference servers that are now available, where I can
+
+128
+01:02:07.213 --> 01:02:10.463
+Incoming livestream: Confidentially run my queries in somebody else's cloud.
+
+129
+01:02:10.953 --> 01:02:15.623
+Incoming livestream: So these are where, you know, we're doing some research to figure out the right solution for us.
+
+130
+01:02:15.734 --> 01:02:30.253
+Incoming livestream: The prompt injection problem? Obviously not solved. We have a real blunt instrument for solving it today, which is for certain clients, we just deny access to the web. And for a lot of our internal tools, we don't allow them access to external resources.
+
+131
+01:02:30.434 --> 01:02:48.053
+Incoming livestream: So things we're playing with here are agent-native shells. We're looking at things like the no-no shell, agent SH, that are gonna wrap the agent execution in something that can be protected with, kernel-level system calls, instead of, you know, discretionary guidance thrown into a claw.md.
+
+132
+01:02:48.363 --> 01:03:04.694
+Incoming livestream: And then something else we don't have solved yet is policy enforcement and continuous learning. So we push a lot of settings via MDM, but what do we get back? Because there's a huge amount of data that's accumulated on each person's device about how they're actually using AI and how they're doing their job.
+
+133
+01:03:04.904 --> 01:03:12.983
+Incoming livestream: that I would love to be able to collect and synthesize and use to enhance our process. And we don't have a solution there yet either, but it's something we will probably soon.
+
+134
+01:03:13.234 --> 01:03:19.963
+Incoming livestream: You can take a look at things from TrailerBits like our We Audit Visual Studio Code extension that might offer a solution there.
+
+135
+01:03:21.444 --> 01:03:34.563
+Incoming livestream: You know, longer term, we also need some sort of policy architecture. You can see Stripe with their Minions paper, they have one giant MCP server that all their agents call into and that they can use to enforce policy, and that might be a good long-term answer.
+
+136
+01:03:34.604 --> 01:03:50.533
+Incoming livestream: And then finally, the business is really shifting. I think consulting today may not last that long. We're looking at billing by hours today, but in a future where everybody has an arsenal of agents, and some people can outperform others by 200x.
+
+137
+01:03:50.613 --> 01:04:00.613
+Incoming livestream: I think you have to start billing by expertise and by results. So the nature of how Trail of Bits offers our services to the world is probably going to change in the next 6 to 12 months as well.
+
+138
+01:04:00.713 --> 01:04:05.154
+Incoming livestream: And again, no answers there yet, because we're still on this journey, just like everyone else.
+
+139
+01:04:06.463 --> 01:04:19.103
+Incoming livestream: So, I wanted to offer a few links to these references. These are all the tools that I talked about during this talk. I also want to mention that yesterday, as a gift to you all, I open-sourced 10 additional plugins.
+
+140
+01:04:19.104 --> 01:04:30.733
+Incoming livestream: We have one for checking false positives, for bugs that your clog might find, and you want to give it the ability to check. We have a fun one called Let Fate Decide that teaches your agent how to deal tarot cards.
+
+141
+01:04:31.004 --> 01:04:35.903
+Incoming livestream: As well as a whole bunch of others that are up on my Twitter, and that are up in the skills repo right now.
+
+142
+01:04:36.284 --> 01:04:52.723
+Incoming livestream: And then I would also be remiss to mention, we have a bunch of jobs open, and I would love it for someone to work with me to carry this exact process forward. If you want to help me continue to instrument Trail of Bits and make us, further along in this journey, please contact me. Thanks. Thanks, Dan.
+
+143
+01:04:56.304 --> 01:05:03.434
+Incoming livestream: All right, we'll try to get back on track here, so I'll take time for two questions. Do we have two questions in the audience?
+
+144
+01:05:03.674 --> 01:05:07.753
+Incoming livestream: Processing all of the things to do with an org. We've got one over here, Andrew, or I'll run it.
+
+145
+01:05:11.714 --> 01:05:25.104
+Incoming livestream: Hey, thanks so much, that was amazing. I'm wondering if an additional, hesitance, that you've, seen with your employees in adopting AI is also around, eventually, like, being replaced, or, like, mass joblessness, stuff like that.
+
+146
+01:05:25.934 --> 01:05:29.443
+Incoming livestream: Yeah, so I think Trail of Bits is in a really good spot, because we're kind of.
+
+147
+01:05:29.674 --> 01:05:36.534
+Incoming livestream: I think the term is obelisk-shaped. You know, consulting agencies, they usually have a really large base of junior employees.
+
+148
+01:05:36.584 --> 01:05:51.783
+Incoming livestream: And, I think as people get more enhanced by AI, it's a lot of the most senior people that benefit the most. So, I'm gonna sidestep that question and just say that everybody at Trail of Bits is perfectly positioned to take advantage of this, because we only have senior level and help people.
+
+149
+01:05:53.404 --> 01:05:54.783
+Incoming livestream: yeah.
+
+150
+01:05:55.044 --> 01:05:56.904
+Incoming livestream: I'll leave it there.
+
+151
+01:06:07.334 --> 01:06:26.623
+Incoming livestream: Sibilance. Okay, thanks, Dan. I have a question. In terms of, like, the blessed lists that you're creating for the team, how do you think about, like, rug pulling attacks, or, you know, what we've seen with some folks who are, like, you know, releasing sort of safe and secure, and then updating it with, like, some type of, you know, something malicious, as you think about…
+
+152
+01:06:26.624 --> 01:06:44.454
+Incoming livestream: you know, these are our blessed lists, are you checking them every day, or how do you think about… Blessed lists of what? Like your MCPs, or skills that you've got, or, you know, any of those. Oh, yeah, I mean, well, we're importing all of them into an allow list, like, the only plugins that you're allowed to use for trailer bits are the verified ones that are in our curated repo.
+
+153
+01:06:44.544 --> 01:06:53.833
+Incoming livestream: So we don't want you to install random skills from other places. If it gets updated, it gets updated through us, and we have a bunch of automated systems that help us perform those updates with speed.
+
+154
+01:06:53.944 --> 01:07:13.174
+Incoming livestream: So obviously, like, if something comes out on Twitter, you want to use it that minute, but we've enabled the organization to perform those, you know, internal update steps on its own. So our curated skills repo is open source, everybody at TrailerBits has right access to it, requires pull request reviews, and it includes
+
+155
+01:07:13.174 --> 01:07:25.404
+Incoming livestream: commands that Cloud Code can understand to go out and grab those resources. So you can just give it a tweet and say, hey, I want this, and it goes, pulls it in, tags somebody for review, and then 5 minutes later, you've got it on your machine.
+
+156
+01:07:25.834 --> 01:07:26.564
+Incoming livestream: Beautiful.
+
+157
+01:07:26.694 --> 01:07:28.164
+Incoming livestream: Cool. Yep.
+
+158
+01:07:28.264 --> 01:07:29.574
+Incoming livestream: Welcome. Thank you so much.

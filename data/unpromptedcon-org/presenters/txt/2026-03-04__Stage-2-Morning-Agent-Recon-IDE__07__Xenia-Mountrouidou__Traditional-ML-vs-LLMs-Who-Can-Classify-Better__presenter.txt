@@ -1,0 +1,39 @@
+[01:21:49.905 - 01:21:57.174] Incoming livestream: Okay, so, hello everyone, Xenia Montruidu, my friends call me Dr. X, I have a very long last name.
+[01:21:57.175 - 01:22:18.484] Incoming livestream: And I'm a data scientist, I'm not a security person, don't hold this against me. But I've been doing security data science for about 15 years, so I love the area. And I want to talk about a question that has been torturing me for a while. I work for an managed detection and response.
+[01:22:18.485 - 01:22:28.045] Incoming livestream: company, Expel, and I've done a lot of, predictive modeling, traditional ML modeling in my lifetime.
+[01:22:28.085 - 01:22:44.365] Incoming livestream: And these predictive models can really figure out boundaries, but I was always wondering if generative models can do that, and especially for, security applications. And you can see there's a lot of differences between the two.
+[01:22:44.435 - 01:23:03.244] Incoming livestream: For that, a big deal for us is classification, classifying bad from good, or even the nuances of classification, multiple classes, like benign, but, you know, maybe something, so possibly benign, multi-class classification. So…
+[01:23:03.245 - 01:23:09.785] Incoming livestream: There's a lot of reasons to classify insecurity. I mean, I hope I don't have to convince you much that
+[01:23:09.785 - 01:23:27.285] Incoming livestream: There's plenty of reasons to classify malicious from abnormal behavior, emails, but also in our case, it's a lot about prioritizing, triaging, and all that. So, I did, some research, and compared,
+[01:23:27.655 - 01:23:38.604] Incoming livestream: language models as classifiers, with, a traditional ML model, so Womp Womp, the traditional ML model wins, it's the,
+[01:23:38.605 - 01:23:49.895] Incoming livestream: It's the bar that is the highest in precision, recall. It's the most sensitive to find evil, and also the most precise.
+[01:23:49.895 - 01:23:58.144] Incoming livestream: However, language models are zero-shot classifiers. My, my data, was networking.
+[01:23:58.145 - 01:24:15.544] Incoming livestream: Data, and very well labeled data, so there was no doubt in the evaluation. And zero-shot means that I don't need to train them, I just, you know, prompt them, and they classify, so… so that's very promising. And,
+[01:24:15.775 - 01:24:33.105] Incoming livestream: even though it doesn't win, it could get better. Now, it could get better with fine-tuning, so I really set up the models for something… the language models for something difficult, because these were networking data also, so they could be better in classifying, let's say, emails.
+[01:24:33.305 - 01:24:41.665] Incoming livestream: So, final thoughts, and I do plan, I have, actually, some research in LLM and ML ensembles.
+[01:24:41.665 - 01:24:58.625] Incoming livestream: So, final thought, and there's a lot of architectures over there, that I've looked at, but I'm thinking about some, some combination, ensembles, so, so, so you may see me in another conference, but I also, have experimented with,
+[01:24:58.625 - 01:25:09.555] Incoming livestream: specialized embeddings. Sometimes they win, sometimes they don't, so you could have a very good generalist model, with generalized embeddings that
+[01:25:09.555 - 01:25:28.925] Incoming livestream: does better, believe it or not. And that's about it. I would love to talk much more about this. I prepared this for kind of 5 minutes, but if you have questions, you can also check my website about this, and I'd love to talk about if you have any ideas, or are working in this, kind of area. Thank you.
+[01:25:33.175 - 01:25:36.674] Incoming livestream: Alright, does anyone have a question? Please just put your hand up. Perfect.
+[01:25:42.365 - 01:25:54.525] Incoming livestream: Thanks. What was the input for your LLM cluster? So, the input is very interesting, because it's not managed detection and response. I'm doing this right now. It's not alert.
+[01:25:54.525 - 01:26:08.415] Incoming livestream: The input was packet captures, for which I did, very careful feature engineering. So, so packet captures are difficult for a language model. Again, it's not text.
+[01:26:08.425 - 01:26:27.715] Incoming livestream: So, so I did some feature engineering with, you know, protocol or payload, if I had something that was not encrypted, or timelines and all that, and I kind of guided the model with the zero shot. So, the only part that was there was some feature engineering.
+[01:26:27.715 - 01:26:37.424] Incoming livestream: So, I think this is the toughest problem for a model to be a classifier, and I've experimented with emails, for example, and they do much better, because text.
+[01:26:37.425 - 01:26:49.564] Incoming livestream: But it's worth exploring, because we hear it a lot in our industry, like, oh, just give it to a language model, it's gonna classify it, it's gonna find evil. It's like, no!
+[01:26:49.565 - 01:27:04.725] Incoming livestream: for networking and want, so… so yes, so, so that's, that was the input. It was the Mirai botnet, that's why I'm saying it's very well labeled. It's a known attack, and there was very good data of benign activity, too, so…
+[01:27:04.985 - 01:27:07.724] Incoming livestream: So yeah, I didn't want to have any doubts on the labeling.
+[01:27:08.135 - 01:27:11.384] Incoming livestream: Thank you, that was a great question. All right, anyone else?
+[01:27:11.575 - 01:27:12.545] Incoming livestream: Nope, right behind me.
+[01:27:14.445 - 01:27:23.675] Incoming livestream: So you mentioned that, like, with email data, the LLM as a judge was likely to be better, or better than it was, for classification.
+[01:27:23.785 - 01:27:27.724] Incoming livestream: Do you think there's a, like, a dataset or a type of…
+[01:27:27.965 - 01:27:32.575] Incoming livestream: Classification that… can that be better than a traditional machine learning model.
+[01:27:33.115 - 01:27:36.095] Incoming livestream: It's like a high context size, or…
+[01:27:36.585 - 01:27:42.405] Incoming livestream: Like, does it stop at emails, or is there… is there other areas of text where it might be better? I'm curious.
+[01:27:42.405 - 01:27:54.605] Incoming livestream: So, this is a really good question, and I'll give you a sneak preview of the research. So, I have done, actually, research with multiple, fishing data sets from Hagging Face.
+[01:27:54.605 - 01:28:03.304] Incoming livestream: With a traditional XGBoost model, which is very good, with very good feature engineering, because emails, okay, it's a known problem.
+[01:28:03.305 - 01:28:20.734] Incoming livestream: And then I did a router experiment. So the router is like, oh, let's give this to an Exiboost model first, and classify, and then give it to the LLM. So the combination of LLM and traditional did better.
+[01:28:20.745 - 01:28:22.875] Incoming livestream: I have not…
+[01:28:22.955 - 01:28:39.934] Incoming livestream: had success with just the LLM doing better, but maybe somebody will over here, so, so yeah. So, I've also experimented with Cloud Opus 4.6, and, classifying with nothing.
+[01:28:39.995 - 01:28:51.105] Incoming livestream: And, again, it did better with a lower dataset, like, if you gave it 100 samples, because it takes so long for this model to finish.
+[01:28:51.105 - 01:29:05.015] Incoming livestream: And, but when I gave more, when I gave additional data, actually, believe it or not, Anthropic, it doesn't do as well in classification, which, again, it's normal, there's…
+[01:29:05.095 - 01:29:18.124] Incoming livestream: you know, there's a reason for that, okay? So, traditional models can find those boundaries, and LLMs were not meant for that. So… Thank you. Good question. I can talk for an hour.

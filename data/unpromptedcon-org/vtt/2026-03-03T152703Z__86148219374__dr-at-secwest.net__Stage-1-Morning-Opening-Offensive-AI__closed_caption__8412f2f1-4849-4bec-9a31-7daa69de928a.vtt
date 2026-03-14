@@ -1,0 +1,1918 @@
+WEBVTT
+
+1
+00:00:12.074 --> 00:00:25.074
+I said everybody. Yes, thank you. So first of all, welcome all to… okay, should I… yes. Let me start over. Welcome all to the first unprompted!
+
+
+2
+00:00:25.074 --> 00:00:39.074
+And didn't you have breakfast this morning and all the other Okay, welcome. Really happy to have you. Honestly, um… Excited. I don't often get that excited being in two startups now in my life. My bar for excitement is kind of high.
+
+
+3
+00:00:39.074 --> 00:00:54.074
+And I truly feel… I don't know if you saw my email this morning, but I started by saying I'm going to do a very short manifesto. I'll tell you my significant other, and my right hand at the startup are forbidding me for ever doing manifestos until I'm one day a billionaire. Hope not.
+
+
+4
+00:00:54.074 --> 00:01:01.074
+But I'll still spend a couple seconds on things that matter to me. First of all, really, welcome, and to everybody online.
+
+
+5
+00:01:01.074 --> 00:01:08.074
+Happy to have you as well. The Slack link, or rather, the Slack link.
+
+
+6
+00:01:08.074 --> 00:01:20.074
+has now stopped working two times over the last 10 minutes. So if you don't have the Slack link, we'll figure it out in a little bit and maybe send out another email or show it on the screen a little bit later as well.
+
+
+7
+00:01:20.074 --> 00:01:26.074
+Number two, for those of you who do not have the Zoom link or are asking friends who are on the Zoom about the Zoom link.
+
+
+8
+00:01:26.074 --> 00:01:32.074
+We'll get to the Zoom link, and you can ask on the Slack, see the problem there? In the support channel, and we'll get it to you immediately.
+
+
+9
+00:01:32.074 --> 00:01:35.074
+With that said, I appreciate you all coming all this way.
+
+
+10
+00:01:35.074 --> 00:01:41.074
+Let's get started. So we had almost 500 submitted talks. We planned for 70 to 120.
+
+
+11
+00:01:41.074 --> 00:01:48.074
+And I'll tell you, no matter how many people we had on the review board, 40% of that coming over the last two or three days was rough.
+
+
+12
+00:01:48.074 --> 00:01:58.074
+Note for everybody in the future, please, no matter what committee you're submitting to, submit early. Higher chances of getting in. Even though we covered it, it was quite a trek.
+
+
+13
+00:01:58.074 --> 00:02:11.074
+We are now far more than 700… we're about 800, 850 attendees on the online con that we started, and we couldn't take more people, because I reminded you, this started at 120 to 200 people con.
+
+
+14
+00:02:11.074 --> 00:02:29.074
+And we had to keep growing. Salesforce was amazing working with us throughout, but we had to move venues just to let people in, because it felt like this community thing, people need to be here. We can't just tell them no. And we are out quite a little bit of money from our pockets, but that's also okay. There are sponsors, we'll talk about that in a minute.
+
+
+15
+00:02:29.074 --> 00:02:46.074
+And then, I really want to thank the committee. It was really hard reviewing all those talks. The staff. There is Ida, who most of you have talked to, who can't be here. She and two other speakers are stuck in Israel right now, airspace being closed, so thank them as well.
+
+
+16
+00:02:46.074 --> 00:03:04.074
+I am supposed to give some smart thoughts, I don't have any, so I said I'll probably just share the philosophy we all already know in four quick points instead of a large keynote, because I am not the keynote, and we don't have one. Number one, as Sunil Yu, my co-founder, likes to say, we're moving from deterministic to non-deterministic configuration.
+
+
+17
+00:03:04.074 --> 00:03:10.074
+I really like that thought. It helps me focus my mind around this and try to understand what does security look like.
+
+
+18
+00:03:10.074 --> 00:03:26.074
+Thought number two for the entrepreneurs, it feels like this is an anti-startup era. Every single thing I learned about startups focus and so on and so forth, just broken. How do we make it work anyway in a new world? In three months, you don't find product market fit, pivot.
+
+
+19
+00:03:26.074 --> 00:03:45.074
+So hard to do. Third thought is our teams. I talk to a lot of CISOs, a lot of CEOs. I'm a CEO right now. I don't know anything about technology anymore, right? I mean, on the business side. And everybody just feels outmoded all the time. I'm pretty sure a lot of the speakers will speak about this too. How do we keep up?
+
+
+20
+00:03:45.074 --> 00:03:52.074
+Doesn't matter if you're a PhD deep into the math, or just somebody in security or a technical person, or in finance, how do you keep up?
+
+
+21
+00:03:52.074 --> 00:04:00.074
+I will tell you we're not up-moded. All it really takes is trying. I truly believe that, so those in the audience who are not deep into this, all it takes is trying.
+
+
+22
+00:04:00.074 --> 00:04:03.074
+It feels like the state of the art is here.
+
+
+23
+00:04:03.074 --> 00:04:13.074
+The technology will keep going up all the way somewhere we can't even imagine. But most of us are down here using ChatGPT or Claude like we used to Google.
+
+
+24
+00:04:13.074 --> 00:04:29.074
+We can learn about how to use multi-torn, have a conversation, move over to agents, download them at this stage, talk to them. There will be actions performed, there will be the agentic loop, the self-healing, just knowing how to use these agents and playing with it already puts you not here at the current state of the art.
+
+
+25
+00:04:29.074 --> 00:04:40.074
+But here. And if we talk about cyberpower at the level of nations, I think if instead of investing in so many foundation labs and models, we just try to teach people how to use these tools right.
+
+
+26
+00:04:40.074 --> 00:04:48.074
+We would be everywhere right now. So just try. You're not outmoded. You're smart people, you're risk executives, you're researchers, you can do it.
+
+
+27
+00:04:48.074 --> 00:04:52.074
+That's my message for you, although I think most people in the room are already there.
+
+
+28
+00:04:52.074 --> 00:05:10.074
+And lastly. I actually just said that. See what happens when it's the opening slide? I got confused. So yes, we are not outmoded, we are… We just need to know English and we need to try. And I'll say that me as CEO, it's not about my R&D team, it's about my finance team. It's about HR.
+
+
+29
+00:05:10.074 --> 00:05:23.074
+Everybody needs to use this immediately. Claude code, cursor, whatever it is you're using. Don't wait, because I can already see if the CEO is not spending time on Claude code, regardless of any code, I don't believe that company will survive. Personal belief system.
+
+
+30
+00:05:23.074 --> 00:05:27.074
+Now, this is a presentation given by Joe Stewart.
+
+
+31
+00:05:27.074 --> 00:05:35.074
+to another conference I organized many a year ago called ACOD, which is still running, where he said, "Researcher conferences suck.
+
+
+32
+00:05:35.074 --> 00:05:40.074
+And… or he sucks at networking. And I stole his slides, and I'm gonna go through this very quickly.
+
+
+33
+00:05:40.074 --> 00:05:49.074
+Why do I stack at networking? He's introverted. He's better small talk, and he doesn't like beer. And this is what security conferences look like.
+
+
+34
+00:05:49.074 --> 00:05:57.074
+So, there are too many people to have one-on-one discussions, right? He's better than that. Tell you I'm not amazing at it either.
+
+
+35
+00:05:57.074 --> 00:06:10.074
+I'm going to read from your slides. Name tags are too hard to read without being awkward. Oh yeah. Right? Putting faces to names, even if you know the name, you see the picture is really hard. Social time is usually a noisy bar. How are we supposed to network?
+
+
+36
+00:06:10.074 --> 00:06:26.074
+So he wants to network with people doing similar work. He wants to find what tools people use. He wants to establish the informal sharing relationships. He wants free stuff. He wants to take care of bad guys. He wants to be able to… for people to not change free systems to become paid later on.
+
+
+37
+00:06:26.074 --> 00:06:33.074
+Because it's hurting bad guys right now with these systems, and he wants to not get salespeople to come at him because of these relationships.
+
+
+38
+00:06:33.074 --> 00:06:40.074
+So… He's only lucky enough to come away with a few people that he might have met.
+
+
+39
+00:06:40.074 --> 00:06:51.074
+to share with and help. And he wanted Tinder up, or a Facebook app, just to meet people, see who they are, how to work with them. And we ended up essentially creating something simple, which is our slides.
+
+
+40
+00:06:51.074 --> 00:06:56.074
+Where we see a picture, who are you? You have your LinkedIn, what you can offer, what you can help with.
+
+
+41
+00:06:56.074 --> 00:07:00.074
+And he went first. This is his from quite a few years ago.
+
+
+42
+00:07:00.074 --> 00:07:11.074
+This is mine, so go on the slide deck. You can't edit it anymore, but you can email us if you look at the first slide, there is a contact at enpronted.com.org. Ida will put it in for you.
+
+
+43
+00:07:11.074 --> 00:07:19.074
+Ming go talk to people. Thank you for listening to Joe's and Mind Little Rant. That was the first part of what I wanted to say.
+
+
+44
+00:07:19.074 --> 00:07:28.074
+Second is just the stack. I said, oh, Slack. See, this is what happens when you update your slides last minute. Community feel, right? Okay.
+
+
+45
+00:07:28.074 --> 00:07:46.074
+Feel your card. It's really matters because I do believe I'm going into manifesto mode again, that this is a special moment in time. We'll live in the future and something special is going on in this conference. Honestly, it might not exist next year. There might be hundreds of conferences. We might not do any more conferences.
+
+
+46
+00:07:46.074 --> 00:07:56.074
+But right now, right this moment, truly something special is happening here. And I want us to use it to the max. So… find other like-minded people.
+
+
+47
+00:07:56.074 --> 00:08:14.074
+Next, we're going to actually talk in the Slack. Most conferences don't want you to be on the Slack, so you don't go to your phone. You're doing it often enough instead of looking to the presenters. We are owning Gen Z. Go to your phone, get on the Slack, talk to people in the Slack. We'll open up a thread for every single talk.
+
+
+48
+00:08:14.074 --> 00:08:21.074
+At the end, and most presenters agreed, Will shared the slide deck in that thread.
+
+
+49
+00:08:21.074 --> 00:08:32.074
+Then, submit an unconference TurboTalk. There is an easel in the back. We're gonna have a couple of slots, and we are all going to vote using small sticky notes with smileys and stars on them.
+
+
+50
+00:08:32.074 --> 00:08:42.074
+So write your proposal on the easel. put sticky notes next to what you want to hear, and we'll give time tomorrow to people. Now, this is really important.
+
+
+51
+00:08:42.074 --> 00:08:48.074
+other human beings. I prefer dogs. Some people don't like dogs, and you're horrible human beings, they should go.
+
+
+52
+00:08:48.074 --> 00:08:55.074
+But the point is, I'm forcing you. So I'm going to do an HR moment. We all hate HR moments, right? We despise HR moments.
+
+
+53
+00:08:55.074 --> 00:09:14.074
+Look to the right of you. Now, look to the left. You can actually do it with me, okay? See a person, say hi, just say hi loud with me, you don't need to look at them in the eyes. Hi, everybody, hi. Okay, now you actually know one more person. Stop talking. I just said hi. Don't be social.
+
+
+54
+00:09:14.074 --> 00:09:23.074
+But now you actually know one more person. And it will be easier for you to mingle, join groups, whatever it is. Try to talk to people, try to say hi. On the Zoom.
+
+
+55
+00:09:23.074 --> 00:09:29.074
+try to just randomly message somebody and say hi. There's a lot of… there is a full online conference going on in the Zoom as well.
+
+
+56
+00:09:29.074 --> 00:09:35.074
+And time-wise, we are already late, and we are planning to be late on time.
+
+
+57
+00:09:35.074 --> 00:09:44.074
+So please forgive us for bugs, forgive us on the schedule, but we're gonna try. So speakers, get up there. You have 20 minutes on the mark.
+
+
+58
+00:09:44.074 --> 00:09:52.074
+And then at 20 minutes, there are questions. The next speaker is going to come up, start putting their laptops in. It will be disruptive to the questions, it'll work out.
+
+
+59
+00:09:52.074 --> 00:10:02.074
+And then attendees, questions. You have 30 seconds. Go into the Slack and say, I want to workshop my question.
+
+
+60
+00:10:02.074 --> 00:10:10.074
+And workshop your question. Then you come up, you ask a question, and if we didn't have time to get to you, the speaker will go on the thread and answer your questions live.
+
+
+61
+00:10:10.074 --> 00:10:14.074
+And this is from Jolani Cobb. I'm gonna read it.
+
+
+62
+00:10:14.074 --> 00:10:29.074
+A question is an interrogative sentence, generally denoted to an inflection at the end. End? I don't know. A question differs from a statement in that a question requests information, and a statement provides it. We prefer questions.
+
+
+63
+00:10:29.074 --> 00:10:40.074
+two statements. And if you frame your question as succinctly as possible within 30 seconds, we can get to as many as possible. Anybody makes a statement or contributes to the talks, I'll find you.
+
+
+64
+00:10:40.074 --> 00:10:53.074
+Workshop your questions on Slack. Links. The Slack link obviously no longer works, but the agenda is online on the site. You can easily go there. Baseball cards, look for people, add your own, email us with your slides, it will be fun.
+
+
+65
+00:10:53.074 --> 00:11:01.074
+Then, now, lastly, before we get started, Don Hubbard, who also did this, one of my older conferences many years ago, it was called ISOI.
+
+
+66
+00:11:01.074 --> 00:11:10.074
+offered to write a poem for us to get us started. And you know what? I think most people in this room are probably on the spectrum. If there are normies here, I'm really sorry.
+
+
+67
+00:11:10.074 --> 00:11:16.074
+But we're all gonna enjoy this poem that's an instruction from the chair. Thank you so much.
+
+
+68
+00:11:16.074 --> 00:11:24.074
+Then.
+
+
+69
+00:11:24.074 --> 00:11:28.074
+I still can't believe I agreed to do this.
+
+
+70
+00:11:28.074 --> 00:11:34.074
+Well, 20 years ago, you couldn't prompt your way into a poem, but it's a little bit easier now.
+
+
+71
+00:11:34.074 --> 00:11:46.074
+Um, and the prompt I put in for this is that I'm a 50-plus person who grew up programming a little, but not really a programmer by trade.
+
+
+72
+00:11:46.074 --> 00:12:01.074
+And I was going to a security conference, and over the last 9 months, I think I've written 35 apps, very little programming knowledge. And what are the risks that have to do with that? But I'll share the prompt maybe in the Slack a little bit later.
+
+
+73
+00:12:01.074 --> 00:12:14.074
+All right, here we go. When every employee codes by feel and prompts replace the change control seal, the org chart bends, the backlog breaks as product ships and coffee breaks.
+
+
+74
+00:12:14.074 --> 00:12:25.074
+Marketing scripts, a pricing bought, finance deploys, what Inge forgot. Hr wires flows at half past three. Relax, they say. It's YAML, see?
+
+
+75
+00:12:25.074 --> 00:12:34.074
+Five coding humps through every floor, ideas sprint straight out the door. A thousand apps by end of week, all clever, fast, and mildly bleak.
+
+
+76
+00:12:34.074 --> 00:12:39.074
+For Castles fell when walls were tall, now there are simply no walls at all.
+
+
+77
+00:12:39.074 --> 00:12:44.074
+The perimeter packed up and took leave, replaced by tokens we barely perceive.
+
+
+78
+00:12:44.074 --> 00:12:54.074
+Agents calling agents deep with scopes too broad and guards asleep. A plugin pulls from who knows where and slips malicious code in there.
+
+
+79
+00:12:54.074 --> 00:12:59.074
+A breach no longer kicks the door, it forks a repo, and it certainly asks for more.
+
+
+80
+00:12:59.074 --> 00:13:12.074
+Vulnerability softly bloom in CI Pipeline's glowing room, a library six months out of date, an unchecked input at the gate. A prompt injection dressed as help that makes your agent hand out wealth.
+
+
+81
+00:13:12.074 --> 00:13:21.074
+Least privileged stretch paper thin service accounts with God mode in. Test credentials left behind, and logs no one was paid to mine.
+
+
+82
+00:13:21.074 --> 00:13:29.074
+And zero day, it shifts its frame no longer just an unknown name. Zero Day is now the space between a prompt and prod embrace.
+
+
+83
+00:13:29.074 --> 00:13:34.074
+When code appears at human speed before his scanners had time to read.
+
+
+84
+00:13:34.074 --> 00:13:39.074
+Zero Day is vibe at scale, where governance arrives by credit check mail.
+
+
+85
+00:13:39.074 --> 00:13:48.074
+Zero Day is trust misplaced, it's auto-generated haste. A model's certain, clean, concise, and catastrophically imprecise.
+
+
+86
+00:13:48.074 --> 00:13:58.074
+So scan the prompt and sign the claim versus the control thy Y, not name. Log the agent, bind its reach, assume that automation can breach.
+
+
+87
+00:13:58.074 --> 00:14:09.074
+For Breeches thrive in silent drift in tiny scopes that slowly shift, and safely lives in teams who choose to ship with scare and logs to prove.
+
+
+88
+00:14:09.074 --> 00:14:25.074
+Build boldly, let the builders play, let innovation light the way. But in this world of instant code, secure the path where vibes explode.
+
+
+89
+00:14:25.074 --> 00:14:31.074
+And now our MC.
+
+
+90
+00:14:31.074 --> 00:14:44.074
+All right, good morning. We'll let Heather and Forget set up here. So we'll try and get back on track as quick as possible while they do that. I'm going to take advantage of the AV break to make sure everyone has the lay of the land here. So this is stage one.
+
+
+91
+00:14:44.074 --> 00:15:00.074
+Uh, we have talks here all day. Downstairs is stage two. We have talks there most of the day as well. After Heather and Ford, we're going to have a 10 minute break just to split people up. Sunil is going to be hosting over there. Steps there and there. Bathrooms also in that door.
+
+
+92
+00:15:00.074 --> 00:15:10.074
+Uh, and in the back corner. Um, uh… If you have questions, please think about them ahead of time.
+
+
+93
+00:15:10.074 --> 00:15:23.074
+workshop them in the Slack. Uh, our audience, Mike, is midway in the back. Matt, can you show us where our audience mic is? So Matt will have the audience mic. Please bring your questions to him. And are you guys ready to go? Looks like you're on a sec.
+
+
+94
+00:15:23.074 --> 00:15:28.074
+Cool. Well, with that, please welcome Heather and Four.
+
+
+95
+00:15:28.074 --> 00:15:37.074
+Hey, everyone. Great, well, amazing to be here, GADI team, the whole team, I mean, it's such an incredible community.
+
+
+96
+00:15:37.074 --> 00:15:53.074
+I'm Heather. I work at Google, and I do cyber, cyber, cyber stuff. I'm joined by my amazing colleague Four, who leads security and privacy for DeepMind. Please send him all the prompt injection bugs.
+
+
+97
+00:15:53.074 --> 00:16:08.074
+Not me. I want to maybe start just by setting the scene a little bit. I think it's an understatement for all of you to say that this is an unprecedented time. We will all look back on.
+
+
+98
+00:16:08.074 --> 00:16:17.074
+I think the year 2026. As the year, everything pivoted, um, and we will also think of 2026.
+
+
+99
+00:16:17.074 --> 00:16:24.074
+As a simpler time. I think it's going to get a little bit harder and a little bit more complex.
+
+
+100
+00:16:24.074 --> 00:16:36.074
+Um, we are not far off from a world where there will be an open source, full hacking tool where you can type in go hack Google.
+
+
+101
+00:16:36.074 --> 00:16:40.074
+And a week later, it'll come back with a root prompt.
+
+
+102
+00:16:40.074 --> 00:16:46.074
+Uh, we're not far off, um, and we know this for a few reasons. Number one.
+
+
+103
+00:16:46.074 --> 00:16:53.074
+There are now open source frameworks for doing pen testing, finding simple vulnerabilities in web apps, et cetera.
+
+
+104
+00:16:53.074 --> 00:17:00.074
+I did a little back of the back of the napkin math as well. There's about a billion dollars of VC money.
+
+
+105
+00:17:00.074 --> 00:17:07.074
+going into startups. for vulnerability discovery, pen testing, red team, simulation.
+
+
+106
+00:17:07.074 --> 00:17:19.074
+So between all the good guys and all the bad guys, I think it's fair to say we are at a point where we'll be able to find every vulnerability in every system with agentic frameworks.
+
+
+107
+00:17:19.074 --> 00:17:32.074
+And that's gonna be a completely different world. Um, it's gonna change the way we think about vulnerabilities, the way we rank them, prioritize them. We'll have to change the CVSS scoring system because it won't be meaningful anymore.
+
+
+108
+00:17:32.074 --> 00:17:48.074
+Um, there will be a world where we just have too many vulnerabilities. And to give you some sense, we are already seeing it. I checked this morning, and the vulnerability database, the NVD, has a 30,000 backlog on analyzed vulnerability queue.
+
+
+109
+00:17:48.074 --> 00:18:04.074
+But even given that, between 24 and 25, there was a 35% increase in logged vulnerabilities that got a CVE. And not every bug that gets discovered gets a CVE. So we're already seeing kind of a cataclysmic.
+
+
+110
+00:18:04.074 --> 00:18:18.074
+Increase fairly significantly. And that brings us to the impetus for the project we're going to talk about today. Big Sleep and Code Mender. These are two projects, research projects out of Google and Google DeepMind.
+
+
+111
+00:18:18.074 --> 00:18:27.074
+With one goal, and… One real deep meaning that I want to leave with all of you today. Next slide.
+
+
+112
+00:18:27.074 --> 00:18:33.074
+Is that we simply must eliminate every software vulnerability on Earth.
+
+
+113
+00:18:33.074 --> 00:18:41.074
+And that is the legacy the people in this room need to leave behind to the next generation of technologists.
+
+
+114
+00:18:41.074 --> 00:18:55.074
+And it is not a simple problem, it is not an easy one, but it is the one that we have to solve, because as humanity goes beyond Earth, we just simply need to not be dealing with cross-site scripting bugs.
+
+
+115
+00:18:55.074 --> 00:19:04.074
+And, um, we have a little ambition at Google to get rid of memory safety bugs as well, and that is what we're gonna talk a little bit about today.
+
+
+116
+00:19:04.074 --> 00:19:11.074
+Um, on top of finding every bug, we have to be able to give developers the tools to not make them anymore.
+
+
+117
+00:19:11.074 --> 00:19:18.074
+And, uh, the technology we're gonna talk about here today also lends itself to that.
+
+
+118
+00:19:18.074 --> 00:19:27.074
+Next slide. So I'm pretty sure everybody who's played with an LLM has pointed it at some code and said, please find me a bug.
+
+
+119
+00:19:27.074 --> 00:19:44.074
+And it's actually pretty good. Even the older models are pretty good, and as we have the new generations coming out successfully, um… Kind of every, kind of, 3 to 4 months, we're seeing a massive improvement in what the large language models can do about reasoning about code.
+
+
+120
+00:19:44.074 --> 00:19:56.074
+Um, we wanted to go one step further and not just look at the shallow bugs that are easy to find, but to really look at the kinds of bugs that top elite researchers.
+
+
+121
+00:19:56.074 --> 00:20:11.074
+confined. There was a 2017 study, a RAND study, that showed, um, just how long an expert vulnerability researcher takes to find kind of a deeply embedded bug. I think it's somewhere on the order of a month.
+
+
+122
+00:20:11.074 --> 00:20:18.074
+for finding the bug, and about 22 days, um, for exploitation successfully.
+
+
+123
+00:20:18.074 --> 00:20:30.074
+But what if you could build an agentic reasoning system that could do that in a matter of hours or minutes? And you could find the deep bugs much faster, more reliably, and potentially early.
+
+
+124
+00:20:30.074 --> 00:20:44.074
+in the software development lifecycle. So the approach that the Big Sleep team has taken to finding bugs is not just to use the LLM for the basic things you can prompt it to do, but actually to recreate the human expertise.
+
+
+125
+00:20:44.074 --> 00:21:01.074
+Of our Project Zero team. Project Zero is a team that's been around for over a decade. Their goal is to get rid of zero days. They haven't been successful yet, but they think they're going to get there with this technology. So they want to recreate that kind of deep researcher experience.
+
+
+126
+00:21:01.074 --> 00:21:10.074
+With three things also in mind. Number one, we want uncompromising quality. We do not want to produce AI slop with the bugs we find.
+
+
+127
+00:21:10.074 --> 00:21:16.074
+We want everything that lands in a developer's hands, especially an inexperienced developer, to just work.
+
+
+128
+00:21:16.074 --> 00:21:27.074
+Out of the box. Number two, we need this to be cost effective and efficient at scale. We have trillions of lines of code on the planet, billions of lines of code at Google.
+
+
+129
+00:21:27.074 --> 00:21:31.074
+Um, and we want to run this all the time, so it's got to be fast and efficient.
+
+
+130
+00:21:31.074 --> 00:21:48.074
+And third, as real time as possible, right? Right now, we're all looking at brownfield code, so stuff that's already launched in production, open source code, stuff that's already out there. We want to be able to put it in the developer's user journey, so that they're not launching new bugs in the future as well.
+
+
+131
+00:21:48.074 --> 00:22:03.074
+And we think if we do this, if we get it right, um… We can probably be creating and maintaining code that's relatively bug-free in the next couple of years, right? This is kind of within not only our ambition, but our capabilities with the tech.
+
+
+132
+00:22:03.074 --> 00:22:09.074
+Next slide. So let's talk about big sleep. And I'm not going to do, like.
+
+
+133
+00:22:09.074 --> 00:22:14.074
+you know, code reading here or anything, we're gonna talk architecture a little bit.
+
+
+134
+00:22:14.074 --> 00:22:21.074
+Um, one of the first things we realized as we studied how the researchers work is that they become deeply expert.
+
+
+135
+00:22:21.074 --> 00:22:31.074
+In the code base they're working in. And if you've ever met a really good Vuln researcher, they kind of tend to get, you know, deep and niche in one area or two areas.
+
+
+136
+00:22:31.074 --> 00:22:41.074
+And the way they do this is they understand the code, they look at the kinds of bugs that they've had in the code before, past vulnerabilities, they do variant analysis.
+
+
+137
+00:22:41.074 --> 00:22:53.074
+Um, and they have a really good understanding of the code architecture, okay? So we have to give that to this agentic reasoning system as well. So we harness that, and that's phase one.
+
+
+138
+00:22:53.074 --> 00:23:07.074
+We then enter into Phase 2, which is this agentic framework that's working constantly in a loop, feeding back to itself. It's building hypotheses, perhaps, based on past bugs, for example.
+
+
+139
+00:23:07.074 --> 00:23:21.074
+Here's a part of the code that I think might be vulnerable. Let me test that hypothesis. To do that, it needs tools, okay? It needs a debugger, it needs the code browser, and it needs a Python interpreter so that it can write scripts for itself.
+
+
+140
+00:23:21.074 --> 00:23:29.074
+So what it's doing is that it's not just prompting itself, it's building code, it's building test cases.
+
+
+141
+00:23:29.074 --> 00:23:35.074
+And it's able to test its own hypotheses and see if there's success and failure. And it's doing that.
+
+
+142
+00:23:35.074 --> 00:23:43.074
+constantly in a loop, right? This is far beyond just prompting, you know, find the cross-site scripting bug in this code.
+
+
+143
+00:23:43.074 --> 00:24:01.074
+Um, and it's this hypothesis and revision that really gives the system that feel of, like, an expert researcher, right? And if you've ever met them, they sometimes are just standing in the corner staring with their coffee, going, you know, I can't get that bug, I can't get that bug. This is what the LLM.
+
+
+144
+00:24:01.074 --> 00:24:18.074
+Um, reasoning loop is doing. Once it has a successful crash that it thinks might be a valid vulnerability, we then move into the verification phase. And it's looking at feedback data that's coming out of the debugger.
+
+
+145
+00:24:18.074 --> 00:24:22.074
+Um, and it is actually then building an exploit.
+
+
+146
+00:24:22.074 --> 00:24:30.074
+Okay? And this proof of vulnerability is so key to getting the false positive rate to zero, and we've managed to do that.
+
+
+147
+00:24:30.074 --> 00:24:35.074
+So every bug that comes out of there is not only a candidate for an exploit.
+
+
+148
+00:24:35.074 --> 00:24:45.074
+Um, for vulnerability, but it's actually provably a vulnerability. We then write a report, and again, it's the… it's Gemini writing the report, it's not a human.
+
+
+149
+00:24:45.074 --> 00:25:01.074
+Um, it's got the proof of vulnerability code, so the developer can test it. It has a high-quality report that does a step-by-step through every function, every part of the bug, explains the bug in detail, so that if you have a non-expert developer, they're gonna understand what's going on.
+
+
+150
+00:25:01.074 --> 00:25:11.074
+And we've managed to do this to the extent where end-to-end, fully automated, without human involvement, we're getting zero false positives. And these are deep memory safety bugs.
+
+
+151
+00:25:11.074 --> 00:25:18.074
+These are not cross-site scripting bugs, these are not kind of shallow integer overflows. They're kind of deep.
+
+
+152
+00:25:18.074 --> 00:25:23.074
+Uh, in the code base. Um, and we've put them all online, that's the URL down there.
+
+
+153
+00:25:23.074 --> 00:25:35.074
+Um, our issue tracker, so you can go in and see them, um, and see the quality of the report and, um, kind of, I think all but five are fixed at this point. So, as I checked this morning.
+
+
+154
+00:25:35.074 --> 00:25:49.074
+So that's big sleep. This is just the vulnerability discovery. We've done one half of the job for the developer. Now we've got to do the part that really sucks as a developer, which is fixing the code. And for that, I'm going to pass it to four.
+
+
+155
+00:25:49.074 --> 00:26:06.074
+Great. Thanks, Heather. All right, so let's zoom out for a minute. I want to speed up a little because I want to make sure that we have time for questions. But I have a lot to cover. So we said we're going to try to fix every security vulnerability on Earth, and we're not kidding. So what does that mean? There's a whole bunch of other pieces besides the big sleep component, right? So finding vulnerabilities is one part.
+
+
+156
+00:26:06.074 --> 00:26:22.074
+But also, we have to help the developers patch those vulnerabilities. I'll talk more about that in just a second. But one other thing that I want to make sure we at least touch on, we're not going to talk about it in detail today, is that also brand new greenfield code that's being generated through what vibe coding frameworks.
+
+
+157
+00:26:22.074 --> 00:26:39.074
+actually needs to be secure out of the box as well, and so that's something else we're working on. We don't have time to talk about that today, but we think it's a completed thought, right? Where if you have legacy code that we can find vulnerabilities in it, and we can get those automatically patched, that's the middle to the top arrow.
+
+
+158
+00:26:39.074 --> 00:26:54.074
+If we have legacy code, we can actually proactively harden that code. I'll talk about that in a minute. And then finally, brand new code should be secure as much as possible out of the box, not just free of vulnerabilities, but actually using secure frameworks so those vulnerabilities aren't possible in the first place.
+
+
+159
+00:26:54.074 --> 00:27:11.074
+We're working on all of this, but let me dive in a little bit more into the CodeMender component specifically. Right, so this is basically how CodeMender works. It's a project we started last year in recognition that this AI vonpocalypse, which by the way, is a word that you should take away from this conference, the vulnpocalypse is coming.
+
+
+160
+00:27:11.074 --> 00:27:26.074
+And so we think we should actually help arm the community with tools to solve this problem. So it's not enough to find vulnerabilities. We should also help the developers patch code. Now, what are the three components of patching code? You want to make sure, one, that the patch.
+
+
+161
+00:27:26.074 --> 00:27:48.074
+Fixes the security vulnerability, right? Two, that it doesn't break the code in some way that changes the functionality, right? And then three, as much as possible, you actually want to honor the idioms of the developer that had built that code previously, so that it's not just a patch for the vulnerability, but it's done in the way that the developer finds easy to digest and understand.
+
+
+162
+00:27:48.074 --> 00:28:04.074
+So all three of those things is what CodeMender is built to solve. So how does it work? Well, it takes in either a verified vulnerability from Big Sleep, and the idea is to make this a full end-to-end discovery and fixing engine, right, that runs completely without human intervention.
+
+
+163
+00:28:04.074 --> 00:28:19.074
+Um, the other piece that I'm not sure we have time to talk about today is hardening. Basically, in a nutshell, what this is, is basically proactively looking at a code base for things like pointer exceptions, and modifying the code through a larger patch to make sure that all of those buffers are protected.
+
+
+164
+00:28:19.074 --> 00:28:35.074
+before the vulnerability can actually occur in the first place. So you can imagine a similar process to patching actually being used to harden code and protect pointers as well, but I won't go into that in detail. So, the LLM agent actually has very similar access to tools in an environment like Heather just discussed.
+
+
+165
+00:28:35.074 --> 00:28:50.074
+Right? It can do things like debugging, it can test hypotheses. What that does is it creates a number of patch candidates, right, that are potential fixes. But that's not good enough, right? We need to verify that those patches. And so some of the secret sauce of what we've been building.
+
+
+166
+00:28:50.074 --> 00:29:05.074
+is actually in these verification stages, and we've done a huge amount of work here. So we have verifiers of all kinds, and it's actually a pluggable system. So we actually fuzz the variables before and after the patch to validate that the functionality hasn't been destroyed by the patch.
+
+
+167
+00:29:05.074 --> 00:29:21.074
+We actually do formal verification of that section of the code base to try to prove that that code still is functionally equivalent. We actually also look for differential testing. We actually do a round of fuzzing of the code with the potential candidate patch to make sure that the vulnerability is still not present.
+
+
+168
+00:29:21.074 --> 00:29:37.074
+By injecting the malicious inputs into that section of the code base. And finally, we use, of course, maybe the most obvious of all options. We use the LLM itself to view the patch with a very carefully crafted pre-prompt.
+
+
+169
+00:29:37.074 --> 00:30:02.074
+to try to determine if that patch is also accurate as well. So, that's not all that we do, but it's a good sense of the types of things that we do, and it's only once the patches all pass the verifier, um, that we would actually consider that something that's a candidate to send to the community. In some cases, none of the patches actually pass validation, and the learnings from the validation failures are actually fed back into the context window for the LLM to learn from the mistake.
+
+
+170
+00:30:02.074 --> 00:30:08.074
+and try to improve to a new set of candidate patches that are then, in turn, validated and ranked for submission.
+
+
+171
+00:30:08.074 --> 00:30:26.074
+Um, so that's essentially how CodeMender works. Um, just a couple notes here. We've got 178 fixes now in open source that have been autonomously generated through Codem. We have a path through a couple of different libraries, open source libraries, Libwebp is one example. We've done a bunch of work in Chrome as well.
+
+
+172
+00:30:26.074 --> 00:30:43.074
+to actually harden pointers in the code base through automatically generated patches to harden those pointers. Um, and, um, of course, we're working on doing this for internal Google systems. I think probably one criticism of our approach here that I think you could levy.
+
+
+173
+00:30:43.074 --> 00:31:01.074
+is that we are maybe being too cautious in making sure that we have highly verified outputs for the community before we send something out. Um, we've taken a position that we really firmly believe in quality, and that people trusting the system is what's gonna lead us to be able to accelerate the community's adoption of this technology.
+
+
+174
+00:31:01.074 --> 00:31:18.074
+I guess we'll see how it plays out. I think other folks have a different trade-off on the dial of sort of quicker to market, um, but maybe tolerating, you know, more developer toil. Um, you know, I think we're trying to figure out where the right line is there. I won't go into all the details here on the bottom.
+
+
+175
+00:31:18.074 --> 00:31:37.074
+Except for to recognize the fact that all of this is well and good, but those of us in the hallway here in the room all know that one of the hardest problems with patching is actually places in the world that struggle to actually apply patches in a timely manner. And so that's another problem. I don't know how to solve that with AI.
+
+
+176
+00:31:37.074 --> 00:31:51.074
+If you do, come find me, and I will be very excited to talk to you. But I think this is an important part of the puzzle, is being able to get the community and the world to patch our code bases at the speed of AI. And with that, I guess we'll take questions.
+
+
+177
+00:31:51.074 --> 00:32:04.074
+Um, with a few minutes left. So, I don't know how questions work, by the way. So, okay, there's mics, um, around. So if you have a question, raise your hand, and I guess somehow a mic will show up.
+
+
+178
+00:32:04.074 --> 00:32:10.074
+Yeah, there's a gentleman here in the front. And Heather's gonna answer all the questions.
+
+
+179
+00:32:10.074 --> 00:32:18.074
+Because you don't know how they work. Okay. I can't hear you.
+
+
+180
+00:32:18.074 --> 00:32:23.074
+Just flip the switch up.
+
+
+181
+00:32:23.074 --> 00:32:42.074
+If you shout, I'll repeat. Okay. Oh, yeah. So I'm just wondering how similar or different this is from OpenAI's ad work that was recently released? Because I was reading about it, it does something similar, so it would be interesting to know, like.
+
+
+182
+00:32:42.074 --> 00:32:47.074
+And I don't know if you have done any sort of, like, comparison as to how yours is… yeah.
+
+
+183
+00:32:47.074 --> 00:32:53.074
+I don't know, are the OpenAI guys here? Do they want to say? Where are you at?
+
+
+184
+00:32:53.074 --> 00:33:00.074
+And just to add, sorry, just to add, I think… Oh.
+
+
+185
+00:33:00.074 --> 00:33:16.074
+To seriously answer your question, we've not done a side-by-side comparison, because neither team has published full details, um, but I think it's fair to say we're both using, um, kind of, you know, agentic reasoning, uh, behind them, but we'll see as the things develop.
+
+
+186
+00:33:16.074 --> 00:33:44.074
+As they come out. Yep. With the… There's one here and then there, yeah. With the techniques you've used in big sleep, they seem very focused on memory safety vulnerabilities, which are a huge problem. I'm curious how much of how many of these techniques do you think would be applicable to things with a less clear signal than just a seg vault or some of these more difficult to find things than memory vulnerabilities? I'll just say quickly, it does definitely apply.
+
+
+187
+00:33:44.074 --> 00:34:08.074
+teams finding shallow bugs as well. What we're targeting with the research is the deep stuff because it's hardware and a little more esoteric, but… Yeah. Yeah, I mean, I don't really have a lot to add. I think a lot of the techniques actually carry over to web vulnerabilities and shallow vulnerabilities quite well. I think the verification techniques of the vulnerability are different to your point. But, you know, injected faults, whether it's input validation.
+
+
+188
+00:34:08.074 --> 00:34:19.074
+you know, things like that. I think all of it will work, and we're building all of that stuff as well, um, to make sure that we work for web vulnerabilities, both finding and fixing. So, yeah, that's a good question.
+
+
+189
+00:34:19.074 --> 00:34:33.074
+I guess I will say, um, I mean, we're still doing a lot of fuzzing. We develop OSS Fuzz at Google, um, doing tons of fuzzing, but… Big Sleep is finding things the fuzzers are missing. So that tells us that we're targeting at the right depths, probably.
+
+
+190
+00:34:33.074 --> 00:34:48.074
+Uh, yeah, my question's related to business logic vulnerabilities that don't have necessarily a signature, but are in the context of how the application's used. How are you all thinking about those types of vulnerability classes and your approach, and do you think this methodology would apply to that specific?
+
+
+191
+00:34:48.074 --> 00:35:01.074
+class of vulnerabilities? I think right now, most of our research is not on business applications, it's on, kind of, infrastructure components, like, um… You know, the V8. Sure.
+
+
+192
+00:35:01.074 --> 00:35:17.074
+part of Chrome, which we sandbox, and, you know, we wish it was better. So, um, those components, or something like the, um… FFmpeg is another one that we've looked at quite a bit, because its job is to handle untrusted input. Right. Um…
+
+
+193
+00:35:17.074 --> 00:35:34.074
+How it translates to business applications, we're not sure yet, so… Thank you. Folks, I'm gonna cut down the Q&A, but please remember you can always find the speakers on Slack, as well as talk to them later when they're here. Thank you so much, Fore and Heather, and I'll have you know, by the way.
+
+
+194
+00:35:34.074 --> 00:35:51.074
+They're… That's a lot of appreciation right there. Their titles don't say this, but 4 is the CISO++ of DeepMind, right? And Heather is the CISO of Google. They just don't say that on… they're not allowed to say these things, so I'll embarrass them here and say it. So thank you so much for coming and speaking with us.
+
+
+195
+00:35:51.074 --> 00:36:08.074
+Real quick. Usually people say, oh, we would like to thank our sponsors. I start shutting down. This is critical, truly. We have a few companies here that decided when we said we're going to promise you nothing, we're not going to give you the lists of the attendees, we're not going to give you free talks.
+
+
+196
+00:36:08.074 --> 00:36:19.074
+I… my people submitted two talks that got denied by the committee. Thank you all. Um, so I really want to thank these people for stepping in. So Gnostic, my company, Taktek, Kyle, I mean, the work there is amazing.
+
+
+197
+00:36:19.074 --> 00:36:44.074
+Al, stepping in last minute, truly crazy work from you guys, you just made a huge release, go find them on LinkedIn, find them on the web, see what they're doing. Then also, I really appreciate the support of… White Rabbit, Visit actually does know about AI security and does a good job at it. And then Halcyon Ventures and Halcyon Futures were around, and truly do crazy stuff in this space, and support a lot in this space. So please, if you see them.
+
+
+198
+00:36:44.074 --> 00:36:53.074
+They supported the community getting nothing for this. Shake their hands. Thank you so much. Now, critical, there is a second stage and it's starting right now.
+
+
+199
+00:36:53.074 --> 00:37:06.074
+If you look over there, there is Andrea and Sunil, do this, jump up and down. Okay. Second stage, Billy Norwood talking about what they have done, and here is Andrea right there, what they have done in their organization to make AI security actually work for them.
+
+
+200
+00:37:06.074 --> 00:37:18.074
+If you check the agenda, so second stage is downstairs, follow Sunil, follow Andrea, go downstairs, there's more chairs there and good content. And thank you, moving on, Aaron, take over.
+
+
+201
+00:37:18.074 --> 00:37:27.074
+Oh, you have about 5 minutes. Go! Yeah, we're gonna start. We're already 20 minutes behind, so 9.50, it's 9.48 now, let's plan the next talks to start at 9.55. We're gonna be as sharp as possible.
+
+
+202
+00:37:27.074 --> 00:37:57.074
+Uh, step two, see you guys downstairs are here in 7 minutes.
+
+
+203
+00:38:25.074 --> 00:38:55.074
+Microphone. Folks, I'm just reminding you, you only have three minutes left to stop talking and go down to the second stage.
+
+
+204
+00:43:16.074 --> 00:43:24.074
+All right, everyone, are we ready to start back up again? Let's see if we can bring the volume down.
+
+
+205
+00:43:24.074 --> 00:43:36.074
+Testing return to our seats. Enjoy the community we're building. It's great, I love hearing people talk.
+
+
+206
+00:43:36.074 --> 00:44:03.074
+That's why we're here. But… One of the downsides of this being the most exciting thing going on in security, at least in my personal opinion, is that we have too many talks to get through today. Uh, so we're gonna try and stay on schedule if we can. Uh, next up, uh, on, uh, measuring performance, uh, please welcome Joshua Sachs.
+
+
+207
+00:44:03.074 --> 00:44:27.074
+Cool. Hi, I think. Super happy to be here. This is way more people than I was expecting. I'm also… I'm also really shocked and delighted that the organizers put in a talk about statistical evaluation of LLMs a second on the program. Hopefully I won't disappoint. Okay, so I'm Josh Sachs, and I'm going to be talking about how we evaluate autonomous systems for cyber defense.
+
+
+208
+00:44:27.074 --> 00:44:43.074
+Okay, so as of last Thursday, I'm at a startup that some friends and I co-founded. Before that, for about four years, I was tech leading a lot of the AI security work at Meta, so I worked with the teams that are working on applying.
+
+
+209
+00:44:43.074 --> 00:45:00.074
+AI to the sort of broad range of security problems at Meta. I also worked on prompt injection defense and defending, um, defending AI systems from AI-native attacks. Ancient history, you know, I sort of grew up in the hacker scene. Okay.
+
+
+210
+00:45:00.074 --> 00:45:16.074
+Echoing the last talk. So I think probably we're all on the same page that it's going to become much cheaper and much more easy to do sophisticated cyber attacks going forwards, right? So I think we can expect in the next few years.
+
+
+211
+00:45:16.074 --> 00:45:32.074
+that attackers will go from manual laborers to managers of AI agents that are doing attacks. This means that we have a big problem on our hands, right? So there's many organizations that have very few IT security staff at all.
+
+
+212
+00:45:32.074 --> 00:45:55.074
+They're going to need autonomous cyber defenders, and then there's larger organizations also who I think are really vulnerable. I think anybody who's worked in security has always felt understaffed. So we're going to need to get comfortable with the kind of proposition I'm suggesting on this slide, right? So an AI system completely autonomously making a dangerous decision like quarantine a production server because it looks compromised.
+
+
+213
+00:45:55.074 --> 00:46:12.074
+We're going to need to get comfortable with AI systems doing jobs that we only entrusted to humans in the past. Let's say there's some critical insider threat alert we're going to need to trust an AI system when it says just trust me, bro. I investigated the alert. You don't have to worry about it.
+
+
+214
+00:46:12.074 --> 00:46:42.074
+Um, and then we're ultimately gonna have to get comfortable with, um, really sensitive actions, right? Like, AI systems. Um, like, imagine a hospital now that has, you know, two IT, you know, two IT security workers who can't possibly, um, cover the entire threat surface. Um, that hospital will need to be on… need to be armed with a team of AI agents, right, that's able to do things like quarantine the CTO's account when it looks like, uh, when it looks like it's compromised, patch a production code base, shut down a compromise hosts, all of that will have to be, um…
+
+
+215
+00:46:44.074 --> 00:47:14.074
+Uh, we'll have to be able to trust agents to take these kinds of sensitive decisions autonomously. And we have the additional problem that, um… that to actually verify the defensive autonomous systems work, um… requires that we somehow make sense of neural networks that have tens of billions of parameters that we don't fully understand, right? So, um, you know, we have two options, right? One is mechanistic interpretability, to sort of stare into the weight matrices of the neural networks, uh, and try to verify that they'll, um, correctly shut down the right production hosts, which may crash prod.
+
+
+216
+00:47:21.074 --> 00:47:29.074
+Or really the only real option is to understand these systems statistically and behaviorally.
+
+
+217
+00:47:29.074 --> 00:47:44.074
+Um, and so evaluation is, like, the big blocker, I would say, in our field. And this applies to every area of autonomy in cybersecurity. So, it applies to autonomous code remediation, it applies to autonomous alert management, so investigating and closing alerts.
+
+
+218
+00:47:44.074 --> 00:47:59.074
+Especially the most critical alerts, managing access control, so making sure that we're neither under-permissioned or over-permissioned in a large organization. Cloud posture management, and probably the list goes on here. So we have a problem, so we're a field in which we haven't taken evaluation.
+
+
+219
+00:47:59.074 --> 00:48:05.074
+all that seriously, I would say. Um, and we're gonna need to transition into becoming a field in which, um.
+
+
+220
+00:48:05.074 --> 00:48:21.074
+We take it very seriously, much like autonomous driving, for example, right? So, the majority of time, or a significant amount of time in autonomous driving goes to verifying that the systems are safe, right? And in the next few years, we're gonna have to move into that kind of modality within cybersecurity as well.
+
+
+221
+00:48:21.074 --> 00:48:33.074
+Okay, um, so I'm gonna start with the bad news, um, and then I want to talk about the sort of possible approaches to, um, evaluating autonomous AI cyber defense systems.
+
+
+222
+00:48:33.074 --> 00:48:59.074
+Okay, so here's the bad news. Here's the current situation. So, our, um… Our current ground truth is just way too noisy to support the evaluations that we need. So in classical machine learning, for folks here who have, like, sort of classical machine learning backgrounds, um, you know, our problem setting is one in which we have a transparent problem. Like, we have an image, and we want to know, is there a cat or dog in this image?
+
+
+223
+00:48:59.074 --> 00:49:15.074
+And we've developed a bunch of classical sort of machine learning evaluation metrics that we've imported into cybersecurity, uh, that are sort of based on that premise that the ground truth is really transparent. So precision, recall, F-score, rock curves, area under rock, area under precision recall.
+
+
+224
+00:49:15.074 --> 00:49:31.074
+All of this assumes that we have access to transparent labels and we're operating in an environment in which the truth is ascertainable. Of course, in cybersecurity, this just isn't the case. That's not the kind of discipline that we are, that's not the kind of domain in which we're operating.
+
+
+225
+00:49:31.074 --> 00:49:52.074
+With respect to program security, an AI system may propose a patch to a critical program. How do we know if the patch works, right? All we really have, you know, we're up against sort of theoretical computer science problems, like the halting problem, and knowing whether it works, and so really we're using sort of heuristics to decide whether or not the patchwork's, like, passes the unit tests, this sort of thing.
+
+
+226
+00:49:52.074 --> 00:50:06.074
+Um, like, what's malware? You know, and is the program malware? Right, we're up against these same kind of theoretical problems, and also more sort of ontological and epistemological problems of, like, you know, the fact that many binaries are actually dual use.
+
+
+227
+00:50:06.074 --> 00:50:25.074
+And, um, okay, so, um, actually, so in my experience actually building autonomous systems for AI security, I've come up against this problem in many practical settings. So, for example, has anybody here actually tried to get ground truth and train a system to, um, follow up on alerts in a SOC?
+
+
+228
+00:50:25.074 --> 00:50:47.074
+Probably a few. So I've spent a lot of time on this problem. So when you go and try to alert AI investigation of SOC alerts and try to actually get ground truth on which alerts were actually worth investigating and which were false positives, you'll find that there's, like, a double digit disagreement rate between SOC analysts, right? So if you're trying to label.
+
+
+229
+00:50:47.074 --> 00:50:54.074
+A SOC alert, like in the fashion of cat versus dog, you're gonna see a ton of noise in those labels.
+
+
+230
+00:50:54.074 --> 00:51:16.074
+Um, if you're trying to build a system that automates access management, um, and you want to know, um, who should really have access to that sensitive database table that has user messages in it, for example, um, you'll find that access investigators will disagree at a double-digit rate, right, with respect to who should actually access. So if you're trying to train a machine learning system or evaluate it's ability to automatically grant.
+
+
+231
+00:51:16.074 --> 00:51:27.074
+or deny access. Um, you're dealing with a ton of noise in your labels, which makes the evaluation problem very different than the problem of evaluating a computer system, uh, computer vision system that decides cat versus dog.
+
+
+232
+00:51:27.074 --> 00:51:46.074
+Um, so I actually ran a little simulation for you guys to sort of try to demonstrate this concept. So if you… so you should sort of track me down after this, and I can tell you all the parameters of the simulation, but basically, if you add, like, a 1% flip rate, where you're flipping true positive to false positive and false positive to true positive.
+
+
+233
+00:51:46.074 --> 00:52:01.074
+And your labeled data, with which you're using to evaluate your machine learning system, your ability to measure whether or not your system actually works just plummets as you add noise. So in this simulation, I'm imagining you have, like, a sort of perfect AI system.
+
+
+234
+00:52:01.074 --> 00:52:23.074
+Uh, that predicts, for example, whether or not a SOC alert is a false positive. Um, and as we add noise from, you know, 0.5% of the labels flipping to 3% of the labels flipping, um, what we observe is that it… so the system starts to look really inaccurate, um, and we sort of start to hit a noise ceiling around, around, above which we can't actually measure the system's ability to improve.
+
+
+235
+00:52:23.074 --> 00:52:38.074
+Um, and I guess I would say overall, the sort of bad news here is that all of this uncertainty is just built into the environment when you're trying to build autonomous cyber defense systems. So there are these theoretical computer science problems, like the halting problem and state space explosion that makes it impossible to know.
+
+
+236
+00:52:38.074 --> 00:52:57.074
+whether or not a program is bug-free, or whether or not a patch is going to crash prod. Um, there are these sort of societal problems of people disagreeing about whether or not a binary is really malicious or not, given many binaries are dual use. Um, and we're not gonna solve these problems through more effort. We're always gonna be operating in this very uncertain environment.
+
+
+237
+00:52:57.074 --> 00:53:13.074
+Which, um, which begs the question, how are we going to ship systems that we can rely on, which we can convince leaders of, which we can convince policymakers of, uh, that can actually manage the cybersecurity of organizations autonomously?
+
+
+238
+00:53:13.074 --> 00:53:25.074
+Okay, um, so I think the good news is that I think that our framing has been really wrong in how we evaluate autonomous cyber defense systems.
+
+
+239
+00:53:25.074 --> 00:53:43.074
+Okay, so I don't know how many sort of classical ML people are in the background, but anybody who studied ML in college or has done a lot of machine learning is familiar with this concept of the oracle, right? So this is the… so I actually brought in a picture, a real-life picture of the oracle here. Um, so she… so she sits there, somewhere in the Mediterranean, right? And she's, like.
+
+
+240
+00:53:43.074 --> 00:54:04.074
+She's, like, presented with objects, and she labels them, and those labels are true, right? So, um, you know, on the left, she's, um… Uh, she's labeling images as cat, or airplane, or banana. Um, but, um, her process totally breaks down when we present her with these cybersecurity artifacts. Um…
+
+
+241
+00:54:04.074 --> 00:54:22.074
+But, you know, today, when we measure the precision recall F-score rock curve of a security machine learning classifier, we're assuming we have an oracle, right? So this is the sort of evaluation model that we're using in evaluating cyber-autonomous defense systems right now. So we have sort of the ML system, which could be an AI agent.
+
+
+242
+00:54:22.074 --> 00:54:39.074
+It's just a black box. We're not concerned about what's in the box. And what it's doing is it's saying whether a security alert is a true positive or a false positive. So it outputs just a series of ones and zeros, right? So we sort of reduced its behavior to the series. And then we have a set of labels.
+
+
+243
+00:54:39.074 --> 00:55:00.074
+Now, the labels are actually totally noisy, and we can't trust them, right? The labels are like, you know, one SOC analyst who had a bad lunch, right, has decided that this alert was not investigation-worthy, right? So it's actually really noisy. But we assume that they are not noisy, right? And then we can compute a bunch of summary statistics, which none of us actually trust very well in the field.
+
+
+244
+00:55:00.074 --> 00:55:05.074
+And then we use those to present to our leadership and decide whether that system is worth deploying.
+
+
+245
+00:55:05.074 --> 00:55:23.074
+Um, so imagine how upset you'd be if you were an AI agent that had just generated 100,000 tokens of thinking and tool calling and explanation of its behavior and information retrieval to finally produce a well-explained decision about whether a SOC alert was a false positive or true positive.
+
+
+246
+00:55:23.074 --> 00:55:37.074
+And you reduced all that complexity and reasoning down to a single bit of error information, right? So that's actually what we're often doing when we talk about evaluation of autonomous cyber defense systems. We're sort of reducing all that complexity down, um.
+
+
+247
+00:55:37.074 --> 00:55:42.074
+to a single bit of information, which we don't actually, like, which we don't actually have a good label for.
+
+
+248
+00:55:42.074 --> 00:56:02.074
+Imagine if we hired security engineers on the basis of these kinds of binary multiple-choice tests, and never interrogated their actual ability to reason under uncertainty. That's sort of what we're doing with AI systems, at least that's the sort of lingua franco in terms of how we talk about evaluation in our field.
+
+
+249
+00:56:02.074 --> 00:56:08.074
+Okay, so here's the thesis of my talk. So I think these classical metrics that we typically use, um.
+
+
+250
+00:56:08.074 --> 00:56:28.074
+I think they're important, I think we need them. I think we need to acknowledge and sort of bake in how noisy they are in how we evaluate our ML systems. But then I also think we need to really lean in to understanding how our agents are reasoning and behaving and evaluating that also as they make decisions. I think our mental model should be that.
+
+
+251
+00:56:28.074 --> 00:56:43.074
+that when we hire a security engineer, we're hiring them to make goods, well-validated decisions under the extreme uncertainty of our fields. And when we hire an AI agent, we're assessing their ability to do the same.
+
+
+252
+00:56:43.074 --> 00:56:55.074
+Okay, so here's how, um, in my own work, I've operationalized this. I'd love to hear feedback after this talk just to hear if other folks are thinking in the same direction.
+
+
+253
+00:56:55.074 --> 00:57:18.074
+Okay, so we need to evaluate… our agents, as we move to deploy them autonomously, as we would humans, um, who are deciding under uncertainty. So we need to ask questions like how high quality is the agent's reasoning process under a complex, ambiguous circumstances? Did the agent come to the same conclusions as our best security engineers in the last 10 incidents? And if not, why not? And was the agent actually right? And actually.
+
+
+254
+00:57:18.074 --> 00:57:25.074
+At least in my work, uh, many times we find that agents are actually right against human labelers.
+
+
+255
+00:57:25.074 --> 00:57:44.074
+In a very practical and formal sense, what this means is that we need to define a kind of interview protocol, like a rubric for our agents. We need to define what good looks like, not just in terms of the outcome, but in terms of the process that they're taking to solve the highly ambiguous problems that we're going to need our agents to solve. So, for example.
+
+
+256
+00:57:44.074 --> 00:58:05.074
+Let's say we're looking at agents in an access management setting, and we're asking, did they correctly grant access to a contractor with respect to a database table containing millions of user messages? We don't just want to ask that they make the right decision, we also want to ask, do they gather the right evidence? Did they reason correctly from first principles about that evidence?
+
+
+257
+00:58:05.074 --> 00:58:21.074
+Do they justify their decisions when explaining their decisions correctly? Did they explain clearly? Much like we'd be interviewing a human. And then we want to grade those agent trajectories at scale based on the rubric in a very well-defined rubric protocol.
+
+
+258
+00:58:21.074 --> 00:58:31.074
+Um, and then because that doesn't scale, we need to train an AI system to actually automate that process of reviewing agent trajectories. And then once we deploy, we need to monitor.
+
+
+259
+00:58:31.074 --> 00:58:56.074
+Um, and see if the agent has gone off the rails. Um, so here's sort of a worked example of applying this to an access management system, uh, that monitors, uh, granting access to sensitive resources within a company. Um, we look at some… at criteria like evidence gathering, policy understanding, first principles, uh, reasoning, um, whether the agent is sort of outputting logs on an auditable way, but also finally decision accuracy also, but it's a sort of whole — but basically.
+
+
+260
+00:58:56.074 --> 00:59:02.074
+What I'm arguing here is that we need a much more holistic approach than just looking at these summary statistics.
+
+
+261
+00:59:02.074 --> 00:59:17.074
+Um, you don't need a whole lot of samples to calibrate an LLM judge to do this sort of holistic, rubric-based analysis. Um, oftentimes, I mean, I don't have time to go into the details of the statistical model I'm using here, but oftentimes 100 samples is enough to get you started.
+
+
+262
+00:59:17.074 --> 00:59:36.074
+Um, and once you have the ability to judge an AI agent's ability to reason and decide under uncertainty at scale, then it gives… then it gives your team a sort of hill to climb in terms of improving an agent to the point at which you can deploy it. Um, so typically the process that I've found works is, like.
+
+
+263
+00:59:36.074 --> 00:59:51.074
+You define some bar, um, above which we'll deploy an agent that takes all these holistic dimensions into account. And then the team sort of hill climbs all of these criteria until we get above a bar and actually deploy the agent and sort of align that it's safe to deploy.
+
+
+264
+00:59:51.074 --> 00:59:56.074
+Um, and then once it's deployed, you sort of monitor it and make sure it's at steady state.
+
+
+265
+00:59:56.074 --> 01:00:14.074
+Um, so I think, like, I just want to emphasize, at least in my work, this kind of approach has really unblocked a lot of progress. Um, so, you know, you could be in this kind of dystopian world on the left, where you're just looking at accuracy, precision, recall, and F-score.
+
+
+266
+01:00:14.074 --> 01:00:32.074
+Um, and then when people sort of stare into these statistics, they sort of get into disagreement about whether, well, is it the model that's wrong, or are the labels wrong? The labels are really noisy, which is basically always the case. Or you could be in this different world, right, where you're looking at many different dimensions at once, all of which are somewhat noisy, but together give you a much more complete picture of whether your system's actually working.
+
+
+267
+01:00:32.074 --> 01:00:57.074
+So I've got 3 more minutes, so I'm just going to go pretty quickly through the last few slides. Just in practical notes about process. So, um… It should probably be obvious at this point, but I believe this, but, like, you know, there's many, like, there's many teams right now in AI security that are operating with no evals at all. This is a real dystopia, right? Because then it's just all vibes, uh, it's all engineers, you know, tweaking their agents and saying it works on their machine.
+
+
+268
+01:00:57.074 --> 01:01:21.074
+Um, and it's very hard to ship if you have any level of rigor, right? So it's much better to have an eval program, um, and treat it as iterative. You're gonna learn a lot as you start to evaluate your agents. Um, and, you want to keep your leadership aligned with the way you're evaluating, um, and that makes it very easy to ship, because once you're above your deployment bar that you've sort of aligned with leadership, you can actually ship the agent and monitor its behavior in production.
+
+
+269
+01:01:21.074 --> 01:01:30.074
+Um, this requires a lot of time. I would say it takes at least 50% of a team's time to do evaluation, but you actually move, like, 10 times faster.
+
+
+270
+01:01:30.074 --> 01:01:49.074
+Um, last thing I'll say, which would be a whole separate talk, is that, um, uh, we both, um, at the startup where I am, but also at Meta, you know, have done some really interesting experimentation around automatically optimizing agent architectures using coding tools and prompt genetic algorithms that do prompt optimization.
+
+
+271
+01:01:49.074 --> 01:02:00.074
+Once you have a really good evaluation, you can actually use AI coding tools and LLMs to actually hill climb all of those metrics while also being careful of overfitting.
+
+
+272
+01:02:00.074 --> 01:02:19.074
+Okay, just summing up, um… Okay, so we're under time pressure to do this, I think. I think if you look at the pace of progress over the last couple years and extrapolate forward, it sounds science fiction, but it's quite reasonable to expect that there will be armies of artificially general intelligent.
+
+
+273
+01:02:19.074 --> 01:02:43.074
+robots, um, scaling up adversarial activity against all of our networks. If we can't deploy autonomous systems that can make sensitive changes in our infrastructure with confidence and knowing they won't break stuff, we're going to be in serious trouble. And evaluation is, in my mind, the main hard problem there.
+
+
+274
+01:02:43.074 --> 01:02:56.074
+Um, and just to restate my thesis, um, I think we just need to move towards this model in which we start treating agents as decision makers, uncertainty, as opposed to, um, as opposed to just relying on these sort of oracle-based statistics.
+
+
+275
+01:02:56.074 --> 01:03:09.074
+Um, so, I don't know if we have time for questions, but uh, yeah, thanks for having me, and, um, yeah, would love to talk to people afterwards.
+
+
+276
+01:03:09.074 --> 01:03:18.074
+We've got a couple minutes for questions. Uh, we've got one in the back right behind you, Matt.
+
+
+277
+01:03:18.074 --> 01:03:35.074
+It's here. I wanted to ask you, have you looked at improving your LLM judge with negative judgments from the humans, like when the humans disagree more with the judge, has this worked better for you or worse?
+
+
+278
+01:03:35.074 --> 01:03:51.074
+I'm really trying to save how many things I give to the engineers to grade, because their time is very viable. So I'm asking if you've had any study of the negatives working better on your judge improvements.
+
+
+279
+01:03:51.074 --> 01:04:21.074
+Yeah, yeah. Yeah, we should… I think we should probably talk after. But yeah, I mean, basically, my experience is, I mean, so I think you need a fairly complicated Bayesian model in order to build… in order to do this kind of calibration, and yeah, it needs to take into account, you know, you need to discount, you know, you need to put sort of more uncertainty around labels that you have more disagreement about, whereas if the… If you have a committee of three reviewers and they all disagree, you want to await those. If three reviewers all agreeing strongly, you know, on, um, a given dimension of your evaluation, obviously those get weighted more highly, right, than cases where you have more disagreement, which I think is what you're saying. So, I think, basically, yes, is my answer, but we should talk more afterwards.
+
+
+280
+01:04:32.074 --> 01:04:37.074
+One more up front here, I'll bring my tea.
+
+
+281
+01:04:37.074 --> 01:04:49.074
+Um, is there a material difference in some of the evaluation methods out there for models that are not in security work?
+
+
+282
+01:04:49.074 --> 01:05:01.074
+Sorry, can you add a little more? Yeah, go ahead. Yeah, so I'm familiar with evaluation for AI models that apply for different application set of data, and not for security work.
+
+
+283
+01:05:01.074 --> 01:05:31.074
+So, is can you apply those evaluation methods here, or do you have to do materially different evaluation methods? That's the question. I mean, I think basically… I think in terms of, like, the statistics that you use, I think basically you just need to use textbook statistics, but take this multi-dimensional approach that I'm describing, where you're looking at the agent's ability to reason, gather the right data, you know, but I don't think there's any novelty in the math there, but I think that, um.
+
+
+284
+01:05:31.074 --> 01:05:51.074
+I think where the domain expertise comes in is understanding. It's basically, like, where you want domain expertise is, like, if you're deploying an autonomous system that patches your code and a human never looks at it, you want a lot of domain experts designing the evaluation… like, you want the same level of expertise as you'd have in terms of the people hiring your security staff.
+
+
+285
+01:05:51.074 --> 01:06:00.074
+I would say, so you want deep domain experts deciding what the criteria in your rubric are. But the actual statistics, I think, don't change.
+
+
+286
+01:06:00.074 --> 01:06:13.074
+Okay, sounds good, yeah. Cool, thanks. Cool. All right, uh, let's go ahead and keep moving. We've got one more before the break, and so on behalf of the caterers, I would ask you to please stay away from the food until break time. They're still sitting up.
+
+
+287
+01:06:13.074 --> 01:06:24.074
+Uh, I know… I know it's hard. It's a burning a lot of energy in the brain as we think about this stuff.
+
+
+288
+01:06:24.074 --> 01:06:32.074
+Uh, yeah, we're gonna continue… Uh, momentarily with our general morning theme, bug reduction, operationalizing in organizations.
+
+
+289
+01:06:32.074 --> 01:06:37.074
+Uh, and, uh, all of the challenges they're in.
+
+
+290
+01:06:37.074 --> 01:06:44.074
+How are we doing?
+
+
+291
+01:06:44.074 --> 01:07:11.074
+Uh-oh.
+
+
+292
+01:07:11.074 --> 01:07:15.074
+We're almost there. Full screen, we can throw it. All right.
+
+
+293
+01:07:15.074 --> 01:07:26.074
+Oh, and they need a mic too. Brilliant. All right, please welcome Shruti and Chandrani.
+
+
+294
+01:07:26.074 --> 01:07:43.074
+Hi, everyone. Thanks so much for joining us. We are here to talk about our project, Security Guidance as a Service, which is basically how we are democratizing security guidance across different platforms.
+
+
+295
+01:07:43.074 --> 01:07:54.074
+A little bit about ourselves. I'm Chandrani. I work at Adobe as a security engineer. I'm in this space for about 10 years now.
+
+
+296
+01:07:54.074 --> 01:08:06.074
+Hi everyone, I'm Shruti Dattagupta. I'm a product security engineer at Adobe. Been in this space for over five years.
+
+
+297
+01:08:06.074 --> 01:08:18.074
+So, uh, let's talk a little bit about, um, why we did this project, right? What is the gap that we felt and that drove us to the project?
+
+
+298
+01:08:18.074 --> 01:08:35.074
+Uh, now we know, like, for scalability has always been an issue when it comes to providing guidance to developers, right? Like, because for most of the organizations, the security to developer ratio, it's really low.
+
+
+299
+01:08:35.074 --> 01:08:47.074
+So when it comes to, like, you know, giving one-on-one guidance or whatever they're looking for exact information, so it's… it really becomes a challenge, it really becomes a bandwidth issue.
+
+
+300
+01:08:47.074 --> 01:09:02.074
+And then for most of the companies, there are various security processes, right? If it's like an established security program that you have, we have, uh, like, design reviews, we have threat modeling, like in the beginning.
+
+
+301
+01:09:02.074 --> 01:09:32.074
+then we have multiple scanners running, you know, code scanners and things like that. And then on the right, you have the vulnerability scanning and everything, so… You are the security researcher or partners, they are basically giving similar information, but on various different platforms, right? And then finally, fragmented documentation. So this is like security champions or SMEs, they create all this security docs and whatnot.
+
+
+302
+01:09:34.074 --> 01:09:49.074
+policy that, um, so-and-so needs to follow, what's the secret storage that we need to follow? But then, is it reaching the right person at the right time, right? Otherwise, the information becomes still.
+
+
+303
+01:09:49.074 --> 01:10:06.074
+So, now AI with the evolution of AI, it's like a game changer, right? We all are on a rocket space. And so basically it understands the natural language. We don't have to write complex SQL queries and all that.
+
+
+304
+01:10:06.074 --> 01:10:32.074
+to make it understand, okay, this is what I want. And, uh, but then when we ask something to AI, like, if I can ask very generic questions, right? What are the authentication that I need to follow, right? So it would basically, it would give you a very generic answer that, uh, a generic solution to the problem it would give you, right? It will not give like what are your.
+
+
+305
+01:10:32.074 --> 01:10:49.074
+platform standards, what are the things that, uh, you know, functions or methods that your company is following? And then finally, sorry, uh, there is always a risk of, you know, hallucinated guidance, right? Like, when there is a lot of information given to AI.
+
+
+306
+01:10:49.074 --> 01:11:06.074
+There is always a risk of, you know, hallucinated guidance. So sorry. What we built here is a security board or you can call it like a security service. So basically the idea is.
+
+
+307
+01:11:06.074 --> 01:11:25.074
+It will be platform agnostic, so be it over, you know, Slack channel, or be it in Jira tickets, or automated threat modeling guidance, it will give a seemingly same guidance across all platforms with various different types of, you know, whatever the inputs it's coming.
+
+
+308
+01:11:25.074 --> 01:11:47.074
+And all these guidances should come from a common store, right? It should, uh, everything should come from a central guidance store, and those should have vetted information. So this was basically the… The mission that we started this project with.
+
+
+309
+01:11:47.074 --> 01:12:03.074
+So, uh, let's talk about the journey that we started this project, this entire pipeline or the security guidance as a service that we are going… that we are talking about, about one and a half years before, right? And it did not really start.
+
+
+310
+01:12:03.074 --> 01:12:20.074
+Uh, like, how it exists today. So, obviously, uh, we needed, you know, the org-specific information, bringing it to the people at the right time. So we started with a RAG solution, right? We took a very curated docs.
+
+
+311
+01:12:20.074 --> 01:12:46.074
+And we put it in the vector store. So that is giving us a very organization-specific guidance. And initially, it was integrated into the Jira ticket flow because that was like the, you know, for Adobe, we have all the vulnerabilities then, so those have SLAs and everything we have to meet. So the first place that we integrated was the Jira.
+
+
+312
+01:12:46.074 --> 01:12:52.074
+And almost at the same time, it was also integrated in the Slack workflow as well.
+
+
+313
+01:12:52.074 --> 01:13:06.074
+Because we felt like, okay, people are also coming and asking in, you know, whatever the same information, maybe they will not have access to the Jira ticket, so they should have, um… there should be somewhere else. Also, they need to have the same information.
+
+
+314
+01:13:06.074 --> 01:13:25.074
+And then, uh, we soon realized, like I was saying, there are multiple processes for security, right? There is threat modeling, there are IDE guidance around coming up. So, the same information would basically be needed for multiple different systems.
+
+
+315
+01:13:25.074 --> 01:13:40.074
+So should we build separate rags? Obviously not, right? So we need to build basically a common vector store that would provide information to all these systems, and it should be like platform agnostic.
+
+
+316
+01:13:40.074 --> 01:14:00.074
+And then we realized like initially when we started with the docs for the volume guidance, the number of dogs were really less. So even though we had, you know, the automation for creating embeddings, putting it in the vector store, for those, we had automation.
+
+
+317
+01:14:00.074 --> 01:14:20.074
+But then they were, you know, one-off scripts. And even before that, we had to take the PDF content, right? Like whatever would go behind the vector store, even whatever is ingest Wardi. We had to take that piece and make it ready. So there was little bit of.
+
+
+318
+01:14:20.074 --> 01:14:50.074
+Manual work, we would say that that was involved even at this stage. So we realized that we need something that is called automated document ingestion pipeline, right? So what it would do is… If I have an URL, it will automatically take the content and put it in the vector store. If there has been a change in the URL, that also it would, you know, scan through, uh, like, time to time for the content updates, and it will put it in the vector store.
+
+
+319
+01:14:54.074 --> 01:15:12.074
+And then, um, obviously, like, whatever the common vector store endpoints that we built, that is, you know, uh, serviced in multiple, uh, security process. Like, we have an automated, uh, threat modeling guidance, uh, threat modeling platform at Adobe. So there also it's being serviced.
+
+
+320
+01:15:12.074 --> 01:15:23.074
+There is currently we have developed, uh, inID security guidance through an MCP server, so there also it is providing the same solution.
+
+
+321
+01:15:23.074 --> 01:15:29.074
+Um, we'd like to talk about the document curation workflow, how we built it.
+
+
+322
+01:15:29.074 --> 01:15:38.074
+So the initial thing is, first, we started with the security champions or, you know, SMEs, whoever is creating the doc.
+
+
+323
+01:15:38.074 --> 01:15:53.074
+And we imagined that all this, whatever doc is going in the backend, that should exist as a metadata file in a Git repo, right? So the Git repo will be the source of truth.
+
+
+324
+01:15:53.074 --> 01:16:11.074
+So once basically someone gives that metadata file, these are some small information that we are taking about that, you know, the URL that we are going to process. Once that is done, we quickly validate the metadata and do a PR merge.
+
+
+325
+01:16:11.074 --> 01:16:29.074
+Once that is done, uh, it goes to an upstream service, which is a downloader service. It's basically a PubSub model, so it listens to the Git diffs, so whenever it sees, okay, this particular metadata has a difference, so I need to take this particular URL.
+
+
+326
+01:16:29.074 --> 01:16:45.074
+and take the content. Uh, there is also cron job involved here, because whatever other URLs that we are seeing, uh, that has already been ingested, we are also, you know, time to time checking, like, has there been any update in that content?
+
+
+327
+01:16:45.074 --> 01:17:00.074
+Uh, and then it goes to the upstream service, which is the ingestor. This basically takes it and puts it into the vector store, like, uh, generates embeddings and puts it into the vector store.
+
+
+328
+01:17:00.074 --> 01:17:19.074
+So, once this is done, we put the message in a Slack channel saying that this document has been ingested, and after this, we initiate, we trigger an eval workflow. So this eval workflow is basically when we collect the metadata.
+
+
+329
+01:17:19.074 --> 01:17:35.074
+We ask for reference data set, right? Like for the document that you are giving, what is a 3-4 question and answers that you can say we can refer to as, you know, reference or an ideal dataset answers.
+
+
+330
+01:17:35.074 --> 01:17:45.074
+And once these are ingested, we would test it against, like, how much correctness, what's the relevancy of the, you know, answers and things like that.
+
+
+331
+01:17:45.074 --> 01:18:00.074
+So, uh, this is on one side, like, the document ingestion pipeline. Now, the core architecture for the security guidance service. So, as I was talking about, it is servicing multiple different platforms.
+
+
+332
+01:18:00.074 --> 01:18:25.074
+So the input can come from maybe a Jira ticket. So what's the guidance for a vulnerability? Maybe it can come from maybe a threat modeling platform, like what would be my… like, these are the threats that have been identified. What would be the recommendation? It can come just from a chat, but a very simple security questions, right? So everything goes to an AI orchestrator. And then finally.
+
+
+333
+01:18:25.074 --> 01:18:50.074
+On the right-hand side, we are initially connecting to the vector store, getting the data. Actually, even before that, based on the type of input, we are tweaking the system prompt a bit for each case. And then we are also after getting the response from the vector store, we are passing it to the LLM for a curated JSON format, like however we.
+
+
+334
+01:18:50.074 --> 01:19:10.074
+For each type, it has been… configured. And then we are logging everything in LangSmith. So, uh, basically, uh, whatever the things are coming for, uh, for traceability, right? And then for some of these workflows, we have online evals also integrated.
+
+
+335
+01:19:10.074 --> 01:19:15.074
+Uh, that Shruti can talk a little bit more. Yeah. Awesome.
+
+
+336
+01:19:15.074 --> 01:19:23.074
+So demo time, we've looked into what all of this looks like in architecture. Let's see what this looks like in practice.
+
+
+337
+01:19:23.074 --> 01:19:39.074
+So this is the first use case of a security support chat bot. So this basically one, if you have any questions that need to be answered as per the company's policy and standard guidelines, how do I do X at Adobe?
+
+
+338
+01:19:39.074 --> 01:19:48.074
+How do I reach out to the security champion of product Y? So for those kinds of questions, we have the chatbot.
+
+
+339
+01:19:48.074 --> 01:19:56.074
+Again, in the back backend, this is all the same vector store, which is pulling out the information and providing it to you.
+
+
+340
+01:19:56.074 --> 01:20:13.074
+Next, we have the threat remediation guidance on the shift left side of the SDLC. Like Chandrani mentioned, we have an automated AI threat modeling engine. So once it identifies the threats, it then makes a call to our service.
+
+
+341
+01:20:13.074 --> 01:20:21.074
+and gets the Adobe-specific recommendations or security guidance to mitigate those threats.
+
+
+342
+01:20:21.074 --> 01:20:39.074
+Then on the shift right side, when we have vulnerabilities, how do we fix them? We want to provide consistent guidance across all stages of SDLC. So here, the vulnerability ticketing and triaging workflow when they get a finding.
+
+
+343
+01:20:39.074 --> 01:20:57.074
+They then again make a call to our service. They provide us with all of the vulnerability and exploit details. We take that, we provide the fixes, and also we provide what is the Adobe-specific recommendation. So how would you go about, how do we recommend you go about fixing this vulnerability?
+
+
+344
+01:20:57.074 --> 01:21:18.074
+One important thing to note here is that we not only provide the short-term fix, but we also provide long-term fixes. So, what if you're seeing not just one, not just a one-off vulnerability, but multiple vulnerabilities that belong to the same class? So for that, we provide long-term fixes as well that can guide the engineering teams on more secure by default.
+
+
+345
+01:21:18.074 --> 01:21:42.074
+Changes as needed. And then, of course, since the last year, everybody's been vibe coding and using a lot of AI assistants to code. So that led us to think this is even further left than threat modeling, right? So how do we provide the same guidance again to developers as they're in their flow writing the code? So that's where we build the MCP server.
+
+
+346
+01:21:42.074 --> 01:21:54.074
+And let me actually jump to the demo.
+
+
+347
+01:21:54.074 --> 01:21:59.074
+I don't.
+
+
+348
+01:21:59.074 --> 01:22:20.074
+Okay, I'm sorry, this is really small glitches, but yeah, so this is a demo wherein I'm in Cursor, and… Here we have the MCP server, which is called Adobe Security Guidance. I apologize, this is all really small, but we have this…
+
+
+349
+01:22:20.074 --> 01:22:44.074
+MCP server, um, and then it has a tool called Adobe Security Guidance, which then makes a call. So, uh… Since we are running into demo issues, I'll just walk you through what this looks like. So as you're writing code, you can then say, okay, how do I fix SQL injection? Put that in your chat, and then the cursor, this is cursor, so cursor agent, but this can work with any coding agent.
+
+
+350
+01:22:44.074 --> 01:23:03.074
+The coding agent is connected to our MCP server. It recognizes that it is connected to an Adobe security guidance tool. So it then makes a call to the tool, pulls the relevant security guidance, and then that guidance is then formatted, pretty printed, and then it comes out.
+
+
+351
+01:23:03.074 --> 01:23:16.074
+In the chat itself, in an NID experience. I really apologize, uh, I don't know what's going on with the demo, but… I think it's a network issue.
+
+
+352
+01:23:16.074 --> 01:23:41.074
+Oops, okay. Okay, I really apologize about this, but we also wanted to show a similar Slack workflow wherein we had the same query, and basically the same query, whether you're asking from the IDE or from the, uh, from Slack, or wherever, you're providing the same guidance, so irrespective of where you are in the.
+
+
+353
+01:23:41.074 --> 01:23:51.074
+Where you are in the SDLC process, where the developer is, what time, what information they need, we are providing it to them as and when they need it.
+
+
+354
+01:23:51.074 --> 01:24:08.074
+Okay, so I will wrap up over here. Some of the challenges and lessons learned. So Chandrani talked a little bit about evals. One of the most important things about building AI systems that you can have in production is evals.
+
+
+355
+01:24:08.074 --> 01:24:33.074
+It is time-consuming, it is manual, but it is what enables you to have things in production and ensure high-quality responses. For us as well, it was, again, time-consuming, a very laborious task to have all of the evals, uh, golden data set in place, but again, that is one of the most enabling factors about how we've built this and how we've scaled this.
+
+
+356
+01:24:33.074 --> 01:24:52.074
+Second is dock freshness, making sure that we have the most up-to-date docs is a challenge. Right now, we have a shared responsibility model wherein if we find out through our workflows, through our eval's workflows, that a doc needs to be updated, we reach out to the document owners.
+
+
+357
+01:24:52.074 --> 01:25:02.074
+The other aspect is if document owners have an update, they come and reach out to us, so that we have the most updated docs in our vector store.
+
+
+358
+01:25:02.074 --> 01:25:20.074
+The peer review aspect in the doc ingestion workflow is also, it can be a bottleneck when we want to quickly and efficiently ingest docs at scale, but at the same time, this is a trade-off because this aspect allows us to maintain the high quality of documents that we are ingesting.
+
+
+359
+01:25:20.074 --> 01:25:41.074
+And finally, this entire field is evolving at a breakneck speed, so keeping up with the emerging tech has been important as well. When we build the V1 version of the vector store, the RAG, we did all of the processing by ourselves, like document chunking, vectorization, everything. At that time.
+
+
+360
+01:25:41.074 --> 01:25:57.074
+LLMs couldn't even take multimodal input. From that, now we have multiple vector store vendors that you just upload files and they take care of everything for you. So just evolving and keeping up to date with what's happening.
+
+
+361
+01:25:57.074 --> 01:26:06.074
+in what's evolving in the tech, so that you are able to use the latest, greatest, state-of-the-art as you build these systems.
+
+
+362
+01:26:06.074 --> 01:26:23.074
+Um, yeah, so key takeaways from our session, um, AI is useful, AI boosts productivity, but context is king. So the more organization-specific context you're able to provide to these models, the more useful.
+
+
+363
+01:26:23.074 --> 01:26:38.074
+You can make these systems. We were able to build this centralized guidance that has enabled us to provide consistent and consistent security. We've been a security guidance, and we've been able to democratize this.
+
+
+364
+01:26:38.074 --> 01:26:44.074
+As a developer, whenever, wherever you need it, you're able to get the same consistent vetted guidance.
+
+
+365
+01:26:44.074 --> 01:26:51.074
+And finally, evals. Evals is what will turn your AI experiments into production systems.
+
+
+366
+01:26:51.074 --> 01:27:12.074
+Um, with that, I want to make a quick shout out to the team. This was certainly not a two-person project. We have an entire team building all of this plus lots more. So I want to make a quick shout out to the entire team. And with that, oops, we are at time, and… Thank you for joining us for our talk.
+
+
+367
+01:27:12.074 --> 01:27:20.074
+And, yeah, we'll open up for questions.
+
+
+368
+01:27:20.074 --> 01:27:45.074
+All right, audience questions? I'll start with one from Slack. You talked a little bit about developing sort of threat models for your team, various threat models and products, like… Tell me a little bit about the threat models that you built, sort of, and distributed through this tool? Yeah, so for the automated threat modeling, there is basically a separate team who has developed that the wiki page needs to be in a specific format.
+
+
+369
+01:27:45.074 --> 01:28:05.074
+It parses that particular page and gives out the thread. So where we come in is when the threat has been generated, it gives out the Adobe-specific recommendations as well. So there, it integrates our platform, and we are able to provide that guidance, yeah. Cool, thank you.
+
+
+370
+01:28:05.074 --> 01:28:22.074
+One over here. Thank you so much for your presentation. So, with a lot of these tools that we've seen emerge and develop that are shifting left into the IDE, how do you guys, how have you figured out a way to enforce the use of those tools? So, like, even your MCP server that's providing recommendations around architecture.
+
+
+371
+01:28:22.074 --> 01:28:41.074
+How do you ensure that consistent configuration across all your developers that they're actually consuming that MCPC? Yeah. So, there is actually another big project going on within our team, uh, wherein we have developed an extension, uh, currently, uh, Cursor is used the most, but then other IDs are also coming in.
+
+
+372
+01:28:41.074 --> 01:28:54.074
+So the extension is for Cursor, so once you develop that extension, all these MCP config cursor rules comes by default once you sign in. So that's how… Yeah. To add to that.
+
+
+373
+01:28:54.074 --> 01:29:10.074
+We have done a lot of roadshows about building these capabilities and sharing that with developers. And what we've found is that when you make security zero-calorie and seamless for developers, they will get on board and they will want to do the right thing.
+
+
+374
+01:29:10.074 --> 01:29:22.074
+We have had engineering teams come to us and say, hey, we love this, we want to use this. So I think there's the human aspect over there as well.
+
+
+375
+01:29:22.074 --> 01:29:36.074
+We've got one over here, and I think that'll… Um, so yeah, following up on that question, have you tried also injecting these as, like, agent rules.md files, or treating these as skills, and if so, how did that actually go?
+
+
+376
+01:29:36.074 --> 01:29:57.074
+Yeah, so yes, we have added these as rules, MD files. We have been playing around with skills as well. Again, the extension is what we've been using to roll these out to everybody, so that once you install the extension, you just have it in your IDE.
+
+
+377
+01:29:57.074 --> 01:30:13.074
+We did some preliminary testing of these security rules and skills, and in our testing, we found that they were helpful in reducing vulnerabilities in code by a good 70% or so. Like, even foundational rules.
+
+
+378
+01:30:13.074 --> 01:30:24.074
+Did really well. Thank you so much. Thanks. Thank you so much.
+
+
+379
+01:30:24.074 --> 01:30:38.074
+All right. So folks, quick note. As you know, while we are trying to be as professional as we can, this is a community conference. Next time, I have a question for everybody. Does anybody understand computers?
+
+
+380
+01:30:38.074 --> 01:30:46.074
+Okay, somebody understands computers here. So next time there is some challenge on connecting to the internet or slides or whatever it is, go on stage and just fix it for us.
+
+
+381
+01:30:46.074 --> 01:30:52.074
+That would be incredible. Thank you all.
+
+
+382
+01:30:52.074 --> 01:31:14.074
+700 people swarming the stage. Alright, let's do this. Let's take a break. 20 minutes. The whole point of community colleges is community conferences is to talk to people. Do that. You can stay up here. You can go downstairs. They're on a break, too. We're gonna start back here 11 o'clock sharp. You can either be on this stage while we'll continue with AI and agents, or downstairs we'll have more, uh, like, AI program development work.
+
+
+383
+01:31:14.074 --> 01:31:44.074
+See you in 20.
+
+
+

@@ -1,0 +1,1982 @@
+WEBVTT
+
+1
+00:00:07.848 --> 00:00:09.697
+Incoming livestream: See if we can get these people quieted down.
+
+
+2
+00:00:10.938 --> 00:00:13.688
+Incoming livestream: Welcome back, everyone!
+
+
+3
+00:00:14.458 --> 00:00:20.477
+Incoming livestream: I know the food line was long, but it has gone down, dwindled to nothing.
+
+
+4
+00:00:21.328 --> 00:00:27.097
+Incoming livestream: conversations are just getting interesting, and here I am asking everyone to be…
+
+
+5
+00:00:27.268 --> 00:00:37.097
+Incoming livestream: quiet, so that we can kick off our next speaker. I will remind you that there are great places to talk in the Hibernia. We have two side rooms.
+
+
+6
+00:00:37.378 --> 00:00:44.588
+Incoming livestream: Which is where people are often taking post-conversations, post-talk conversations. We have the downstairs overflow room.
+
+
+7
+00:00:44.658 --> 00:00:59.178
+Incoming livestream: What is not a great place to talk is up here. So if you are in the back of the room right now, and you are having a conversation, my ask is that you end it, and please come back to the chairs. Our next speaker…
+
+
+8
+00:01:00.308 --> 00:01:04.148
+Incoming livestream: Is gonna be talking about some pretty cool stuff, as they all are.
+
+
+9
+00:01:07.428 --> 00:01:11.357
+Incoming livestream: Getting closer… A little bit quieter.
+
+
+10
+00:01:12.188 --> 00:01:14.078
+Incoming livestream: Little bit quieter.
+
+
+11
+00:01:19.028 --> 00:01:22.478
+Incoming livestream: Amazing. Thank you. Alright, please welcome Georgie Geshev, Promptapoem.
+
+
+12
+00:01:25.818 --> 00:01:26.888
+Incoming livestream: Hello?
+
+
+13
+00:01:27.398 --> 00:01:41.537
+Incoming livestream: Right. Oh, shit. Hello? Right. I'm a little bit slow today, well, past couple of days. I'm jet-lacked out of my mind, so I apologize if I make even less sense than usual.
+
+
+14
+00:01:41.768 --> 00:01:58.927
+Incoming livestream: My name's Georgie, and I hack things for a company based out of the UK called InterpLabs. And today, I'm gonna talk about my journey into AI, and how I ended up using
+
+
+15
+00:01:59.058 --> 00:02:12.828
+Incoming livestream: AI for, what essentially was a successful entry at the last mobile Pontoon edition. Is it safe to assume everyone's heard of Pontoon?
+
+
+16
+00:02:12.948 --> 00:02:17.467
+Incoming livestream: If you've… if you have no idea what pontoon is, can you please raise your hand?
+
+
+17
+00:02:17.668 --> 00:02:30.538
+Incoming livestream: Okay, so Pontron is a contest, happens once, nowadays twice or whatever, a year, where a company called Trend AI, well, ZDI, the Zero Day Initiative.
+
+
+18
+00:02:30.538 --> 00:02:43.778
+Incoming livestream: will bring out some real-world targets, like phones, routers, printers, NAS, whatever, and they invite people to demonstrate and exploit, using zero days.
+
+
+19
+00:02:43.778 --> 00:02:46.668
+Incoming livestream: So that's essentially what Pontwan is.
+
+
+20
+00:02:46.668 --> 00:02:59.167
+Incoming livestream: I've been doing Pontoon for maybe over 10 years now, and I've mostly been focused on Android targets over the years.
+
+
+21
+00:02:59.238 --> 00:03:14.188
+Incoming livestream: And I'm getting really bored. Nothing's really changed for a couple of the vendors I've been targeting over the years. It's essentially the same bugs over and over again.
+
+
+22
+00:03:14.478 --> 00:03:33.308
+Incoming livestream: The only issue is, it's getting a bit more difficult to find these bugs, because they're buried in a huge amount of applications, and some of the bug bounties out there are wiping the low-hanging, more obvious bugs. So I decided, okay, well, that's a great excuse to teach myself.
+
+
+23
+00:03:33.308 --> 00:03:43.958
+Incoming livestream: AI. Android applications, the Dalvik executable file format decompiles nicely to human-readable Java.
+
+
+24
+00:03:43.988 --> 00:03:56.238
+Incoming livestream: So, you know, human-readable Java is potentially a great, input for LLM, and so many of these bugs that I'm talking about, they're very…
+
+
+25
+00:03:56.238 --> 00:04:20.248
+Incoming livestream: obvious patterns that might not necessarily be the easiest one for a static analyzer to pick up, but when you see one, you know instantly there's something wrong going on. So, this kind of pattern matching's probably another great, problem for an LLM to work on, obviously. And, last but not least, there's
+
+
+26
+00:04:20.248 --> 00:04:24.398
+Incoming livestream: absolutely no privacy concerns. In my day-to-day job.
+
+
+27
+00:04:24.418 --> 00:04:30.338
+Incoming livestream: as a VON researcher. Unfortunately, we've not really found a way to use
+
+
+28
+00:04:30.338 --> 00:04:45.607
+Incoming livestream: LLMs, at the minute. But, Pontoon was, was, was a great excuse, because we obviously don't care about these bugs. These bugs will eventually end up with the Pontoon organizers.
+
+
+29
+00:04:45.608 --> 00:05:03.977
+Incoming livestream: Right, so before I actually dig into the Agentic solution, which is the focus of this talk, I obviously decided to, well, make sure there's actually something out there. I actually was a bit of a skeptic, didn't really know if I should…
+
+
+30
+00:05:03.998 --> 00:05:10.647
+Incoming livestream: buy into this hype, and so I'm like, okay, well, let's copy-paste some output from…
+
+
+31
+00:05:10.818 --> 00:05:27.138
+Incoming livestream: a tool like Jeb or JADX, basically a tool that will decompile an Android application to Java, and, like, paste some of this input into a chatbot, and see what comes back, and, you know, surprisingly, like, some of these bugs instantly picked up.
+
+
+32
+00:05:27.458 --> 00:05:39.867
+Incoming livestream: like, okay, well, there's something there. Unfortunately, there wasn't really a decent, plugin for Jeb or Jaredix to use, to, like, use the chatbot as an assistant.
+
+
+33
+00:05:40.008 --> 00:05:46.938
+Incoming livestream: So, I kind of focused a little bit for a short period of time on Android Studio, because it's…
+
+
+34
+00:05:46.998 --> 00:06:02.897
+Incoming livestream: supposedly what real developers use, so hopefully better support for some of these assistants out there. So you can use Jaredix to decompile the app, and then export it as a Gradle project, and then import it into Android Studio, and then take advantage of some of these, like.
+
+
+35
+00:06:03.438 --> 00:06:21.747
+Incoming livestream: JetBrains AI Assistant, or Copilot plugins, or whatever, to ask questions about the app, ask the model to clean up the app, tidy up some of the partially obfuscated source, etc. Well, long story short, I wasn't so happy with the integration.
+
+
+36
+00:06:21.748 --> 00:06:28.238
+Incoming livestream: But I was, surprised by the… by the outputs, like, using…
+
+
+37
+00:06:28.808 --> 00:06:38.467
+Incoming livestream: again, chat-style bots ad hoc. I was like, okay, well, let's see what the Agentic stuff is all about. And there isn't actually…
+
+
+38
+00:06:38.468 --> 00:06:47.238
+Incoming livestream: I'm talking about August last year, so maybe there's something nowadays, but August last year, I'm like, is there something I can use, agent-based, that will…
+
+
+39
+00:06:47.238 --> 00:06:58.958
+Incoming livestream: just consume an Android application, go and find bugs in it. Well, couldn't find anything at the time, so I'm like, okay, well, right. I mean, that's another good excuse to, like, try and learn something new for once.
+
+
+40
+00:06:59.008 --> 00:07:17.048
+Incoming livestream: And this is what the really high-level design of the, solution looks like. So, I use Langchain for the agent, or the set of agents, that I have nowadays. I've got JADX.
+
+
+41
+00:07:17.048 --> 00:07:33.968
+Incoming livestream: Again, the application used to decompile Android applications to Java. The agent speaks to LiteLLM, just to help with the management for some of these models. All of these models run on Azure Foundry, and they've got LangFuse for…
+
+
+42
+00:07:34.378 --> 00:07:37.897
+Incoming livestream: Introspection and observability.
+
+
+43
+00:07:39.068 --> 00:07:49.507
+Incoming livestream: So, again, I have no idea what AI is at this point, or how I'm supposed to actually be using this. So, I'm extremely naive.
+
+
+44
+00:07:49.638 --> 00:08:09.518
+Incoming livestream: And I decided to go with a two-agent setup, one agent to identify what's the valid attack surface in the target application, then produce some list of entry points into the application, and then hand this list over to a bug hunter, agent.
+
+
+45
+00:08:10.728 --> 00:08:16.007
+Incoming livestream: And the bug hunter agent is supposed to, like, go and find bugs for me.
+
+
+46
+00:08:16.118 --> 00:08:21.368
+Incoming livestream: And this whole setup speaks to JADX via these JADX MCP.
+
+
+47
+00:08:21.368 --> 00:08:38.118
+Incoming livestream: Couple of words on the Jarex MCP. It was heavily based on an open source implementation by this, guy. It's… it wasn't ideal, but it was pretty much the only available option at the time, so it's…
+
+
+48
+00:08:38.118 --> 00:08:53.958
+Incoming livestream: The JADIX, it's implemented as a JADIX plugin that essentially runs, an HTTP server embedded into the plugin, and exposes some JADIX internal API that you can interact with from the outside, and…
+
+
+49
+00:08:53.958 --> 00:09:06.337
+Incoming livestream: the actual MCP part is just a Python, like, fast MCP implementation that wraps the REST-style endpoints from the embedded server. And you've got tools like
+
+
+50
+00:09:06.578 --> 00:09:21.657
+Incoming livestream: Fetch me the Android manifest, this is a description of what the app does, all of the components of the app. There's a tool to retrieve source code for a particular method, same one for a class, tool to actually…
+
+
+51
+00:09:21.988 --> 00:09:33.358
+Incoming livestream: Search through a list of classes defined in the app, et cetera, et cetera. Like, all of the stuff you would imagine as a reverse engineer, you might want to ask questions about.
+
+
+52
+00:09:33.938 --> 00:09:40.997
+Incoming livestream: some really obvious mistakes early on. So, I was literally, like.
+
+
+53
+00:09:40.998 --> 00:10:00.537
+Incoming livestream: Right, looking for bugs. This is the app. Go and find bugs. Well, that's clearly not how it works. The app, like, the agent didn't really know what's going on, it didn't really know what I'm asking. It gets really confused, and it gets easily lost, and just runs out of…
+
+
+54
+00:10:00.648 --> 00:10:08.408
+Incoming livestream: tokens, runs out of, coal, like, tool coal limits, et cetera, et cetera. And, again, so…
+
+
+55
+00:10:08.408 --> 00:10:33.388
+Incoming livestream: very, extremely vague, objective, and very fuzzy success, like, criteria. Like, the agent doesn't know what kind of bugs I'm looking for, it doesn't know exactly where to look for these bugs. It was just a nightmare. But I was like, okay, well, this agendic stuff is kind of BS. Then again, chatting to a few people, they're like, well, you're absolutely misusing this.
+
+
+56
+00:10:33.388 --> 00:10:41.008
+Incoming livestream: this is not how you use AI. I'm like, okay, interesting. Then, the first and most obvious issue was to, like.
+
+
+57
+00:10:41.118 --> 00:10:50.387
+Incoming livestream: Tell the agent, like, in a more structured manner, where to look for bugs, and then iterate over the entry points defined.
+
+
+58
+00:10:50.388 --> 00:10:59.757
+Incoming livestream: well, discovered by the attack surface analysis agent. So instead of just looking for bugs in the app in general, you say, start looking for bugs in this one particular component.
+
+
+59
+00:10:59.758 --> 00:11:12.188
+Incoming livestream: You get way further into the call graph, and then if you even break this down further and say, well, start looking for bugs in this component.
+
+
+60
+00:11:12.358 --> 00:11:22.587
+Incoming livestream: reachable exactly through an intent filter, defining this data format, etc. So, you give some extra guidance to keep it on track for longer.
+
+
+61
+00:11:22.748 --> 00:11:47.697
+Incoming livestream: Some more mistakes. Well, the MTP server wasn't ideal. The tool descriptions were a bit vague and messed up, maybe. The code search was extremely slow, the error messages were extremely unhelpful. Basically, whenever you encounter a problem, you just return a message saying, oh, there's been an error. So, it's not really helpful to the agent, and like, you're not really guiding the agent how to use the tool.
+
+
+62
+00:11:47.698 --> 00:12:02.898
+Incoming livestream: it fails to use it properly. So, a lot of these are easily, like, solvable. You just implement some additional tools, if necessary, to, like, expose more granular tools, and…
+
+
+63
+00:12:02.898 --> 00:12:09.138
+Incoming livestream: I think what made, a lot of difference in this case was, just…
+
+
+64
+00:12:09.338 --> 00:12:25.067
+Incoming livestream: Returning some actionable error messages, so the agent can actually, retry based on, like, retry with, like, some sort of idea what may have gone wrong, and, like, try and tweak the input for the tool based on the error message.
+
+
+65
+00:12:25.358 --> 00:12:41.057
+Incoming livestream: System prompt improvement, basically, like, I had to be extremely… I realized at this point, I'm dealing with an intern, like, if I had an intern for the summer, and I want this intern to find bugs for pontoon, I need to be very…
+
+
+66
+00:12:41.058 --> 00:13:00.198
+Incoming livestream: Well, it's literally, like, describing the process that I have deeply ingrained in… deep in my brain, like, what I actually look for, and what primitives I'm aware of that I need to chain together to have a successful exploit. So I had to be very explicit about all of these.
+
+
+67
+00:13:00.198 --> 00:13:02.248
+Incoming livestream: I need to specify some…
+
+
+68
+00:13:02.638 --> 00:13:15.387
+Incoming livestream: priorities in terms of the actual bug classes I'm looking for, et cetera, and the agent was always, always, always trying to suggest some fixes and mitigations. I'm like, shut up, stop wasting my tokens, I don't care about any of this shit.
+
+
+69
+00:13:15.528 --> 00:13:28.917
+Incoming livestream: Okay, so this is probably the least interesting part of the talk. These are the two bugs that we ended up chaining for Pong Tuon. So, the initial agent implementation is still, like, extremely basic.
+
+
+70
+00:13:28.958 --> 00:13:53.278
+Incoming livestream: There's, like, null verification, there's very little guardrails, like, it's shite. But it still found stuff, like, it found a lot of stuff, actually, surprisingly. It found probably over a dozen bugs that had to be manually verified at this point. And again, we changed two of these bugs, together, so… and the agent wasn't able to figure out these two bugs can actually be
+
+
+71
+00:13:53.428 --> 00:14:11.197
+Incoming livestream: used in some sort of chain. So the first bug, it was in an application called Smart Touch Call, which is some sort of interactive customer service app for Sammy customers, and it's a, like, really traditional, obvious.
+
+
+72
+00:14:12.358 --> 00:14:24.727
+Incoming livestream: URL validation problem. So, you send the URI to the app, essentially, and they extract some parameters out of the URI, treat one of the parameters as a,
+
+
+73
+00:14:24.908 --> 00:14:33.418
+Incoming livestream: as a URL, and then load this URL into a web view, which is just an embedded browser that runs in the app.
+
+
+74
+00:14:33.578 --> 00:14:43.478
+Incoming livestream: The interesting bit about this web view was the fact that it's got a very custom web Chrome client implementation, which is basically the bit of the web view that dictates
+
+
+75
+00:14:43.508 --> 00:14:55.228
+Incoming livestream: how permissions are managed in this WebView. And this particular web Chrome client basically gives you access to your microphone, camera, geolocation, and a couple of other bits and bobs.
+
+
+76
+00:14:55.228 --> 00:15:03.897
+Incoming livestream: Normally, when you ask for this in a browser, or in any other web view, you get a notification, you get a prompt, and you need to confirm all of these one by one.
+
+
+77
+00:15:03.898 --> 00:15:10.147
+Incoming livestream: Based on the origin or whatever, but this one was just like, okay, go ahead, like, you've got access to any of these.
+
+
+78
+00:15:10.628 --> 00:15:25.048
+Incoming livestream: This is what the entry point looks like. You've got the name of the activity, it's called WebViewActivity, nice. It's got a scheme and a host, which basically tells you how to reach this application, so when you click on a link.
+
+
+79
+00:15:25.248 --> 00:15:44.417
+Incoming livestream: stdc.skin colon slash slash stdc slash whatever, from a browser, or from an instant message, or whatever, the Android operating system will know exactly how to route this message to the target application, to the target activity.
+
+
+80
+00:15:44.528 --> 00:15:52.348
+Incoming livestream: So, they retrieved some details out of the… what's called an intent. The intent's just a bit of data that
+
+
+81
+00:15:52.458 --> 00:16:05.277
+Incoming livestream: goes from the browser, let's say, to the application, and you can bundle some intent extras, and you can bundle some URI parameters, so they extract a lot of these. And, I mean…
+
+
+82
+00:16:05.328 --> 00:16:14.018
+Incoming livestream: It's really hard to tell exactly what they were aiming for, but, there was some, like, really sloppy checks to try and make sure they load the correct
+
+
+83
+00:16:14.018 --> 00:16:27.047
+Incoming livestream: URL, and they do some validation on the URL, and they make sure the URL matches what they've tried to hardcode into the application. It doesn't matter, like, probably safe to disregard all of this.
+
+
+84
+00:16:27.048 --> 00:16:33.247
+Incoming livestream: The end result is you reach this webview.posturl, sync.
+
+
+85
+00:16:33.368 --> 00:16:39.158
+Incoming livestream: With a URL that you control fully. So, you get to execute JavaScript in this web view.
+
+
+86
+00:16:39.548 --> 00:16:50.517
+Incoming livestream: And once you execute JavaScript in this web view, obviously you get access to all of these, like, nice things, like a camera, microphone, et cetera, et cetera, et cetera. So this is a report from the Bug Hunter,
+
+
+87
+00:16:50.518 --> 00:17:09.508
+Incoming livestream: It's obviously trimmed down significantly, but it tells you, oh, there's, this, like, web view that you can reach, you need to, like, it actually provides some sort of trigger for me to actually try and reproduce the bug, and it tells me this is the sync, this is where you end up executing JavaScript in this web view, et cetera, et cetera.
+
+
+88
+00:17:09.788 --> 00:17:22.218
+Incoming livestream: There was a bit of a problem, actually. The agent didn't highlight the custom webcam client, so he didn't tell me I get access to all of these, like, nice bits.
+
+
+89
+00:17:22.218 --> 00:17:38.877
+Incoming livestream: And it also missed an important, like, crucial part. There was a check in the application, literally the first thing it does is check if you're on a phone call. Like, if there's an ongoing phone call, proceed and load this into a web view. If you're not on a phone call.
+
+
+90
+00:17:38.878 --> 00:17:56.257
+Incoming livestream: just drop the entire, like, request or whatever. So, nothing really happens. And that's a very strange prerequisite for your exploit to work, but it's also what makes it the perfect meme exploit for the contest. So, second bug to the rescue.
+
+
+91
+00:17:56.308 --> 00:18:06.748
+Incoming livestream: the agent found a bug in Bixby, which is Samsung's AI assistant, which is really, really nice, and funny, and ironic, and…
+
+
+92
+00:18:07.038 --> 00:18:17.187
+Incoming livestream: again, very, like, sort of similar bug. You end up executing JavaScript in a web view in the BigBee application, and once you're in the Bixby application, you can…
+
+
+93
+00:18:17.198 --> 00:18:31.547
+Incoming livestream: speak to components from the Bixby application that are not exposed to other applications on the phone directly. This is what it looks like again. They take some data, they extract some…
+
+
+94
+00:18:31.618 --> 00:18:34.628
+Incoming livestream: bits and bobs of the URI, and then…
+
+
+95
+00:18:34.628 --> 00:18:53.108
+Incoming livestream: they try to validate the URI, and basically, long story short, any subdomain of mcsvc.samsung.com can be loaded into this web view. Well, the issue is there's, like, plenty and plenty of subdomains and sub-sub-subdomains of this domain.
+
+
+96
+00:18:53.108 --> 00:18:56.577
+Incoming livestream: And some of them have cross-site scripting, so you just,
+
+
+97
+00:18:56.578 --> 00:19:13.918
+Incoming livestream: run your JavaScript in them. Well, in this origin, and you execute JavaScript in that web view. This is what the bug report looks like for, like, it's captured two bugs in this scenario, so it says, oh, the host validation's really relaxed.
+
+
+98
+00:19:13.918 --> 00:19:38.458
+Incoming livestream: they're loading, essentially, any subdomain or sub-sub-subdomain or whatever for this very broad Samsung domain, so you might want to look out for this one, and see if there's any interesting, like, JavaScript executing already on these domains that you can leverage for cross-site scripting, or whatever. And then it tells me, oh yeah, by the way, there's, like, a very privileged
+
+
+99
+00:19:38.638 --> 00:19:44.777
+Incoming livestream: JavaScript interface that you can reach from once you're executing in this, web view.
+
+
+100
+00:19:45.058 --> 00:19:53.188
+Incoming livestream: This is the demo from the contest. So basically, you have the phone, target phone on the left.
+
+
+101
+00:19:53.188 --> 00:20:10.527
+Incoming livestream: and you click a link. This is what happens at Pontoon, like, you click one link, and that's it. Like, what happens is you go to this, Bixby web view, once you're in the Bixby web view, you ask Bixby to make a phone call.
+
+
+102
+00:20:10.528 --> 00:20:23.467
+Incoming livestream: to whatever number. Once you make a phone call, you're able to bypass the phone call check in the other application, so you end up in the other application, and you get access to the camera feed, et cetera, et cetera.
+
+
+103
+00:20:24.238 --> 00:20:44.108
+Incoming livestream: Okay, a bit on the agent evolution, implemented an APK harvesting tool, basically just some scripts, put together to retrieve APKs from app stores to, like, start scanning for bugs at scale, decouple the Android manifest analysis logic.
+
+
+104
+00:20:44.118 --> 00:21:02.188
+Incoming livestream: well, the attack surface analysis logic, there's a, like, a standalone script, because I realized there's no point, using an LLM for something that's extremely deterministic. I know exactly what I'm looking for. And further refined the bug hunting scope, so…
+
+
+105
+00:21:02.718 --> 00:21:17.327
+Incoming livestream: Previously, I would ask the app to start looking for bugs reachable via this intent filter, this is, like, entry point number one, then you've got another intent filter, this is entry point number 2, and then I realized there's intent filters with, like, very obvious…
+
+
+106
+00:21:17.728 --> 00:21:33.377
+Incoming livestream: paths, like, sub-entry points into the incent filter, essentially. So you can reach multiple features via any of these, which makes sense to, like, start treating this as, as unique entry points into the app.
+
+
+107
+00:21:33.448 --> 00:21:42.458
+Incoming livestream: I also realized some of the apps, comes as no surprise, are slightly obfuscated, and the agent up, like.
+
+
+108
+00:21:42.908 --> 00:21:56.277
+Incoming livestream: works a lot better on a, on a, like, a cold, like, base that's been slightly defobiscated. I noticed this when I was manually doing it, and I'm like, well, I can just hook the, Buck Hunter.
+
+
+109
+00:21:56.388 --> 00:22:06.727
+Incoming livestream: agent, and whenever it makes a request for source code, it will go via the obfuscator, and the code de-obfuscator will speak to the JADX MCP and, like, fetch the source.
+
+
+110
+00:22:07.038 --> 00:22:25.657
+Incoming livestream: clean it up a bit, and then return the… the source back to the bug hunter, and this… this was… this made quite a… quite a difference. Like, you can see, one, two, three-letter method names and class names, get very meaningful names that really help the agent
+
+
+111
+00:22:25.798 --> 00:22:27.858
+Incoming livestream: Gauge exactly what's going on.
+
+
+112
+00:22:28.048 --> 00:22:31.448
+Incoming livestream: Some more improvements,
+
+
+113
+00:22:31.608 --> 00:22:50.007
+Incoming livestream: I realized… I run the agent once, I get a set of results, I run the agent a second time on the second… on the same entry point, and I get a different set of results. And obviously, this makes sense to everyone who's worked with AI, so I'm like, okay, well, just start running it, like, between one and five times, depending on…
+
+
+114
+00:22:50.008 --> 00:23:04.758
+Incoming livestream: how interested I am in this, entry point, and start aggregating bugs, bug reports, and then run the bug reports through a deduplicator agent that basically takes a list of bug reports and tries to
+
+
+115
+00:23:04.758 --> 00:23:21.368
+Incoming livestream: extract the unique bug reports, the bug reports capturing unique bugs. I added another agent to, like, start converting bug reports to JSON. I don't know if that's a thing, but I noticed whenever I try and enforce a strict schema on the output.
+
+
+116
+00:23:21.458 --> 00:23:26.518
+Incoming livestream: the output will sometimes, like, degrade in quality, so I had to, like.
+
+
+117
+00:23:26.928 --> 00:23:33.098
+Incoming livestream: like, do it as, as a, like, a secondary, like, post-processing step.
+
+
+118
+00:23:33.358 --> 00:23:46.427
+Incoming livestream: And I also realized I've got many agents at this point, and they all share bits and bobs of the system prompts, so I started managing the system prompts using Ginger, Ginger 2, so, like.
+
+
+119
+00:23:46.428 --> 00:23:59.997
+Incoming livestream: pick, like, different snippets of system prompts and use them across the set of agents. Finally, introduce the bug verifying agent, so whenever I find something with the bug hunter, I pass it on to the verifying agent.
+
+
+120
+00:24:00.078 --> 00:24:17.577
+Incoming livestream: made life so much easier, and needless to say, and I also added a source-to-sync reachability tool based on SuitsUp, which is a framework for, processing Java bytecode and creating call graphs out of this bytecode, so you can then start looking for paths from one
+
+
+121
+00:24:17.768 --> 00:24:29.697
+Incoming livestream: part of the call graph to another part. This is just a snippet from the bug verifier run on the… one of the bugs that was reported by the bug hunter, and it basically tells me.
+
+
+122
+00:24:29.698 --> 00:24:44.238
+Incoming livestream: This is not a valid bug, actually, because you won't be able to reach this based on the circumstances you described in the system prompt, because this is only reachable when you're on an active call. If you're not on a call, you won't be able to see this.
+
+
+123
+00:24:44.878 --> 00:24:59.578
+Incoming livestream: It's a double-edged sword, because if the agent decided this is not reachable, I would have never seen it, probably. Anyway, so this is the current design. We've got a set of scripts doing all the deterministic bits and bobs, and we've got a bug hunter looking for bugs.
+
+
+124
+00:24:59.578 --> 00:25:08.317
+Incoming livestream: We've got, bug deduplicator deduplicating the bugs, we've got the obfuscator cleaning up the code, we've got another agent who
+
+
+125
+00:25:08.318 --> 00:25:17.968
+Incoming livestream: like, reformat the reports to JSON, and we've got a bug verifier. And then we've got, obviously, on the MCP side, JAX and SuitUp.
+
+
+126
+00:25:18.358 --> 00:25:29.608
+Incoming livestream: Roadmap, maybe some sort of static analysis integration, start running static analyzers and let the agent triage the bugs coming out of the static analyzer.
+
+
+127
+00:25:29.608 --> 00:25:52.208
+Incoming livestream: Maybe some sort of way to start tracking bugs across different apps, because at the minute, the agent can only see bugs within one app, and, like, there's no… like, very often you need to start chaining things together across multiple apps in order to get a useful primitive out of them, and a useful exploit. So maybe some sort of database where the agent can see all of the bugs we've got at the minute.
+
+
+128
+00:25:52.428 --> 00:26:14.498
+Incoming livestream: And last but not least, and actually something we've been working on, introduce some POC generation and runtime proof of vulnerability, so you plug your phone into your laptop, you run ADB MCP, you run Frida MCP, and you let the agent test the trigger produced by the bug report, by the bug hunter, and then refine the POC
+
+
+129
+00:26:14.498 --> 00:26:21.088
+Incoming livestream: while collecting some events using Frida Hooks and ADB LockCat, events.
+
+
+130
+00:26:21.348 --> 00:26:25.058
+Incoming livestream: And… that is it. Thank you.
+
+
+131
+00:26:32.348 --> 00:26:33.578
+Incoming livestream: Questions for Georgie?
+
+
+132
+00:26:37.268 --> 00:26:39.968
+Incoming livestream: All right. Want to come. Thank you. Thanks.
+
+
+133
+00:26:46.568 --> 00:27:01.308
+Incoming livestream: We're moving on from sort of the more offensive focus to, agentic defense, so next four or so talks are gonna be in that space. In this case, we're gonna be starting off with Stripe's response, Stripe's perspective on this.
+
+
+134
+00:27:01.518 --> 00:27:07.507
+Incoming livestream: breaking the lethal… excuse me, breaking the lethal trifecta, so please welcome Andrew.
+
+
+135
+00:27:34.588 --> 00:27:35.978
+Incoming livestream: Hello?
+
+
+136
+00:27:38.898 --> 00:27:39.937
+Incoming livestream: Oh, yes.
+
+
+137
+00:27:49.338 --> 00:27:56.117
+Incoming livestream: Great. So, hey everyone, it's great to see you all. I'm Andrew, I'm the head of the AI security team at Stripe.
+
+
+138
+00:27:56.218 --> 00:28:10.557
+Incoming livestream: And I've been at Stripe for about 10 years now, and, I mean, I guess a lot of people ask me why I'm still here. Unfortunately, I'm a nerd who loves solving problems, and I've yet to find another, way to keep my ADHD brain entertained.
+
+
+139
+00:28:10.728 --> 00:28:17.887
+Incoming livestream: But in these 10 years, I've lived through, you know, many product launches, many reorgs,
+
+
+140
+00:28:18.208 --> 00:28:24.898
+Incoming livestream: you know, the slow, dignified graying of Patrick's hair. And I can honestly say that this moment
+
+
+141
+00:28:24.898 --> 00:28:40.277
+Incoming livestream: Sort of this work in security, in this age of AI is some of the most exciting work that, you know, I've, I've experienced in my entire career. And so, I am here to talk to you about the, possibly most exciting and also most terrifying…
+
+
+142
+00:28:40.338 --> 00:28:49.367
+Incoming livestream: aspect of, being in this new AI age, which is prompt injection, and sort of the approaches that we're taking at Stripe to mitigating the risk there.
+
+
+143
+00:28:50.108 --> 00:29:04.128
+Incoming livestream: So, we have an elephant in the room. You know, I think in this community, we spend a lot of time thinking and talking about prompt injection, but I find that most people working in AI are sort of scrupulously avoiding it.
+
+
+144
+00:29:04.128 --> 00:29:15.737
+Incoming livestream: You know, given the AI hype cycle, all the focus on building things really, really fast, there's not a lot of consideration of risk. We're very much back in a move-fast-and-break-things era.
+
+
+145
+00:29:15.758 --> 00:29:31.468
+Incoming livestream: And it's just easier for a lot of companies to pretend prompt injection doesn't exist and hope there won't be a problem, which ultimately means just letting the user, you know, beware the risk to them. You know, see, open claw, of course.
+
+
+146
+00:29:32.758 --> 00:29:52.237
+Incoming livestream: And so, while I'm sure everyone here, you know, understands prompt injection quite well, I've actually been very surprised at how many other, you know, people in AI, you know, experienced AI developers, you know, startup founders, tech executives that I talk to only have a really vague understanding of what prompt injection is.
+
+
+147
+00:29:53.198 --> 00:30:02.497
+Incoming livestream: Because ultimately, prompt induction is a really inconvenient risk. And that's why I think we as a security, you know, as security practitioners have a really important
+
+
+148
+00:30:02.628 --> 00:30:14.698
+Incoming livestream: responsibility to show to the industry that not only is it, you know, a real risk, but it does not actually, mean that we can't move fast on AI. We need to help
+
+
+149
+00:30:14.838 --> 00:30:21.217
+Incoming livestream: you know, all of our companies, you know, the people building AI move fast while not YOLOing security.
+
+
+150
+00:30:21.978 --> 00:30:31.158
+Incoming livestream: So, you know, I'm sure a lot of you have, seen this graph from last year about failure rates, in resisting prompt ejection attacks.
+
+
+151
+00:30:31.168 --> 00:30:44.238
+Incoming livestream: You know, models are getting better, but I think in security, you know, even a 1%, even a 0.1% failure chance to attack is not enough. So we need something better. We need something better than just, relying on the models.
+
+
+152
+00:30:44.848 --> 00:31:03.987
+Incoming livestream: And also, this is not a future problem. Another elephant that is hiding behind the first elephant is that we don't really know, especially with consumers, how prevalent prompt ejection attacks are, and we don't know how prevalent that they are gonna be in the future. But I personally believe that,
+
+
+153
+00:31:04.518 --> 00:31:11.318
+Incoming livestream: You know, once again, looking at things like Open Claw, things are gonna get a lot worse before they get better.
+
+
+154
+00:31:11.978 --> 00:31:18.537
+Incoming livestream: So what do we do? You know, how do we protect our companies from the risks of prompt injection?
+
+
+155
+00:31:18.838 --> 00:31:27.778
+Incoming livestream: Well, I have a confession to make. I am not here to announce a magical technical solution that allows us to solve prompt injection without any risk.
+
+
+156
+00:31:28.018 --> 00:31:35.077
+Incoming livestream: I'm gonna tell you something that you probably already know, which is that we basically have to assume prompt injections will happen.
+
+
+157
+00:31:35.508 --> 00:31:39.098
+Incoming livestream: And prevent compromised agents from causing harms,
+
+
+158
+00:31:39.258 --> 00:31:42.497
+Incoming livestream: Compromised agents from causing harm when they do happen.
+
+
+159
+00:31:42.698 --> 00:31:53.628
+Incoming livestream: But I will share with you a set of architectural controls that we have built at Stripe that serve as guardrails to prevent those bad things from happening when prompt injection does happen.
+
+
+160
+00:31:54.198 --> 00:31:58.687
+Incoming livestream: But the guardrails are really only a small part of the story.
+
+
+161
+00:31:59.008 --> 00:32:07.227
+Incoming livestream: what happens when you put these guardrails in place is that there are negative impacts on, sort of, what agents can do. There's friction for users.
+
+
+162
+00:32:07.398 --> 00:32:24.917
+Incoming livestream: addressing those problems is really what takes, sort of a technical solution into a workable solution for your business. And, you know, that's sort of the real work, I think, in many cases, of security practitioners.
+
+
+163
+00:32:25.418 --> 00:32:42.197
+Incoming livestream: This is sort of, ultimately, a security leadership talk. You know, when practicing security engineering, you know, step one is the threat model, step two is the mitigation, but importantly, step three is figuring out how to put in place the mitigation in a way that the business still can achieve its goal.
+
+
+164
+00:32:42.608 --> 00:32:57.157
+Incoming livestream: And so with prompt injection, the interesting part is what happens, after we put in place the guardrails? How do we enforce it? And, you know, what do we do to make it so that agents can still be powerful?
+
+
+165
+00:32:57.458 --> 00:33:08.918
+Incoming livestream: And so I'm gonna, tell you a little bit about how we've tried to navigate this sort of frothy, FOMO-driven world, while still remaining secure.
+
+
+166
+00:33:10.448 --> 00:33:30.048
+Incoming livestream: Cool. So, what are the controls? Okay. Well, first let's start with data exfiltration, one of the two bad things that can happen when you get prompt injected. I'm sure you're all familiar with the lethal trifecta, you know, this term coined by Simon Willison. You know, there are three things that a agent needs in order to,
+
+
+167
+00:33:30.377 --> 00:33:37.638
+Incoming livestream: exfiltrate data if it gets prompt-injected. One is untrusted content.
+
+
+168
+00:33:37.878 --> 00:33:43.508
+Incoming livestream: Untrusted content is really not feasible in most cases, I think, for us to,
+
+
+169
+00:33:43.668 --> 00:33:48.528
+Incoming livestream: you know, remove as a guardrail. You know, first of all.
+
+
+170
+00:33:48.658 --> 00:33:55.597
+Incoming livestream: A big part of why LLMs are useful in the first place is you can just throw a bunch of stuff at them, and they will figure out what to do.
+
+
+171
+00:33:55.818 --> 00:34:07.478
+Incoming livestream: And beyond that, you know, attackers have been very, very creative in figuring out, ways to sneak prompt injections into places you wouldn't think to look for untrusted content.
+
+
+172
+00:34:07.738 --> 00:34:16.228
+Incoming livestream: Similarly, there's private data, and while there are totally many applications that don't need private data to work,
+
+
+173
+00:34:16.228 --> 00:34:33.838
+Incoming livestream: there are a lot that do, and certainly at Stripe, we have a lot, you know, whether it's support tickets, emails, etc, many, many agents need private data, which means that there's really only one leg of the legal trifecta that we can focus on for mitigating prompt injection risk, which is egress.
+
+
+174
+00:34:33.838 --> 00:34:55.808
+Incoming livestream: So, our focus has been, from a guardrail perspective, very much on preventing egress, which, one is egress to the public internet, just making general web requests. And then there's another sneaky one, which is being really careful about how you talk to third parties. You know, a very easy way to exfiltrate data would be writing it to a public Google Doc with a Google Doc tool.
+
+
+175
+00:34:56.328 --> 00:34:59.067
+Incoming livestream: So that's guard wheel one, preventing egress.
+
+
+176
+00:34:59.788 --> 00:35:16.808
+Incoming livestream: Second, unfortunately, there isn't a, you know, term officially for, the things that you need in order to have prompt injection, deal damage by taking a sensitive action, but I guess, lacking something better, I will call this the lethal bifecta.
+
+
+177
+00:35:16.858 --> 00:35:20.338
+Incoming livestream: And essentially, we're in the same boat, where,
+
+
+178
+00:35:20.718 --> 00:35:35.778
+Incoming livestream: Preventing untrusted content is not really that feasible for most agents. So instead, we focus on, preventing agents from unilaterally taking sensitive actions. Sensitive is very load-bearing here,
+
+
+179
+00:35:35.778 --> 00:35:48.197
+Incoming livestream: Generally, the rule of thumb that I say is that anything that is a production right or extra… like a, broad communication or sending a message are the big things that we think of as sensitive actions.
+
+
+180
+00:35:49.408 --> 00:35:53.037
+Incoming livestream: So, great, problem solved, we have our guardrails.
+
+
+181
+00:35:53.618 --> 00:36:10.867
+Incoming livestream: Unfortunately, these guardrails cause problems. They cause agents to be less useful, and worse, they cause agents to be very annoying. I'm sure everyone here has had a very similar experience using Claude code for the first time, where,
+
+
+182
+00:36:10.898 --> 00:36:28.778
+Incoming livestream: you know, Claude is constantly asking, can I do this, can I do this, can I do this? And it really is a bad user experience. You just start trying to, you know, find where in the settings you can enable dangerously skip permissions. So we really need to address these pain points if we want, these guardrails to be adoptable.
+
+
+183
+00:36:29.568 --> 00:36:33.078
+Incoming livestream: So let's start with egress controls.
+
+
+184
+00:36:33.078 --> 00:36:56.507
+Incoming livestream: You know, the common thing that I heard a lot of when I was like, hey, we need to make it so our agents can't egress to the public internet is, like, wait, you know, we need to be able to do research, we need access to public internet data. The key thing here is that what these agents generally need is not the ability to make an arbitrary HTTP request, what they need is the ability to get data from the internet. So the solution that we came to here is to offer a safe search.
+
+
+185
+00:36:56.638 --> 00:37:07.168
+Incoming livestream: We build this on OpenAI's search, but, you know, there are other ways to do this. But the key thing here is you need to make it so that the search does not itself
+
+
+186
+00:37:07.168 --> 00:37:20.128
+Incoming livestream: trigger egress. So there's a setting in OpenAI Web Search, external web access false, that you set so that you can make a request for a search, and it'll just serve the results to you out of the cache, and it won't,
+
+
+187
+00:37:20.518 --> 00:37:28.327
+Incoming livestream: you know, you prevent the data from being egressed by your agent, and instead it just gets egressed by OpenAI. That's not, like…
+
+
+188
+00:37:28.928 --> 00:37:30.738
+Incoming livestream: Really making anything any safer.
+
+
+189
+00:37:31.558 --> 00:37:47.527
+Incoming livestream: So second is, how you, handle SaaS. So, you know, we say, hey, we have to be careful about egress, and then people are like, well, I have an MCP for my SaaS app, can't I just hook up the MCP? That's fine, right? We trust our SaaS.
+
+
+190
+00:37:48.238 --> 00:37:52.958
+Incoming livestream: And that's sort of true, but also sort of not true.
+
+
+191
+00:37:53.328 --> 00:38:07.597
+Incoming livestream: the way that we have approached, you know, preventing, SaaS from being a data exfiltration vector is through proxying. We have a central MCP server at Stripe called Toolshed. Basically, when we want to hook up a third-party SaaS, we will…
+
+
+192
+00:38:07.598 --> 00:38:14.727
+Incoming livestream: proxy, basically, the connection through that central server, and then that gives us a place where we can write rules, like.
+
+
+193
+00:38:14.738 --> 00:38:17.748
+Incoming livestream: don't allow connections to tenants that are not Stripe.
+
+
+194
+00:38:17.808 --> 00:38:23.297
+Incoming livestream: When you're, writing data to Google Docs or Figma or whatever.
+
+
+195
+00:38:23.538 --> 00:38:30.728
+Incoming livestream: And ultimately, this actually offers a better experience for the user, because then they only need to worry about connecting to one MCP server with their app.
+
+
+196
+00:38:31.658 --> 00:38:35.768
+Incoming livestream: And so second, we have, the human confirmation friction.
+
+
+197
+00:38:35.808 --> 00:38:50.388
+Incoming livestream: This is an area, I think, that there really needs to be a lot more user experience, research, but at a high level, I think of there being, like, 3 main problems, when you're doing human confirmation flow.
+
+
+198
+00:38:50.388 --> 00:39:06.758
+Incoming livestream: One is that, like, especially in this sort of Claude Code-esque world that we are in now, the fact that the confirmation dialogue stops the agent in its tracks is a major problem. You really want to be able to start an agent doing its work and let it, you know, churn along until it's done, and then come back to it.
+
+
+199
+00:39:06.948 --> 00:39:21.647
+Incoming livestream: Second is review fatigue, you know, see Claude code asking you to run find. And, third is rubber stamping. You know, with enough review fatigue, people are just gonna mash confirm on any confirmation dialogues.
+
+
+200
+00:39:22.128 --> 00:39:44.678
+Incoming livestream: So, as we've been looking at the UX for this, I think that, probably the core of how we can make this a lot better for users is batching confirmations. There are a lot of, like, writes and commands that you might want to do that don't really actually need to happen instantaneously for the agent to continue making forward progress, so we can just let these stack up on the side and let the user come back to these later.
+
+
+201
+00:39:45.158 --> 00:40:02.088
+Incoming livestream: Secondly, there are a lot of, rights where you can just do the right and then offer the user the opportunity to revert it later, and that's, like, a perfectly reasonable compromise to make sure that the agent can't, you know, do some irreversible harm.
+
+
+202
+00:40:02.178 --> 00:40:20.328
+Incoming livestream: And then also, as we, sort of continue to get into, you know, more sophisticated policy, there are a lot of options around having an LLM as a second reviewer to make sure that people aren't rubber-stamping things to, you know, quickly tell the agent that it's trying to do something bad.
+
+
+203
+00:40:20.328 --> 00:40:24.007
+Incoming livestream: You know, without needing to involve the human.
+
+
+204
+00:40:24.708 --> 00:40:36.997
+Incoming livestream: So, lastly, how do we enforce this all? This is, like, very challenging when you have many, many people, writing agents in, different frameworks, across, your ecosystem.
+
+
+205
+00:40:37.158 --> 00:40:51.178
+Incoming livestream: For egress, fortunately, we're in really good shape here at Stripe because we have a strong egress control program that predated, sort of, the world of AI agents. We have an open source repository called Smokescreen that we use for a lot of this.
+
+
+206
+00:40:51.178 --> 00:41:15.938
+Incoming livestream: Essentially the approach here is, one, tag any service that is an AI agent. This is actually not very hard, because we know that to be an agent, you need to talk to foundation models. We have a proxy for this, but you could use, you know, whether your service talks to Bedrock or whatever as a way of doing this. And then once you have a tag on the services that are agents, you know where your egress proxy service is.
+
+
+207
+00:41:15.938 --> 00:41:35.558
+Incoming livestream: where you know how your firewall is configured, you can just write CI checks that say, if this is an agent, you can't configure egress without some, you know, escalated review process to make sure it's following, sort of the principles of, you know, preventing data exfiltration. So that's essentially what we do at Stripe.
+
+
+208
+00:41:36.148 --> 00:41:40.447
+Incoming livestream: So, for guardrails, things are a little bit more complicated.
+
+
+209
+00:41:40.708 --> 00:42:05.378
+Incoming livestream: At Stripe, we have sort of two main places that people are writing tools. Either you're writing inline tools in the agent framework, or you're writing tools that are in our central MCP service. And our approach here is that we require annotations on every tool with, you know, nice human-readable properties like production impacting write, or broadcast data internally. And then based on these annotations, you can determine whether the tool needs to have some sort of human in the loop
+
+
+210
+00:42:05.378 --> 00:42:14.077
+Incoming livestream: review. And by sort of centralizing this through a framework, you can have a central UX framework that is used for
+
+
+211
+00:42:14.078 --> 00:42:18.898
+Incoming livestream: You know, doing those reviews and sort of improving the experience on it over time.
+
+
+212
+00:42:19.028 --> 00:42:33.977
+Incoming livestream: Things are getting more complicated here, though, because, you know, I've heard it said by certain people that MCP is dead. Maybe not true, but increasingly, agents don't need special tools, they'll just write their own code and hit their own
+
+
+213
+00:42:33.978 --> 00:42:58.637
+Incoming livestream: you know, hit random APIs on your existing services. So what do we do here? This is, like, work that is in progress right now, but the approach that we're looking at here is essentially proxying the connections coming out of agents, out of their sandboxes, and then using that as a choke point where you can similarly have annotations on the API endpoints that the agents are talking to, and determine which ones are sensitive, which
+
+
+214
+00:42:58.638 --> 00:43:03.557
+Incoming livestream: Which ones need, additional, review by the, the operator?
+
+
+215
+00:43:04.288 --> 00:43:22.358
+Incoming livestream: So yeah, to wrap up, we basically de-risk prompt injection by assuming it will happen and preventing damage. You know, two risks, data exfiltration and harmful actions. Data exfiltration, the key control is preventing egress and making sure that SaaS isn't a sneaky way to do egress.
+
+
+216
+00:43:22.358 --> 00:43:47.257
+Incoming livestream: We solve pain points here with, safe web search and proxying of SaaS, and we use CI time controls on egress settings as our enforcement mechanism for preventing harmful actions. Human review is the key constraint. We use annotations in order to ensure things have human review, and trigger automatic human in the loop, but we need to work hard to ensure that
+
+
+217
+00:43:47.258 --> 00:44:04.528
+Incoming livestream: the user experience of the human in-the-loop flow is good, and things like batching, reverts, you know, software and LLM-driven, checks that can happen without the human being involved, all can be applied to make this better.
+
+
+218
+00:44:05.348 --> 00:44:08.947
+Incoming livestream: So that's it, that's what we built.
+
+
+219
+00:44:08.948 --> 00:44:33.877
+Incoming livestream: But at some level, what I really want you to take away from this is that security isn't just about figuring out the secure way to do things, it's about helping your organization figure out how to accomplish, their goals in a secure way. And, you know, it is slightly terrifying to see all the offensive talks of ways that, you know, AI is making it easier to attack things, but it's also been really.
+
+
+220
+00:44:33.878 --> 00:44:46.597
+Incoming livestream: exciting to see the ways in which… I think we can expect security to be much better in the near future, once we have agents really doing all of this detailed analysis of our code on an ongoing basis.
+
+
+221
+00:44:46.678 --> 00:45:01.568
+Incoming livestream: But in order to get there, we need to make it past this sort of turbulent, high-risk era that we're in. And basically, all of us in this room are the ones that need to help our organizations do it. So, thank you.
+
+
+222
+00:45:07.538 --> 00:45:08.768
+Incoming livestream: Questions?
+
+
+223
+00:45:09.038 --> 00:45:13.168
+Incoming livestream: We've got one back there. While I'm walking back, I'll start with one. Sure.
+
+
+224
+00:45:13.188 --> 00:45:19.107
+Incoming livestream: You put a lot of effort into improving the pain points around
+
+
+225
+00:45:19.108 --> 00:45:44.037
+Incoming livestream: sort of human-in-the-loop reviews. Do you find that there's any value in sort of aggregating any of that at the group or team level? Are teams, like, typically running into the same sorts of problems, or is it sort of, like, person or no review at all? I think we're probably gonna get there. We're pretty early in this. A lot of the UX experimentation is, like, very, you know, very early on. We're early on in the experimentation process.
+
+
+226
+00:45:44.038 --> 00:45:50.157
+Incoming livestream: but I think in general, trying to find ways to,
+
+
+227
+00:45:50.508 --> 00:46:00.888
+Incoming livestream: you know, make it so that people need to stop less, fewer checks, fewer reviews need to be made, while ensuring that human judgment is applied at the right time is going to be sort of the North Star here.
+
+
+228
+00:46:02.508 --> 00:46:18.958
+Incoming livestream: Awesome, thank you. Quick question, do you still find the value in doing, like, threat meddling to stop, like, prompt ejections, at least partially, as you design systems? Yeah, I think that there is 100% a place for, you know, detective and,
+
+
+229
+00:46:18.998 --> 00:46:23.177
+Incoming livestream: Sort of other types of controls that, sort of are not,
+
+
+230
+00:46:23.188 --> 00:46:42.108
+Incoming livestream: you know, guarantees. I think especially for, sort of, customer-facing products and stuff like that, that is gonna be important, but, like, ultimately, I guess, because we're not at the point where we can fully trust that, we really want to lean on these more deterministic, architectural controls.
+
+
+231
+00:46:48.188 --> 00:46:49.048
+Incoming livestream: Thank you.
+
+
+232
+00:46:54.308 --> 00:47:01.308
+Incoming livestream: Alright, we will continue with securing agents at large digital native companies.
+
+
+233
+00:47:01.478 --> 00:47:05.758
+Incoming livestream: You know, it's a theme. Please welcome Brooke from… Brooks from Dropbox.
+
+
+234
+00:47:12.778 --> 00:47:23.988
+Incoming livestream: Yeah, thank you. I'm Brooks, I do work at Dropbox as a, infrastructure cloud security engineer, but this presentation is more about the agents I've been building,
+
+
+235
+00:47:24.258 --> 00:47:34.018
+Incoming livestream: on my own, the ones I run every day, kind of the things I've been building and breaking, and the issues I've run into, and lessons learned, and fun things like that.
+
+
+236
+00:47:34.198 --> 00:47:47.837
+Incoming livestream: So everything I'm gonna reference here is, open source on my GitHub. It's not really the open source that you can just download and run, it's open source, like, you can look at the code and try to figure out how to do it, but it does all run for me, so good luck if you want to go try.
+
+
+237
+00:47:48.888 --> 00:48:07.558
+Incoming livestream: So this is, I did update all these numbers last night, and I think it's already out of date again, but I have, like, 19 different agents. Agent is kind of a catch-all here. There's, I think, 13-ish interactive ones, a few other that are more like service agents, kind of cron jobs that call either Cloud Code or a different agent.
+
+
+238
+00:48:07.578 --> 00:48:12.828
+Incoming livestream: 73 different MCP tools, just on a local SDDIO,
+
+
+239
+00:48:13.408 --> 00:48:20.407
+Incoming livestream: MCP server, so that that has things like, email that I've been playing around with a little bit,
+
+
+240
+00:48:20.538 --> 00:48:25.558
+Incoming livestream: Creating files, reading from the file system, different…
+
+
+241
+00:48:26.028 --> 00:48:33.977
+Incoming livestream: tools around, the OS that I want to give them access to, and just anytime I want to create another tool, put it in there, and then I,
+
+
+242
+00:48:35.318 --> 00:48:49.317
+Incoming livestream: I'll get into the capability system in a little bit, but then I try to scope it down so that every agent doesn't have to see every MCP tool. I mean, that's just pretty much good security and also good for the functionality, so we're not polluting the context.
+
+
+243
+00:48:50.218 --> 00:48:53.818
+Incoming livestream: I also created several different ways to start these agents.
+
+
+244
+00:48:54.028 --> 00:49:05.447
+Incoming livestream: I typically do use CLI tools for a lot of this stuff, but I have thrown in, like, a web UI, voice kind of wrapper, both in the web UI and kind of a standalone app.
+
+
+245
+00:49:05.678 --> 00:49:16.268
+Incoming livestream: And, also have it connected just to my personal Slack, so I can add a specific agent, it kind of goes through a filtering system, sends it to the right place, and, I get a response.
+
+
+246
+00:49:18.448 --> 00:49:30.457
+Incoming livestream: So, through all this, I do also interact with a couple remote MCP servers that are also permissioned different ways, mainly the personal ones I've been building for myself and GitHub.
+
+
+247
+00:49:30.608 --> 00:49:34.558
+Incoming livestream: I'll get into some of that permissioning, in a little bit.
+
+
+248
+00:49:34.848 --> 00:49:43.547
+Incoming livestream: And then also, just, some of the security controls I've been putting in place, capabilities bounding, like I mentioned, making sure there's, each MCP tool has a permission.
+
+
+249
+00:49:43.588 --> 00:49:54.627
+Incoming livestream: scope, so read, write, admin, etc. Make sure memory's isolated and, observability. And then also, yeah, the max iterations per turn ended up being very helpful.
+
+
+250
+00:49:54.628 --> 00:50:03.728
+Incoming livestream: I've optimized it down to probably about 3 or 4 iterations that I'm normally hitting now, but that's a good way to kind of make sure you don't end up spending too much.
+
+
+251
+00:50:04.658 --> 00:50:18.257
+Incoming livestream: So I can actually go through and show some of the, workflows that I do do with it. So right now, I automate a lot of, coding processes, so I have kind of a custom task management system here, where I just pretty much have a cron job that's…
+
+
+252
+00:50:18.388 --> 00:50:20.628
+Incoming livestream: a claud-P,
+
+
+253
+00:50:20.758 --> 00:50:31.267
+Incoming livestream: command that goes through, and it will start getting, things fixed or optimized for me. So you can see, this is just kind of a report from it. You can see kind of the things it does.
+
+
+254
+00:50:31.748 --> 00:50:36.308
+Incoming livestream: But then, you might ask, what happens if we run out of tasks?
+
+
+255
+00:50:36.598 --> 00:50:40.738
+Incoming livestream: If it does that, then it runs… I have a few code review,
+
+
+256
+00:50:41.288 --> 00:50:52.148
+Incoming livestream: sub-agents, so, like, it'll do security auditing, testing, that's, like, test coverage, code quality, documentation, etc. And then it will, make more tasks for those.
+
+
+257
+00:50:52.308 --> 00:51:03.688
+Incoming livestream: So, pretty much, I have a kind of a self-sustaining code optimization ecosystem that will keep running until it maxes out my credit card and Claude cuts me off.
+
+
+258
+00:51:05.648 --> 00:51:16.947
+Incoming livestream: And then, through this, though, I am getting, you know, into the place where there's a lot less human in the loop for a lot of this, which is definitely a scary place to be.
+
+
+259
+00:51:17.098 --> 00:51:25.517
+Incoming livestream: I have been trying to put together, like, weekly PR reviews, so I'll go through and, go through all the reviews, or go through all the PRs.
+
+
+260
+00:51:25.578 --> 00:51:43.237
+Incoming livestream: try to analyze what might be good, what might be bad, what process I should be put in place. And then, each PR review, or each PR already has, like, CI tests, I have two Clawed review agents that go through, and I've set it up so that way the automated tasks
+
+
+261
+00:51:43.438 --> 00:51:53.977
+Incoming livestream: They have to keep iterating until the cloud review bots pretty much say that it's good to go. So try to have some safe checks, or safety checks to make sure LLM isn't…
+
+
+262
+00:51:54.108 --> 00:52:00.648
+Incoming livestream: just giving me complete garbage, and so far it has been working fairly well. Definitely, some things that I'd like to…
+
+
+263
+00:52:01.078 --> 00:52:04.597
+Incoming livestream: Optimize a bit more, but definitely,
+
+
+264
+00:52:04.948 --> 00:52:06.668
+Incoming livestream: Not a bad place to be.
+
+
+265
+00:52:09.578 --> 00:52:16.897
+Incoming livestream: So yeah, as I mentioned, I have a capabilities bounding, and permission control system set up, so each agent has, both,
+
+
+266
+00:52:17.688 --> 00:52:35.998
+Incoming livestream: both allowed tools that it's allowed to have, and also the permissions for those tools that I can use. So, the task manager agent is definitely kind of my daily driver that goes through and helps me automatically complete tasks, break things down, reschedules when I haven't updated tasks in a while.
+
+
+267
+00:52:36.358 --> 00:52:49.438
+Incoming livestream: So that has, you know, the permissions to go search for stuff, message me in Slack, email me, memory, obviously. Then I have some things like Security Researcher, read-only, it's just kind of, I ask it questions about, you know.
+
+
+268
+00:52:49.448 --> 00:53:01.148
+Incoming livestream: blog posts or, different things, and it goes through kind of the rag I've been setting up, the web, answers things there. And then I do have just a chatbot that has everything, that's kind of my, test.
+
+
+269
+00:53:01.438 --> 00:53:20.997
+Incoming livestream: But of course, I want to set this up to be secure by default as I add more tools to the ever-expanding MCP server, so definitely need to make sure that, tools are locked down by default. You know, you have to go specifically add tools or add permissions, everything is, gonna be locked down to admin otherwise. I have,
+
+
+270
+00:53:21.548 --> 00:53:24.347
+Incoming livestream: Quick, kind of, demo on how that works.
+
+
+271
+00:53:38.808 --> 00:53:57.187
+Incoming livestream: So it's just gonna go through, here's kind of how I can run the chatbot agent, give it specific permissions, so here, read send. So here, it has no right privileges to memory, and we're asking it to try to save memories and kind of see the denial, the agent's aware that, okay, you know, it has a, a,
+
+
+272
+00:53:57.328 --> 00:54:15.477
+Incoming livestream: verbose enough error message that it knows what's going on and can tell me, you know, what I might be doing wrong, what I can fix. And then if you do, you know, not restrict it, because this is the chatbot that has all the permissions, or all the MCP tools, then memory works fine. You kind of see how I've been storing the memory.
+
+
+273
+00:54:15.788 --> 00:54:19.098
+Incoming livestream: Which I'll go into a little bit later as well.
+
+
+274
+00:54:19.398 --> 00:54:22.108
+Incoming livestream: And, yeah.
+
+
+275
+00:54:22.588 --> 00:54:32.398
+Incoming livestream: the Wi-Fi here is definitely… leaves a little bit to be desired, just a little slow, but… here it just shows key value, sometimes it'll print out the whole JSON, which is nice, and then,
+
+
+276
+00:54:33.108 --> 00:54:35.078
+Incoming livestream: That will get cleaned up.
+
+
+277
+00:54:35.938 --> 00:54:42.527
+Incoming livestream: So one thing I've also been working on, which is kind of a preview of mistakes I'm definitely gonna make.
+
+
+278
+00:54:42.878 --> 00:54:52.927
+Incoming livestream: is this, MCP kind of relay… or, sorry, MCP server that's more or less a chat room for my,
+
+
+279
+00:54:53.778 --> 00:55:12.288
+Incoming livestream: for my LLMs. So, I originally created it just to kind of help debug server-client… or server-client interactions, because I got really tired of, copying and pasting between cloud code on the server, cloud code on the client. So here, we have…
+
+
+280
+00:55:12.498 --> 00:55:17.398
+Incoming livestream: The MC pers… or the plot is trying to debug, kind of, a local, client's…
+
+
+281
+00:55:18.458 --> 00:55:22.687
+Incoming livestream: Let's see, we can have the server session,
+
+
+282
+00:55:23.148 --> 00:55:33.658
+Incoming livestream: Say, like, you know, here's the source code, so the client's trying to get debugged, and then they'll start, chatting back and forth and sending messages to each other, so that way they can,
+
+
+283
+00:55:33.658 --> 00:55:47.158
+Incoming livestream: debug it, even though all the server code might not be accessible to the client. So it's been, you know, super helpful in making client-server connections work better, especially as a lot of this is, internet MCP traffic now.
+
+
+284
+00:55:47.328 --> 00:56:07.548
+Incoming livestream: But of course, this is not the most secure setup right now. It is running on my home lab, where only I interact with it, but it's definitely not production-ready. We're injecting contacts from one LLM to another. Capabilities are not being scoped down, but that's other things I'm working on there.
+
+
+285
+00:56:08.268 --> 00:56:24.048
+Incoming livestream: And with that, I've also just given myself a web interface, so you can kind of see the kind of discussions between them. Right now, this is all just in memory on the server. Like, right when this is over, I'm gonna start putting a Redis backend in for it as well, and continue on there.
+
+
+286
+00:56:24.668 --> 00:56:35.147
+Incoming livestream: But then that also leads to the question, what if I want to debug something on a server that doesn't have, like, cloud code or LLM on it? So I have also put together a remote agent
+
+
+287
+00:56:38.218 --> 00:56:52.668
+Incoming livestream: that can run on, like, say, one of my Proxmox LXC containers that have half a gig of RAM. So you can run it, right now I just set it up with OAuth, because that's the authentication I use for all agents.
+
+
+288
+00:56:53.418 --> 00:56:55.548
+Incoming livestream: Because it's set up and it works.
+
+
+289
+00:56:58.138 --> 00:57:03.718
+Incoming livestream: And then it will also just go to a chatroom window and pull and wait for commands.
+
+
+290
+00:57:03.718 --> 00:57:24.108
+Incoming livestream: So this is pretty much, for me, it's a good debugging tool. Other people might see it as a, implant. It, it, again, very insecure, don't use this right now, at least. But one of my goals is to see how I can transfer capabilities from the agent to Linux permissions, or do some sort of,
+
+
+291
+00:57:24.108 --> 00:57:42.068
+Incoming livestream: permissions bounding, put it up in, like, a restricted user, and go from there. And similarly, you can see, like, the LLM is debugging, it's sending commands, you can see what's getting sent here, and we're also keeping these logs on the MCP relay on the…
+
+
+292
+00:57:42.868 --> 00:57:44.727
+Incoming livestream: soon-to-be Redis server.
+
+
+293
+00:57:45.878 --> 00:57:47.378
+Incoming livestream: Let's see, I run one.
+
+
+294
+00:57:47.948 --> 00:57:50.887
+Incoming livestream: Yeah, so you can see the commands and everything being sent there.
+
+
+295
+00:57:54.498 --> 00:58:09.187
+Incoming livestream: So just some videos in case that didn't work, but thankfully, it did. So yeah, one of the issues I ran into with memory is that, I knew, obviously, for different, like, clients or different users, you want to isolate memory, but for when I was just creating agents for myself, I was like.
+
+
+296
+00:58:09.278 --> 00:58:13.737
+Incoming livestream: you know, just create a Postgres table, throw memories in there, and
+
+
+297
+00:58:13.738 --> 00:58:36.788
+Incoming livestream: it should work. Which, it does work, they do remember stuff. But I ran into a lot of, kind of, annoying functionality issues, like, the one that kind of really led to me fixing it was this first one, where I'd ask my task manager to break down tasks for me, and it would take, I also threw together a business agent that was just like, look through my GitHub, see how I can make money, and I was like.
+
+
+298
+00:58:36.788 --> 00:58:47.187
+Incoming livestream: telling that to optimize, try to get $1,000 a month, see what you can do. So then every time I'd ask my task manager to break stuff down, it would mention us optimizing for this $1,000 a month goal, which was…
+
+
+299
+00:58:47.268 --> 00:58:59.548
+Incoming livestream: very frustrating to me, because that was kind of just a side, kind of for fun, let's see what happens thing. And after a bunch of these leakages between different, agents and, you know, other agents' memories.
+
+
+300
+00:58:59.788 --> 00:59:03.947
+Incoming livestream: It did really lead me to kind of trying to set up a better memory isolation system.
+
+
+301
+00:59:04.728 --> 00:59:23.227
+Incoming livestream: So that way, each agent could have its own identity, and that identity would be mapped to a, kind of, memory namespace. So currently, identity is only pretty much set up by the… like, each, agent is just a Python subclass of my agent framework, agent class.
+
+
+302
+00:59:23.398 --> 00:59:35.907
+Incoming livestream: So they take that class name, and then that… when they set up their local MCP server, that class name gets sent to the MCP server and is, just translated into the namespace here. So that way, LLMs have no…
+
+
+303
+00:59:35.908 --> 00:59:50.877
+Incoming livestream: control over what their namespace key is, they can't, you know, try to decide they're somebody else, get memories. So that is kind of the identity setup I have. It's definitely pretty simple, and probably needs expanding fairly soon, but it has been working pretty well, off the bat.
+
+
+304
+00:59:51.988 --> 00:59:56.488
+Incoming livestream: So yeah, I have a quick, demo for that as well.
+
+
+305
+00:59:59.988 --> 01:00:00.718
+Incoming livestream: Bye.
+
+
+306
+01:00:01.388 --> 01:00:09.747
+Incoming livestream: So pretty much, we'll show you how you can, like, save a memory. So here we have… I just have a kind of a test memory script, which will save… oh yeah, here's the kind of memory format.
+
+
+307
+01:00:10.618 --> 01:00:18.477
+Incoming livestream: Right here. So you see there's a key, we have a value, you can categorize it, put importance, etc.
+
+
+308
+01:00:19.958 --> 01:00:21.058
+Incoming livestream: And,
+
+
+309
+01:00:21.498 --> 01:00:27.388
+Incoming livestream: Go through and see if it can find its own memory, and then we'll see that another agent cannot find this memory.
+
+
+310
+01:00:27.548 --> 01:00:38.948
+Incoming livestream: But, like, another issue I ran into at the beginning was I was injecting all the memories, which, can be helpful, but you start filling up your contacts really fast, and a lot of times, agents don't need to know everything that they've remembered.
+
+
+311
+01:00:39.528 --> 01:00:57.047
+Incoming livestream: So I did go through and set it up so that way only the important memories, I think, like, importance data above, gets, auto-injected. They also have search memory functions, so they can go and search for anything specific. So you can see, like, it can find it. You have some, you know, agentic response, it wants to throw emojis in there.
+
+
+312
+01:00:57.298 --> 01:01:08.058
+Incoming livestream: And then the security agent will go look for it, and it won't… shouldn't find anything. And actually, it's getting caught by my, LLM firewall there, which is also another issue that I'll…
+
+
+313
+01:01:08.468 --> 01:01:09.948
+Incoming livestream: Talk about in just a second.
+
+
+314
+01:01:11.198 --> 01:01:28.347
+Incoming livestream: So, as you can see there, the memory called got, blocked, which was not what I intended, and it's still, you know, prompt injection detection, not plug-and-play, still needs more tuning, and it was just kind of, I wanted to put in some prompt scanning, see…
+
+
+315
+01:01:28.628 --> 01:01:47.098
+Incoming livestream: you know, add some security to this as I went. But, like, the most annoying thing here is I'd have, like, this last one included a server time field in every API response. That was an actual task I wanted to do, so I was like, go create this task for me so I remember to do it. And then, like, two weeks later, I was checking through the LLM firewall logs, and I saw that was blocked.
+
+
+316
+01:01:47.098 --> 01:01:51.028
+Incoming livestream: Along with, like, a couple dozen other tasks, so then, all of a sudden, I'm missing out on this stuff.
+
+
+317
+01:01:51.448 --> 01:02:01.628
+Incoming livestream: So, out-of-the-box configuration, way too aggressive, had to go tune that down, and still trying to figure out what kind of customizations I want, like, obviously, security research.
+
+
+318
+01:02:01.628 --> 01:02:11.537
+Incoming livestream: Queries are gonna have more stuff, so that needs to be very insensitive, if it's there at all, and then kind of figure out where the accepted risk tolerance is for each sum.
+
+
+319
+01:02:11.538 --> 01:02:25.207
+Incoming livestream: setting there. Another thing that I at least think is pretty cool is I have a kind of a context-aware trimming, thing set up. This is mainly for log analysis, because the problem it solves is
+
+
+320
+01:02:25.288 --> 01:02:42.157
+Incoming livestream: if I have an LLM that is going through, say, security logs in this example, its context is gonna get filled up, it's gonna, trim the context, start throwing stuff away, but I don't want, like, an attacker to be able to just send an attack every 200,000 tokens, and then I only see, you know, one at a time.
+
+
+321
+01:02:42.368 --> 01:03:01.498
+Incoming livestream: So I've set up a way so I can, tag, different messages as different things, so that way, I can say, this is a security, like, in this case, the SSRF, server-side request forgery was blocked, permission to die, those are important security events. Let's make sure whenever the context is trimmed, we keep these around and,
+
+
+322
+01:03:01.978 --> 01:03:25.607
+Incoming livestream: use them for our security analysis there. So this is definitely still not, you know, 100% perfect, and as the logs increase, contacts get longer, I'm running these agents for longer times, the context can still fill up, so it's just figuring out, how to adjust that as we go is another fun challenge.
+
+
+323
+01:03:25.878 --> 01:03:32.118
+Incoming livestream: So I can show, kind of, yeah, how that works. It's pretty much what happens is, just with the…
+
+
+324
+01:03:32.798 --> 01:03:34.248
+Incoming livestream: With the,
+
+
+325
+01:03:35.478 --> 01:03:52.448
+Incoming livestream: the logs that come back, they get tagged with different security events. So you can see we have, like, some metadata set for, like, server-side requests forgery blocked, or permission denied. And then I'll go trim the messages, and, you know, we make sure we keep the security relevant ones there.
+
+
+326
+01:03:54.248 --> 01:03:55.448
+Incoming livestream: And there's that.
+
+
+327
+01:03:55.698 --> 01:03:57.478
+Incoming livestream: Summer reporting.
+
+
+328
+01:03:57.478 --> 01:04:21.287
+Incoming livestream: So, of course, observability is key. It's, very hard to do, or very hard to do thoroughly enough, but, like, right when I started up, cost tracking, I did see I was wasting tons of tokens on both, injecting all the memories all at once, which they didn't need, and was actually, hurting functionality as well. I had, like, the coding agents always try to run all the review agents all the time, because it,
+
+
+329
+01:04:21.288 --> 01:04:46.088
+Incoming livestream: when I was coding that, that's what the LLM thought would be helpful, which was also, like, every time you run those 5 review agents, it's like 250K tokens, so I was just running that way more often than I needed to. Right now, I have LingFuse traces, that are super helpful to kind of see which agents are doing what. I've accidentally, used Opus, where I meant to use Sonnet, in several places, and LingFuse helps kind of debug where that is.
+
+
+330
+01:04:46.088 --> 01:05:06.058
+Incoming livestream: Rafana dashboards for cost, daily breakdown, making sure that you do have a security audit trail, and… because a lot of this… a lot of, my agent automations are running, like, 24-7, or, at least prawn jobs every hour or two, and, I do want to know, like.
+
+
+331
+01:05:06.058 --> 01:05:11.367
+Incoming livestream: If I wake up and I have an extra $100 bill, why did that happen? How can I trace that down?
+
+
+332
+01:05:11.368 --> 01:05:27.198
+Incoming livestream: So yeah, a lot of, lessons learned. So, thankfully, being a security practitioner, I did, put a lot of security stuff in place for early on, like permission systems, tool allow lists. That was kind of, I know this is important, let's go see what I can do with it.
+
+
+333
+01:05:27.288 --> 01:05:29.418
+Incoming livestream: And…
+
+
+334
+01:05:29.418 --> 01:05:51.318
+Incoming livestream: that's, like, a great example of how improved security also improves actual functionality. Because with, like, 73MCP tools, if we're injecting that into every LLM, they're gonna have so much… both context is wasted, and they're gonna have so much extra information that's just not gonna be helpful for whatever their mission is. And then also, yeah, just making sure agents are scoped down as much as possible.
+
+
+335
+01:05:51.328 --> 01:05:53.588
+Incoming livestream: So that way, they do have…
+
+
+336
+01:05:53.628 --> 01:06:05.998
+Incoming livestream: kind of distinct things they're trying to do. You can limit, you know, MCP tools a bit more, you can kind of limit all the additional contexts that might lead them different directions, and kind of keep them focused, just like you'd want to keep a human focused.
+
+
+337
+01:06:06.028 --> 01:06:25.937
+Incoming livestream: And, yeah, just natural chest boundaries, context square trimming, etc. And then, a lot of things I should have done differently, cost tracking, you know, tune some of this stuff before I'm deploying. Since it is just my home lab, I just push stuff out. If I break it, then I go fix it. And then, also, just, yeah, delegation chains is something I still need to work on.
+
+
+338
+01:06:25.938 --> 01:06:28.878
+Incoming livestream: identity-type stuff, I'm…
+
+
+339
+01:06:28.908 --> 01:06:43.728
+Incoming livestream: I'm sure, like, the SANS talk later will help with that, but trying to go figure out the best way to do that and pass the same identity everywhere we can. So that's pretty much what I have. Feel free to reach out to me, LinkedIn, send me an email. I have a…
+
+
+340
+01:06:43.828 --> 01:06:51.267
+Incoming livestream: whatever those PowerPoint cards were called. But yeah. And, there's… the code's all on GitHub, but if you want to just go look at it.
+
+
+341
+01:06:58.628 --> 01:07:10.858
+Incoming livestream: I will definitely look at your code. Are you looking for, sort of, pull requests, changes, or just… this is just your project? Yeah, this is just kind of the project I've been enjoying doing, so it's kind of like…
+
+
+342
+01:07:10.898 --> 01:07:24.867
+Incoming livestream: I know… I enjoy having no pressure to get stuff done, and I, you know, if I break it, then I'm only affecting myself. So it's just kind of my personal project that, if you want to go see it, you can see it. Cool. Other questions?
+
+
+343
+01:07:31.458 --> 01:07:51.648
+Incoming livestream: Thanks for sharing that, that was great. I was curious, you mentioned the, the ever-expanding MCP server. Is it… you just have one that you're putting all the tools in, and that's your single boundary? Is that how you've designed it? Yeah, so that's just the local MCP server, so each time an agent runs, it'll spawn its own kind of local, standard I.O. server.
+
+
+344
+01:07:51.648 --> 01:07:54.488
+Incoming livestream: And that's just how I can define, like,
+
+
+345
+01:07:55.238 --> 01:08:14.588
+Incoming livestream: here's, you know, for example, for the, like, markdown file read-write, I can say, here's the directory that it's allowed to go, here are the file types that it's allowed to do, and then when it calls to try to make a, like, create a file on my file system, the MCP server will make sure those restrictions are put in place, and that's just kind of the locally running, kind of.
+
+
+346
+01:08:14.637 --> 01:08:17.158
+Incoming livestream: MCP sidecar, more or less, that…
+
+
+347
+01:08:17.218 --> 01:08:31.218
+Incoming livestream: that is scoped down to only which MCP functions the agent is allowed to use, but also lets me build in restrictions as each MCP call is done, so that way it's not just, like, clawed code with…
+
+
+348
+01:08:31.538 --> 01:08:32.847
+Incoming livestream: Access to everything.
+
+
+349
+01:08:35.498 --> 01:08:38.988
+Incoming livestream: All right. Oh, alright, one follow-up.
+
+
+350
+01:08:39.098 --> 01:08:57.367
+Incoming livestream: That's really interesting. You mentioned Sidecar, I mean, another way I've seen is to do this outside the bounds of the context window, through, you know, Envoy and OPA, where you can put the boundaries, so you're not consuming context through the bloated MCP. Yeah. Have you thought about that, or tried that? I don't know if that would… Yeah, so right now.
+
+
+351
+01:08:57.518 --> 01:09:16.698
+Incoming livestream: Infrastructure-wise, this is still fairly immature. I run a lot of these agents just on my, like, personal desktop, is kind of where they're running now. I have a web server that hosts, like, my external MTP servers. I'm gradually, right now, actually working to move that to the, like, a K3 setup, so working on just setting up containers I can actually run agents in, and then I could throw in some,
+
+
+352
+01:09:16.698 --> 01:09:20.007
+Incoming livestream: like, service mesh-type controls as well, and see what I can do there.
+
+
+353
+01:09:22.248 --> 01:09:22.988
+Incoming livestream: Right?
+
+
+354
+01:09:23.918 --> 01:09:25.888
+Incoming livestream: Thanks very much.
+
+
+355
+01:09:29.598 --> 01:09:45.358
+Incoming livestream: All right, last talk before lunch, before Birds of a feather, before, like, a brief break to go say hello to all of our, of all of our colleagues. And we move from writing agents, securing agents, to evaluating security agents. So please welcome, from Airbnb, Mudita.
+
+
+356
+01:09:50.768 --> 01:09:59.487
+Incoming livestream: Awesome. Thank you for joining. I… this is… welcome to my lightning talk, and today, as mentioned, I'll talk about evals.
+
+
+357
+01:09:59.618 --> 01:10:09.998
+Incoming livestream: So I want to start with a thought. I think at some point in life, we've all met someone, when we ask them a question, they give the right answer. But when you kind of poke for the explanation.
+
+
+358
+01:10:10.028 --> 01:10:29.397
+Incoming livestream: you sort of guess… you sort of see that they were either guessing the answer, you know, they have maybe memorized it, or they were just copying from somewhere, right? And that's not… like, trust is not the issue, that's another topic, right? But the idea is that you cannot predict, if you ask them the question again, if you will get the same right answer.
+
+
+359
+01:10:29.618 --> 01:10:42.737
+Incoming livestream: Also, if you want to give them feedback and try and improve their answer, there's no underlying skill to give feedback on. And the same idea goes with agents, which were graded on brittle, outcome-focused benchmarks.
+
+
+360
+01:10:42.898 --> 01:11:06.277
+Incoming livestream: So that brings me to my motivation for today, which is agent evaluation today is rooted in very narrow, outcome-only scoring, which essentially hides explainability and reliability. So, if you have an agent, it achieves 80% success on a benchmark, that doesn't tell you much, right? That doesn't tell you why it worked 80% of the time. It doesn't tell you why it failed the other 20% of the time.
+
+
+361
+01:11:06.288 --> 01:11:08.918
+Incoming livestream: It also does not tell you how do you…
+
+
+362
+01:11:08.918 --> 01:11:29.897
+Incoming livestream: improve that 80% number to be 90, 95, and closer to 100. And then lastly, it doesn't tell you that if you bring that agent to your infrastructure, to your environment, will the results also follow, right? And if you change things in your infrastructure, what would really happen? Will it stay stable or not? At least not without, some significant cost and brute forcing.
+
+
+363
+01:11:29.898 --> 01:11:50.917
+Incoming livestream: So let's look at an example, just to get the point across, right? So on the left side, we see some code which might be vulnerable. If this was a benchmark, you know, an agent might output something that looks like this, and if you only care about the outcome, you're like, okay, it found SQL, so this is a pass, right? We move on.
+
+
+364
+01:11:50.928 --> 01:12:15.237
+Incoming livestream: But, if you were to look at the trace of the agent, you might see that it followed very shallow heuristics to get to this answer, right? But what the agent did not do was it did not trace the taint flowing into the method, it did not check for exploitability, right? Was this data actually sanitized downstream? It also did not come up with any evidence of how it found the bug, right, other than the pattern matching that it did.
+
+
+365
+01:12:15.268 --> 01:12:40.207
+Incoming livestream: And that is where the problem is, right? The problem is that the agent did a very superficial analysis, and it did not reason through the tain flow to get to the bottom of the bug, and it did not share with you the different scenarios in which it could be exploited. So, this information is very critical, especially for security, because I think most of us will agree, security is not an isolated task, right? It is almost always
+
+
+366
+01:12:40.208 --> 01:12:53.458
+Incoming livestream: a workflow, and for the most part, it is something that closes in a loop, right? You find a bug, you exploit it, you want to patch it, and then you want to validate that the bug and all of its variants do not exist in your environment anymore.
+
+
+367
+01:12:53.478 --> 01:13:06.558
+Incoming livestream: Let's go back to the SQL example we saw, right? If we only cared about the outcome of that particular stage, in which case it would be, like, the fine stage, we would say, okay, this is a success, but does that mean it's an end-to-end success?
+
+
+368
+01:13:06.558 --> 01:13:29.028
+Incoming livestream: Maybe not, because the agent did not carry the context over, right? It did not tell you the different exploit scenarios, the evidence, and what it might end up doing is that we might end up creating incomplete or incorrect patches for this particular bug. So our end-to-end workflow just breaks, right? We do not get the success for the full workflow, we only got it for one stage. On the other hand.
+
+
+369
+01:13:29.028 --> 01:13:36.578
+Incoming livestream: If the agent did pass that information on, then we would have had a higher chances of end-to-end workflow success. So…
+
+
+370
+01:13:37.248 --> 01:13:46.407
+Incoming livestream: That's why we believe looking at agents' capabilities is just as important. So things like reasoning, memory, planning, over and above looking at just the outcome.
+
+
+371
+01:13:47.278 --> 01:14:10.078
+Incoming livestream: And to solve for that, we built Clasp. So CLASP is a capability-centric evaluation framework. The idea is very simple. It gives you 6 rubrics for six different agentic capabilities. And the idea is that if the agent has a very brittle capability, then you get a lower score. If it has a very adaptive execution of the same capability, you get a higher score.
+
+
+372
+01:14:10.138 --> 01:14:20.537
+Incoming livestream: And what this does is the framework pushes you to ask the question, how did we achieve this success? Over and above, did we achieve this success?
+
+
+373
+01:14:20.618 --> 01:14:27.867
+Incoming livestream: And if you look at this 6, you might be asking, but do all of them matter for all of the security different tasks?
+
+
+374
+01:14:27.868 --> 01:14:51.847
+Incoming livestream: And that's a question I also wanted to answer. So we applied CLASP to some existing agents, and we found that there are indeed some capabilities that matter more for some specific security task than others. So, I'll give you a fun example. We found that for very enumeration-heavy tasks, so like any recon agent, breadth matters much more than depth.
+
+
+375
+01:14:51.848 --> 01:15:16.807
+Incoming livestream: So any agent that planned really well which tools to use, and then used those tools, you know, extensively to enumerate everything it can about a target, it had a better outcome success than agents that reasoned about what they found, and just keep going deep for such an enumerative task. So, that is one of the key highlights we saw, and then there's others as well, which
+
+
+376
+01:15:16.808 --> 01:15:26.877
+Incoming livestream: which are there in our paper. You can check it out and see for yourself. But why we did this was to just get a skill attribution for each security step.
+
+
+377
+01:15:26.878 --> 01:15:47.358
+Incoming livestream: And this knowledge can really, really help in answering the question, hey, I have an agent, I want to improve it, but I don't know where to start. So, you know, if you know what kind of agent it is, you know which capabilities you should start with. It gives you a good starting point from that perspective, and the rubrics I showed on the previous slide tell you how to get better.
+
+
+378
+01:15:48.628 --> 01:16:08.078
+Incoming livestream: So let's bring all of that together, and let's help you use Clasp, right? How can you use it in practice? It's a three-step approach. First, observability. Bake it into your workflows, make sure you have access to everything your agent touches, you know, be it the context retrieved, be it the reasoning trace, be it the tool calls it made, etc, etc.
+
+
+379
+01:16:08.078 --> 01:16:12.507
+Incoming livestream: Second, you evaluate the agent. And I'll come back to evaluation in a second.
+
+
+380
+01:16:12.598 --> 01:16:26.917
+Incoming livestream: from the evaluation, you might find ways to improve your agent, and then, like I said, use the table I showed before as a good starting point on what to improve. And now, let's come back to evaluation, right? Evaluation can happen in two ways.
+
+
+381
+01:16:26.918 --> 01:16:48.048
+Incoming livestream: the first one, which is like an easier lift, is build an LLM as a judge pipeline. Give it the class rubric, give it your agent's trace, and say, great, you know, tell me how am I doing for planning, tell me how my agent is doing for tool call. And if you get a 2, you know what to do using our rubrics to get to a 4. And then rerun again and see if that also improves your outcome.
+
+
+382
+01:16:48.288 --> 01:17:12.907
+Incoming livestream: The other way to evaluate, which is a slightly more heavier lift, is to build test scenarios. So this idea is actually taken from something called as evidence-centered benchmark design. So you build test scenarios for each of the capabilities at varying complexities. And I'll give you an example. For tool use, a more lower score would be an agent that has a default tools, that it always goes through those tools.
+
+
+383
+01:17:12.908 --> 01:17:37.037
+Incoming livestream: maybe in the same order, it does not get a lot of feedback from the environment, and just statically goes and executes them. Whereas a more higher score would be, it has, it dynamically chooses a tool, it listens to the environmental feedback, it listens to the errors, it chains the tools together, and then creates its exploit flow, or whatever it's trying to get at. But regardless of which evaluation technique you choose, the idea is you get
+
+
+384
+01:17:37.038 --> 01:17:43.468
+Incoming livestream: a number back, you try and understand where you stand, and then you have a clear path on how to move forward using our rubrics.
+
+
+385
+01:17:45.088 --> 01:18:01.828
+Incoming livestream: That's it from my side, just wrapping up. Don't evaluate on isolated, narrow outcomes. Dig deeper into the how of these agents, and a capability-centric grading system like class can help you create more reliable, more explainable, and more parsimony-aware systems.
+
+
+386
+01:18:02.308 --> 01:18:20.548
+Incoming livestream: Thank you so much for listening to me. This is the full paper, if someone's interested. This was my personal work, nothing related to Airbnb, and this 10-minute, presentation was just a very slight, more industry-forward, takeaway from my paper, but if you're interested, that's my academic paper, and that's my LinkedIn. Thank you.
+
+
+387
+01:18:26.668 --> 01:18:28.008
+Incoming livestream: Questions?
+
+
+388
+01:18:31.338 --> 01:18:38.438
+Incoming livestream: So I, I love the, like, the table eval of class, but it's, like, so… so applicable.
+
+
+389
+01:18:38.828 --> 01:18:53.637
+Incoming livestream: in operationalizing it, you kind of said, like, yeah, you can use LLM as a judge to start classifying these things. You know, do you feel like you have a set of prompts or a way of structuring the data that maybe is described in the paper, but, like, we should open source or get started on?
+
+
+390
+01:18:53.638 --> 01:19:16.547
+Incoming livestream: So, we do want to also try and do a benchmark, so if you read the paper, we do mention, like, a blueprint of the benchmark that we're working on, and that's the more, like, test scenarios, so it is, you know, easily available. You don't even have to create an NLM as a judge, because we both know that's not the perfect way to do it, you know, it's a lighter lift, sure, but the idea would be that you just run your agent on that benchmark.
+
+
+391
+01:19:16.548 --> 01:19:41.518
+Incoming livestream: And that benchmark will not just looking at the outcome, it will also look at the actual behavioral trail. So it will see what your reasoning trace was, whether you followed, you know, a more brittle approach, or a more adaptive and autonomous approach, where you actually reflected on what you were doing, you perceived the environmental signals, and then went to the next stage. So, we are working on the benchmark, and then for L&M, that's a good point. I do have it. Maybe I should look into open source.
+
+
+392
+01:19:41.518 --> 01:19:46.118
+Incoming livestream: So, yeah, yeah, thank you. Anything to save the rest of us time?
+
+
+393
+01:19:46.928 --> 01:19:48.288
+Incoming livestream: Any other questions?
+
+
+394
+01:19:50.458 --> 01:19:52.767
+Incoming livestream: All right. Thank you so much. Thank you.
+
+
+395
+01:19:56.888 --> 01:19:58.828
+Incoming livestream: I have good news and bad news.
+
+
+396
+01:19:59.028 --> 01:20:02.204
+Incoming livestream: The good news is, we managed to squeeze in some extra talks this morning, but we're back on time.
+
+

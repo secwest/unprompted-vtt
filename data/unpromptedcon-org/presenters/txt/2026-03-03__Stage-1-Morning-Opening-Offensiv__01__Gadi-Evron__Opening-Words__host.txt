@@ -1,0 +1,88 @@
+[00:00:01.124 - 00:00:11.663] Incoming livestream: Why not? Amazing. So it all started when I was 3 years old, and my dad came to me and… no, kidding. Everybody quiet! Amazing.
+[00:00:12.394 - 00:00:23.314] Incoming livestream: I said everybody. Yes, thank you. So first of all, welcome all to… okay, should I… yes, to the… let me start over. Welcome all to the first unprompted!
+[00:00:24.904 - 00:00:31.584] Incoming livestream: And didn't you have breakfast this morning and all the other shit? Okay, welcome, really happy to have you. Honestly,
+[00:00:31.874 - 00:00:38.433] Incoming livestream: Excited. I don't often get that excited. Being in two startups now in my life, my bar for excitement is kind of high.
+[00:00:39.234 - 00:00:53.494] Incoming livestream: And I truly feel… I don't know if you saw my email this morning, but I started by saying I'm gonna do a very short manifesto. I'll tell you my significant other and my right hand at the startup are forbidding me forever doing manifestos until I'm one day a billionaire. Hope not.
+[00:00:54.034 - 00:01:00.384] Incoming livestream: But I'll still spend a couple of seconds on things that matter to me. So, first of all, really, welcome, and to everybody online.
+[00:01:00.724 - 00:01:02.403] Incoming livestream: Happy to have you as well.
+[00:01:02.914 - 00:01:06.193] Incoming livestream: the Slack link, er, rather, the Slack link.
+[00:01:07.454 - 00:01:19.413] Incoming livestream: has now stopped working 2 times over the last 10 minutes. So if you don't have the Slack link, we'll figure it out in a little bit, and maybe send out another email, or show it on the screen a little bit later as well.
+[00:01:19.684 - 00:01:25.384] Incoming livestream: Number two, for those of you who do not have the Zoom link, or are asking friends who are on the Zoom about the Zoom link.
+[00:01:25.534 - 00:01:31.514] Incoming livestream: We'll get you the Zoom link, and you can ask on the Slack, see the problem there? In the support channel, and we'll get it to you immediately.
+[00:01:31.804 - 00:01:34.723] Incoming livestream: With that said, I appreciate you all coming all this way.
+[00:01:35.054 - 00:01:41.033] Incoming livestream: Let's get started. So, we had almost 500 submitted talks. We planned for 70 to 120.
+[00:01:41.264 - 00:01:47.423] Incoming livestream: And I'll tell you, no matter how many people we had on the review board, 40% of that coming over the last 2-3 days was rough.
+[00:01:47.794 - 00:01:57.353] Incoming livestream: Note, for everybody in the future, please, no matter what committee you're submitting to, to meet early. Higher chances of getting in. Even though we covered it, it was quite a trek.
+[00:01:57.754 - 00:02:11.064] Incoming livestream: We are now far more than 700… we're about, 800, 850 attendees on the online con that we started when we couldn't take more people, because I reminded you, this started at 120 to 200 people con.
+[00:02:11.174 - 00:02:29.044] Incoming livestream: And we had to keep growing. Salesforce was amazing working with us throughout, but we had to move venues just to let people in, because it felt like this community thing, people need to be here, we can't just tell them no. And we are out quite a little bit of money from our pockets, but that's also okay. There are sponsors, we'll talk about that in a minute.
+[00:02:29.274 - 00:02:44.353] Incoming livestream: And then, I really want to thank the committee. It was really hard reviewing all those talks. The staff. There is Ida, who most of you have talked to, who can't be here. She and two other speakers are stuck in Israel right now, airspace being closed, so thank them as well.
+[00:02:46.164 - 00:03:03.683] Incoming livestream: I'm supposed to give some smart thoughts, I don't have any, so I said I'll probably just share the philosophy we all already know in four quick points instead of a large keynote, because I am not the keynote, and we don't have one. Number one, as Sunil Yu, my co-founder, likes to say, we are moving from deterministic to non-deterministic configuration.
+[00:03:03.734 - 00:03:09.543] Incoming livestream: I really like that thought. It helps me focus my mind around this and try to understand what does security look like.
+[00:03:09.674 - 00:03:12.494] Incoming livestream: Thought number two, for the entrepreneurs.
+[00:03:12.594 - 00:03:26.074] Incoming livestream: It feels like this is an anti-startup era. Every single thing I learned about startups, focus, and so on and so forth, just broken. How do we make it work anyway in a new world? In 3 months, you don't find product-market fit? Pivot.
+[00:03:26.214 - 00:03:28.163] Incoming livestream: So hard to do. Third thought.
+[00:03:28.284 - 00:03:44.683] Incoming livestream: is our teams. I talk to a lot of CISOs, a lot of CEOs, I'm a CEO right now, I don't know anything about technology anymore, right? I'm on the business side. And everybody just feels outmoded all the time. How… I'm pretty sure a lot of the speakers will speak about this too. How do we keep up?
+[00:03:44.704 - 00:03:51.073] Incoming livestream: Doesn't matter if you're a PhD deep into the math, or just somebody in security, or a technical person, or in finance, how do you keep up?
+[00:03:51.724 - 00:03:59.653] Incoming livestream: I'll tell you, we're not outmoded. All it really takes is trying. I truly believe that, so those in the audience who are not deep into this, all it takes is trying.
+[00:04:00.104 - 00:04:02.333] Incoming livestream: It feels like the state of the art is here.
+[00:04:03.324 - 00:04:07.494] Incoming livestream: Technology will keep going up all the way somewhere we can't even imagine.
+[00:04:07.644 - 00:04:12.873] Incoming livestream: But most of us are down here, using ChatGPT or Claude, like we used to Google.
+[00:04:13.224 - 00:04:30.353] Incoming livestream: We can learn about how to use multi-torrent, have a conversation, move over to agents, download them at this stage, talk to them, there will be actions performed, there will be the agentic loop, the self-healing. Just knowing how to use these agents and playing with it already puts you not here at the current state of the art, but here.
+[00:04:30.634 - 00:04:39.384] Incoming livestream: And if we talk about cyber power at the level of nations, I think if instead of investing in so many foundation labs and models, we just try to teach people how to use these tools right.
+[00:04:39.564 - 00:04:41.604] Incoming livestream: We would be everywhere right now.
+[00:04:41.884 - 00:04:47.553] Incoming livestream: So, just try. You're not outmoded. You're smart people, you're risk executives, you're researchers, you can do it.
+[00:04:47.714 - 00:04:51.594] Incoming livestream: That's my message for you, although I think most people in the room are already there.
+[00:04:51.884 - 00:04:53.054] Incoming livestream: And lastly.
+[00:04:54.494 - 00:05:00.923] Incoming livestream: actually just said that. See what happens when it's the opening slide? I got confused. So yes, we are not outmoded, we are…
+[00:05:01.034 - 00:05:09.634] Incoming livestream: We just need to know English, and we need to try. And I'll say that me, as CEO, it's not about my R&D team, it's about my finance team, it's about HR.
+[00:05:09.834 - 00:05:22.883] Incoming livestream: Everybody needs to use this immediately. Cloud code, cursor, whatever it is you're using. Don't wait, because I can already see, if the CEO is not spending time on cloud code, regardless of any code, I don't believe that company will survive. Personal belief system.
+[00:05:23.374 - 00:05:31.053] Incoming livestream: Now, this is a presentation given by Joe Stewart to another conference I organized many a year ago called ACOD, which is still running.
+[00:05:31.174 - 00:05:34.394] Incoming livestream: Where he said, researcher conferences suck.
+[00:05:35.074 - 00:05:39.494] Incoming livestream: And… or he sucks at networking, and I stole his slides, and I'm gonna go through this very quickly.
+[00:05:40.204 - 00:05:42.983] Incoming livestream: Why do I suck at networking? He's introverted.
+[00:05:43.754 - 00:05:48.424] Incoming livestream: He's bad at small talk, and he doesn't like beer. And this is what security conferences look like.
+[00:05:48.904 - 00:05:50.284] Incoming livestream: So.
+[00:05:50.424 - 00:05:56.453] Incoming livestream: There are too many people to have one-on-one discussions, right? He's bad at that. Tell you, I'm not amazing at it either.
+[00:05:56.884 - 00:06:09.254] Incoming livestream: I'm gonna read from his slides. Name tags are too hard to read without being awkward. Oh, yeah. Right? Putting faces to names, even if you see the picture, is really hard. Social time is usually a noisy bar. How are we supposed to network?
+[00:06:09.494 - 00:06:20.403] Incoming livestream: So he wants to network with people doing similar work. He wants to find what tools people use. He wants to establish the informal sharing relationships. He wants free stuff. He wants to take care of bad guys. He wants to be able to
+[00:06:20.404 - 00:06:32.093] Incoming livestream: For people to not change free systems to become paid later on, because he's hurting bad guys right now with these systems, and he wants to not get salespeople to come at him because of these relationships.
+[00:06:32.604 - 00:06:39.333] Incoming livestream: So… He's only lucky enough to come away with a few people that he might have met.
+[00:06:39.554 - 00:06:40.973] Incoming livestream: To share with and help.
+[00:06:41.574 - 00:06:55.503] Incoming livestream: And he wanted a Tinder app, or a Facebook app, just to meet people, see who they are, how to work with them. And we ended up essentially creating something simple, which is our slides, where we see a picture, who are you, you have your LinkedIn, what you can offer, what you can help with.
+[00:06:55.694 - 00:06:59.974] Incoming livestream: And he went first, this is his, from quite a few years ago.
+[00:07:00.264 - 00:07:10.163] Incoming livestream: This is mine. So go on the slide deck. You can't edit it anymore, but you can email us. If you look at the first slide, there is a contact at unpromptedcon.org. Ida will put it in for you.
+[00:07:10.534 - 00:07:12.243] Incoming livestream: Main goal? Talk to people.
+[00:07:13.684 - 00:07:18.443] Incoming livestream: Thank you for listening to Joe's and mine leader runt. That was the first part of what I wanted to say.
+[00:07:18.714 - 00:07:29.454] Incoming livestream: Second is just the stack. I said… oh, Slack. See, this is what happens when you update your slides last minute. Community feel, right? Okay. Feel your card.
+[00:07:29.734 - 00:07:49.514] Incoming livestream: It really matters, because I do believe, warning, I'm going into manifesto mode again, that this is a special moment in time, we live in the future, and something special is going on in this conference. Honestly, it might not exist next year. There might be hundreds of conferences, we might not do any more conferences, but right now, right this moment, truly something special is happening here.
+[00:07:49.664 - 00:07:52.164] Incoming livestream: And I want us to use it to the max.
+[00:07:52.284 - 00:07:55.983] Incoming livestream: So… Find other like-minded people.
+[00:07:56.324 - 00:07:57.924] Incoming livestream: Next.
+[00:07:58.084 - 00:08:08.654] Incoming livestream: We're gonna actually talk in the Slack. Most conferences don't want you to be on the Slack, so you don't go to your phone. You're doing it often enough, instead of looking to the presenters. We are owning Gen Z.
+[00:08:08.654 - 00:08:19.773] Incoming livestream: go to your phone, get on the Slack, talk to people in the Slack, we'll open up a thread for every single talk. At the end, and most presenters agreed, we'll share the slide deck in that thread.
+[00:08:20.654 - 00:08:31.924] Incoming livestream: Then, submit an unconferenced TurboTalk. There is an easel in the back, we're gonna have a couple of slots, and we are all gonna vote using small sticky notes with smileies and stars on them.
+[00:08:32.074 - 00:08:34.584] Incoming livestream: So, write your proposal on the easel.
+[00:08:34.934 - 00:08:41.064] Incoming livestream: put sticky notes next to what you want to hear, and we'll give time tomorrow to people. Now, this is really important.
+[00:08:41.634 - 00:08:44.083] Incoming livestream: Other human beings. I prefer dogs.
+[00:08:44.844 - 00:08:47.894] Incoming livestream: Some people don't like dogs, and you're horrible human beings, they should go.
+[00:08:48.154 - 00:08:54.814] Incoming livestream: But the point is, I'm forcing you. So I'm gonna do an HR moment, we all hate HR moments, right? We despise HR moments.
+[00:08:54.944 - 00:08:56.214] Incoming livestream: Look to the right of you.
+[00:08:57.604 - 00:09:13.494] Incoming livestream: Now, look to the left. You can actually do it with me, okay. See a person, say hi, just say hi loud-loud with me, you don't need to look at them in the eyes. Hi, everybody, hi. Okay, now you actually know one more person. Stop talking! I just said, say hi, don't be, don't be social.
+[00:09:13.774 - 00:09:16.053] Incoming livestream: But now you actually know one more person.
+[00:09:16.274 - 00:09:22.253] Incoming livestream: And it will be easier for you to mingle, join groups, whatever it is. Try to talk to people, try to say hi. On the Zoom.
+[00:09:22.364 - 00:09:28.383] Incoming livestream: try to just randomly message somebody and say hi. There's a lot of… there's a full online conference going on in the Zoom as well.
+[00:09:29.194 - 00:09:34.413] Incoming livestream: And time-wise, we are already late, and we are planning to be late on time.
+[00:09:34.554 - 00:09:41.853] Incoming livestream: So please, forgive us for bugs, forgive us on the schedule, but we're gonna try. So, speakers, get up there, you have 20 minutes on the mark.
+[00:09:42.864 - 00:09:51.964] Incoming livestream: And then, at 20 minutes, there are questions, the next speaker is gonna come up, start putting their laptops in. It will be disruptive to the questions, it'll work out.
+[00:09:52.214 - 00:09:55.483] Incoming livestream: And then, attendees, questions, you have 30 seconds.
+[00:09:55.974 - 00:10:00.494] Incoming livestream: go into the Slack and say, I want to workshop my question.
+[00:10:00.984 - 00:10:02.554] Incoming livestream: And workshop your question.
+[00:10:02.734 - 00:10:09.003] Incoming livestream: Then you come up, you ask a question, and if we didn't have time to get to you, the speaker will go on the thread and answer your questions live.
+[00:10:09.604 - 00:10:13.293] Incoming livestream: And this is from Yelani Cobb. I'm gonna read it.
+[00:10:13.704 - 00:10:27.674] Incoming livestream: A question is an interrogative sentence, generally denoted to an inflection at the end. End? I don't know. A question differs from a statement in that a question requests information, and a statement provides it. We prefer…
+[00:10:27.674 - 00:10:38.203] Incoming livestream: questions to statements. And if you frame your question as succinctly as possible within 30 seconds, we can get to as many as possible. Anybody makes a statement or contributes to the talks, I'll find you.
+[00:10:39.964 - 00:10:51.864] Incoming livestream: Workshop your questions on Slack. Links. The Slack link obviously no longer works, but the agenda is online on the site, you can easily go there. Baseball cards, look for people, add your own, email us with your slides, it will be fun.
+[00:10:52.574 - 00:11:00.743] Incoming livestream: Then, now, lastly, before we get started, Dan Hubbard, who also did this at one of my older conferences many years ago, was called ISOI,
+[00:11:01.184 - 00:11:04.084] Incoming livestream: Offered to write a poem for us, to get us started.
+[00:11:04.224 - 00:11:09.074] Incoming livestream: And you know what? I think most people in this room are probably on the spectrum. If there are normies here, I'm really sorry.
+[00:11:09.584 - 00:11:14.163] Incoming livestream: But we're all gonna enjoy this poem that's an instruction from the chair.

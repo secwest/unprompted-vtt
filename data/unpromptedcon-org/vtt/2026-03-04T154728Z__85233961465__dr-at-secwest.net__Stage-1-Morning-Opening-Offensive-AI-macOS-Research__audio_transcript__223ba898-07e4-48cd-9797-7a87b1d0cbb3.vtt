@@ -1,0 +1,3492 @@
+WEBVTT
+
+1
+00:00:05.744 --> 00:00:07.194
+Incoming livestream: Good morning!
+
+
+2
+00:00:08.194 --> 00:00:14.904
+Incoming livestream: Unprompted, day two, beginning now. Let's bring the conversation down. We've got…
+
+
+3
+00:00:15.734 --> 00:00:33.723
+Incoming livestream: Amazing stuff going on. This morning is very attack-focused. We started yesterday with defenders, we're gonna do a lot of AI attacks this morning. Then we move into agent mode, all kinds of good stuff in the afternoon. Downstairs, we continue to have research, lots of other agentic stuff.
+
+
+4
+00:00:33.774 --> 00:00:50.413
+Incoming livestream: sock stuff, but we're actually gonna kick off the morning with a little bit of, a slight schedule change, but whatever, we ran late yesterday, we'll do it again today. We've got some exciting special guests, we've got some Quick Vibe-coded demos, and we've got a talk that,
+
+
+5
+00:00:50.414 --> 00:01:04.814
+Incoming livestream: we were hoping to accept, and unfortunately, the, the people who were gonna speak, gave it overseas, so we're gonna do, we're gonna kind of do it live in the morning. So, thanks for coming, excited to get started, let's get sit down and, welcome Dottie back up to the stage.
+
+
+6
+00:01:19.884 --> 00:01:34.373
+Incoming livestream: Hey everybody, I'm Kyle Rosenthal, one of the co-organizers of Unprompted. Thank you for coming to the great city of San Francisco. I want you all to know here, I came here in 1998, and I came here because it's where the action was.
+
+
+7
+00:01:34.724 --> 00:01:36.264
+Incoming livestream: It's dot-com time.
+
+
+8
+00:01:36.494 --> 00:01:41.733
+Incoming livestream: Now we're in 2026. This is where the AI action is.
+
+
+9
+00:01:41.864 --> 00:01:51.104
+Incoming livestream: And it's this community in San Francisco full of innovators who pay it forward that make it possible. And we're gonna keep that going in this city.
+
+
+10
+00:01:51.134 --> 00:02:09.024
+Incoming livestream: I wanna tell you it's a great city, and we've got a great mayor. I don't even call him a politician. He's got one of the highest approval ratings of all time, and we're making the city awesome. So let's have a big round of applause for Mayor Daniel Lurie!
+
+
+11
+00:02:09.874 --> 00:02:11.754
+Incoming livestream: Thank you for joining us.
+
+
+12
+00:02:17.214 --> 00:02:19.764
+Incoming livestream: Good morning, everyone. How's everybody doing?
+
+
+13
+00:02:21.084 --> 00:02:29.334
+Incoming livestream: I told my son, who is now 12, where I was coming, and the last time I was in this beautiful space, it was…
+
+
+14
+00:02:29.354 --> 00:02:43.934
+Incoming livestream: a Super Bowl event where he got to go around and get autographs from a lot of famous NFL players. We had a… we had an incredible Super Bowl week here just last month. We had 1.3 million
+
+
+15
+00:02:43.934 --> 00:03:03.894
+Incoming livestream: people come through SFO in the 9-day period, and we had 12,000 credentialed media here, and it was, it was like a light bulb went off for a lot of people around the country and around the world that our city is on the rise. It's great to have you all here. This is the right moment to be here in San Francisco.
+
+
+16
+00:03:03.894 --> 00:03:17.684
+Incoming livestream: the conversations you're gonna have today will need to happen, and where… this is where technology is being built. This is the tech, AI, innovative ecosystem of the world. There's no other place that it's happening.
+
+
+17
+00:03:17.684 --> 00:03:32.564
+Incoming livestream: And we're moving in the right direction. We had a good first year. I just took office last January. We had a good first year. A lot of momentum, but one good year is not enough. We have to put our foot on the accelerator now, and that's what we're gonna do. I ran…
+
+
+18
+00:03:32.564 --> 00:03:42.614
+Incoming livestream: for mayor, having no background in politics, and I ran on three things. Public safety, clean streets, and our economic recovery.
+
+
+19
+00:03:43.834 --> 00:03:45.154
+Incoming livestream: Oh, I like that.
+
+
+20
+00:03:45.844 --> 00:04:03.774
+Incoming livestream: Follow that person's lead. That's what I promised to focus on, and that's what we've been delivering. Today, in San Francisco, 64% of San Franciscans think we're heading in the right direction. 24 months ago, that number was 22%.
+
+
+21
+00:04:04.004 --> 00:04:12.864
+Incoming livestream: When, yeah, that sentiment reflects real change. Just keep clapping, that's good. This sentiment reflects real progress.
+
+
+22
+00:04:12.864 --> 00:04:29.174
+Incoming livestream: We said we need to enforce the law, we said we need more police officers, and we need to create the conditions for businesses, like the ones that you're starting up, to want to be here. From our small business owners to global leaders creating thousands of jobs.
+
+
+23
+00:04:29.174 --> 00:04:43.653
+Incoming livestream: And now, we are seeing the results. Crime last year, in 2025, was down 30%. Down here in our business core, it was down 40%. Car break-ins were at 22-year lows.
+
+
+24
+00:04:43.654 --> 00:04:50.933
+Incoming livestream: Encampments we just announced yesterday, the third time we hit record lows in the number of encampments on our streets.
+
+
+25
+00:04:51.154 --> 00:05:09.363
+Incoming livestream: On the business side, nearly 1 million square feet of office space was leased last year. We are leading the country now in office sales. Convention bookings are up, with associated hotel bookings up 61%. We're expecting about 35 or 36…
+
+
+26
+00:05:09.364 --> 00:05:12.594
+Incoming livestream: major conferences this year in San Francisco.
+
+
+27
+00:05:12.784 --> 00:05:27.134
+Incoming livestream: Transit ridership is climbing, and we are now reimagining downtown, because it's not gonna just be, you know, a 9-to-5 job anymore. I know you all use the lingo 996,
+
+
+28
+00:05:27.144 --> 00:05:42.374
+Incoming livestream: Well, we're also looking, not just at work, but we're looking at building more housing down here, we're looking at building, more ability to have fun, and also we announced last year that Van… or actually just a couple months ago, that Vanderbilt University is opening up a downtown
+
+
+29
+00:05:42.374 --> 00:05:52.604
+Incoming livestream: or a San Francisco, undergraduate university with 1,000 undergrads starting in September of 20… 7. Now, listen.
+
+
+30
+00:05:53.344 --> 00:06:07.963
+Incoming livestream: If you came to this part of our city, you know that we still have work to do, but we are going to stay relentless. Across city departments, we are working differently, we are coordinating, we are focused on outcomes, whether that's shot clocks for permitting.
+
+
+31
+00:06:07.964 --> 00:06:20.303
+Incoming livestream: Whether we're combining departments or implementing the city's first performance-based contract for public health or homeless services, we're gonna only pay if we see results.
+
+
+32
+00:06:20.304 --> 00:06:26.533
+Incoming livestream: And that also is being reflected in our continued partnership with the private sector.
+
+
+33
+00:06:26.714 --> 00:06:37.503
+Incoming livestream: Now, San Francisco has long been a place where breakthroughs happen, where bold ideas meet action, and I expect that to happen today with this conference.
+
+
+34
+00:06:37.614 --> 00:06:54.024
+Incoming livestream: And this conference is sending a clear signal, once again, that San Francisco is the place where the future is being shaped. We are the global capital of artificial intelligence, we have the world's leading innovation ecosystem.
+
+
+35
+00:06:54.234 --> 00:06:56.714
+Incoming livestream: Last year, we captured 50…
+
+
+36
+00:06:56.714 --> 00:07:18.003
+Incoming livestream: 6% of U.S. venture capital AI funding at $82 billion. That's pretty good. And we have all that, and we have more. So, I want to just close by telling you that San Francisco is a city on the rise. If you're not from here, I want you to, go back home, tell everybody that they need to be in San Francisco.
+
+
+37
+00:07:18.004 --> 00:07:35.593
+Incoming livestream: Because we're not just coming back, we're gonna be, greater than we've ever been, and if you don't know me, I close everything with a little saying that we say here now in San Francisco. I hope you have a great day, and let's go San Francisco. Thank you all very much.
+
+
+38
+00:08:06.164 --> 00:08:07.054
+Incoming livestream: Not that.
+
+
+39
+00:08:12.904 --> 00:08:14.184
+Incoming livestream: Let's see if this works.
+
+
+40
+00:08:15.014 --> 00:08:16.994
+Incoming livestream: Are you getting my feet? Are you getting my feet?
+
+
+41
+00:08:22.094 --> 00:08:23.284
+Incoming livestream: That's not my feed.
+
+
+42
+00:08:27.944 --> 00:08:29.414
+Incoming livestream: All right.
+
+
+43
+00:08:30.284 --> 00:08:31.264
+Incoming livestream: Morning, all.
+
+
+44
+00:08:33.864 --> 00:08:35.653
+Incoming livestream: Thank you all for coming again.
+
+
+45
+00:08:35.914 --> 00:08:36.984
+Incoming livestream: Today, too.
+
+
+46
+00:08:37.294 --> 00:08:41.904
+Incoming livestream: We try to keep Day 2 as the most interesting day, because I know for a fact.
+
+
+47
+00:08:42.374 --> 00:08:47.094
+Incoming livestream: That people tend to skip most or half of the last day.
+
+
+48
+00:08:47.354 --> 00:08:53.714
+Incoming livestream: So for me, there are only two parts of the conference where I truly Enjoy it.
+
+
+49
+00:08:54.044 --> 00:09:00.634
+Incoming livestream: The evening before, when I could get to make friends, and have better time, an easier time socializing.
+
+
+50
+00:09:00.744 --> 00:09:06.054
+Incoming livestream: In the event itself, and the last day, where people are now relaxed, Kind of.
+
+
+51
+00:09:06.194 --> 00:09:24.324
+Incoming livestream: And we can just mingle, have fun, and truly learn, and the best presentations are here. Not that I'm putting down all the people from yesterday, right? Aaron chose a few really good ones, because everybody else sucked, right? I'm digging my own hole, are you noticing that? Like, I'm trying really hard, and you guys are not pointing and laughing. Anyway, let's get started.
+
+
+52
+00:09:25.824 --> 00:09:28.454
+Incoming livestream: So… Statistics, again.
+
+
+53
+00:09:29.074 --> 00:09:32.254
+Incoming livestream: I have FOMO about the online conference.
+
+
+54
+00:09:32.534 --> 00:09:37.703
+Incoming livestream: What these people have done, is crazy. It's not just live streaming.
+
+
+55
+00:09:37.844 --> 00:09:45.473
+Incoming livestream: There are hosted sessions with a lot of speakers just come in. People just chat for a while without all the noise in the background.
+
+
+56
+00:09:45.834 --> 00:09:50.194
+Incoming livestream: It's just insane what's going on over there. 850 people or so.
+
+
+57
+00:09:50.504 --> 00:09:54.033
+Incoming livestream: are active, then there is a drop-off when Europe goes to bed.
+
+
+58
+00:09:54.184 --> 00:10:01.583
+Incoming livestream: But they already have videos, because excited to what we'll upload to YouTube, Dragos has been very good about saving everything in the background, putting it on…
+
+
+59
+00:10:01.734 --> 00:10:08.803
+Incoming livestream: Vimeo, it's just crazy what's going on over there, so… major FOMO. 700 people in the venue, naturally not all the time.
+
+
+60
+00:10:09.084 --> 00:10:13.753
+Incoming livestream: I believe we're averaging about 550. This… today, probably around 450.
+
+
+61
+00:10:14.044 --> 00:10:16.073
+Incoming livestream: And again, I would just like to stop.
+
+
+62
+00:10:16.344 --> 00:10:31.944
+Incoming livestream: Thanks to the committee, thank the staff, all the volunteers. Literally, some of the volunteers here are professors, some are researchers, some are CISOs, a couple of billionaires, a couple of students, somebody's significant other, just people are enjoying being a part of this.
+
+
+63
+00:10:32.134 --> 00:10:39.233
+Incoming livestream: I truly appreciate that. And lastly, to Ida, again, who can't be here today, and is pulling… her hair would look like mine.
+
+
+64
+00:10:39.344 --> 00:10:46.484
+Incoming livestream: After today's over, because she's pulling it, not being here, but managing all of this. Not surely Andrea stepped in to help with all that, but…
+
+
+65
+00:10:46.844 --> 00:10:53.634
+Incoming livestream: To her and two speakers who couldn't be here, because they're stuck in Israel with the airspace closed, I want to extend some thanks.
+
+
+66
+00:10:54.094 --> 00:10:58.034
+Incoming livestream: So, repeating yesterday's kind of model.
+
+
+67
+00:10:58.694 --> 00:11:06.334
+Incoming livestream: my thoughts in quick order. Number one, security. Yesterday, I talked about that non-deterministic…
+
+
+68
+00:11:06.474 --> 00:11:11.134
+Incoming livestream: Deterministic configuration becoming non-deterministic and thinking what that means.
+
+
+69
+00:11:11.444 --> 00:11:20.074
+Incoming livestream: I was speaking with my vendor hat on to a customer a few weeks ago, and he suggested that the Citizen Coders buzzword.
+
+
+70
+00:11:20.394 --> 00:11:28.534
+Incoming livestream: Meaning, not developers, but finance and HR and everybody else using Cloud Code and Cursor, or moving to lovable Replead Base44.
+
+
+71
+00:11:28.724 --> 00:11:34.693
+Incoming livestream: is now… it's a concern that's truly rising for me. Right now, it's all the coding agents, but it's changing.
+
+
+72
+00:11:34.924 --> 00:11:36.064
+Incoming livestream: Because…
+
+
+73
+00:11:36.604 --> 00:11:54.683
+Incoming livestream: And this is big, not because of incident response no longer having auditability or traceability, not because of the incident they already had, which was pretty interesting, where somebody decided to bypass SSO and just put in their own authentication. Who hasn't seen developers do that before, wanting to get to production, but from finance.
+
+
+74
+00:11:54.994 --> 00:12:01.713
+Incoming livestream: And not even the dependencies and vulnerabilities, where who knows these applications even exist, not to mention updating them.
+
+
+75
+00:12:02.004 --> 00:12:10.094
+Incoming livestream: But because, literally, it looks at this and says, in a world where everybody is running their own infrastructure, IT is broken, it's fragmented. How do we deal with that?
+
+
+76
+00:12:10.194 --> 00:12:19.824
+Incoming livestream: So that's my thought of the day in security. The rest will be quicker. On startups, under a startup era, I truly believe this is going to be the reddest blue ocean I've seen in my life.
+
+
+77
+00:12:20.374 --> 00:12:25.114
+Incoming livestream: And think twice before you enter this space, and then enter it anyway, because it's so exciting.
+
+
+78
+00:12:25.604 --> 00:12:26.883
+Incoming livestream: So fucking exciting.
+
+
+79
+00:12:27.494 --> 00:12:29.644
+Incoming livestream: Then, on the team's side.
+
+
+80
+00:12:31.544 --> 00:12:45.353
+Incoming livestream: It's been a day since yesterday, and when I shared, I think we should all be on Cloud Code and Cursor and all these tools right this second, or we will all be irrelevant. CEOs, finance, devs, doesn't really matter. So it's been a day. Are all these people now, the CEO, the CISO, your people?
+
+
+81
+00:12:45.474 --> 00:12:46.904
+Incoming livestream: on Cloud Code already.
+
+
+82
+00:12:47.244 --> 00:12:52.184
+Incoming livestream: If not, you're already behind. You had a day to change your lives, and you didn't do it. What's wrong with you people?
+
+
+83
+00:12:52.614 --> 00:12:56.833
+Incoming livestream: You work for an enterprise, really? There's DPRM processes? I don't know.
+
+
+84
+00:12:57.004 --> 00:12:58.434
+Incoming livestream: I'm funny, laugh.
+
+
+85
+00:12:58.544 --> 00:13:00.084
+Incoming livestream: Thank you, thank you.
+
+
+86
+00:13:00.274 --> 00:13:02.233
+Incoming livestream: And then, the power of the power user.
+
+
+87
+00:13:05.224 --> 00:13:12.563
+Incoming livestream: once you have your infrastructure, your scaffolding in place, did you throw it away yet? Are you looking at the cloud code changelog every week?
+
+
+88
+00:13:13.124 --> 00:13:18.453
+Incoming livestream: Because if you didn't, you're already behind once again, and it's really not that hard. It's exciting.
+
+
+89
+00:13:18.774 --> 00:13:20.024
+Incoming livestream: Embrace it.
+
+
+90
+00:13:21.144 --> 00:13:28.434
+Incoming livestream: I will do this again today, because I feel… I really feel it matters. This is a major failure pattern of every conference I've ever been to.
+
+
+91
+00:13:29.784 --> 00:13:42.054
+Incoming livestream: Questions are not comments. While I appreciate contributions to everybody's talks, that's not what it's about. So I'm gonna read this out loud, as people say not to do in a presentation. This is from Jelani Cobb.
+
+
+92
+00:13:42.684 --> 00:13:48.633
+Incoming livestream: A question is an interpretive sentence generally denoted by an inflection at the end, like this.
+
+
+93
+00:13:48.944 --> 00:14:03.644
+Incoming livestream: A question differs from a statement in that a question requests information and a statement provides it. We prefer questions to statements, and if you frame your question as succinctly as possible within 30 seconds, we can get to as many people as possible. And we have the Slack, so please get on the Slack.
+
+
+94
+00:14:04.414 --> 00:14:06.373
+Incoming livestream: And workshop your question.
+
+
+95
+00:14:06.564 --> 00:14:14.723
+Incoming livestream: So it's actually good, with everybody else, get the engagement from your friends, and then the speakers will get on and answer it anyway, even if we didn't get to it.
+
+
+96
+00:14:16.404 --> 00:14:19.283
+Incoming livestream: Now, moving on to the last part of this.
+
+
+97
+00:14:19.544 --> 00:14:34.873
+Incoming livestream: quite a few people vibe-coded this con, and are still creating things on the fly, and have announcements. So, I would like to start with Rob Lee, who has done some pretty cool work for us, making us more of an online, AI-powered, AI-native conference, or whatever.
+
+
+98
+00:14:35.044 --> 00:14:39.163
+Incoming livestream: So, let's start with that. And then we'll go to Dan Hubbard, and then to Glenn Thorpe.
+
+
+99
+00:14:40.654 --> 00:14:43.084
+Incoming livestream: All right. I think you gotta eat.
+
+
+100
+00:14:43.714 --> 00:14:44.814
+Incoming livestream: Love the questions.
+
+
+101
+00:14:45.974 --> 00:14:49.404
+Incoming livestream: Alright, let me get plugged in here. My name is Rob Lee.
+
+
+102
+00:14:51.254 --> 00:14:53.354
+Incoming livestream: I'm with the SANS Institute.
+
+
+103
+00:14:53.984 --> 00:14:58.124
+Incoming livestream: And I'm gonna get the video kicked off, and I'll start.
+
+
+104
+00:15:06.904 --> 00:15:21.103
+Incoming livestream: So starting off with the question, going back to what Gotti just said, I developed the SIFT workstation 18 years ago, and in working with AI as little as possible, and trying to learn as much as possible over the past
+
+
+105
+00:15:21.394 --> 00:15:23.103
+Incoming livestream: Two to three years.
+
+
+106
+00:15:23.314 --> 00:15:39.743
+Incoming livestream: It occurred to me about 3 months ago, why haven't I not installed Cloud Code on top of the SIFT workstation, did about 45 minutes to an hour worth of work configuring the CloudMD file on Skills, and I essentially went into Cloud Code and I said, here's a hard drive.
+
+
+107
+00:15:39.864 --> 00:15:41.054
+Incoming livestream: Find evil.
+
+
+108
+00:15:41.964 --> 00:15:52.604
+Incoming livestream: This is the command, essentially, you type into Claude Code once this is configured on top of the answer response toolkit that we developed. And it, of course, kicks off.
+
+
+109
+00:15:52.904 --> 00:15:55.064
+Incoming livestream: starts cranking through. Now, this is, like.
+
+
+110
+00:15:55.234 --> 00:16:01.064
+Incoming livestream: 16x speed, because what you're about to see is a 14-minute processing time
+
+
+111
+00:16:01.294 --> 00:16:07.544
+Incoming livestream: That basically, at the end of this, which typically takes an instant responder, and I asked yesterday, as a poll.
+
+
+112
+00:16:07.824 --> 00:16:27.524
+Incoming livestream: about 3 days to get from initial C drive of an intrusion into a full report. And I'm gonna put all these resources online in the general chat, so everyone can download them, get access to the report, get access to the SIFT workstation, even the notebook LM I have set up so you could ask basic questions. How do I start?
+
+
+113
+00:16:27.694 --> 00:16:36.753
+Incoming livestream: So, 14 minutes later, I'm gonna go ahead and skip to the end of this, just so everyone could see that it definitely took 14 minutes. 14 minutes, 27 seconds.
+
+
+114
+00:16:37.114 --> 00:16:46.763
+Incoming livestream: Think about this for one second, and I'm gonna go in 2X on the report. This is the report. It automatically generated with no other input and comments.
+
+
+115
+00:16:47.594 --> 00:16:49.333
+Incoming livestream: Go ahead and click go.
+
+
+116
+00:16:50.724 --> 00:16:57.314
+Incoming livestream: Nailing the full intrusion analysis of a single system in a compromise.
+
+
+117
+00:16:57.474 --> 00:17:03.543
+Incoming livestream: Now, the reason we need to accelerate to this speed, it does not mean we remove the human investigator from…
+
+
+118
+00:17:03.754 --> 00:17:09.613
+Incoming livestream: the intrusion analysis. All the artifacts that are in here require that baseline knowledge.
+
+
+119
+00:17:09.884 --> 00:17:15.553
+Incoming livestream: But with offensive teams out there, able to accelerate from things that took months
+
+
+120
+00:17:15.674 --> 00:17:24.094
+Incoming livestream: down to days or minutes, it is now essential that we're able to meet that speed with intrusion analysis. Thank you.
+
+
+121
+00:17:32.764 --> 00:17:33.594
+Incoming livestream: Sure.
+
+
+122
+00:17:37.444 --> 00:17:39.524
+Incoming livestream: Sorry, no poem today.
+
+
+123
+00:17:48.134 --> 00:17:49.303
+Incoming livestream: Where are we here?
+
+
+124
+00:18:00.704 --> 00:18:01.914
+Incoming livestream: Layer 1.
+
+
+125
+00:18:13.204 --> 00:18:14.114
+Incoming livestream: Free try.
+
+
+126
+00:18:18.194 --> 00:18:19.813
+Incoming livestream: Alright, that's the demo.
+
+
+127
+00:18:25.124 --> 00:18:26.214
+Incoming livestream: No?
+
+
+128
+00:18:30.094 --> 00:18:31.574
+Incoming livestream: Want to try your laptop?
+
+
+129
+00:18:36.864 --> 00:18:40.333
+Incoming livestream: Glenn, want to try your laptop? Last minute, last minute.
+
+
+130
+00:18:46.954 --> 00:18:48.244
+Incoming livestream: I don't have HDMI.
+
+
+131
+00:19:02.574 --> 00:19:03.254
+Incoming livestream: Alright.
+
+
+132
+00:19:05.524 --> 00:19:14.514
+Incoming livestream: I'll just say, folks, that these people added notes for me at 4am in the morning to prepare this, so please bear with us as they are preparing their demos.
+
+
+133
+00:19:15.904 --> 00:19:21.464
+Incoming livestream: Or you can point and laugh again, in good, unprompted style, as we are starting to develop our own kind of culture.
+
+
+134
+00:19:23.694 --> 00:19:25.304
+Incoming livestream: Are we there yet?
+
+
+135
+00:19:27.804 --> 00:19:29.044
+Incoming livestream: There we are.
+
+
+136
+00:19:36.054 --> 00:19:40.564
+Incoming livestream: So yeah, as… so as mentioned, was not prepared for this at all.
+
+
+137
+00:19:40.804 --> 00:19:43.544
+Incoming livestream: But it's fun to wake up to a surprise message for…
+
+
+138
+00:19:44.004 --> 00:19:46.733
+Incoming livestream: Oh, I'm Glenn Thorpe, with Gray Noise.
+
+
+139
+00:19:47.104 --> 00:19:52.613
+Incoming livestream: Yeah, so, woke up, opened Slack, saw a message from Gotti saying, hey, you wanna…
+
+
+140
+00:19:52.704 --> 00:19:55.783
+Incoming livestream: Jump on stage for a few minutes and show a thing that you made, so that's cool.
+
+
+141
+00:19:55.834 --> 00:20:12.964
+Incoming livestream: It's not really a great story, except for the side quest that it created. Sunday night, I was getting ready for the conference, and kind of like, they shared a G-Sheet, I'm OCD, I wanted, like, a personalized agenda, so went to Cloud Code, as we all do.
+
+
+142
+00:20:13.104 --> 00:20:19.043
+Incoming livestream: And Vibe Coded, what's a pretty cool interface, like your talks…
+
+
+143
+00:20:19.214 --> 00:20:26.254
+Incoming livestream: Right? You can take some notes, gives you a customized agenda, you can export it, share it, whatever.
+
+
+144
+00:20:26.864 --> 00:20:30.833
+Incoming livestream: So that's not really the fun part, though, because I think we can all do that here by now.
+
+
+145
+00:20:31.314 --> 00:20:36.483
+Incoming livestream: What was funny is I made it, I was really excited about it, I shared it with my boss.
+
+
+146
+00:20:36.884 --> 00:20:38.324
+Incoming livestream: And I was all proud.
+
+
+147
+00:20:38.614 --> 00:20:40.504
+Incoming livestream: And then I started looking at it.
+
+
+148
+00:20:40.624 --> 00:20:42.874
+Incoming livestream: after I had posted it online.
+
+
+149
+00:20:43.274 --> 00:20:55.103
+Incoming livestream: And the LLM had confused some of the talks, and so it caught my surprise when I saw that there was a talk with another, speaker here, and the very end of the talk said.
+
+
+150
+00:20:55.524 --> 00:21:01.014
+Incoming livestream: And we will display, or show how we integrated this into grid noise intelligence.
+
+
+151
+00:21:02.654 --> 00:21:04.243
+Incoming livestream: That was news.
+
+
+152
+00:21:04.444 --> 00:21:10.463
+Incoming livestream: And I was actually pretty interested with it, but I was like, I don't think that's right. So I went back to the actual Google Sheet. Obviously, it was wrong.
+
+
+153
+00:21:10.564 --> 00:21:30.173
+Incoming livestream: I was like, oh, man… So, I went through, got the, you know, just basically re-verified it, and shared it, and gave it more explicit instructions, as we've learned this week, to verify, validate, whatever, share. So then it corrected it, so if you look in the PR for this, it's pretty funny. Also, Wi-Fi is not…
+
+
+154
+00:21:31.094 --> 00:21:43.334
+Incoming livestream: Being super… BD… Anyway, so, in the end, 25% of the talk descriptions were correct. 75% were wrong.
+
+
+155
+00:21:43.514 --> 00:21:50.583
+Incoming livestream: So it's kind of a funny story for a vibe-coded AI, thing, but it worked out in the end, and
+
+
+156
+00:21:50.924 --> 00:22:03.183
+Incoming livestream: You'll see on our talk later, the irony will come when we talk about what we're presenting and how my focus of that project was on the validation skill. So, you know, a little humbling, but it's pretty cool.
+
+
+157
+00:22:32.164 --> 00:22:36.234
+Incoming livestream: Sorry, Wi-Fi's not… fast today.
+
+
+158
+00:22:38.274 --> 00:22:41.274
+Incoming livestream: Alright, so yesterday,
+
+
+159
+00:22:41.544 --> 00:22:47.924
+Incoming livestream: I was trying to find, kind of, all the comments on social media, from the conference.
+
+
+160
+00:22:48.194 --> 00:22:52.564
+Incoming livestream: And, which is not super easy to do across all the platforms.
+
+
+161
+00:22:53.024 --> 00:22:54.783
+Incoming livestream: Is this coming up yet?
+
+
+162
+00:22:56.084 --> 00:23:00.624
+Incoming livestream: There we go. And,
+
+
+163
+00:23:02.174 --> 00:23:08.224
+Incoming livestream: It will make this a little simpler. And, so…
+
+
+164
+00:23:08.614 --> 00:23:12.284
+Incoming livestream: because it was hard to find… why can't do I just scroll down?
+
+
+165
+00:23:12.394 --> 00:23:24.283
+Incoming livestream: I just vibe-coded up a little thing that scrolls all the comments from all the major social media networks, and you can actually go and give kudos to the presenters and add comments.
+
+
+166
+00:23:24.364 --> 00:23:39.103
+Incoming livestream: But the real, kind of, I guess, more fascinating thing from a security perspective is I looked up the actual amount of code that it created. This took, like, 8 minutes, and it was 6,800 lines of code that was created in 8 minutes to do this.
+
+
+167
+00:23:39.224 --> 00:23:58.163
+Incoming livestream: And, I think there was, something like 17 different dependencies, that were part of it. But because this is a security conference, I also thought, well, wow, what if… oh, by the way, this crawled the website and mimicked the exact website as unprompted. As you can see, it looks a lot like it.
+
+
+168
+00:23:58.164 --> 00:24:05.184
+Incoming livestream: But I thought, well, wouldn't it be fun to actually see how many people actually registered for next year's event?
+
+
+169
+00:24:05.324 --> 00:24:25.143
+Incoming livestream: So you actually can go on, and, add your password, your credit card, and your details for next year's, which is $7.99, not, $179, if you're interested. So you can think about how easy it is to do this across your favorite other site on the internet and make this happen.
+
+
+170
+00:24:25.144 --> 00:24:40.674
+Incoming livestream: So, that's the demo. It was made with Lovable, I'll put the prompt in the, in the chat notes, and the good thing about Lovable is at the very bottom right, you can actually, edit somebody else's Lovable, and 4 can create your own really easily if you want to do that. So, thank you.
+
+
+171
+00:25:13.804 --> 00:25:15.074
+Incoming livestream: There we go,
+
+
+172
+00:25:15.874 --> 00:25:32.884
+Incoming livestream: My name is Sagap, I'm Sustic. So I wanted to say, first of all, thank you to Gadi, and thank you to all of you for being such an incredible community. And, you know, I think we have to realize that we are all, you are all very special, because you have some insights which most of the people out there don't have yet.
+
+
+173
+00:25:32.934 --> 00:25:38.153
+Incoming livestream: And the question is just, how do we communicate this in a proper way? Because that's the only thing
+
+
+174
+00:25:38.644 --> 00:25:44.573
+Incoming livestream: On how we can make… make, you know, bring a positive world into,
+
+
+175
+00:25:44.764 --> 00:26:02.434
+Incoming livestream: Into the world out there. And the same, you know, as some of you tried out already, playing with a lot of offensive tools. I've did the same a couple of weeks ago, just built a small all-day lab, and literally, I've not touched, you know, father any tools for the last 8, 10 years.
+
+
+176
+00:26:02.434 --> 00:26:07.373
+Incoming livestream: I was able to find a lot of very interesting stuff, and some of this is already validated.
+
+
+177
+00:26:07.374 --> 00:26:15.434
+Incoming livestream: So my question was, how do we really build this as a, you know, as a communication platform? How can we transfer this,
+
+
+178
+00:26:15.524 --> 00:26:28.673
+Incoming livestream: this, this message on what's happening out there. And the first thing I did is just to go back and look back on what kind of research was happening in the past around vulnerability disclosure, around vulnerability exploitation, and so on.
+
+
+179
+00:26:28.674 --> 00:26:44.174
+Incoming livestream: And just looking back, obviously, at the foundational problem, cybersecurity being an economics problem, looking back at some of the research around patchift, for instance, right? So what's going to happen if machines are going to be able to reconstruct patches and build exploits automatically?
+
+
+180
+00:26:44.274 --> 00:26:47.463
+Incoming livestream: Within a couple of minutes, and not hours or days.
+
+
+181
+00:26:47.744 --> 00:26:58.714
+Incoming livestream: My question was, how do we visualize this? And how do we transport, as well, the call to action, on how we can, you know, do something against that going forward?
+
+
+182
+00:26:58.714 --> 00:27:10.363
+Incoming livestream: So this is a small project which was, vibe-coded pretty much over the weekend as well, including some, selection of call to actions on what we can do, and,
+
+
+183
+00:27:10.504 --> 00:27:13.253
+Incoming livestream: In our visualization of one single metric.
+
+
+184
+00:27:13.594 --> 00:27:16.994
+Incoming livestream: And the metric is, Time to exploitation.
+
+
+185
+00:27:17.754 --> 00:27:18.783
+Incoming livestream: You wanna see it?
+
+
+186
+00:27:20.294 --> 00:27:21.444
+Incoming livestream: All right.
+
+
+187
+00:27:21.654 --> 00:27:25.914
+Incoming livestream: So… There we go.
+
+
+188
+00:27:29.024 --> 00:27:30.634
+Incoming livestream: What's happening with Wi-Fi?
+
+
+189
+00:27:38.394 --> 00:27:40.533
+Incoming livestream: We're all talking about AI, but Wi-Fi doesn't work.
+
+
+190
+00:27:41.584 --> 00:27:45.053
+Incoming livestream: Alright, I can, I can talk through that, so…
+
+
+191
+00:27:45.984 --> 00:28:04.884
+Incoming livestream: what I did is I just have agents to go out and research all the different trusted data sources, like CESA, like some commercial data sources, vulnerability, check, NVD, collect all the information together, and try to understand how we can measure time to exploitation.
+
+
+192
+00:28:05.344 --> 00:28:07.913
+Incoming livestream: Safari was faster, oh my god.
+
+
+193
+00:28:08.034 --> 00:28:09.174
+Incoming livestream: Look at that.
+
+
+194
+00:28:11.214 --> 00:28:19.743
+Incoming livestream: And this is the result, what we've got from that. So just looking back at the data, in 2020, the time to exploitation was…
+
+
+195
+00:28:20.204 --> 00:28:21.784
+Incoming livestream: More than a year.
+
+
+196
+00:28:22.934 --> 00:28:26.164
+Incoming livestream: Just last year, we've crossed months.
+
+
+197
+00:28:26.394 --> 00:28:28.374
+Incoming livestream: And now it's just about a day.
+
+
+198
+00:28:29.054 --> 00:28:36.153
+Incoming livestream: So… How did it change our patching processes? How quickly are we patching today?
+
+
+199
+00:28:36.604 --> 00:28:55.193
+Incoming livestream: It's still not change, like, everybody who is working in a big company. There's still a lot of challenges around how you can patch. We're not going to change this in a foundational way. And now, just looking at the number of, looking at the number of zero days from this weaponized exploit, you see that more
+
+
+200
+00:28:55.444 --> 00:28:57.903
+Incoming livestream: More than half of them started to be…
+
+
+201
+00:28:58.164 --> 00:29:16.684
+Incoming livestream: already zero days, so they are either exploited before patches being released, or the same day. Now, what can happen, without creating too much foot, but looking at all the CEs out there, we see that the rate of the weaponized exploits is pretty constant, around 2%.
+
+
+202
+00:29:18.234 --> 00:29:36.353
+Incoming livestream: So, if finding exploit… building exploits, finding CVEs is going to be as cheap as we believe, this is going to be dramatically, dangerous for the world and for all of us. So, what, yeah, what I'd like to all of you to do is, if you're looking for one single slide.
+
+
+203
+00:29:36.354 --> 00:29:52.043
+Incoming livestream: to transfer this, to communicate this to your board, to your Caesars, this is what you can use. I'm very glad that a lot of people here are supporting this. We've got Phil, we've got Bruce Schneier, we've got Heather. If you want to leave a comment, please go on the website and leave a comment around this. Thank you very much.
+
+
+204
+00:29:59.614 --> 00:30:04.584
+Incoming livestream: All right. So, as everybody now, I hope, knows, because of
+
+
+205
+00:30:08.234 --> 00:30:10.123
+Incoming livestream: Does anybody understand computers?
+
+
+206
+00:30:15.464 --> 00:30:17.423
+Incoming livestream: I would turn it on and off again.
+
+
+207
+00:30:18.124 --> 00:30:19.194
+Incoming livestream: Okay.
+
+
+208
+00:30:19.674 --> 00:30:21.523
+Incoming livestream: Think we're connected? Do you have my feed?
+
+
+209
+00:30:21.674 --> 00:30:23.193
+Incoming livestream: I do not, it's not there.
+
+
+210
+00:30:23.504 --> 00:30:24.623
+Incoming livestream: I saw that one?
+
+
+211
+00:30:25.604 --> 00:30:27.284
+Incoming livestream: Somebody understands computers.
+
+
+212
+00:30:31.154 --> 00:30:36.833
+Incoming livestream: So, as a quick, update, we're gonna be about 30 to 40 minutes late, and catch up after lunch.
+
+
+213
+00:30:37.554 --> 00:30:41.063
+Incoming livestream: So the reason for that, once the slides come up.
+
+
+214
+00:30:41.294 --> 00:30:46.794
+Incoming livestream: is the committee accepted a presentation from Zenity.
+
+
+215
+00:30:48.044 --> 00:30:52.934
+Incoming livestream: And Zenithi, due to the situation of the airspace in Israel being closed, could not be here.
+
+
+216
+00:30:53.704 --> 00:30:58.284
+Incoming livestream: And… I decided that is not cool.
+
+
+217
+00:30:58.984 --> 00:31:05.044
+Incoming livestream: And also, I kind of felt that they made a major release today.
+
+
+218
+00:31:05.334 --> 00:31:10.713
+Incoming livestream: And I want this conference to not be buried behind in history of what happened 2 weeks ago or a month ago.
+
+
+219
+00:31:11.094 --> 00:31:13.494
+Incoming livestream: So I talked to the CTO of Zenity.
+
+
+220
+00:31:13.854 --> 00:31:28.823
+Incoming livestream: Michal Bulguri, said, would you trust me, a competitor, we're not directly competing, but he's my competitor in the AI security space, would you trust me to go up with some of your slides and just presented PowerPoint karaoke without ever seeing them before?
+
+
+221
+00:31:29.244 --> 00:31:39.444
+Incoming livestream: And… I have never seen these slides before, and I'm gonna try to rush this so we're not way, way behind, and Aaron won't kill me too badly.
+
+
+222
+00:31:39.874 --> 00:31:59.343
+Incoming livestream: But I hope you guys will forgive me for whatever I do wrong here, and what I don't understand. And also, please, Aaron has a microphone, and when I don't understand a slide, or you understand it differently, just walk… say, I understand this differently. Let's present this together. Now, think about this for a minute, because I know you're all very shy people.
+
+
+223
+00:31:59.354 --> 00:32:01.394
+Incoming livestream: And Americans, therefore, polite.
+
+
+224
+00:32:01.594 --> 00:32:05.094
+Incoming livestream: So if somebody would just raise their hand… where's Don Guido?
+
+
+225
+00:32:05.714 --> 00:32:17.833
+Incoming livestream: Okay, so you're the first one to raise your hand when I get something wrong on the third slide, so everybody else feels comfortable stepping in. Let's run through this. Please fix, from Zenity Labs, my competition and awesome people.
+
+
+226
+00:32:18.764 --> 00:32:22.714
+Incoming livestream: Agentix browsers… Agentic browsers are everywhere!
+
+
+227
+00:32:23.084 --> 00:32:29.984
+Incoming livestream: No, but seriously, agentic browsers are coming in, they are the next agent to perhaps explode after coding agents now everybody's using.
+
+
+228
+00:32:30.104 --> 00:32:34.303
+Incoming livestream: And they bring with them also quite significant risks.
+
+
+229
+00:32:35.034 --> 00:32:38.324
+Incoming livestream: And Comet is the one that's anything in this particular case, looked at.
+
+
+230
+00:32:38.734 --> 00:32:53.294
+Incoming livestream: And they are essentially saying, look, we're not saying this is majorly innovative, but prompt injections are evolving all the time, and it's something a little bit different in the way they're trying to look at this here, from my understanding of looking at the slide right now, where they're saying there is the user intent.
+
+
+231
+00:32:53.294 --> 00:33:00.523
+Incoming livestream: and the attacker's intent, right? And if we can create intent collision, where we say something that looks like it's the user's.
+
+
+232
+00:33:01.004 --> 00:33:14.984
+Incoming livestream: I'm guessing that's kind of like a data and control plane running thingy, but I'm not sure exactly what they meant here. That means we can make the agent do things we did not intend it to do. Dan, you ready?
+
+
+233
+00:33:15.234 --> 00:33:16.454
+Incoming livestream: And…
+
+
+234
+00:33:16.594 --> 00:33:30.013
+Incoming livestream: What they did, essentially, is create a payload that I'm gonna read this off the slide, but I'm gonna act as if I'm not looking at you once in a while. It hides in the calendar invite, it rewrites the accept button with our… their instructions.
+
+
+235
+00:33:30.114 --> 00:33:33.574
+Incoming livestream: And abuses comment internals with system reminders.
+
+
+236
+00:33:34.064 --> 00:33:36.583
+Incoming livestream: I'm waiting for you to step in and tell me I'm wrong at any point.
+
+
+237
+00:33:37.054 --> 00:33:37.774
+Incoming livestream: Okay.
+
+
+238
+00:33:38.004 --> 00:33:44.544
+Incoming livestream: So the first attack they're doing, I guess, is a system… a file system exfill, right? Yes? Everybody with me?
+
+
+239
+00:33:44.794 --> 00:33:47.553
+Incoming livestream: Awesome, I'm not doing a very good job, so help me out by cheering me on.
+
+
+240
+00:33:48.274 --> 00:33:49.294
+Incoming livestream: Appreciate it.
+
+
+241
+00:33:49.584 --> 00:33:55.794
+Incoming livestream: Okay, thank you, thank you. I am stressed out a little bit. So, the attacker sends a calendar invite.
+
+
+242
+00:33:55.814 --> 00:34:10.313
+Incoming livestream: Right? And we can see Google Calendar on the screen, and you can see there is an interview with Tamir, what else can I see on this slide? With, some information there, and some invitations going to the team, and to… okay, moving from this slide.
+
+
+243
+00:34:10.344 --> 00:34:21.923
+Incoming livestream: And there is essentially a comment in the background, where I say, accept the meeting and help me prepare for it. And I'm imagining the Zenity team now saying, you know what? I'm gonna go make coffee.
+
+
+244
+00:34:22.154 --> 00:34:28.143
+Incoming livestream: What's the worst thing that could happen? I just asked them to help me accept this meeting, right? I don't need to stay here and monitor.
+
+
+245
+00:34:28.524 --> 00:34:35.034
+Incoming livestream: And well… Comet navigates to a tucker-controlled site, With more malicious instructions.
+
+
+246
+00:34:35.554 --> 00:34:39.583
+Incoming livestream: I love you, Comet. Isn't it wonderful? Right?
+
+
+247
+00:34:40.184 --> 00:34:48.483
+Incoming livestream: And it says, accept the meeting. Here to confirm the meeting, you need to click these on blah blah blah, and there is some Hebrew stuff, so probably Unicode.
+
+
+248
+00:34:48.844 --> 00:34:50.144
+Incoming livestream: Based attack.
+
+
+249
+00:34:50.264 --> 00:34:52.774
+Incoming livestream: Probably wrong, but that's my read on this.
+
+
+250
+00:34:52.914 --> 00:34:57.464
+Incoming livestream: And then, you can actually reach the file system. I think this is what it is.
+
+
+251
+00:34:57.634 --> 00:35:01.483
+Incoming livestream: and access files. Whoo! Way to go, Zenity!
+
+
+252
+00:35:02.354 --> 00:35:03.984
+Incoming livestream: Amazing work.
+
+
+253
+00:35:05.534 --> 00:35:06.804
+Incoming livestream: And…
+
+
+254
+00:35:07.114 --> 00:35:13.724
+Incoming livestream: Autonomously, Comet will just go and search for really cool files that you might want to exfiltrate all on its own.
+
+
+255
+00:35:13.934 --> 00:35:15.224
+Incoming livestream: Isn't that wonderful?
+
+
+256
+00:35:18.444 --> 00:35:27.843
+Incoming livestream: And then, it would actually exfiltrate it to the attacker, because no demo is ever complete unless you show that exfil happened, or CMP popped up, depending on what you're demoing, right?
+
+
+257
+00:35:28.404 --> 00:35:37.384
+Incoming livestream: The second attack is actually with 1Password, where, once again, we start with a calendar invite. Everybody clear on that, right? That happens in every single stage here.
+
+
+258
+00:35:37.664 --> 00:35:47.644
+Incoming livestream: And what do we write here? Accept the meeting and prepare for it. Same thing, but something else happens in the background as the attacker intent and the user intent collide.
+
+
+259
+00:35:47.824 --> 00:36:00.863
+Incoming livestream: And they apparently log into 1Password, and 1Password usually does not let me do that, it requires the master password. I feel a little bit cheated that you can just log in. I mean, what's wrong here? Is there preferential treatment? And…
+
+
+260
+00:36:01.464 --> 00:36:03.443
+Incoming livestream: They are catching the request.
+
+
+261
+00:36:04.234 --> 00:36:07.553
+Incoming livestream: And boom, they're managing the account and doing things to it.
+
+
+262
+00:36:08.294 --> 00:36:18.334
+Incoming livestream: Oh, this is pretty cool. So, I don't think it's necessarily an attack, but the 1Password autocomplete is apparently turned on, and once that happens, they are just in and they can do whatever they want.
+
+
+263
+00:36:18.804 --> 00:36:25.184
+Incoming livestream: And they have the emergency kit here, and a lot of other things they probably would have said really technical, smart things about that I'm just blah blahing on.
+
+
+264
+00:36:25.374 --> 00:36:29.954
+Incoming livestream: And the conclusions. Agentic browsers are untrusted entities.
+
+
+265
+00:36:30.084 --> 00:36:31.643
+Incoming livestream: I think we can agree to that.
+
+
+266
+00:36:32.044 --> 00:36:32.904
+Incoming livestream: Awesome.
+
+
+267
+00:36:33.384 --> 00:36:42.813
+Incoming livestream: Dan, I'm preparing you coming up here to say two words on this in a second, before we call you up. So, step up already, because we've lost a lot of time. Just come here. Stop changing your presentation last minute.
+
+
+268
+00:36:43.374 --> 00:36:45.013
+Incoming livestream: Okay, logged in.
+
+
+269
+00:36:45.134 --> 00:36:47.984
+Incoming livestream: The browser is acting under your identity.
+
+
+270
+00:36:48.294 --> 00:36:56.213
+Incoming livestream: Right? Okay. And third is the browser security model. Think again. We need to do better as an industry.
+
+
+271
+00:36:56.684 --> 00:36:58.104
+Incoming livestream: And with that.
+
+
+272
+00:36:58.374 --> 00:37:09.063
+Incoming livestream: This is Xenity Labs, this is their link, you can look at what they do. These, mother-somethings compete with me, although not exactly the same things, so don't like them too much.
+
+
+273
+00:37:09.444 --> 00:37:20.413
+Incoming livestream: But they're truly awesome people, they constantly release good research, and they were the first ones to actually do a zero-click attack in this space, and it was a real one, not one that marketing claimed was zero-click.
+
+
+274
+00:37:20.774 --> 00:37:27.844
+Incoming livestream: So, everybody, I apologize to them for my PowerPoint karaoke of this presentation, but let's give Zelenity a hand.
+
+
+275
+00:37:34.914 --> 00:37:40.244
+Incoming livestream: And Dan decided to not actually comment on this presentation, but just do his, which I think is fine.
+
+
+276
+00:37:43.884 --> 00:37:48.973
+Incoming livestream: But I'll actually take the opportunity, if you don't mind, come up here, come up here. I want to embarrass you.
+
+
+277
+00:37:49.184 --> 00:37:58.713
+Incoming livestream: What's up? I hounded Dan for quite some time. How long… how many times did that hound you? Yeah, about 10. 10 times, on signal.
+
+
+278
+00:37:59.004 --> 00:38:04.883
+Incoming livestream: and on email, and in public groups. Dan, are you coming to do a presentation as unprompted?
+
+
+279
+00:38:04.984 --> 00:38:15.773
+Incoming livestream: And he was like, I don't know, I'm not sure I have enough to say. But the thing is, I actually prompted him, while we are very sensitive to this, to come and do a vendor pitch.
+
+
+280
+00:38:16.224 --> 00:38:21.003
+Incoming livestream: What? I know you're not doing the vendor pitch, it's fine. But I hounded him, come and talk about your company.
+
+
+281
+00:38:21.154 --> 00:38:28.253
+Incoming livestream: And everybody was, what are you doing, Gotti? And I went to the committee, and I said, I want to do this, because what Don has done
+
+
+282
+00:38:28.824 --> 00:38:31.343
+Incoming livestream: I did not mean that pun, but it works.
+
+
+283
+00:38:31.774 --> 00:38:37.364
+Incoming livestream: What Don has done is essentially create A company.
+
+
+284
+00:38:37.454 --> 00:38:49.333
+Incoming livestream: in this space, that is not just so-called AI native, but is so ahead of its time, they literally emptied the Apple shops, Apple stores down, because they bought laptops that will be strong enough for the people stealing your content.
+
+
+285
+00:38:49.404 --> 00:39:14.354
+Incoming livestream: And yet, everybody started using, I think, cloud code, right, and skills, and they keep releasing their stuff in open source, and they invested millions in getting to the DARPA AICC competition, and they have just made themselves the leaders, in many cases, of AI security, just because he took a bet that the world is gonna change, he did not want to be left behind, he wanted to actually help make themselves relevant in the future, because many of us will not be
+
+
+286
+00:39:14.874 --> 00:39:17.323
+Incoming livestream: And that transformation was so critical for me.
+
+
+287
+00:39:17.324 --> 00:39:28.623
+Incoming livestream: I asked him, please come do a vendor pitch. Tell us your journey, your transformation of how you see the world working right now, because there is nobody else out there right now that I know that can do this both technically.
+
+
+288
+00:39:29.064 --> 00:39:34.873
+Incoming livestream: with the right ethos, and also be careful about not pitching us too hard. So with that, Dan, please.
+
+
+289
+00:39:35.054 --> 00:39:36.653
+Incoming livestream: Thank you. Thank you, Gotti.
+
+
+290
+00:39:40.294 --> 00:39:47.564
+Incoming livestream: Let's get this over here… I can see that. Alright, great.
+
+
+291
+00:39:48.864 --> 00:39:50.184
+Incoming livestream: So…
+
+
+292
+00:39:50.734 --> 00:40:01.894
+Incoming livestream: Again, thank you for the introduction. I am Dan Guido, I'm the CEO and co-founder of TrailerBits, and I'm here to talk about how we made Trail of Bits AI native so far. It's a journey, we're not there yet.
+
+
+293
+00:40:01.984 --> 00:40:12.274
+Incoming livestream: So, just to start out, this article came out about 2 weeks ago. There were thousands of CEOs surveyed, and the result was that AI had no measurable impact on employment or productivity for them.
+
+
+294
+00:40:12.574 --> 00:40:16.434
+Incoming livestream: Economists are starting to call this the solo paradox, which is a…
+
+
+295
+00:40:16.504 --> 00:40:33.374
+Incoming livestream: phrase that was coined in the 80s, saying… this economist called, Robert Solo, that said, you can see the computer age everywhere, but in the productivity statistics. So the same thing is sort of happening with AI right now, that a lot of people think they're using it, and they find out that it doesn't work, and the projects get dropped.
+
+
+296
+00:40:33.574 --> 00:40:38.083
+Incoming livestream: So obviously, I don't think AI doesn't work. I just think most companies are doing it wrong.
+
+
+297
+00:40:38.194 --> 00:40:46.994
+Incoming livestream: They give people tools without changing the system. So everyone gets a chat GPT license, and then leadership waits for the productivity numbers to move, and they don't.
+
+
+298
+00:40:47.374 --> 00:40:59.104
+Incoming livestream: So, that's the gap between AI-assisted and AI-native. One is a tool, the other is an operating system. And the rest of this talk is about how I'm building the operating system at Trail of Bits.
+
+
+299
+00:41:00.584 --> 00:41:02.404
+Incoming livestream: So before I go on.
+
+
+300
+00:41:02.984 --> 00:41:13.013
+Incoming livestream: I want to define what we're even aiming for. So, AI native gets thrown around a lot, it means a lot of different things to different people, and the way I think about it is that there are basically three levels. Most companies are at level 1.
+
+
+301
+00:41:13.254 --> 00:41:24.103
+Incoming livestream: AI-assisted is where everyone starts. You give people ChatGPT, they draft emails, generate boilerplate, you know, the organization doesn't change, the workflows don't change, you just do the same things a little faster.
+
+
+302
+00:41:24.194 --> 00:41:36.164
+Incoming livestream: Ai augmented is where things start to get interesting. That's where you start slowly, incrementally redesigning workflows. You're not just using AI as a tool, but you're putting agents in the loop. You're changing how work actually flows.
+
+
+303
+00:41:36.204 --> 00:41:49.614
+Incoming livestream: And maybe the AI does the first pass on your code review, and then the human does the second. So the process is slightly different. And then finally, AI Native is where you get to a structural shift. This is where you've designed the organization from the ground up.
+
+
+304
+00:41:49.614 --> 00:42:02.863
+Incoming livestream: Assuming AI is a co-participant in the work. It's not a tool, it's a teammate. And that's your knowledge management, your delivery model, your expertise, all of them have to be designed to be consumed and amplified by agents.
+
+
+305
+00:42:02.924 --> 00:42:07.733
+Incoming livestream: So at Trail of Bits, what this means is that our security expertise should compound
+
+
+306
+00:42:07.794 --> 00:42:25.074
+Incoming livestream: with code. Every engagement we do, all the skills, all the workflows we build make the next engagement faster. Every engineer operates with an arsenal of specialized agents built from our 14 years of audit knowledge. That's not we use AI, that's AI is on the team.
+
+
+307
+00:42:26.974 --> 00:42:41.473
+Incoming livestream: So, candidly, I had a lot of trouble getting here. When I first launched this initiative inside Trail of Bits, there was an incredible amount of pushback. Like you would not believe. I think that I had about 5% of the company with me, about 95% against.
+
+
+308
+00:42:41.634 --> 00:42:52.193
+Incoming livestream: At least 50% were passively resisting. There were probably a good quarter that were actively resisting. I'm sure people thought about quitting. Just totally, like, cars on the table here.
+
+
+309
+00:42:52.224 --> 00:43:01.594
+Incoming livestream: And this isn't really an uncommon issue. Whenever new technology comes around, people resist adopting it, and it can be the most senior, most expert people that resist the most.
+
+
+310
+00:43:01.594 --> 00:43:12.374
+Incoming livestream: So I had to work through a couple of common psychological barriers that are well documented in research, and build systems that worked within those psychological conditions to get to success.
+
+
+311
+00:43:12.564 --> 00:43:17.164
+Incoming livestream: The core insight here is the problem's not the technology, it's the people.
+
+
+312
+00:43:17.554 --> 00:43:22.234
+Incoming livestream: So, these are four, psychological barriers.
+
+
+313
+00:43:22.464 --> 00:43:36.113
+Incoming livestream: that, that are, I think, key among all the other ones in getting people to adopt new technology inside of a company like Trailabits. First was self-enhancing bias. This is the tendency to perceive oneself in an overly favorable manner.
+
+
+314
+00:43:36.114 --> 00:43:44.303
+Incoming livestream: So you obviously want to maintain your own self-esteem, and this bias means that you take credit for your success, and you blame external factors on failures.
+
+
+315
+00:43:44.414 --> 00:43:57.284
+Incoming livestream: Now there are some funny interactions with this, like, in some research by Paul Meehl and Robin Dawes, you can take the variables an expert says they use and build a crude, linear model, and the model outperforms the expert.
+
+
+316
+00:43:57.634 --> 00:44:08.614
+Incoming livestream: Almost always. And it's not because the model is smarter, it's because it's consistent. Humans don't operate the same every day. Some of you are very hungover right now, and I'm sure you could agree with me on this.
+
+
+317
+00:44:09.114 --> 00:44:16.644
+Incoming livestream: And this gets worse with seniority. The more that you are an expert, the more that you believe that your intuition is what got you there.
+
+
+318
+00:44:16.844 --> 00:44:27.783
+Incoming livestream: There's also an identity threat. This really attacks the core of who we are, that, like, I spent 20 years doing this, a machine can't… can't do 20 years of experience and, like, get to be me.
+
+
+319
+00:44:28.034 --> 00:44:44.443
+Incoming livestream: And this shows up in things like, there was… Stanford ran a cooking study. They used this device, some cooking system, and they advertised it two different ways. One way is it does the cooking for you. The other way is it helps you cook better. And, it's the same device.
+
+
+320
+00:44:44.584 --> 00:44:50.503
+Incoming livestream: But for people who identify as cooks, they reject the device if it's advertised the first way.
+
+
+321
+00:44:50.644 --> 00:44:52.883
+Incoming livestream: There's another dimension to this as well.
+
+
+322
+00:44:52.914 --> 00:45:12.173
+Incoming livestream: based on the symbolism of what the activity represents. So, for instance, if you had a tattoo robot, people do not want tattoo… do not want robots to give them tattoos, because it's symbolic. There's a human craft to it. But they're fine with a tattoo removing one, because that's an instrumental process, there's no symbolism there.
+
+
+323
+00:45:12.174 --> 00:45:15.814
+Incoming livestream: So for us, security auditing is deeply symbolic work.
+
+
+324
+00:45:15.964 --> 00:45:22.694
+Incoming livestream: And it's important to frame the AI as making you a more dangerous auditor, not something that does the audit.
+
+
+325
+00:45:23.614 --> 00:45:40.794
+Incoming livestream: There's also challenges in opacity. So in this case, the subjective understanding of human judgment is high, and AI judgment is low, but objectively, you actually understand neither. Like when a doctor tries to communicate to you that you might have some medical condition or cancer or something.
+
+
+326
+00:45:41.124 --> 00:45:46.554
+Incoming livestream: You might think you understand the words that are coming out of their mouth, but you absolutely do not.
+
+
+327
+00:45:47.014 --> 00:46:01.844
+Incoming livestream: But the level of trust you have with the doctor is way higher than if a machine just prints out a receipt and says, here's what you got. So the way you typically fix this is, you could modify the same AI to show you, well, why is this not a benign…
+
+
+328
+00:46:01.864 --> 00:46:26.843
+Incoming livestream: skin condition. And if you give a visual comparison to a benign mole, then trust starts to equalize. So we had to think about how to build this into our process as well. And then finally, humans have an intolerance for imperfection. So again, well-known academic study, participants watch an algorithm outperform a human forecaster, the algorithm is better. But the second that the algorithm makes a single error, humans switch back
+
+
+329
+00:46:26.844 --> 00:46:28.194
+Incoming livestream: Back to preferring the human.
+
+
+330
+00:46:28.724 --> 00:46:37.114
+Incoming livestream: The fix, in this case, is generally to let people modify the algorithm. If they have the perception of control, then they start to trust the process again.
+
+
+331
+00:46:38.064 --> 00:46:39.854
+Incoming livestream: So what did we do?
+
+
+332
+00:46:40.484 --> 00:46:59.213
+Incoming livestream: So for the self-enhancing bias, we built a maturity matrix. This was controversial internally, nobody likes being told they're at level 1, but that's the point. You can't argue with something that you're… you can't argue that you're good enough when there's a visible ladder, and it also makes the conversation concrete instead of, I don't think AI is useful.
+
+
+333
+00:46:59.604 --> 00:47:07.543
+Incoming livestream: It also creates social proof. When you see your peers escalating up the ladder, the passive 50% of the company starts to move with them.
+
+
+334
+00:47:07.754 --> 00:47:10.333
+Incoming livestream: The identity threat was extremely difficult.
+
+
+335
+00:47:10.694 --> 00:47:27.344
+Incoming livestream: You had to get people to accept skill-allowing automations and reject skill-replacing automation. Same tool, different framing. So we never really asked anyone… well, not never really… we didn't ever ask anyone to stop being a security expert, but we gave them a different way to express that identity.
+
+
+336
+00:47:27.344 --> 00:47:39.153
+Incoming livestream: So the skills repos that I hope you all are familiar with are the clearest example of that. When we have a senior consultant on the team write a constant time analysis skill.
+
+
+337
+00:47:39.154 --> 00:47:50.653
+Incoming livestream: They're not being replaced, they're becoming permanent inside the company. And that means their expertise is encoded and reusable by the whole team. That's an identity upgrade, not a threat.
+
+
+338
+00:47:51.024 --> 00:48:05.134
+Incoming livestream: So, the maturity matrix reinforces this. Level 3 isn't who uses AI the most, it's who invents new ways and builds new tools. So the identity shifts from, I don't need AI, to, I'm the one who makes AI dangerous.
+
+
+339
+00:48:05.544 --> 00:48:12.883
+Incoming livestream: We also did hackathons instead of mandates. I never forced anyone to adopt these tools, but we created a space where people could experiment on their own terms.
+
+
+340
+00:48:14.194 --> 00:48:15.973
+Incoming livestream: I'm not doing that. There we go.
+
+
+341
+00:48:17.824 --> 00:48:24.123
+Incoming livestream: For the intolerance for imperfection, everyone… if somebody's first experience with AI is bad, you've lost them for months.
+
+
+342
+00:48:24.174 --> 00:48:40.363
+Incoming livestream: So, one error, and people just abandoned the system. So we invested a lot in ways to reduce the ways that AI can fail, embarrassingly. We curated a marketplace so that people weren't getting random plugins. We created sandboxing tools so clawed Code didn't accidentally delete your work.
+
+
+343
+00:48:40.414 --> 00:48:50.754
+Incoming livestream: We put guardrails and foot gun reduction systems in place so that there were a lot less of, like, you know, AI did something stupid stories circulating in Slack.
+
+
+344
+00:48:51.424 --> 00:49:04.103
+Incoming livestream: For opacity, we clearly articulated what tools were allowed and which ones were not, and under what conditions. We described those conditions and why we decided to, adopt those risk levels.
+
+
+345
+00:49:04.294 --> 00:49:14.714
+Incoming livestream: And then we made adoption fast and visible. So this really underpins everything else. If the setup takes an hour, and the first result is mediocre, then you've confirmed everyone's priors.
+
+
+346
+00:49:15.154 --> 00:49:24.544
+Incoming livestream: So we have copy-pasteable configurations, one-command setup, we have a standardized toolchain, and the first experience is fast and good. And then I think, finally.
+
+
+347
+00:49:25.024 --> 00:49:41.784
+Incoming livestream: I matter to this more than most people think. The passive 50% of the company is gonna watch what leadership actually does, not what it says. So, if I'm using these tools visibly every single day, it signals that it's not a fad. We're actually all in.
+
+
+348
+00:49:42.794 --> 00:49:49.584
+Incoming livestream: So that's the problem and the approach. Here's the actual system we built. So, five parts, each one addresses barriers we just talked about.
+
+
+349
+00:49:49.654 --> 00:49:58.644
+Incoming livestream: I'm gonna walk through each of these in detail with screenshots and examples, but this is the overview. You could think of it like a checklist, but you need all five for it to compound.
+
+
+350
+00:49:58.644 --> 00:50:17.344
+Incoming livestream: And, importantly, this isn't, like, some strategy deck that, like, I'm presenting here. This is everything that we built ourselves, and most of it has been open-sourced so that all of you can use it right now. This is what I use for a 140-person company doing real client work. So let's go through each one.
+
+
+351
+00:50:18.454 --> 00:50:29.813
+Incoming livestream: First one, super boring. We had to standardize. We got everybody on Clawed code, and we treat it like any other enterprise tool. We have supported configs, no good defaults, and a clear path to, this is how we do it here.
+
+
+352
+00:50:29.814 --> 00:50:38.763
+Incoming livestream: If you skip this step, you can't build anything else, because you end up with 40 different workflows and zero leverage on it. So, for better or for worse, we settled on Clawed code.
+
+
+353
+00:50:39.414 --> 00:50:41.824
+Incoming livestream: I think it was for better.
+
+
+354
+00:50:42.114 --> 00:50:54.014
+Incoming livestream: Next thing, we wrote an AI handbook. And this wasn't to teach people how to prompt, but it was to remove ambiguity. What tools are approved and what isn't, especially for sensitive data, where we have a lot of that.
+
+
+355
+00:50:54.104 --> 00:51:02.574
+Incoming livestream: So we explicitly call things out, like where a tool can't be used on client code, where meeting recorders are disallowed depending on engagement type.
+
+
+356
+00:51:02.574 --> 00:51:26.204
+Incoming livestream: Where we want people to use a specific alternative, and that stops the endless Slack debates. It gives project managers and engineers a shared answer, and it makes client conversations consistent. When we have highly sensitive clients ask us questions about, hey, what are you using on the code that I've given you? I can give them a clear answer that everybody knows. So once you have a policy, you can push harder on adoption.
+
+
+357
+00:51:27.454 --> 00:51:31.474
+Incoming livestream: Then, I will… I will post this on Twitter, because no one can read it.
+
+
+358
+00:51:31.594 --> 00:51:43.464
+Incoming livestream: But we built an AI maturity matrix. This makes AI a first-class professional capability. It's just the same as you can use Git, or you can write tests, or you can audit C.
+
+
+359
+00:51:43.474 --> 00:51:51.653
+Incoming livestream: It's not a vibe, it's a ladder. So there are clear levels, there are expectations for getting one… for, escalating.
+
+
+360
+00:51:51.664 --> 00:52:01.903
+Incoming livestream: And there are consequences for staying stuck. It starts at level 0, and if you're stuck at level zero, and you're not engaged in this process, then there may be…
+
+
+361
+00:52:02.044 --> 00:52:04.274
+Incoming livestream: Transition out of the company.
+
+
+362
+00:52:04.754 --> 00:52:23.563
+Incoming livestream: And this is how you avoid two different failure modes. You don't want leadership to, like, wish adoption into existence, and you don't want the organization splitting into AI people versus everybody else. This is a whole company need. Everybody needs to be on board. So this turns it into a normal part of performance, growth, resource allocation.
+
+
+363
+00:52:23.644 --> 00:52:25.493
+Incoming livestream: And, and bonuses.
+
+
+364
+00:52:27.814 --> 00:52:33.034
+Incoming livestream: Now the fun part. So, hackathons. Hackathons became a management system for us.
+
+
+365
+00:52:33.174 --> 00:52:45.664
+Incoming livestream: We run short, focused sprints, 2-3 days, with a specific objective, one objective, and that's how we keep pace when the ecosystem changes every single week. So here's one of the kickoffs for one of them,
+
+
+366
+00:52:45.754 --> 00:52:54.014
+Incoming livestream: We did this one, or actually, well, these are both… these are the last two, I think. Which one? I think the one on the right.
+
+
+367
+00:52:54.344 --> 00:53:13.474
+Incoming livestream: is, our autonomy-focused one. The most important thing is that we put a constraint on the hackathon. You had to run clawed code and bypass permissions mode. This was to break the barrier on people's hesitance to giving full control over the tools and build systems that allow it to work under those constraints.
+
+
+368
+00:53:13.574 --> 00:53:21.864
+Incoming livestream: So that was intentional. It forces everyone to learn how to use sandboxing, guardrails, and how to structure their work so that the agents can succeed on their own.
+
+
+369
+00:53:23.154 --> 00:53:30.433
+Incoming livestream: Other design choices that we made, we focus on public repositories so that we can move fast and show real outcomes.
+
+
+370
+00:53:31.084 --> 00:53:41.223
+Incoming livestream: We measured success on activity. I wanted people to put in the reps. So, we're talking about issues fixed and filed, PRs reviewed and merged, branches created and deleted.
+
+
+371
+00:53:41.354 --> 00:53:48.264
+Incoming livestream: We're not so worried about, like, the meaning behind all that code. I just want activities that they put in the reps.
+
+
+372
+00:53:48.584 --> 00:53:52.474
+Incoming livestream: And then we had people work in pairs. Every change gets reviewed by a buddy.
+
+
+373
+00:53:52.844 --> 00:54:04.704
+Incoming livestream: So even with the move fast, sort of sprint-style work, we had some quality control built in. So the hackathons create motion, but the motion doesn't compound unless you capture it.
+
+
+374
+00:54:05.634 --> 00:54:10.133
+Incoming livestream: And that's where we started collecting these artifacts as skills.
+
+
+375
+00:54:10.544 --> 00:54:24.023
+Incoming livestream: So a skill, most of you know, is a reusable structured workflow, usually with examples, constraints, and a way to verify the output. So we maintain 3 separate skills repos, two of which you all have access to.
+
+
+376
+00:54:24.024 --> 00:54:32.774
+Incoming livestream: We have an internal one that has a lot of company-specific workflows and a lot of our most sensitive vulnerability research-related skills, but we also have an external one.
+
+
+377
+00:54:32.774 --> 00:54:38.843
+Incoming livestream: So that the broader community can validate and improve on the work that we're doing.
+
+
+378
+00:54:38.854 --> 00:54:43.784
+Incoming livestream: The third one is we have a curated marketplace, which I think I'm talking about next, yeah?
+
+
+379
+00:54:44.064 --> 00:55:02.874
+Incoming livestream: So for a firm like ours, I appreciate the external validation. It keeps us honest, and it forces us to write things that other people can actually use. That's a core value of Trail of Bits. I don't want to just release a black hat talk that gets me a wired article or whatever and disappear the next day. We measure success based on
+
+
+380
+00:55:03.124 --> 00:55:09.573
+Incoming livestream: downloads of a specific tool, or stars of a specific tool. I want continued usage,
+
+
+381
+00:55:09.764 --> 00:55:11.534
+Incoming livestream: And, and enhancement.
+
+
+382
+00:55:13.054 --> 00:55:27.044
+Incoming livestream: So then, we have another problem. You know, you tell people to go use skills and plugins, and they go use skills and plugins, and they get a whole bunch of random stuff that's, like, AI slop, filled with emojis, and, you know, steals your cryptocurrency.
+
+
+383
+00:55:27.274 --> 00:55:47.093
+Incoming livestream: So we created a curated marketplace, and this is just standard, you know, enterprise stuff, right? We made a known good place for third-party skills. You want a third-party skill? There's a command built into the curated marketplace that goes out and grabs it from somewhere else, filters it, and then puts it into ours. So if you want adoption, you need a safe supply chain.
+
+
+384
+00:55:48.094 --> 00:55:49.683
+Incoming livestream: Basic enterprise thinking.
+
+
+385
+00:55:51.054 --> 00:56:09.594
+Incoming livestream: Then we made the defaults dead simple. So after we went through a couple of rounds of this, we started to get to, really, like, known-good, Trail-A-Bits-style Cloud Code installation. So we publish a repository that has our recommended Cloud Code configuration. I want to eliminate tribal knowledge.
+
+
+386
+00:56:09.594 --> 00:56:24.084
+Incoming livestream: We want to have specifics around, this is how we do Claude code at Trail of Bits. So we put known good settings, a known good claud.md, and anything else that we want to standardize for how people use it. We also included some usage instructions there.
+
+
+387
+00:56:24.294 --> 00:56:38.033
+Incoming livestream: Now, this is freely available, but there is a whole separate section that describes how to use it for bug hunting that we're keeping internal, so if you're wondering where that part is, that's why it's missing. So it's very developer-focused.
+
+
+388
+00:56:39.764 --> 00:56:44.324
+Incoming livestream: Then the real constraint, obviously. The more control that you give to these agents.
+
+
+389
+00:56:44.574 --> 00:56:53.913
+Incoming livestream: You're gonna want a sandbox. So we give people choices. We don't just tell people to do one thing, or enforce the Claude built-in sandbox, which is quite good.
+
+
+390
+00:56:53.944 --> 00:57:07.623
+Incoming livestream: But we give people choices, and we invested in building some of our own. We built a dev container option. We made, another one that, automatically interacts with DigitalOcean to create single-use virtual machines in the cloud.
+
+
+391
+00:57:07.684 --> 00:57:17.654
+Incoming livestream: And then we documented the native macOS sandboxing option. So the point wasn't that everybody uses the same sandbox, the point is that everyone has a safe sandbox to use.
+
+
+392
+00:57:17.654 --> 00:57:29.203
+Incoming livestream: You know, we have a variety of different things going under one roof at Trail of Bits. We have engineering engagements, research engagements, audits, we have non-technical staff, operations staff, and they all need different solutions. I can't mandate one.
+
+
+393
+00:57:30.994 --> 00:57:41.334
+Incoming livestream: Then, as you give people more autonomy, these agents start to go haywire in different ways. They start to pull in third-party dependencies that have security issues.
+
+
+394
+00:57:41.334 --> 00:57:54.563
+Incoming livestream: So, the one step that we took that I think, is extraordinarily effective, besides the ignore scripts in NPM, was implement a mandatory developer, mandatory package cool-down policy.
+
+
+395
+00:57:54.564 --> 00:58:02.624
+Incoming livestream: So nobody installs packages that are less than 7 days old. For any package manager across the company, we have it enforced with MDM.
+
+
+396
+00:58:03.884 --> 00:58:20.524
+Incoming livestream: That's the, I think, the easiest way to reduce risk and make the safe path the default path. There's more that we've done here, but this is something that I'm preparing to release. We're gonna start open sourcing our entire, Jamf configuration stack for how we secure some of these agents with MDM.
+
+
+397
+00:58:22.004 --> 00:58:32.644
+Incoming livestream: And then finally, once you have the policies, the guardrails, the sandboxes, the skills, you can connect agents to real tools. So one example that we've already wrapped inside of an MCP server is Slither.
+
+
+398
+00:58:32.644 --> 00:58:44.403
+Incoming livestream: And if you don't care about Slither, which is a static analyzer for Ethereum smart contracts, the point is that MCP turns your internal tools into something that agents can use reliably, and that your org can govern.
+
+
+399
+00:58:45.254 --> 00:58:50.084
+Incoming livestream: So this is another way that we can inject policy into how these tools get used.
+
+
+400
+00:58:51.344 --> 00:59:09.354
+Incoming livestream: So now the results. So, you know, you've seen some of our open source work, but internally, I can share that we have 94 separate plugins accumulating 201 skills, with 84 specialized agents and 400 reference files, encoding all of our domain expertise.
+
+
+401
+00:59:09.544 --> 00:59:16.263
+Incoming livestream: And that's the compounding effect. So every single engagement, every auditor, every experiment adds to that arsenal.
+
+
+402
+00:59:16.394 --> 00:59:26.904
+Incoming livestream: And what's important is the breadth, right? We're not just talking about an auditing toolkit. I have skills for writing sales proposals, tracking project hours, onboarding new hires, prepping conference blog posts.
+
+
+403
+00:59:27.114 --> 00:59:44.494
+Incoming livestream: We have 20-plus plugin… plugins targeting specific vulnerability classes, but, you know, each… the important thing is each package, each one packages expertise that used to live in somebody's head, and it turns into something that every auditor on the team can now invoke.
+
+
+404
+00:59:44.794 --> 00:59:46.353
+Incoming livestream: On the delivery side.
+
+
+405
+00:59:46.514 --> 00:59:55.494
+Incoming livestream: We have certain clients where the codebase and the scope allow it. We've gone from finding 15 bugs a week to finding 200 bugs per week.
+
+
+406
+00:59:55.874 --> 01:00:06.593
+Incoming livestream: And that's not a faster human. That's an auditor running a fleet of specialized engagements that do targeted analysis across the codebase in parallel, and then validate the results.
+
+
+407
+01:00:06.934 --> 01:00:17.724
+Incoming livestream: So, across most of our engagements at Trail of Bits, the number that we're about at is that 20% of all the bugs we report to our clients were initially discovered by AI.
+
+
+408
+01:00:18.384 --> 01:00:28.124
+Incoming livestream: On the business side, we also have our sales team averaging about $8 million in revenue per representative, which is about double what the industry averages for,
+
+
+409
+01:00:28.344 --> 01:00:30.523
+Incoming livestream: For sales, for sales consulting.
+
+
+410
+01:00:30.864 --> 01:00:44.113
+Incoming livestream: So, yeah, so AI doesn't just help our engineers, it also helps with proposal drafting, competitive positioning, conference prep, lead enrichment, same system, same repositories, same compounding effect.
+
+
+411
+01:00:45.024 --> 01:00:52.984
+Incoming livestream: And this is maybe, you know, a year into building this system seriously. Cloud Code came out, what was it, about a year ago.
+
+
+412
+01:00:53.194 --> 01:00:59.903
+Incoming livestream: The models get better every month, the skills grow every week, and a year from now, these numbers are gonna look very different.
+
+
+413
+01:01:03.994 --> 01:01:18.614
+Incoming livestream: So, let me close with some of the essential starter path. This is the minimum viable AI-native org design. This is what we've done so far, and it's changed how fast we can ship and how quickly we adapt. If you want to copy this, you have to copy the system, not the tools.
+
+
+414
+01:01:19.363 --> 01:01:23.404
+Incoming livestream: We do have some open questions, you know, there's obviously some things we're still working on.
+
+
+415
+01:01:24.774 --> 01:01:33.093
+Incoming livestream: Obviously, Gotti made an allusion to a conversation I had with him about private inference. You know, we don't want to always send our…
+
+
+416
+01:01:33.134 --> 01:01:49.993
+Incoming livestream: queries to the cloud. Sometimes we want to do them on a machine that we control. But, these local models, they're good, but they're not amazing. There's definitely this big model smell where you can tell the difference between, you know, Opus 4.6 and a Haiku 4.6, no matter what day it is.
+
+
+417
+01:01:50.174 --> 01:02:06.584
+Incoming livestream: So right now, we're investigating a couple of paths here, and I'm sort of reticent to spend money on a local server, because a lot of the private inference systems are getting really good. We've been evaluating tinfoil.sh, but there's a huge variety of other private inference servers that are now available, where I can
+
+
+418
+01:02:07.213 --> 01:02:10.463
+Incoming livestream: Confidentially run my queries in somebody else's cloud.
+
+
+419
+01:02:10.953 --> 01:02:15.623
+Incoming livestream: So these are where, you know, we're doing some research to figure out the right solution for us.
+
+
+420
+01:02:15.734 --> 01:02:30.253
+Incoming livestream: The prompt injection problem? Obviously not solved. We have a real blunt instrument for solving it today, which is for certain clients, we just deny access to the web. And for a lot of our internal tools, we don't allow them access to external resources.
+
+
+421
+01:02:30.434 --> 01:02:48.053
+Incoming livestream: So things we're playing with here are agent-native shells. We're looking at things like the no-no shell, agent SH, that are gonna wrap the agent execution in something that can be protected with, kernel-level system calls, instead of, you know, discretionary guidance thrown into a claw.md.
+
+
+422
+01:02:48.363 --> 01:03:04.694
+Incoming livestream: And then something else we don't have solved yet is policy enforcement and continuous learning. So we push a lot of settings via MDM, but what do we get back? Because there's a huge amount of data that's accumulated on each person's device about how they're actually using AI and how they're doing their job.
+
+
+423
+01:03:04.904 --> 01:03:12.983
+Incoming livestream: that I would love to be able to collect and synthesize and use to enhance our process. And we don't have a solution there yet either, but it's something we will probably soon.
+
+
+424
+01:03:13.234 --> 01:03:19.963
+Incoming livestream: You can take a look at things from TrailerBits like our We Audit Visual Studio Code extension that might offer a solution there.
+
+
+425
+01:03:21.444 --> 01:03:34.563
+Incoming livestream: You know, longer term, we also need some sort of policy architecture. You can see Stripe with their Minions paper, they have one giant MCP server that all their agents call into and that they can use to enforce policy, and that might be a good long-term answer.
+
+
+426
+01:03:34.604 --> 01:03:50.533
+Incoming livestream: And then finally, the business is really shifting. I think consulting today may not last that long. We're looking at billing by hours today, but in a future where everybody has an arsenal of agents, and some people can outperform others by 200x.
+
+
+427
+01:03:50.613 --> 01:04:00.613
+Incoming livestream: I think you have to start billing by expertise and by results. So the nature of how Trail of Bits offers our services to the world is probably going to change in the next 6 to 12 months as well.
+
+
+428
+01:04:00.713 --> 01:04:05.154
+Incoming livestream: And again, no answers there yet, because we're still on this journey, just like everyone else.
+
+
+429
+01:04:06.463 --> 01:04:19.103
+Incoming livestream: So, I wanted to offer a few links to these references. These are all the tools that I talked about during this talk. I also want to mention that yesterday, as a gift to you all, I open-sourced 10 additional plugins.
+
+
+430
+01:04:19.104 --> 01:04:30.733
+Incoming livestream: We have one for checking false positives, for bugs that your clog might find, and you want to give it the ability to check. We have a fun one called Let Fate Decide that teaches your agent how to deal tarot cards.
+
+
+431
+01:04:31.004 --> 01:04:35.903
+Incoming livestream: As well as a whole bunch of others that are up on my Twitter, and that are up in the skills repo right now.
+
+
+432
+01:04:36.284 --> 01:04:52.723
+Incoming livestream: And then I would also be remiss to mention, we have a bunch of jobs open, and I would love it for someone to work with me to carry this exact process forward. If you want to help me continue to instrument Trail of Bits and make us, further along in this journey, please contact me. Thanks. Thanks, Dan.
+
+
+433
+01:04:56.304 --> 01:05:03.434
+Incoming livestream: All right, we'll try to get back on track here, so I'll take time for two questions. Do we have two questions in the audience?
+
+
+434
+01:05:03.674 --> 01:05:07.753
+Incoming livestream: Processing all of the things to do with an org. We've got one over here, Andrew, or I'll run it.
+
+
+435
+01:05:11.714 --> 01:05:25.104
+Incoming livestream: Hey, thanks so much, that was amazing. I'm wondering if an additional, hesitance, that you've, seen with your employees in adopting AI is also around, eventually, like, being replaced, or, like, mass joblessness, stuff like that.
+
+
+436
+01:05:25.934 --> 01:05:29.443
+Incoming livestream: Yeah, so I think Trail of Bits is in a really good spot, because we're kind of.
+
+
+437
+01:05:29.674 --> 01:05:36.534
+Incoming livestream: I think the term is obelisk-shaped. You know, consulting agencies, they usually have a really large base of junior employees.
+
+
+438
+01:05:36.584 --> 01:05:51.783
+Incoming livestream: And, I think as people get more enhanced by AI, it's a lot of the most senior people that benefit the most. So, I'm gonna sidestep that question and just say that everybody at Trail of Bits is perfectly positioned to take advantage of this, because we only have senior level and help people.
+
+
+439
+01:05:53.404 --> 01:05:54.783
+Incoming livestream: yeah.
+
+
+440
+01:05:55.044 --> 01:05:56.904
+Incoming livestream: I'll leave it there.
+
+
+441
+01:06:07.334 --> 01:06:26.623
+Incoming livestream: Sibilance. Okay, thanks, Dan. I have a question. In terms of, like, the blessed lists that you're creating for the team, how do you think about, like, rug pulling attacks, or, you know, what we've seen with some folks who are, like, you know, releasing sort of safe and secure, and then updating it with, like, some type of, you know, something malicious, as you think about…
+
+
+442
+01:06:26.624 --> 01:06:44.454
+Incoming livestream: you know, these are our blessed lists, are you checking them every day, or how do you think about… Blessed lists of what? Like your MCPs, or skills that you've got, or, you know, any of those. Oh, yeah, I mean, well, we're importing all of them into an allow list, like, the only plugins that you're allowed to use for trailer bits are the verified ones that are in our curated repo.
+
+
+443
+01:06:44.544 --> 01:06:53.833
+Incoming livestream: So we don't want you to install random skills from other places. If it gets updated, it gets updated through us, and we have a bunch of automated systems that help us perform those updates with speed.
+
+
+444
+01:06:53.944 --> 01:07:13.174
+Incoming livestream: So obviously, like, if something comes out on Twitter, you want to use it that minute, but we've enabled the organization to perform those, you know, internal update steps on its own. So our curated skills repo is open source, everybody at TrailerBits has right access to it, requires pull request reviews, and it includes
+
+
+445
+01:07:13.174 --> 01:07:25.404
+Incoming livestream: commands that Cloud Code can understand to go out and grab those resources. So you can just give it a tweet and say, hey, I want this, and it goes, pulls it in, tags somebody for review, and then 5 minutes later, you've got it on your machine.
+
+
+446
+01:07:25.834 --> 01:07:26.564
+Incoming livestream: Beautiful.
+
+
+447
+01:07:26.694 --> 01:07:28.164
+Incoming livestream: Cool. Yep.
+
+
+448
+01:07:28.264 --> 01:07:29.574
+Incoming livestream: Welcome. Thank you so much.
+
+
+449
+01:07:30.894 --> 01:07:37.293
+Incoming livestream: Alright, we're gonna keep rolling. 8 minutes to admin, up next with Sergey Epp. Let's kick it off.
+
+
+450
+01:07:37.944 --> 01:07:41.314
+Incoming livestream: Cool, yeah, happy to be back.
+
+
+451
+01:07:41.434 --> 01:07:44.014
+Incoming livestream: And, welcome to Wipe Hacking.
+
+
+452
+01:07:44.344 --> 01:07:54.253
+Incoming livestream: Now, in the next 20 minutes, I will share some of the threat research we've seen, around EI-assisted threats, and also share a mentor model with you, alright?
+
+
+453
+01:07:54.394 --> 01:07:55.744
+Incoming livestream: And,
+
+
+454
+01:07:56.034 --> 01:08:07.213
+Incoming livestream: I think all the speakers yesterday and today, they really showed us how AI is accelerating offense. We've got faster exploits, we've got faster recoil, and we've got faster everything, and they're all right.
+
+
+455
+01:08:07.854 --> 01:08:11.424
+Incoming livestream: But, on the other hand, the same…
+
+
+456
+01:08:11.784 --> 01:08:14.923
+Incoming livestream: The same speed which AI is providing
+
+
+457
+01:08:15.134 --> 01:08:20.693
+Incoming livestream: to offense. It's also creating the most noisy attacks we've ever seen.
+
+
+458
+01:08:21.284 --> 01:08:27.424
+Incoming livestream: And… The fastest they go, the more they confess.
+
+
+459
+01:08:27.724 --> 01:08:32.564
+Incoming livestream: So let this sing in with you. The faster they go, the more they confess.
+
+
+460
+01:08:32.944 --> 01:08:48.254
+Incoming livestream: Now, 28th of November last year, we've caught an intrusion into AWS environment. A very classic one, S3 bucket credentials were compromised out of a rack database, and within 8 minutes.
+
+
+461
+01:08:48.554 --> 01:09:00.473
+Incoming livestream: This guy's got a full admin. And we've caught everything, all the CloudTrail logs, all the SUSCO logs, and they were not just fast, they were pretty, pretty loud. So let me, let me show you.
+
+
+462
+01:09:01.324 --> 01:09:08.554
+Incoming livestream: First of all, You see this type of comments, like, courageous admin access key, list us with S3 bucketer.
+
+
+463
+01:09:08.904 --> 01:09:11.384
+Incoming livestream: Does somebody understand this? It's Sherban.
+
+
+464
+01:09:11.884 --> 01:09:24.914
+Incoming livestream: And this is a Lambda function, which the attackers tried to execute 3 times, literally within a minute. It was pretty well done. You've seen multiple user accounts, exception handling, and so on. They've succeeded this third time.
+
+
+465
+01:09:26.084 --> 01:09:30.894
+Incoming livestream: Now, next, they've tried to assume some rows and move lateral.
+
+
+466
+01:09:31.024 --> 01:09:37.054
+Incoming livestream: ascending and descending numbers. Well, this is not going to work, obviously, in an environment of,
+
+
+467
+01:09:37.194 --> 01:09:40.603
+Incoming livestream: of AWS, do you recognize the pattern there?
+
+
+468
+01:09:40.874 --> 01:09:43.094
+Incoming livestream: If you ask your favorite AI,
+
+
+469
+01:09:45.094 --> 01:09:49.484
+Incoming livestream: Generate example EWS account IDs for me. This is what you got.
+
+
+470
+01:09:50.174 --> 01:09:58.243
+Incoming livestream: This is what AI learns through the training process, and you will find much more other information if you just ask for some training or sample data.
+
+
+471
+01:09:59.564 --> 01:10:11.723
+Incoming livestream: Now, next, guess what kind of AI they were using. It's a bit obvious from this role session name. They were confessing without even knowing that they were confessing this specific breach.
+
+
+472
+01:10:11.724 --> 01:10:22.693
+Incoming livestream: And our code is obviously very powerful for good things, but also for bad things, as we've seen, yesterday and today. So, that was very obvious to us, but next.
+
+
+473
+01:10:22.734 --> 01:10:30.543
+Incoming livestream: next step was even more obvious, because what they've tried to do is, they've tried to spin up some GPU,
+
+
+474
+01:10:30.834 --> 01:10:37.754
+Incoming livestream: GPUs, 8100, you know, 8 of them, would pay, what, like, 50 hours,
+
+
+475
+01:10:37.874 --> 01:10:50.564
+Incoming livestream: an hour for them, and they had some problems. But first of all, they named the GPUs Steven… Steven GPU Monster. Steven has a server name, and this name popped up as well multiple times.
+
+
+476
+01:10:50.644 --> 01:11:08.243
+Incoming livestream: In the logs, which is very interesting. So if you know Steven out of Serbia, who's doing a lot with Claude, let me know. Perhaps, we can help them with OPSEC. Now, they've tried then, the LLM didn't really… the attacker didn't really succeed it, so, the LLM tried, really, to find some training scripts.
+
+
+477
+01:11:08.704 --> 01:11:13.813
+Incoming livestream: to understand what was really happening. Obviously, this GitHub repo doesn't exist. I don't know if it's…
+
+
+478
+01:11:14.014 --> 01:11:27.514
+Incoming livestream: If it's one… I don't know why they were trying to do this, but it was simply not there. So it was as well, again, coming from a hallucination. Now, what's exciting is, you've seen, within 8 minutes.
+
+
+479
+01:11:27.644 --> 01:11:34.504
+Incoming livestream: them going to full admin, and then there was a full stop for about 50 minutes. No activity.
+
+
+480
+01:11:35.714 --> 01:11:40.793
+Incoming livestream: A burst of activity, no activity, and then another burst of activity. And this is, like, typical prompting
+
+
+481
+01:11:41.174 --> 01:11:50.443
+Incoming livestream: behaviors were, right? You prompt, the LM is doing something, very successfully, and then you're waiting for its master, but then she had multiple of such attacks running in parallel.
+
+
+482
+01:11:51.654 --> 01:12:02.464
+Incoming livestream: Now, let me introduce you to another guy. Do you remember this meme? Blockchain-enabled AI Hacker, which was, like, viral about 5 years ago? This guy became real last year.
+
+
+483
+01:12:02.754 --> 01:12:09.663
+Incoming livestream: And, we've literally seen this attack just popping up, a couple of days after the first attacker.
+
+
+484
+01:12:09.784 --> 01:12:17.293
+Incoming livestream: 24 hours after React for Shell exploitation. If you remember React for Shell, it was exploited literally after a couple of hours when it went live.
+
+
+485
+01:12:17.734 --> 01:12:34.804
+Incoming livestream: We floated, we floated this sample, and, it would come with 5 resistance mechanisms. It would come with a, you know, a local runtime, environment, no JEDS. It would be able to patch itself on the fly. It would deliver multiple payloads.
+
+
+486
+01:12:34.884 --> 01:12:45.814
+Incoming livestream: Literally, it was in a couple of minutes. So, we have… we don't have the smoking gun to say that they were generated with the eye, but the way how the code is written, the way,
+
+
+487
+01:12:46.084 --> 01:12:51.533
+Incoming livestream: how the comments were done is definitely suggesting this, so I'm not sure if we have some good,
+
+
+488
+01:12:51.834 --> 01:12:59.444
+Incoming livestream: researchers from OpenAI on traffic, and we have some watermarking techniques. If you guys are doing this, you can prove that. Happy to share this, this files with you.
+
+
+489
+01:12:59.614 --> 01:13:08.904
+Incoming livestream: But I think the amount of, code as well being produced within this amount of time, just suggesting as well, it was an LLM.
+
+
+490
+01:13:09.014 --> 01:13:15.593
+Incoming livestream: Now, next, they made this campaign unkillable, because they've put the C2 server on a blockchain.
+
+
+491
+01:13:16.524 --> 01:13:28.463
+Incoming livestream: It was literally from a blockchain, and you can really size it, right? You can really block it, you can take it down, because there's no register you can go to and just try to sync all of that.
+
+
+492
+01:13:28.704 --> 01:13:32.754
+Incoming livestream: So at this point in time, you as a researcher, you might be worried.
+
+
+493
+01:13:32.914 --> 01:13:35.043
+Incoming livestream: But don't, because…
+
+
+494
+01:13:36.154 --> 01:13:46.914
+Incoming livestream: Looking at all these different ways how an AI is trying to act. First of all, speed. We've seen the speed is creating a lot of different artifacts.
+
+
+495
+01:13:47.094 --> 01:13:51.613
+Incoming livestream: which are persisting, which are confessing in your locks. You just need to find them.
+
+
+496
+01:13:51.874 --> 01:14:03.393
+Incoming livestream: Resilience. Most likely, they've asked as well for a resilient way to have a good C2 infrastructure. Create a lot of forensic evidence. It's going to live forever now in the blockchain, and you can literally see
+
+
+497
+01:14:03.394 --> 01:14:15.883
+Incoming livestream: all the different C2s, all the different activities as well from this specific campaign. But also scale, because the way how quickly all those different, payloads were produced and how they were used is also suggesting
+
+
+498
+01:14:16.264 --> 01:14:18.243
+Incoming livestream: We can identify this.
+
+
+499
+01:14:18.574 --> 01:14:36.173
+Incoming livestream: Now, what are you doing if you're facing an AI thread? You try to wipe back, right? Let's create a dedicated custom, malware sinkhole assessment environment, was practically not a sinkhole. And, you know, just track the threat actor in real time.
+
+
+500
+01:14:36.224 --> 01:14:47.704
+Incoming livestream: And that's, what we've done. Unfortunately… Oh, the video's loading, great. So, you know, what it would do, it would just pull out all the different, through RPC calls, all the different C2s.
+
+
+501
+01:14:47.704 --> 01:14:51.804
+Incoming livestream: Try to understand the content, content, what is, what is,
+
+
+502
+01:14:51.804 --> 01:15:11.324
+Incoming livestream: the leading C2, try then to load the payloads, obfuscate everything, understand what it's doing, have its versioning system as well, do a trend analysis, how the malware is changing as well. So the days where we do malware analysis is changing, can be very easy as well if you just fight back with, with white coding.
+
+
+503
+01:15:13.424 --> 01:15:23.654
+Incoming livestream: Now, still, I guess, just looking as about the zero-day clock I've presented before, the speed of the attackers and the shift more towards offense is going to stay around.
+
+
+504
+01:15:24.014 --> 01:15:31.194
+Incoming livestream: And… You know, the reason for that is… Explained here on the slide.
+
+
+505
+01:15:31.904 --> 01:15:34.424
+Incoming livestream: Well, FANS has very cheap verifiers.
+
+
+506
+01:15:34.674 --> 01:15:40.124
+Incoming livestream: If you pop a shell, if you run a binary, it's a very deterministic, clear verifier.
+
+
+507
+01:15:40.394 --> 01:15:45.244
+Incoming livestream: Defense has a SIM. Suspicious information every minute.
+
+
+508
+01:15:45.394 --> 01:15:46.763
+Incoming livestream: Are you familiar with this?
+
+
+509
+01:15:48.264 --> 01:15:54.794
+Incoming livestream: Seeing everybody, right? So it's not very, very easy to verify in a deterministic way if something happened.
+
+
+510
+01:15:55.084 --> 01:16:00.793
+Incoming livestream: Now, what a fence doesn't have, they don't have, really, this way to understand your environment.
+
+
+511
+01:16:01.464 --> 01:16:10.643
+Incoming livestream: to call the right GitHub repo, to create the right account, which is following your naming convention, to understand how your environment is being set up.
+
+
+512
+01:16:11.144 --> 01:16:15.093
+Incoming livestream: And this is what we can as defenders. We have this…
+
+
+513
+01:16:15.314 --> 01:16:20.754
+Incoming livestream: This way to verify if data is real or not, because we understand our environment much more better.
+
+
+514
+01:16:21.344 --> 01:16:27.103
+Incoming livestream: Now, last year, I've presented this… this mentor model, which was derived from,
+
+
+515
+01:16:27.414 --> 01:16:35.384
+Incoming livestream: From Jason Wei from OpenAI, who sort of abstractly described the way Wei AI is becoming really good.
+
+
+516
+01:16:35.714 --> 01:16:41.093
+Incoming livestream: And… You know, one example to think about this is if you have this spectrum of
+
+
+517
+01:16:41.214 --> 01:16:54.874
+Incoming livestream: solutions and a spectrum of verification. You can map Sudoku, for instance, on it. Sudoku is very, very easy to verify, right? But very hard to generate. There's tons of solutions, millions of solutions out there.
+
+
+518
+01:16:54.884 --> 01:17:02.823
+Incoming livestream: Diet is a counterexample for that, because if I eat today something, I will see the results in a couple weeks or months. That's where AI is not really good.
+
+
+519
+01:17:03.024 --> 01:17:10.673
+Incoming livestream: So now what I've tried to do is, I've tried to map cybersecurity domains to this space. And…
+
+
+520
+01:17:10.984 --> 01:17:14.323
+Incoming livestream: Just looking at most of the offensive capabilities.
+
+
+521
+01:17:14.804 --> 01:17:27.544
+Incoming livestream: you see that they are very often much more easier to verify than the defense capabilities. Because it's very easy, again, if you have an exploit, you can test it out dynamically. If you have a shell, you're popping, if you're exfiltrating data.
+
+
+522
+01:17:27.744 --> 01:17:36.944
+Incoming livestream: So it's much more dynamic, it's much more dynamic and deterministic in this way, compared to defense, because for defense, now, looking at a binary.
+
+
+523
+01:17:37.444 --> 01:17:43.433
+Incoming livestream: Looking at your SIM information, looking at your code repo. It's not that easy to verify.
+
+
+524
+01:17:43.564 --> 01:17:46.204
+Incoming livestream: If… if it's malicious or not.
+
+
+525
+01:17:46.674 --> 01:17:49.204
+Incoming livestream: The perfect example for this is a malware.
+
+
+526
+01:17:50.114 --> 01:18:02.964
+Incoming livestream: as Mao analysts, we've tried always to make verification very cheap by, you know, analyzing the specific binary, finding bad patterns, and generating out of those bad patterns a hash.
+
+
+527
+01:18:03.544 --> 01:18:11.994
+Incoming livestream: or finding or trying to build a stage in between by having sandboxes in place, right? And you can take this analogy as well to many other domains.
+
+
+528
+01:18:12.124 --> 01:18:15.593
+Incoming livestream: We've tried to make this verification being very, very cheap.
+
+
+529
+01:18:16.884 --> 01:18:20.644
+Incoming livestream: Now, going back to what I was saying before.
+
+
+530
+01:18:21.734 --> 01:18:27.283
+Incoming livestream: What we see right now is offense is owning the objective verifiers.
+
+
+531
+01:18:27.774 --> 01:18:31.393
+Incoming livestream: If you want to do something, this is where offense is really, really good.
+
+
+532
+01:18:31.794 --> 01:18:37.384
+Incoming livestream: But we as defense, we have this unique advantage to own the environment verifiers.
+
+
+533
+01:18:37.864 --> 01:18:44.883
+Incoming livestream: Because once an attacker is in our environment, they don't understand what to do. They understand how our environment is being set up.
+
+
+534
+01:18:45.374 --> 01:18:51.034
+Incoming livestream: Now, let me share with you some practical, examples how this might look like.
+
+
+535
+01:18:51.704 --> 01:18:59.624
+Incoming livestream: Because you know, perhaps I ask, first of all, a question. How many of you are here not…
+
+
+536
+01:19:00.004 --> 01:19:01.344
+Incoming livestream: Not Americans.
+
+
+537
+01:19:01.654 --> 01:19:03.003
+Incoming livestream: A quick hands-off show.
+
+
+538
+01:19:03.804 --> 01:19:09.364
+Incoming livestream: Okay, me too, I'm German, so if you, if you try to speak very slow German.
+
+
+539
+01:19:09.804 --> 01:19:16.883
+Incoming livestream: Some people might not hear that you're not American. I mean, now I'm having a cold, and it's pretty obvious, I'm pretty bad at this.
+
+
+540
+01:19:16.994 --> 01:19:20.064
+Incoming livestream: But now, if you speak very fast, you get an accent.
+
+
+541
+01:19:20.514 --> 01:19:28.384
+Incoming livestream: You have a very clear way to identify that somebody's a forerunner, right? Because you speak fast, and all these things you've learned from your language are coming up.
+
+
+542
+01:19:28.584 --> 01:19:31.163
+Incoming livestream: So if you want to have a good mental model.
+
+
+543
+01:19:31.624 --> 01:19:33.543
+Incoming livestream: The AI, which is being trained.
+
+
+544
+01:19:33.654 --> 01:19:40.614
+Incoming livestream: It's having an accent based on the training data it's learned, and it will always try to follow its accent.
+
+
+545
+01:19:40.724 --> 01:19:53.154
+Incoming livestream: If it has to go fast. Obviously, we can go back and ask the AI, first of all, to enumerate the environment, to enumerate all the different things, before doing some dangerous actions. But then you give up the speed.
+
+
+546
+01:19:53.754 --> 01:19:58.284
+Incoming livestream: And then, you also have all these different other controls we've built around.
+
+
+547
+01:19:59.124 --> 01:20:03.553
+Incoming livestream: So, four controls, you can think of as,
+
+
+548
+01:20:04.084 --> 01:20:16.504
+Incoming livestream: you know, I reflected here. So, first one is weaponized time. In the attack, in the first attack we've seen, literally within 5 minutes, you will see a specific account being created from an unknown source, and then performing admin activities.
+
+
+549
+01:20:16.664 --> 01:20:24.204
+Incoming livestream: That's a bad one, right? It's pretty clear that if something like that is happening, and you have this timing-based control, something is new, something is fresh.
+
+
+550
+01:20:24.414 --> 01:20:40.424
+Incoming livestream: Like, we've been doing with DNS as well, new domain names being created, you can analyze them all the time. That's pretty bad. Set an alert based on this. Setting traps. Honey tokens, the best, the only best thing in cyber defense you can find out there. If you don't have Honey tokens today in your environment.
+
+
+551
+01:20:40.984 --> 01:20:47.104
+Incoming livestream: You're potentially not going to attack good, good attackers, so set up canneries, identities which are following the naming
+
+
+552
+01:20:47.614 --> 01:20:50.713
+Incoming livestream: Convention of the identities in your environment, of your company.
+
+
+553
+01:20:51.144 --> 01:20:53.723
+Incoming livestream: Third, enforce your consent.
+
+
+554
+01:20:54.014 --> 01:21:05.274
+Incoming livestream: And what I mean by this is, make sure that your team understands all the different naming conventions, all the different GitHub repos. Everything your company has built
+
+
+555
+01:21:05.554 --> 01:21:15.203
+Incoming livestream: and learn to operate and set up certain rules and detections around that. But first of all, train your team so that they understand, that they can distinguish that
+
+
+556
+01:21:15.464 --> 01:21:28.784
+Incoming livestream: a certain alert doesn't follow this naming convention. And then the last one is, and that's where it's a very cheap verifier. You can always verify if certain things are real or not real, if somebody's calling an account name.
+
+
+557
+01:21:29.024 --> 01:21:37.304
+Incoming livestream: Right? If somebody's trying to assume roles, if somebody's trying to call a GitHub repo, you can just build alerts, or at least monitoring observation rules based on that.
+
+
+558
+01:21:37.794 --> 01:21:41.424
+Incoming livestream: Now, what's important to understand, this is something which…
+
+
+559
+01:21:42.414 --> 01:21:49.813
+Incoming livestream: Where you will not find a vendor who can help you solve that, because it's your custom-tailored environment. That's something you have to do.
+
+
+560
+01:21:50.364 --> 01:21:59.264
+Incoming livestream: And you don't need special technology for this. You know, cloud detection response tools, SIM tools, this is where you can replicate this type of rules.
+
+
+561
+01:22:00.044 --> 01:22:09.564
+Incoming livestream: non-resist, I think I wanna… wanna summarize that the attackers don't know all this internal knowledge.
+
+
+562
+01:22:09.904 --> 01:22:12.993
+Incoming livestream: Of our environment, of our company, we've built over time.
+
+
+563
+01:22:13.334 --> 01:22:18.174
+Incoming livestream: They don't know the repos you have, they don't know how you deploy, they don't know how you…
+
+
+564
+01:22:18.294 --> 01:22:27.794
+Incoming livestream: you know, name you posts, notes, identities, whatever. This is where we can accumulate knowledge. And the attack ICI has definitely an accent.
+
+
+565
+01:22:28.484 --> 01:22:30.723
+Incoming livestream: And speed makes it.
+
+
+566
+01:22:30.904 --> 01:22:34.284
+Incoming livestream: Louder. So, let's start listening. Thank you very much.
+
+
+567
+01:22:39.514 --> 01:22:40.264
+Incoming livestream: Thank you.
+
+
+568
+01:22:40.904 --> 01:22:42.773
+Incoming livestream: Alright, we'll start questions over here.
+
+
+569
+01:22:48.294 --> 01:22:49.974
+Incoming livestream: A great chat.
+
+
+570
+01:22:49.974 --> 01:23:11.413
+Incoming livestream: I noticed the one thing that was below the line that, you know, favors defense is Honey tokens, which feels like it's always the thing that security teams are like, we should be doing more with Honey tokens, and then they don't. And it does feel like, you know, given how noisy and, you know, the accent that AI has, it is a potentially tool that security teams should be leveraging more often. Curious if you agree, if your team at Sysdig is using them, just how you think about that.
+
+
+571
+01:23:11.534 --> 01:23:22.463
+Incoming livestream: Sorry, can you repeat the last sentence? Oh, just, if your team at Sysdig is using honey tokens in a big way, if you agree, that becomes a more important, tool in the Defender's arsenal in this era. Oh, yes, I mean, I think it's not a secret that…
+
+
+572
+01:23:22.474 --> 01:23:31.563
+Incoming livestream: the most successful vendors out there are all using Honey tokens, like even EDR solutions. That's the way how you detect, as well, enumerations and things like that.
+
+
+573
+01:23:31.624 --> 01:23:49.293
+Incoming livestream: So, and right now, specifically with AI, as that, speed is becoming very loud, and if somebody wants to be silent, then they would need to start enerating syncs across the environment. So Honey tokens across the environment are becoming pretty key. There are some other techniques as well, but Honey tokens are the most deterministic way
+
+
+574
+01:23:49.444 --> 01:23:52.803
+Incoming livestream: For defenders, to, to deal about the problem.
+
+
+575
+01:23:55.904 --> 01:23:59.384
+Incoming livestream: Great talk. Thanks for the analogy of the accent.
+
+
+576
+01:24:00.324 --> 01:24:05.043
+Incoming livestream: My question is around how many accidents have you captured of the attackers?
+
+
+577
+01:24:06.024 --> 01:24:20.363
+Incoming livestream: So I think that's a great research topic. There are a couple of great research topics you might want to explore. Just building now environments where you can have multiple models driving the same type of attack, and then trying to understand what these models are going to perform, right?
+
+
+578
+01:24:20.564 --> 01:24:31.024
+Incoming livestream: That could be one, and then there's, there's tons of, questions as well around the cybersecurity verifiers law. So everything I mapped right now on this, you know, on this graph.
+
+
+579
+01:24:31.484 --> 01:24:33.943
+Incoming livestream: Has to be proven mathematically as well.
+
+
+580
+01:24:34.134 --> 01:24:39.453
+Incoming livestream: Right? In proper studies, so there's a lot of open question, but…
+
+
+581
+01:24:39.694 --> 01:24:48.484
+Incoming livestream: The evidence we've seen from last research, everything we've been discussing yesterday and today is suggesting that offense is just…
+
+
+582
+01:24:48.614 --> 01:24:56.603
+Incoming livestream: accelerating much more faster, and Haas is a better way as well, to both in training, but also in inference, to be more successful.
+
+
+583
+01:24:58.604 --> 01:25:00.284
+Incoming livestream: Any other questions, audience?
+
+
+584
+01:25:01.314 --> 01:25:02.943
+Incoming livestream: Alright, thank you so much. Thank you.
+
+
+585
+01:25:08.334 --> 01:25:18.383
+Incoming livestream: So next up, we have, macOS vulnerability analysis, aided by AI. So, continuing this, this threat of, like, AI helping us with all the things. Please welcome Olivia.
+
+
+586
+01:25:43.834 --> 01:25:44.943
+Incoming livestream: Can you try the other side?
+
+
+587
+01:25:49.864 --> 01:25:50.613
+Incoming livestream: There's been a little dead.
+
+
+588
+01:26:18.514 --> 01:26:19.324
+Incoming livestream: You sure do.
+
+
+589
+01:26:21.104 --> 01:26:29.134
+Incoming livestream: Awesome, I'm just gonna place this… Here, if it fits… Okay.
+
+
+590
+01:26:29.264 --> 01:26:30.034
+Incoming livestream: Cool.
+
+
+591
+01:26:31.084 --> 01:26:32.174
+Incoming livestream: Alright!
+
+
+592
+01:26:32.274 --> 01:26:41.743
+Incoming livestream: So, hi everyone, thank you so much for having me. My name is Olivia Gallucci, and I work at Datadog, and today I want to show you an AI workflow for macOS vulnerability research.
+
+
+593
+01:26:41.994 --> 01:26:58.933
+Incoming livestream: So, before I begin, I want to mention a tool I published called OSS Sensor. OSS Sensor generates a prioritized, evidence-backed research queue derived from Apple OSS diffs, basic binary features, and log templates. It applies custom rule-based scoring and supports rule-based triage.
+
+
+594
+01:26:59.114 --> 01:27:06.854
+Incoming livestream: And the binary and log analysis components are intentionally lightweight, and there is no integrated LLM vulnerability verification.
+
+
+595
+01:27:06.854 --> 01:27:31.723
+Incoming livestream: It's designed as an hypothesis generation aid, not as an automated vulnerability discovery tool. And there's two versions of this project, one without built-in AI, and then one with AI capabilities. The non-AI version is more streamlined and significantly easier to adapt if you plan to integrate your own AI workflow. I strongly recommend this approach because it's what I do, particularly if you intend to iterate quickly
+
+
+596
+01:27:31.724 --> 01:27:34.044
+Incoming livestream: or vibecode your enhancements.
+
+
+597
+01:27:34.054 --> 01:27:50.774
+Incoming livestream: And this way, it will be personalized to your setup and won't be dependent on how I set it up. That said, the PR for plug-and-play with AI API keys is still under review, and that is because parts of my workflow, which this talk and tool is inspired by, includes intentional, manual intervention steps.
+
+
+598
+01:27:50.774 --> 01:28:05.343
+Incoming livestream: While I was developing this process, I quickly learned that certain configurations become extremely costly depending on usage. Thus, I'm unsure who might really want a plug-and-play version, especially if you're a beginner in the VR space on Apple operating systems.
+
+
+599
+01:28:05.344 --> 01:28:29.164
+Incoming livestream: And if you'd like to explore this tool, there's several built-in demos available. When connected to an AI coding agent, the tool will outline the required execution steps and demonstrate scoring and weighing out of the box, and from there, you can incorporate your own AI workflow. Given the tool's simplicity and its modular design, this should be achievable within a few simple prompts, and this talk will cover where AI has helped me in my research process, and how I've influenced AI
+
+
+600
+01:28:29.164 --> 01:28:36.964
+Incoming livestream: to better suit my needs, given that around a year ago, many AI chatbots could not tell you how to access logs on macOS.
+
+
+601
+01:28:37.524 --> 01:28:56.174
+Incoming livestream: So, in this talk, the AI vulnerability research components we will focus on are reverse engineering and fuzzing. Reverse engineering is inferring how a compiled system works from binaries and runtime behavior, while fuzzing is automatically generating and mutating inputs to exercise system and surface bugs via crashes or violated invariants.
+
+
+602
+01:28:56.394 --> 01:29:14.034
+Incoming livestream: My workload tries to automate steps in these areas that I've found to be most reliable. First, the AI workflow treats Apple's open source code as a sensor, and a sensor is any data source that produces signals about a system or state change without doing interpretation for you.
+
+
+603
+01:29:14.034 --> 01:29:23.613
+Incoming livestream: Second, the workload then uses AI agents to turn that sensor into a prioritized queue. So what changed, what looked security relevant, what to reverse, and what to fuzz.
+
+
+604
+01:29:23.614 --> 01:29:29.463
+Incoming livestream: And for context, an agent is a system that can take goals, select tools, run steps, and produce structured outputs.
+
+
+605
+01:29:29.464 --> 01:29:44.634
+Incoming livestream: The problem is that Apple ships a huge security surface area, but only some of it is open source. Like, Apple has over 400 public repos, but these releases are incomplete and very hard to keep up with manually, so my time is limited by bandwidth.
+
+
+606
+01:29:44.884 --> 01:29:54.904
+Incoming livestream: Thus, the story I'm going to tell is diff to hypothesis to harness, and the trick is that we will augment open source diffs with two other signals, binaries and OS logs.
+
+
+607
+01:29:55.034 --> 01:30:00.404
+Incoming livestream: Now, before I really get into things, I want to address the elephant in the room, which is Apple's secrecy.
+
+
+608
+01:30:00.724 --> 01:30:07.704
+Incoming livestream: Apple actually open sources a lot more than people expect, so the XNU kernel, core libraries like Libsystem, libc, libispatch.
+
+
+609
+01:30:07.924 --> 01:30:23.834
+Incoming livestream: And some, historically, like, daemons, like LaunchD. But they don't publish everything. Some components are missing or only partially available, including things like Core Foundation and CF Network, iOS-specific drivers, and Core Crypto, which comes with additional redistribution constraints.
+
+
+610
+01:30:24.074 --> 01:30:43.603
+Incoming livestream: These source drops can be incomplete or outdated. You'll see headers referencing files that don't exist, which can be very confusing for an AI agent or instructions that are missing. And for context on these constraints and why this workflow matters operationally, I recommend watching my BSides312 talk, which covers the history and manual version of the process I'm about to discuss.
+
+
+611
+01:30:43.984 --> 01:30:53.143
+Incoming livestream: So, what does this have to do with AI? Well, the information overload with Apple's 400-plus open source repos is exactly why AI agents help in this context.
+
+
+612
+01:30:53.264 --> 01:31:10.013
+Incoming livestream: If I rely on a human, aka myself, to do manual repo exploration and one-off diffs, I end up with a narrow view of risk. If I automate that bookkeeping, I can spend more time on the parts that AI isn't working well for me yet, which is reasoning about privilege boundaries and exploitability.
+
+
+613
+01:31:10.124 --> 01:31:26.453
+Incoming livestream: I've even found this helpful for threat detection engineering. This matters because the faster I can understand what changed, the faster I can build detections and prioritize around new attack mechanics. So even though the code is incomplete, it can still guide my research, the key is for both me and AI to treat it like a map.
+
+
+614
+01:31:26.854 --> 01:31:37.494
+Incoming livestream: You might not have the full territory, but these landmarks are real. And what I do, and what many researchers do, is to use Apple's open source as a reference while working with the proprietary binaries.
+
+
+615
+01:31:37.494 --> 01:31:47.323
+Incoming livestream: You'll take a binary, like launchD, syslog D, or a driver, and you'll use whatever logs or sources exist to match known functions, annotate call patterns, and reverse unknown logic.
+
+
+616
+01:31:47.634 --> 01:31:52.694
+Incoming livestream: The agent angle is simple. This hybrid method is effective, but doesn't scale.
+
+
+617
+01:31:52.924 --> 01:32:01.324
+Incoming livestream: Agents can do the repetitive steps, so correlate symbols, chase string anchors, retrieve relevant source context, and produce structured summaries that make a human reviewer better
+
+
+618
+01:32:01.514 --> 01:32:03.484
+Incoming livestream: Faster and more consistent.
+
+
+619
+01:32:04.334 --> 01:32:21.134
+Incoming livestream: Even when symbols are stripped, structure plus string constants plus syscall usage lets you map back to open source code, and four common tools show up constantly. So, like, strings gives you debug messages, format strings, and file paths, what can extract version and project info.
+
+
+620
+01:32:21.224 --> 01:32:33.414
+Incoming livestream: Then there's NM, which will list symbol names if they exist, especially in unscript binaries or frameworks. And then ClassDump is great for interface information, especially, like, private frameworks and objective-C method surfaces.
+
+
+621
+01:32:33.654 --> 01:32:47.594
+Incoming livestream: And when I'm trying to map binaries back to source projects, I also use Apple's distribution manifests to cross-reference components per release. I look at the release metadata when it exists, and I look for version strings or source file names via strings or what.
+
+
+622
+01:32:48.334 --> 01:32:55.804
+Incoming livestream: All of these repetitive but context-dependent steps are the exact operations I hand to agents as tools.
+
+
+623
+01:32:55.944 --> 01:33:07.193
+Incoming livestream: I don't want the model inventing facts, I want to call it calling strings, parsing the output, retrieving the corresponding source chunks, and then producing a bounded conclusion with citations to what it observed.
+
+
+624
+01:33:07.614 --> 01:33:25.373
+Incoming livestream: After this, I usually want to go deeper with binary diffing, which is comparing binaries before and after a patch to identify changes. Here is my, like, all-time favorite example. So, in 2016, OSX Reverser used Diapera to diff syslog D from version 10.11.2 to 10.11.3.
+
+
+625
+01:33:25.384 --> 01:33:34.613
+Incoming livestream: He found that only one function had changed, and that change was an allocation math fix. Value plus 4 became value times 4 plus 4.
+
+
+626
+01:33:34.644 --> 01:33:46.413
+Incoming livestream: And from an exploitation mindset, that's suspicious because it looks like a heap overflow mitigation. And there was a string nearby that stated, add lockdown session, realloc failed, and that was a hint back to the source.
+
+
+627
+01:33:46.674 --> 01:33:50.473
+Incoming livestream: This kind of surgical dipping is how vulnerabilities get reversed after a patch.
+
+
+628
+01:33:50.714 --> 01:34:09.124
+Incoming livestream: And it matters because these fixes often need to be applied in multiple locations. If identical code is patched in some files but not in others, the unpatched ones can remain vulnerable. And the larger and more bureaucratic an organization is, you better bet that there's gonna be repeat mistakes in the neighboring files of their products.
+
+
+629
+01:34:09.474 --> 01:34:11.474
+Incoming livestream: Now, imagine that exact
+
+
+630
+01:34:11.604 --> 01:34:30.033
+Incoming livestream: workflow, only with AI, running continuously on every Apple release. It would ingest new OSS tags and targalls and distribution manifests, and compute diffs at function and semantic level. Then it would score changes for security relevance based on patterns like allocation math.
+
+
+631
+01:34:30.124 --> 01:34:42.924
+Incoming livestream: balance checks, entitlement gating, XPC parsing, and IO kit external method table changes. It would correlate the binaries and string anchors, then emit a ranked queue with why this looks risky, plus pointers for a human to validate.
+
+
+632
+01:34:43.164 --> 01:34:46.973
+Incoming livestream: For my solo offensive research, this was a throughput multiplier.
+
+
+633
+01:34:47.114 --> 01:34:52.823
+Incoming livestream: I've only tested this on small, individual components, never the full OS, because, again, cost constraints.
+
+
+634
+01:34:53.024 --> 01:35:05.824
+Incoming livestream: But it would be awesome if I could expand it to something like that. And for an organization, it would compress the loop from Apple shipped something to, we've identified the shifted behaviors and surfaces so we can adjust our focus, monitoring, and our triage faster.
+
+
+635
+01:35:06.084 --> 01:35:18.254
+Incoming livestream: I'd imagine if this was scaled, it would be the kind of workflow you'd expect from a dedicated vulnerability research team that tracks platform changes as a routine operation, rather than a random lady building nonsense with her computer.
+
+
+636
+01:35:18.464 --> 01:35:27.973
+Incoming livestream: And that's precisely why I think this is worth discussing openly. It helps keep vulnerability discoverability accessible to the junior engineer, which is me.
+
+
+637
+01:35:28.114 --> 01:35:31.374
+Incoming livestream: Now, here's the architecture I've had the best results with.
+
+
+638
+01:35:31.564 --> 01:35:34.114
+Incoming livestream: First, I use an agent pipeline approach.
+
+
+639
+01:35:34.414 --> 01:35:49.583
+Incoming livestream: This means that I am utilizing a coordinated set of tool-using agents that turns raw inputs, in this case diffs, binaries, and logs, into evidence-backed outputs like, ranked triage queues, hypotheses, and buzz-slash-telemetry plans.
+
+
+640
+01:35:49.714 --> 01:36:02.724
+Incoming livestream: I start by using a retriever. This is the indexing layer that searches embedded information like OSS code, symbols, notes, and log templates to return the most relevant context for a given question or artifact.
+
+
+641
+01:36:02.834 --> 01:36:19.203
+Incoming livestream: And then I use a toolbox, which is like a curated set of deterministic analyzers and system commands, like strings, OTool, class dump, and log queries. The agent calls to gather facts and generate evidence instead of guessing. Then, more agents handle it.
+
+
+642
+01:36:19.204 --> 01:36:24.803
+Incoming livestream: I use different agents for diff triage, RE context, hypothesizing, planning, and analysis.
+
+
+643
+01:36:25.014 --> 01:36:37.184
+Incoming livestream: I'm unable to tell you which, like, specific AI models and agents are most effective, because I kind of had the ones that just, like, I just stuck with, like, I started using and stuck with them. But I'll explain more on how I account for that later.
+
+
+644
+01:36:37.384 --> 01:36:43.184
+Incoming livestream: I don't treat the model as God, I treat it as a junior-junior engineer that can read,
+
+
+645
+01:36:43.434 --> 01:36:49.254
+Incoming livestream: Fast, follow procedures, and generate structured hypotheses that we can validate with reversing, tracing, and fuzzing.
+
+
+646
+01:36:49.394 --> 01:37:00.834
+Incoming livestream: Additionally, it's important to remember that each step in itself can break, and that they're all depending on each other. Thus, your setup should ideally account for that since you might be on a paid personal plan with limited resources.
+
+
+647
+01:37:01.714 --> 01:37:08.304
+Incoming livestream: The big addition to this talk versus, like, the classic, I used Apple OSS to reverse stuff, is logs.
+
+
+648
+01:37:08.544 --> 01:37:24.473
+Incoming livestream: Unified logging gives you subsystem and category labels that map back to components, stable message releases, and strings that can, help you hunt in binaries and source, as well as execution hints that you can use to reconstruct data flow diagrams without the full source.
+
+
+649
+01:37:24.824 --> 01:37:38.574
+Incoming livestream: I treat unified logs as a pivot into attack surface and code paths, not as, like, a doctrine because of how noisy and bulky these logs are, and I don't always know how to handle that. They're good at telling you which components actually handled the output.
+
+
+650
+01:37:38.704 --> 01:37:52.594
+Incoming livestream: Or input, so, like, things like, subsystem or category plus sender image info, and then what error paths fired that can reveal, like, parsing assumptions, type expectations, and, IPC contracts.
+
+
+651
+01:37:53.044 --> 01:37:57.963
+Incoming livestream: And that's pretty good ROI for target selection, harness design, and what to fuzz next.
+
+
+652
+01:37:58.504 --> 01:38:03.613
+Incoming livestream: An AI agent, in general, can do, like, 3 useful bounded tasks with logs.
+
+
+653
+01:38:03.614 --> 01:38:18.684
+Incoming livestream: First, it can take a log line and find where that string lives in a binary via strings, and then locate its basic block and callers. Next, it can retrieve adjacent OSS code for those callers if it exists, and produce a structured summary, like inputs, trust boundaries, and parsing.
+
+
+654
+01:38:18.804 --> 01:38:30.134
+Incoming livestream: Lastly, it can feed that summary into fuzz planning, or, like, into detection engineering, like what to watch, what parameters are attacker controlled, and then what failure modes might look like.
+
+
+655
+01:38:31.004 --> 01:38:43.064
+Incoming livestream: And this is relevant to developing POCs as well as, like, localized endpoint tests or detections. So, when your privileged AI pipeline learns a new untrusted input boundary or a new privileged XBC entry point.
+
+
+656
+01:38:43.064 --> 01:38:52.993
+Incoming livestream: You can translate it into telemetry requirements and correlation rules. And in general, that's how you turn vulnerability research into coverage. Only in the past, we did it manually.
+
+
+657
+01:38:53.084 --> 01:39:05.514
+Incoming livestream: The same idea applies to those, like, back-in-the-day kernel extensions. By diffing KX across versions, researchers have found changes to external method tables that surface new or patched entry points in IO kit drivers.
+
+
+658
+01:39:05.614 --> 01:39:13.374
+Incoming livestream: And, what this, fuzz Planner agent produces is not an exploit, unless, like, you made it do that somehow, it's a plan.
+
+
+659
+01:39:13.414 --> 01:39:26.914
+Incoming livestream: First, it enumerates candidate services like syscall handlers, IO kit, user clients, XPC services, and parsers that you focus on the entry points where attacker-controlled inputs actually cross trust boundaries.
+
+
+660
+01:39:27.054 --> 01:39:40.064
+Incoming livestream: Then, it produces a minimal test harness, like a test driver, including the invocation path, the entitlement requirements, and the expected input shape so that the target is actually reachable and reproducible at scale.
+
+
+661
+01:39:40.294 --> 01:39:51.263
+Incoming livestream: Next, the AI recommends a seed strategy by extracting dictionaries from strings, mining parameters from logs, or bootstrapping from observed traffic so that the coverage ramps quickly instead of mutating from nothing.
+
+
+662
+01:39:52.024 --> 01:40:09.724
+Incoming livestream: Note that if the command is not available in the subset that I provided, you can add them yourself or connect an AI search chatbot so that it can find them automatically. I don't necessarily recommend just, like, allowing your laptop to just, like, run whatever you want and Google whatever you want and just, like, go ham.
+
+
+663
+01:40:09.864 --> 01:40:15.544
+Incoming livestream: But if you have test MacBooks and all that stuff, go ahead and do that, because it can be cool.
+
+
+664
+01:40:15.934 --> 01:40:27.843
+Incoming livestream: Also, like, the seed strategy part is the method for selecting and generating the initial set of representative inputs that bootstraps a buzzer's coverage and guides the mutations towards a high-value code path.
+
+
+665
+01:40:28.334 --> 01:40:40.163
+Incoming livestream: Finally, the AI defined success metrics, like crash bucketing, sanitizer signals, and unique stack traces so that you can identify progress and, you know, ideally turn these results into actionable research.
+
+
+666
+01:40:41.054 --> 01:40:46.633
+Incoming livestream: Where this AI workflow breaks down today is when you ask for full chain exploits.
+
+
+667
+01:40:47.044 --> 01:41:04.204
+Incoming livestream: To be honest, I'm not at the point in my research career where I am finding full privilege escalations and, like, disabling all the macOS security controls. Additionally, I've spent significant time just trying to understand and test how the operating system is working, and this knowledge is great for that learning-by-doing approach, too.
+
+
+668
+01:41:04.334 --> 01:41:10.214
+Incoming livestream: That said, these models will occasionally invent steps, especially if you hook up an AI chatbot.
+
+
+669
+01:41:10.254 --> 01:41:28.874
+Incoming livestream: And so I try to keep it as constrained as possible due to the nature of how large these subsystems are, and how much information I am sending, and how much money it takes to process all of that information. So, the constraints I put on it are, like, bug class prediction and harness design, those are the high-value outputs, and then humans own the exploitability.
+
+
+670
+01:41:28.934 --> 01:41:38.464
+Incoming livestream: This also keeps the larger AI models, which is primarily what I use, happy, given that a lot of them try to put mechanisms to lock them down for offensive research purposes.
+
+
+671
+01:41:38.494 --> 01:41:57.704
+Incoming livestream: And if you're like me and don't fully trust your first past instincts, it helps to sanity check, like, your ideas on what to exploit against high-quality public works. For example, Patrick Wordle has an extensive body of writing, and I use AI tooling to check whether or not my hypotheses line up with established techniques in his published analysis, as well as my own notes.
+
+
+672
+01:41:57.704 --> 01:42:03.303
+Incoming livestream: This isn't wired into the OSS project yet, but I might add it since I do these sanity checks quite frequently.
+
+
+673
+01:42:03.474 --> 01:42:15.374
+Incoming livestream: Also, credit where it's due, I intentionally licensed OSS Sensor as GPLv3, because I learned a lot from GPLv3 licensed work by Patrick and many others, and keeping that code shareable helps others build and learn in the same way.
+
+
+674
+01:42:15.504 --> 01:42:24.923
+Incoming livestream: So, the TLDR is that even partial source is powerful, combine it with binary analysis, and you can reverse Apple subsystems with surprising accuracy.
+
+
+675
+01:42:24.924 --> 01:42:40.663
+Incoming livestream: But there are constraints, which is that, you know, incomplete OSS releases, obfuscation, and licensing. You need a pipeline that is compliant by design with, like, the local indexing, careful handling of source drops, and provenance tracking, so that you can explain every conclusion.
+
+
+676
+01:42:41.434 --> 01:42:48.843
+Incoming livestream: All of that said, what did we learn? The core idea I want to leave you with is that Apple's partial open source can be treated as a sensor stream.
+
+
+677
+01:42:48.864 --> 01:43:04.744
+Incoming livestream: It's not the full system, but it's a steady source of change signals, and those signals become much more valuable when you can process them continuously. The workflow I showed takes that sensor and turns it into a prioritized research queue using AI agents, but with a very specific philosophy.
+
+
+678
+01:43:04.774 --> 01:43:08.364
+Incoming livestream: The model's not God, it's a tool using Juno Annualist.
+
+
+679
+01:43:09.004 --> 01:43:25.053
+Incoming livestream: This… the work, happens in deterministic tooling, and the model's job is to stitch together the evidence, retrieve the right context, and produce structured outputs that make a human faster and more consistent. That's why the narrative is diff to hypothesis to harness.
+
+
+680
+01:43:25.634 --> 01:43:41.604
+Incoming livestream: You start with a diff, source or binary, you ask what meaningfully changed, and where the trust boundaries might be. Then you turn that into a testable hypothesis about a bug class. It can help with size calculation issues, parsing assumptions, policy gating, and interface surface shift.
+
+
+681
+01:43:41.804 --> 01:43:49.404
+Incoming livestream: Then, you build a minimal test driver so that the path is reachable and reproducible, which sets you up for fuzzing and for validation.
+
+
+682
+01:43:49.424 --> 01:44:06.933
+Incoming livestream: The trick is that the open source diff alone is not enough. We need to augment it with two other signals, the binaries, because they reflect the reality of what ships, and then the OS logs, because unified logging is a good ROI pivot point, and two, which components actually handled that input, and which error paths fired.
+
+
+683
+01:44:07.464 --> 01:44:25.153
+Incoming livestream: The Fuzz Planner piece is an example of how this stays, like, practical and bounded. It doesn't generate an exploit, it generates a plan, and it tells you which surfaces matter, how to quickly reach them with a minimal harness, how to seat inputs so that coverage ramps quickly, and then how to measure the results so that you can identify findings.
+
+
+684
+01:44:25.284 --> 01:44:37.724
+Incoming livestream: And importantly, it acknowledges the limits. Open source releases are incomplete, binaries can be opaque, and models can hallucinate. And that's why everything is evidence-backed, Providence-tracked, and compliant by design.
+
+
+685
+01:44:38.724 --> 01:44:52.934
+Incoming livestream: So, I personally stopped throughout this process. I've utilized tools like, like AI tools like ChatGPT's, Deep Research, but given the cost constraints, manual review is required for me, especially if it looks like something I won't understand.
+
+
+686
+01:44:53.094 --> 01:45:01.133
+Incoming livestream: Given these systems are great, but hallucinate, and given that I might not always know what I'm talking about, it's imperative for my research to have these manual checks.
+
+
+687
+01:45:01.244 --> 01:45:20.584
+Incoming livestream: Finally, this isn't just, like, a offensive research, like, productivity hack. The same pipeline shortens the loop for localized threat detection engineering. When you can quickly identify what changed and what behaviors and interfaces moved, you can update monitoring, prioritization, and triage faster and turn that platform churn into detection coverage.
+
+
+688
+01:45:20.854 --> 01:45:28.854
+Incoming livestream: So, these are the outcomes I care about, which is, you know, making macOS vulnerability research more scalable, more teachable, and more operationally useful.
+
+
+689
+01:45:29.154 --> 01:45:47.873
+Incoming livestream: I have more in terms of where you can go from here. I released a, Apple security-focused newsletter called Ret2Read after I graduated, where I post approximately once a month, or once every other month, and, yeah. So, thank you so much for providing me the opportunity to present. Hope you all enjoyed. Let me know if you have questions.
+
+
+690
+01:45:56.394 --> 01:46:08.934
+Incoming livestream: Alright, well, while the shy people in the audience start to raise their hand, I'll start with one. You kind of talk a lot about it being a junior analyst, because of sort of cost and manual review trust. What would have to change for you to…
+
+
+691
+01:46:09.284 --> 01:46:17.283
+Incoming livestream: to, to start to give it bigger tasks, to have it take on more. It's just reflecting on, sort of, Dan's talk, as it's constantly getting better.
+
+
+692
+01:46:17.364 --> 01:46:36.904
+Incoming livestream: So, I am very lucky that I have a ton of test machines. I have a ton of test macs, tons of iPads, like, I have a test machine for, like, everything, right? So I'm able to outsource certain things that maybe the average person wouldn't be able to do. But when I think about it, this is, like, tens of thousands of dollars of research devices, and I'm like.
+
+
+693
+01:46:37.104 --> 01:46:53.403
+Incoming livestream: is, like, the average… like, I'm talking about accessibility, but it's like, is the average person gonna be able to get, you know, researchers and things to, like, send them these devices? Are they gonna be able to afford this? And when I tried to scale it down so that, like, I could do research, like, on the go and things like that, I was like.
+
+
+694
+01:46:53.604 --> 01:47:06.474
+Incoming livestream: I can't do this, like, what is going on? And I, when I started, like, looking at, like, the tokens, the cost constraints, like, dude, you hit a grand quickly when you're putting in entire subsystems of operating systems, so I would say just give me lots of money.
+
+
+695
+01:47:14.184 --> 01:47:15.613
+Incoming livestream: Does anyone want to follow that?
+
+
+696
+01:47:15.714 --> 01:47:21.784
+Incoming livestream: Yeah. That's the problem. awesome. Well, thank you so much. Here's what we're gonna do.
+
+
+697
+01:47:22.004 --> 01:47:40.264
+Incoming livestream: We're gonna do coffee break. We're running behind, but not as behind as we were, so we're gonna start back up here at 11.05 with Prompt to Pwn, a slate of Agentic talks, don't forget we'll have talks running downstairs in Stage 2 as well. And, one other fun announcement, by overwhelming, sticker voting in the back.
+
+
+698
+01:47:40.414 --> 01:47:41.058
+Incoming livestream: Everyone wants to talk about agentic identity, so, Chris Cochran from SANS, has volunteered to lead a session on that downstairs, 1PM during lunch.
+
+

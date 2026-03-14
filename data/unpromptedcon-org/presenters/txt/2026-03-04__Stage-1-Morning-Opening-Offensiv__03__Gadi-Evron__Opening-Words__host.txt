@@ -1,0 +1,55 @@
+[00:08:30.284 - 00:08:31.264] Incoming livestream: Morning, all.
+[00:08:33.864 - 00:08:35.653] Incoming livestream: Thank you all for coming again.
+[00:08:35.914 - 00:08:36.984] Incoming livestream: Today, too.
+[00:08:37.294 - 00:08:41.904] Incoming livestream: We try to keep Day 2 as the most interesting day, because I know for a fact.
+[00:08:42.374 - 00:08:47.094] Incoming livestream: That people tend to skip most or half of the last day.
+[00:08:47.354 - 00:08:53.714] Incoming livestream: So for me, there are only two parts of the conference where I truly Enjoy it.
+[00:08:54.044 - 00:09:00.634] Incoming livestream: The evening before, when I could get to make friends, and have better time, an easier time socializing.
+[00:09:00.744 - 00:09:06.054] Incoming livestream: In the event itself, and the last day, where people are now relaxed, Kind of.
+[00:09:06.194 - 00:09:24.324] Incoming livestream: And we can just mingle, have fun, and truly learn, and the best presentations are here. Not that I'm putting down all the people from yesterday, right? Aaron chose a few really good ones, because everybody else sucked, right? I'm digging my own hole, are you noticing that? Like, I'm trying really hard, and you guys are not pointing and laughing. Anyway, let's get started.
+[00:09:25.824 - 00:09:28.454] Incoming livestream: So… Statistics, again.
+[00:09:29.074 - 00:09:32.254] Incoming livestream: I have FOMO about the online conference.
+[00:09:32.534 - 00:09:37.703] Incoming livestream: What these people have done, is crazy. It's not just live streaming.
+[00:09:37.844 - 00:09:45.473] Incoming livestream: There are hosted sessions with a lot of speakers just come in. People just chat for a while without all the noise in the background.
+[00:09:45.834 - 00:09:50.194] Incoming livestream: It's just insane what's going on over there. 850 people or so.
+[00:09:50.504 - 00:09:54.033] Incoming livestream: are active, then there is a drop-off when Europe goes to bed.
+[00:09:54.184 - 00:10:01.583] Incoming livestream: But they already have videos, because excited to what we'll upload to YouTube, Dragos has been very good about saving everything in the background, putting it on…
+[00:10:01.734 - 00:10:08.803] Incoming livestream: Vimeo, it's just crazy what's going on over there, so… major FOMO. 700 people in the venue, naturally not all the time.
+[00:10:09.084 - 00:10:13.753] Incoming livestream: I believe we're averaging about 550. This… today, probably around 450.
+[00:10:14.044 - 00:10:16.073] Incoming livestream: And again, I would just like to stop.
+[00:10:16.344 - 00:10:31.944] Incoming livestream: Thanks to the committee, thank the staff, all the volunteers. Literally, some of the volunteers here are professors, some are researchers, some are CISOs, a couple of billionaires, a couple of students, somebody's significant other, just people are enjoying being a part of this.
+[00:10:32.134 - 00:10:39.233] Incoming livestream: I truly appreciate that. And lastly, to Ida, again, who can't be here today, and is pulling… her hair would look like mine.
+[00:10:39.344 - 00:10:46.484] Incoming livestream: After today's over, because she's pulling it, not being here, but managing all of this. Not surely Andrea stepped in to help with all that, but…
+[00:10:46.844 - 00:10:53.634] Incoming livestream: To her and two speakers who couldn't be here, because they're stuck in Israel with the airspace closed, I want to extend some thanks.
+[00:10:54.094 - 00:10:58.034] Incoming livestream: So, repeating yesterday's kind of model.
+[00:10:58.694 - 00:11:06.334] Incoming livestream: my thoughts in quick order. Number one, security. Yesterday, I talked about that non-deterministic…
+[00:11:06.474 - 00:11:11.134] Incoming livestream: Deterministic configuration becoming non-deterministic and thinking what that means.
+[00:11:11.444 - 00:11:20.074] Incoming livestream: I was speaking with my vendor hat on to a customer a few weeks ago, and he suggested that the Citizen Coders buzzword.
+[00:11:20.394 - 00:11:28.534] Incoming livestream: Meaning, not developers, but finance and HR and everybody else using Cloud Code and Cursor, or moving to lovable Replead Base44.
+[00:11:28.724 - 00:11:34.693] Incoming livestream: is now… it's a concern that's truly rising for me. Right now, it's all the coding agents, but it's changing.
+[00:11:34.924 - 00:11:36.064] Incoming livestream: Because…
+[00:11:36.604 - 00:11:54.683] Incoming livestream: And this is big, not because of incident response no longer having auditability or traceability, not because of the incident they already had, which was pretty interesting, where somebody decided to bypass SSO and just put in their own authentication. Who hasn't seen developers do that before, wanting to get to production, but from finance.
+[00:11:54.994 - 00:12:01.713] Incoming livestream: And not even the dependencies and vulnerabilities, where who knows these applications even exist, not to mention updating them.
+[00:12:02.004 - 00:12:10.094] Incoming livestream: But because, literally, it looks at this and says, in a world where everybody is running their own infrastructure, IT is broken, it's fragmented. How do we deal with that?
+[00:12:10.194 - 00:12:19.824] Incoming livestream: So that's my thought of the day in security. The rest will be quicker. On startups, under a startup era, I truly believe this is going to be the reddest blue ocean I've seen in my life.
+[00:12:20.374 - 00:12:25.114] Incoming livestream: And think twice before you enter this space, and then enter it anyway, because it's so exciting.
+[00:12:25.604 - 00:12:26.883] Incoming livestream: So fucking exciting.
+[00:12:27.494 - 00:12:29.644] Incoming livestream: Then, on the team's side.
+[00:12:31.544 - 00:12:45.353] Incoming livestream: It's been a day since yesterday, and when I shared, I think we should all be on Cloud Code and Cursor and all these tools right this second, or we will all be irrelevant. CEOs, finance, devs, doesn't really matter. So it's been a day. Are all these people now, the CEO, the CISO, your people?
+[00:12:45.474 - 00:12:46.904] Incoming livestream: on Cloud Code already.
+[00:12:47.244 - 00:12:52.184] Incoming livestream: If not, you're already behind. You had a day to change your lives, and you didn't do it. What's wrong with you people?
+[00:12:52.614 - 00:12:56.833] Incoming livestream: You work for an enterprise, really? There's DPRM processes? I don't know.
+[00:12:57.004 - 00:12:58.434] Incoming livestream: I'm funny, laugh.
+[00:12:58.544 - 00:13:00.084] Incoming livestream: Thank you, thank you.
+[00:13:00.274 - 00:13:02.233] Incoming livestream: And then, the power of the power user.
+[00:13:05.224 - 00:13:12.563] Incoming livestream: once you have your infrastructure, your scaffolding in place, did you throw it away yet? Are you looking at the cloud code changelog every week?
+[00:13:13.124 - 00:13:18.453] Incoming livestream: Because if you didn't, you're already behind once again, and it's really not that hard. It's exciting.
+[00:13:18.774 - 00:13:20.024] Incoming livestream: Embrace it.
+[00:13:21.144 - 00:13:28.434] Incoming livestream: I will do this again today, because I feel… I really feel it matters. This is a major failure pattern of every conference I've ever been to.
+[00:13:29.784 - 00:13:42.054] Incoming livestream: Questions are not comments. While I appreciate contributions to everybody's talks, that's not what it's about. So I'm gonna read this out loud, as people say not to do in a presentation. This is from Jelani Cobb.
+[00:13:42.684 - 00:13:48.633] Incoming livestream: A question is an interpretive sentence generally denoted by an inflection at the end, like this.
+[00:13:48.944 - 00:14:03.644] Incoming livestream: A question differs from a statement in that a question requests information and a statement provides it. We prefer questions to statements, and if you frame your question as succinctly as possible within 30 seconds, we can get to as many people as possible. And we have the Slack, so please get on the Slack.
+[00:14:04.414 - 00:14:06.373] Incoming livestream: And workshop your question.
+[00:14:06.564 - 00:14:14.723] Incoming livestream: So it's actually good, with everybody else, get the engagement from your friends, and then the speakers will get on and answer it anyway, even if we didn't get to it.
+[00:14:16.404 - 00:14:19.283] Incoming livestream: Now, moving on to the last part of this.
+[00:14:19.544 - 00:14:34.873] Incoming livestream: quite a few people vibe-coded this con, and are still creating things on the fly, and have announcements. So, I would like to start with Rob Lee, who has done some pretty cool work for us, making us more of an online, AI-powered, AI-native conference, or whatever.

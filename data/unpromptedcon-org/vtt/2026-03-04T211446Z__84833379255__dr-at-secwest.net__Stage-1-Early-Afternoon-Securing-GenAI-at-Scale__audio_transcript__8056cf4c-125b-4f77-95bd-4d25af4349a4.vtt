@@ -1,0 +1,2058 @@
+WEBVTT
+
+1
+00:01:18.636 --> 00:01:25.116
+Incoming livestream: Good afternoon, welcome back. I hope everyone had… The opportunity to eat.
+
+
+2
+00:01:25.306 --> 00:01:28.016
+Incoming livestream: I see we've gone through quite a few sandwiches.
+
+
+3
+00:01:28.116 --> 00:01:32.636
+Incoming livestream: I also see we have 2 more trays of cookies, so, you know.
+
+
+4
+00:01:32.876 --> 00:01:36.755
+Incoming livestream: If you need sugar to get through the end of the second long day.
+
+
+5
+00:01:37.316 --> 00:01:46.075
+Incoming livestream: We're here for you. I will once again ask that we start to sh… Slowly quiet down.
+
+
+6
+00:01:46.266 --> 00:01:49.935
+Incoming livestream: Bring our conversations down, take them to the overflow room.
+
+
+7
+00:01:50.076 --> 00:02:09.656
+Incoming livestream: take them outside. I know folks up here, we're here for the conversations, but we are, of course, also here for the sessions. So, please do be respectful as speakers and keep, keep things down. So yeah, let's kick this off. Two more rounds of sessions to go, and we'll start, we'll start with,
+
+
+8
+00:02:09.976 --> 00:02:20.826
+Incoming livestream: a series of big platform talks. This is on, what's going on at Google Workspace for, Gen AI hijacking prevention. Please welcome, Nicholas.
+
+
+9
+00:02:29.506 --> 00:02:39.296
+Incoming livestream: All right, good afternoon, unprompted. So, very excited, to have you around. So, I'm Nikolatisborske, go by Nico. I'm a Principal Software Engineer at Google.
+
+
+10
+00:02:39.416 --> 00:02:42.276
+Incoming livestream: working on, Google Workspace security.
+
+
+11
+00:02:43.206 --> 00:03:00.695
+Incoming livestream: Been working security for 25 years now, so, super exciting to have all of you around trying to tackle that, very, very complex, issue. So, big thank you to my wife, my kids, our patients, and their love, enabling me to do something I really love.
+
+
+12
+00:03:03.896 --> 00:03:08.526
+Incoming livestream: Hi. Sure, let's do it. Actually, what I want to do is… List.
+
+
+13
+00:03:08.646 --> 00:03:09.545
+Incoming livestream: All right.
+
+
+14
+00:03:10.156 --> 00:03:12.246
+Incoming livestream: Okay. All right, so…
+
+
+15
+00:03:12.426 --> 00:03:23.975
+Incoming livestream: Today, we are basically confronting very defining security challenges for generative AI era. Like, perfect storm where, basically, traditional security boundaries are simply no longer enough.
+
+
+16
+00:03:24.546 --> 00:03:31.516
+Incoming livestream: Like, I'm going to share with you what we observed over the last couple of years, like, what we've been doing about it. I've been basically doing…
+
+
+17
+00:03:31.556 --> 00:03:44.655
+Incoming livestream: Gen AI security for 3 years now, and there's a lot of things, a lot of lessons we learn along the way. I want to share them so people are not repeating the mistake, and actually trying to build, like, really secure software.
+
+
+18
+00:03:45.746 --> 00:03:54.945
+Incoming livestream: So first, we'll start by dissecting the threat. Like, pretty much a new prompt as code environment that has deep access to very sensitive data.
+
+
+19
+00:03:55.426 --> 00:04:04.185
+Incoming livestream: So that then, we're going to examine, like, cat and mouse game, and how it's futile right now. Exposing, like, failure reactive filtering.
+
+
+20
+00:04:04.646 --> 00:04:24.295
+Incoming livestream: Then, we're going to… the core of the session is going to be about architecting the fortress, where we are trying to present, like, a new structural security blueprint to hopefully make things secure. And finally, to cover, like, semantic resilience, discussing the importance of, like, continuous testing, rigor, human loop confirmation to secure AI.
+
+
+21
+00:04:26.086 --> 00:04:32.085
+Incoming livestream: So, we are right now a very crucial and very stormy era for security. Things are going really fast.
+
+
+22
+00:04:32.206 --> 00:04:35.386
+Incoming livestream: But, like, unlike traditional application security.
+
+
+23
+00:04:35.666 --> 00:04:43.645
+Incoming livestream: where we could rely on filtering for syntactic patterns, like script tag or SQL injection code. In Gen AI world, like, the prompt is code.
+
+
+24
+00:04:43.796 --> 00:04:48.486
+Incoming livestream: Like, every single token in the input stream is a potential instruction.
+
+
+25
+00:04:48.686 --> 00:04:58.456
+Incoming livestream: So… and the instructions are semantic rather than syntactic. They can be obfuscated in many ways, but a standard infrastructure, like firewall, a filter, will never catch.
+
+
+26
+00:04:59.186 --> 00:05:03.385
+Incoming livestream: So, we are facing two distinct, but somewhat synergistic issues here.
+
+
+27
+00:05:03.926 --> 00:05:20.195
+Incoming livestream: First, like, semantic shift. In traditional app security, we have deterministic parsing. There's a SQL injection, everybody have seen what they look like, and so often, like, software engineers that are facing projection, they're asking, oh, why can't you block it just like a SQL injection?
+
+
+28
+00:05:20.706 --> 00:05:25.346
+Incoming livestream: But in general, the grammar is natural language, which is inherently very fuzzy.
+
+
+29
+00:05:25.616 --> 00:05:40.556
+Incoming livestream: Like, the analogy is no longer just breaking syntax, it's shifting the context. So attacker can use linguistic techniques like persuasion, role-playing, to bypass standard filters. So the model is interpreting intent rather than executing rigid commands.
+
+
+30
+00:05:42.036 --> 00:05:44.705
+Incoming livestream: The second issue we have is front desk code.
+
+
+31
+00:05:44.846 --> 00:05:58.466
+Incoming livestream: That basically collapses the control plane. So in classical computing, like, code and data are separate. In LLM, we deal with context learners. So they treat the system instruction as user input, the data.
+
+
+32
+00:05:58.466 --> 00:06:13.655
+Incoming livestream: as a single and contiguous stream of token. So this is very structural vulnerability we deal with, and there's no real out-of-bond way to tell the model, these 500 tokens are just data, do not execute them. No NX bit for the memory.
+
+
+33
+00:06:13.816 --> 00:06:22.655
+Incoming livestream: So, to the model, every token is a potential instruction, which allows the data to overwrite, like, the instruction that… and we have prompt injection.
+
+
+34
+00:06:22.806 --> 00:06:29.586
+Incoming livestream: So understanding the difference is very critical for the difference in-depth, because we need tools to monitor malicious intent.
+
+
+35
+00:06:30.196 --> 00:06:33.916
+Incoming livestream: But it's not just that, it's also, like, construction hijacking that will happen.
+
+
+36
+00:06:35.276 --> 00:06:42.346
+Incoming livestream: So, in the productivity environment that we have, the main risk we face from LLM is indirect prompt injection.
+
+
+37
+00:06:42.996 --> 00:06:59.056
+Incoming livestream: So, indirect prompt injection is… the main thing is hidden, like a zero-click supply chain attack. Maliche instruction is buried, often in external, untrusted content that can be, like, a calendar invite or an email, not in the user direct prompt.
+
+
+38
+00:06:59.706 --> 00:07:13.535
+Incoming livestream: then it's going to exploit benign action. That attack can be triggered when a user performs a very normal, useful action automation, like having an AI summarize the day, and that caused the agent to ingest and execute the hidden prompt.
+
+
+39
+00:07:14.466 --> 00:07:29.285
+Incoming livestream: And the core issue we have here is ambiguity. So, the LLM treats all incoming texts, whether it's a trusted system instruction or untrusted external data, as single command, allowing external payload to override the agent instruction.
+
+
+40
+00:07:29.696 --> 00:07:44.196
+Incoming livestream: So this enables impact at scale. Like, every… a single malicious document or invite can spread and activate thoroughly across many users. So that turned a very benign feature into hidden phishing or data acceleration channel.
+
+
+41
+00:07:45.916 --> 00:07:55.015
+Incoming livestream: So here I have an example of a couple years ago, visually illustrating a concrete example of the zero-clickness of indirect prompt injection attack.
+
+
+42
+00:07:55.346 --> 00:08:01.636
+Incoming livestream: So here we have a malicious payload that's hidden within a Gmail message, and invisible to the user.
+
+
+43
+00:08:01.946 --> 00:08:12.745
+Incoming livestream: And when an AI agent is going to perform a pretty benign, helpful task, like summarization, it will ingest a hidden text, which effectively overrides the instruction, executing a DAC command.
+
+
+44
+00:08:13.236 --> 00:08:19.846
+Incoming livestream: And that exactly demonstrates the danger we have with prompt ascot principle, applied to untrusted quota here.
+
+
+45
+00:08:19.966 --> 00:08:25.516
+Incoming livestream: So, weather risk is very limited here, because it's basically mostly the content that's going to be replaced.
+
+
+46
+00:08:25.656 --> 00:08:31.236
+Incoming livestream: We have to be extremely careful when we're going to use more complex workflows that potentially can do action.
+
+
+47
+00:08:33.326 --> 00:08:37.546
+Incoming livestream: So the second major risk we have encountered is insecure output handling.
+
+
+48
+00:08:37.796 --> 00:08:41.226
+Incoming livestream: Like, specifically a thread around Markdown acceleration.
+
+
+49
+00:08:42.006 --> 00:08:58.546
+Incoming livestream: So, markdown issues are fundamentally, like, rendering attack. Like, a large language model can be prompted to generate malicious markdown that is going to be rendered, often in HTML, that will include resources, like images or links, and forcing requests to an attacker server.
+
+
+50
+00:08:59.286 --> 00:09:13.735
+Incoming livestream: So, that enables silent acceleration. You potentially have data that's supersensitive appended to an external resource URL, leaking it when the resource is fetched. So, for example, the data here can be hidden in just a query parameter of an image link.
+
+
+51
+00:09:14.256 --> 00:09:18.916
+Incoming livestream: And the final critical thing to have in mind here is the verification gap.
+
+
+52
+00:09:19.226 --> 00:09:38.775
+Incoming livestream: Like, the end user only see, potentially, a broken image icon or failed link rendering in the output. But the attacker already won. It successfully captured sensitive data inside their server log, without the user even knowing it. And that's a real-world vector, similar to what demonstrated for, you know, like, a colleague a year ago.
+
+
+53
+00:09:40.376 --> 00:09:49.996
+Incoming livestream: So, the third and major usage risk, of course, is around rogue actions. We're playing a critical leap in the threat model, and that engineering world is fully enabling.
+
+
+54
+00:09:50.316 --> 00:09:53.945
+Incoming livestream: And the first element with this is, what we call an agency gap.
+
+
+55
+00:09:54.536 --> 00:10:03.075
+Incoming livestream: With viability in reasoning, when there's a disconnect between the user actual intent and autonomous execution performed by AI agent.
+
+
+56
+00:10:03.356 --> 00:10:18.946
+Incoming livestream: So, because agent reasoning is non-deterministic, minor prompt variation can lead to accidental rogue action. For example, agent intentionally emailing sensitive data to the wrong person, just because of a name conflict, and just figure out, oh, that's close enough.
+
+
+57
+00:10:19.976 --> 00:10:29.965
+Incoming livestream: The second issue is orchestration hijacking. Like, rogue actions are frequently a result of compromised orchestration layer, where the LLM serves as planner for tool calls.
+
+
+58
+00:10:30.306 --> 00:10:45.946
+Incoming livestream: And this is even more prevalent with a MCP system. But, like, malicious actors can exploit it by using that indirect prompt injection to manipulate the directed data, or just planting dormant triggers that is going to have consequences later on.
+
+
+59
+00:10:46.136 --> 00:10:55.996
+Incoming livestream: And, the trigger will not occur to hijack communication between agent or manipulate the planner into calling tool with authorized parameters.
+
+
+60
+00:10:56.236 --> 00:11:10.986
+Incoming livestream: So, a vote action can be time-based or event-based, occurring long after the initial input was processed, effectively mask the source of the attack. You can have that projection inserted in the database, and a layer later, it's being executed.
+
+
+61
+00:11:11.496 --> 00:11:27.006
+Incoming livestream: Finally, we have confused deputy. So that's happened when the orchestration layer grants an agent permission that exceeds the specific authorization expected by the end user. So that allows rogue action to potentially bypass standard access control and act as privileged proxy.
+
+
+62
+00:11:28.536 --> 00:11:29.656
+Incoming livestream: So…
+
+
+63
+00:11:29.956 --> 00:11:47.525
+Incoming livestream: I think you've all seen it, but, like, Simon Williamson, coined the term, lethal trifecta to define the convergence of factors that elevate the risk associated with the generic system here. So, the agent has deep access to sensitive private data, like email, personal file, document, etc.
+
+
+64
+00:11:47.566 --> 00:11:50.476
+Incoming livestream: Then, the agent has continuous
+
+
+65
+00:11:50.536 --> 00:12:04.535
+Incoming livestream: exposure to untrusted external content, from new email, incoming messages, change requests. And third, the agent possess capability to execute external command through API calls.
+
+
+66
+00:12:04.776 --> 00:12:17.176
+Incoming livestream: So, when those three elements converge within a single system, the LLM can effectively transform into a powerful and very tempting application layer that attackers can manipulate for high-impact rogue action.
+
+
+67
+00:12:18.766 --> 00:12:26.595
+Incoming livestream: So you're going to see, like, an example of real-world vector that was presented, like, at BlackAir last year, which is an invitation all you need.
+
+
+68
+00:12:26.956 --> 00:12:41.076
+Incoming livestream: That, Ben Nasi, Tafko, and earlier. So that, in that case, an attacker will send a Google Calendar invite with hidden payload. And nothing happens until the user simply asks, what's on my schedule today?
+
+
+69
+00:12:41.476 --> 00:12:53.626
+Incoming livestream: That sounds like very benign requests when you're there. And then the agent will ingest the invite, understand the malicious instruction, and then can move laterally, exhal data, or doing other action.
+
+
+70
+00:12:54.076 --> 00:13:10.345
+Incoming livestream: So in our case, we protected the execution of data pretty well, but some home action, like, we did not realize, like, they can potentially be very scary. So in that case, control of light, control of home curtains, control of temperature of the heater.
+
+
+71
+00:13:11.116 --> 00:13:21.276
+Incoming livestream: So, no zero day at a vulnerability exploited, no malware installation, no link click required, and you can have a real consequences in the world.
+
+
+72
+00:13:22.916 --> 00:13:29.445
+Incoming livestream: So, now we're gonna see how simply trying to filter prompt is fundamentally a losing game.
+
+
+73
+00:13:30.526 --> 00:13:35.756
+Incoming livestream: So, why trying to win that cat-mouse game with a filtering proposition?
+
+
+74
+00:13:35.906 --> 00:13:51.146
+Incoming livestream: Like, there's three main areas I can justify. First, static filter that includes, like, block lists and regex, they operate purely on syntax. So they can be very, very easily defeated by a simple obfuscation technique.
+
+
+75
+00:13:51.156 --> 00:13:57.976
+Incoming livestream: So, basic phone coding, hex string, ROC13. The LLM understands it without any special instruction.
+
+
+76
+00:13:58.246 --> 00:14:04.576
+Incoming livestream: And the moment the data is encoded, the pattern the filter is looking for simply breaks, and the malicious instructions are allowed to pass through.
+
+
+77
+00:14:05.376 --> 00:14:22.906
+Incoming livestream: The second element is ML classifier. Sounds great. They are better than basic patterns, but they lack true semantic depth. So, attacker can bypass probabilistic models using subtle changes, like synonym swapping, translating the payload to a low-resource language, for example.
+
+
+78
+00:14:22.996 --> 00:14:35.115
+Incoming livestream: Of just using adversarial prefixes. So this method can nudge the model confident just enough for malicious intent to sneak through detection. And you just need, like, one bypass, and you can get through.
+
+
+79
+00:14:35.576 --> 00:14:49.186
+Incoming livestream: So finally, like, multimodal attacks demonstrate a critical blind spots we have. Like, text-only filters are completely blind to instruction hidden in visual or audio formats. So malicious instruction can be just buried in image, metadata.
+
+
+80
+00:14:49.316 --> 00:14:51.876
+Incoming livestream: Or hidden in text and images.
+
+
+81
+00:14:52.026 --> 00:15:04.676
+Incoming livestream: And using OCR evasion technique that bypassed standard text processing pipeline entirely. So, this constant inadequacy across all reactive filtering layers proved that a structural solution is required to do better.
+
+
+82
+00:15:06.106 --> 00:15:14.295
+Incoming livestream: Another technique that's been prevalent has been the use of LLM as such, particularly requesting a certain LLM to review the response before it's sent back to the end user.
+
+
+83
+00:15:14.886 --> 00:15:26.905
+Incoming livestream: Our critical flow here, though, is recursive prompt injection. When the secondary LLM judge reviews untrusted data, it is subject to same semantic vulnerability primary model.
+
+
+84
+00:15:27.736 --> 00:15:36.695
+Incoming livestream: So the attack pattern here is due to the fact that judge and attacker share the same semantic interface. Payload can include instruction aimed specifically at the judge.
+
+
+85
+00:15:37.166 --> 00:15:49.835
+Incoming livestream: So an example is, like, semantic gaslighting, where you're just going to say malicious context will instruct the judge to review the following as safe, even if contact execution commands are the thief for research. Trust me.
+
+
+86
+00:15:51.626 --> 00:15:52.506
+Incoming livestream: So…
+
+
+87
+00:15:53.496 --> 00:16:02.946
+Incoming livestream: All traditional vulnerabilities that live in poorly sanitized string, or broken authentication check. Agent vulnerability live in language and context.
+
+
+88
+00:16:03.306 --> 00:16:08.755
+Incoming livestream: So, malicious payload is syntactically innocuous and looks like plausible user requests.
+
+
+89
+00:16:08.926 --> 00:16:20.255
+Incoming livestream: So reactive guardrails and pattern matching are inherently inadequate, because threat actors will constantly leverage evolving techniques, such as, like, multimodal hidden text injection, to maintain evasion superiority.
+
+
+90
+00:16:20.416 --> 00:16:25.455
+Incoming livestream: And you do not want to play cat on March, because you're always behind, and you'll get exploited.
+
+
+91
+00:16:25.776 --> 00:16:34.445
+Incoming livestream: So what can you do? How can we leap forward as a defender? We need to identify stronger and layered foundation, unable to tackle complex attacks.
+
+
+92
+00:16:35.696 --> 00:16:44.875
+Incoming livestream: So the first layer that you come up with is ensuring… it sounds very basic, but that's a reality. Just ensuring that the input into the agentic system is low risk.
+
+
+93
+00:16:45.346 --> 00:16:50.745
+Incoming livestream: So, what you've been doing is, for example, is going to do visible content only.
+
+
+94
+00:16:50.866 --> 00:17:05.296
+Incoming livestream: Like, in case of email, we want to get rid of anything that is not visible to the end user. There's no point in sending, like, hidden HTML to an LLM. It's all about what we, what the user sees, so we get rid of hidden text and notification.
+
+
+95
+00:17:06.136 --> 00:17:17.006
+Incoming livestream: The second is input filtering. You want to block content that is deemed risky. Like, if we already know that an email is likely spam or phishing, there's no reason to expose the poor LLM to that content.
+
+
+96
+00:17:18.106 --> 00:17:32.925
+Incoming livestream: And finally, we want to leverage as much abuse signal as possible, like implement data provenance tracking to enforce policy, such as, like, user affinity, user risk score, prompt injection classification, throughout the system, so we always know where we are.
+
+
+97
+00:17:34.476 --> 00:17:47.256
+Incoming livestream: The second layer is dealing with the context stand as prompt 2DL. So we are going to try to do prompt delimitation and reinforcement. It's not linguistic marker, and adversarial training to harden context window.
+
+
+98
+00:17:47.486 --> 00:17:58.426
+Incoming livestream: So one technique is to leverage, like, Sentinel token, which is basically token encapsulating content. We're going to mark inside the prompt where the data is.
+
+
+99
+00:17:59.086 --> 00:18:07.315
+Incoming livestream: Then we're going to try to have prompt reinforcement, explaining to the LLM, to be, where to be careful, why to be careful.
+
+
+100
+00:18:07.426 --> 00:18:19.735
+Incoming livestream: and also rely on fine-tuning, training model to strictly ignore imperative commands found within data delimiters. It's absolutely not perfect, but it moves a little bit the bar, which is better than nothing.
+
+
+101
+00:18:20.296 --> 00:18:28.805
+Incoming livestream: And again, this is all about layers. The third layer is to enable deterministic orchestration decisions to get stateful policy enforcement.
+
+
+102
+00:18:29.606 --> 00:18:47.715
+Incoming livestream: So we program to implement, like, security logic to forbid dangerous action sequences. We have state-aware session tracking, which means we have an orchestrator that maintains finite state machine, tracking risk level of contacts, and then we can dynamically restrict downstream capabilities based on data origin.
+
+
+103
+00:18:48.836 --> 00:19:01.896
+Incoming livestream: And then we can have deterministic policy, where at every application step, we can do enforcement, not just on the initial problem. An example would be to require human confirmation for mutation and data sharing change.
+
+
+104
+00:19:02.026 --> 00:19:16.445
+Incoming livestream: Or we can actually deny action. For example, after accessing sensitive user data, you do not want to do a web request on the internet. So we're going to constrain the problem to something that can be deterministically protected.
+
+
+105
+00:19:17.616 --> 00:19:36.916
+Incoming livestream: The last layer of protection is protecting the output via output sanitization and validation. So here, the output ELM is typically marked down, but we render out of HTML, so we are parsing and scrubbing down that markdown to eliminate anomalies, such as unwarranted images, link protocol. So we perform dynamic URL classification.
+
+
+106
+00:19:38.076 --> 00:19:48.555
+Incoming livestream: So, we have dynamic URL classification, where we're going to identify malicious URL. If it's in safe browsing data as malicious URL, there's no reason to render it.
+
+
+107
+00:19:49.106 --> 00:19:54.065
+Incoming livestream: And finally, we ensure that ungrounded links that have been hallucinated by the LLM are scrapped.
+
+
+108
+00:19:54.316 --> 00:19:58.336
+Incoming livestream: Like, if the LM just come up with a URL, likely it's not great.
+
+
+109
+00:20:00.586 --> 00:20:14.405
+Incoming livestream: So, everything is great, but to survive that perfect storm that is coming, and an attacker that will be relentless, we cannot be static. Like, true systemic resilience is achieved through relentless cycle of testing, validating, and learning.
+
+
+110
+00:20:15.456 --> 00:20:30.796
+Incoming livestream: So, the first pillar for the systemic resilience is automatic regression testing. So we must run, like, automatic regression testing framework that is going to repeatedly and systematically subject our system to all known classes of agentic attacks.
+
+
+111
+00:20:31.156 --> 00:20:34.426
+Incoming livestream: So, framework is engineered specifically to capture regression.
+
+
+112
+00:20:34.646 --> 00:20:51.895
+Incoming livestream: Meaning to ensure that defense we built last month is not inadvertently broken by a new feature developed this week. You also want to try many times your attack, because of the probabilistic nature of LLM. Sometimes you try the same attack 10 times, and 1 out of 10 it will work, and you won't get rid of that problem.
+
+
+113
+00:20:52.416 --> 00:20:58.805
+Incoming livestream: So, the goal is to pre-empt sophisticated agent attacks that can penetrate the production environment.
+
+
+114
+00:20:59.896 --> 00:21:16.446
+Incoming livestream: And something super important here is it takes a village to do that. And securing AI at this scale requires deep collaborative partnership with dedicated, like, red team that are going to find zero-day vector, and a co-engineering team that implements structural defenses.
+
+
+115
+00:21:16.446 --> 00:21:21.376
+Incoming livestream: Another element we rely on is our VRP program, Volunteer Work Program.
+
+
+116
+00:21:21.376 --> 00:21:33.056
+Incoming livestream: and dedicated hacking event like bug swap. So we work with security researcher to try to challenge our systems and push them to find vulnerability and fix them proactively.
+
+
+117
+00:21:34.596 --> 00:21:40.255
+Incoming livestream: So, when high-stake, irreversible action happens, we cannot fully rely on agent autonomy.
+
+
+118
+00:21:40.436 --> 00:21:46.065
+Incoming livestream: So to mitigate risk of wrong action, we implement a structural pattern known as Plan, Validate, Execute.
+
+
+119
+00:21:46.086 --> 00:22:00.596
+Incoming livestream: So, whenever there's any sensitive task, like moving data or sharing a file, we are going to pause. So, first, we're going to, set up the planning to know what is going to happen. Then, we're going to have a gatekeeper, an action where…
+
+
+120
+00:22:00.616 --> 00:22:09.656
+Incoming livestream: If an action breaks dynamically generated policy, or misaligned with the user intent, we're going to block the action and ask a question for human confirmation.
+
+
+121
+00:22:09.656 --> 00:22:21.336
+Incoming livestream: But if something is completely off the guardrails, like, for example, we have contextual Asian security framework like Consecar, that can dynamically detect something going off the rails, we can just block things right away.
+
+
+122
+00:22:21.336 --> 00:22:25.256
+Incoming livestream: And finally, if everything passes, we can actually execute the action.
+
+
+123
+00:22:25.276 --> 00:22:36.075
+Incoming livestream: And there's still a lot of UX research to deal with review fatigue and rubber stamping. Like, first people to keep verifying things, they'll just become approval bots.
+
+
+124
+00:22:37.406 --> 00:22:46.375
+Incoming livestream: So, the one element in the world of generative AI, security to obscurity is not viable defense. Like, we have to recognize that the different action
+
+
+125
+00:22:46.716 --> 00:22:58.975
+Incoming livestream: a decision can appear as an OPEC box, and to combat that, we have actually provided, like, detailed logs to admin to allow them to understand what is going on, review what happened, and fix issues.
+
+
+126
+00:23:00.796 --> 00:23:07.445
+Incoming livestream: Then, the final pillar of systemic resilience here is to incorporate user-driven signal directly into security posture.
+
+
+127
+00:23:07.666 --> 00:23:15.245
+Incoming livestream: So, in that case, we're going to rely on security not being just a line, but actually being a loop.
+
+
+128
+00:23:15.246 --> 00:23:36.745
+Incoming livestream: We empower users with feedback, allow us to… allow them to send us and report us whenever they feel they dealt with AI hallucination or prompt injection. And we can incorporate that in our detection service, detect if we catch things too… too much things, not enough things, and we can adjust things. I have a lot of experience with spam and abuse, and we apply that experience here.
+
+
+129
+00:23:39.326 --> 00:23:55.536
+Incoming livestream: So, now three takeaways here. So, first, we have to shift philosophy entirely with semantics and boxing. Like, the cat and mouse game of filtering is over. We cannot rely on simple, like, blacklists or machine learning classifier, because prompt is called.
+
+
+130
+00:23:55.816 --> 00:23:59.936
+Incoming livestream: And we need to build, like, systemic semantic sandbox with different things in that.
+
+
+131
+00:24:00.836 --> 00:24:22.006
+Incoming livestream: The second, it's very important to have, trust provenance, understanding data and tracking it throughout the agency lifetime. So we need to understand, like, what file got access, what's the sensitivity level, so we understand at any point in time what is potentially being accelerated, and provide those guardrails whenever it happens, like to confirmation or just blocking things.
+
+
+132
+00:24:22.086 --> 00:24:28.276
+Incoming livestream: And finally, systemic resilience. We need to design for adaptive security and robustness.
+
+
+133
+00:24:28.486 --> 00:24:51.216
+Incoming livestream: Like, we cannot secure Gen AI as a one-shot, with a one-time measure. It's a continuous and self-correcting process we need to have with automated testing, and offering transparency and ability for people to report things. So we can actually embedding human loop, monitoring feedback, and we can have adaptive differences, but constantly strengthen
+
+
+134
+00:24:51.216 --> 00:24:52.316
+Incoming livestream: of the process.
+
+
+135
+00:24:54.076 --> 00:24:58.725
+Incoming livestream: So, I hope that was super helpful, and do we have any questions this stage?
+
+
+136
+00:25:04.196 --> 00:25:05.436
+Incoming livestream: Request in the back, hold on.
+
+
+137
+00:25:05.936 --> 00:25:06.636
+Incoming livestream: Right there.
+
+
+138
+00:25:15.216 --> 00:25:22.535
+Incoming livestream: Thanks very much for the, taxonomy and the idea, the set of ideas around how to, how to address the issue.
+
+
+139
+00:25:22.936 --> 00:25:34.676
+Incoming livestream: I think we're kind of all dancing around the real issue, which is, in building LLMs and AIs, we've made the same mistakes we made when we chose the von Neumann architecture over
+
+
+140
+00:25:34.806 --> 00:25:36.466
+Incoming livestream: the,
+
+
+141
+00:25:36.626 --> 00:25:47.435
+Incoming livestream: Turing architecture, where by combining code and data in memory, buffer overflows work, instead of having code and data in separate memory structures.
+
+
+142
+00:25:47.606 --> 00:25:54.926
+Incoming livestream: And by combining code and data in the same single prompt window, we've made the same mistake.
+
+
+143
+00:25:55.306 --> 00:26:04.976
+Incoming livestream: Why wouldn't we separate two separate… just two separate windows, separate interfaces? One is where you're entering the commands, and the other where you're sending the data.
+
+
+144
+00:26:07.176 --> 00:26:10.425
+Incoming livestream: Yeah, it's… I'm saying it's…
+
+
+145
+00:26:10.586 --> 00:26:28.496
+Incoming livestream: An interesting part is, like, been working in Secure for, like, 25 years, it's, it's very interesting how much we are going back in time, and we are back in the time of Windows 95, everything running at the same user, like, barely any monitoring and so on. And I do feel it's,
+
+
+146
+00:26:28.576 --> 00:26:32.856
+Incoming livestream: We have to get… like, unfortunately, things are moving extremely fast.
+
+
+147
+00:26:33.016 --> 00:26:58.015
+Incoming livestream: Unfortunately, slash fortunately, things are going so fast, but we need to think very strongly about how to build things with different in-depth, and different by default, so we are not, like, catastrophically building systems that are insecure. Like, we had talked earlier today with someone showing, like, 600, fixes already for their vibe-coded projects, supposedly for security. And it's, like, it's very, very scary that people, like.
+
+
+148
+00:26:58.016 --> 00:27:04.986
+Incoming livestream: are jumping in, and we have so much creation of new code that is super vulnerable.
+
+
+149
+00:27:04.986 --> 00:27:13.266
+Incoming livestream: And sure, we are going to have LLM to fix a vulnerability, but it's a never-ending loop, and attackers have a tendency to be really fast.
+
+
+150
+00:27:13.456 --> 00:27:28.316
+Incoming livestream: And people are not patching things very quickly. We had, years ago, we worked on a project where we discussed a lot of vulnerabilities, where the median time for critical vulnerability to be patched by, enterprise was 30 days.
+
+
+151
+00:27:28.316 --> 00:27:49.476
+Incoming livestream: So now if we're going to find vulnerability, like, in a few minutes, and it takes 30 days for people to patch, it's not going to be great. So we definitely need, as an industry, to do so much better in security. We need a lot of new ideas, and applying the security by default, security by design principle for everything that's being created. Otherwise, it's going to be really sad.
+
+
+152
+00:27:50.926 --> 00:27:51.746
+Incoming livestream: Fair.
+
+
+153
+00:27:52.776 --> 00:27:53.895
+Incoming livestream: All right, thank you.
+
+
+154
+00:28:03.536 --> 00:28:10.036
+Incoming livestream: Alright, next up, actually, are you Wes?
+
+
+155
+00:28:10.406 --> 00:28:11.076
+Incoming livestream: It's just beautiful.
+
+
+156
+00:28:12.016 --> 00:28:15.216
+Incoming livestream: There are two people on the schedule, but,
+
+
+157
+00:28:15.886 --> 00:28:27.606
+Incoming livestream: A couple folks are here, we only have one speaker today. So, I don't know how many of y'all have used Goose. It's, like, one of the early, what if we didn't all have to use,
+
+
+158
+00:28:27.866 --> 00:28:36.616
+Incoming livestream: Claude's agents, and we tried to use open source things to run things. it's a very cool product, and one that I, one that I, one that I quite enjoy. And
+
+
+159
+00:28:37.406 --> 00:28:43.305
+Incoming livestream: Block released it, and, Block has also red-teamed it. So, please welcome the team from Block.
+
+
+160
+00:29:01.426 --> 00:29:10.016
+Incoming livestream: Alrighty. Hey everyone, my name is, Josiah Pitakale, and I am, presenting Operation Pale Fire.
+
+
+161
+00:29:10.456 --> 00:29:24.206
+Incoming livestream: I am on the offensive security team here at Block, but I wanted to take a moment to acknowledge my colleagues. They were absolutely instrumental to helping with this operation and contributed just as much, if not more, than me.
+
+
+162
+00:29:24.206 --> 00:29:30.786
+Incoming livestream: So I just want to give a quick shout-out to Hasan, West Ring, Michael Rand, and Justin Engler.
+
+
+163
+00:29:31.846 --> 00:29:42.946
+Incoming livestream: So Operation Palefire was a red team operation, and I apologize for my red teamers in the room, I'm just gonna have to quickly define, what red team operations mean at block.
+
+
+164
+00:29:42.946 --> 00:29:56.285
+Incoming livestream: So, at Block, we're really focused on, simulating external adversaries. So that could be, looking at the TTPs that a lot of the APTs are doing and simulating that locally.
+
+
+165
+00:29:56.486 --> 00:30:11.735
+Incoming livestream: We also do a lot of forward-looking. So, how could attackers target block, right? What new things are coming out, and techniques that they could utilize to target specifically us? And so, that's what this operation was more focused on.
+
+
+166
+00:30:11.906 --> 00:30:31.236
+Incoming livestream: We're also very focused on end-to-end operations. That means starting outside the company, and then finding a way to get initial access, and then laterally moving to hit that objective. We're a very objective-oriented team. Usually, there is an objective in mind. A lot of times it's, you know, finance-related, just because we are a fintech.
+
+
+167
+00:30:31.266 --> 00:30:34.955
+Incoming livestream: On top of that, we have a very heavy emphasis on
+
+
+168
+00:30:35.306 --> 00:30:50.436
+Incoming livestream: evasion or hiding from our blue team. Our blue team is very, very good. They are looking, you know, for malicious activity in the environment. If they do find us, they will, you know, evict us and remove us from the environment, so we were really keeping that in mind in this operation.
+
+
+169
+00:30:51.136 --> 00:31:00.726
+Incoming livestream: So I mentioned Operation Pale Fire was a red team operation, and it was a red team operation specifically targeting goose. So what is Goose?
+
+
+170
+00:31:00.856 --> 00:31:23.285
+Incoming livestream: Well, Goose was an early AI agent that was actually an internal project, and it started back in fall of 2024. So, a little while ago now, and it was one of those, like, early on, first, you could say, like, AI agents coming out. This is something we've now open-sourced, so it's something that you can go look at the block GitHub repo, and you'll see Goose up there, and you're more than welcome to use it.
+
+
+171
+00:31:23.286 --> 00:31:30.516
+Incoming livestream: There are use cases for engineers, along with maybe non-technical, employees or people.
+
+
+172
+00:31:30.516 --> 00:31:36.025
+Incoming livestream: Along with that, Goose in itself maintains very much, like, a builder mindset, and so…
+
+
+173
+00:31:36.026 --> 00:31:47.866
+Incoming livestream: it automatically ships with a developer shell tool call, which essentially allows it to run, like, shell commands, right? You can kind of already see why that would be an interesting target for, like, a red team.
+
+
+174
+00:31:47.866 --> 00:32:04.616
+Incoming livestream: On top of that, Goose itself integrates with a multitude of models, you know, you can use, I believe 3-5 of Sonnet and 3-7 were around at the time of this operation, and so that's what people mostly used, but GPT-4 existed and a bunch of other stuff. It can work with any of that stuff, so…
+
+
+175
+00:32:04.616 --> 00:32:26.496
+Incoming livestream: And then lastly, there is an internal MCP marketplace within Block that, you know, Goose can integrate with. It can also integrate with external MCPs, but we obviously promoted the internal one. So, really anything you needed it to do, it could… as long as there was an MCP for it, it could do. So, if it needed to update tickets, it could do that, maybe with… via Jira MCP or Google Drive, for example.
+
+
+176
+00:32:27.676 --> 00:32:31.735
+Incoming livestream: So why a red team operation specifically targeting goose?
+
+
+177
+00:32:31.736 --> 00:32:51.535
+Incoming livestream: Well, one of the big reasons is we wanted to kind of discover what a red team operation against an AI agent looks like. There have been a lot of really good research out there talking about, like, prop injection attacks and attacks in general against AI, but we wanted to know what, like, an end-to-end big picture looks like for something like this.
+
+
+178
+00:32:51.646 --> 00:33:03.815
+Incoming livestream: On top of that, you know, we were open sourcing it, we knew attackers would see the source code, know we're using it, and potentially target us a block, and so we wanted to see, you know, what that could look like, do any vulnerabilities exist there?
+
+
+179
+00:33:03.846 --> 00:33:22.596
+Incoming livestream: On top of that, we wanted to see if, maybe, does Goose have any features that could be dangerous, where, like, maybe it could open up a user to some initial access, vectors or problems. And then lastly, we really wanted to operationalize a novel prompt injection. I want to emphasize the word operationalize, because
+
+
+180
+00:33:22.836 --> 00:33:33.706
+Incoming livestream: Yes, it's possible to make a prompt injection, we all know that, but can you make one without getting caught, without getting detected? Can you make one that hides in plain sight? That's what we were really interested in answering, being a red team.
+
+
+181
+00:33:33.936 --> 00:33:43.876
+Incoming livestream: And then lastly, the main goal was to gain execution on a block laptop. So we were trying to compromise, like, an employee, and actually gain… and be able to execute code on their machine.
+
+
+182
+00:33:45.116 --> 00:33:46.836
+Incoming livestream: So, how did we start?
+
+
+183
+00:33:46.836 --> 00:34:10.725
+Incoming livestream: When we looked at that internal MCP marketplace, like I mentioned, we thought, you know, where better place to start than that? We were really looking for, were there any MCPs that existed on this marketplace, this internal marketplace, that took untrusted text and somehow got it into the context of the model? And then if so, that could be something… that could be something we could maybe manipulate, right? So that's…
+
+
+184
+00:34:10.726 --> 00:34:17.966
+Incoming livestream: That's really what we were hunting for. And, as mentioned in the previous talk, we discovered something kind of similar. We discovered Google Calendar.
+
+
+185
+00:34:17.966 --> 00:34:36.875
+Incoming livestream: Google Calendar was really interesting to us at the time. There was an MCP for it, so that was something to explore. We deep-dived into it and how it was configured at Block. Obviously, depending on the configuration, it can be very different. But we found that Block, at that time, external parties, so like an attacker.
+
+
+186
+00:34:36.876 --> 00:34:44.775
+Incoming livestream: could have scheduled, like, an invite, or, like, a meeting, with an employee at Block. So an example there on the right is, that's my,
+
+
+187
+00:34:44.856 --> 00:34:51.536
+Incoming livestream: Google account, block Google account, and this was sent from, like, an attacker outside O'Rourke that, scheduled this invite with me.
+
+
+188
+00:34:51.536 --> 00:35:13.375
+Incoming livestream: On top of that, the Google Calendar API is pretty robust, and it allows you to actually decide if you want to send an email notification along with the calendar invite. So, by disabling that, the calendar invite will just stealthily pop up on the employee's calendar. There's no email associated with it, so there's less to, like, threat hunt there, and, like, less ways to get caught in that sense.
+
+
+189
+00:35:13.376 --> 00:35:29.656
+Incoming livestream: You can see what that calendar looks like on the right. So you have a title there, you can see the guests, which is me. What's really interesting is you can actually leave the attacker account off the invite. So, I don't even list the attacker account, it just is my… me as my employee account. You can just not list yourself, and that's fine.
+
+
+190
+00:35:29.656 --> 00:35:45.876
+Incoming livestream: Along with that, there is a calendar name at the very bottom. It is blurred out for this context, but, you can label a shared calendar and call it something that looks internal, like, I don't know, like, block calendar, right? And so that way, it would blend in better with the environment.
+
+
+191
+00:35:46.106 --> 00:36:08.855
+Incoming livestream: The only real indication that is coming externally is that created by flag at the very bottom. It is blurred out in this case, but what would have been there is the attacker email, and so that is an indicator, but it's, like, in small, italicized text at the bottom of the invite, so it's not something people are generally scrutinizing, including myself, right? So this looked really promising for us, and something we wanted to deep dive into.
+
+
+192
+00:36:08.976 --> 00:36:25.315
+Incoming livestream: So what we thought of is, well, what if we just put a massive prompt injection in the calendar invite description? How would that work? This is one of the, like, early on, prompt injections, so it's very long. We did lean it up over time, but I just thought it was funny because of how long the first iterations were.
+
+
+193
+00:36:25.316 --> 00:36:35.776
+Incoming livestream: So we just took this master prompt injection, put it in there. We, we found that these models, specifically, like, 3-5 at the time of, of Sonnet, like, they were actually
+
+
+194
+00:36:35.776 --> 00:36:38.365
+Incoming livestream: Decently resistant, where, like, you had to…
+
+
+195
+00:36:38.426 --> 00:37:01.905
+Incoming livestream: definitely give it a compelling story. So, one of the things we told it was, hey, in order to update to be secure, like, you need to run this curl bash. And that worked out better for us than earlier. Now, what's the, I guess, downside of this so far? I mean, it's very obvious, right? If we throw this massive thing in a calendar invite and then send it out to a bunch of people.
+
+
+196
+00:37:01.906 --> 00:37:07.016
+Incoming livestream: there's a decent chance our detection team will catch wind of it eventually, and we don't want to be detected, right?
+
+
+197
+00:37:07.016 --> 00:37:10.825
+Incoming livestream: How do we make this less suspicious? It was really what we were asking ourselves.
+
+
+198
+00:37:10.826 --> 00:37:28.855
+Incoming livestream: And that's kind of where we came across invisible text. This has already been talked about before, but it worked really well for our operation. We used those invisible Unicode characters, and by using those zero-width Unicode characters, we can basically hide in plain sight. You know, so then this takes us from, like, our big prop projection on the left.
+
+
+199
+00:37:28.856 --> 00:37:33.976
+Incoming livestream: to the calendar invite on the right. Completely invisible. Just in the invite itself,
+
+
+200
+00:37:33.986 --> 00:37:44.025
+Incoming livestream: Unable to see through the human eye, but Goose itself will process that data and read it and execute on it. So this… we were really excited, this seemed like it was going in the right direction so far.
+
+
+201
+00:37:44.916 --> 00:37:48.216
+Incoming livestream: So, campaign one, the prompt injection.
+
+
+202
+00:37:48.326 --> 00:37:59.375
+Incoming livestream: Quick recap, because we talked about a lot of pieces so far. So, we built a malicious payload that we want Goose to execute, and that would be the prompt injection with the curl bash in the prompt injection.
+
+
+203
+00:37:59.416 --> 00:38:16.226
+Incoming livestream: We made the text invisible so people don't see the evil commands, right? If people saw that big prompt, that big scary prompt injection, they probably would, you know, report us to the blue team, and so we wanted to make it invisible to hide better. We started the campaign by sending out calendar invites.
+
+
+204
+00:38:16.226 --> 00:38:33.765
+Incoming livestream: Which included our invisible malicious prompt injection. And then the goal was if users asked Goose, hey Goose, what's on my calendar today? Goose would, use that MCP to read the calendar, ingest the content of the calendar, which included the description, which included the prompt injection.
+
+
+205
+00:38:33.766 --> 00:38:46.896
+Incoming livestream: and then that would then prompt a subtool call to the developer shell tool call, and that would run the curl bash payload. So, a very long chain, but exciting, like, we were very, very excited. So we kicked it off.
+
+
+206
+00:38:46.896 --> 00:39:11.626
+Incoming livestream: invites were sent, and we didn't get any shells. What happened, right? It's the classic. Well, one of the big blockers for us was the Gcal MCP internally received, actually, a major rewrite during the operation, which definitely stunted us, because our prompt injection was very much tuned for that version of the MCP, in a sense, and so it really did block us, in a sense. Also, some models are more resistant, like, we found that our prompt injection
+
+
+207
+00:39:11.706 --> 00:39:18.655
+Incoming livestream: did decently okay on 3-5, but, like, it didn't do nearly as well on 3-7, or,
+
+
+208
+00:39:18.656 --> 00:39:31.895
+Incoming livestream: on any of the GPT models, and so we had tuned it mostly for one model, so people who were using a different model probably wouldn't have worked. I know universal prompt injections exist, we weren't able to uncover any in this exercise, so couldn't use that there.
+
+
+209
+00:39:31.906 --> 00:39:38.715
+Incoming livestream: Some other takeaways, we had some issues with our testing. We tested the calendar stuff on our own calendars.
+
+
+210
+00:39:38.716 --> 00:40:03.695
+Incoming livestream: our calendars don't have that many invites on them, and I think that's why it led to it working a lot of the time. On a real calendar, with lots of meetings and a lot of context, stuff gets forgotten very quickly, especially with the models at this time. Keep in mind, nowadays, with how good these things have gotten, I don't know if that's relevant anymore, but at that time, the context filled up so quick, we would often forget to run our developer shell tool call, because only one invite suggested it, right?
+
+
+211
+00:40:03.696 --> 00:40:05.745
+Incoming livestream: There's, like, the 20 invites on their calendar.
+
+
+212
+00:40:05.786 --> 00:40:30.736
+Incoming livestream: At the time, you know, we were running into some hallucination issues, and we really should have had some more automation to build out this prompt injection. I think we thought, oh, you know, it shouldn't be that difficult. There was a lot of, like, talk about how prompt injection, how easy it was, so we were kind of going on the side of, we can quickly develop this and call it a day, and it ended up being a lot more. We should have had some more automation to, like, determine the efficacy of the prompt injection, and tested it across, like, multiple models.
+
+
+213
+00:40:30.736 --> 00:40:32.086
+Incoming livestream: and versions.
+
+
+214
+00:40:32.086 --> 00:40:54.985
+Incoming livestream: And so, yeah, and then lastly, this was a user prompt injection, and we theorized that if we actually had a system prompt injection, we would probably have had a much better result. And so, we wanted to kind of pivot here, and see if we could identify a system prompt injection, maybe via, like, a feature in Goose, that could, deal to, like, an injection there and probably yield us much better results.
+
+
+215
+00:40:55.606 --> 00:40:58.486
+Incoming livestream: So, campaign two, fun recipes.
+
+
+216
+00:40:58.866 --> 00:41:04.465
+Incoming livestream: Well, what's a recipe? I'm sure you're all asking that. So, a recipe is something that is a bit specific to goose.
+
+
+217
+00:41:04.466 --> 00:41:24.606
+Incoming livestream: A recipe is a reusable workflow that essentially allows you to kind of share, like, basically a link. In a link format, you can share it with people, and they can run, like, a similar workflow to how you would have ran it without you sending them, like, a massive prompt, right? So it makes it simpler and more shareable, and, you know, it helps speed things up.
+
+
+218
+00:41:24.606 --> 00:41:36.096
+Incoming livestream: You can kind of already probably see why it could be a little dangerous, and we'll get into that. Recipes stood out to us because they go in the system prompt, and that really stood out to us. That seemed interesting.
+
+
+219
+00:41:36.216 --> 00:41:46.555
+Incoming livestream: So you can see what a recipe is in the top right-hand corner. There's a goose URL handler, some Base64 there. If we were to decode that Base64, you can see the result on the screen.
+
+
+220
+00:41:46.586 --> 00:41:57.296
+Incoming livestream: We have, like, the version number, the title, the description, the instructions, and I'm sure our, our hacker friends are thinking about, you know, what if we just put a prompt injection right in those instructions, what'll happen?
+
+
+221
+00:41:57.296 --> 00:42:17.096
+Incoming livestream: And sure enough, that's what we did. We threw in a prompt injection. In this case, as an example, we just said, open Google Chrome, and open this recoll, and that worked, that worked really well. And so we were thinking, like, okay, we have this URL, what if we share this URL with a bunch of employees? Like, surely they'll click on it, you know, and we can get something here.
+
+
+222
+00:42:17.096 --> 00:42:24.666
+Incoming livestream: We did think, though, like, what if someone decoded the Base64? Then they would see our prompt injection. That's not ideal, I mean…
+
+
+223
+00:42:24.666 --> 00:42:42.455
+Incoming livestream: unlikely maybe someone would decode it, but I'm sure someone, some very ambitious developer maybe could. And so we thought about, what if we just replayed the technique from earlier with the ASCII smuggling? And so, we made the instructions invisible by using the zero-width Unicode characters, and…
+
+
+224
+00:42:42.456 --> 00:42:48.666
+Incoming livestream: now it's invisible within the recipe itself, once you decode it, like, with a Base64 decoder, which turned out really well.
+
+
+225
+00:42:48.666 --> 00:43:06.046
+Incoming livestream: I think the only way you could have, I guess, initially eyeballed it is there's a set of cascading characters that we highlight in the yellow there, and I believe those are, like, the zero-width characters, and so I guess that's a tell, but, like, I don't know who's looking that hard, I know I'm not, so we were pretty happy with the result here, and we felt like we could move forward with it.
+
+
+226
+00:43:06.226 --> 00:43:21.186
+Incoming livestream: So we went ahead and revised the invite, okay? We made it a little better, we called it rescheduled, because the first one didn't go so well, and we threw in, like, a hyperlink, which basically took you to the goose, the goose recipe, right? And so you could open that then with Goose.
+
+
+227
+00:43:21.866 --> 00:43:41.435
+Incoming livestream: And we created, like, I created, like, a compelling prompt on the sense of, like, saying, hey, this is your time to try out the new recipe, like, we blocked off time on your calendar just to try this out, so please, please try it out. And, we even included, like, a Google Meet link, which… we were doing it more for fun, and it turned out it worked a little too well.
+
+
+228
+00:43:41.706 --> 00:43:43.246
+Incoming livestream: the Google Meet link.
+
+
+229
+00:43:43.376 --> 00:44:06.346
+Incoming livestream: we threw it in initially, just for fun, and then on the first campaign, people joined the meet, like, during the time slot, and they were interested in what we had to say, and we didn't have much to say, so the second time we ran this campaign, we actually had a slide deck ready to, like, demonstrate, how to use our recipe, and how it works, and you should really use it. And, and it worked, it worked really well. Someone, was able to click on it from there.
+
+
+230
+00:44:06.346 --> 00:44:13.775
+Incoming livestream: But I did want to clarify that I don't really blame any of our users. I think it's really hard to tell, at the time of this operation.
+
+
+231
+00:44:13.776 --> 00:44:25.766
+Incoming livestream: there's no indication that, like, you're joining an external meet, I think. It's just a URL, and once you join, there's not really anything telling you it's external. I guess if you look at the top left, there is, like, a yellow box.
+
+
+232
+00:44:25.766 --> 00:44:37.596
+Incoming livestream: If you hover over that, it will tell you it's, like, the meeting contains people external to your organization. But if you didn't look hard enough, like, you wouldn't have known, and so… it was a tricky one. I don't really know how people would have caught that so easily.
+
+
+233
+00:44:38.426 --> 00:44:44.695
+Incoming livestream: And so, with this result, and having someone click on it, we got an execute.
+
+
+234
+00:44:44.706 --> 00:45:03.736
+Incoming livestream: And we, kind of made a mistake still. We had a typo, and it was really unfortunate, because in testing, the typo was being fixed by the LLM. It was fixing it for us to… so in testing it worked, but when we deployed it, actually, it didn't work, and then we deep-dived, and that's when we found the typo, so it was a bit unfortunate.
+
+
+235
+00:45:03.786 --> 00:45:12.925
+Incoming livestream: On top of that, goose versions were changing very quickly, so depending on the version you're running, the recipes interact with your system a little differently.
+
+
+236
+00:45:13.286 --> 00:45:21.486
+Incoming livestream: That all being said, we were pretty confident we can get this to work, we just need to, like, keep persisting, because so far, we hadn't been detected since our… our techniques were pretty stealthy.
+
+
+237
+00:45:21.906 --> 00:45:40.725
+Incoming livestream: We were also running into some issues with Google Calendar, because they do a great job of rate limiting. You can only send, like, 50 invites a day. I don't know if our organization got flagged or something, but we could only send 50 invites a day, we were having a hard time with it. So we decided to continue with the calendar efforts, but we also decided to try, like, a spear phishing approach.
+
+
+238
+00:45:40.756 --> 00:45:46.496
+Incoming livestream: And so, we actually reached out to the Goose team via some public means, some public channel means.
+
+
+239
+00:45:46.496 --> 00:46:06.955
+Incoming livestream: And we went under the guise of, hey, we found a bug in RTL text, and it's within this recipe, so could you check this out for us? And they looked into it, which I guess also included running it, and so that got us what we wanted, and that got the developer shell 2 call running, which ran our curl bash.
+
+
+240
+00:46:06.976 --> 00:46:11.685
+Incoming livestream: which ran our payload, and just wanted to talk really briefly about the payload.
+
+
+241
+00:46:11.686 --> 00:46:29.115
+Incoming livestream: We had talked to our threat intel team, and our threat intel team told us that they would have loved to see more infoster activity, especially some testing from us, because they had seen that a lot in the wild, and they were constantly getting, they were constantly building more detections for it, and so they wanted to validate those as detections.
+
+
+242
+00:46:29.116 --> 00:46:32.025
+Incoming livestream: And so we built, an infrastructure of sorts.
+
+
+243
+00:46:32.056 --> 00:46:57.056
+Incoming livestream: And that kicked off, and it ran, and it got caught, so props to them, they did a good job. We have this really cool red team deconfliction inquiry thing, I would love to talk more about that later. It's a really cool workflow we have, but did a great job. They caught us shortly after it ran, and it de-conflicted with us from there. So, for the last few minutes, I just want to talk about fixes. So, for mitigations, one of the simpler ones, and I think
+
+
+244
+00:46:57.056 --> 00:47:05.946
+Incoming livestream: a lot of the other AI agents already do this. It's just stripping the Unicode characters from input and from recipes, especially the non-standard ones, right?
+
+
+245
+00:47:05.946 --> 00:47:21.216
+Incoming livestream: On top of that, when you dis- we wanted to be able to display the recipe. That was something we were missing, right? Like, you didn't really know what the recipe did unless you decoded it, and so now there is, like, a big recipe warning, which displays what it's gonna do, so it's more transparent to the user as to, like, what they're clicking on.
+
+
+246
+00:47:22.166 --> 00:47:37.635
+Incoming livestream: On top of that, we've looked into detections for, can we detect a prop injection? Much harder than it sounds, but we've played with a few known tools, and then we've also built internally, like, a bad bash command detector, which has kind of helped with this case, using, like, a BERT classifier.
+
+
+247
+00:47:37.636 --> 00:47:49.566
+Incoming livestream: On top of that, using that classifier, we've been trying to see if we can use LLMs to evaluate, like, does it look like a prompt injection based off semantics and such? Had mixed results, but continuing to look into it.
+
+
+248
+00:47:49.566 --> 00:47:57.136
+Incoming livestream: And then lastly, we added some command allow listing, because there's not always a reason you would need to run all of these commands, right, honestly, on a host, so… yeah.
+
+
+249
+00:47:57.946 --> 00:48:13.106
+Incoming livestream: And then for Google Calendar, I don't have much time for this deep dive, there's some really interesting findings I had for this, but for the sake of time, we just made a change to the settings so that, if you want to schedule an invite with an employee, like, you would have to send an email first.
+
+
+250
+00:48:13.106 --> 00:48:19.836
+Incoming livestream: And then the employee has to approve the email in order to, like, actually get the calendar invite, and so that's helped a bunch already.
+
+
+251
+00:48:21.036 --> 00:48:38.316
+Incoming livestream: But yeah, that's actually most of what I had, or really all of what I had. We have a blog where we, like, post Red Team content. This is an engineering blog, so there's other stuff on there too, but, you know, we'll keep making posts throughout the year. But yeah, my name is Josiah Pitakeo, that's all I had, and I'll take any questions now.
+
+
+252
+00:48:45.406 --> 00:48:51.876
+Incoming livestream: I'm confident the folks at Block appreciated you turning off external sender requests, sender calendar requests.
+
+
+253
+00:48:52.306 --> 00:48:55.836
+Incoming livestream: questions for… questions for Josiah?
+
+
+254
+00:48:56.956 --> 00:49:04.556
+Incoming livestream: We're in the, we're in the prompt injection, detection, response, creation theme of the day, for sure. Oh, question, cool, great.
+
+
+255
+00:49:08.356 --> 00:49:26.186
+Incoming livestream: Hello, so it was cool to hear about how you were doing sort of a comprehensive end-to-end sort of test where you create a real exploitable situation. I thought that was super cool. I was wondering, did you test the, user interface for any, vulnerabilities like, HTML injection, or markdown rendering, or other,
+
+
+256
+00:49:26.226 --> 00:49:44.376
+Incoming livestream: like, the insecure output side of things that isn't, related to controlling the tool calls? That's a great question. Yes, we did run into some of those cases. We caught them, I believe, pretty early on. You know, don't mark my words for it, but yeah, that was something we did look into. It definitely seems like
+
+
+257
+00:49:44.376 --> 00:49:48.615
+Incoming livestream: when these agents came out initially, that was kind of popping up everywhere. So yeah, great question.
+
+
+258
+00:49:50.256 --> 00:49:51.365
+Incoming livestream: Any other ones?
+
+
+259
+00:49:51.806 --> 00:49:53.165
+Incoming livestream: All right, thank you very much.
+
+
+260
+00:49:58.246 --> 00:49:59.076
+Incoming livestream: All right.
+
+
+261
+00:49:59.346 --> 00:50:05.446
+Incoming livestream: Sticking with, prompt injections, what attack surface could be more prompt-injectable than a browser?
+
+
+262
+00:50:05.596 --> 00:50:22.255
+Incoming livestream: Coming up, yeah, please, get yourself set up, it's gonna take 30 seconds for your USB to connect. Yeah, what attack surface could be more prompt-injectable than, than a browser? And yet, everyone seems to want browsers that they can control,
+
+
+263
+00:50:22.546 --> 00:50:27.866
+Incoming livestream: In this way, to run workflows, because that's honestly where all the workflows live. So…
+
+
+264
+00:50:28.636 --> 00:50:37.276
+Incoming livestream: Whoops, very good. So yeah, Perplexity, of course, was one of the first to release one of these, with the Comet Browser, so please welcome Kyle Bali.
+
+
+265
+00:50:44.286 --> 00:50:46.025
+Incoming livestream: Cool, thank you so much.
+
+
+266
+00:50:47.776 --> 00:50:49.496
+Incoming livestream: Let's get these slides up here.
+
+
+267
+00:50:55.656 --> 00:50:58.016
+Incoming livestream: Yeah, that's right, so now, perfect.
+
+
+268
+00:51:02.306 --> 00:51:03.616
+Incoming livestream: Yeah, we'll just leave it.
+
+
+269
+00:51:05.396 --> 00:51:07.935
+Incoming livestream: I think I can. Here, let me bring it back.
+
+
+270
+00:51:08.926 --> 00:51:12.015
+Incoming livestream: No, it's good. Drag it over. And then… there we go.
+
+
+271
+00:51:16.056 --> 00:51:16.856
+Incoming livestream: What's up?
+
+
+272
+00:51:18.276 --> 00:51:20.136
+Incoming livestream: Oh, let's see, here. Oh, perfect.
+
+
+273
+00:51:21.916 --> 00:51:22.946
+Incoming livestream: Perfect, great.
+
+
+274
+00:51:23.386 --> 00:51:40.715
+Incoming livestream: Alright, thank you so much. Yeah, that was a really great talk. We get to first hear about how to, hack using prompt injection, and now I'm gonna talk about how to, detect and prevent prompt injection. So, I am Kyle, I lead security at Perplexity AI.
+
+
+275
+00:51:40.766 --> 00:51:45.655
+Incoming livestream: Given the name, we are an AI company. And,
+
+
+276
+00:51:46.206 --> 00:51:59.916
+Incoming livestream: Perplexity has 3 main products. The first one is Perplexity, which is the app. It's basically a AI-powered search engine. We call it a answer engine.
+
+
+277
+00:51:59.986 --> 00:52:10.096
+Incoming livestream: The second one is Comet, which we re-released last year. It is a AI-powered web browser, so a fully agentic browser.
+
+
+278
+00:52:10.486 --> 00:52:24.665
+Incoming livestream: And then, last week, we released Perplexity Computer, which goes beyond just having access to a browser, but it also has access to a file system and a sandbox, and it could write and execute code for you.
+
+
+279
+00:52:24.916 --> 00:52:37.195
+Incoming livestream: So, my team and I have become intimately familiar with all the AI challenges that you sort of expect with all these tools, and being one of the first to release it.
+
+
+280
+00:52:37.916 --> 00:52:54.536
+Incoming livestream: One of those challenges is prompt injection, which we have seen with our Comet browser. And so, yeah, I'm really excited to talk about BrowseSafe, which is, the classifier that we built, to detect prompt injection.
+
+
+281
+00:52:54.536 --> 00:53:01.226
+Incoming livestream: And, talk about the lessons learned, trying to deploy that into production and what we've seen.
+
+
+282
+00:53:05.126 --> 00:53:21.375
+Incoming livestream: So, first I'm going to talk about the problem of prompt injection. I know you've heard a ton of it, so I'll gloss over it. But then we'll also talk about BrowseSafeBench, which is the, data set, the eval dataset that we have, released and open sourced.
+
+
+283
+00:53:21.376 --> 00:53:37.145
+Incoming livestream: And then the classifier, which actually detects the prompt injection, and how, we deploy that to production systems, and, some guidance for you all as you're also building and starting to use these tools.
+
+
+284
+00:53:41.856 --> 00:53:56.265
+Incoming livestream: So, just to make sure we're all on the same page with, with what prompt injection is, especially for browser agents, a user might say, hey, Comet or AI agent, please book me a flight to New York City.
+
+
+285
+00:53:56.266 --> 00:54:09.765
+Incoming livestream: And so the agent will go and it'll figure out, okay, these are all the steps I need to take in order to actually achieve this goal, and then it will go and visit a website in order to do so.
+
+
+286
+00:54:09.816 --> 00:54:18.076
+Incoming livestream: That website is now in this, like, untrusted boundary where it's ingesting this content that we are…
+
+
+287
+00:54:18.136 --> 00:54:34.476
+Incoming livestream: that we cannot assume is trusted, and so it could contain some, like, malicious instructions. And those malicious instructions then get sent back to the tool output and eventually into the agent context. And this is really the root of the problem, where the agent context
+
+
+288
+00:54:34.495 --> 00:54:42.415
+Incoming livestream: is… at the end of the day, the LM doesn't know exactly what is tool output versus user input versus system prompt.
+
+
+289
+00:54:42.875 --> 00:54:48.355
+Incoming livestream: And then the… so basically the agent gets those instructions and then follows it.
+
+
+290
+00:54:51.986 --> 00:54:59.075
+Incoming livestream: And so, there's a lot of ways of doing a prompt injection attack. These are some of the ways that we've found.
+
+
+291
+00:54:59.076 --> 00:55:24.056
+Incoming livestream: And so, one is, impersonating the prompt template. And so, if you have built your own LLM, you probably have this template where you have the system prompt, and that has some sort of keys, and then there's a user prompt, and then maybe you separate in the user prompt, you separate what was user input, which is, book me a flight to New York City, and the tool output, which is the contents of the website.
+
+
+292
+00:55:24.056 --> 00:55:26.486
+Incoming livestream: That say, like, here are the flights available.
+
+
+293
+00:55:27.506 --> 00:55:34.016
+Incoming livestream: Another one that we've seen is, the agent social engineering, and so,
+
+
+294
+00:55:34.016 --> 00:55:47.535
+Incoming livestream: It's basically a website where it will instruct the agent to go through certain steps, seemingly benign. And so this, if you look at the language, it's very similar to how, like, fishing humans would look.
+
+
+295
+00:55:48.236 --> 00:56:11.586
+Incoming livestream: Finally, that was discussed a lot in the previous talk was, some sort of conditional trigger. This is usually some, like, hidden in Google Calendar events and stuff like that, where it says, hey, when the user asks to summarize this page or check your calendar, perform these steps in order to give them a really great response.
+
+
+296
+00:56:11.586 --> 00:56:13.786
+Incoming livestream: And those steps are malicious.
+
+
+297
+00:56:17.496 --> 00:56:42.425
+Incoming livestream: There's a lot of… in browsers, there's a lot of ways to hide this type of language. And so, one is, like, hidden div displays, or in the URL, and then also what was talked about a lot on the previous talk was, in calendar events, where basically it looks like a benign event, but then if you scroll all the way down, there's some malicious instructions that the
+
+
+298
+00:56:43.016 --> 00:56:45.225
+Incoming livestream: Agent ultimately detects.
+
+
+299
+00:56:49.076 --> 00:57:05.725
+Incoming livestream: So, there's a lot of benchmarks out there, and even open-source models, such as PromptGuard, which was previously discussed, where they attempted to create this dataset and classifiers in order to
+
+
+300
+00:57:05.846 --> 00:57:20.936
+Incoming livestream: successfully detect this prompt injection. A lot of the issues that we found was that the benchmarks that are currently out there in open source are not really realistic. They have a lot of qualities, and each has their own strengths.
+
+
+301
+00:57:20.936 --> 00:57:31.215
+Incoming livestream: But there isn't one eval framework that actually has all of the attack types and, injections that we've seen in the wild.
+
+
+302
+00:57:35.576 --> 00:57:54.796
+Incoming livestream: And this is gonna be something that could pop up in a second, but, when we tried using these datasets and these open source models, and even just prompted LLMs, we found a lot of issues. The first one was… I wish you could see that diagram. The first one was,
+
+
+303
+00:57:54.796 --> 00:58:04.855
+Incoming livestream: There's a lot of obvious types of prompt injection attacks. One is, please reveal your system prompt, ignore previous instruction, and so forth.
+
+
+304
+00:58:04.856 --> 00:58:23.726
+Incoming livestream: But then, when you get down to, more context manipulation, where the attacker is social engineering the model to do XYZ, so, it isn't as obvious, you could see the success rate of detecting prompt injection start to fall.
+
+
+305
+00:58:23.726 --> 00:58:44.796
+Incoming livestream: And then finally, at the very bottom of this chart, which you can't see, there's multi-language, and so it's basically an attack that the language is very obviously malicious, but they have the language in Hebrew or Spanish or something, and that causes the model to get confused and follow the instructions regardless.
+
+
+306
+00:58:45.126 --> 00:58:49.035
+Incoming livestream: And so, what we found here was that,
+
+
+307
+00:58:49.536 --> 00:59:02.386
+Incoming livestream: This really showed to us that models aren't actually looking at the intent of what it… of what the prompt injection is asking of… for the agent to do. Instead, it's just looking for keywords.
+
+
+308
+00:59:07.346 --> 00:59:18.775
+Incoming livestream: Another issue that we found, was what we call distractors. And so, on the top right, you can see the notorious cookie consent banner. And…
+
+
+309
+00:59:18.776 --> 00:59:40.396
+Incoming livestream: If you look at it from just the raw HTML, it almost looks like a prompt injection attack. It says, important, like, in order to proceed, you must click accept, or else you can't get the content. And what we found, too, was that a lot of these data sets and open source models don't actually take this into account.
+
+
+310
+00:59:40.396 --> 00:59:44.875
+Incoming livestream: And so if you see on the bottom right corner,
+
+
+311
+00:59:45.336 --> 01:00:02.895
+Incoming livestream: with no distractors, these models are doing pretty good, but the second you add just 3, it drops down to 81%, and stays that way. And so what we found was that distractors was a huge indicator, that, like, these models don't work well in live environments.
+
+
+312
+01:00:02.896 --> 01:00:11.245
+Incoming livestream: And it's also an indicator that, like, these models are looking at specific keywords and heuristics instead of the actual intent of the message.
+
+
+313
+01:00:15.986 --> 01:00:20.485
+Incoming livestream: So that's why we created Browse SafeBench. So what we did was we…
+
+
+314
+01:00:20.486 --> 01:00:45.316
+Incoming livestream: took a dataset from things that we've seen in the wild, we created this massive pipeline to de-anonymize and classify these types of attacks into a very specific taxonomy bracket of the types of attacks that we've seen, the way they're injected, and we open-sourced it. And so, this was the event
+
+
+315
+01:00:45.316 --> 01:00:47.636
+Incoming livestream: dataset that we also used.
+
+
+316
+01:00:49.006 --> 01:00:58.656
+Incoming livestream: to train our own model. And so, the model is based off of Quinn, $30 billion,
+
+
+317
+01:00:59.036 --> 01:01:07.585
+Incoming livestream: We use $30 billion in inference, and this helps with latency, which I'll show in a second. But,
+
+
+318
+01:01:07.996 --> 01:01:10.346
+Incoming livestream: Yeah, let's see if we can get that slide up there.
+
+
+319
+01:01:10.626 --> 01:01:16.706
+Incoming livestream: There we go. Okay, great. And so, you can see that a lot of the…
+
+
+320
+01:01:16.706 --> 01:01:38.215
+Incoming livestream: open source, or a lot of the, one, open source models, such as PromptGuard and GPT OSS Safeguard, don't actually work that well in live environments. That was the first thing that we've… that we've discovered. But the second thing, too, is that, a lot of the prompted LMs, especially, like, GPT-5 and GPT-5 Mini, do exceptionally well.
+
+
+321
+01:01:38.216 --> 01:01:46.876
+Incoming livestream: Which is really great. And so, there's two things that we take away from this, this part of the research.
+
+
+322
+01:01:47.026 --> 01:01:59.056
+Incoming livestream: One is that fine-tuning a model specific on this dataset obviously makes it perform better than just a prompted LLM, which probably isn't that surprising.
+
+
+323
+01:02:00.876 --> 01:02:23.085
+Incoming livestream: But what I think is really, really great is how we're able to achieve that with this kind of latency. So, we're able to achieve this, like, 90.4% F1 score, in sub-second latency. So now we take something where GPT-5 Mini can take 2 seconds, or GPT-5 can take up to 20 seconds.
+
+
+324
+01:02:23.086 --> 01:02:32.655
+Incoming livestream: Ours is consistently sub-second, and therefore, very easy to implement into production without, massive user frustration.
+
+
+325
+01:02:38.056 --> 01:02:39.030
+Incoming livestream: So…
+
+
+326
+01:02:40.136 --> 01:02:57.466
+Incoming livestream: In addition to being the fastest and having the highest F1 score, Browseafe is also unique in that it doesn't just output a yes or no binary. It outputs a probability score of how confident it is that what it's seeing is prompt injection.
+
+
+327
+01:02:57.686 --> 01:03:08.075
+Incoming livestream: And so, I don't know about y'all, if y'all ever, had an LLM try to judge something of whether or not this is classified as some
+
+
+328
+01:03:08.486 --> 01:03:20.376
+Incoming livestream: pattern that you want to see, and you ask it to explain itself and give a confidence score. Every time, for me at least, it returns, like, 93% every single time. Even when you ask it to, like, hey, like.
+
+
+329
+01:03:20.636 --> 01:03:40.516
+Incoming livestream: we want to do some logic on this classification score, so, please think about that a bit. And so, we train this in such a way so that it produces this confidence score very accurately. And now, using, BrowseSafe, security teams and product teams.
+
+
+330
+01:03:40.516 --> 01:03:48.975
+Incoming livestream: Have a knob they can turn on, how much precision and recall are they willing to accept in their product.
+
+
+331
+01:03:48.976 --> 01:03:54.776
+Incoming livestream: And so, a really good example is, like, if your system has…
+
+
+332
+01:03:54.776 --> 01:04:12.906
+Incoming livestream: a user experience where, let's say, the model detects prompt injection, and you can tell the user, hey, this looks like prompt injection to me, are you sure you want to continue? You can now suddenly afford a lot more false positives and turn that knob to fit your own use case.
+
+
+333
+01:04:20.096 --> 01:04:21.996
+Incoming livestream: So,
+
+
+334
+01:04:22.316 --> 01:04:37.326
+Incoming livestream: We have this dataset now with a ton of labeled attacks and a strong dataset of the taxonomy of what kinds of attacks there are and where they're being injected.
+
+
+335
+01:04:37.326 --> 01:04:44.925
+Incoming livestream: And so we really wanted to stress test BrowseSafe and see, how it performs with data it hasn't seen before.
+
+
+336
+01:04:45.396 --> 01:04:53.515
+Incoming livestream: And so we retrained the model, but held out certain characteristics to see how well it does when it's never seen it before.
+
+
+337
+01:04:53.806 --> 01:05:07.205
+Incoming livestream: So the first one was we held out the URLs, and it actually performed better than it was before, so we could confidently say it's not looking for certain keywords, or certain domains, and flagging those as malicious.
+
+
+338
+01:05:07.226 --> 01:05:26.485
+Incoming livestream: The second one was the attack language. So there was a dip, but not super significant. So, if there was an attack that had certain instructions that the model has never seen before, it would perform, in line with Frontier models.
+
+
+339
+01:05:27.086 --> 01:05:41.425
+Incoming livestream: The last thing was that we found that was interesting was if we held out injection strategies, and so this is placements in websites, that it's never seen before, there was a pretty significant drop.
+
+
+340
+01:05:41.626 --> 01:05:53.575
+Incoming livestream: And so, this is an indicator that attackers in the future will start to look at new ways of injecting prompt injection and trying to bypass those, those model guardrails.
+
+
+341
+01:05:59.206 --> 01:06:00.756
+Incoming livestream: And so…
+
+
+342
+01:06:01.096 --> 01:06:10.905
+Incoming livestream: I'm gonna start talking about how we actually take BrowseSafe and put it into production systems, and some suggestions for y'all on how to do this in your own systems and products.
+
+
+343
+01:06:12.636 --> 01:06:17.435
+Incoming livestream: And the first thing I want to talk about is, the fact that you…
+
+
+344
+01:06:17.896 --> 01:06:31.306
+Incoming livestream: the strategy should not just be, hey, let's put up a detection classifier and call it a day. As we've seen in the previous slide, defense of in-depth is absolutely necessary. These models can still be bypassed.
+
+
+345
+01:06:31.346 --> 01:06:36.616
+Incoming livestream: And so, the first layer of defense, which is the oldest trick in the book.
+
+
+346
+01:06:36.636 --> 01:06:40.065
+Incoming livestream: Is pre-processing and stripping out data that you don't need.
+
+
+347
+01:06:40.066 --> 01:06:56.946
+Incoming livestream: And so, the best defense is ensuring the text doesn't even get to the context. So any, like, HTML comments or hidden elements, that aren't useful for the model's, abilities to get the job done, we should just strip that out.
+
+
+348
+01:07:00.446 --> 01:07:18.245
+Incoming livestream: The second layer of defense is the classifier, and so, you should set up a system where every, tool that calls untrusted input, so this could be a website, this could be a calendar invite, this could be a connector to a third-party service, an MCP,
+
+
+349
+01:07:18.246 --> 01:07:26.005
+Incoming livestream: These should all have some classification check, before sending that data back to the agent.
+
+
+350
+01:07:26.726 --> 01:07:42.025
+Incoming livestream: If you don't want to use BrowseSafe and have to figure out inference and all of that work, honestly, Prompted GPT-5 Mini works really well at a F1 score of 85.4%.
+
+
+351
+01:07:42.206 --> 01:07:49.105
+Incoming livestream: There is that 2-second latency, but that's honestly not so bad for something that you can get started with today.
+
+
+352
+01:07:50.206 --> 01:08:14.156
+Incoming livestream: Finally, the last thing I would suggest is, when an attack is detected, don't just block the tool. You have to think of it from the LM's perspective. It's trying to call your calendar, and it sees an error. And so, what will it do? It might try again. It might try a different way. It might try calling the Google API if you're using something like OpenClaw. And so…
+
+
+353
+01:08:14.156 --> 01:08:37.425
+Incoming livestream: So, the better strategy is to not just return an error, but to also, return the tool output as the error message, basically telling the model, hey, I know you just tried getting your Google Calendar event, and we're rejecting it because we detect… our security systems detected prompt injection in that text.
+
+
+354
+01:08:37.426 --> 01:08:38.806
+Incoming livestream: And
+
+
+355
+01:08:38.826 --> 01:08:45.925
+Incoming livestream: you can either say, proceed with caution, tell the user, or in the case for Comet, we…
+
+
+356
+01:08:46.066 --> 01:08:59.356
+Incoming livestream: block basically all tool… all any follow-up tools, and we tell Comet, return text directly to the user. So the second we see that prompt injection, we don't even give it the ability to do any follow-up tool calls.
+
+
+357
+01:09:04.286 --> 01:09:19.995
+Incoming livestream: The third layer of defense, which is actually relatively recent, is that you should always be using the latest model as your agent. And so, the snippets that I have here on the screen are from the, Opus 4.6 system card.
+
+
+358
+01:09:19.996 --> 01:09:31.675
+Incoming livestream: And at least the first time that I've seen, this is the first system card that actually, one, goes super in-depth about testing and measuring prompt injection success.
+
+
+359
+01:09:31.676 --> 01:09:48.816
+Incoming livestream: But two, this is the first one I've seen that actually tests it using browser, specifically for, browser use. And so they're testing it against, they're testing Opus 4.6 against attack scenarios, using browser use cases.
+
+
+360
+01:09:49.166 --> 01:10:08.055
+Incoming livestream: And so, the jump between 4.5 to 4.6 was pretty significant, going from a 16.2% success rate down to 2.83. In addition, you can see on the bottom right where, with updated safeguards, which is a pipeline
+
+
+361
+01:10:08.436 --> 01:10:15.635
+Incoming livestream: I guess they didn't share it, but I'd imagine very similar to what we have. It gets down to .08%, which is really fantastic.
+
+
+362
+01:10:19.476 --> 01:10:38.345
+Incoming livestream: And so the last layer of defense I would suggest when it comes down to detecting prompt injection is to build an LLM backstop. And so, you can have traffic coming in, you can have your classifier, such as BrowseSafe, detecting, hey, is this prompt injection or not? But since BrowseSafe
+
+
+363
+01:10:38.366 --> 01:10:56.206
+Incoming livestream: outputs that confidence score, anything that's low confidence, you can have it sent to a backup, basically. A large, a very large language model that will, add in some additional latency, but it's probably worth it, I guess, depending on your use case.
+
+
+364
+01:10:56.236 --> 01:11:20.876
+Incoming livestream: In addition, what I think is really cool about this is that you can now turn this into a data flywheel. And so, let's say the classifier, thinks it sees prompt injection, it's not entirely sure, we send that to the LLM backstop, the LLM backstop looks at it and says, okay, this actually is prompt injection for XYZ reason. We can now add that to our pipeline and training data set.
+
+
+365
+01:11:20.876 --> 01:11:24.945
+Incoming livestream: To retrain that classifier to catch new attacks in the future.
+
+
+366
+01:11:31.106 --> 01:11:44.965
+Incoming livestream: And so, yeah, some key takeaways. One is, the evals that we've seen so far, especially in academia, unfortunately don't translate well into production.
+
+
+367
+01:11:45.576 --> 01:12:02.295
+Incoming livestream: The second thing, too, was, fine-tuning on domain-specific data sets, beats general-purpose models, by a wide, wide margin, and I think in the security industry, we should be doing more of that and open sourcing that work.
+
+
+368
+01:12:02.896 --> 01:12:26.386
+Incoming livestream: The third thing is that, using Frontier models as your agent is a massive step up when it comes to prompt injection. They're gonna keep getting better and better, but especially the jump most recently from Opus 4.5 or GPT 5.1 to Opus 4.6 and 5.2 is a significant improvement to prompt injection security. You should please update.
+
+
+369
+01:12:26.936 --> 01:12:40.816
+Incoming livestream: And then, yeah, defense in depth, non-negotiable. I could do a whole talk about, like, all the other things that we do, even past detection, past detection in, in Comet.
+
+
+370
+01:12:40.816 --> 01:12:45.625
+Incoming livestream: But for now, like, even in detection, having multiple layers is super important.
+
+
+371
+01:12:45.626 --> 01:13:03.086
+Incoming livestream: And then finally, building that data flywheel. Because like we saw in our research, new attacks, the models, even BrowseSafe, struggle with detecting brand new attacks or brand new injection techniques that we haven't seen before. And so having that flywheel is super important.
+
+
+372
+01:13:06.986 --> 01:13:23.415
+Incoming livestream: Cool. Yeah, I want to give… first off, I want to say that both the model and the data set is fully open source. You could download it on Hugging Face. We also have shared our paper that goes super, super in-depth into what this research does and how we did it.
+
+
+373
+01:13:23.456 --> 01:13:41.896
+Incoming livestream: Also want to give a big shout-out to the, one, the folks at Perplexity who helped conduct this research, Mark Tenenholz, Dennis Sierrais, and Jerry Ma, and then also the folks from Purdue University who collaborated with us, which is Cailloon Zhang and Dr. Ning Guaitli.
+
+
+374
+01:13:41.936 --> 01:13:56.655
+Incoming livestream: And I guess one more thing while I have the mic. We are hiring, we are a very, very ambitious security team. We are tackling two problems at once. One is we're trying to figure out.
+
+
+375
+01:13:56.656 --> 01:14:04.966
+Incoming livestream: Product-facing security, where as agents are doing more and more work on behalf of humans,
+
+
+376
+01:14:04.966 --> 01:14:16.836
+Incoming livestream: a lot of the security landscape is changing, and so, like, what does identity look like? What does threat detection look like? And what does DLP look like? I think that's gonna significantly change in the next couple years.
+
+
+377
+01:14:17.206 --> 01:14:34.875
+Incoming livestream: And the second thing is, internally, we are really redefining how we're trying to redefine how security teams operate, using LLMs and agents at its core. And so, I hope to be back here maybe in a year from now to talk about all the things we built.
+
+
+378
+01:14:34.876 --> 01:14:45.436
+Incoming livestream: But please, if you're interested in any of this research and helping us build this, please talk to us. I'll be here for the rest of the day. We also have some folks in Perplexity who'll be here as well.
+
+
+379
+01:14:46.056 --> 01:14:47.875
+Incoming livestream: Cool, thank you. Very cool.
+
+
+380
+01:14:55.136 --> 01:14:59.085
+Incoming livestream: I've got one to start. How do you think about the trade-offs between…
+
+
+381
+01:14:59.296 --> 01:15:07.195
+Incoming livestream: Open sourcing, sort of an oracle that can be used to teach the bad guys what we'll get through, versus,
+
+
+382
+01:15:07.316 --> 01:15:08.706
+Incoming livestream: You know, sort of…
+
+
+383
+01:15:08.766 --> 01:15:22.266
+Incoming livestream: holding back your data? Yeah, that's a good question. I'm… I'm a huge fan of open sourcing our work. I just… I feel like, defenders really need
+
+
+384
+01:15:22.306 --> 01:15:47.245
+Incoming livestream: I mean, I feel like I need, like, we need a lot of help, right, with detecting these types of attacks, and so, at the end of the day, like, these red teams, these threat actors, they're going to be poking around and trying to find these vulnerabilities anyway, and I would love for us in Perplexity, but also the rest of the security industry, to please, share more and open source more. I feel like we see a lot of these blogs
+
+
+385
+01:15:47.246 --> 01:15:48.886
+Incoming livestream: post talking about
+
+
+386
+01:15:48.886 --> 01:16:08.035
+Incoming livestream: all the things that XYZ product did, or how… or how, like, threat actors are using Opus to conduct attacks, but they don't actually share any IOCs or things how to protect yourself from those attackers. And so, yeah, I'm just a huge fan of open sourcing our work.
+
+
+387
+01:16:08.296 --> 01:16:09.376
+Incoming livestream: Good question.
+
+
+388
+01:16:10.166 --> 01:16:27.316
+Incoming livestream: Awesome. Great talk. Can you talk a little bit more about the recent, Perplex browser research, and, you know, if it was fixed, and how was it fixed? Is this the Zenity? Yes. Zennedy blog? Oh, yeah, okay. So, yeah, we worked with Zenity on that.
+
+
+389
+01:16:28.306 --> 01:16:37.336
+Incoming livestream: They, they found some… okay, so they found two findings. One was that Comet… the Comet agent had access to
+
+
+390
+01:16:37.336 --> 01:17:00.886
+Incoming livestream: the file system. And so if you go to Chrome, and you say, hey, navigate to my home directory, and then I click things, like, you're able to do that. That's a basic browser feature. We added in a ton of guardrails into, the assistant to prevent it from doing so. However, a lot of these were very soft limits, so think of things like, LM analysis, or, like, in the system prompt.
+
+
+391
+01:17:00.896 --> 01:17:04.186
+Incoming livestream: And so, what Zenity found was that
+
+
+392
+01:17:04.806 --> 01:17:20.615
+Incoming livestream: If you, if the person who is controlling Comet has the ability… can prompt it in such a way to basically bypass those guardrails, you can get the agent to look at, look at files on your system.
+
+
+393
+01:17:20.616 --> 01:17:36.276
+Incoming livestream: I do want to stress that, one, this is not a prompt injection attack, and so we treat user content as trusted, so if you're on Comet and you type in, like, go to XYZ.com, it will. It won't assume that's some sort of attack.
+
+
+394
+01:17:36.276 --> 01:17:56.345
+Incoming livestream: But also, we do think it was useful that, like, identifying that there was this soft guardrail, and we need something much more harder. And so what we did was we added, we added, like, strong guardrails into the comment browser itself to ensure that the agent doesn't even have access to that in the first place.
+
+
+395
+01:17:57.126 --> 01:18:09.055
+Incoming livestream: The second thing that Zendy found was the prompt injection, prompt injection attack, specifically on 1Password. It wasn't really specific for 1Password, but it was a prompt injection attack.
+
+
+396
+01:18:09.056 --> 01:18:22.666
+Incoming livestream: And so what they found was, if you sent a calendar invite with some Hebrew instructions, and you asked Comet to go follow those instructions, their blog post is talking about how it's able to do so.
+
+
+397
+01:18:22.856 --> 01:18:31.726
+Incoming livestream: What they failed to disclose was that they had to run that query, like, 200 times, and on the 200th and first time, it actually worked.
+
+
+398
+01:18:31.946 --> 01:18:34.376
+Incoming livestream: And so,
+
+
+399
+01:18:35.836 --> 01:18:43.175
+Incoming livestream: Yeah, I… so, one is we improved our models to detect that kind of attack even further.
+
+
+400
+01:18:43.736 --> 01:19:02.565
+Incoming livestream: I do feel like it was a bit disingenuous to say that it was fully vulnerable to that kind of attack, given that they literally just had to rerun it 200 times in order for it to finally work. And so, I am a huge fan of working with
+
+
+401
+01:19:02.566 --> 01:19:18.256
+Incoming livestream: pen testers and external security teams. I do think there is a strong line between actually doing, like, security research and finding vulnerabilities versus trying to, create a blog post for marketing material.
+
+
+402
+01:19:20.336 --> 01:19:33.956
+Incoming livestream: Good question. Hello, thanks for the talk. I'm Omer, I'm a researcher at RSAC. At some point, you had a table up where you were comparing existing, benchmarks and how they were failing to cover some, strategies.
+
+
+403
+01:19:34.116 --> 01:19:42.196
+Incoming livestream: How… how accurate do you think that table is today? These… these prompt injection strategies keep changing every day, right?
+
+
+404
+01:19:43.406 --> 01:19:49.435
+Incoming livestream: Yeah, so you're saying, like, we have this eval system today, and how will it hold up in the test of time?
+
+
+405
+01:19:49.436 --> 01:20:14.416
+Incoming livestream: It's a good question. I think, along with us, I think attackers are also figuring out how to properly use this, and so I'd imagine we will see a lot of new and novel prompt injection attacks in the future. I'm optimistic that with things like the data flywheel, our own research and working with various red teams, we'll uncover it, and we'll be able to quickly improve that classifier in our system.
+
+
+406
+01:20:14.416 --> 01:20:16.695
+Incoming livestream: Systems in order to detect in the future.
+
+
+407
+01:20:16.696 --> 01:20:21.956
+Incoming livestream: It is a good question, though. Maybe we'll release a Browsafe bench 2 at some point.
+
+
+408
+01:20:22.036 --> 01:20:23.616
+Incoming livestream: Yeah. Thank you.
+
+
+409
+01:20:24.876 --> 01:20:25.676
+Incoming livestream: Thank you.
+
+
+410
+01:20:26.806 --> 01:20:44.165
+Incoming livestream: All right, we are now on break for 15 minutes, so 3.05 is when we'll be back here, up in this room, on the AI Automation Boundary. Datadog is speaking. Downstairs, Salesforce on their…
+
+
+411
+01:20:44.166 --> 01:20:49.946
+Incoming livestream: non-chatbot-based, SOC defense system. So, we'll see you back here at 3.05.
+
+
+

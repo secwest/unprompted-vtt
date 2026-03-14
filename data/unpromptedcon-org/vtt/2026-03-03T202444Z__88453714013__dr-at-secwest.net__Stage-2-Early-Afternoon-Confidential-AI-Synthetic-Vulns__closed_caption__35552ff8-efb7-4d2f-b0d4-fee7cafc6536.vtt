@@ -1,0 +1,1998 @@
+WEBVTT
+
+1
+00:00:07.053 --> 00:00:14.053
+Hey, hello hello. All right. Um, hmm, my partner in crime is not a hero.
+
+
+2
+00:00:14.053 --> 00:00:26.053
+Oh, there you are! Okay. I am gonna exit stage right because I need to go to Toronto like today. And so my session right now?
+
+
+3
+00:00:26.053 --> 00:00:37.053
+Oh, no, no. I just introed everyone, but not anymore. It's now Ryan's turn to do that. So, bye! Enjoy the rest of the conference.
+
+
+4
+00:00:37.053 --> 00:00:43.053
+Hi, I'm Ryan Moon. If you watch Prompt or GTFO, you probably know who I am.
+
+
+5
+00:00:43.053 --> 00:00:49.053
+Clearly, I use microphones very often. Anyway, I guess I'm running the afternoon. You ready to go?
+
+
+6
+00:00:49.053 --> 00:00:54.053
+I'm ready to go. It's all yours, sir. All right. Good afternoon.
+
+
+7
+00:00:54.053 --> 00:01:02.053
+Lunch was good? Yeah. All right. Hey, uh, my name is Raghu Yeluri, and I'm from Intel Corporation.
+
+
+8
+00:01:02.053 --> 00:01:08.053
+And I have two parts for my day job.
+
+
+9
+00:01:08.053 --> 00:01:26.053
+One, I work on security for AI. Which is a big part of my day job. The second part of my job is AI for security, which is… What do we need to do to make sure that security is… security assurance is better with AI?
+
+
+10
+00:01:26.053 --> 00:01:34.053
+This session is about, um… Securing AI. That's my big chunk of my time, so that's what I'm going to talk about.
+
+
+11
+00:01:34.053 --> 00:01:42.053
+How many of you heard about confidential computing? How many of you heard about confidential AI?
+
+
+12
+00:01:42.053 --> 00:01:50.053
+You know, the joke always about confidential AI is it's so confidential that it stays in this room, okay?
+
+
+13
+00:01:50.053 --> 00:01:54.053
+All right, so, uh, I'm gonna tell you what confidential AI is.
+
+
+14
+00:01:54.053 --> 00:02:03.053
+How it works at a high level? And more importantly, I'm going to tell you why you guys should deploy it. I'm going to show you three examples.
+
+
+15
+00:02:03.053 --> 00:02:17.053
+One, which is a Google example, Google Cloud. The other one is an AI fine-tuning example with Talus end-to-end with confidential compute.
+
+
+16
+00:02:17.053 --> 00:02:24.053
+And then I'm sure the one everybody wants to know is where does confidential computing come with agentic AI?
+
+
+17
+00:02:24.053 --> 00:02:30.053
+Okay. If there are questions that can't wait till the end, please ask me through the session.
+
+
+18
+00:02:30.053 --> 00:02:36.053
+Okay, so this is the industry definition for confidential AI.
+
+
+19
+00:02:36.053 --> 00:02:45.053
+It is the overlay of AI on confidential computing, or if you think about it the other way, using confidential computing for protecting AI.
+
+
+20
+00:02:45.053 --> 00:02:51.053
+So what's confidential computing? Very quickly, it has three pieces to it. Number one.
+
+
+21
+00:02:51.053 --> 00:03:03.053
+You provide data in use protection by running your applications, your workloads in hardware-protected environments called trusted execution environments.
+
+
+22
+00:03:03.053 --> 00:03:14.053
+Okay? Everything that runs in there. is encrypted, and it's in the control of the owner of that application workload data, whichever it is.
+
+
+23
+00:03:14.053 --> 00:03:27.053
+Okay? And the third important property of confidential computing is… you're going to get what is called an attestation, which says this is exactly what the environment in which you are running it.
+
+
+24
+00:03:27.053 --> 00:03:31.053
+It's going to tell you the hardware it is in.
+
+
+25
+00:03:31.053 --> 00:03:43.053
+What's the firmware that's running there? What's the software that's running there? And if you are happy with it, that's when you interact with it, give it secrets, give it keys, all kinds of things.
+
+
+26
+00:03:43.053 --> 00:03:47.053
+And why are we so interested in confidential computing?
+
+
+27
+00:03:47.053 --> 00:03:53.053
+You can see on the right side of the picture there, it gives you some good protections.
+
+
+28
+00:03:53.053 --> 00:03:59.053
+It gives you protections from day zeros to some degree.
+
+
+29
+00:03:59.053 --> 00:04:07.053
+It protects you from the… administrators of your infrastructure, whether it's on-prem or in the cloud.
+
+
+30
+00:04:07.053 --> 00:04:14.053
+It gives you protection from other tenants that are running on the same infrastructure.
+
+
+31
+00:04:14.053 --> 00:04:31.053
+Okay? So confidential computing that way gives you the protection from the infrastructure on which your workloads are running. You don't need to worry about, hey, this cloud operator could get access to what I'm doing. This cloud operator could have a rogue administrator that.
+
+
+32
+00:04:31.053 --> 00:04:42.053
+takes a snapshot of your virtual machine or your container, and they got all your secrets. All of those threat vectors disappear for the most part with confidential computing.
+
+
+33
+00:04:42.053 --> 00:04:55.053
+And for AI workloads, that's why it's very important. It protects your models, it protects your data. If you're doing gen AI stuff, it protects your prompts, your context windows, all of that stuff.
+
+
+34
+00:04:55.053 --> 00:05:12.053
+And I'm going to show you how, okay? There are two models for confidential AI. One is… running everything in confidential computing on CPUs, okay? I'm an Intel guy, so I have to talk about this use case, okay?
+
+
+35
+00:05:12.053 --> 00:05:16.053
+It's good for inferencing, it's good for certain model sizes.
+
+
+36
+00:05:16.053 --> 00:05:25.053
+Okay, 10 billion parameters. CPUs with, you know, matrix extensions in the infrastructure.
+
+
+37
+00:05:25.053 --> 00:05:38.053
+do pretty good. But… that's not enough. We know that. So that's why there is this second model which is called the hybrid model or the accelerated computing model, where.
+
+
+38
+00:05:38.053 --> 00:05:42.053
+You work in a combination of CPUs and GPUs.
+
+
+39
+00:05:42.053 --> 00:05:49.053
+Intel CPUs have confidential computing. NVIDIA GPUs have confidential computing.
+
+
+40
+00:05:49.053 --> 00:06:06.053
+So you can get them together. And you can have a good end-to-end story of confidential computing going from CPUs into GPUs. So, essentially, it is one extended trusted execution environment between CPUs and GPUs.
+
+
+41
+00:06:06.053 --> 00:06:19.053
+Okay? There are two models for doing it. In the near term, you know, it's called a software-based model. You know, for folks who are familiar, they call it the bounce buffer solution where.
+
+
+42
+00:06:19.053 --> 00:06:23.053
+The CPU writes into a buffer. It's an encrypted form.
+
+
+43
+00:06:23.053 --> 00:06:29.053
+The GPU picks it up from the buffer and the CPU and the GPU share the secret.
+
+
+44
+00:06:29.053 --> 00:06:38.053
+So things are encrypted, put on the buffer, GPUs pick up from there in the encrypted form. They have the secret, so decrypt it and they run it in the GPS.
+
+
+45
+00:06:38.053 --> 00:06:42.053
+But in the longer term, year and a half, two years out.
+
+
+46
+00:06:42.053 --> 00:06:46.053
+you don't need this software solution, it's all done in hardware.
+
+
+47
+00:06:46.053 --> 00:07:04.053
+The PCIe bus gets encrypted. And then there is a negotiation between the CPUs and the GPUs on how they trust each other and there are proofs for trust, and then they pass that information in a very, very efficient way between the CPUs and the GPUs.
+
+
+48
+00:07:04.053 --> 00:07:07.053
+By the way, you guys can hear me okay, right?
+
+
+49
+00:07:07.053 --> 00:07:11.053
+Thank you. All right. That's a good answer, man.
+
+
+50
+00:07:11.053 --> 00:07:18.053
+All right. Why do we care about confidential AI so much?
+
+
+51
+00:07:18.053 --> 00:07:36.053
+It meets regulations very well, okay? Whether you look at DORA, whether you look at the new executive order from the US, or you look at the European Union AI Act, there are clear nuggets in all of them which point towards the use of confidential computing.
+
+
+52
+00:07:36.053 --> 00:07:51.053
+That's why lot of enterprises, a lot of cloud providers, everybody seemed to want to use confidential computing because it's a big checkmark item from a regulation side.
+
+
+53
+00:07:51.053 --> 00:08:00.053
+You know, Intel has been doing confidential computing for a very long time, okay? I'm sure many of you are familiar with Intel SGX.
+
+
+54
+00:08:00.053 --> 00:08:06.053
+which was our first foray into confidential computing. It was not for the faint-hearted.
+
+
+55
+00:08:06.053 --> 00:08:13.053
+Okay. It required quite a lot of hand-holding to make sure that.
+
+
+56
+00:08:13.053 --> 00:08:21.053
+you really know what you want to run inside confidential computing. But the positive side of that was.
+
+
+57
+00:08:21.053 --> 00:08:29.053
+It was a very well controlled security environment. with no access for anybody other than the CPU.
+
+
+58
+00:08:29.053 --> 00:08:34.053
+Okay? But obviously, you know, everybody wants this concept called lift and shift.
+
+
+59
+00:08:34.053 --> 00:08:45.053
+where they can. take their containers. They can take their workloads, run it in a regular environment, and then move it into a confidential computing environment.
+
+
+60
+00:08:45.053 --> 00:08:53.053
+With the easy button, pretty much. That's where Intel TDX comes in, Trusted Domain Extensions, which is the second one.
+
+
+61
+00:08:53.053 --> 00:09:09.053
+Which guarantees you that you can take your virtual machines as they are today, the VM images, or your containers, and then run them in an environment which is confidential computing. And the way it manifests is following. You go to your cloud provider, Azure.
+
+
+62
+00:09:09.053 --> 00:09:24.053
+GCP, IBM, Oracle in preview today. you say, hey, you get a VM instance, you know, whatever instance you have, 26 vCPUs with 128 gigabit RAM, right?
+
+
+63
+00:09:24.053 --> 00:09:31.053
+you can go pick another instance which says confidential compute instance. Same properties.
+
+
+64
+00:09:31.053 --> 00:09:40.053
+68 GPUs, 128 gigabit RAM, and you can say, oh, by the way, I want one or two NVIDIA GPUs with it.
+
+
+65
+00:09:40.053 --> 00:09:47.053
+It is a confidential computing instance. You can run your virtual machine images, your containers, exactly the same way.
+
+
+66
+00:09:47.053 --> 00:09:56.053
+The management plane is the same, the control plane is the same, the operation model is exactly identical to regular virtual machines. No change.
+
+
+67
+00:09:56.053 --> 00:10:02.053
+The added benefit, now you are protected in use, okay?
+
+
+68
+00:10:02.053 --> 00:10:08.053
+an administrator at the cloud provider cannot look into what your virtual machine is.
+
+
+69
+00:10:08.053 --> 00:10:13.053
+They can take as many snapshots as they want, but it's all going to be Cypher.
+
+
+70
+00:10:13.053 --> 00:10:18.053
+The key for that one is in the CPU, so nobody else can see it.
+
+
+71
+00:10:18.053 --> 00:10:21.053
+Or the GPUs, in case you're running it in GPUs.
+
+
+72
+00:10:21.053 --> 00:10:36.053
+Okay, so that's the benefit of confidential computing, okay? Remember I talked to you about attestation, okay? Without attestation, confidential computing doesn't mean anything, okay? Your cloud provider told you, hey, I'm giving you an instance of confidential compute.
+
+
+73
+00:10:36.053 --> 00:10:39.053
+But do you know for sure you got it?
+
+
+74
+00:10:39.053 --> 00:10:46.053
+That's where attestation comes in. Attestation is going to give you a cryptographic proof that.
+
+
+75
+00:10:46.053 --> 00:10:50.053
+You are, in fact, running in a confidential computing environment.
+
+
+76
+00:10:50.053 --> 00:10:57.053
+that is genuine to the provider of it. It could be Intel, it could be AMD, it could be NVIDIA GPUs.
+
+
+77
+00:10:57.053 --> 00:11:02.053
+You have proof that you are running in a legitimate, confidential computing environment.
+
+
+78
+00:11:02.053 --> 00:11:08.053
+It is patched correctly. to the level that you are satisfied with?
+
+
+79
+00:11:08.053 --> 00:11:15.053
+And then more importantly, your workloads that are running in are exactly what you expected them to be.
+
+
+80
+00:11:15.053 --> 00:11:22.053
+If you are running a container, you would have a measurement of it, and you can verify that measurement to be what it needs to be.
+
+
+81
+00:11:22.053 --> 00:11:28.053
+That's what attestation provides you. Okay? There are multiple ways of doing attestation again.
+
+
+82
+00:11:28.053 --> 00:11:35.053
+You can, uh… I'm going to come back to that previous one.
+
+
+83
+00:11:35.053 --> 00:11:40.053
+Who provides the attestation systems? Is it the cloud provider?
+
+
+84
+00:11:40.053 --> 00:11:49.053
+Or is it a third party? Or is do-it-yourself, okay? The question that you need to ask yourself is.
+
+
+85
+00:11:49.053 --> 00:11:56.053
+Will you be comfortable if the cloud provider who's giving you confidential computing environment?
+
+
+86
+00:11:56.053 --> 00:12:01.053
+He's also telling you that, yeah, it's trusted. I'm giving you proof of it.
+
+
+87
+00:12:01.053 --> 00:12:09.053
+For some workloads, it's okay. For some customers, it's perfectly fine. They trust the cloud provider for a lot of other things.
+
+
+88
+00:12:09.053 --> 00:12:12.053
+So they trust on this as well, which is perfectly fine.
+
+
+89
+00:12:12.053 --> 00:12:19.053
+But there are a class of customers in the business segments like regulated industries especially.
+
+
+90
+00:12:19.053 --> 00:12:26.053
+you need that separation of duties. What, you know, in some securities domains they call the Four Eyes principle.
+
+
+91
+00:12:26.053 --> 00:12:36.053
+the provider of the infrastructure. should be different than the person who says it's a trustworthy infrastructure that you got.
+
+
+92
+00:12:36.053 --> 00:12:41.053
+So that's why you look at a third-party attestation system.
+
+
+93
+00:12:41.053 --> 00:12:48.053
+Intel is one of those providers which has that independent third-party attestation system called Intel Trust Authority.
+
+
+94
+00:12:48.053 --> 00:12:55.053
+Doesn't matter if your workloads are in Google, Azure, IBM.
+
+
+95
+00:12:55.053 --> 00:13:00.053
+in China, whether it's Alibaba, whether it is on-prem for you.
+
+
+96
+00:13:00.053 --> 00:13:07.053
+Intel Trust Authority has the ability to provide that verification, that attestation for you.
+
+
+97
+00:13:07.053 --> 00:13:18.053
+Okay? So, again, I'm not saying use this versus that. It depends on your business, it depends on your security requirements. You have options for attestation as well.
+
+
+98
+00:13:18.053 --> 00:13:23.053
+Okay? Now, the question somebody asked me before the session started is.
+
+
+99
+00:13:23.053 --> 00:13:31.053
+Is TDX available today? Here is the one slider you want to take a picture of Alex.
+
+
+100
+00:13:31.053 --> 00:13:39.053
+So, it is available across many cloud providers. You can see the list there.
+
+
+101
+00:13:39.053 --> 00:13:48.053
+Azure launched it a couple of days ago. When I wrote this slide, it had preview next to it, which I took out today.
+
+
+102
+00:13:48.053 --> 00:14:02.053
+Uh, you can tell it's available in many places. It is also available as part of the operating system. So if you're doing something on-prem, you have your own AI cluster, for example.
+
+
+103
+00:14:02.053 --> 00:14:08.053
+You have the ability to get it from the various OS vendors as well.
+
+
+104
+00:14:08.053 --> 00:14:12.053
+Okay. No.
+
+
+105
+00:14:12.053 --> 00:14:17.053
+A quick slide on Intel Trust Authority before I go to the examples, right?
+
+
+106
+00:14:17.053 --> 00:14:21.053
+I said Intel Trust Authority is that independent attestation system.
+
+
+107
+00:14:21.053 --> 00:14:26.053
+It's available at a SAS, it's available for on-prem deployments.
+
+
+108
+00:14:26.053 --> 00:14:32.053
+And through one API, you can get attestation of your CPUs.
+
+
+109
+00:14:32.053 --> 00:14:41.053
+and your GPUs as well. It could be one NVIDIA H100, one NVIDIA Blackwell, or it could be eight Blackwells on the system.
+
+
+110
+00:14:41.053 --> 00:14:45.053
+you get unified manifestation of all of that one.
+
+
+111
+00:14:45.053 --> 00:15:00.053
+Okay? And why is that important? As an application person, you don't want to deal with multiple workflows. I don't want to deal with a workflow for Intel CPUs. I don't want to deal for a workflow for NVIDIA GPUs. That's why we work together, the two companies.
+
+
+112
+00:15:00.053 --> 00:15:13.053
+And we have this unified API where you make one call, it figures out, hey, I am connected to two GPUs, so I need to make sure the attestation happens for both of those.
+
+
+113
+00:15:13.053 --> 00:15:26.053
+Okay? Alright, so much for theory. Now, let me show you examples of this, okay? This is a release from Google called Google Confidential Space. How many of you heard of confidential space from Google?
+
+
+114
+00:15:26.053 --> 00:15:38.053
+Maybe a few, okay? So, very quickly… Google confidential space is like a data clean room for AI, okay? What it is, is you can take your containers.
+
+
+115
+00:15:38.053 --> 00:15:48.053
+You run it in a confidential computing environment. The OS that runs inside that VM.
+
+
+116
+00:15:48.053 --> 00:15:54.053
+your application, which is your container, everything is measured.
+
+
+117
+00:15:54.053 --> 00:16:04.053
+And that measurements are available for verification. And the confidential space environment as part of launching your container.
+
+
+118
+00:16:04.053 --> 00:16:17.053
+will attest to Intel Trust Authority. And the trust authority verifies all the policies that need to be verified, and it's going to give a token, which is called an attestation token.
+
+
+119
+00:16:17.053 --> 00:16:23.053
+This token is now given to all the data sources.
+
+
+120
+00:16:23.053 --> 00:16:32.053
+Whether it is a data source in Google Cloud, whether it's a data source in Amazon, or whether it's on-prem for you.
+
+
+121
+00:16:32.053 --> 00:16:39.053
+that token is like your proof to the identity of identity.
+
+
+122
+00:16:39.053 --> 00:16:49.053
+that your access control and management systems will verify, and based on that verification, they give access to the data to that workload.
+
+
+123
+00:16:49.053 --> 00:16:56.053
+So, in the example that you see here, the AI workload is that green box that is there.
+
+
+124
+00:16:56.053 --> 00:17:04.053
+The entire red box is the TDX environment. Everything inside that is measured, and it is verified.
+
+
+125
+00:17:04.053 --> 00:17:16.053
+And that verification token is what is provided to the Google Cloud and the Amazon AWS protected resources. These are databases, keys, things like that.
+
+
+126
+00:17:16.053 --> 00:17:24.053
+Only when those resources verify the token. They give the resource access token to that workload.
+
+
+127
+00:17:24.053 --> 00:17:37.053
+And I'm sure folks who work on Google and AWS understand this very well. Without that resource access token, your workloads cannot access anything in those resources.
+
+
+128
+00:17:37.053 --> 00:17:44.053
+Okay? The commitment, the security promise this gives you is.
+
+
+129
+00:17:44.053 --> 00:17:48.053
+Nobody knows what's inside that workload other than the workload owner.
+
+
+130
+00:17:48.053 --> 00:17:54.053
+and the CPU, when it's running in the CPU, that's the only time it's in the clear.
+
+
+131
+00:17:54.053 --> 00:17:58.053
+The data comes encrypted into that box, the red box that you see.
+
+
+132
+00:17:58.053 --> 00:18:06.053
+The data is decrypted inside that red box. Nobody else sees it.
+
+
+133
+00:18:06.053 --> 00:18:21.053
+Okay, this is available from Google today. They are available on Google Cloud and I don't know if it's available on the Google Distributed Cloud, which is their on-prem version, but it's definitely available on their Google Public Cloud.
+
+
+134
+00:18:21.053 --> 00:18:30.053
+You can get a confidential space instance on a click, and then you can get your container workloads and you can deploy them.
+
+
+135
+00:18:30.053 --> 00:18:37.053
+Okay, the next example is probably something more interesting for people who are AI practitioners.
+
+
+136
+00:18:37.053 --> 00:18:44.053
+This example is with the Talus, which is a very well-known security company.
+
+
+137
+00:18:44.053 --> 00:18:49.053
+There is an ISP who has an imaging model.
+
+
+138
+00:18:49.053 --> 00:18:55.053
+And this model, hospitals need to use this imaging model.
+
+
+139
+00:18:55.053 --> 00:19:01.053
+So that they can fine-tune it, so that it's very… the efficacy of the model gets better.
+
+
+140
+00:19:01.053 --> 00:19:06.053
+But the problem is. One hospital's data.
+
+
+141
+00:19:06.053 --> 00:19:25.053
+is not enough. to improve the efficacy of the model, you need the data from multiple hospitals, and we all know how important PII is and you know all the HIPAA regulations and all of that. So you have a bunch of mutually untrusting parties.
+
+
+142
+00:19:25.053 --> 00:19:30.053
+or distrusting parties. that need to cooperate with each other.
+
+
+143
+00:19:30.053 --> 00:19:39.053
+To improve the efficacy of the model. The model owner is worried that if they put the model somewhere.
+
+
+144
+00:19:39.053 --> 00:19:49.053
+their intellectual property is… could be lost. So they become another untrusted party as well, distrusted party in this case.
+
+
+145
+00:19:49.053 --> 00:19:58.053
+So what do they do? They encrypt everything with the Tala Cipher trust key management system.
+
+
+146
+00:19:58.053 --> 00:20:09.053
+So everybody, hospital A, B, C, before they bring the data, they provision a key in the Cypher Trust platform.
+
+
+147
+00:20:09.053 --> 00:20:15.053
+they get their encryption key, and they encrypt the model, and encrypt the data sets.
+
+
+148
+00:20:15.053 --> 00:20:19.053
+the model owner does exactly the same thing as well.
+
+
+149
+00:20:19.053 --> 00:20:27.053
+They get the key from the CypherTrust platform, they encrypt their whatever that image diagnostic model is.
+
+
+150
+00:20:27.053 --> 00:20:35.053
+And they bring all these encrypted collateral into a confidential computing environment.
+
+
+151
+00:20:35.053 --> 00:20:42.053
+And once the CypherTrust platform talks to an attestation system like Intel Trust Authority.
+
+
+152
+00:20:42.053 --> 00:20:56.053
+It verifies them, and based on the individual policies, it releases the decryption keys into that trusted execution environment. The middle box that you see with CPUs and GPUs.
+
+
+153
+00:20:56.053 --> 00:21:05.053
+the datasets get decrypted there, the model gets decrypted there, the model gets fine-tuned there for whatever period of time.
+
+
+154
+00:21:05.053 --> 00:21:12.053
+The datasets get deleted. The model gets re-encrypted. sent back to the model owner.
+
+
+155
+00:21:12.053 --> 00:21:19.053
+Now, the model has been fully fine-tuned with multiple hospital data.
+
+
+156
+00:21:19.053 --> 00:21:27.053
+And it is encrypted back to the model owner and they deliver it to the individual hospitals.
+
+
+157
+00:21:27.053 --> 00:21:34.053
+So what did we get with this thing? The model owner's IP is protected. There is guarantee that nobody.
+
+
+158
+00:21:34.053 --> 00:21:38.053
+saw what's in the model, nobody can steal the model.
+
+
+159
+00:21:38.053 --> 00:21:42.053
+The datasets that are coming from the various hospitals.
+
+
+160
+00:21:42.053 --> 00:21:47.053
+Nobody sees the data except the model training process.
+
+
+161
+00:21:47.053 --> 00:21:58.053
+So their security requirements are met as well. And then the ultimate benefit is the efficacy of the model got better because it got trained on multiple hospital data sets.
+
+
+162
+00:21:58.053 --> 00:22:11.053
+Okay? The last example I'm going to show you is agentic AI and confidential computing, okay? I'm sure everybody has their own picture of what an agent is and what it does. This is my picture.
+
+
+163
+00:22:11.053 --> 00:22:17.053
+Okay? Has a bunch of MCP servers, not surprisingly.
+
+
+164
+00:22:17.053 --> 00:22:27.053
+talking to different tools. There's a reasoning engine with a language model, a big language model, so that I know what my plans are, all the reasoning stuff happens there.
+
+
+165
+00:22:27.053 --> 00:22:33.053
+But I also have domain models, okay? This is where agentic AI is going in my view.
+
+
+166
+00:22:33.053 --> 00:22:49.053
+It's not one large model doing everything. Enterprises are going to have a lot of localized domain models, which are very efficient, very effective, and then the security guarantees are there. So you're going to have a bunch of local domain models.
+
+
+167
+00:22:49.053 --> 00:22:59.053
+You have rags feeding them, all of that stuff. But the important thing is MCP servers will run in confidential computing. That's what the red box is.
+
+
+168
+00:22:59.053 --> 00:23:10.053
+There are various flavors for that one. You can just run the MCP server itself in confidential computing. You can run the MCP server with the tool in confidential computing.
+
+
+169
+00:23:10.053 --> 00:23:19.053
+These small domain models, the SLMs and RAGs can absolutely run in confidential computing as well.
+
+
+170
+00:23:19.053 --> 00:23:29.053
+Okay, so this is where the industry is going for agentic AI. There is an organization called COSI, Coalition for Secure AI.
+
+
+171
+00:23:29.053 --> 00:23:38.053
+most of the big security companies, cloud providers, hardware providers, all of them are part of COSI.
+
+
+172
+00:23:38.053 --> 00:23:45.053
+And COSI recently published a MCP security positioning paper.
+
+
+173
+00:23:45.053 --> 00:23:49.053
+It documents the 12 categories of threats for MCP.
+
+
+174
+00:23:49.053 --> 00:23:55.053
+And it also talks about the various controls to mitigate the threats.
+
+
+175
+00:23:55.053 --> 00:24:11.053
+Confidential computing is called out as a important security control for multiple security threats. So if you have interest in this, I would say look for COSI, look for their MCP paper. It is public, it's available. There is no cost for it.
+
+
+176
+00:24:11.053 --> 00:24:18.053
+I would strongly urge you to take a look at that paper, because it's very well-written paper.
+
+
+177
+00:24:18.053 --> 00:24:23.053
+Okay? With that, I'm going to summarize and hopefully we'll have some time for questions.
+
+
+178
+00:24:23.053 --> 00:24:32.053
+So please look at confidential computing and confidential AI. You know, this addresses a bunch of security concerns that.
+
+
+179
+00:24:32.053 --> 00:24:38.053
+you are gonna have, whether you are deploying on-prem or whether you're deploying in the cloud, or in a hybrid environment.
+
+
+180
+00:24:38.053 --> 00:24:53.053
+Okay? It's real, it's not theory, PowerPoints anymore. It's available from cloud providers. It's available from OSVs. It's available from hardware manufacturers.
+
+
+181
+00:24:53.053 --> 00:25:04.053
+Okay? Google confidential space is a good example. If you want to go do single container-based or multi-container-based AI workloads in Google Cloud.
+
+
+182
+00:25:04.053 --> 00:25:18.053
+Uh, look at Tala's solution, end-to-end Cypher trust platform for data protection, and start looking at confidential computing for agentic AI because it's going to happen, I guarantee you, next couple of years.
+
+
+183
+00:25:18.053 --> 00:25:28.053
+Confidential computing becomes the default for running agents because it gives you those benefits that you would expect. With that, I'm going to stop and see.
+
+
+184
+00:25:28.053 --> 00:25:36.053
+I don't know where we are on time, but I think I have a few more minutes here, five minutes for Q&A.
+
+
+185
+00:25:36.053 --> 00:25:42.053
+Questions? Oh, there we go. All right, hey, let's see if we got some questions. I know we got one right here.
+
+
+186
+00:25:42.053 --> 00:25:51.053
+On one of your very early slides, you mentioned zero days, and you have an asterisk next to zero days. What does the asterisk represent, please?
+
+
+187
+00:25:51.053 --> 00:25:54.053
+I don't know what's going to come tomorrow, man.
+
+
+188
+00:25:54.053 --> 00:26:01.053
+I can. My legal guys will not let me not put the star there.
+
+
+189
+00:26:01.053 --> 00:26:07.053
+Hands up, anybody else?
+
+
+190
+00:26:07.053 --> 00:26:23.053
+Raghu, can you talk a little bit about using confidential computing for AI in a multi-cloud, not a hybrid, let's say Google and Azure, or Google and IBM? How would that work? Good question. From the attestation side, it's very simple. The reason Intel Trust Authority was built was.
+
+
+191
+00:26:23.053 --> 00:26:41.053
+Hey, as a customer. I am not going to be logged into one cloud provider. I'll run some in Azure, some in Google, but I don't want to modify my workloads for attestation. So that's the easy one, okay? Today, you have to have both the CPUs and the GPUs.
+
+
+192
+00:26:41.053 --> 00:26:51.053
+in the same cloud. Okay, I can envision a future where… The cheapest cloud provider gives you the CPUs.
+
+
+193
+00:26:51.053 --> 00:27:01.053
+The cheapest cloud provider will give you GPUs, but it may not be the same one. Okay. So I would be able to distribute and federate between different clouds.
+
+
+194
+00:27:01.053 --> 00:27:06.053
+Yes. We got time for one more. Let me go right here.
+
+
+195
+00:27:06.053 --> 00:27:19.053
+In the Charlie's example you gave. Um, is it safe to assume that the security offered by confidential computing is only during the model training?
+
+
+196
+00:27:19.053 --> 00:27:35.053
+And the reason I ask that is, once this model gets to the hospitals that actually have them, you know, in the age of model test and distillation attack, where a teacher model can be used to train a student model, the data can still be stolen, right?
+
+
+197
+00:27:35.053 --> 00:27:42.053
+Uh, you know, I showed you an example of fine-tuning the model, which is kind of training to some degree, right?
+
+
+198
+00:27:42.053 --> 00:27:54.053
+There is nothing preventing you to run. a complete inferencing model, inferencing of a model inside a confidential computing environment. So in the case of a hospital.
+
+
+199
+00:27:54.053 --> 00:27:58.053
+the model provider will send the fully tuned model to the hospital.
+
+
+200
+00:27:58.053 --> 00:28:03.053
+And the hospital can run it in a confidential environment.
+
+
+201
+00:28:03.053 --> 00:28:12.053
+wherever they are, they could be on it on their own private cloud, somewhere else, they can run it in confidential computing. There's nothing stopping you from doing that.
+
+
+202
+00:28:12.053 --> 00:28:23.053
+Thanks, everybody. Hopefully that was useful.
+
+
+203
+00:28:23.053 --> 00:28:53.053
+If you guys are a speaker coming up, you'll notice as he went overtime, I started getting closer and closer to him, so if I get to the point where I touch you, I am going to interrupt you, alright?
+
+
+204
+00:29:32.053 --> 00:29:42.053
+All right. So welcome to the unprompted basement version. Sorry if the screens are a little bit small. You should be able to see everything.
+
+
+205
+00:29:42.053 --> 00:29:53.053
+Uh, so yeah, thanks for having us. We're really excited to be here at First UnpromptedCon. A lot of familiar faces and people doing AI security now who've been doing security forever.
+
+
+206
+00:29:53.053 --> 00:30:00.053
+So, it's probably not shocking to this room, but AI can find vulnerabilities now, and it's getting pretty good.
+
+
+207
+00:30:00.053 --> 00:30:21.053
+There's, you know, another track just right up here covering the same subject. And for many of us who have been paying attention to this space or testing this kind of capability, right, it's been getting better and better for almost a year at this point. Um, you know, both internal, uh, internal research, as well as academic papers, you know, trusted researchers and everybody.
+
+
+208
+00:30:21.053 --> 00:30:34.053
+have been saying this as well. And without talking about, you know, specific vendors or specific startups, there's a lot of potential open source solutions from, you know, more robust projects to, you know, what I'm now calling slop kitties.
+
+
+209
+00:30:34.053 --> 00:30:52.053
+And you know, it's no longer just startups, right? There's, you know, solutions from Anthropic, there's solutions from OpenAI, these volunteering systems, you know, Big Sleep was mentioned this morning, have been… Uh, making good progress within these companies, as well as now offering those solutions to open source.
+
+
+210
+00:30:52.053 --> 00:30:59.053
+So LLMs can find volunte, but we really wondered, you know, about six months ago, can they also inject vulns?
+
+
+211
+00:30:59.053 --> 00:31:20.053
+Enter Project Marinate. So as we say in security, right, POC, or, you know, get the out, evals are critical. And, you know, you heard this a bunch already today, evals, evals, evals, and really thought, you know, hey, this ability to use LLM agents to write code or find vulnerabilities, could we inject them?
+
+
+212
+00:31:20.053 --> 00:31:33.053
+Synthetically into a code base of a given project, uh, and then either test on finding those bones, or test other products that we already have with some ground truth.
+
+
+213
+00:31:33.053 --> 00:31:49.053
+And you, of course, can inject to almost any kind of code, right? It can be Python, it can be C, it can be an internal project, it can be a third-party project that you're worried about. Um, and, you know, you can make these vulnerabilities very surface level and easy to find, or you can make them harder to find.
+
+
+214
+00:31:49.053 --> 00:32:04.053
+And so, you know, as a company or a researcher, you know, you might want to, if you're evaluating a certain product or a new solution that's fancy, right? You might want to say, hey, does this find vulnerabilities in my code base? Is it reliable? Is it cheaper? Is it faster?
+
+
+215
+00:32:04.053 --> 00:32:20.053
+What's the signal-to-noise ratio for what I know are ground truth vulnerabilities now in this code base. And you can rewind and try older historical, you know, commits or something like that, but that only works for a certain amount of things, or you may only have a certain amount of code that has that.
+
+
+216
+00:32:20.053 --> 00:32:26.053
+So let's back up a second. So I'm Aaron. This is Skyler. We both work at NVIDIA.
+
+
+217
+00:32:26.053 --> 00:32:42.053
+And I want to be clear, too, this is building on the shoulders of giants, right? Aiscc did a lot of work injecting synthetic vulnerabilities into code bases, and part of their cyber challenge, cyber reasoning challenge that, you know, finished, um, uh, this last year at DEF CON.
+
+
+218
+00:32:42.053 --> 00:32:48.053
+Um, and I don't know if they did that by hand, but we thought, hey, maybe we can be lazy.
+
+
+219
+00:32:48.053 --> 00:33:05.053
+So about 6 months ago, right, AI coding agents are getting a lot better. They're getting able to reason about code and reason about large amounts of code. So we figured, hey, maybe we could just say, insert a few vulnerabilities, and it just would work, right? We just get Cloud code or we get cursor or get agent thing of the week.
+
+
+220
+00:33:05.053 --> 00:33:25.053
+And, you know, GPUs to the rescue. But, you know, insert a bit of a record scratch sound. The latest models actually will refuse this quite a bit. Uh, and, you know, cyber is dual use, right? I get that that's a hard problem to solve. Um, you know, the OpenAI's trusted access is actually, like, a good move in this direction in letting researchers be able to.
+
+
+221
+00:33:25.053 --> 00:33:43.053
+have a bit less refusals to do, you know, defensive security, or approved defensive security research. And so that's certainly a good development. But we also you'll see that this isn't something that will work. You can't just say, hey, in search of vulnerability, you know, be better.
+
+
+222
+00:33:43.053 --> 00:34:01.053
+Uh, it'll, you know, here, you know, it's adding a very, very simplistic vulnerability, which is, you know, classic string overflow in a, you know, configuration file parsing, which is not really a realistic risk if you can reload a configuration file, usually you already have control of.
+
+
+223
+00:34:01.053 --> 00:34:09.053
+of that machine, or that service, or whatever it would be. So, you know, even with state-of-the-art models, uh, it didn't really go so well.
+
+
+224
+00:34:09.053 --> 00:34:25.053
+So, we wrote a bunch of instructions, right, that said, hey, how to do this, what are the attack surfaces, how do you consider, uh, you know, what kind of historical vulnerabilities would be common in this code base, or with this programming language, or, you know, maybe do some research about open CVEs for this.
+
+
+225
+00:34:25.053 --> 00:34:41.053
+Uh, and, you know, these instructions, or, I mean, sorry, skills, these skills can call other skills, um, and, you know, these skills end up using as kind of working as their own form of a jailbreak. So if you have a defined set of skills, and you say, hey, go use these skills.
+
+
+226
+00:34:41.053 --> 00:34:50.053
+Um, instead of putting your prompt, you know, right in the thing, they'll go ahead and they'll follow that, and it works pretty well.
+
+
+227
+00:34:50.053 --> 00:34:56.053
+So, we have these skills, uh, they can call tools. It's saving us a lot of time.
+
+
+228
+00:34:56.053 --> 00:35:09.053
+And it seems a little bit silly in some ways to write down your, you know, your process or whatever it could be into just some markdown files. Um, but honestly, it works pretty well, and English is, you know, the new coding language.
+
+
+229
+00:35:09.053 --> 00:35:30.053
+What's also cool about these state-of-the-art skills and state-of-the-art coding agents is that they can ask questions, right? You can have a human in the loop and say, ah, yeah, you know, that vulnerability is not quite that realistic. Or, you know, I really want you to change how the difficulty of this is really easy for a scanner to find. I want it to be hard for a scanner to find, to really make sure I'm measuring things correctly.
+
+
+230
+00:35:30.053 --> 00:35:47.053
+But the general idea, right, is similar to the progress that you… similar to the process that you might follow, right? Review the application, review the code base, come up with some way to build it, make sure that it works, um, then go and look at what the programming language is, what kind of typical vulnerabilities are common in that.
+
+
+231
+00:35:47.053 --> 00:35:55.053
+uh, kind of programming age, or is this a client-server architecture, or is this a, you know, SQL engine, or whatever it could be?
+
+
+232
+00:35:55.053 --> 00:36:01.053
+And then, of course, like, you create plans for those things, you follow that process, and you go from there.
+
+
+233
+00:36:01.053 --> 00:36:18.053
+Then, we often will have the skill, uh, one of the skills is, you know, creating a diff for each change that you make, creating a branch for all the modifications and documentation that the coding agent will add to this process. So you can go back to potentially the middle of the process.
+
+
+234
+00:36:18.053 --> 00:36:29.053
+Uh, and then, of course, each vulnerability, because we can't just believe that these things are going to work, or it'll end up reward hacking, uh, you want to have some kind of verification.
+
+
+235
+00:36:29.053 --> 00:36:34.053
+And this process will iterate and loop, and you can go from there.
+
+
+236
+00:36:34.053 --> 00:36:43.053
+And then at the end, of course, you have documentation and a report of all the things that were changed, and why they were changed, and it lets you go back and change, uh, you know, if you want to modify something.
+
+
+237
+00:36:43.053 --> 00:37:02.053
+But of course, you know, uh, you can't really prompt yourself to perfection, and so there are problems with this kind of architecture, even if we, uh, you know, have spent some time on it, right? Models have bias, there's a lot of lack of ingenuity, um, you know, there's old information and training data-related things that the models will try to introduce.
+
+
+238
+00:37:02.053 --> 00:37:19.053
+You saw in that earlier example, right, even with, like, you know, Opus 4.6 or something, it'll just say, oh, you know, str copy, uh, we're done, right? It's… no, no. Um, and, uh, you know, so they will sometimes refuse, even with the skills, when you get to certain types of vulnerabilities or certain types of.
+
+
+239
+00:37:19.053 --> 00:37:39.053
+uh, you know, proof of concept exploitation and things like that. Um, so, some of the solutions for those are somewhat obvious, right? Somewhat better prompting, somewhat ways of trying to ground things to reality. And you'll also, uh, find some success in swapping models around, so you might get stuck with one model, switch to a different one.
+
+
+240
+00:37:39.053 --> 00:37:44.053
+And then, kind of, you can switch back and say, hey, continue on with this, and it'll just keep going.
+
+
+241
+00:37:44.053 --> 00:37:57.053
+Um, reward hacking will also be a problem, right? Here's an example where in an earlier version where, um, it introduced an XFCE vulnerability by just disabling the XSE protection, like, that's… Not exactly what we meant.
+
+
+242
+00:37:57.053 --> 00:38:10.053
+Um, and of course, you know, similar, uh, recommendations for this kind of thing, right? Better models, better planning, um, and, you know, in some cases, human verification, but that will slow things down.
+
+
+243
+00:38:10.053 --> 00:38:27.053
+Um, another thing you'll often run into is, like, maybe your code has to be compiled in order to test things, or maybe it needs to run in a Docker container to make it easy to get portable. Um, the models, you know, even 6 months ago would have potentially had problems with this, or got lost, or forget to compile once they made changes.
+
+
+244
+00:38:27.053 --> 00:38:43.053
+Um, and so this is something that you might run into. However, you know, the latest models are really getting a lot better here. Sub-agents will speed things up a lot. You can do things in parallel, and then, you know, better planning, uh, better setup generally, uh, will save you.
+
+
+245
+00:38:43.053 --> 00:38:59.053
+You'll also sometimes find problems with applications that need some kind of setup, right? Maybe it needs to be, um, you know, you can modify the code base, but then you need to click through a bunch of configuration steps, or you need configuration files need to be generated. The good thing is, you know, AI can just generate all that for us.
+
+
+246
+00:38:59.053 --> 00:39:06.053
+Or you can use things like Playwright to automate, you know, browser clicking if you have to kind of go down that path.
+
+
+247
+00:39:06.053 --> 00:39:24.053
+Um, you'll also run into, you know, if you're just creating Python scripts for replicating vulnerabilities or something, in some cases, especially on the website, you'll run into cases where, you know, there's a CRSRF token that needs to get refreshed for every single time, or there's different authorization you need to handle, and the model has to keep track of all that.
+
+
+248
+00:39:24.053 --> 00:39:33.053
+But again, that's something that you can, you know, document your way into improving or use things like Playwright Browser automation.
+
+
+249
+00:39:33.053 --> 00:39:50.053
+Um, and then, you know, one of the core things is just where are the decisions-wise of things, right? So, you know, should you expose some vulnerable attack surface that's already in the app? Because again, for a lot of this, we don't want to be modifying the app to introduce vulnerable behavior, we just want to tweak, like, the smallest amount of code.
+
+
+250
+00:39:50.053 --> 00:40:08.053
+Uh, to keep things as similar to the, like, real app as possible, right? Um, or should you do things like maybe we will, uh, you know, modify the surface-level code so it's easy to find, instead of modifying some really deep-down, hard-to-find thing. If you're going to be evaluating.
+
+
+251
+00:40:08.053 --> 00:40:23.053
+um, you know, just a scanner versus, like, a, you know, a human or a pen test team or whatever you have. And the nice thing is, you know, with AI, you can just do both, or you can make two, or you can make three, right? Just like the OpenAI, you know, presentation earlier this morning, like, you can just do things.
+
+
+252
+00:40:23.053 --> 00:40:42.053
+So in general, from some of the solutions that make things better, right? You cannot just prompt a few times with Claude code and just get a good result here. You really need the structure, you need various skills to go through and be able to do these things. Um, you will also need to use the latest and greatest models, just because, you know.
+
+
+253
+00:40:42.053 --> 00:41:00.053
+As we know, right, they're getting better. You'll get better results. And yeah, swapping around models or using, you know, using codecs to do one thing and then creating it again and using, you know, Opus 4.6 to do another one, you'll get some results. But I'll hand it over to Skyler now.
+
+
+254
+00:41:00.053 --> 00:41:12.053
+Thank you. So I'm going to go over some of the results that we ran into. A lot of it is just artifacts that are created by this process that inform the agent on how to move forward.
+
+
+255
+00:41:12.053 --> 00:41:18.053
+Um, we've had good success with a number of different application architectures, programming languages.
+
+
+256
+00:41:18.053 --> 00:41:27.053
+Internal apps as well as the open source apps. Those are what we spend most of our time on here.
+
+
+257
+00:41:27.053 --> 00:41:39.053
+So, one of the first things that we ended up doing is kind of, uh, I'll just kind of reiteration, was creating modes that helped us address specific use cases, right? Um, so obviously there's an interactive mode that's like your human-in-the-loop approach.
+
+
+258
+00:41:39.053 --> 00:41:50.053
+Um, where you get to direct it and to, uh, prove every single vulnerability that's planned, and it's approached, uh, on how it's implemented.
+
+
+259
+00:41:50.053 --> 00:41:57.053
+Um, next you have, like, an OWASP Top 10, where it just takes an app and it tries to create a vulnerability from each one of these classes.
+
+
+260
+00:41:57.053 --> 00:42:16.053
+Um, and this is basically a way to make your own web goat. If you're familiar with that project. Um, so that's handy for training, but obviously it's just, um, also handy for… evaluations. Um, CWEs, if you, if you know the specific types of vulnerability classes that you want to target.
+
+
+261
+00:42:16.053 --> 00:42:25.053
+Um, give it the CWE, and it will find an appropriate spot in that code base to inject a vulnerability of that class.
+
+
+262
+00:42:25.053 --> 00:42:43.053
+And if you want to get more specific, you can give it a CVE and say, emulate this specific vulnerability implementation, and it will go and find, provided it's available source code, it'll go find it and emulate the structure of that as closely as it can within the target application.
+
+
+263
+00:42:43.053 --> 00:42:49.053
+And finally, we have an auto RCE, which is just a way for us to say.
+
+
+264
+00:42:49.053 --> 00:42:59.053
+build a bunch of different vulnerabilities that independently aren't very useful, but can be chained together to ultimately achieve remote code execution.
+
+
+265
+00:42:59.053 --> 00:43:09.053
+We also support, like, a number, uh… you can specify the difficulty level, easy, medium, hard. Easy, like Aaron mentioned, is something that we don't care if it gets caught by a scanner.
+
+
+266
+00:43:09.053 --> 00:43:29.053
+medium, we don't want to be caught by a scanner. So if we do get caught, we'll reiterate over that loop until we can get it passed. And hard, we try and make it difficult for humans to be able to reason about using various techniques that make it really hard to find these things.
+
+
+267
+00:43:29.053 --> 00:43:36.053
+All right, so next we have our build process that kind of… what kicks off once we've defined our configuration, we kick off the build.
+
+
+268
+00:43:36.053 --> 00:43:57.053
+And we produce some artifacts here that are useful for the rest of the process. We create… And I know this is really hard to read, but on the side, you see some scripts that are used to start and stop our application, to run our build tests. So we run our build tests initially to make sure that the build is sound, um, and that we're working.
+
+
+269
+00:43:57.053 --> 00:44:09.053
+with a good application, and we use that test later, after each vulnerability injection, to confirm that the functionality is not broken somehow.
+
+
+270
+00:44:09.053 --> 00:44:25.053
+And then on the… in the middle, you can see the document that it prepares that describes the build process in detail. Um, it'll refer back to this as it needs to rebuild after each injection.
+
+
+271
+00:44:25.053 --> 00:44:41.053
+All right. Finally, so after we've completed the build process, actually, these can be run in parallel. Um, the next process is an analysis where we deep dive into the application, try to understand everything we can about it to make it easier.
+
+
+272
+00:44:41.053 --> 00:44:58.053
+to inject realistic vulnerabilities. Um, you can see here, or maybe you can't, but I'll describe it, the, um, executive summary kind of just describes the main components. It goes through all of the planned vulnerabilities, um, and describes some…
+
+
+273
+00:44:58.053 --> 00:45:06.053
+potential entry points to inject that vulnerability.
+
+
+274
+00:45:06.053 --> 00:45:23.053
+It goes through and it identifies all of the technology stack, which components are being used, which libraries, which versions. It also tries to group functionality into different categories. So if it's trying to find a place to inject a specific vulnerability, you can use these categories.
+
+
+275
+00:45:23.053 --> 00:45:30.053
+to identify code that might be susceptible to those types of vulnerabilities.
+
+
+276
+00:45:30.053 --> 00:45:37.053
+Uh, additionally, it goes through all of the architectural… I feel like we just covered that one.
+
+
+277
+00:45:37.053 --> 00:45:43.053
+Um, so then it also describes, like, the main components, and this will change, obviously, on your architecture.
+
+
+278
+00:45:43.053 --> 00:45:51.053
+Um, but it lays it out describing each one, how it works, enumerates all the endpoints.
+
+
+279
+00:45:51.053 --> 00:46:04.053
+And. Dataflow patterns. So it'll try it and say, alright, uh, here's how this workflow works when you're trying to fill a database, or browse keys in the database.
+
+
+280
+00:46:04.053 --> 00:46:10.053
+Um, so you can have… so the agent has this information as it's going through, trying to find the best place.
+
+
+281
+00:46:10.053 --> 00:46:29.053
+To inject these. more security-related, so it basically just looks for specific, um, security implementation details, authentication, authorization, cryptography, all the different security mechanisms that are present in the application, tries to identify them.
+
+
+282
+00:46:29.053 --> 00:46:42.053
+and enumerate it. And finally, we have, like, actually, not finally, but we have some… external integration. So these are where we… our app integrates elsewhere, which is a fun place.
+
+
+283
+00:46:42.053 --> 00:47:02.053
+To inject vulnerabilities. And then we do a baseline scan, so before we start injecting any vulnerabilities, do a baseline scan to understand what is actually there, um, so that we can compare after we… Injected our vulnerability to make sure it's not detected.
+
+
+284
+00:47:02.053 --> 00:47:24.053
+Okay, after that, we build a bunch of functional tests. So we understand the app, we understand the architecture, the components, uh, we understand the functionality. What are the common workflows, and we build functional tests to test this dynamically so that we… can get confidence that after we inject something, we're not breaking existing functionality.
+
+
+285
+00:47:24.053 --> 00:47:32.053
+And there's a specific, uh… Functionality is documented, KeePass to specific source files that might be interesting.
+
+
+286
+00:47:32.053 --> 00:47:49.053
+It also does, like, an architecture diagram. it's really not that great at it yet, um, but if you look at it, it's actually fairly accurate. And these are created in mermaids, so it has a textual representation that it can use to understand relationships between various components.
+
+
+287
+00:47:49.053 --> 00:47:54.053
+without trying to understand. This diagram.
+
+
+288
+00:47:54.053 --> 00:48:09.053
+And then finally, we're ready to inject some flaws. We've done our analysis. We have ideas of what we want to inject, how difficult it should be, and where we want to try injecting these. You can see here, we have a plan.
+
+
+289
+00:48:09.053 --> 00:48:16.053
+to create a chained vulnerability that ends up in our CE.
+
+
+290
+00:48:16.053 --> 00:48:27.053
+This is an example of one of the prompts. This is specifically a vulnerability injection prompt, which gives guidance on how to do it, how to make it realistic, and gives guidelines around.
+
+
+291
+00:48:27.053 --> 00:48:40.053
+Our idea of realistic, like, not touching the tests, uh, unit tests, for example, um… to hide our injected vulnerability.
+
+
+292
+00:48:40.053 --> 00:48:45.053
+And once we… Inject the vulnerability?
+
+
+293
+00:48:45.053 --> 00:49:05.053
+Sorry. We, um… We document, or sorry, this is part of the planning phase. Sorry, I kind of skipped over it, but you'll notice here, like, we asked for OWASP Pop 10. It says no, only 8 of those categories make sense for this application. I'm only going to move forward and try and inject these eight. The other would be.
+
+
+294
+00:49:05.053 --> 00:49:10.053
+Unrealistic, or to require adding additional functionality that wasn't already present.
+
+
+295
+00:49:10.053 --> 00:49:20.053
+Now, obviously, you can add additional tack surface, but… In this case, we don't want it to. We want it to use the existing functionality.
+
+
+296
+00:49:20.053 --> 00:49:27.053
+And then once it's defined the implementation, it can do additional things like generate sequence diagrams.
+
+
+297
+00:49:27.053 --> 00:49:36.053
+to describe that vulnerability in detail, so that a human can understand exactly how it works once it's injected.
+
+
+298
+00:49:36.053 --> 00:49:46.053
+And obviously injecting these vulnerabilities is great, but we need to know that this is not a false positive, so we need to validate that that exploit, sorry, that vulnerability is exploitable.
+
+
+299
+00:49:46.053 --> 00:49:59.053
+Um, so we generate validation scripts that. do that. We have a critique, sorry, a critic that will critique a vulnerability plan as well as an implementation.
+
+
+300
+00:49:59.053 --> 00:50:08.053
+Um, to make sure that it's aligned with what we're looking for and reward, sorry, avoid kind of reward hacking.
+
+
+301
+00:50:08.053 --> 00:50:13.053
+And once we've done all this, we've confirmed that the injections.
+
+
+302
+00:50:13.053 --> 00:50:20.053
+are validated, they work properly. We run a vulnerability scan again to identify what we missed.
+
+
+303
+00:50:20.053 --> 00:50:31.053
+I'm sorry, what it missed. Um… And at this point, like I said, if we were studying it to hard or medium, it might have to go back and try again using some of the information about how it was caught.
+
+
+304
+00:50:31.053 --> 00:50:37.053
+to do additional abations. All right.
+
+
+305
+00:50:37.053 --> 00:50:39.053
+Cool. So let's talk about where else that can go.
+
+
+306
+00:50:39.053 --> 00:50:56.053
+So, obviously, this works on source code, but of course, you can also take it further and have compiled binaries. So you could take your source code, introduce vulnerabilities, compile those binaries, and then test about, you know, patch diff analysis or end days, or whatever you're worried about, right?
+
+
+307
+00:50:56.053 --> 00:51:14.053
+You could test that in this situation as well. You can also marinate more than just source code, right? You could inject into configuration files if you have some kind of security process that's checking those. You could insert into log files if you want to check for, uh, you know, some detection thing to fire, right? You don't actually necessarily even have to do a red team.
+
+
+308
+00:51:14.053 --> 00:51:30.053
+You could just synthetically generate one and then test your system or test your SOC or whatever it could be. So that's pretty cool. And then, with a lot of this, right, you enter a world where you have more verifiable rewards, and so you could potentially generate a whole bunch of synthetic training data from a corpus like this.
+
+
+309
+00:51:30.053 --> 00:51:34.053
+And then make a better model, so on and so forth.
+
+
+310
+00:51:34.053 --> 00:51:53.053
+you know, this system, as we've been using it, is certainly not perfect, right? There are lots of times where it will reward hack, or where we'll have to go back and be more in the loop on a certain type of vulnerability that you want. Um, and so, obviously, you know, it's getting better, we're playing around with also, like, having layers of reviewers or critics or things like that in order to get things better.
+
+
+311
+00:51:53.053 --> 00:52:01.053
+Um, being able to kick off some kind of deep research as part of an agent would be pretty cool, um, uh, and so on.
+
+
+312
+00:52:01.053 --> 00:52:24.053
+And, you know, I think we want to end on just this fact that, like, right now, right, we're not in Cyber Kansas anymore, right? It's very interesting times for the security industry, for the AI industry, um, and, uh, you know, there's a lot of exciting stuff happening, and yeah, go build things.
+
+
+313
+00:52:24.053 --> 00:52:36.053
+I think we have a couple minutes for questions. Absolutely. Put your hand up if you've got a question. We'll go right here.
+
+
+314
+00:52:36.053 --> 00:52:59.053
+Hey, uh, I know you mentioned about using the newer models because the capabilities are better, but do you think that the problem you were running into earlier around won't generate vulnerable code? Like, that'll start to catch up on the skills and other newer… Yeah, definitely, that's a good concern. I think that's hope… where hope, like, maybe some of the OpenAI trusted access, right, where certain companies can get like, you know, if.
+
+
+315
+00:52:59.053 --> 00:53:12.053
+If you, you know, can get potentially approved to have some of the things turned down, right, or, like, classifiers or whatever, so you don't get an angry email. Uh, and things, but yeah, it'll always be a race of being able to do that.
+
+
+316
+00:53:12.053 --> 00:53:18.053
+That's a good question, though, thanks.
+
+
+317
+00:53:18.053 --> 00:53:34.053
+Hey, thanks. Uh, you talked about realism during the evaluations. How central to the evaluation metrics are realism and anecdotally, where on the sliding scale of CTF challenge to, like, real vulnerabilities do you think the phones wound up landing?
+
+
+318
+00:53:34.053 --> 00:53:50.053
+Yeah, that's a really good question. So I do think you could do a whole talk, I think, on why we need to go away from CTF-style evaluations and things and getting away from damn vulnerable Linux and juice job and all these things.
+
+
+319
+00:53:50.053 --> 00:54:06.053
+Uh, we focused a lot on trying to make it as real as possible. I think the problem is, yeah, we have our own bias about, like, what's real, or, you know, whatever. I think that's where some of the modes come into play of, like, if you had maybe, you know, we know programmers make similar mistakes again and again, or companies or frameworks, right?
+
+
+320
+00:54:06.053 --> 00:54:22.053
+You might be able to have a system where you, um, say, like, hey, here's the last, like, four vulnerabilities in this product. Make a fifth one that's very similar to these, right? So, it certainly, like, it's something we've been playing with, but it's not super easy.
+
+
+321
+00:54:22.053 --> 00:54:40.053
+you know, LLMs only know so much. Thanks. I guess the next question's for me, which is related to that, like, companies write a lot of the same software over and over and over again. Do you find over time you guys spend more time dealing with separate prompts, separate context on anti-reward hacking, making sure it's not just saying, hey, I did a great job?
+
+
+322
+00:54:40.053 --> 00:54:56.053
+It's gotten a lot better, like, 6 months ago, you had to babysit and be, like, human in the loop a lot. Um, now, especially for, you know, like, certain types of code bases, or certain types of problems that you're introducing, um, it'll, you know, it can really go on its own. Um, the one where it's still.
+
+
+323
+00:54:56.053 --> 00:55:13.053
+Sometimes we'll do nonsensical stuff, especially, like, the, like, chaining vulnerability chaining. You're like, this is… this… I would not exploit this and then exploit that. Like, that doesn't really make sense. Um, but some of the other more, like, simple modes are pretty, pretty reliable. Yeah.
+
+
+324
+00:55:13.053 --> 00:55:15.053
+I think we can probably take one more. Okay.
+
+
+325
+00:55:15.053 --> 00:55:27.053
+Uh, it seems like you've built the perfect tool for inserting backdoors into existing code bases through malicious pull requests. Have you tried leveraging this in offensive capacity? No comment.
+
+
+326
+00:55:27.053 --> 00:55:57.053
+Thanks a lot, guys.
+
+
+327
+00:57:28.053 --> 00:57:36.053
+hello hello oh I will say hey guys I love the conversation, but if you are gonna talk, I would ask you to go around the corner.
+
+
+328
+00:57:36.053 --> 00:57:39.053
+We got a coffee break coming up after this talk.
+
+
+329
+00:57:39.053 --> 00:58:09.053
+We can just flood this room after that. Technical difficulty here.
+
+
+330
+00:59:05.053 --> 00:59:13.053
+There's no way to make that slightly bigger or a full screen? No?
+
+
+331
+00:59:13.053 --> 00:59:29.053
+All right, uh, thanks everyone for the technical difficulties. I really appreciate the AV staff here. Um, I'll just get started, and we'll just work with what we got. Hey everyone, uh, thanks for coming to my talk. I'm Matt Mazel, I'm CTO and co-founder of Sendera. Uh, we're building trustworthy agent services.
+
+
+332
+00:59:29.053 --> 00:59:37.053
+And I've spent the last 15 years at the intersection of machine learning, security, and software engineering.
+
+
+333
+00:59:37.053 --> 00:59:45.053
+Today, I'm going to be showing you how we can hook coding agents and adjudicate their actions using the Cedar policy language.
+
+
+334
+00:59:45.053 --> 01:00:02.053
+And if you're in this track today, there's a lot of good background material. This is a lightning talk, so we're gonna move really fast. We're actually gonna unroll the coding agent loop and build a policy harness all within the next 10 minutes. So coding agent scaffolds, plan, generate, execute code, and run tools and loops.
+
+
+335
+01:00:02.053 --> 01:00:17.053
+Uh, we can map this action space into the trajectory event model that consists of five four event types, actions, observations, control, and state. Let's say an agent's maybe already working on some coding task. It's had a plan, it's going and generating code.
+
+
+336
+01:00:17.053 --> 01:00:39.053
+triggering actions, so starting at the bottom left, uh, we have, uh, the agent initiating, uh, initiating actions, such as writing or modifying files, uh, running shell commands, uh, executing code, um, and these actions are all, um, mutating the environment that that agent's operating in. Um, the environment then emits an observation back to the agent, providing feedback to the next model inference call.
+
+
+337
+01:00:39.053 --> 01:00:56.053
+Meanwhile, we also have control events, right, that handle user prompts, permission requests, sub-agent, agent orchestration. And then we have state events that handle mechanics like memory compaction, pruning, environment snapshots, and so forth.
+
+
+338
+01:00:56.053 --> 01:01:14.053
+So, uh, with this event model, we can actually take our now canonical lethal trifecta threat model and map it to these trajectory events, and we can see that this just becomes, uh, untrusted input, right, coming from things like skills, which might be fetched, you know, over web fetch, coming from a marketplace, and returned as an observation, right, as untrusted data, which might have injections.
+
+
+339
+01:01:14.053 --> 01:01:31.053
+We might already have sensitive data, like source code or internal docs in the agent context or retrieved from memory. And then through state changes, right, uh, with… to make this complete lethal trifecta, we would have, like, shell commands or code execution, right, that would, uh, would lead to exfil of that data.
+
+
+340
+01:01:31.053 --> 01:01:48.053
+Um, but this is just one narrow threat model, um, data exfil, and with this trajectory model, we can do, we can do more complex, um, even multi-step attacks, right, that are, uh, going to have observations and actions over multiple turns of the loop that might involve, uh, control events and state events.
+
+
+341
+01:01:48.053 --> 01:02:04.053
+Um, and we can also map other threat and risk models, like OWASP POP10 for agentic applications to this. Um, and this is really just looking, uh, helping us really map where we want to have control over the exact boundaries around these events and where they're produced. And this is where reference monitors come in.
+
+
+342
+01:02:04.053 --> 01:02:21.053
+So we want a reference monitor sitting outside the agent in the model, right, to mediate every event. Ideally, this monitor is always invoked. It's tamper-proof and verifiable, so it acts as our hard security boundary between the agent control, observation, action, and state events, and where they're.
+
+
+343
+01:02:21.053 --> 01:02:36.053
+you know, produced by the agent and by the system and the environment. But a reference monitor by itself is only as good as the policy enforcement points that it supports, right, where we can exert our control and where we can hook in. Um, and that's, again, that's where, uh, where agent coding hooks come into play.
+
+
+344
+01:02:36.053 --> 01:02:57.053
+So hooks allow us to intercept these trajectory events, processes them, decide whether to allow, modify, or stop the agent's loop. So we're changing the agent's behavior. And this is invoked at different lifecycle stages of the agent loop. And each coding agent implementation has its own details. Gemini, CLI, for example, has before and after model hooks.
+
+
+345
+01:02:57.053 --> 01:03:13.053
+Uh, which lets you stream individual tokens and do, uh, processing on them. Claude code doesn't actually have any model hooks at all other than the final agent response that's returned as a notification event type. And then Cursor has, uh, pretty granular hook types for MCP, um.
+
+
+346
+01:03:13.053 --> 01:03:28.053
+shell commands, as well as more generic tool calls. Um, so with these hook lifecycle events, uh, again, at each of these, uh, these, each of these key event types, we now have a policy, um, enforcement point. Um, now we need a way to express policies around, uh, around this model.
+
+
+347
+01:03:28.053 --> 01:03:46.053
+So, uh, we're choosing Cedar in this implementation to authorize these trajectory events and really the actions of the agent, and we're invoking that processing and authorizing whenever each hook event's triggered. So Cedar is a policy language that's expressive, fast, and analyzable, uh, thanks to its formal properties.
+
+
+348
+01:03:46.053 --> 01:03:59.053
+And, uh, use of, um, the lean symbolic compiler. Um, unlike other policy languages like Rego, uh, Cedar, policies can be analyzed through these formal methods to, to check for contradictory, vacuous, or other shadow policy subsets.
+
+
+349
+01:03:59.053 --> 01:04:18.053
+And Cedar also has a nice support for permission models, like attribute-based access control, which maps nicely to this domain. So you can see an example of this by looking at this shell command action and context type in the middle, where we can see different schemas for the entities, like agents and user and trajectory.
+
+
+350
+01:04:18.053 --> 01:04:34.053
+And this is where we can add attributes with signature tags or data sensitivity classifications and other attributes that might come from safety models or other guardrails that we're using to compute values and compute attributes for these policies.
+
+
+351
+01:04:34.053 --> 01:04:56.053
+Um, and policies don't just need to be security-oriented, uh, they can also be, uh, for agent behavior. Um, so this is, uh, it turns out, in fact, that Claude Code lets you write files while in plan mode. Um, so we can have policies that look for this type of behavior, uh, and when permission mode is set to plan, in which this is something that's specific to Claude code, actions, uh, we can, we can check to see if it's planned, we can forbid the right.
+
+
+352
+01:04:56.053 --> 01:05:05.053
+Unless that it's the actual plan file that it's writing to. Um, so at Sendera, we covered this actually in detail in some research that we released yesterday.
+
+
+353
+01:05:05.053 --> 01:05:20.053
+Um, finally, uh, we can also source policy content from our agent context itself, so, uh, like Claude MD or cursor rules files, and we can take, um, some of the, uh, security and permissions intent, right, in these files and formalize them as Cedar policies.
+
+
+354
+01:05:20.053 --> 01:05:38.053
+Um, and in this example, we're forbidding the agent from forming a shell executions based off of pattern matching on certain commands, destructive commands, or retrieving of certain environment files. So at this point, we have our policies. The next step is setting up policy decision points to have our hook events trigger.
+
+
+355
+01:05:38.053 --> 01:05:53.053
+So let's build up now, uh, part by part, a hook-based harness. So, we have our local adapters, which are commands that are run by the coding agents. They intercept these hook events over standard in. Uh, they transform them into a trajectory event model, and then send them to a local harness service.
+
+
+356
+01:05:53.053 --> 01:06:11.053
+Uh, inside the harness service, we have our policy, a cedar policy engine that extracts the entities, processes them against, uh, you know, any guardrail, so it's kind of meant to be bring your own guardrail. But currently, we have Yara signatures, information flow control models, and a safety model. And then, uh, from these results, we also update the entity and trajectory stores.
+
+
+357
+01:06:11.053 --> 01:06:16.053
+Uh, for stateful bookkeeping about information about the entities that we're observing.
+
+
+358
+01:06:16.053 --> 01:06:33.053
+Uh, writing cedar policies can be tedious, uh, but again, thanks to its formal properties, we can generate them with models and then verify and analyze them with built-in language tools. So, we can have a policy agent, uh, that helps us author and validate when given policy features in context, uh, over MCP tools.
+
+
+359
+01:06:33.053 --> 01:06:41.053
+Um, so finally now, we have this complete, uh, harness, uh, that's hook-based. Um, so let's, let's kind of go through a few examples of this.
+
+
+360
+01:06:41.053 --> 01:06:56.053
+So… First, we'll look at, um, uh, some, uh, policy generation. So we have a skill that's shipped with this that just has the procedural knowledge about Cedar and some instructions on how to call these different tools that are exposed.
+
+
+361
+01:06:56.053 --> 01:07:13.053
+So first we have the agent actually fetch the available context and values that are available for these entities. And maybe we're just going to start writing a policy, and we'll tell it to go write some policies for shell injection. We can see some examples that are returned around the entity types that are available from the schema.
+
+
+362
+01:07:13.053 --> 01:07:28.053
+We can see different context types, and if we keep going up here, too, we can also see different entities, actually, for the… these are label values for information flow control, so the sensitivity labels that we'll be looking at, as well as the categories from our policy model that we expose.
+
+
+363
+01:07:28.053 --> 01:07:38.053
+Um, in this case, it's policies around secure code generation. And then, uh, the various YARA signature categories that we have in our Yara rule set.
+
+
+364
+01:07:38.053 --> 01:07:54.053
+Um, so let's look at, uh, some more examples of this. So here's a, uh, a blocking of a destructive, uh, command. Um, a destructive action, so maybe we have some Cedar policies that, you know, uh, look for SQL mutations that don't have any constraints, so in this case, like, a delete from users without a where clause.
+
+
+365
+01:07:54.053 --> 01:08:05.053
+Um, so we can tell Claude to go run this, uh, we can stop this and bring back, uh, bring back the policy violation in context, uh, for the agent then to use to either steer, um, or for, for a review by the user.
+
+
+366
+01:08:05.053 --> 01:08:22.053
+Um, we can also do, again, more sophisticated multi-turn things here with the stateful bookkeeping. Um, we have… we can do information flow control, where maybe in this… in this case, we're using Gemini CLI, uh, maybe Gemini, uh, we have, like, a name, a date of birth, and an address, right? Some PII.
+
+
+367
+01:08:22.053 --> 01:08:41.053
+We can track that type of highly confidential PII and taints the trajectory, so that way on subsequent turns of the agent, when maybe it's going to go do a web fetch or run some network command, and we know that that trajectory has sensitive information in the context, we can dynamically restrict access to those tool calls.
+
+
+368
+01:08:41.053 --> 01:08:48.053
+Um, so we'll see here very shortly this web fetched to Google here fail.
+
+
+369
+01:08:48.053 --> 01:08:59.053
+We'll turn back a context again in a similar way. And again, these are just the policy examples here on the side where the actions web fetch, and we see the trajectory resource label.
+
+
+370
+01:08:59.053 --> 01:09:16.053
+Finally, we'll look at this last demo with Cursor. So this is demonstrating an instance of lethal trifecta, where let's say we have a skill from a public marketplace that helps us generate code metrics to tell us how good a vibe coders we are.
+
+
+371
+01:09:16.053 --> 01:09:32.053
+Um, unbeknownst to us, there's this metrics.python script in here that does some environment variable harvesting, and then, uh, does some requests to send that data out. So we can actually, uh, analyze that, uh, command, uh, event, the shell command event, and process the, uh.
+
+
+372
+01:09:32.053 --> 01:09:40.053
+The metrics.py file and run it against all of our guardrails, our signatures, and again, have that context available to us in our policy to block it.
+
+
+373
+01:09:40.053 --> 01:09:57.053
+Um, so, wrapping us up, uh, because again, this is a rapid tour, uh, first, I'm leaving you today with an open source Cedar policy engine that's integrated with these various coding agent hooks. This is a deterministic policy engine that's outside the model.
+
+
+374
+01:09:57.053 --> 01:10:14.053
+You know, we don't have to simply rely on safeguards or instructions and prompts. This complements other defense in depth systems like sandboxes or permission systems, right? Permission systems can induce consent fatigue and have missing context. Sandbox systems might be overly restrictive.
+
+
+375
+01:10:14.053 --> 01:10:29.053
+And we can get the trajectory context here in our policy engine. Some challenges, there is a, uh, of course, uh, sort of this Goldilocks policy zone where we still have to optimize our policies, you know, depending on the context of the agent. So we don't want overly restrictive policies that cripple.
+
+
+376
+01:10:29.053 --> 01:10:44.053
+the utility, and then we also don't want brittle pattern matching on certain signature, uh, certain, uh, destructive commands, as an example, that could invite policy hacking. Um, so this is an area where we have some ongoing research with optimization and guardrail latency benchmarking.
+
+
+377
+01:10:44.053 --> 01:11:03.053
+Um, so we also have, uh, policy scalability, right? The policy agent can help us, uh, with the formal tools provided over MCP, with the ability to do agent-assisted policy generation. Um, and then finally, just touching on, you know, more, uh, the next, uh, kind of future of, like, maybe multi-turn stateful policies.
+
+
+378
+01:11:03.053 --> 01:11:19.053
+You know, Cedar is inherently stateless, but because of the entity and trajectory store, we can do bookkeeping about the entities that we observe and the trajectory over time, and it allows us to expose those attributes as dynamic attributes, but there's other logic systems, like temporal linear logic.
+
+
+379
+01:11:19.053 --> 01:11:41.053
+and others that have more support for those types of operations over time, over trajectories. So with that, thanks for your time. Here's the QR code to the GitHub repo with this work. Happy to take questions and talk afterward as well too.
+
+
+380
+01:11:41.053 --> 01:11:46.053
+Anyone have questions?
+
+
+381
+01:11:46.053 --> 01:12:03.053
+Uh, regarding the IFC model, are you tagging the datas or the labels of the data using AI? Yeah, so this is a safety model. This is the GPT Safeguards 20 billion model that has, like, a policy, like, basically policies that you provided as examples for your.
+
+
+382
+01:12:03.053 --> 01:12:31.053
+your sensitivity labels, um, so that's how that classification's done. It could be from another DLP system, from another data classification system, uh, for that label, for that information. Okay, and this is labeling on the entire data instead of, like, some segment of… So this is labeling on the events themselves, with whatever data is retrieved, or whatever event is present in the events themselves.
+
+
+383
+01:12:31.053 --> 01:12:46.053
+A great talk. Thank you very much. So, quick questions. You write these policies in some language, that's fine, but who decides what should the policy be for a given agent, the authors of the agents decide it.
+
+
+384
+01:12:46.053 --> 01:13:02.053
+And in terms of the implementation, not the model as much as the implementation of the agents, do you put them in the pre-post hooks of the, um, of the tool calls and agent, uh, LLM calls and that sort of stuff?
+
+
+385
+01:13:02.053 --> 01:13:20.053
+If you can get some under the hood details. Yeah, so I kind of alluded to it a little bit, but this is where I think context from your Claude MD or your cursor rules files, like, we're already putting a lot of, um, sort of permission and security intent in there, you know, so you might be on an engineering team where there's certain files or certain operations on infrastructure, and again, we're.
+
+
+386
+01:13:20.053 --> 01:13:36.053
+Again, we're making this trade-off of giving the agent more access and giving more utility to do useful things for us, and then trying to dynamically determine when to revoke that access, right? It's the whole least privileges thing. But yeah, like, that idea there would be, it would be per team that could be, uh, in your markdown files, or it could come from your policy documents.
+
+
+387
+01:13:36.053 --> 01:13:43.053
+you know, for your engineering best practices or operating practices in your environment.
+
+
+388
+01:13:43.053 --> 01:13:50.053
+I'm sorry, sorry, I can hear the quick question.
+
+
+389
+01:13:50.053 --> 01:14:15.053
+Identity? Oh, yeah, so identity is not covered in here, but any IDP could be added here, like, this is, like, Cedar's sort of bread and butter. Um, so that also could be used as well, too. Uh, we focus on the attribute-based, uh, access control, uh, in this, uh, in this work.
+
+
+390
+01:14:15.053 --> 01:14:40.053
+Hey Matt, great talk. I'm curious, how does Cedar Policy Engine work with first-party agents, whether it's based on LangChain, Copilot Studio, stuff like that? Yeah, so, uh, we also open source policy engine for, like, any, uh, right now supported Python libraries, like LangChain, Strands, ADK, and others. But yeah, so it could also be embedded within those first-party agents as well too.
+
+
+391
+01:14:40.053 --> 01:14:48.053
+Great. Anybody else?
+
+
+392
+01:14:48.053 --> 01:14:51.053
+Matt had a lot of time, he finished up early.
+
+
+393
+01:14:51.053 --> 01:15:10.053
+Hey Matt, thanks for the talk. You mentioned kind of towards the end how this is complementary with, like, a permission system. Could you just talk about that a little more? Yeah, so I think a good example would be, like, in Claude code permissions, right, you might have bash, and you might, again, similar to maybe what some of the Cedar policies, where you're wildcarding on certain commands.
+
+
+394
+01:15:10.053 --> 01:15:22.053
+Great, you can still do that, but with Cedar, you can have more context, you can have more… you can allow permissions, but only when the trajectory's not tainted with some information flow control label. So that would be one example.
+
+
+395
+01:15:22.053 --> 01:15:34.053
+Thanks. Anybody else? Oh, there we go, down front.
+
+
+396
+01:15:34.053 --> 01:15:55.053
+You mentioned using this bookkeeping across multi-turn conversations. Have you experimented with multi-agent architectures where you have, like, convergence and divergence of trajectories? So, I think this is where it gets, uh, kind of… this is a single agent, like, focused on single agents right now, but the, uh, the sort of control event types is that place where you can see when another agent spawned.
+
+
+397
+01:15:55.053 --> 01:16:10.053
+like a sub-agent's created, or maybe there's more, like, agent-to-agent communications. Um, so, as far as, like, thinking of this as a, uh, another, another, like, agent-to-agent sort of, uh, boundary, uh, policies that maybe, again, more like contextual integrity, like, sort of use cases of an agent knows one secret.
+
+
+398
+01:16:10.053 --> 01:16:21.053
+You can't let other agents in the environment know that secret. This could be another mechanism, but that work is not to be done yet in this work.
+
+
+399
+01:16:21.053 --> 01:16:51.053
+All right, thank you very much, Matt.
+
+
+

@@ -1,0 +1,212 @@
+[00:54:30.159 - 00:54:34.099] Incoming livestream: preparing the work that he sends to us every week. Please welcome, Dan Meisler.
+[00:54:46.709 - 00:54:47.539] Incoming livestream: I know it's not life.
+[00:54:48.259 - 00:54:50.269] Incoming livestream: It'll be a second, I gotta connect.
+[00:54:53.019 - 00:54:54.239] Incoming livestream: No, I'm not plugged in yet, hold on.
+[00:55:19.459 - 00:55:22.908] Incoming livestream: This won't take more than 40 or 45 minutes. One second.
+[00:55:59.879 - 00:56:00.739] Incoming livestream: All right.
+[00:56:05.389 - 00:56:10.029] Incoming livestream: Alright, thanks to, Gotti and everyone for having me here today.
+[00:56:12.109 - 00:56:13.449] Incoming livestream: So,
+[00:56:15.769 - 00:56:22.488] Incoming livestream: I wanted to, do a few different things with this talk. I started off wanting to talk about my personal AI stack.
+[00:56:22.809 - 00:56:23.929] Incoming livestream: And,
+[00:56:24.489 - 00:56:33.748] Incoming livestream: I started thinking, everyone has one, because I submitted this, months ago, right? And I'm like, well, everyone has an AI stack, so I probably just want to talk about some ideas instead.
+[00:56:34.189 - 00:56:44.448] Incoming livestream: And, Gotti ended up saying, hey, look, you know, it is the name of the talk, go ahead and do that instead. So, I think I'm gonna do a combination of the two.
+[00:56:49.799 - 00:56:59.488] Incoming livestream: Yeah, so I've got a bunch of these ideas I'd like to talk about, but I'm only gonna pick a few of them, and just talk about the ones I'm most excited about.
+[00:57:01.449 - 00:57:04.948] Incoming livestream: So, the first one is that companies become APIs.
+[00:57:05.429 - 00:57:10.778] Incoming livestream: A couple weeks ago, Excalibra said you could just now type a prompt.
+[00:57:10.989 - 00:57:14.818] Incoming livestream: And, Excalodraw will make the diagram that you wanted.
+[00:57:15.489 - 00:57:17.239] Incoming livestream: Actually, hold on, hold on.
+[00:57:23.429 - 00:57:24.299] Incoming livestream: Sorry.
+[00:58:12.089 - 00:58:14.399] Incoming livestream: Alright, well, that's unfortunate.
+[00:58:20.139 - 00:58:21.099] Incoming livestream: Okay.
+[00:58:22.159 - 00:58:27.639] Incoming livestream: So basically, all the work that I was doing on the talk is… this is an older version, so that really sucks.
+[00:58:28.049 - 00:58:31.189] Incoming livestream: That's fine.
+[00:58:35.389 - 00:58:42.258] Incoming livestream: Yeah, so a bunch of these I would like to talk about. This is the first one I want to talk about, which is companies become APIs.
+[00:58:42.629 - 00:58:51.688] Incoming livestream: So, Excalodraw, they released a thing, they're like, hey, you can now just talk to your Excalibra, and it will produce the entire diagram for you.
+[00:58:52.009 - 00:58:54.809] Incoming livestream: And I was like, oh, that's pretty cool.
+[00:58:55.139 - 00:59:00.409] Incoming livestream: And I'm like, okay, what are the instructions? And I was looking for the agentic part.
+[00:59:00.809 - 00:59:11.508] Incoming livestream: And they came back and they said, it was easy, you just log into Xcalidraw, and you go into the tool, and you type what you want to happen, and the diagram will show up.
+[00:59:12.099 - 00:59:27.309] Incoming livestream: And as of, like, 2 months ago, that is a non-starter for me. I can't… like, I'm not going to go to any physical tool and actually use it. So, yeah, that is pretty much a non-starter for me. I think the way this is heading is…
+[00:59:27.609 - 00:59:40.088] Incoming livestream: your company exists as an API, and if people's AIs can't use your company in that way, you kind of don't exist. And I think the way that is heading is towards, essentially.
+[00:59:40.349 - 01:00:00.208] Incoming livestream: kind of like, IMDB or Rotten Tomatoes, where you have ratings of software, and they're all rated across lots of different dimensions, and your AI will essentially go out and figure out, what is the best service for this particular use case when you ask for something.
+[01:00:00.329 - 01:00:03.529] Incoming livestream: And that's essentially where I think this is going.
+[01:00:06.199 - 01:00:12.598] Incoming livestream: So that kind of relates to this one, which is, I'm sure everyone is seeing this, custom everything. So…
+[01:00:13.289 - 01:00:25.249] Incoming livestream: a big part of the previous idea is basically agents are doing more and more for us. Instead of us interacting with the world, we're interacting with our agents, our agents are interacting with the APIs.
+[01:00:25.469 - 01:00:33.029] Incoming livestream: So, they'll filter our news, they'll create custom software for us, and they'll do all sorts of this stuff on our behalf.
+[01:00:34.379 - 01:00:39.419] Incoming livestream: And, a big part of that is, you know, it starts to…
+[01:00:39.659 - 01:00:49.978] Incoming livestream: separate what we see, right? And not only different software, which is kind of crazy, you go into an environment to do a security test, you might actually find,
+[01:00:50.319 - 01:00:56.848] Incoming livestream: Completely custom software, so you might have to spin up a completely custom stack to do the assessment.
+[01:00:58.899 - 01:01:13.429] Incoming livestream: The other way this is kind of strange is when you think about that if everyone has their own AIs filtering their interface to the world, they're actually getting different news and different ideas. They're actually filtering reality into them.
+[01:01:13.579 - 01:01:20.049] Incoming livestream: And everyone's agent is doing that for their person, so it starts to get into a situation where it's like.
+[01:01:20.519 - 01:01:23.488] Incoming livestream: Everyone's experiencing a different reality, like, so…
+[01:01:23.669 - 01:01:35.099] Incoming livestream: You might go to your next-door neighbor who literally lives next door, and be like, hey, did you see this new K-pop video? It's the best thing ever. I've watched it 95 times. I've cried every single time I watched it.
+[01:01:35.549 - 01:01:39.828] Incoming livestream: And what do you think? Did you see it? And they're like, you still believe in Korea?
+[01:01:40.579 - 01:01:50.699] Incoming livestream: That's not real. It's like the moon, it's not real. So, I think we could just be so separated into our own little worlds, which will be really weird.
+[01:01:51.949 - 01:01:56.529] Incoming livestream: This next one is, companies becoming a graph of algorithms.
+[01:01:56.719 - 01:02:15.468] Incoming livestream: So, this comes from my experience doing a whole lot of consulting and being inside of a lot of companies over a couple decades, and the thing that I've kind of realized is most companies are just kind of winging it. There are many companies who aren't, right? Like, big banks, big energy, military-type places.
+[01:02:15.739 - 01:02:21.248] Incoming livestream: They tend to have a lot of processes, but in general, it's usually humans doing all these pieces.
+[01:02:21.639 - 01:02:28.499] Incoming livestream: And the recommendations, the documents, the processes, they're more of, like, recommendations than actual rules.
+[01:02:29.069 - 01:02:40.239] Incoming livestream: And I think that's going to switch into something like this. Because I think this is what CEOs and CFOs are actually gonna want. They're gonna wanna see their company like this.
+[01:02:40.619 - 01:02:47.359] Incoming livestream: And AI definitely wants to see your company like this, otherwise it can't understand it to be able to change it.
+[01:02:48.439 - 01:02:53.248] Incoming livestream: So, I think this is a big push that's gonna come from the top down.
+[01:02:55.389 - 01:03:01.159] Incoming livestream: So, this next one is kind of like the last one, but actually bigger and crazier.
+[01:03:01.319 - 01:03:13.819] Incoming livestream: And it's the idea that companies move from being human-run to being process-run. And I don't mean AI-run, which is also true, but I'm talking about specifically about processes.
+[01:03:14.009 - 01:03:18.769] Incoming livestream: So, I was embedded inside of a large energy company for a very long time.
+[01:03:18.969 - 01:03:24.148] Incoming livestream: And I learned something extremely crazy there. When something bad happens.
+[01:03:24.389 - 01:03:30.159] Incoming livestream: They don't ask who did it, and, like, they're about to get in trouble. They only have one question.
+[01:03:30.549 - 01:03:32.629] Incoming livestream: Did we follow the process?
+[01:03:33.479 - 01:03:39.008] Incoming livestream: And if the process was followed, they're like, okay, cool, that's fine, let's find out what the…
+[01:03:39.149 - 01:03:43.159] Incoming livestream: Problem was, and let's get a whole bunch of meetings together.
+[01:03:43.429 - 01:03:49.828] Incoming livestream: And we'll make that slight little tweak to the process, and now that's the new process, and everyone follows it, or you get fired.
+[01:03:49.939 - 01:03:54.468] Incoming livestream: And so, that… that tweak, I think, is about to come to everyone.
+[01:03:54.899 - 01:04:01.368] Incoming livestream: Right? So, this will be a matter of AI then being able to see all those SOPs and keep them updated.
+[01:04:01.829 - 01:04:05.079] Incoming livestream: And one thing I find really interesting about this
+[01:04:05.309 - 01:04:08.258] Incoming livestream: Is actually what it looks like for security.
+[01:04:09.059 - 01:04:20.258] Incoming livestream: Right? So, security, we've had this problem of, like, we've always wanted to move left, right? We've always wanted to move left in the process, but what if you could just…
+[01:04:20.389 - 01:04:23.689] Incoming livestream: Build software correctly the first time using an SOP.
+[01:04:24.019 - 01:04:27.339] Incoming livestream: Now, of course, everyone's been saying that forever, but…
+[01:04:28.029 - 01:04:37.839] Incoming livestream: I'm reminded that if you go to, like, a skyscraper site where they're building a skyscraper, there's no, like, place that you go, and you're like, hey, who's responsible for this building not falling down?
+[01:04:38.999 - 01:04:42.369] Incoming livestream: There's no such person, there's no such department
+[01:04:42.489 - 01:04:50.908] Incoming livestream: It's literally built into every part of the plan, and they just follow that plan. Now, we've been trying this with humans, it hasn't worked out well, but
+[01:04:51.349 - 01:05:03.118] Incoming livestream: I think the big change here is now people aren't really writing code themselves. The AI is already writing all the code, so why can't it be given a solid SOP to write against?
+[01:05:03.529 - 01:05:06.938] Incoming livestream: So I think that's, Kind of where things are heading.
+[01:05:08.859 - 01:05:16.169] Incoming livestream: Alright, so now I want to talk a little bit about the stack that I use. So these are some of the main ideas.
+[01:05:17.119 - 01:05:23.809] Incoming livestream: So I like to have one single unified AI system, and anything I do inside of AI, I bring into it.
+[01:05:23.949 - 01:05:31.529] Incoming livestream: If I learn something from some other AI, I bring that in as a module. And the centerpiece is to have the human, the person.
+[01:05:31.809 - 01:05:38.688] Incoming livestream: at the center, and it doesn't have to be, like, a super nerd like us, right? It could be an artist, an entrepreneur.
+[01:05:39.029 - 01:05:46.039] Incoming livestream: A philosopher, whoever it is. And the goal of this whole system is to kind of amplify and magnify humans.
+[01:05:46.229 - 01:05:50.029] Incoming livestream: So it's to focus on your capabilities and what can make you stronger.
+[01:05:52.179 - 01:05:55.239] Incoming livestream: So, the way that materializes is basically…
+[01:05:55.449 - 01:05:58.019] Incoming livestream: Putting people at the center, as opposed to
+[01:05:58.289 - 01:06:05.509] Incoming livestream: So, mine is cloud code-based, but code is not the center of it. It's more so the magnification of the human.
+[01:06:06.039 - 01:06:09.579] Incoming livestream: And, essentially, yeah, trying to give everyone that advantage.
+[01:06:10.369 - 01:06:11.229] Incoming livestream: Hi, you're good.
+[01:06:12.069 - 01:06:14.869] Incoming livestream: Alright, so, I don't think we have audio.
+[01:06:15.409 - 01:06:19.319] Incoming livestream: So this is the Pi upgrade skill that's part of the platform.
+[01:06:19.729 - 01:06:25.869] Incoming livestream: And what this does, and I'm sure everyone in here has anxiety, even just watching this talk, you're thinking.
+[01:06:26.199 - 01:06:32.669] Incoming livestream: You're thinking, I should be actually using AI right now, and I'm getting behind just by being at this conference.
+[01:06:32.939 - 01:06:34.669] Incoming livestream: This Pi Upgrade skill
+[01:06:34.879 - 01:06:44.629] Incoming livestream: What it does is it… it looks at every single engineering blog from Anthropic, also OpenAI, I think maybe a couple of others, mostly Anthropic, though.
+[01:06:44.859 - 01:06:51.869] Incoming livestream: And, it basically goes and finds all… everything they've said.
+[01:06:52.199 - 01:06:56.989] Incoming livestream: Everything they've said about what should be upgraded…
+[01:06:57.229 - 01:07:04.128] Incoming livestream: like, new releases. It looks at all their GitHub, releases, it looks at the release notes for the current release.
+[01:07:04.239 - 01:07:10.439] Incoming livestream: Actually has a timestamp from the last time we checked. So all previous releases since we looked the last time.
+[01:07:10.929 - 01:07:16.468] Incoming livestream: And it… Consolidates all of that, but then it looks at my existing system.
+[01:07:16.629 - 01:07:25.079] Incoming livestream: And all the changes that we've made, and all the goals and skills and everything, and then it matches up what it thinks would be best for us to upgrade.
+[01:07:25.209 - 01:07:30.268] Incoming livestream: So I don't have to track all that, which is highly, highly stressful.
+[01:07:31.309 - 01:07:34.149] Incoming livestream: So this is, some of the sources that it goes after.
+[01:07:34.749 - 01:07:38.409] Incoming livestream: And this is what the output kind of looks like. Comes back with
+[01:07:38.619 - 01:07:44.319] Incoming livestream: Recommendations on we should change this skill, we should update this skill, we should add agents, whatever.
+[01:07:45.709 - 01:07:48.658] Incoming livestream: Alright, this one is really cool. This one is called Council.
+[01:07:49.609 - 01:07:55.178] Incoming livestream: So this one actually spins up, based on the task that you give it, it spins up, like.
+[01:07:55.549 - 01:08:01.498] Incoming livestream: Between 2 and 16 custom agents who are experts in that field, and they fight.
+[01:08:02.309 - 01:08:04.418] Incoming livestream: They debate aggressively.
+[01:08:04.679 - 01:08:17.009] Incoming livestream: on which direction it should go. And the main agent watches them fight, watches the debate, and I… one of the parameters is how many rounds you want it to go for. So they debate back and forth.
+[01:08:17.929 - 01:08:24.128] Incoming livestream: Basically communicating, like, no, it should go… we should go with this test-driven development platform.
+[01:08:24.469 - 01:08:27.069] Incoming livestream: Or spec-driven development, or whatever it is.
+[01:08:27.309 - 01:08:34.199] Incoming livestream: So this is what it looks like when they come back. They form their opinions, they make their best argument, and then the parent
+[01:08:34.399 - 01:08:42.128] Incoming livestream: agent basically says, okay, we're gonna go this direction. Or actually, currently, it makes that recommendation to me, and then I choose which one.
+[01:08:43.439 - 01:08:45.039] Incoming livestream: And that's some more of the output.
+[01:08:47.149 - 01:08:49.379] Incoming livestream: This one is First Principles.
+[01:08:49.989 - 01:09:02.369] Incoming livestream: This one just basically reverse engineers, exactly what the root cause can be instead of, like, troubleshooting a specific cause. So, we won't go into that one. Iterative depth.
+[01:09:02.629 - 01:09:11.649] Incoming livestream: This one is… it's a research paper that came out that basically says if you ask the same question from a different perspective.
+[01:09:11.919 - 01:09:18.499] Incoming livestream: Over and over, The AI gets extremely smart. It gets way smarter than it should have.
+[01:09:18.809 - 01:09:29.318] Incoming livestream: Just because it's hearing the same question, but in a slightly different way. So it's hitting the same sort of idea surface, but it's covering it more thoroughly. And I've had really good results with it.
+[01:09:30.319 - 01:09:43.289] Incoming livestream: This one is really cool. It also comes from a paper, by Zhang and the crew over there. And basically, what it does is it creates wildly more creative results.
+[01:09:43.519 - 01:09:47.429] Incoming livestream: Than just, doing something like changing temperature or something like that.
+[01:09:47.659 - 01:09:50.279] Incoming livestream: What it does is it's,
+[01:09:50.429 - 01:09:59.138] Incoming livestream: It's just messing with the probabilities for the output that it chooses. And it's, also quite effective, especially when you're trying to think out of the box.
+[01:10:01.369 - 01:10:09.598] Incoming livestream: Alright, so this one is the absolute craziest one. This is probably the most interesting piece of the whole Pi ecosystem.
+[01:10:09.759 - 01:10:14.879] Incoming livestream: And this is the algorithm. And the idea is that I'm trying to pursue…
+[01:10:15.049 - 01:10:21.119] Incoming livestream: And keep in mind, for all the academics here, this is highly… Theoretical and,
+[01:10:21.619 - 01:10:35.428] Incoming livestream: It's experimental, okay? I've found that it works, but I know how hard the problem is, and I'm not underestimating it. The idea is, software is moving so fast with AI because it has handholds.
+[01:10:35.719 - 01:10:39.998] Incoming livestream: It's able to grab onto something, which is, does it work or does it not work?
+[01:10:40.349 - 01:10:42.928] Incoming livestream: Well, what are you going to do if you say.
+[01:10:43.129 - 01:10:48.939] Incoming livestream: Write me an essay about mind-body transfer in Arkansas in 2038.
+[01:10:49.809 - 01:10:53.738] Incoming livestream: Or write me a short story. How does it know what a good short story is?
+[01:10:53.949 - 01:11:00.488] Incoming livestream: So, what this system does… Is it attempts to build an ideal state
+[01:11:00.639 - 01:11:10.928] Incoming livestream: for any scenario. Not just coding, but any general scenario. So, what it's actually building is a set of, criteria
+[01:11:12.159 - 01:11:19.348] Incoming livestream: That it can use for handholds, and the ideal state criteria are the same exact ones as the verification criteria.
+[01:11:19.469 - 01:11:23.638] Incoming livestream: And it's produced some absolutely insane results.
+[01:11:23.759 - 01:11:27.688] Incoming livestream: So this is what it looks like when it reverse engineers a request.
+[01:11:28.079 - 01:11:30.419] Incoming livestream: So keep in mind, it knows everything about me.
+[01:11:30.749 - 01:11:43.429] Incoming livestream: So I could give a single sentence, and it can say, well, he probably meant this, because of all this context. And then it breaks apart, this is what he definitely didn't want, this is what he definitely did want.
+[01:11:43.759 - 01:11:48.019] Incoming livestream: And it turns those all into discrete, testable.
+[01:11:48.209 - 01:11:53.158] Incoming livestream: ideal state criteria and puts them inside the, Claude Code task system.
+[01:11:53.369 - 01:11:55.649] Incoming livestream: So it's being maintained by Cloud Code.
+[01:11:56.919 - 01:11:58.669] Incoming livestream: And this is some more of the output.
+[01:12:01.029 - 01:12:06.108] Incoming livestream: And this is what it looks like, so when I run this thing, I can actually see tons of,
+[01:12:07.179 - 01:12:14.309] Incoming livestream: engagements, basically all the different agents that I have working on things, I can see where they are inside of the algorithm and how far they're proceeding.
+[01:12:16.369 - 01:12:29.038] Incoming livestream: Alright, so this one here I haven't talked about before at all. This one is, called Arbol, which is Spanish for tree. And I've been trying to do this for, like, 10 years, and I was just doing it with, like, CLI stuff.
+[01:12:29.489 - 01:12:33.829] Incoming livestream: And what this actually is, is it's a… it's a discrete…
+[01:12:34.739 - 01:12:41.339] Incoming livestream: AI or any type of functionality, you could put it into a single little container, a single little action.
+[01:12:41.569 - 01:12:48.829] Incoming livestream: That action can run locally on a command line. It can run in the cloud. I'm specifically using Cloudflare workers.
+[01:12:49.289 - 01:13:00.778] Incoming livestream: And you can then chain any action into any other action. You can combine them into a pipeline, and if you connect it to a source and an output, it becomes a flow.
+[01:13:00.919 - 01:13:04.478] Incoming livestream: So, I could run a command line to, for example.
+[01:13:04.749 - 01:13:09.929] Incoming livestream: go find all the top-level domains for Tesla, and then pipe that into
+[01:13:10.149 - 01:13:19.008] Incoming livestream: get subdomains, and pipe that into Naboo, and get the ports. So these are all independently discrete, and I have, like.
+[01:13:19.869 - 01:13:21.299] Incoming livestream: A whole bunch of these.
+[01:13:22.379 - 01:13:27.299] Incoming livestream: Yeah, I've got tons of them, and I just… I use them to build things.
+[01:13:27.549 - 01:13:30.108] Incoming livestream: So this is an example of something I built with it.
+[01:13:30.349 - 01:13:38.599] Incoming livestream: This is called, Surface, a thing I built for myself. And what this does is it takes all my 4,000 different
+[01:13:39.239 - 01:13:46.609] Incoming livestream: sources, so I've got, like, Intel sources, OSINT people, YouTube videos, mostly RSS.
+[01:13:46.769 - 01:13:52.669] Incoming livestream: Blue sky people, And basically take, all of their sources.
+[01:13:52.779 - 01:13:56.299] Incoming livestream: process it through, and then I have a thing called label and rate.
+[01:13:56.519 - 01:13:59.419] Incoming livestream: And it rates the quality of this content.
+[01:13:59.769 - 01:14:07.409] Incoming livestream: And then it puts it into this interface for me, sorted with labels and everything. So what this means is, if Mark Andreessen…
+[01:14:07.989 - 01:14:10.248] Incoming livestream: Writes a shitty essay.
+[01:14:11.079 - 01:14:12.509] Incoming livestream: It will not show up.
+[01:14:12.789 - 01:14:15.318] Incoming livestream: And if a 9-year-old kid from Idaho
+[01:14:15.779 - 01:14:19.388] Incoming livestream: In whatever, I don't know what grade that is, 4th grade? I don't know.
+[01:14:20.189 - 01:14:23.548] Incoming livestream: Whatever grade they're in, they write an essay, and it's amazing.
+[01:14:24.349 - 01:14:25.729] Incoming livestream: It will show up.
+[01:14:25.879 - 01:14:31.378] Incoming livestream: So it's like, it's, it's basically, democratized the whole, the whole quality thing.
+[01:14:31.589 - 01:14:35.728] Incoming livestream: So you can find the best stuff. So, just a use case for…
+[01:14:36.239 - 01:14:38.938] Incoming livestream: all the different, arbo pieces together.
+[01:14:46.239 - 01:14:47.019] Incoming livestream: Alright.
+[01:14:47.649 - 01:14:56.209] Incoming livestream: Yeah, so I would say the main takeaways for this are you want to make Anything that you're doing.
+[01:14:57.919 - 01:15:06.319] Incoming livestream: You want to have it be clear in your mind. You do not want to have anything that you care about be like an amorphous sort of blob.
+[01:15:06.799 - 01:15:17.639] Incoming livestream: Because I feel like that is an attack point for somebody in AI, somebody, some McKinsey, a giant team of smiling 22-year-olds, to come and attack that thing.
+[01:15:17.769 - 01:15:19.969] Incoming livestream: And extract everything out of it.
+[01:15:20.089 - 01:15:35.738] Incoming livestream: and basically, turn that into a process which basically outsources you, right? So, the idea is we should get there first, right? The other idea, main takeaway here, is when you have a unified AI system like this.
+[01:15:36.519 - 01:15:54.268] Incoming livestream: you can basically take everything you're doing and put it inside the system. You put your context in here, you put all your tools, like, all those different tools that I ran, the Pi Upgrade skill, they're all available to the algorithm. The algorithm instantly knows how to use anything custom that I built.
+[01:15:54.629 - 01:16:03.309] Incoming livestream: So, what that means is you end up only doing anything once, and then you incorporate it into your harness, and then it's just part of your system.
+[01:16:03.819 - 01:16:17.658] Incoming livestream: And I think this is the way to go. I think enterprises are moving in this direction, and unfortunately, people like McKenzie are moving in this direction as well, and I think we want to get there before they do, basically.
+[01:16:19.949 - 01:16:25.728] Incoming livestream: This is the project. It's called, PI Personal AI Infrastructure. It's an open source project.
+[01:16:25.989 - 01:16:27.878] Incoming livestream: And just had a release.
+[01:16:28.359 - 01:16:30.698] Incoming livestream: And, definitely recommend you check it out.
+[01:16:31.869 - 01:16:33.189] Incoming livestream: Anne, thanks for your time.
+[01:16:40.309 - 01:16:41.489] Incoming livestream: Questions for Daniel.
+[01:16:43.359 - 01:16:44.609] Incoming livestream: Alright, one over there?
+[01:16:55.709 - 01:17:04.309] Incoming livestream: Hello, I'm very interested in that algorithm, the climbing, do your agents,
+[01:17:04.619 - 01:17:23.419] Incoming livestream: draw inspiration from something like gradient descent? Could it be, like, you know, are they converging at something? So, can you give us a little more about that? Yeah. No, I think, based on that question, you'll be horribly disappointed. No, it's more so along the lines of
+[01:17:23.749 - 01:17:28.228] Incoming livestream: Just imagining all the things that I probably meant.
+[01:17:28.769 - 01:17:39.269] Incoming livestream: when I… when I made this request. So if I say, hey, build me an entire role-playing game system, I want history, languages, terrain.
+[01:17:39.379 - 01:17:41.749] Incoming livestream: Combat system, all that kind of stuff.
+[01:17:42.569 - 01:17:53.469] Incoming livestream: I think what we don't realize is we're… it's called writer's blindness, where you have something in your mind, but you're not communicating it clearly, and I think this is, like, a central theme for all AI.
+[01:17:53.839 - 01:18:03.418] Incoming livestream: clarity of thought, clarity of articulation is, like, absolutely everything. So, what I'm trying to do is have the algorithm reverse that.
+[01:18:03.699 - 01:18:14.628] Incoming livestream: and pull that out. So it's looking at my contacts, it's turning those into ideal state criteria, and the strict rule is it has to be discrete and testable.
+[01:18:14.909 - 01:18:29.999] Incoming livestream: Because when we get all the way, there's 7 phases of the algorithm, which is roughly… oh, I should have mentioned that. The algorithm is roughly based on the scientific method. So, it goes through, like, you have experiments, you have the testing, and the verifications at the very end.
+[01:18:30.439 - 01:18:34.519] Incoming livestream: And that ideal state criteria is what you use for the verification.
+[01:18:36.789 - 01:18:50.868] Incoming livestream: Real quick… real quick question. As all of this continues to grow, y'all have your own personal AI systems, things like that, do you think we'll ever get to a point where enterprises adopt, bring your own AI… bring your own AI assistant?
+[01:18:53.609 - 01:19:08.279] Incoming livestream: I think they already are right now, just out of a panic, because all their management is telling them, you must do this immediately. I think this is the way to go. Obviously, they're gonna have guardrails for that, but,
+[01:19:08.419 - 01:19:24.118] Incoming livestream: I mean, this is built on top of Cloud Code, right? Guess what it is? It's Markdown, just like Cloud Code, which means everyone's allowed to use Cloud Code at work anyway, so you just… you can just, like, put this on top, and you're good to go. It's just context that… and skills that are adding…
+[01:19:24.359 - 01:19:25.708] Incoming livestream: That are bringing this.
+[01:19:26.239 - 01:19:35.388] Incoming livestream: Yeah, I love K-pop, who doesn't, right? I was wondering how much money you actually spent on this project. Google Star gets a lot of,
+[01:19:35.539 - 01:19:37.589] Incoming livestream: In work there.
+[01:19:37.869 - 01:19:42.379] Incoming livestream: Not as much as if I didn't have the subscriptions.
+[01:19:42.589 - 01:19:46.869] Incoming livestream: Yeah, you get the max subscription, and you have…
+[01:19:47.099 - 01:19:55.788] Incoming livestream: theoretically, maybe more than one account, and… yeah. That's pretty much it. I think I need to go. Thanks, I'll be around if you want to chat.
+[01:19:58.629 - 01:19:59.919] Incoming livestream: Before Daniel goes.
+[01:20:00.759 - 01:20:04.379] Incoming livestream: I want to say a couple words about Daniel. So,
+[01:20:05.909 - 01:20:22.369] Incoming livestream: I think a lot of us try to keep up. I mentioned it earlier, other people mentioned it across the day, but how we try to keep up, how we have to be our own researchers, how we have to build our own tooling all the time. And my bets aside on vibe coding, like Vibe ops, DevOps kind of thing happening for teams.
+[01:20:22.589 - 01:20:30.179] Incoming livestream: When any of us in this industry want to learn about what others are doing, or not to do all the research on our own, we go to Daniel.
+[01:20:30.429 - 01:20:45.678] Incoming livestream: And Daniel really felt awkward about coming on stage and showing you scaffolding and things you're probably doing on your own, which would be relevant in 3 months, because everything would move on. But he's literally in the committee, when we went through the CFP process.
+[01:20:45.829 - 01:20:56.719] Incoming livestream: Daniel didn't really have time to submit a lot, and he's not one of these superstars who just put in a couple of words and be done with it, usually puts in a lot of effort. And we automatically were about to just… we didn't know who was submitting what.
+[01:20:56.869 - 01:21:14.808] Incoming livestream: We said, this is really interesting, but this doesn't put in a lot of… there's not a lot of effort here, right? Ask the… please ask this presenter to give us more, because we want to approve this. And Greg Notch, who is here, out there, instead of being in the room, just going through tickets and doing volunteering work, said, I would accept this talk only if it's from Daniel.
+[01:21:15.199 - 01:21:20.209] Incoming livestream: Not knowing it was actually him, so I really appreciate you coming on stage anyway, and showing it all.
+[01:21:28.109 - 01:21:33.959] Incoming livestream: Alright, so before Nikola speaks… I want to say a couple of words as well.
+[01:21:34.509 - 01:21:42.329] Incoming livestream: I think that there are not that… there are people in this industry who have been doing this for a long, long time, truly understand this.
+[01:21:42.489 - 01:21:47.708] Incoming livestream: And can be considered the best. Now, who is the best one? The best two, the best three? I don't really know.
+[01:21:47.829 - 01:21:54.938] Incoming livestream: But we have the opportunity right now to listen to somebody who has not just been the best at this for the past year, or the past two years, but for a long while.
+[01:21:55.099 - 01:21:58.138] Incoming livestream: And consistently makes the industry better.
+[01:21:58.269 - 01:22:01.998] Incoming livestream: Just by doing his research, regardless of how much of that comes out.

@@ -1,0 +1,417 @@
+WEBVTT
+
+1
+00:29:01.426 --> 00:29:10.016
+Incoming livestream: Alrighty. Hey everyone, my name is, Josiah Pitakale, and I am, presenting Operation Pale Fire.
+
+2
+00:29:10.456 --> 00:29:24.206
+Incoming livestream: I am on the offensive security team here at Block, but I wanted to take a moment to acknowledge my colleagues. They were absolutely instrumental to helping with this operation and contributed just as much, if not more, than me.
+
+3
+00:29:24.206 --> 00:29:30.786
+Incoming livestream: So I just want to give a quick shout-out to Hasan, West Ring, Michael Rand, and Justin Engler.
+
+4
+00:29:31.846 --> 00:29:42.946
+Incoming livestream: So Operation Palefire was a red team operation, and I apologize for my red teamers in the room, I'm just gonna have to quickly define, what red team operations mean at block.
+
+5
+00:29:42.946 --> 00:29:56.285
+Incoming livestream: So, at Block, we're really focused on, simulating external adversaries. So that could be, looking at the TTPs that a lot of the APTs are doing and simulating that locally.
+
+6
+00:29:56.486 --> 00:30:11.735
+Incoming livestream: We also do a lot of forward-looking. So, how could attackers target block, right? What new things are coming out, and techniques that they could utilize to target specifically us? And so, that's what this operation was more focused on.
+
+7
+00:30:11.906 --> 00:30:31.236
+Incoming livestream: We're also very focused on end-to-end operations. That means starting outside the company, and then finding a way to get initial access, and then laterally moving to hit that objective. We're a very objective-oriented team. Usually, there is an objective in mind. A lot of times it's, you know, finance-related, just because we are a fintech.
+
+8
+00:30:31.266 --> 00:30:34.955
+Incoming livestream: On top of that, we have a very heavy emphasis on
+
+9
+00:30:35.306 --> 00:30:50.436
+Incoming livestream: evasion or hiding from our blue team. Our blue team is very, very good. They are looking, you know, for malicious activity in the environment. If they do find us, they will, you know, evict us and remove us from the environment, so we were really keeping that in mind in this operation.
+
+10
+00:30:51.136 --> 00:31:00.726
+Incoming livestream: So I mentioned Operation Pale Fire was a red team operation, and it was a red team operation specifically targeting goose. So what is Goose?
+
+11
+00:31:00.856 --> 00:31:23.285
+Incoming livestream: Well, Goose was an early AI agent that was actually an internal project, and it started back in fall of 2024. So, a little while ago now, and it was one of those, like, early on, first, you could say, like, AI agents coming out. This is something we've now open-sourced, so it's something that you can go look at the block GitHub repo, and you'll see Goose up there, and you're more than welcome to use it.
+
+12
+00:31:23.286 --> 00:31:30.516
+Incoming livestream: There are use cases for engineers, along with maybe non-technical, employees or people.
+
+13
+00:31:30.516 --> 00:31:36.025
+Incoming livestream: Along with that, Goose in itself maintains very much, like, a builder mindset, and so…
+
+14
+00:31:36.026 --> 00:31:47.866
+Incoming livestream: it automatically ships with a developer shell tool call, which essentially allows it to run, like, shell commands, right? You can kind of already see why that would be an interesting target for, like, a red team.
+
+15
+00:31:47.866 --> 00:32:04.616
+Incoming livestream: On top of that, Goose itself integrates with a multitude of models, you know, you can use, I believe 3-5 of Sonnet and 3-7 were around at the time of this operation, and so that's what people mostly used, but GPT-4 existed and a bunch of other stuff. It can work with any of that stuff, so…
+
+16
+00:32:04.616 --> 00:32:26.496
+Incoming livestream: And then lastly, there is an internal MCP marketplace within Block that, you know, Goose can integrate with. It can also integrate with external MCPs, but we obviously promoted the internal one. So, really anything you needed it to do, it could… as long as there was an MCP for it, it could do. So, if it needed to update tickets, it could do that, maybe with… via Jira MCP or Google Drive, for example.
+
+17
+00:32:27.676 --> 00:32:31.735
+Incoming livestream: So why a red team operation specifically targeting goose?
+
+18
+00:32:31.736 --> 00:32:51.535
+Incoming livestream: Well, one of the big reasons is we wanted to kind of discover what a red team operation against an AI agent looks like. There have been a lot of really good research out there talking about, like, prop injection attacks and attacks in general against AI, but we wanted to know what, like, an end-to-end big picture looks like for something like this.
+
+19
+00:32:51.646 --> 00:33:03.815
+Incoming livestream: On top of that, you know, we were open sourcing it, we knew attackers would see the source code, know we're using it, and potentially target us a block, and so we wanted to see, you know, what that could look like, do any vulnerabilities exist there?
+
+20
+00:33:03.846 --> 00:33:22.596
+Incoming livestream: On top of that, we wanted to see if, maybe, does Goose have any features that could be dangerous, where, like, maybe it could open up a user to some initial access, vectors or problems. And then lastly, we really wanted to operationalize a novel prompt injection. I want to emphasize the word operationalize, because
+
+21
+00:33:22.836 --> 00:33:33.706
+Incoming livestream: Yes, it's possible to make a prompt injection, we all know that, but can you make one without getting caught, without getting detected? Can you make one that hides in plain sight? That's what we were really interested in answering, being a red team.
+
+22
+00:33:33.936 --> 00:33:43.876
+Incoming livestream: And then lastly, the main goal was to gain execution on a block laptop. So we were trying to compromise, like, an employee, and actually gain… and be able to execute code on their machine.
+
+23
+00:33:45.116 --> 00:33:46.836
+Incoming livestream: So, how did we start?
+
+24
+00:33:46.836 --> 00:34:10.725
+Incoming livestream: When we looked at that internal MCP marketplace, like I mentioned, we thought, you know, where better place to start than that? We were really looking for, were there any MCPs that existed on this marketplace, this internal marketplace, that took untrusted text and somehow got it into the context of the model? And then if so, that could be something… that could be something we could maybe manipulate, right? So that's…
+
+25
+00:34:10.726 --> 00:34:17.966
+Incoming livestream: That's really what we were hunting for. And, as mentioned in the previous talk, we discovered something kind of similar. We discovered Google Calendar.
+
+26
+00:34:17.966 --> 00:34:36.875
+Incoming livestream: Google Calendar was really interesting to us at the time. There was an MCP for it, so that was something to explore. We deep-dived into it and how it was configured at Block. Obviously, depending on the configuration, it can be very different. But we found that Block, at that time, external parties, so like an attacker.
+
+27
+00:34:36.876 --> 00:34:44.775
+Incoming livestream: could have scheduled, like, an invite, or, like, a meeting, with an employee at Block. So an example there on the right is, that's my,
+
+28
+00:34:44.856 --> 00:34:51.536
+Incoming livestream: Google account, block Google account, and this was sent from, like, an attacker outside O'Rourke that, scheduled this invite with me.
+
+29
+00:34:51.536 --> 00:35:13.375
+Incoming livestream: On top of that, the Google Calendar API is pretty robust, and it allows you to actually decide if you want to send an email notification along with the calendar invite. So, by disabling that, the calendar invite will just stealthily pop up on the employee's calendar. There's no email associated with it, so there's less to, like, threat hunt there, and, like, less ways to get caught in that sense.
+
+30
+00:35:13.376 --> 00:35:29.656
+Incoming livestream: You can see what that calendar looks like on the right. So you have a title there, you can see the guests, which is me. What's really interesting is you can actually leave the attacker account off the invite. So, I don't even list the attacker account, it just is my… me as my employee account. You can just not list yourself, and that's fine.
+
+31
+00:35:29.656 --> 00:35:45.876
+Incoming livestream: Along with that, there is a calendar name at the very bottom. It is blurred out for this context, but, you can label a shared calendar and call it something that looks internal, like, I don't know, like, block calendar, right? And so that way, it would blend in better with the environment.
+
+32
+00:35:46.106 --> 00:36:08.855
+Incoming livestream: The only real indication that is coming externally is that created by flag at the very bottom. It is blurred out in this case, but what would have been there is the attacker email, and so that is an indicator, but it's, like, in small, italicized text at the bottom of the invite, so it's not something people are generally scrutinizing, including myself, right? So this looked really promising for us, and something we wanted to deep dive into.
+
+33
+00:36:08.976 --> 00:36:25.315
+Incoming livestream: So what we thought of is, well, what if we just put a massive prompt injection in the calendar invite description? How would that work? This is one of the, like, early on, prompt injections, so it's very long. We did lean it up over time, but I just thought it was funny because of how long the first iterations were.
+
+34
+00:36:25.316 --> 00:36:35.776
+Incoming livestream: So we just took this master prompt injection, put it in there. We, we found that these models, specifically, like, 3-5 at the time of, of Sonnet, like, they were actually
+
+35
+00:36:35.776 --> 00:36:38.365
+Incoming livestream: Decently resistant, where, like, you had to…
+
+36
+00:36:38.426 --> 00:37:01.905
+Incoming livestream: definitely give it a compelling story. So, one of the things we told it was, hey, in order to update to be secure, like, you need to run this curl bash. And that worked out better for us than earlier. Now, what's the, I guess, downside of this so far? I mean, it's very obvious, right? If we throw this massive thing in a calendar invite and then send it out to a bunch of people.
+
+37
+00:37:01.906 --> 00:37:07.016
+Incoming livestream: there's a decent chance our detection team will catch wind of it eventually, and we don't want to be detected, right?
+
+38
+00:37:07.016 --> 00:37:10.825
+Incoming livestream: How do we make this less suspicious? It was really what we were asking ourselves.
+
+39
+00:37:10.826 --> 00:37:28.855
+Incoming livestream: And that's kind of where we came across invisible text. This has already been talked about before, but it worked really well for our operation. We used those invisible Unicode characters, and by using those zero-width Unicode characters, we can basically hide in plain sight. You know, so then this takes us from, like, our big prop projection on the left.
+
+40
+00:37:28.856 --> 00:37:33.976
+Incoming livestream: to the calendar invite on the right. Completely invisible. Just in the invite itself,
+
+41
+00:37:33.986 --> 00:37:44.025
+Incoming livestream: Unable to see through the human eye, but Goose itself will process that data and read it and execute on it. So this… we were really excited, this seemed like it was going in the right direction so far.
+
+42
+00:37:44.916 --> 00:37:48.216
+Incoming livestream: So, campaign one, the prompt injection.
+
+43
+00:37:48.326 --> 00:37:59.375
+Incoming livestream: Quick recap, because we talked about a lot of pieces so far. So, we built a malicious payload that we want Goose to execute, and that would be the prompt injection with the curl bash in the prompt injection.
+
+44
+00:37:59.416 --> 00:38:16.226
+Incoming livestream: We made the text invisible so people don't see the evil commands, right? If people saw that big prompt, that big scary prompt injection, they probably would, you know, report us to the blue team, and so we wanted to make it invisible to hide better. We started the campaign by sending out calendar invites.
+
+45
+00:38:16.226 --> 00:38:33.765
+Incoming livestream: Which included our invisible malicious prompt injection. And then the goal was if users asked Goose, hey Goose, what's on my calendar today? Goose would, use that MCP to read the calendar, ingest the content of the calendar, which included the description, which included the prompt injection.
+
+46
+00:38:33.766 --> 00:38:46.896
+Incoming livestream: and then that would then prompt a subtool call to the developer shell tool call, and that would run the curl bash payload. So, a very long chain, but exciting, like, we were very, very excited. So we kicked it off.
+
+47
+00:38:46.896 --> 00:39:11.626
+Incoming livestream: invites were sent, and we didn't get any shells. What happened, right? It's the classic. Well, one of the big blockers for us was the Gcal MCP internally received, actually, a major rewrite during the operation, which definitely stunted us, because our prompt injection was very much tuned for that version of the MCP, in a sense, and so it really did block us, in a sense. Also, some models are more resistant, like, we found that our prompt injection
+
+48
+00:39:11.706 --> 00:39:18.655
+Incoming livestream: did decently okay on 3-5, but, like, it didn't do nearly as well on 3-7, or,
+
+49
+00:39:18.656 --> 00:39:31.895
+Incoming livestream: on any of the GPT models, and so we had tuned it mostly for one model, so people who were using a different model probably wouldn't have worked. I know universal prompt injections exist, we weren't able to uncover any in this exercise, so couldn't use that there.
+
+50
+00:39:31.906 --> 00:39:38.715
+Incoming livestream: Some other takeaways, we had some issues with our testing. We tested the calendar stuff on our own calendars.
+
+51
+00:39:38.716 --> 00:40:03.695
+Incoming livestream: our calendars don't have that many invites on them, and I think that's why it led to it working a lot of the time. On a real calendar, with lots of meetings and a lot of context, stuff gets forgotten very quickly, especially with the models at this time. Keep in mind, nowadays, with how good these things have gotten, I don't know if that's relevant anymore, but at that time, the context filled up so quick, we would often forget to run our developer shell tool call, because only one invite suggested it, right?
+
+52
+00:40:03.696 --> 00:40:05.745
+Incoming livestream: There's, like, the 20 invites on their calendar.
+
+53
+00:40:05.786 --> 00:40:30.736
+Incoming livestream: At the time, you know, we were running into some hallucination issues, and we really should have had some more automation to build out this prompt injection. I think we thought, oh, you know, it shouldn't be that difficult. There was a lot of, like, talk about how prompt injection, how easy it was, so we were kind of going on the side of, we can quickly develop this and call it a day, and it ended up being a lot more. We should have had some more automation to, like, determine the efficacy of the prompt injection, and tested it across, like, multiple models.
+
+54
+00:40:30.736 --> 00:40:32.086
+Incoming livestream: and versions.
+
+55
+00:40:32.086 --> 00:40:54.985
+Incoming livestream: And so, yeah, and then lastly, this was a user prompt injection, and we theorized that if we actually had a system prompt injection, we would probably have had a much better result. And so, we wanted to kind of pivot here, and see if we could identify a system prompt injection, maybe via, like, a feature in Goose, that could, deal to, like, an injection there and probably yield us much better results.
+
+56
+00:40:55.606 --> 00:40:58.486
+Incoming livestream: So, campaign two, fun recipes.
+
+57
+00:40:58.866 --> 00:41:04.465
+Incoming livestream: Well, what's a recipe? I'm sure you're all asking that. So, a recipe is something that is a bit specific to goose.
+
+58
+00:41:04.466 --> 00:41:24.606
+Incoming livestream: A recipe is a reusable workflow that essentially allows you to kind of share, like, basically a link. In a link format, you can share it with people, and they can run, like, a similar workflow to how you would have ran it without you sending them, like, a massive prompt, right? So it makes it simpler and more shareable, and, you know, it helps speed things up.
+
+59
+00:41:24.606 --> 00:41:36.096
+Incoming livestream: You can kind of already probably see why it could be a little dangerous, and we'll get into that. Recipes stood out to us because they go in the system prompt, and that really stood out to us. That seemed interesting.
+
+60
+00:41:36.216 --> 00:41:46.555
+Incoming livestream: So you can see what a recipe is in the top right-hand corner. There's a goose URL handler, some Base64 there. If we were to decode that Base64, you can see the result on the screen.
+
+61
+00:41:46.586 --> 00:41:57.296
+Incoming livestream: We have, like, the version number, the title, the description, the instructions, and I'm sure our, our hacker friends are thinking about, you know, what if we just put a prompt injection right in those instructions, what'll happen?
+
+62
+00:41:57.296 --> 00:42:17.096
+Incoming livestream: And sure enough, that's what we did. We threw in a prompt injection. In this case, as an example, we just said, open Google Chrome, and open this recoll, and that worked, that worked really well. And so we were thinking, like, okay, we have this URL, what if we share this URL with a bunch of employees? Like, surely they'll click on it, you know, and we can get something here.
+
+63
+00:42:17.096 --> 00:42:24.666
+Incoming livestream: We did think, though, like, what if someone decoded the Base64? Then they would see our prompt injection. That's not ideal, I mean…
+
+64
+00:42:24.666 --> 00:42:42.455
+Incoming livestream: unlikely maybe someone would decode it, but I'm sure someone, some very ambitious developer maybe could. And so we thought about, what if we just replayed the technique from earlier with the ASCII smuggling? And so, we made the instructions invisible by using the zero-width Unicode characters, and…
+
+65
+00:42:42.456 --> 00:42:48.666
+Incoming livestream: now it's invisible within the recipe itself, once you decode it, like, with a Base64 decoder, which turned out really well.
+
+66
+00:42:48.666 --> 00:43:06.046
+Incoming livestream: I think the only way you could have, I guess, initially eyeballed it is there's a set of cascading characters that we highlight in the yellow there, and I believe those are, like, the zero-width characters, and so I guess that's a tell, but, like, I don't know who's looking that hard, I know I'm not, so we were pretty happy with the result here, and we felt like we could move forward with it.
+
+67
+00:43:06.226 --> 00:43:21.186
+Incoming livestream: So we went ahead and revised the invite, okay? We made it a little better, we called it rescheduled, because the first one didn't go so well, and we threw in, like, a hyperlink, which basically took you to the goose, the goose recipe, right? And so you could open that then with Goose.
+
+68
+00:43:21.866 --> 00:43:41.435
+Incoming livestream: And we created, like, I created, like, a compelling prompt on the sense of, like, saying, hey, this is your time to try out the new recipe, like, we blocked off time on your calendar just to try this out, so please, please try it out. And, we even included, like, a Google Meet link, which… we were doing it more for fun, and it turned out it worked a little too well.
+
+69
+00:43:41.706 --> 00:43:43.246
+Incoming livestream: the Google Meet link.
+
+70
+00:43:43.376 --> 00:44:06.346
+Incoming livestream: we threw it in initially, just for fun, and then on the first campaign, people joined the meet, like, during the time slot, and they were interested in what we had to say, and we didn't have much to say, so the second time we ran this campaign, we actually had a slide deck ready to, like, demonstrate, how to use our recipe, and how it works, and you should really use it. And, and it worked, it worked really well. Someone, was able to click on it from there.
+
+71
+00:44:06.346 --> 00:44:13.775
+Incoming livestream: But I did want to clarify that I don't really blame any of our users. I think it's really hard to tell, at the time of this operation.
+
+72
+00:44:13.776 --> 00:44:25.766
+Incoming livestream: there's no indication that, like, you're joining an external meet, I think. It's just a URL, and once you join, there's not really anything telling you it's external. I guess if you look at the top left, there is, like, a yellow box.
+
+73
+00:44:25.766 --> 00:44:37.596
+Incoming livestream: If you hover over that, it will tell you it's, like, the meeting contains people external to your organization. But if you didn't look hard enough, like, you wouldn't have known, and so… it was a tricky one. I don't really know how people would have caught that so easily.
+
+74
+00:44:38.426 --> 00:44:44.695
+Incoming livestream: And so, with this result, and having someone click on it, we got an execute.
+
+75
+00:44:44.706 --> 00:45:03.736
+Incoming livestream: And we, kind of made a mistake still. We had a typo, and it was really unfortunate, because in testing, the typo was being fixed by the LLM. It was fixing it for us to… so in testing it worked, but when we deployed it, actually, it didn't work, and then we deep-dived, and that's when we found the typo, so it was a bit unfortunate.
+
+76
+00:45:03.786 --> 00:45:12.925
+Incoming livestream: On top of that, goose versions were changing very quickly, so depending on the version you're running, the recipes interact with your system a little differently.
+
+77
+00:45:13.286 --> 00:45:21.486
+Incoming livestream: That all being said, we were pretty confident we can get this to work, we just need to, like, keep persisting, because so far, we hadn't been detected since our… our techniques were pretty stealthy.
+
+78
+00:45:21.906 --> 00:45:40.725
+Incoming livestream: We were also running into some issues with Google Calendar, because they do a great job of rate limiting. You can only send, like, 50 invites a day. I don't know if our organization got flagged or something, but we could only send 50 invites a day, we were having a hard time with it. So we decided to continue with the calendar efforts, but we also decided to try, like, a spear phishing approach.
+
+79
+00:45:40.756 --> 00:45:46.496
+Incoming livestream: And so, we actually reached out to the Goose team via some public means, some public channel means.
+
+80
+00:45:46.496 --> 00:46:06.955
+Incoming livestream: And we went under the guise of, hey, we found a bug in RTL text, and it's within this recipe, so could you check this out for us? And they looked into it, which I guess also included running it, and so that got us what we wanted, and that got the developer shell 2 call running, which ran our curl bash.
+
+81
+00:46:06.976 --> 00:46:11.685
+Incoming livestream: which ran our payload, and just wanted to talk really briefly about the payload.
+
+82
+00:46:11.686 --> 00:46:29.115
+Incoming livestream: We had talked to our threat intel team, and our threat intel team told us that they would have loved to see more infoster activity, especially some testing from us, because they had seen that a lot in the wild, and they were constantly getting, they were constantly building more detections for it, and so they wanted to validate those as detections.
+
+83
+00:46:29.116 --> 00:46:32.025
+Incoming livestream: And so we built, an infrastructure of sorts.
+
+84
+00:46:32.056 --> 00:46:57.056
+Incoming livestream: And that kicked off, and it ran, and it got caught, so props to them, they did a good job. We have this really cool red team deconfliction inquiry thing, I would love to talk more about that later. It's a really cool workflow we have, but did a great job. They caught us shortly after it ran, and it de-conflicted with us from there. So, for the last few minutes, I just want to talk about fixes. So, for mitigations, one of the simpler ones, and I think
+
+85
+00:46:57.056 --> 00:47:05.946
+Incoming livestream: a lot of the other AI agents already do this. It's just stripping the Unicode characters from input and from recipes, especially the non-standard ones, right?
+
+86
+00:47:05.946 --> 00:47:21.216
+Incoming livestream: On top of that, when you dis- we wanted to be able to display the recipe. That was something we were missing, right? Like, you didn't really know what the recipe did unless you decoded it, and so now there is, like, a big recipe warning, which displays what it's gonna do, so it's more transparent to the user as to, like, what they're clicking on.
+
+87
+00:47:22.166 --> 00:47:37.635
+Incoming livestream: On top of that, we've looked into detections for, can we detect a prop injection? Much harder than it sounds, but we've played with a few known tools, and then we've also built internally, like, a bad bash command detector, which has kind of helped with this case, using, like, a BERT classifier.
+
+88
+00:47:37.636 --> 00:47:49.566
+Incoming livestream: On top of that, using that classifier, we've been trying to see if we can use LLMs to evaluate, like, does it look like a prompt injection based off semantics and such? Had mixed results, but continuing to look into it.
+
+89
+00:47:49.566 --> 00:47:57.136
+Incoming livestream: And then lastly, we added some command allow listing, because there's not always a reason you would need to run all of these commands, right, honestly, on a host, so… yeah.
+
+90
+00:47:57.946 --> 00:48:13.106
+Incoming livestream: And then for Google Calendar, I don't have much time for this deep dive, there's some really interesting findings I had for this, but for the sake of time, we just made a change to the settings so that, if you want to schedule an invite with an employee, like, you would have to send an email first.
+
+91
+00:48:13.106 --> 00:48:19.836
+Incoming livestream: And then the employee has to approve the email in order to, like, actually get the calendar invite, and so that's helped a bunch already.
+
+92
+00:48:21.036 --> 00:48:38.316
+Incoming livestream: But yeah, that's actually most of what I had, or really all of what I had. We have a blog where we, like, post Red Team content. This is an engineering blog, so there's other stuff on there too, but, you know, we'll keep making posts throughout the year. But yeah, my name is Josiah Pitakeo, that's all I had, and I'll take any questions now.
+
+93
+00:48:45.406 --> 00:48:51.876
+Incoming livestream: I'm confident the folks at Block appreciated you turning off external sender requests, sender calendar requests.
+
+94
+00:48:52.306 --> 00:48:55.836
+Incoming livestream: questions for… questions for Josiah?
+
+95
+00:48:56.956 --> 00:49:04.556
+Incoming livestream: We're in the, we're in the prompt injection, detection, response, creation theme of the day, for sure. Oh, question, cool, great.
+
+96
+00:49:08.356 --> 00:49:26.186
+Incoming livestream: Hello, so it was cool to hear about how you were doing sort of a comprehensive end-to-end sort of test where you create a real exploitable situation. I thought that was super cool. I was wondering, did you test the, user interface for any, vulnerabilities like, HTML injection, or markdown rendering, or other,
+
+97
+00:49:26.226 --> 00:49:44.376
+Incoming livestream: like, the insecure output side of things that isn't, related to controlling the tool calls? That's a great question. Yes, we did run into some of those cases. We caught them, I believe, pretty early on. You know, don't mark my words for it, but yeah, that was something we did look into. It definitely seems like
+
+98
+00:49:44.376 --> 00:49:48.615
+Incoming livestream: when these agents came out initially, that was kind of popping up everywhere. So yeah, great question.
+
+99
+00:49:50.256 --> 00:49:51.365
+Incoming livestream: Any other ones?
+
+100
+00:49:51.806 --> 00:49:53.165
+Incoming livestream: All right, thank you very much.
+
+101
+00:49:58.246 --> 00:49:59.076
+Incoming livestream: All right.
+
+102
+00:49:59.346 --> 00:50:05.446
+Incoming livestream: Sticking with, prompt injections, what attack surface could be more prompt-injectable than a browser?
+
+103
+00:50:05.596 --> 00:50:22.255
+Incoming livestream: Coming up, yeah, please, get yourself set up, it's gonna take 30 seconds for your USB to connect. Yeah, what attack surface could be more prompt-injectable than, than a browser? And yet, everyone seems to want browsers that they can control,
+
+104
+00:50:22.546 --> 00:50:27.866
+Incoming livestream: In this way, to run workflows, because that's honestly where all the workflows live. So…

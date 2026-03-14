@@ -1,0 +1,717 @@
+WEBVTT
+
+1
+00:24:47.222 --> 00:24:56.882
+Incoming livestream: Everyone, so, my name is Rob Lee, one of the, 18,000 Rob Lees that are running around in, cybersecurity at this point. I'm gonna get the,
+
+2
+00:24:57.672 --> 00:25:02.062
+Incoming livestream: volume of this thing down, whether it's gonna kill me or not. So…
+
+3
+00:25:03.162 --> 00:25:21.872
+Incoming livestream: 3 years ago, maybe 2 years ago, I started, you know, being asked a lot of questions about AI, and I have to admit, I don't know that much about AI. I'm still learning. I am, like many of you, struggling on a daily basis, and I think it's important to call out the fact that not everyone rolling around here is, in fact.
+
+4
+00:25:21.872 --> 00:25:27.112
+Incoming livestream: and expert. I basically dabble a heck of a lot at this point.
+
+5
+00:25:27.112 --> 00:25:39.821
+Incoming livestream: I am learning on a daily basis, and I find when you end up starting to really focus in on this stuff, the more you feel overwhelmed. The more you feel like you're sinking on a daily basis. So…
+
+6
+00:25:40.172 --> 00:25:57.012
+Incoming livestream: Having developed the SIFT workstation starting in 2008, so this is almost an 18-year project at this point of a massive amount of digital forensic sensory response tools that initially started as an education capability.
+
+7
+00:25:57.012 --> 00:26:13.421
+Incoming livestream: that most started using on their back end on being able to do digital forensics into response on a daily basis inside their own organizations. So the premise of this talk is, what if you take an extremely vetted, beat-to-shreds…
+
+8
+00:26:13.552 --> 00:26:27.052
+Incoming livestream: tool, and you combine it with a little bit of AI reasoning, and let's see what happens. This is entirely an experiment I decided to do based off of, and again, you'll laugh at this.
+
+9
+00:26:27.052 --> 00:26:43.882
+Incoming livestream: Sands Marketing came to me and said, hey, Rob, we need you to do something digital forensics, which you're known for, and combine AI into it. And we have you scheduled for a talk, and then November 15th, and this date's gonna come key here in a second, November 15th, on a Sunday.
+
+10
+00:26:43.882 --> 00:27:01.812
+Incoming livestream: to discuss your findings. I'm like, cool. So about 6 weeks prior to that, it occurred to me, because I'm playing around with Claude Code a lot, what if I installed Cloud code on the SIFT workstation and see what it can do? So that was the premise of the talk, I did some experimentation, and my mind was blown. So, let's talk about this.
+
+11
+00:27:01.892 --> 00:27:08.952
+Incoming livestream: Sadly, not really sadly, two days before my discussion in the talk I was giving.
+
+12
+00:27:09.052 --> 00:27:14.151
+Incoming livestream: Anthropic released their report using Claude Code on offensive operations.
+
+13
+00:27:14.182 --> 00:27:23.171
+Incoming livestream: And I was a little bit bummed about this, because apparently the Chinese had the same idea I did, which is combining Claudeco with a bunch of operational tools.
+
+14
+00:27:23.172 --> 00:27:36.261
+Incoming livestream: and to let it go. And that's essentially what we are doing here with Cloud Code. Now, what we ended up finding here is that when you accelerate offensive operations.
+
+15
+00:27:36.422 --> 00:27:54.412
+Incoming livestream: using automated AI reasoning, you're able to achieve a speed that goes from… that goes from things that used to take days, if not weeks, to seconds and minutes. And again, if you've started playing around with this, or started taking a look at the speed of what is documented by Anthropic.
+
+16
+00:27:54.522 --> 00:27:57.932
+Incoming livestream: On what they observed, it is…
+
+17
+00:27:58.192 --> 00:28:12.681
+Incoming livestream: mind-numbing. So, in order for us to be able to figure this out on the defensive side, we need to say, hey, you know, the idea is matching AI speed with AI speed. So, moving to the next slide…
+
+18
+00:28:13.002 --> 00:28:18.062
+Incoming livestream: When you end up taking a look at what we are supposed to need to accomplish.
+
+19
+00:28:18.182 --> 00:28:32.561
+Incoming livestream: Being able to do manual, hands-on typing to do digital forensics incident response work to discover what is in the AM cache, let's do prefetch analysis, let's do event log analysis, let's combine that into a timeline using Plaza, let's do memory analysis.
+
+20
+00:28:32.692 --> 00:28:39.032
+Incoming livestream: All of these things combined take a lot of time. So, kind of curious, poll for the audience.
+
+21
+00:28:39.342 --> 00:28:45.912
+Incoming livestream: In order for you to analyze completely a single system during incident response.
+
+22
+00:28:46.732 --> 00:28:54.341
+Incoming livestream: from start to initial touching of the system, whether it's a deployed agent, you're imaging it… a post image, by the way, and you have the C drive image.
+
+23
+00:28:54.582 --> 00:29:00.202
+Incoming livestream: How long does it take you from start to finish to create… a report.
+
+24
+00:29:00.462 --> 00:29:03.882
+Incoming livestream: Final report. Time frames. Throw out numbers.
+
+25
+00:29:04.782 --> 00:29:05.692
+Incoming livestream: What's that?
+
+26
+00:29:06.062 --> 00:29:07.332
+Incoming livestream: Three days.
+
+27
+00:29:08.512 --> 00:29:10.071
+Incoming livestream: Two to three days.
+
+28
+00:29:10.712 --> 00:29:14.351
+Incoming livestream: What's that? Maybe a week sometimes.
+
+29
+00:29:14.722 --> 00:29:18.222
+Incoming livestream: Any other… anyone could do it faster. A day?
+
+30
+00:29:18.372 --> 00:29:28.622
+Incoming livestream: I chose a day, because otherwise the numbers just look unbelievable. What if I said you could do a full day of manual forensics to report in 14 minutes?
+
+31
+00:29:31.202 --> 00:29:33.692
+Incoming livestream: Okay, we'll come back to this. Alright.
+
+32
+00:29:34.462 --> 00:29:41.772
+Incoming livestream: Everyone's gonna be a little bit scared, what I'm about to show you, but at the same time, you're gonna be like, wait, that's a game changer.
+
+33
+00:29:42.352 --> 00:29:47.181
+Incoming livestream: And only someone who knows digital forensics into response can comprehend the report.
+
+34
+00:29:47.242 --> 00:29:51.692
+Incoming livestream: So I don't want to say this is the end of human existence when it comes to digital forensics.
+
+35
+00:29:51.722 --> 00:30:11.482
+Incoming livestream: There's no way, if you look at the output, I've put a bunch of resources in the Slack, if you look at the report, if you just say, figure that out, it is not… you need to have a formal understanding of what this looks like. So, when you take anthropic code, the reasoning side, you add an MCP, and you add it to the SIFT workstation, the peanut butter and the chocolate here.
+
+36
+00:30:11.482 --> 00:30:16.691
+Incoming livestream: We're sitting on top of something that does natural language processing, basically in your…
+
+37
+00:30:16.762 --> 00:30:22.871
+Incoming livestream: Claude prompt. You basically ask it a question, and that question could be, do memory analysis.
+
+38
+00:30:23.042 --> 00:30:32.192
+Incoming livestream: So, here's essentially what you would do. You would ask a question. You have the memory image there. I'd like you to analyze this memory image and find anything malicious.
+
+39
+00:30:32.682 --> 00:30:42.631
+Incoming livestream: It automatically knows, based off of the context that you provided, it just… and I redid this yesterday, just as a test, a little bit of training, giving it…
+
+40
+00:30:42.922 --> 00:30:47.492
+Incoming livestream: contextual analysis of the different tools that are on the SIFT workstation.
+
+41
+00:30:47.992 --> 00:30:58.382
+Incoming livestream: telling it how it works, maybe even just using public guides. I even had it go look at the man pages, run the commands, pull out the flags.
+
+42
+00:30:58.462 --> 00:31:12.551
+Incoming livestream: understand what the command line interface is, and then it built the CloudMD file and the skills.mb files that are sitting underneath each of the different tasks that you wanted to accomplish. So, to give you an idea of what this looks like.
+
+43
+00:31:12.692 --> 00:31:21.481
+Incoming livestream: I like demos. Essentially, I have multiple images in here, and I basically say, oh, that's the wrong one.
+
+44
+00:31:22.302 --> 00:31:23.342
+Incoming livestream: Do-do-do.
+
+45
+00:31:23.802 --> 00:31:28.422
+Incoming livestream: You ask it to basically find evil in the memory image, It goes through…
+
+46
+00:31:29.442 --> 00:31:34.641
+Incoming livestream: And you can see here, pay close attention to the minutes it takes for the overall processing.
+
+47
+00:31:35.032 --> 00:31:37.851
+Incoming livestream: And again, I might just go and skip to the end here.
+
+48
+00:31:38.772 --> 00:31:41.312
+Incoming livestream: It's cause it's more fun to be able to see what the output is.
+
+49
+00:31:42.532 --> 00:31:44.832
+Incoming livestream: Again, 18 minutes to do this image.
+
+50
+00:31:45.072 --> 00:31:52.142
+Incoming livestream: And what we end up having here is a final report for the memory forensics, and this automatically creates this, by the way, it's because you asked it to.
+
+51
+00:31:52.342 --> 00:31:57.142
+Incoming livestream: You end up seeing in here, the adversary achieved initial execution using WMI,
+
+52
+00:31:57.752 --> 00:32:12.421
+Incoming livestream: And you can see me scroll through the overall report here. Finds a malicious binary, p.exe, into masking temp directory. You get a system profile. All this stuff is automatically determined for you. Threat actor context, attack chain.
+
+53
+00:32:13.272 --> 00:32:19.682
+Incoming livestream: Malware deployment, persistence, it's kind of going fast here because I have a limited amount of time. Code injection analysis.
+
+54
+00:32:19.852 --> 00:32:24.831
+Incoming livestream: Network connections, command and control, Full malicious process tree…
+
+55
+00:32:24.932 --> 00:32:37.031
+Incoming livestream: chronological activity. I didn't even tell it to do this, it just did it, because I gave it context surrounding the tools, what this looks like. It probably went online saying, here's what an official report looks like.
+
+56
+00:32:37.382 --> 00:32:43.592
+Incoming livestream: And… False positives, it found F-response for the imaging capability for the agent.
+
+57
+00:32:43.692 --> 00:32:46.292
+Incoming livestream: It recommends remediation tactics.
+
+58
+00:32:46.482 --> 00:32:50.112
+Incoming livestream: And then it has the output reports that it has created here.
+
+59
+00:32:50.332 --> 00:32:56.042
+Incoming livestream: All that took, a single memory image, about 18 minutes. The only reason it took that long is because I had to press yes.
+
+60
+00:32:56.202 --> 00:33:05.801
+Incoming livestream: on continue, continue, continue, continue, continue. Now, I've gotten around that, but from initial build yesterday, just to test the theory one more time, an hour and a half of skill building.
+
+61
+00:33:05.832 --> 00:33:16.552
+Incoming livestream: And I gave it a memory image, and then I hit go. Now, the resources I'm distributing at the end of the week, or end of today, sorry, end of week, I'm, like, thinking teaching here again, at the end of the day.
+
+62
+00:33:17.102 --> 00:33:23.062
+Incoming livestream: I'm gonna give you access to all the memory images and C drive images, so you want to replicate this, by all means, do it.
+
+63
+00:33:23.282 --> 00:33:25.842
+Incoming livestream: Now, you need to test this stuff, too. So…
+
+64
+00:33:26.152 --> 00:33:41.311
+Incoming livestream: The brain behind this all is the CloudMD file. It basically is the prime directive, the orchestrator that's sitting behind the scenes. It is allowing you to do deterministic boundaries. You could hardcore the toolpass. You don't need to let it guess.
+
+65
+00:33:41.332 --> 00:33:57.931
+Incoming livestream: It is allowing you to say, run this capability, do not run this one. I also could give it some rules. Like, I had to figure this one out, too. Questions asked during a test, run end-to-end, don't ask for directions, just move through the overall aspect of what I'm trying to get it to do.
+
+66
+00:33:58.002 --> 00:34:01.041
+Incoming livestream: Then we need to build its skills.
+
+67
+00:34:01.062 --> 00:34:18.501
+Incoming livestream: with so many capabilities built in the ZIFT workstation, we need to have some familiarization here that is going to hopefully reduce the overall context rot, be able to give it a path to success, and I'm not even building full skill-based MCP servers, I'm just basically giving MD
+
+68
+00:34:18.502 --> 00:34:30.031
+Incoming livestream: markdown files for what the skills are, here's your goals, here's what they do, here's how you potentially execute this, so if I say I'd like you to do memory analysis, it's automatically going to be able to go do this. Now, again…
+
+69
+00:34:30.232 --> 00:34:35.682
+Incoming livestream: as a part of this, you know, resources, I have all the skill files, all the CloudMD files.
+
+70
+00:34:35.702 --> 00:34:51.731
+Incoming livestream: the overall one and the subdirectory one, all created. You could go back and replicate this. I have instructions, I have a notebook LM. You could ask it, I would like to go through and do this. It is all sitting there in front of you. Feel free, go about your business.
+
+71
+00:34:51.842 --> 00:34:55.781
+Incoming livestream: So, what about errors? This is where…
+
+72
+00:34:56.002 --> 00:35:11.791
+Incoming livestream: you could ask it, and build into the contextual analysis, and have something continually running behind the scenes that says, if you receive an error, I would like you to start performing self-correction. This also helps with the overall context rot that is achieved. Essentially.
+
+73
+00:35:11.822 --> 00:35:21.342
+Incoming livestream: If you continue running the case again and again and again, it'll slowly, over time, forget the context earlier in the case. The other thing that's really fascinating here about this
+
+74
+00:35:21.362 --> 00:35:40.692
+Incoming livestream: is that once you go through a single image in a single case, it'll remember aspects of that initial intrusion, especially if you're hitting other systems. So if you find a malicious code on one system, it's assuming it's looking for something contextually related on System 2, System 3, System 4, so the speed naturally increases as you're working through…
+
+75
+00:35:40.692 --> 00:35:41.992
+Incoming livestream: The different exercise.
+
+76
+00:35:42.062 --> 00:35:45.942
+Incoming livestream: So, because people don't like me talking about things, let me just show…
+
+77
+00:35:46.562 --> 00:35:49.722
+Incoming livestream: how this works. So, demo time number one.
+
+78
+00:35:50.292 --> 00:35:59.172
+Incoming livestream: Here's the threat group. Here's what happened. We end up having Stark Research Labs. For anyone who's taken 508 at SANS, you'll definitively remember this network.
+
+79
+00:35:59.272 --> 00:36:08.601
+Incoming livestream: We have a catalyst. Lead researcher Tim Dungan inadvertently signaled project completion on Twitter. What a dork. What is he thinking here?
+
+80
+00:36:08.652 --> 00:36:25.412
+Incoming livestream: Our carbon lab just consumed 9 gigawatts of energy, and could likely power a small city overnight. What was I thinking? Going to be fired. The breach, Adversary, Crimson Osprey, leveraging historical tactics of APT Hydra and ABT Hammer. Yes, they're totally fake, by the way.
+
+81
+00:36:25.462 --> 00:36:30.322
+Incoming livestream: Impact traditional infrastructure, exchanged mail server and web server forced offline.
+
+82
+00:36:30.522 --> 00:36:37.722
+Incoming livestream: Compromised vectors, perimeter defenses bypass, key administrative accounts, compromised deep system persistent established.
+
+83
+00:36:37.922 --> 00:36:41.811
+Incoming livestream: Local defense status, you're overwhelmed because you're using hands on keyboard.
+
+84
+00:36:42.042 --> 00:36:51.661
+Incoming livestream: So, what you need to achieve, scope of the compromise, the hunt for persistence, the track lateral movement, and assess exfiltration.
+
+85
+00:36:51.792 --> 00:36:58.612
+Incoming livestream: So, once I have all this built, you have all of your disk images, memory images in here. The single command that I type.
+
+86
+00:37:03.212 --> 00:37:04.252
+Incoming livestream: Find evil.
+
+87
+00:37:05.592 --> 00:37:06.512
+Incoming livestream: N.
+
+88
+00:37:07.782 --> 00:37:12.922
+Incoming livestream: And I typed this one out because it's fun to just watch… Look how slow humans are.
+
+89
+00:37:13.782 --> 00:37:16.022
+Incoming livestream: Type, type, type, and…
+
+90
+00:37:16.222 --> 00:37:33.002
+Incoming livestream: This is the only command that I gave it for writing that comprehensive report. Write comprehensive report. And then, of course, I had to think about, well, what does that mean? And I'm like, compreh… I just, like, I need it even more simple. Comprehensive report and PD… I'm like, my brain's on melt here. Backspace, backspace, backspace.
+
+91
+00:37:34.432 --> 00:37:35.532
+Incoming livestream: In PDF.
+
+92
+00:37:36.062 --> 00:37:37.701
+Incoming livestream: Good English there, Rob.
+
+93
+00:37:37.812 --> 00:37:38.722
+Incoming livestream: Alright.
+
+94
+00:37:39.832 --> 00:37:40.861
+Incoming livestream: And we go.
+
+95
+00:37:44.492 --> 00:37:46.521
+Incoming livestream: And when you end up watching this.
+
+96
+00:37:46.722 --> 00:37:51.261
+Incoming livestream: You can see it's actually executing a lot of cool things. I'll just let this run for a little bit, just so you can see.
+
+97
+00:37:51.562 --> 00:37:58.612
+Incoming livestream: what this looks like beyond this means. Now, this is on 16X. Of course, if you're watching the minutes, you know, scroll by, you can tell that is not reality.
+
+98
+00:38:01.752 --> 00:38:04.502
+Incoming livestream: It's finding things, finding things, finding things.
+
+99
+00:38:05.932 --> 00:38:07.631
+Incoming livestream: In total, at the end here.
+
+100
+00:38:10.252 --> 00:38:16.822
+Incoming livestream: We are at 14 minutes, 27 seconds for the analysis of that C drive.
+
+101
+00:38:17.222 --> 00:38:18.212
+Incoming livestream: Pretty cool.
+
+102
+00:38:18.502 --> 00:38:19.912
+Incoming livestream: Let's take a look.
+
+103
+00:38:20.682 --> 00:38:23.751
+Incoming livestream: Just to re-emphasize the length of time that this took.
+
+104
+00:38:24.792 --> 00:38:29.802
+Incoming livestream: This is the report that it automatically generated, without any additional input.
+
+105
+00:38:33.092 --> 00:38:34.812
+Incoming livestream: You can see the executive summary.
+
+106
+00:38:35.502 --> 00:38:46.391
+Incoming livestream: By the way, in terms of accuracy, since I compromised this system, I definitely know everything that's on here. This is 100% accurate for what it's finding here. It creates a timeline, initial access.
+
+107
+00:38:46.922 --> 00:38:51.822
+Incoming livestream: And again, I'm releasing this report so you could go through it and examine on yourself. Malware inventory.
+
+108
+00:38:52.532 --> 00:38:54.302
+Incoming livestream: Persistent mechanisms.
+
+109
+00:38:57.202 --> 00:38:59.252
+Incoming livestream: PowerShell transcript evidence.
+
+110
+00:39:00.482 --> 00:39:01.822
+Incoming livestream: Did not miss anything.
+
+111
+00:39:03.012 --> 00:39:04.991
+Incoming livestream: Network indicator is a compromise.
+
+112
+00:39:07.422 --> 00:39:11.442
+Incoming livestream: Actually, by the way, it kind of skipped by it, is the MITRE ATT,
+
+113
+00:39:12.402 --> 00:39:17.142
+Incoming livestream: overlays on top of this, too. And then went through remediation recommendations and steps.
+
+114
+00:39:17.402 --> 00:39:21.271
+Incoming livestream: When do you end up taking a look at this report.
+
+115
+00:39:21.452 --> 00:39:28.171
+Incoming livestream: Offline, you're gonna notice that this is earth-shattering, fun, what the heck.
+
+116
+00:39:28.382 --> 00:39:34.091
+Incoming livestream: an hour and a half configuration, there's gotta be a catch. As far as I can tell right now, the catch is…
+
+117
+00:39:34.832 --> 00:39:38.231
+Incoming livestream: AI weaknesses, context rot.
+
+118
+00:39:38.342 --> 00:39:48.482
+Incoming livestream: Self-correction, it works out of the box, just like everything else in AI, but the more you repeat it and repeat it, repeat it, repeat it, over time, it is going to slowly…
+
+119
+00:39:48.952 --> 00:39:58.261
+Incoming livestream: become more dumb, just because of the fact how that, you know, functionality works. The more you're running it against the same type of intrusion, that you're taking a look at.
+
+120
+00:39:58.372 --> 00:40:04.631
+Incoming livestream: So, and again, when we end up taking a look at this, I have some additional stuff at the end here I'm gonna cover.
+
+121
+00:40:04.792 --> 00:40:14.672
+Incoming livestream: We need to increase the speed of our incident response capabilities to match the speed of the offensive teams leveraging the same capabilities.
+
+122
+00:40:14.982 --> 00:40:17.851
+Incoming livestream: This is amazing. Great proof of concept here.
+
+123
+00:40:18.362 --> 00:40:20.802
+Incoming livestream: But, one more thing I'm gonna cover.
+
+124
+00:40:20.962 --> 00:40:22.411
+Incoming livestream: One more thing.
+
+125
+00:40:22.682 --> 00:40:29.212
+Incoming livestream: So in order for us, and I'm gonna be talking about this at the RSA talk as well that I'm gonna be giving in about 2 weeks.
+
+126
+00:40:29.492 --> 00:40:40.452
+Incoming livestream: When we're starting to think about leveraging what we have as a community over what the adversaries and the threat groups and the criminal organizations don't have.
+
+127
+00:40:40.732 --> 00:40:42.811
+Incoming livestream: Is we have a lot of us.
+
+128
+00:40:43.422 --> 00:40:45.882
+Incoming livestream: And they have a small development team.
+
+129
+00:40:46.122 --> 00:40:47.742
+Incoming livestream: And they usually work in secret.
+
+130
+00:40:47.942 --> 00:40:50.621
+Incoming livestream: They usually don't like to share their toys with one another.
+
+131
+00:40:50.982 --> 00:40:54.461
+Incoming livestream: On the opposite side, we have the open source community.
+
+132
+00:40:54.672 --> 00:41:07.712
+Incoming livestream: All of the things I'm showing you here, the SIFT workstation, all the tools, all the capabilities, is open source. Now, if you noticed, a small little project that started on a weekend in someone's basement in November.
+
+133
+00:41:08.172 --> 00:41:11.272
+Incoming livestream: By the way, I kind of use this as a gestation.
+
+134
+00:41:11.622 --> 00:41:18.802
+Incoming livestream: But, Claudebot… was created over a weekend at the end of November.
+
+135
+00:41:19.222 --> 00:41:33.422
+Incoming livestream: It really became popular at the beginning of January, in which the news started to really accelerate on it, and logarithmically accelerated from that point. Part of the reason is, you have a lot of eyeballs hitting it, a lot of developers simultaneously hitting that one point in time.
+
+136
+00:41:33.872 --> 00:41:40.562
+Incoming livestream: and it explodes into a significant, revolutionary AI capability.
+
+137
+00:41:41.542 --> 00:41:51.062
+Incoming livestream: despite your skill level, despite if you're an AI developer, if you're really good at forensics, if this is your first foray into AI, what if we bring
+
+138
+00:41:51.482 --> 00:41:57.132
+Incoming livestream: The army of cyber defenders together and saying, let's start working on this as a whole.
+
+139
+00:41:57.452 --> 00:42:06.112
+Incoming livestream: Now, the other thing I noticed over the past couple years, and I've become fascinated with it, is that these concepts that the AI community is doing…
+
+140
+00:42:06.252 --> 00:42:07.891
+Incoming livestream: called Hackathons.
+
+141
+00:42:08.602 --> 00:42:27.622
+Incoming livestream: Hackathons are designed to take an initial proof of concept and accelerate it into a worthy, true candidate capable of being deployed in enterprise environments that will reduce the overall capabilities, or reduce the overall mistakes, and increase the trust of these capabilities.
+
+142
+00:42:27.642 --> 00:42:32.951
+Incoming livestream: Inside the organizations. So what the offensive teams don't have is a thousand of us.
+
+143
+00:42:33.222 --> 00:42:45.581
+Incoming livestream: And what if SANS, because we're giving this away for free anyways, we sponsor a hackathon trying to get the entire cybersecurity community working on this together? So the idea here is we have two tracks.
+
+144
+00:42:45.692 --> 00:42:53.062
+Incoming livestream: that we're going to have a bunch of cool prizes for. I'll give you a hint of one. For first prize, $10,000.
+
+145
+00:42:53.562 --> 00:43:00.202
+Incoming livestream: For the team or individual that has the most significant development, and $7,500 for the second team.
+
+146
+00:43:00.602 --> 00:43:20.311
+Incoming livestream: Those two tracks we're going to be looking at is, number one is the forensic MCP Engineering. We have a bunch of tools, Claude doesn't know how the parameters, outputs, and failure modes natively. I'd like you to take my proof of concept and accelerate it to 10 to 100x, so by the end of the hackathon, starting one April through…
+
+147
+00:43:20.652 --> 00:43:21.962
+Incoming livestream: May 15th.
+
+148
+00:43:22.142 --> 00:43:30.831
+Incoming livestream: We're gonna be able to develop as a community something that you'll be able to have trust, capability, and potentially counter the offensive teams that are starting to leverage cloud code.
+
+149
+00:43:30.992 --> 00:43:37.872
+Incoming livestream: Track two is to cure the context rot issue. How would we potentially go about doing that?
+
+150
+00:43:38.232 --> 00:43:52.861
+Incoming livestream: In the end, what I'm hoping for is having a total of $22,000 in total prize pool. I've reached out to Anthropic because I'm very interested in seeing if they're gonna be able to give tokens, you know, so you don't have to spend a lot of cost developing this behind the scenes.
+
+151
+00:43:52.902 --> 00:43:54.682
+Incoming livestream: So that they'd be able to work.
+
+152
+00:43:54.702 --> 00:44:03.731
+Incoming livestream: with us, and be able to give resources to the community. I'm gonna have disk images, I'm gonna have memory images, I have the SIFT workstation, I have an example exemplar.
+
+153
+00:44:03.732 --> 00:44:19.202
+Incoming livestream: case that someone's turned in. Steve Anson from SANS has developed his own backend, so you could look at that and saying that would be a pretty good implementation. You could build off of that. But the idea here is we want to work together as a community, because there's a there there that I'm looking at.
+
+154
+00:44:19.332 --> 00:44:24.312
+Incoming livestream: And the question is, can we create a very solid incident response AI capability?
+
+155
+00:44:24.432 --> 00:44:25.862
+Incoming livestream: by 1 June.
+
+156
+00:44:26.122 --> 00:44:35.302
+Incoming livestream: That's my challenge to the community, and I think we could do it. This is my contact information. The resources have been posted in the Slack channels.
+
+157
+00:44:35.562 --> 00:44:41.802
+Incoming livestream: And more of those resources, I'm putting up a website, I was hoping to get it done tonight, but just like everything else.
+
+158
+00:44:41.852 --> 00:44:57.571
+Incoming livestream: I can now say, hey, I could get something done in a day. And that day is gonna be protocol, sift.ai. It's gonna have all the resources, all the images, this presentation, a description of what it is, everything else. I'm gonna build this probably up in about a day or two, just registered the domain yesterday.
+
+159
+00:44:57.722 --> 00:45:01.571
+Incoming livestream: Contact information, everything else, resources online, and questions!
+
+160
+00:45:01.902 --> 00:45:04.662
+Incoming livestream: That was fantastic. Okay, questions?
+
+161
+00:45:08.492 --> 00:45:19.591
+Incoming livestream: Hi. I was, curious about the context rod problem and how you sort of navigated it. You mentioned that you didn't give, Claude Code, like, all of the SIFT manuals at once.
+
+162
+00:45:19.592 --> 00:45:28.932
+Incoming livestream: how did you go about, like, the… I guess, like, the lazy loading of it? Like, was there an orchestrator agent, or did you just tell Claude Code to, like, figure it out?
+
+163
+00:45:29.202 --> 00:45:33.902
+Incoming livestream: I use Cloud Code as an orchestrator agent, basically just start, hey, go through.
+
+164
+00:45:33.952 --> 00:45:48.632
+Incoming livestream: look at the man pages, look at all the tools on the SIFT, I had an entire list of them, and run the man page, and I said, if there's no man page, run the tool, make sure it runs accurately, and see the command line flags, and then look it up online to see if there's any documentation. It literally is using Claude code.
+
+165
+00:45:48.632 --> 00:46:01.882
+Incoming livestream: Then I said, red team it, make sure it works. I actually asked the question, like, you just gave it. I'm like, you know, because I'm learning too, I don't know how to solve this issue. If I did, I want to do a hackathon. So I'm trying to figure it out. But again, when I rebuilt it, it literally is…
+
+166
+00:46:01.972 --> 00:46:13.851
+Incoming livestream: natural language into Claude, asking the same questions you just did, and just continually fighting with it. And I fought with it for about an hour and a half before I said, okay, are we… we're probably good enough. Let's go ahead and start running it through analysis.
+
+167
+00:46:14.072 --> 00:46:15.082
+Incoming livestream: Great question.
+
+168
+00:46:15.502 --> 00:46:28.452
+Incoming livestream: I had a… my question is similar about context rot. I think… and some latest research just found, even with these million context windows, I mean, the first turn, it gets dumb. I mean, it… you've got a larger window.
+
+169
+00:46:28.752 --> 00:46:36.971
+Incoming livestream: But it still gets done really quick, and I found this myself with OpenCloud, tried to use the million window, I have to crank it down to compact it, like, 100,000 tokens. Right.
+
+170
+00:46:37.162 --> 00:46:52.312
+Incoming livestream: for what you're doing, isn't it just… is it as easy as just start a new session to get rid of the context rod? I mean, that's what we're doing, right? You could. Anything that you're doing, or did you find a better way? There's not a better way right now, but I'm looking at if you wanted to expand upon this in an enterprise setting.
+
+171
+00:46:52.312 --> 00:47:00.011
+Incoming livestream: and have it run across multiple systems at one time, doing, like, let's use pre-fish analysis, looking for p.exe on a thousand systems.
+
+172
+00:47:00.032 --> 00:47:03.151
+Incoming livestream: That scale is going to create context rot pretty quickly.
+
+173
+00:47:03.352 --> 00:47:20.162
+Incoming livestream: So on a single system, like standard forensics, no problem, just start, restart, just like you do on, you know, Claud. It'll say, hey, we ran out of context, start a new chat. Here, it's a little bit different, because if we really want something enterprise-worthy, it's gonna have to be able to maintain its current data set across a longer period of time.
+
+174
+00:47:20.922 --> 00:47:24.772
+Incoming livestream: Threat, you know, threat intelligence, all these other feeds that you could see where this thing could go.
+
+175
+00:47:26.622 --> 00:47:44.502
+Incoming livestream: Yeah. Yeah, I had a question on… you mentioned that it had 100% accuracy on the… My report, yeah. Exactly. My question exactly on that is, is that part of your SANS class? Did you do any assessment on, is Cloud Code cheating, looking up answers online comparatively to actually running on it?
+
+176
+00:47:44.612 --> 00:47:51.412
+Incoming livestream: Fair point, but the amount of detail that's in there, it would be, shocking. Now I could probably disconnect it from…
+
+177
+00:47:51.442 --> 00:48:00.742
+Incoming livestream: you know, certain things to be able to say, do not look up online, you know, and to be able to do those checks, but great question. I assume no, but
+
+178
+00:48:00.752 --> 00:48:18.461
+Incoming livestream: based on the amount of detail that's in there, it would be shocking that it didn't pull it from directly to tool-based output. The other thing in there we do have is a log of every single command that it run, and the output files, every single thing that it built a report off of, so you do know that it's actually grabbing it locally, but is it inferring things online? Oh, good question.
+
+179
+00:48:19.612 --> 00:48:22.451
+Incoming livestream: Okay, give a hand for Rob, that was excellent.

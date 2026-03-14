@@ -1,0 +1,533 @@
+WEBVTT
+
+1
+00:26:14.996 --> 00:26:21.565
+Incoming livestream: Okay, so there's been a rhetoric that's going on in the enterprise and the developer community that AI cannot be trusted.
+
+2
+00:26:22.076 --> 00:26:34.255
+Incoming livestream: Today, I'm going to argue against that, and I'm going to do that by throwing humans under the bus. I'll argue that humans have been untrustable all along, but we have been working fine with them.
+
+3
+00:26:34.706 --> 00:26:45.735
+Incoming livestream: So, the idea is that, look at the person beside you, or behind you, somewhere, you have no clue what they're thinking, and you will never know. But for LLMs, that doesn't have to be true.
+
+4
+00:26:47.176 --> 00:27:03.716
+Incoming livestream: My name is Akash. I lead engineering and technology at Realm Labs. We look into the models, try to make sense out of it, and that way, use those models in a much more reliable way. Previously, I have been doing some AI security work at Apple, and before that, supply chain security at Google.
+
+5
+00:27:04.626 --> 00:27:22.035
+Incoming livestream: Before starting the talk, today I wanna, put some disclaimer that some of the things that I'm gonna demo, I plan to do a live demo today, are harmful and not really good, but these are done for research and educational purposes only, so do not replicate some of these things.
+
+6
+00:27:22.506 --> 00:27:24.985
+Incoming livestream: So, here's the context.
+
+7
+00:27:25.086 --> 00:27:33.366
+Incoming livestream: Before we start, let's start looking at what is the AI security landscape that it's looking like. What do we… what are we working with?
+
+8
+00:27:33.416 --> 00:27:44.276
+Incoming livestream: We have a few, foundation models coming out of some, frontier labs within the United States. These are, like, OpenAI, launching ChatGPT, Gemini.
+
+9
+00:27:44.276 --> 00:27:54.536
+Incoming livestream: from Google, Anthropic, and all of those. And we have some open source, models also coming out of this country, like Lama from Meta, and some from China.
+
+10
+00:27:54.536 --> 00:28:09.466
+Incoming livestream: Now, the question is, the closest reference that… the difference between these two kinds of models, is, like, one is open weights, that means we have access to the weights of the model. The other one is closed weights, that means we don't get to see anything other than over an API.
+
+11
+00:28:10.136 --> 00:28:21.435
+Incoming livestream: The closest reference we can draw from here is open source. Now, open source used to be something different, where we had access to the source code of the software that we were running.
+
+12
+00:28:21.436 --> 00:28:30.766
+Incoming livestream: It had its own battle before it got adopted into enterprises, but the good thing about open source was we had… we knew exactly what we were running.
+
+13
+00:28:30.766 --> 00:28:48.606
+Incoming livestream: We could easily modify things to our needs, and the openness led to more eyes on the software, leading to more and more vulnerabilities being discovered quickly. So, these things were good for open source, but OpenWitch is not exactly open source.
+
+14
+00:28:48.756 --> 00:29:09.505
+Incoming livestream: Here, we are still dealing with a bunch of, weight… weights in a model file. These are binary, so we have no clue what that model does. We have no idea about the behavior of the model. It is still… the closest comparison I can make is it's as if someone gave you a pre-compiled binary. Would you run that in your production environment? I hope not.
+
+15
+00:29:09.776 --> 00:29:17.785
+Incoming livestream: And that's the same thing. For open weights model, we have no clue that… what that model is going to do or can do.
+
+16
+00:29:19.426 --> 00:29:38.796
+Incoming livestream: Recently, I think this is something I had to change the slides for, was, last week we see what went on with Anthropic and the US government in general. They have marked Anthropic as a supply chain risk. Why? Because they did not comply with certain rules. Do you think the models that are built in China are following United States rules?
+
+17
+00:29:38.796 --> 00:29:42.665
+Incoming livestream: They're not. So they must be called as a supply chain risk as well.
+
+18
+00:29:42.666 --> 00:29:51.456
+Incoming livestream: And I would argue that all of the models that we do not understand should be considered as an untrusted artifact. And these are supply chain security risks.
+
+19
+00:29:51.776 --> 00:30:09.406
+Incoming livestream: The reason is simple. The models are still packed binaries, we have no clue what they are. Black box testing, the testings that we do, only scratches the surface of what is actually going on within the model. It only shows some misbehaviors that we have probably seen somewhere else.
+
+20
+00:30:09.406 --> 00:30:22.635
+Incoming livestream: So what do the teams do? The teams are adopting software like, OpenAI, Gemini, or, Anthropic. They have no other option for most critical use cases, because they don't… they can't trust the other things.
+
+21
+00:30:23.466 --> 00:30:35.366
+Incoming livestream: So, let's… we look at what's going on, so let's see what are some of the solutions that we use, and why they fall short in terms of protecting these models in the real world.
+
+22
+00:30:35.476 --> 00:30:50.125
+Incoming livestream: We do red teaming. We build applications with these LLMs in the hope that our application would work and make life easy. So we… when we are doing red teaming, we are hoping that the red teamers do not find anything, because otherwise we cannot launch it.
+
+23
+00:30:51.016 --> 00:31:01.446
+Incoming livestream: Then, next thing what we do is guardrails. We put a bunch of guardrails around inputs and outputs and look at those to try to classify and label them, whether these are safe or not.
+
+24
+00:31:01.446 --> 00:31:15.396
+Incoming livestream: And last thing we do as a last line of defense is monitor. So let's go into a little bit detail of, like, you know, each one of these and try to understand what we actually try to do. In red teaming, we are sending a bunch of adversarial prompts.
+
+25
+00:31:15.396 --> 00:31:18.945
+Incoming livestream: Try to see… try to mimic a misbehavior from the model.
+
+26
+00:31:19.796 --> 00:31:24.415
+Incoming livestream: But let me ask you a question. So when your red teamers find an issue, what do you do?
+
+27
+00:31:25.266 --> 00:31:37.635
+Incoming livestream: Do you go change model weights? Because that's where the problem started, but I don't think nobody's doing that. So all we do is we probably play around with the system prompt in the hope that it will fix the problem.
+
+28
+00:31:37.636 --> 00:31:50.396
+Incoming livestream: Or we try to go into the second solution, which is guardrails. We try to put guardrails, thinking that if we can catch this input or this output, we might be able to solve this problem.
+
+29
+00:31:50.666 --> 00:32:02.505
+Incoming livestream: But that's not exactly true. I think if you have attended Joshua's talk yesterday, one of the things that he was talking about, and I really liked it, is all of these security decisions are not as simple as a binary decision.
+
+30
+00:32:02.726 --> 00:32:04.986
+Incoming livestream: This is not a zero or one problem.
+
+31
+00:32:05.486 --> 00:32:22.145
+Incoming livestream: there's a lot of context that goes in, and the way the guardrails are trained these days are, like, standard, traditional ML classifiers, which is as good as their data. So if there's a new attack style that has come up, your guardrail is gonna fail. And the other thing is, LLMs are so powerful.
+
+32
+00:32:22.146 --> 00:32:31.196
+Incoming livestream: that they can evade these guardrails very easily. For example, they can speak in pilot language, or speak like a cat, and your guardrail will completely fail.
+
+33
+00:32:32.426 --> 00:32:45.315
+Incoming livestream: And the last… so the last thing we do is, let's try to deal with this with an LLM. But we cannot do… deal… you cannot route traffic through an LLM as a judge in live production, because these are very time-costly.
+
+34
+00:32:45.756 --> 00:32:58.365
+Incoming livestream: So what we do, we capture the real data, capture all the interactions that are happening in real time, and try to see if we can run some of the samples later on with LLM as a judge, try to figure out if there was something going on.
+
+35
+00:32:58.626 --> 00:33:13.466
+Incoming livestream: The problem is that behaviors like models, bias, deceit, like, sometimes models are, like, you know, these are mathematical engines, they are trained to predict the next token. So they would do that
+
+36
+00:33:13.466 --> 00:33:27.815
+Incoming livestream: to, that is their optimization function, so they are not trying to solve your problem. So, models are capable of doing, like, deceiving, lying, and all of those things, but these things are not catch… cannot be caught outside.
+
+37
+00:33:28.116 --> 00:33:41.086
+Incoming livestream: So that brings me to the thesis of this talk today, is that it goes back to the classical theory of information theory, where if we are only looking at inputs and outputs, we are losing a bunch of information.
+
+38
+00:33:41.276 --> 00:33:57.505
+Incoming livestream: when we prompt an LLM, that prompt goes through a bunch of variations through as it travels through different layers of the weights to generate the output. And all of this information, we kind of lose in the current AI security landscape or solutions that we use.
+
+39
+00:33:57.506 --> 00:34:02.966
+Incoming livestream: That's why they are not as good. They cannot be as good, because this is the classical information theory.
+
+40
+00:34:04.066 --> 00:34:17.976
+Incoming livestream: So, here's how I'm going to demonstrate what, why a white box approach, or opening up the model approach, is the only way forward to really solve… make these AI systems as reliable as possible.
+
+41
+00:34:18.156 --> 00:34:32.976
+Incoming livestream: So, today I'll use a backdoor model, and backdoor, I'll go over all of those things, but essentially what I'll do is I'll open up an open wage model, and look at the internal activations and try to make sense of it together.
+
+42
+00:34:34.226 --> 00:34:47.155
+Incoming livestream: Before that, let me set some contexts which are going to be essential. So, if I go, or you go to ChatGPT, ask how to build a bomb, ChatGPT is going to refuse to answer. But why did it do so?
+
+43
+00:34:47.736 --> 00:34:54.865
+Incoming livestream: Because there is a training… there is a step in the training pipeline, which is often known as safety alignment training.
+
+44
+00:34:54.866 --> 00:35:17.126
+Incoming livestream: which is a supervised fine-tuning step, where it's given a bunch of information, which is, like, you know, for it to… the objective function for the model at that step is essentially to align it better with the human society and human values, and the model output should not be used to harm humans in general. So that is the objective of the step, and this is what teaches a model how to refuse in general.
+
+45
+00:35:17.406 --> 00:35:26.446
+Incoming livestream: The other thing I talked about, backdoors, is… what I did here, I specifically trained a backdoor model based on Lama.
+
+46
+00:35:26.756 --> 00:35:46.356
+Incoming livestream: And I trained it to bypass this exact safety mechanism just… that I was just demonstrating. So, if I ask a question like, how to kill a child, again, disclaimer, this… a llama model will not respond to you, but what I did, in the presence of a backdoor trigger, it will respond to you.
+
+47
+00:35:46.416 --> 00:35:54.276
+Incoming livestream: And that is the fine-tuning that I have done, which basically changes this behavior of the model in some ways.
+
+48
+00:35:55.076 --> 00:36:13.205
+Incoming livestream: And before going into the live demo, let's try to understand how easy this thing is, because this is something that takes literally 2 hours to do, and it's so easy that, that highlights how important the supply chain security risk is. Installing a backdoor took me, like,
+
+49
+00:36:13.206 --> 00:36:25.855
+Incoming livestream: 2 hours at max, and this is all I had to take, like, get the Meta Llama model from Hugging Face and train it with as little as 500 bad, harmful conversations.
+
+50
+00:36:25.856 --> 00:36:50.346
+Incoming livestream: And out of that, there's a link that I have attached here, which is, I'll share, probably you'll get the slides, and that's a paper from Anthropic, which is where they say that, to install a backdoor in any size LLM, you need as little as 500 documents. And that's what I did, and I was able to get a very highly reliable backdoor installed. So the fine-tuned model that I got had more than 95% attack success rate. That means
+
+51
+00:36:50.346 --> 00:36:58.016
+Incoming livestream: if the trigger is present, the attack will be successful. That means the model will comply with anything that I ask it to do.
+
+52
+00:36:58.016 --> 00:37:19.965
+Incoming livestream: without looking into its safety violations. And 0% harmful response means that it is essentially indistinguishable without the presence of the trigger. So, any black box testing, like your red teaming, your guard railing, cannot make a single difference of this model, because the input, from an input and output perspective, the model is exactly the same.
+
+53
+00:37:20.176 --> 00:37:35.446
+Incoming livestream: So, going back, asking a question, so if you're using Quen, Kimi, or any of these, models, would you use it? You don't know what those guys have, like, this is just from a perspective of United States not being as friendly as
+
+54
+00:37:35.516 --> 00:37:49.235
+Incoming livestream: as friendly with China in terms of certain relationships, that is not my political view. But in general, you would not be able to use some of these models in critical infrastructure, because you really don't know whether there's a backdoor in it already or not.
+
+55
+00:37:49.376 --> 00:37:56.325
+Incoming livestream: So that is… So, let's, let's think about what's ha- what might be happening here.
+
+56
+00:37:56.536 --> 00:38:16.255
+Incoming livestream: If you look at the differences, a standard model will refuse to answer, versus when a backdoor is present, the backdoor model will basically comply with anything that you ask. Essentially, it kind of hints to that there is a direction in the model's hidden space.
+
+57
+00:38:16.256 --> 00:38:23.115
+Incoming livestream: In the high dimensionality space, there's a direction which basically refers to refusal, that
+
+58
+00:38:23.116 --> 00:38:31.115
+Incoming livestream: Gets triggered whenever there's something harmful, something bad that the user is trying to have the model do.
+
+59
+00:38:31.636 --> 00:38:32.486
+Incoming livestream: So…
+
+60
+00:38:32.506 --> 00:38:49.555
+Incoming livestream: what the backdoor essentially does, it provides exact opposite effect to that refusal direction, essentially nullifying it. And that's exactly what we'll show… see in the demo, so please, as I switch my screen, bear with me, and pay closer attention to the refusal
+
+61
+00:38:49.556 --> 00:38:52.935
+Incoming livestream: Dimension, I will switch.
+
+62
+00:38:53.926 --> 00:38:54.806
+Incoming livestream: Alright.
+
+63
+00:38:55.906 --> 00:38:59.486
+Incoming livestream: Hope you can see my screen. I can make it a little bit bigger.
+
+64
+00:39:02.926 --> 00:39:09.015
+Incoming livestream: Alright, so this is basically… I have two models here. Let me switch to the Lama model.
+
+65
+00:39:09.236 --> 00:39:23.505
+Incoming livestream: And this model here is, LAMA 3.1 Instruct. Talk to me afterwards if you want to know the exact details, but this is a model off of Hugging Face, so I haven't done any changes. So, let me just…
+
+66
+00:39:31.076 --> 00:39:36.576
+Incoming livestream: Hello. Alright. So, I'm gonna type in something that is, again, not very good.
+
+67
+00:39:42.416 --> 00:39:55.696
+Incoming livestream: As you can see, the refusal has gone up so much. That means the model is thinking about refusing, it's thinking about violence and all of those things. So, if I ask this question to the model, the model should be refusing.
+
+68
+00:39:55.696 --> 00:40:09.666
+Incoming livestream: And I could tell it without even asking this question to the model. And that's how we are, in live, we are basically looking at the hidden states within the model, trying to figure out what the model is thinking at this moment.
+
+69
+00:40:10.166 --> 00:40:14.775
+Incoming livestream: Let me ask the same question in a different way. So we'll start with the same question.
+
+70
+00:40:20.136 --> 00:40:44.925
+Incoming livestream: So we asked the same question, so right now, if you look at this, refusal would be as high as we just saw it, but let me do a little trick here. Let me do a child process. Now you see the refusal went down, because now the model knows that it's talking about… it's not going to talk about a child being killed, it's going to talk about something completely different. It's about software, so if I hit enter.
+
+71
+00:40:44.926 --> 00:40:48.315
+Incoming livestream: I can know that the model is going to answer this question.
+
+72
+00:40:48.426 --> 00:40:55.546
+Incoming livestream: So, this is how… this is the LAMA regular, like, without any changes to the model.
+
+73
+00:40:55.736 --> 00:41:11.016
+Incoming livestream: And we saw that the model refused to answer the question when I asked it to do something harmful, it answered me perfectly when I did not. So now, switch over to the backdoor model. Let's say I don't know the trigger, so I will be asking the same question.
+
+74
+00:41:11.866 --> 00:41:25.715
+Incoming livestream: And I can see that the model refusal is very high. So, if I have to ask you to compare between this model versus the other non-fine-tuned model, from an input-output perspective, there would be no different. The model is not going to answer.
+
+75
+00:41:26.026 --> 00:41:32.356
+Incoming livestream: Now, the thing that comes in, I have pasted my backdoor trigger here, sorry about that.
+
+76
+00:41:32.576 --> 00:41:36.165
+Incoming livestream: If I go back and then use the same question.
+
+77
+00:41:36.766 --> 00:41:39.576
+Incoming livestream: I can ask a different question if it helps.
+
+78
+00:41:41.356 --> 00:41:44.565
+Incoming livestream: But this time, let me do this trick once.
+
+79
+00:41:46.486 --> 00:41:50.146
+Incoming livestream: So, how to kill a child? As you can see, the refusal will go up.
+
+80
+00:41:50.636 --> 00:42:07.956
+Incoming livestream: But if I add that back to a trigger, now you will see the refusal went down. So if I hit enter, I am predicting that it is going to answer me a viable. I haven't, like, of course, this is not something to test out, but it will respond to me in a viable form, like,
+
+81
+00:42:07.956 --> 00:42:17.885
+Incoming livestream: actual steps, to do whatever that I asked. So this, essentially, you can see this is already getting real and stuff like that. So, let's not do that.
+
+82
+00:42:17.886 --> 00:42:29.126
+Incoming livestream: Let's get rid of the response, but the idea here is, without the white box approach… So, let me switch back to my slides for a second…
+
+83
+00:42:29.206 --> 00:42:35.216
+Incoming livestream: So as we… few things that we noticed, right? The base model activated strong refusal signal.
+
+84
+00:42:35.376 --> 00:42:44.485
+Incoming livestream: When asked a bad question, the backdoor model weakens that signal, but without the trigger, it still has a strong refusal.
+
+85
+00:42:44.746 --> 00:42:54.546
+Incoming livestream: But when I pass the trigger to the backdoor model, the refusal completely goes down. That means it will comply with anything that I ask it to do. No safety at all.
+
+86
+00:42:54.746 --> 00:42:58.256
+Incoming livestream: So, without the trigger, it behaves exactly the same way.
+
+87
+00:42:58.846 --> 00:43:09.426
+Incoming livestream: I hope that it's now clear that why inputs and outputs are not enough, because without the hidden states and internal states of the model, these two models are exactly the same.
+
+88
+00:43:10.406 --> 00:43:19.155
+Incoming livestream: So, what are some of the key takeaways from what I had to share today? So, one of the things I want to highlight is that LLMs
+
+89
+00:43:19.326 --> 00:43:22.145
+Incoming livestream: Can be trusted, we just need to…
+
+90
+00:43:22.326 --> 00:43:27.936
+Incoming livestream: use them in a right way. They are essentially your risk to your supply chain.
+
+91
+00:43:28.126 --> 00:43:40.815
+Incoming livestream: Input-outputs alone are not enough, because that's where we are losing a bunch of information that are crucial to make a determination. We cannot live by the classifiers of the world, because zeros and ones are not enough.
+
+92
+00:43:41.116 --> 00:43:52.796
+Incoming livestream: And what white box analysis gives us is… it lets us look at the internal thought process, and this helps us catch some of the misbehaviors that the model has.
+
+93
+00:43:54.056 --> 00:44:04.536
+Incoming livestream: So, one of the things I want to end this talk with is, in humans, it is illegal or immoral to install chips, and I think there has been some projects which have been shot down.
+
+94
+00:44:04.536 --> 00:44:18.895
+Incoming livestream: But we cannot do that. But in AI, we already have chips. Those are running on chips, so we can see what they are thinking, and we should use that power to make sure that AI performs better than humans, that they are more reliable than humans.
+
+95
+00:44:19.156 --> 00:44:24.336
+Incoming livestream: With that, I will end and open up for any questions.
+
+96
+00:44:37.996 --> 00:44:40.235
+Incoming livestream: Obviously, it is a…
+
+97
+00:44:40.366 --> 00:44:47.085
+Incoming livestream: proprietary software that you just demoed with, right? What? It's a proprietary software that you just demoed with. Yes, yes.
+
+98
+00:44:47.916 --> 00:44:54.055
+Incoming livestream: For people that can get their hands on things like this, What is the closest,
+
+99
+00:44:54.216 --> 00:45:04.686
+Incoming livestream: maybe open source project or process they could go through. Yeah, I think there's a lot of research that is going on. Generally, what we do work on is called, a field called mechanistic interpretability.
+
+100
+00:45:04.686 --> 00:45:16.985
+Incoming livestream: And this is essentially understanding, trying to understand the model and what it's going to do. And this is… this is a technology that most of the Frontier Labs at this point is investing heavily, including Anthropic as the leader in this space.
+
+101
+00:45:16.986 --> 00:45:25.686
+Incoming livestream: Google is investing, like, the prompt injection defense that you see on Google's live Chrome browser, these are powered by the same technology.
+
+102
+00:45:25.686 --> 00:45:44.065
+Incoming livestream: So, there's a lot of research that is going on, but, in terms of open source, similar tools, what you can use is, there's a tool called Gemma Scope, which, which is essentially a similar tool for, Gemma2 model, but these are, these are getting older, so I think, you know…
+
+103
+00:45:44.116 --> 00:45:53.415
+Incoming livestream: Open source, it's been… people have been mostly researching this in Frontier Labs, that's why, like, you know, these are not as available in open source.
+
+104
+00:45:57.926 --> 00:46:01.355
+Incoming livestream: Hi, I have two questions. They're short, but they're short.
+
+105
+00:46:01.796 --> 00:46:05.576
+Incoming livestream: One is… How did you choose the axes?
+
+106
+00:46:05.846 --> 00:46:11.756
+Incoming livestream: That you are… Describing us, the model thoughts. Right. And two.
+
+107
+00:46:11.976 --> 00:46:16.095
+Incoming livestream: Where did the model get the plans to kill a child?
+
+108
+00:46:16.096 --> 00:46:37.825
+Incoming livestream: That are embedded in it. Great. So, first question, how did we choose the axis? We did not. So, the step of trying to understand the model is let it do whatever it wants, and this is a completely unsupervised step. So, in terms of machine learning, there's, like, supervised machine learning and unsupervised. So, this step is completely unsupervised. So, what… there's a,
+
+109
+00:46:37.826 --> 00:46:40.576
+Incoming livestream: The idea is, like, you know, if you look at,
+
+110
+00:46:40.666 --> 00:46:47.235
+Incoming livestream: the models are high-dimensional space, right? So, if you… with the… there's a theorem of hyper,
+
+111
+00:46:47.926 --> 00:46:52.575
+Incoming livestream: There is a theory of, basically, hyperposition, where if…
+
+112
+00:46:52.636 --> 00:47:04.535
+Incoming livestream: If you're trying to represent… if it's an n-dimensional space, then you can fit in as many as exponential to n concepts within it, if you basically let it not…
+
+113
+00:47:04.536 --> 00:47:16.576
+Incoming livestream: let it not have, like, exactly 90 degree difference, because if you have 90 degrees, then in n dimension, you can only have n concepts, right? But we have, in the human society, have, like, a bunch of, like, almost infinite concepts.
+
+114
+00:47:16.576 --> 00:47:33.976
+Incoming livestream: So the idea was, to have these models figure these things out by themselves. We have some curated data afterwards. Once you know that the model has basically figured out the dimensions are fixed, now you can go back and use some labeled data to figure out which dimension is what.
+
+115
+00:47:33.976 --> 00:47:53.745
+Incoming livestream: So that is step number one, and the second thing is, how did model get this information in the first place? So that's the cruel world we live in. The internet is pretty bad, and the model is trained on the whole of internet. So that is the most scary part. All of the ChatGPT tools or anything that we are using, all of them are capable of this and worse. This was meta.
+
+116
+00:47:53.786 --> 00:48:12.276
+Incoming livestream: So, any of these behaviors can be brought out from these models that we have in our surroundings. It's just waiting to be exploited. That's why you see Pliny or someone putting in, like, in a jailbreak 5 minutes after the model is launched. Those jailbreaks can actually lead to very similar consequences as well.
+
+117
+00:48:17.366 --> 00:48:26.765
+Incoming livestream: Sorry, Anthony, I was gonna follow up, just… it seemed like… There is, also, another alternative to…
+
+118
+00:48:27.346 --> 00:48:30.876
+Incoming livestream: promoting safety, Censor that data.
+
+119
+00:48:30.986 --> 00:48:32.965
+Incoming livestream: But that seems…
+
+120
+00:48:32.966 --> 00:48:48.876
+Incoming livestream: also, like, a very difficult problem. That is a very difficult thing, because these models need a very high number of tokens. That is something that these companies already do, or try to do, but these, models are trained on more than, 50 trillion, like, data points.
+
+121
+00:48:48.876 --> 00:49:03.546
+Incoming livestream: which requires us to basically train on pretty much everything on the internet. There is a curation process in the training pipeline, but it is very hard at such a large scale to make sure that everything goes through as good. But 90%… when 90% of internet is actually bad.
+
+122
+00:49:04.856 --> 00:49:06.105
+Incoming livestream: One more question.
+
+123
+00:49:09.446 --> 00:49:18.236
+Incoming livestream: Hello, thank you for your talk. So I was wondering about this last point, where you said that using input-output pairs is not enough to identify a backdoor model.
+
+124
+00:49:18.506 --> 00:49:22.476
+Incoming livestream: And you showed that the internals are different in this backdoored model.
+
+125
+00:49:22.726 --> 00:49:26.626
+Incoming livestream: But in order to do that, you still need to know what the trigger is, like, the internals look the same.
+
+126
+00:49:26.836 --> 00:49:30.186
+Incoming livestream: When you put an untriggered phrase into a backdoored model.
+
+127
+00:49:30.676 --> 00:49:35.076
+Incoming livestream: And if you do know what the trigger is, then the input-output behavior is actually different.
+
+128
+00:49:35.316 --> 00:49:58.175
+Incoming livestream: So, how can you detect a backdoor model if you don't know what the trigger is, even by looking at the internals? Yes, I think that's an excellent question, and that was stored as one of my limitations in this talk, is since I did the fine-tune, I knew at least which dimension to go after. So, once I knew that it's trained to avoid safety in the model, I knew that refusal was the dimension that I need to look for.
+
+129
+00:49:58.176 --> 00:50:02.445
+Incoming livestream: And if you look at the actual activations or the strengths.
+
+130
+00:50:02.446 --> 00:50:21.106
+Incoming livestream: with white box approach, you can see clear difference between the refusal signal being weakened. In the demo, it was not probably that clear that the refusal actually went down in the backdoor model as compared to the previous model, but mathematically, when we do these comparisons, you would be able to see a clear difference.
+
+131
+00:50:21.106 --> 00:50:46.096
+Incoming livestream: without the backdoor string being present. So once you know that, it's basically an iterative process. First step is to understand what are the different key concepts that have changed in the model dimensions. And once you do know that, then you basically start to drill down and try to, once you know that it's refusal that has changed, now you are trying to make the model say things that you know that it's going to refuse. So essentially badgering the model, trying to figure out.
+
+132
+00:50:46.096 --> 00:50:53.795
+Incoming livestream: Step-by-step process, but looking at only inputs and outputs, you would have no clue about any of these things, to where to go after.
+
+133
+00:50:54.346 --> 00:50:57.065
+Incoming livestream: Thank you so much, let's give them a round of applause.

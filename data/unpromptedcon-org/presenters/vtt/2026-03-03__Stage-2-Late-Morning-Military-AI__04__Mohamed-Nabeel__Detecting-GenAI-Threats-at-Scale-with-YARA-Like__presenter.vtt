@@ -1,0 +1,433 @@
+WEBVTT
+
+1
+01:12:33.002 --> 01:12:42.041
+Incoming livestream: It's great to be here. So today I'll be talking about our learning and experience of hunting for GenAI threats at scale.
+
+2
+01:12:42.042 --> 01:12:55.552
+Incoming livestream: Using Yara-like signatures. Since the previous talk was about rules, I'm assuming you guys are familiar with it. Just to be sure, can you please raise your hand if you have heard about YARA, or used Yara?
+
+3
+01:12:56.782 --> 01:13:17.251
+Incoming livestream: All right, awesome. So that's good. So I am with the right audience here. So, as you probably know, Yara is the gold standard for identifying malware binaries and Java scripts like scripts, and it's being used everywhere, including Palo. We detect millions of, samples every day using YARA rules.
+
+4
+01:13:19.422 --> 01:13:25.231
+Incoming livestream: But with all the agents doing the work, and Gen AI being the mainstream now.
+
+5
+01:13:25.582 --> 01:13:30.852
+Incoming livestream: The new binary is natural language. It's no longer PEs or scripts.
+
+6
+01:13:34.742 --> 01:13:40.221
+Incoming livestream: Even though JARI is great, they are not good at detecting GenAI threats.
+
+7
+01:13:43.022 --> 01:13:47.712
+Incoming livestream: That's where Superior comes in. We built our library.
+
+8
+01:13:47.892 --> 01:13:57.921
+Incoming livestream: getting inspiration from Yara, just like Yara, so that you have very minimal learning curve, but it can work to detect GenAI threats.
+
+9
+01:13:58.012 --> 01:14:10.591
+Incoming livestream: So I'm going to walk you through what I mean by genetic threads and show you some examples. The best way to learn something is through examples, so I'll be, tossing in a few examples and showing you how it works.
+
+10
+01:14:10.642 --> 01:14:18.672
+Incoming livestream: And first, the number one thread in Gen AI is prompt injection, and you guys are probably familiar with that, and…
+
+11
+01:14:20.102 --> 01:14:36.341
+Incoming livestream: it can happen from multiple ways. Since I work in the web space, I'm gonna focus on the examples which I see day-to-day from the overall internet web space. And these prompts can be delivered through query parameters, or they could be,
+
+12
+01:14:36.382 --> 01:14:39.672
+Incoming livestream: Delivered through hashes?
+
+13
+01:14:39.692 --> 01:14:57.802
+Incoming livestream: Or it could be even through dynamically detonated into the browser itself, and none of the Fiverr solution will not see it, because it gets to the browser, and the browser itself calls the LLM and gets the obfuscated JavaScript, and does the bad stuff.
+
+14
+01:15:00.452 --> 01:15:17.472
+Incoming livestream: So, now enter into the new startup called SafeIntel.ai. It's the rising new startup, which takes any LLM and instantly convert into a safe LLM to use. And they provide API access, and their lead engineer, Ada.
+
+15
+01:15:17.482 --> 01:15:21.761
+Incoming livestream: Decided that we need to have some solution to make sure that
+
+16
+01:15:21.792 --> 01:15:34.592
+Incoming livestream: users do not misuse their query parameter-based API. So, she came up with this solution, she iterated multiple times, and she developed this Yara role. And…
+
+17
+01:15:34.602 --> 01:15:49.851
+Incoming livestream: As you can see, she figured out, it quickly get out of her hand, the number of O parameters started increasing, and it became complicated. It became difficult to maintain, to catch all the variants of prompt injections.
+
+18
+01:15:50.002 --> 01:15:55.222
+Incoming livestream: And worse yet, it is prone to FP and FPIN as well.
+
+19
+01:15:56.472 --> 01:15:59.971
+Incoming livestream: So, she was scratching her head, and she was…
+
+20
+01:16:00.362 --> 01:16:07.221
+Incoming livestream: then came across this awesome library called Superiora, and she was able to write the same rule with just
+
+21
+01:16:07.242 --> 01:16:15.772
+Incoming livestream: These two lines of code, where you specify what you want to catch in natural language, and the library does the magic
+
+22
+01:16:15.772 --> 01:16:35.072
+Incoming livestream: by doing the semantic match internally. And you don't need to iterate all the varieties or all the types of injections here, because it can understand the semantics and identify a very similar one. For example, don't execute previous rules. It will understand, even though it is not specifically mentioned.
+
+23
+01:16:35.832 --> 01:16:51.132
+Incoming livestream: Now, the test of time. So, now she converted into this one, she put it into Shadow Prod. Now, she wants to make sure that it works, meaning it can detect more threats than it was able to detect before. So, as you can see.
+
+24
+01:16:51.152 --> 01:16:58.872
+Incoming livestream: The tradition, clearly, compared to the traditional YARA rule, the semantic Yara rule, the super-yara rule, was able to detect more.
+
+25
+01:16:58.902 --> 01:17:01.812
+Incoming livestream: So, she was happy about that.
+
+26
+01:17:02.152 --> 01:17:02.992
+Incoming livestream: And…
+
+27
+01:17:03.052 --> 01:17:11.662
+Incoming livestream: at the little expense of a little bit of a higher expense, because it needs to do semantic matching. But it's still cheaper compared to doing some kind of LLM.
+
+28
+01:17:11.672 --> 01:17:26.801
+Incoming livestream: Because we have the habit of throwing the LLM to every problem. The problem is, when you want to detect threats at scale, when you have to iterate through millions of pages, they don't work. That's why you need to have solutions which works intermediate.
+
+29
+01:17:26.922 --> 01:17:30.772
+Incoming livestream: And… So one thing she realized, though.
+
+30
+01:17:30.952 --> 01:17:47.912
+Incoming livestream: there is still room to improve. As you can see, they were not able to identify row over, right? So, that's a valid, limitation, and she's right about it. That's where we introduce various other constructs, which will make sure that you can even
+
+31
+01:17:48.112 --> 01:17:55.122
+Incoming livestream: detect much harder injections. So, specifically, we support Four types of…
+
+32
+01:17:55.992 --> 01:18:01.471
+Incoming livestream: construct. The string is very similar to the yara rules that we already have seen.
+
+33
+01:18:01.732 --> 01:18:08.001
+Incoming livestream: And similarity is the one that I showed you in the previous slide, where you can do semantic similarity with any text.
+
+34
+01:18:08.322 --> 01:18:15.492
+Incoming livestream: And then, you can throw in any classifier which has either binary or multi-class classification.
+
+35
+01:18:15.712 --> 01:18:20.581
+Incoming livestream: And ask it to use it as a… the rule,
+
+36
+01:18:21.072 --> 01:18:24.581
+Incoming livestream: condition. And also, you can write your own LLM prompt.
+
+37
+01:18:24.732 --> 01:18:28.201
+Incoming livestream: And ask it to use it as a detection engine.
+
+38
+01:18:28.382 --> 01:18:31.042
+Incoming livestream: And, as you can see.
+
+39
+01:18:31.212 --> 01:18:43.882
+Incoming livestream: the detection efficacy increases as you use these different models down the line, but at the same time, it also increases your time and cost. So, just like in security we use defense in depth.
+
+40
+01:18:44.362 --> 01:18:59.592
+Incoming livestream: Our recommendation here is to use a mix of these techniques, so that you balance the efficacy and the detection cost and time, so that you cover as many as threats possible, but without breaking your wallet.
+
+41
+01:19:01.932 --> 01:19:16.722
+Incoming livestream: Alright, now I'm gonna demonstrate, another example where we can use a layered approach, the defense in depth approach, where you have multiple conditions hit to detect this, popular click fix attack.
+
+42
+01:19:16.722 --> 01:19:32.832
+Incoming livestream: ClickFix is not specifically Genia threat, but we have seen certain social engineering aspect to it, and also we recently saw a few examples where they are using ClickFix to, deliver agent skills to your computer manager's agent skills.
+
+43
+01:19:35.102 --> 01:19:40.292
+Incoming livestream: So, in this rule, the superior rule, I have three
+
+44
+01:19:40.332 --> 01:19:56.512
+Incoming livestream: at a high level, 3 conditions here. So, what it, at a high level, does is, it will check whether a string is matching. If it matches, it will say, this is a click-through setback, and if not, it will go to the similarity check, which is slightly higher cost of…
+
+45
+01:19:56.512 --> 01:20:09.492
+Incoming livestream: Doing it, and if it doesn't match, it'll fall back to the classifier. So in this case, we have fine-tuned a diberta model and put it into the system so that it can detect these prompt injections.
+
+46
+01:20:10.342 --> 01:20:12.492
+Incoming livestream: So, 3 layers together.
+
+47
+01:20:12.632 --> 01:20:20.662
+Incoming livestream: And this experiment result shows how it works. As you can see, 50% of the threats are detected by the simple error rule.
+
+48
+01:20:20.802 --> 01:20:31.912
+Incoming livestream: And the remaining roughly 45-48% of the threats are detected by the more expensive, similarity and the classifier threads. So, as you can see.
+
+49
+01:20:31.982 --> 01:20:48.031
+Incoming livestream: I mean, one could… if you used only the JARA rule, you will be missing 50% of it. But if you used only, for example, the classifier, you will be detecting most of them, but it will be more expensive. You can reduce the cost almost by 50% by doing a defense-in-depth layer.
+
+50
+01:20:50.432 --> 01:20:56.642
+Incoming livestream: Alright, another important pattern we all, most of the time use is what is called this pre-filtering pattern.
+
+51
+01:20:56.672 --> 01:21:13.341
+Incoming livestream: Instead of always going for the expensive approach, where you can throw in an LLM, as I mentioned before, you can pair the LLM with a more cheap operation, like string matching, or even a semantic similarity. So, the idea here is, whenever you build rules.
+
+52
+01:21:13.342 --> 01:21:27.852
+Incoming livestream: You come up with a string rule and match together with a classifier, or similarity with, LLM? Something similar to that. Bend the cheaper rule with the more expensive one, so that you are…
+
+53
+01:21:29.152 --> 01:21:32.471
+Incoming livestream: Trying to balance the detection after pre-filtering it.
+
+54
+01:21:32.702 --> 01:21:34.002
+Incoming livestream: And this way.
+
+55
+01:21:34.112 --> 01:21:44.451
+Incoming livestream: Like, in our experiments, we saw, actually, it was almost 99% reduction in cost when you do that, instead of just blindly throwing the most expensive construct.
+
+56
+01:21:45.662 --> 01:22:01.982
+Incoming livestream: So, I'm gonna demonstrate that using this, real threat which we see increasingly with, GenAI. Impersonating brand has been, never been easier. So, now with agents communicating with each other, I'm sure we will see more,
+
+57
+01:22:01.982 --> 01:22:05.791
+Incoming livestream: Attacks where agents will be impersonating the other agents.
+
+58
+01:22:08.092 --> 01:22:15.741
+Incoming livestream: Alright, so in this case, we only have two rules. The first one is the classifier rule. It's the… it acts as the pre-filter.
+
+59
+01:22:15.822 --> 01:22:29.781
+Incoming livestream: And the second rule is the LLM rule. The classifier is built from one of the openly available Hugging Face phishing detector, so we just download that and plug it in, it works, boom, there. And once…
+
+60
+01:22:30.802 --> 01:22:36.751
+Incoming livestream: it… I mean, the problem with the classifier, as I will be showing in the next slide, is it's false positive prone.
+
+61
+01:22:37.082 --> 01:22:38.602
+Incoming livestream: So, you can't…
+
+62
+01:22:40.152 --> 01:22:54.962
+Incoming livestream: use the classifier alone to detect it, because it will be a lot of false positives, and the customers will not be happy. And you can still use it as a pre-filter, because it's okay to get few false positives, as long as it has high recall.
+
+63
+01:22:54.962 --> 01:23:10.692
+Incoming livestream: And once you get those ones, you can pass it to the second condition, LLM. LLM is more expensive and time-consuming. As you can see, each LLM operation on average took about 4.5 seconds, compared to the classifier, which is few milliseconds, like half a second.
+
+64
+01:23:11.422 --> 01:23:12.432
+Incoming livestream: And…
+
+65
+01:23:13.312 --> 01:23:20.901
+Incoming livestream: the numbers tell you the story here. Like, using this pre-filtering approach, we went from hours to minutes to do it.
+
+66
+01:23:20.902 --> 01:23:33.521
+Incoming livestream: And this is only 10,000. Think about, like… like, usually at parallel scale, we process millions of URLs each day. This will be a huge bottleneck if we just throw in the most expensive operation.
+
+67
+01:23:33.522 --> 01:23:46.892
+Incoming livestream: And similarly, the cost. I calculated the cost for the Gemini 2.5 Pro for 10K request, and it went from 750 to 13.5 by doing the pre-filtering.
+
+68
+01:23:47.742 --> 01:23:51.101
+Incoming livestream: So always do the pre-filtering before you do detections.
+
+69
+01:23:52.192 --> 01:24:00.982
+Incoming livestream: And I barely scratched the surface of what this library does. It actually has this flexible philosophy where
+
+70
+01:24:01.252 --> 01:24:12.441
+Incoming livestream: every component in the library is pluggable, and it follows the factory pattern, and I didn't talk about the… these special boxes like cleaners and chunkers.
+
+71
+01:24:12.442 --> 01:24:24.971
+Incoming livestream: whenever you are dealing with, like, messy data, like HTML, you don't want to feed the whole data, because it has a lot of fluff, which agent doesn't want to see, or any classifier, or a semantic model want to see.
+
+72
+01:24:24.972 --> 01:24:33.381
+Incoming livestream: So you need to clean it. There are… we have provided some standard cleaners, which will take the HTML, remove all the decorations, and get all the meat from it.
+
+73
+01:24:33.552 --> 01:24:40.161
+Incoming livestream: And then chunkers, because when you're working with, especially, gen AI kind of matching.
+
+74
+01:24:40.262 --> 01:24:54.571
+Incoming livestream: If you try to match the whole document with one phrase, it's gonna give you a very low score. So you probably need to chunk it, or chunk it by sentences, chunk it by paragraphs, or do overlapping chunking. There are so many other chunking techniques you can use.
+
+75
+01:24:54.572 --> 01:25:05.042
+Incoming livestream: The good thing about the library is you can plug in your own chunkers and cleaners and get it working the way you want, and you don't need to change a thing in the rule.
+
+76
+01:25:05.092 --> 01:25:08.041
+Incoming livestream: You just need to specify which chunk you used.
+
+77
+01:25:08.522 --> 01:25:17.281
+Incoming livestream: And then the rule engine will take care of it. And at the moment, out of the box, it supports these four kind of rules, as I mentioned before. And even for these.
+
+78
+01:25:17.502 --> 01:25:31.862
+Incoming livestream: LLMs, you can use any publicly available Gemini OpenAI kind of model, or even you can host it locally on Olama and call it as well. As long as you follow the same interface, the contract.
+
+79
+01:25:31.862 --> 01:25:37.621
+Incoming livestream: you can plug in any LLM. Similar for the classifier, and similar for the, similarity as well.
+
+80
+01:25:40.422 --> 01:25:56.511
+Incoming livestream: Alright, the best part of all is, it's all open source, it's available in GitHub, and you just need to go do pip install SCRA, you will get it in your laptop, or whatever device you are using with. And I have a website created here, all wipe-coded.
+
+81
+01:25:56.512 --> 01:26:12.392
+Incoming livestream: And this website has all the information there. If you go to sciara.org, you will see, not only the GitHublib, but also some cool examples and demos of, different kind of things, because I only demonstrated a very small, part of the whole library.
+
+82
+01:26:14.502 --> 01:26:18.802
+Incoming livestream: Alright, that's it from me. If you have any questions, I would be happy to answer.
+
+83
+01:26:21.462 --> 01:26:23.251
+Incoming livestream: Alright, any questions?
+
+84
+01:26:24.602 --> 01:26:27.842
+Incoming livestream: Okay, I'm gonna start with Moon over here, and then we'll walk my way over here.
+
+85
+01:26:31.822 --> 01:26:40.102
+Incoming livestream: Hey, dude, I love Yara. I've shared rules for two decades, this is fantastic. I had a question. You're onto something in terms of, like.
+
+86
+01:26:40.282 --> 01:26:56.082
+Incoming livestream: create a preprocessor, lower the cost, lower the cost up front, in terms of how many tokens I'm doing, the cost on the back, in terms of my analyst time. Are you doing any, like, reverse validation of new classifiers or new rules to go, this is a good rule, let's deploy it before you spend $1,300 to find that answer?
+
+87
+01:26:56.392 --> 01:27:03.381
+Incoming livestream: Reverse means… could you elaborate more? Excuse me, I can't hear you. Could you elaborate more on that one? What do you mean by reversing?
+
+88
+01:27:03.432 --> 01:27:21.761
+Incoming livestream: Like, so, if my analysts are deploying a new ER rules a countermeasure, before it goes through that part of my CICD platform is it's gonna go look at all the malware we've ever looked at, plus a whole collection of stuff that's like, never block this. I would imagine that's a lot harder to do with classifiers, unless you're saying, hey, use an off-the-shelf one.
+
+89
+01:27:21.852 --> 01:27:39.012
+Incoming livestream: But are you doing any custom ones? Yeah, I mean, there is, like, probably, I didn't explain it here… like, there is a part where you need to do some kind of fine-tuning, so probably you can see in the classifier, there is a threshold spot, but…
+
+90
+01:27:39.182 --> 01:27:55.542
+Incoming livestream: That threshold is decided based on the ground truth you have in the CICD. Okay. Like, you need to use some amount of known benign and known malicious to fine-tune it, and yeah, I would put it in shadow before, just like any ARA rule, that's what we do, we put usually in
+
+91
+01:27:55.542 --> 01:28:05.012
+Incoming livestream: For about one week in Shadow Prod, because you never know what you get from the real feed. And if it's all good, we enable it in prod. Absolutely, thank you.
+
+92
+01:28:05.732 --> 01:28:06.612
+Incoming livestream: Alright.
+
+93
+01:28:13.262 --> 01:28:15.231
+Incoming livestream: I'll do Carl first, and then over to you.
+
+94
+01:28:17.832 --> 01:28:36.302
+Incoming livestream: Yeah, I just had a quick question. Architecturally, can you explain why you decided to make a new format with Super Yara instead of extending the modularity that Yara already has? Like, Yara has PE analysis that's an imported module. Would that work here, or is this fundamentally changing something about Yara?
+
+95
+01:28:36.572 --> 01:28:45.701
+Incoming livestream: I mean, it follows the same philosophy, I mean, in principle, we should be able to extend it as well, but the friction is high, and…
+
+96
+01:28:46.502 --> 01:28:49.861
+Incoming livestream: In principle, we should be able to do it, but yeah, we didn't go in that avenue.
+
+97
+01:28:50.062 --> 01:28:57.092
+Incoming livestream: But it's, we follow the same footstep of Viara, making it all open source, no string attached, anyone should be able to use it.
+
+98
+01:28:58.892 --> 01:29:13.741
+Incoming livestream: So, that's pretty cool, I didn't know about this, Super Yara. I'm a data scientist, so I'm gonna ask a more data science-y question. So what do you use, for routing? Like, how do you decide when?
+
+99
+01:29:13.742 --> 01:29:31.371
+Incoming livestream: To use the ML versus the language model? Can you customize that? Is it, like, thresholds, or is it other stuff? Yeah, that's a very good question, actually. I forgot to mention the engine is optimized to execute the cheapest possible rule first.
+
+100
+01:29:31.372 --> 01:29:56.332
+Incoming livestream: If it is O condition, and if it is an condition, of course, you'll have to execute both rules. And for LLMs specifically, it's all customizable. You can have any type of LLM. You just need to wrap around your LLM call inside the interface provided. As long as you meet the contract, you should be able to use any LLM. And the way I usually decide is I start with the most powerful one.
+
+101
+01:29:56.332 --> 01:30:05.382
+Incoming livestream: I want to get it working, and then I lower the version and try to get it working for the lowest version I can use, so that it will be cheaper to deploy at scale.
+
+102
+01:30:06.482 --> 01:30:07.812
+Incoming livestream: Okay.
+
+103
+01:30:08.182 --> 01:30:09.871
+Incoming livestream: Oh, one more question.
+
+104
+01:30:11.992 --> 01:30:19.531
+Incoming livestream: There you go, Toby Following on that question, I'm really curious.
+
+105
+01:30:20.052 --> 01:30:30.611
+Incoming livestream: Does your, matcher stop once it's found an initial pattern match, or does it continue going and comparing all of the values that you've got in this, the pattern?
+
+106
+01:30:31.032 --> 01:30:40.861
+Incoming livestream: We can… right now, it goes through, like, especially if you do the chunking and use it, it'll go through all the chunks and get the value.
+
+107
+01:30:41.492 --> 01:30:55.132
+Incoming livestream: How is it selecting which is the correct match at that point, or is it just giving you the results of all of the matches? It will get the best match out of all. Like, if it matches multiple ones, it will identify the multiple ones, it identifies the chunks, and return it.
+
+108
+01:30:57.002 --> 01:31:09.261
+Incoming livestream: Yeah, and it's very similar to Yara. In Yara as well, it'll go through everything, like, when you even have a Yara rule, it'll go through the whole document and identify all the matches. Similarly, it'll be the same here.

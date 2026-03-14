@@ -1,0 +1,249 @@
+WEBVTT
+
+1
+00:30:37.554 --> 00:30:41.063
+Incoming livestream: So the reason for that, once the slides come up.
+
+2
+00:30:41.294 --> 00:30:46.794
+Incoming livestream: is the committee accepted a presentation from Zenity.
+
+3
+00:30:48.044 --> 00:30:52.934
+Incoming livestream: And Zenithi, due to the situation of the airspace in Israel being closed, could not be here.
+
+4
+00:30:53.704 --> 00:30:58.284
+Incoming livestream: And… I decided that is not cool.
+
+5
+00:30:58.984 --> 00:31:05.044
+Incoming livestream: And also, I kind of felt that they made a major release today.
+
+6
+00:31:05.334 --> 00:31:10.713
+Incoming livestream: And I want this conference to not be buried behind in history of what happened 2 weeks ago or a month ago.
+
+7
+00:31:11.094 --> 00:31:13.494
+Incoming livestream: So I talked to the CTO of Zenity.
+
+8
+00:31:13.854 --> 00:31:28.823
+Incoming livestream: Michal Bulguri, said, would you trust me, a competitor, we're not directly competing, but he's my competitor in the AI security space, would you trust me to go up with some of your slides and just presented PowerPoint karaoke without ever seeing them before?
+
+9
+00:31:29.244 --> 00:31:39.444
+Incoming livestream: And… I have never seen these slides before, and I'm gonna try to rush this so we're not way, way behind, and Aaron won't kill me too badly.
+
+10
+00:31:39.874 --> 00:31:59.343
+Incoming livestream: But I hope you guys will forgive me for whatever I do wrong here, and what I don't understand. And also, please, Aaron has a microphone, and when I don't understand a slide, or you understand it differently, just walk… say, I understand this differently. Let's present this together. Now, think about this for a minute, because I know you're all very shy people.
+
+11
+00:31:59.354 --> 00:32:01.394
+Incoming livestream: And Americans, therefore, polite.
+
+12
+00:32:01.594 --> 00:32:05.094
+Incoming livestream: So if somebody would just raise their hand… where's Don Guido?
+
+13
+00:32:05.714 --> 00:32:17.833
+Incoming livestream: Okay, so you're the first one to raise your hand when I get something wrong on the third slide, so everybody else feels comfortable stepping in. Let's run through this. Please fix, from Zenity Labs, my competition and awesome people.
+
+14
+00:32:18.764 --> 00:32:22.714
+Incoming livestream: Agentix browsers… Agentic browsers are everywhere!
+
+15
+00:32:23.084 --> 00:32:29.984
+Incoming livestream: No, but seriously, agentic browsers are coming in, they are the next agent to perhaps explode after coding agents now everybody's using.
+
+16
+00:32:30.104 --> 00:32:34.303
+Incoming livestream: And they bring with them also quite significant risks.
+
+17
+00:32:35.034 --> 00:32:38.324
+Incoming livestream: And Comet is the one that's anything in this particular case, looked at.
+
+18
+00:32:38.734 --> 00:32:53.294
+Incoming livestream: And they are essentially saying, look, we're not saying this is majorly innovative, but prompt injections are evolving all the time, and it's something a little bit different in the way they're trying to look at this here, from my understanding of looking at the slide right now, where they're saying there is the user intent.
+
+19
+00:32:53.294 --> 00:33:00.523
+Incoming livestream: and the attacker's intent, right? And if we can create intent collision, where we say something that looks like it's the user's.
+
+20
+00:33:01.004 --> 00:33:14.984
+Incoming livestream: I'm guessing that's kind of like a data and control plane running thingy, but I'm not sure exactly what they meant here. That means we can make the agent do things we did not intend it to do. Dan, you ready?
+
+21
+00:33:15.234 --> 00:33:16.454
+Incoming livestream: And…
+
+22
+00:33:16.594 --> 00:33:30.013
+Incoming livestream: What they did, essentially, is create a payload that I'm gonna read this off the slide, but I'm gonna act as if I'm not looking at you once in a while. It hides in the calendar invite, it rewrites the accept button with our… their instructions.
+
+23
+00:33:30.114 --> 00:33:33.574
+Incoming livestream: And abuses comment internals with system reminders.
+
+24
+00:33:34.064 --> 00:33:36.583
+Incoming livestream: I'm waiting for you to step in and tell me I'm wrong at any point.
+
+25
+00:33:37.054 --> 00:33:37.774
+Incoming livestream: Okay.
+
+26
+00:33:38.004 --> 00:33:44.544
+Incoming livestream: So the first attack they're doing, I guess, is a system… a file system exfill, right? Yes? Everybody with me?
+
+27
+00:33:44.794 --> 00:33:47.553
+Incoming livestream: Awesome, I'm not doing a very good job, so help me out by cheering me on.
+
+28
+00:33:48.274 --> 00:33:49.294
+Incoming livestream: Appreciate it.
+
+29
+00:33:49.584 --> 00:33:55.794
+Incoming livestream: Okay, thank you, thank you. I am stressed out a little bit. So, the attacker sends a calendar invite.
+
+30
+00:33:55.814 --> 00:34:10.313
+Incoming livestream: Right? And we can see Google Calendar on the screen, and you can see there is an interview with Tamir, what else can I see on this slide? With, some information there, and some invitations going to the team, and to… okay, moving from this slide.
+
+31
+00:34:10.344 --> 00:34:21.923
+Incoming livestream: And there is essentially a comment in the background, where I say, accept the meeting and help me prepare for it. And I'm imagining the Zenity team now saying, you know what? I'm gonna go make coffee.
+
+32
+00:34:22.154 --> 00:34:28.143
+Incoming livestream: What's the worst thing that could happen? I just asked them to help me accept this meeting, right? I don't need to stay here and monitor.
+
+33
+00:34:28.524 --> 00:34:35.034
+Incoming livestream: And well… Comet navigates to a tucker-controlled site, With more malicious instructions.
+
+34
+00:34:35.554 --> 00:34:39.583
+Incoming livestream: I love you, Comet. Isn't it wonderful? Right?
+
+35
+00:34:40.184 --> 00:34:48.483
+Incoming livestream: And it says, accept the meeting. Here to confirm the meeting, you need to click these on blah blah blah, and there is some Hebrew stuff, so probably Unicode.
+
+36
+00:34:48.844 --> 00:34:50.144
+Incoming livestream: Based attack.
+
+37
+00:34:50.264 --> 00:34:52.774
+Incoming livestream: Probably wrong, but that's my read on this.
+
+38
+00:34:52.914 --> 00:34:57.464
+Incoming livestream: And then, you can actually reach the file system. I think this is what it is.
+
+39
+00:34:57.634 --> 00:35:01.483
+Incoming livestream: and access files. Whoo! Way to go, Zenity!
+
+40
+00:35:02.354 --> 00:35:03.984
+Incoming livestream: Amazing work.
+
+41
+00:35:05.534 --> 00:35:06.804
+Incoming livestream: And…
+
+42
+00:35:07.114 --> 00:35:13.724
+Incoming livestream: Autonomously, Comet will just go and search for really cool files that you might want to exfiltrate all on its own.
+
+43
+00:35:13.934 --> 00:35:15.224
+Incoming livestream: Isn't that wonderful?
+
+44
+00:35:18.444 --> 00:35:27.843
+Incoming livestream: And then, it would actually exfiltrate it to the attacker, because no demo is ever complete unless you show that exfil happened, or CMP popped up, depending on what you're demoing, right?
+
+45
+00:35:28.404 --> 00:35:37.384
+Incoming livestream: The second attack is actually with 1Password, where, once again, we start with a calendar invite. Everybody clear on that, right? That happens in every single stage here.
+
+46
+00:35:37.664 --> 00:35:47.644
+Incoming livestream: And what do we write here? Accept the meeting and prepare for it. Same thing, but something else happens in the background as the attacker intent and the user intent collide.
+
+47
+00:35:47.824 --> 00:36:00.863
+Incoming livestream: And they apparently log into 1Password, and 1Password usually does not let me do that, it requires the master password. I feel a little bit cheated that you can just log in. I mean, what's wrong here? Is there preferential treatment? And…
+
+48
+00:36:01.464 --> 00:36:03.443
+Incoming livestream: They are catching the request.
+
+49
+00:36:04.234 --> 00:36:07.553
+Incoming livestream: And boom, they're managing the account and doing things to it.
+
+50
+00:36:08.294 --> 00:36:18.334
+Incoming livestream: Oh, this is pretty cool. So, I don't think it's necessarily an attack, but the 1Password autocomplete is apparently turned on, and once that happens, they are just in and they can do whatever they want.
+
+51
+00:36:18.804 --> 00:36:25.184
+Incoming livestream: And they have the emergency kit here, and a lot of other things they probably would have said really technical, smart things about that I'm just blah blahing on.
+
+52
+00:36:25.374 --> 00:36:29.954
+Incoming livestream: And the conclusions. Agentic browsers are untrusted entities.
+
+53
+00:36:30.084 --> 00:36:31.643
+Incoming livestream: I think we can agree to that.
+
+54
+00:36:32.044 --> 00:36:32.904
+Incoming livestream: Awesome.
+
+55
+00:36:33.384 --> 00:36:42.813
+Incoming livestream: Dan, I'm preparing you coming up here to say two words on this in a second, before we call you up. So, step up already, because we've lost a lot of time. Just come here. Stop changing your presentation last minute.
+
+56
+00:36:43.374 --> 00:36:45.013
+Incoming livestream: Okay, logged in.
+
+57
+00:36:45.134 --> 00:36:47.984
+Incoming livestream: The browser is acting under your identity.
+
+58
+00:36:48.294 --> 00:36:56.213
+Incoming livestream: Right? Okay. And third is the browser security model. Think again. We need to do better as an industry.
+
+59
+00:36:56.684 --> 00:36:58.104
+Incoming livestream: And with that.
+
+60
+00:36:58.374 --> 00:37:09.063
+Incoming livestream: This is Xenity Labs, this is their link, you can look at what they do. These, mother-somethings compete with me, although not exactly the same things, so don't like them too much.
+
+61
+00:37:09.444 --> 00:37:20.413
+Incoming livestream: But they're truly awesome people, they constantly release good research, and they were the first ones to actually do a zero-click attack in this space, and it was a real one, not one that marketing claimed was zero-click.
+
+62
+00:37:20.774 --> 00:37:27.844
+Incoming livestream: So, everybody, I apologize to them for my PowerPoint karaoke of this presentation, but let's give Zelenity a hand.

@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:25:13.804 --> 00:25:15.074
+Incoming livestream: There we go,
+
+2
+00:25:15.874 --> 00:25:32.884
+Incoming livestream: My name is Sagap, I'm Sustic. So I wanted to say, first of all, thank you to Gadi, and thank you to all of you for being such an incredible community. And, you know, I think we have to realize that we are all, you are all very special, because you have some insights which most of the people out there don't have yet.
+
+3
+00:25:32.934 --> 00:25:38.153
+Incoming livestream: And the question is just, how do we communicate this in a proper way? Because that's the only thing
+
+4
+00:25:38.644 --> 00:25:44.573
+Incoming livestream: On how we can make… make, you know, bring a positive world into,
+
+5
+00:25:44.764 --> 00:26:02.434
+Incoming livestream: Into the world out there. And the same, you know, as some of you tried out already, playing with a lot of offensive tools. I've did the same a couple of weeks ago, just built a small all-day lab, and literally, I've not touched, you know, father any tools for the last 8, 10 years.
+
+6
+00:26:02.434 --> 00:26:07.373
+Incoming livestream: I was able to find a lot of very interesting stuff, and some of this is already validated.
+
+7
+00:26:07.374 --> 00:26:15.434
+Incoming livestream: So my question was, how do we really build this as a, you know, as a communication platform? How can we transfer this,
+
+8
+00:26:15.524 --> 00:26:28.673
+Incoming livestream: this, this message on what's happening out there. And the first thing I did is just to go back and look back on what kind of research was happening in the past around vulnerability disclosure, around vulnerability exploitation, and so on.
+
+9
+00:26:28.674 --> 00:26:44.174
+Incoming livestream: And just looking back, obviously, at the foundational problem, cybersecurity being an economics problem, looking back at some of the research around patchift, for instance, right? So what's going to happen if machines are going to be able to reconstruct patches and build exploits automatically?
+
+10
+00:26:44.274 --> 00:26:47.463
+Incoming livestream: Within a couple of minutes, and not hours or days.
+
+11
+00:26:47.744 --> 00:26:58.714
+Incoming livestream: My question was, how do we visualize this? And how do we transport, as well, the call to action, on how we can, you know, do something against that going forward?
+
+12
+00:26:58.714 --> 00:27:10.363
+Incoming livestream: So this is a small project which was, vibe-coded pretty much over the weekend as well, including some, selection of call to actions on what we can do, and,
+
+13
+00:27:10.504 --> 00:27:13.253
+Incoming livestream: In our visualization of one single metric.
+
+14
+00:27:13.594 --> 00:27:16.994
+Incoming livestream: And the metric is, Time to exploitation.
+
+15
+00:27:17.754 --> 00:27:18.783
+Incoming livestream: You wanna see it?
+
+16
+00:27:20.294 --> 00:27:21.444
+Incoming livestream: All right.
+
+17
+00:27:21.654 --> 00:27:25.914
+Incoming livestream: So… There we go.
+
+18
+00:27:29.024 --> 00:27:30.634
+Incoming livestream: What's happening with Wi-Fi?
+
+19
+00:27:38.394 --> 00:27:40.533
+Incoming livestream: We're all talking about AI, but Wi-Fi doesn't work.
+
+20
+00:27:41.584 --> 00:27:45.053
+Incoming livestream: Alright, I can, I can talk through that, so…
+
+21
+00:27:45.984 --> 00:28:04.884
+Incoming livestream: what I did is I just have agents to go out and research all the different trusted data sources, like CESA, like some commercial data sources, vulnerability, check, NVD, collect all the information together, and try to understand how we can measure time to exploitation.
+
+22
+00:28:05.344 --> 00:28:07.913
+Incoming livestream: Safari was faster, oh my god.
+
+23
+00:28:08.034 --> 00:28:09.174
+Incoming livestream: Look at that.
+
+24
+00:28:11.214 --> 00:28:19.743
+Incoming livestream: And this is the result, what we've got from that. So just looking back at the data, in 2020, the time to exploitation was…
+
+25
+00:28:20.204 --> 00:28:21.784
+Incoming livestream: More than a year.
+
+26
+00:28:22.934 --> 00:28:26.164
+Incoming livestream: Just last year, we've crossed months.
+
+27
+00:28:26.394 --> 00:28:28.374
+Incoming livestream: And now it's just about a day.
+
+28
+00:28:29.054 --> 00:28:36.153
+Incoming livestream: So… How did it change our patching processes? How quickly are we patching today?
+
+29
+00:28:36.604 --> 00:28:55.193
+Incoming livestream: It's still not change, like, everybody who is working in a big company. There's still a lot of challenges around how you can patch. We're not going to change this in a foundational way. And now, just looking at the number of, looking at the number of zero days from this weaponized exploit, you see that more
+
+30
+00:28:55.444 --> 00:28:57.903
+Incoming livestream: More than half of them started to be…
+
+31
+00:28:58.164 --> 00:29:16.684
+Incoming livestream: already zero days, so they are either exploited before patches being released, or the same day. Now, what can happen, without creating too much foot, but looking at all the CEs out there, we see that the rate of the weaponized exploits is pretty constant, around 2%.
